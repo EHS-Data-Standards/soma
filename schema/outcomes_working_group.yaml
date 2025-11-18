@@ -2638,7 +2638,7 @@ classes:
     class_uri: outcomes_model:EnvironmentalCondition
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2025-11-13T19:26:34'
+source_file_date: '2025-11-18T20:14:51'
 source_file_size: 28811
-generation_date: '2025-11-13T19:26:43'
+generation_date: '2025-11-18T20:15:01'
 
