@@ -146,8 +146,8 @@ classes:
     - downstream_kinase_activation
     - ligand_expression_levels
     - pathway_biomarkers
-  TranscriptionFactorExpressionMeasurement:
-    description: Measurement of transcription factor expression
+  GeneExpressionMeasurement:
+    description: Measurement of gene expression
     is_a: Measurement
     slots:
     - mrna_level
@@ -174,9 +174,14 @@ classes:
     - asl_height_um
     - periciliary_layer_depth
     - imaging_protocol
-    - ion_composition
-    - fluorescent_labeling
     - evaporation_prevention
+    - sampling_method
+    - culture_size
+    - culture_density
+    - number_of_samples
+    - donor_characteristics
+    - timing_from_wash
+    - sampling_duration
   MucociliaryClearanceMeasurement:
     description: Measurement of mucociliary clearance/transport
     is_a: Measurement
@@ -200,7 +205,6 @@ classes:
     - staining_protocol
     - gene_expression_analysis
     - mucin_protein_concentration
-    - goblet_to_ciliated_ratio
     - pathway_enrichment_scores
     - dose_response_data
   OxidativeStressMeasurement:
@@ -215,8 +219,14 @@ classes:
     - protein_oxidation_markers
     - dna_damage_markers
     - antioxidant_enzyme_activities
-    - barrier_integrity
-    - cytotoxicity_metrics
+    - media_composition
+  MucinProductionMeasurement:
+    description: Measurement of mucin production and secretion
+    is_a: Measurement
+    slots:
+    - mucin_expression_level
+    - mucin_protein_concentration
+    - staining_protocol
   Publication:
     description: 'Any published piece of information, following Biolink model.
 
@@ -257,11 +267,12 @@ classes:
     - concentration
     - wavelength
   EvaporationControl:
-    description: Method used to prevent evaporation during measurement
+    description: Method used to prevent evaporation during measurement - critical for preventing apical surface drying
     is_a: NamedEntity
     slots:
     - control_method
     - material_used
+    - application_context
   ROSProbe:
     description: Reactive oxygen species probe and detection details
     is_a: NamedEntity
@@ -383,6 +394,10 @@ slots:
     - OBI:0000272  # protocol
     related_mappings:
     - IAO:0000310  # document
+    comments:
+    - For EGFR signaling include cell type, receptor location in ALI culture, probe method, timing
+    - For goblet cells include media type, species, disease state, donor age, exposure conditions
+    - For mucin production include focus on secreted mucins not tethered to goblet cells
   sample_type:
     description: Type of biological sample
     range: string
@@ -437,7 +452,7 @@ slots:
     range: string
     examples:
     - value: Hz
-    - value: µm
+    - value: μm
     - value: mm/min
     - value: '%'
     exact_mappings:
@@ -483,11 +498,13 @@ slots:
     broad_mappings:
     - PATO:0000119  # height
   periciliary_layer_depth:
-    description: Depth of periciliary layer in micrometers
+    description: Depth of periciliary layer (liquid around the cilia) in micrometers - low depth indicates disease phenotype
     range: QuantityValue
     inlined: true
     broad_mappings:
     - PATO:0001595  # depth
+    comments:
+    - Important measurement for outcome as it directly indicates phenotype
   imaging_modality:
     description: Imaging modality used (confocal, OCT, etc.)
     range: string
@@ -510,7 +527,7 @@ slots:
     description: Method used for tracking particles or mucus
     range: string
   goblet_cell_count:
-    description: Number or percentage of goblet cells
+    description: Number or percentage of goblet cells (include both raw counts and relative percentages)
     range: QuantityValue
     inlined: true
     broad_mappings:
@@ -518,7 +535,7 @@ slots:
     related_mappings:
     - CL:0000160  # goblet cell
   mucin_expression_level:
-    description: Level of mucin gene or protein expression
+    description: Level of mucin gene or protein expression (e.g., MUC5AC to MUC5B ratio)
     range: QuantityValue
     inlined: true
     broad_mappings:
@@ -553,7 +570,7 @@ slots:
     exact_mappings:
     - OBI:0000272  # protocol
   ion_composition:
-    description: Ionic composition (Cl⁻, Na⁺, K⁺)
+    description: Ionic composition (Cl−, Na+, K+)
     range: string
   fluorescent_labeling:
     description: Fluorescent label or tracer used
@@ -639,7 +656,7 @@ slots:
     related_mappings:
     - OBI:0000424  # transcription profiling assay
   mucin_protein_concentration:
-    description: Concentration of mucin protein
+    description: Concentration of mucin protein (both direct quantification and comparative measures, e.g., percent solids from apical secretion)
     range: QuantityValue
     inlined: true
     broad_mappings:
@@ -758,16 +775,23 @@ slots:
     range: QuantityValue
     inlined: true
   egfr_phosphorylation:
-    description: EGFR phosphorylation levels
+    description: EGFR phosphorylation levels including phosphorylation site specificity (e.g., Y1173, Y1068)
     range: QuantityValue
     inlined: true
+    comments:
+    - Specify phosphorylation site as this indicates activation state
+    - Western blot is most common detection method due to antibody specificity
   downstream_kinase_activation:
     description: Activation levels of downstream kinases (ERK, AKT)
     range: string
+    comments:
+    - Not specific to EGFR alone, combine with phosphorylation data or inhibitor controls
   ligand_expression_levels:
     description: Expression levels of EGFR ligands
     range: string
     multivalued: true
+    comments:
+    - Supportive evidence but requires additional validation
   pathway_biomarkers:
     description: Pathway-specific biomarker signatures
     range: string
@@ -909,6 +933,11 @@ slots:
     range: string
     broad_mappings:
     - OBI:0302887  # staining
+    comments:
+    - AB-PAS staining for carbohydrates to assess mucins
+    - Immunochemical methods for quantification
+    - Single cell RNA-seq for cell type changes
+    - For mucin production measurements, include targets for MUC5 (MUC5AC, MUC5B)
   antibodies_used:
     description: Antibodies used in staining
     range: string
@@ -1035,3 +1064,51 @@ slots:
     description: Cross-references to supporting databases or webpages
     range: uriorcurie
     multivalued: true
+  sampling_method:
+    description: Method for sampling areas of the culture
+    range: string
+    comments:
+    - Include information about sampling strategy and distribution
+  culture_size:
+    description: Size of the culture well or surface area
+    range: QuantityValue
+    inlined: true
+  number_of_samples:
+    description: Number of sampling areas or technical replicates
+    range: integer
+    comments:
+    - Typically 12-20 samples per culture depending on size
+  donor_characteristics:
+    description: Characteristics of cell donors (e.g., disease state, age)
+    range: string
+    comments:
+    - Critical for ASL height as disease state affects measurements
+  timing_from_wash:
+    description: Time elapsed since last apical wash
+    range: QuantityValue
+    inlined: true
+    related_mappings:
+    - PATO:0000165  # time
+  sampling_duration:
+    description: Duration of the sampling period
+    range: QuantityValue
+    inlined: true
+    related_mappings:
+    - PATO:0000165  # time
+  culture_density:
+    description: Cell culture density per square centimeter
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0001351  # density
+  media_composition:
+    description: Culture media composition details for in vitro oxidative stress measures
+    range: string
+    comments:
+    - Critical for oxidative stress measurements as media components can affect ROS
+  application_context:
+    description: Context where evaporation control method is applied (e.g., culture incubation, microscope imaging)
+    range: string
+    examples:
+    - value: culture incubation
+    - value: microscope imaging
