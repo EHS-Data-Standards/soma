@@ -417,7 +417,7 @@
 
 
 <h1 id="slot-mucin_protein_concentration">Slot: mucin_protein_concentration</h1>
-<p><em>Concentration of mucin protein</em></p>
+<p><em>Concentration of mucin protein (both direct quantification and comparative measures, e.g., percent solids from apical secretion)</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-model/mucin_protein_concentration">outcomes_model:mucin_protein_concentration</a>
 Alias: mucin_protein_concentration</p>
 <!-- no inheritance hierarchy -->
@@ -432,6 +432,11 @@ Alias: mucin_protein_concentration</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../MucinProductionMeasurement/">MucinProductionMeasurement</a></td>
+<td>Measurement of mucin production and secretion</td>
+<td>no</td>
+</tr>
 <tr>
 <td><a href="../GobletCellMeasurement/">GobletCellMeasurement</a></td>
 <td>Measurement of goblet cell number or mucin production</td>
@@ -475,7 +480,8 @@ Alias: mucin_protein_concentration</p>
 <details>
 
 <pre><code class="language-yaml">name: mucin_protein_concentration
-description: Concentration of mucin protein
+description: Concentration of mucin protein (both direct quantification and comparative
+  measures, e.g., percent solids from apical secretion)
 from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
 broad_mappings:
 - PATO:0000033
@@ -483,6 +489,7 @@ rank: 1000
 alias: mucin_protein_concentration
 domain_of:
 - GobletCellMeasurement
+- MucinProductionMeasurement
 range: QuantityValue
 inlined: true
 

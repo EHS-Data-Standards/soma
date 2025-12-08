@@ -347,6 +347,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -417,7 +428,7 @@
 
 
 <h1 id="slot-periciliary_layer_depth">Slot: periciliary_layer_depth</h1>
-<p><em>Depth of periciliary layer in micrometers</em></p>
+<p><em>Depth of periciliary layer (liquid around the cilia) in micrometers - low depth indicates disease phenotype</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-model/periciliary_layer_depth">outcomes_model:periciliary_layer_depth</a>
 Alias: periciliary_layer_depth</p>
 <!-- no inheritance hierarchy -->
@@ -442,6 +453,10 @@ Alias: periciliary_layer_depth</p>
 <h2 id="properties">Properties</h2>
 <ul>
 <li>Range: <a href="../QuantityValue/">QuantityValue</a></li>
+</ul>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>Important measurement for outcome as it directly indicates phenotype</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -475,7 +490,10 @@ Alias: periciliary_layer_depth</p>
 <details>
 
 <pre><code class="language-yaml">name: periciliary_layer_depth
-description: Depth of periciliary layer in micrometers
+description: Depth of periciliary layer (liquid around the cilia) in micrometers -
+  low depth indicates disease phenotype
+comments:
+- Important measurement for outcome as it directly indicates phenotype
 from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
 broad_mappings:
 - PATO:0001595

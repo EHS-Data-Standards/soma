@@ -347,6 +347,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -443,6 +454,10 @@ Alias: downstream_kinase_activation</p>
 <ul>
 <li>Range: <a href="../String/">String</a></li>
 </ul>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>Not specific to EGFR alone, combine with phosphorylation data or inhibitor controls</li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -472,6 +487,8 @@ Alias: downstream_kinase_activation</p>
 
 <pre><code class="language-yaml">name: downstream_kinase_activation
 description: Activation levels of downstream kinases (ERK, AKT)
+comments:
+- Not specific to EGFR alone, combine with phosphorylation data or inhibitor controls
 from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
 rank: 1000
 alias: downstream_kinase_activation

@@ -357,13 +357,19 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../TranscriptionFactorExpressionMeasurement/">TranscriptionFactorExpressionMeasurement</a></td>
+<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
 <td><a href="../staining_protocol/">staining_protocol</a></td>
 <td>range</td>
 <td><a href="./">StainingProtocol</a></td>
 </tr>
 <tr>
 <td><a href="../GobletCellMeasurement/">GobletCellMeasurement</a></td>
+<td><a href="../staining_protocol/">staining_protocol</a></td>
+<td>range</td>
+<td><a href="./">StainingProtocol</a></td>
+</tr>
+<tr>
+<td><a href="../MucinProductionMeasurement/">MucinProductionMeasurement</a></td>
 <td><a href="../staining_protocol/">staining_protocol</a></td>
 <td>range</td>
 <td><a href="./">StainingProtocol</a></td>
@@ -420,6 +426,11 @@ attributes:
   staining_type:
     name: staining_type
     description: Type of staining (histological, immunofluorescence)
+    comments:
+    - AB-PAS staining for carbohydrates to assess mucins
+    - Immunochemical methods for quantification
+    - Single cell RNA-seq for cell type changes
+    - For mucin production measurements, include targets for MUC5 (MUC5AC, MUC5B)
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     broad_mappings:
     - OBI:0302887

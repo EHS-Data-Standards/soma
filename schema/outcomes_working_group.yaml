@@ -393,6 +393,13 @@ slots:
     name: protocol_notes
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/protocol_notes
     description: Protocol or SOP notes
+    comments:
+    - For EGFR signaling include cell type, receptor location in ALI culture, probe
+      method, timing
+    - For goblet cells include media type, species, disease state, donor age, exposure
+      conditions
+    - For mucin production include focus on secreted mucins not tethered to goblet
+      cells
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     related_mappings:
     - IAO:0000310
@@ -516,7 +523,7 @@ slots:
     description: The unit of measurement for the quantity
     examples:
     - value: Hz
-    - value: "\xB5m"
+    - value: "\u03BCm"
     - value: mm/min
     - value: '%'
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
@@ -632,7 +639,10 @@ slots:
   periciliary_layer_depth:
     name: periciliary_layer_depth
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/periciliary_layer_depth
-    description: Depth of periciliary layer in micrometers
+    description: Depth of periciliary layer (liquid around the cilia) in micrometers
+      - low depth indicates disease phenotype
+    comments:
+    - Important measurement for outcome as it directly indicates phenotype
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     broad_mappings:
     - PATO:0001595
@@ -696,7 +706,8 @@ slots:
   goblet_cell_count:
     name: goblet_cell_count
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/goblet_cell_count
-    description: Number or percentage of goblet cells
+    description: Number or percentage of goblet cells (include both raw counts and
+      relative percentages)
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     related_mappings:
     - CL:0000160
@@ -712,16 +723,18 @@ slots:
   mucin_expression_level:
     name: mucin_expression_level
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/mucin_expression_level
-    description: Level of mucin gene or protein expression
+    description: Level of mucin gene or protein expression (e.g., MUC5AC to MUC5B
+      ratio)
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     related_mappings:
     - GO:0070254
     broad_mappings:
     - PATO:0000070
     slot_uri: outcomes_model:mucin_expression_level
-    owner: GobletCellMeasurement
+    owner: MucinProductionMeasurement
     domain_of:
     - GobletCellMeasurement
+    - MucinProductionMeasurement
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -792,12 +805,9 @@ slots:
   ion_composition:
     name: ion_composition
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/ion_composition
-    description: "Ionic composition (Cl\u207B, Na\u207A, K\u207A)"
+    description: "Ionic composition (Cl\u2212, Na+, K+)"
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     slot_uri: outcomes_model:ion_composition
-    owner: ASLHeightMeasurement
-    domain_of:
-    - ASLHeightMeasurement
     range: string
   fluorescent_labeling:
     name: fluorescent_labeling
@@ -805,9 +815,6 @@ slots:
     description: Fluorescent label or tracer used
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     slot_uri: outcomes_model:fluorescent_labeling
-    owner: ASLHeightMeasurement
-    domain_of:
-    - ASLHeightMeasurement
     range: FluorescentLabel
     inlined: true
     inlined_as_list: false
@@ -984,10 +991,11 @@ slots:
     exact_mappings:
     - OBI:0000272
     slot_uri: outcomes_model:staining_protocol
-    owner: GobletCellMeasurement
+    owner: MucinProductionMeasurement
     domain_of:
-    - TranscriptionFactorExpressionMeasurement
+    - GeneExpressionMeasurement
     - GobletCellMeasurement
+    - MucinProductionMeasurement
     range: StainingProtocol
     inlined: true
     inlined_as_list: false
@@ -1003,7 +1011,7 @@ slots:
     slot_uri: outcomes_model:gene_expression_analysis
     owner: GobletCellMeasurement
     domain_of:
-    - TranscriptionFactorExpressionMeasurement
+    - GeneExpressionMeasurement
     - GobletCellMeasurement
     range: GeneExpressionAnalysis
     inlined: true
@@ -1011,14 +1019,16 @@ slots:
   mucin_protein_concentration:
     name: mucin_protein_concentration
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/mucin_protein_concentration
-    description: Concentration of mucin protein
+    description: Concentration of mucin protein (both direct quantification and comparative
+      measures, e.g., percent solids from apical secretion)
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     broad_mappings:
     - PATO:0000033
     slot_uri: outcomes_model:mucin_protein_concentration
-    owner: GobletCellMeasurement
+    owner: MucinProductionMeasurement
     domain_of:
     - GobletCellMeasurement
+    - MucinProductionMeasurement
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -1030,9 +1040,6 @@ slots:
     broad_mappings:
     - PATO:0001470
     slot_uri: outcomes_model:goblet_to_ciliated_ratio
-    owner: GobletCellMeasurement
-    domain_of:
-    - GobletCellMeasurement
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -1135,9 +1142,6 @@ slots:
     description: Epithelial barrier integrity measurements
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     slot_uri: outcomes_model:barrier_integrity
-    owner: OxidativeStressMeasurement
-    domain_of:
-    - OxidativeStressMeasurement
     range: BarrierIntegrity
     inlined: true
     inlined_as_list: false
@@ -1147,9 +1151,6 @@ slots:
     description: Cytotoxicity measurements
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     slot_uri: outcomes_model:cytotoxicity_metrics
-    owner: OxidativeStressMeasurement
-    domain_of:
-    - OxidativeStressMeasurement
     range: CytotoxicityMetrics
     inlined: true
     inlined_as_list: false
@@ -1333,7 +1334,11 @@ slots:
   egfr_phosphorylation:
     name: egfr_phosphorylation
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/egfr_phosphorylation
-    description: EGFR phosphorylation levels
+    description: EGFR phosphorylation levels including phosphorylation site specificity
+      (e.g., Y1173, Y1068)
+    comments:
+    - Specify phosphorylation site as this indicates activation state
+    - Western blot is most common detection method due to antibody specificity
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     slot_uri: outcomes_model:egfr_phosphorylation
     owner: EGFRSignalingMeasurement
@@ -1346,6 +1351,8 @@ slots:
     name: downstream_kinase_activation
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/downstream_kinase_activation
     description: Activation levels of downstream kinases (ERK, AKT)
+    comments:
+    - Not specific to EGFR alone, combine with phosphorylation data or inhibitor controls
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     slot_uri: outcomes_model:downstream_kinase_activation
     owner: EGFRSignalingMeasurement
@@ -1356,6 +1363,8 @@ slots:
     name: ligand_expression_levels
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/ligand_expression_levels
     description: Expression levels of EGFR ligands
+    comments:
+    - Supportive evidence but requires additional validation
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     slot_uri: outcomes_model:ligand_expression_levels
     owner: EGFRSignalingMeasurement
@@ -1382,9 +1391,9 @@ slots:
     broad_mappings:
     - PATO:0000070
     slot_uri: outcomes_model:mrna_level
-    owner: TranscriptionFactorExpressionMeasurement
+    owner: GeneExpressionMeasurement
     domain_of:
-    - TranscriptionFactorExpressionMeasurement
+    - GeneExpressionMeasurement
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -1396,9 +1405,9 @@ slots:
     broad_mappings:
     - PATO:0000070
     slot_uri: outcomes_model:protein_level
-    owner: TranscriptionFactorExpressionMeasurement
+    owner: GeneExpressionMeasurement
     domain_of:
-    - TranscriptionFactorExpressionMeasurement
+    - GeneExpressionMeasurement
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -1408,9 +1417,9 @@ slots:
     description: Percentage of positive cells
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     slot_uri: outcomes_model:percentage_positive_cells
-    owner: TranscriptionFactorExpressionMeasurement
+    owner: GeneExpressionMeasurement
     domain_of:
-    - TranscriptionFactorExpressionMeasurement
+    - GeneExpressionMeasurement
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -1751,6 +1760,11 @@ slots:
     name: staining_type
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/staining_type
     description: Type of staining (histological, immunofluorescence)
+    comments:
+    - AB-PAS staining for carbohydrates to assess mucins
+    - Immunochemical methods for quantification
+    - Single cell RNA-seq for cell type changes
+    - For mucin production measurements, include targets for MUC5 (MUC5AC, MUC5B)
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     broad_mappings:
     - OBI:0302887
@@ -2120,6 +2134,122 @@ slots:
     - Publication
     range: uriorcurie
     multivalued: true
+  sampling_method:
+    name: sampling_method
+    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/sampling_method
+    description: Method for sampling areas of the culture
+    comments:
+    - Include information about sampling strategy and distribution
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    slot_uri: outcomes_model:sampling_method
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: string
+  culture_size:
+    name: culture_size
+    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/culture_size
+    description: Size of the culture well or surface area
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    slot_uri: outcomes_model:culture_size
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: QuantityValue
+    inlined: true
+    inlined_as_list: true
+  number_of_samples:
+    name: number_of_samples
+    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/number_of_samples
+    description: Number of sampling areas or technical replicates
+    comments:
+    - Typically 12-20 samples per culture depending on size
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    slot_uri: outcomes_model:number_of_samples
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: integer
+  donor_characteristics:
+    name: donor_characteristics
+    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/donor_characteristics
+    description: Characteristics of cell donors (e.g., disease state, age)
+    comments:
+    - Critical for ASL height as disease state affects measurements
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    slot_uri: outcomes_model:donor_characteristics
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: string
+  timing_from_wash:
+    name: timing_from_wash
+    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/timing_from_wash
+    description: Time elapsed since last apical wash
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    related_mappings:
+    - PATO:0000165
+    slot_uri: outcomes_model:timing_from_wash
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: QuantityValue
+    inlined: true
+    inlined_as_list: true
+  sampling_duration:
+    name: sampling_duration
+    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/sampling_duration
+    description: Duration of the sampling period
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    related_mappings:
+    - PATO:0000165
+    slot_uri: outcomes_model:sampling_duration
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: QuantityValue
+    inlined: true
+    inlined_as_list: true
+  culture_density:
+    name: culture_density
+    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/culture_density
+    description: Cell culture density per square centimeter
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    broad_mappings:
+    - PATO:0001351
+    slot_uri: outcomes_model:culture_density
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: QuantityValue
+    inlined: true
+    inlined_as_list: true
+  media_composition:
+    name: media_composition
+    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/media_composition
+    description: Culture media composition details for in vitro oxidative stress measures
+    comments:
+    - Critical for oxidative stress measurements as media components can affect ROS
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    slot_uri: outcomes_model:media_composition
+    owner: OxidativeStressMeasurement
+    domain_of:
+    - OxidativeStressMeasurement
+    range: string
+  application_context:
+    name: application_context
+    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/application_context
+    description: Context where evaporation control method is applied (e.g., culture
+      incubation, microscope imaging)
+    examples:
+    - value: culture incubation
+    - value: microscope imaging
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    slot_uri: outcomes_model:application_context
+    owner: EvaporationControl
+    domain_of:
+    - EvaporationControl
+    range: string
   Publication_id:
     name: Publication_id
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/id
@@ -2282,10 +2412,10 @@ classes:
     - ligand_expression_levels
     - pathway_biomarkers
     class_uri: outcomes_model:EGFRSignalingMeasurement
-  TranscriptionFactorExpressionMeasurement:
-    name: TranscriptionFactorExpressionMeasurement
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/TranscriptionFactorExpressionMeasurement
-    description: Measurement of transcription factor expression
+  GeneExpressionMeasurement:
+    name: GeneExpressionMeasurement
+    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/GeneExpressionMeasurement
+    description: Measurement of gene expression
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     is_a: Measurement
     slots:
@@ -2299,7 +2429,7 @@ classes:
     - percentage_positive_cells
     - staining_protocol
     - gene_expression_analysis
-    class_uri: outcomes_model:TranscriptionFactorExpressionMeasurement
+    class_uri: outcomes_model:GeneExpressionMeasurement
   CiliaBeatFrequencyMeasurement:
     name: CiliaBeatFrequencyMeasurement
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/CiliaBeatFrequencyMeasurement
@@ -2336,9 +2466,14 @@ classes:
     - asl_height_um
     - periciliary_layer_depth
     - imaging_protocol
-    - ion_composition
-    - fluorescent_labeling
     - evaporation_prevention
+    - sampling_method
+    - culture_size
+    - culture_density
+    - number_of_samples
+    - donor_characteristics
+    - timing_from_wash
+    - sampling_duration
     class_uri: outcomes_model:ASLHeightMeasurement
   MucociliaryClearanceMeasurement:
     name: MucociliaryClearanceMeasurement
@@ -2380,7 +2515,6 @@ classes:
     - staining_protocol
     - gene_expression_analysis
     - mucin_protein_concentration
-    - goblet_to_ciliated_ratio
     - pathway_enrichment_scores
     - dose_response_data
     class_uri: outcomes_model:GobletCellMeasurement
@@ -2404,9 +2538,24 @@ classes:
     - protein_oxidation_markers
     - dna_damage_markers
     - antioxidant_enzyme_activities
-    - barrier_integrity
-    - cytotoxicity_metrics
+    - media_composition
     class_uri: outcomes_model:OxidativeStressMeasurement
+  MucinProductionMeasurement:
+    name: MucinProductionMeasurement
+    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/MucinProductionMeasurement
+    description: Measurement of mucin production and secretion
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    is_a: Measurement
+    slots:
+    - id
+    - description
+    - input_sample
+    - method_assay
+    - protocol_notes
+    - mucin_expression_level
+    - mucin_protein_concentration
+    - staining_protocol
+    class_uri: outcomes_model:MucinProductionMeasurement
   Publication:
     name: Publication
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/Publication
@@ -2468,7 +2617,8 @@ classes:
   EvaporationControl:
     name: EvaporationControl
     definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/EvaporationControl
-    description: Method used to prevent evaporation during measurement
+    description: Method used to prevent evaporation during measurement - critical
+      for preventing apical surface drying
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     is_a: NamedEntity
     slots:
@@ -2476,6 +2626,7 @@ classes:
     - description
     - control_method
     - material_used
+    - application_context
     class_uri: outcomes_model:EvaporationControl
   ROSProbe:
     name: ROSProbe
@@ -2638,7 +2789,7 @@ classes:
     class_uri: outcomes_model:EnvironmentalCondition
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2025-11-18T20:14:51'
-source_file_size: 28811
-generation_date: '2025-11-18T20:15:01'
+source_file_date: '2025-12-08T19:34:22'
+source_file_size: 32041
+generation_date: '2025-12-08T19:34:31'
 

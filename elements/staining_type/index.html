@@ -347,6 +347,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -443,6 +454,13 @@ Alias: staining_type</p>
 <ul>
 <li>Range: <a href="../String/">String</a></li>
 </ul>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>AB-PAS staining for carbohydrates to assess mucins</li>
+<li>Immunochemical methods for quantification</li>
+<li>Single cell RNA-seq for cell type changes</li>
+<li>For mucin production measurements, include targets for MUC5 (MUC5AC, MUC5B)</li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -476,6 +494,11 @@ Alias: staining_type</p>
 
 <pre><code class="language-yaml">name: staining_type
 description: Type of staining (histological, immunofluorescence)
+comments:
+- AB-PAS staining for carbohydrates to assess mucins
+- Immunochemical methods for quantification
+- Single cell RNA-seq for cell type changes
+- For mucin production measurements, include targets for MUC5 (MUC5AC, MUC5B)
 from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
 broad_mappings:
 - OBI:0302887

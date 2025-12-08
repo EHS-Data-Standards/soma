@@ -337,7 +337,7 @@
 <tr>
 <td><a href="../egfr_phosphorylation/">egfr_phosphorylation</a></td>
 <td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>EGFR phosphorylation levels</td>
+<td>EGFR phosphorylation levels including phosphorylation site specificity (e</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -439,7 +439,11 @@ is_a: Measurement
 attributes:
   egfr_phosphorylation:
     name: egfr_phosphorylation
-    description: EGFR phosphorylation levels
+    description: EGFR phosphorylation levels including phosphorylation site specificity
+      (e.g., Y1173, Y1068)
+    comments:
+    - Specify phosphorylation site as this indicates activation state
+    - Western blot is most common detection method due to antibody specificity
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     rank: 1000
     alias: egfr_phosphorylation
@@ -451,6 +455,8 @@ attributes:
   downstream_kinase_activation:
     name: downstream_kinase_activation
     description: Activation levels of downstream kinases (ERK, AKT)
+    comments:
+    - Not specific to EGFR alone, combine with phosphorylation data or inhibitor controls
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     rank: 1000
     alias: downstream_kinase_activation
@@ -461,6 +467,8 @@ attributes:
   ligand_expression_levels:
     name: ligand_expression_levels
     description: Expression levels of EGFR ligands
+    comments:
+    - Supportive evidence but requires additional validation
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     rank: 1000
     alias: ligand_expression_levels
@@ -509,6 +517,13 @@ attributes:
   protocol_notes:
     name: protocol_notes
     description: Protocol or SOP notes
+    comments:
+    - For EGFR signaling include cell type, receptor location in ALI culture, probe
+      method, timing
+    - For goblet cells include media type, species, disease state, donor age, exposure
+      conditions
+    - For mucin production include focus on secreted mucins not tethered to goblet
+      cells
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     related_mappings:
     - IAO:0000310

@@ -267,13 +267,15 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-evaporationcontrol">Class: EvaporationControl</h1>
-<p><em>Method used to prevent evaporation during measurement</em></p>
+<p><em>Method used to prevent evaporation during measurement - critical for preventing apical surface drying</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-model/EvaporationControl">outcomes_model:EvaporationControl</a></p>
 <div class="mermaid"> classDiagram
     class EvaporationControl
     click EvaporationControl href "../EvaporationControl/"
       NamedEntity &lt;|-- EvaporationControl
         click NamedEntity href "../NamedEntity/"
+
+      EvaporationControl : application_context
 
       EvaporationControl : control_method
 
@@ -313,6 +315,12 @@
 <td><a href="../material_used/">material_used</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Material used in protocol</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../application_context/">application_context</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Context where evaporation control method is applied (e</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -377,19 +385,22 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: EvaporationControl
-description: Method used to prevent evaporation during measurement
+description: Method used to prevent evaporation during measurement - critical for
+  preventing apical surface drying
 from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
 is_a: NamedEntity
 slots:
 - control_method
 - material_used
+- application_context
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: EvaporationControl
-description: Method used to prevent evaporation during measurement
+description: Method used to prevent evaporation during measurement - critical for
+  preventing apical surface drying
 from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
 is_a: NamedEntity
 attributes:
@@ -409,6 +420,20 @@ attributes:
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     rank: 1000
     alias: material_used
+    owner: EvaporationControl
+    domain_of:
+    - EvaporationControl
+    range: string
+  application_context:
+    name: application_context
+    description: Context where evaporation control method is applied (e.g., culture
+      incubation, microscope imaging)
+    examples:
+    - value: culture incubation
+    - value: microscope imaging
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    rank: 1000
+    alias: application_context
     owner: EvaporationControl
     domain_of:
     - EvaporationControl

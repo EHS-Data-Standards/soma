@@ -277,7 +277,31 @@
 
 
 
+      ASLHeightMeasurement : culture_density
+
+
+
+
+
+        ASLHeightMeasurement --&gt; "0..1" QuantityValue : culture_density
+        click QuantityValue href "../QuantityValue/"
+
+
+
+      ASLHeightMeasurement : culture_size
+
+
+
+
+
+        ASLHeightMeasurement --&gt; "0..1" QuantityValue : culture_size
+        click QuantityValue href "../QuantityValue/"
+
+
+
       ASLHeightMeasurement : description
+
+      ASLHeightMeasurement : donor_characteristics
 
       ASLHeightMeasurement : evaporation_prevention
 
@@ -287,17 +311,6 @@
 
         ASLHeightMeasurement --&gt; "0..1" EvaporationControl : evaporation_prevention
         click EvaporationControl href "../EvaporationControl/"
-
-
-
-      ASLHeightMeasurement : fluorescent_labeling
-
-
-
-
-
-        ASLHeightMeasurement --&gt; "0..1" FluorescentLabel : fluorescent_labeling
-        click FluorescentLabel href "../FluorescentLabel/"
 
 
 
@@ -325,8 +338,6 @@
 
 
 
-      ASLHeightMeasurement : ion_composition
-
       ASLHeightMeasurement : method_assay
 
 
@@ -337,6 +348,8 @@
         click Assay href "../Assay/"
 
 
+
+      ASLHeightMeasurement : number_of_samples
 
       ASLHeightMeasurement : periciliary_layer_depth
 
@@ -350,6 +363,30 @@
 
 
       ASLHeightMeasurement : protocol_notes
+
+      ASLHeightMeasurement : sampling_duration
+
+
+
+
+
+        ASLHeightMeasurement --&gt; "0..1" QuantityValue : sampling_duration
+        click QuantityValue href "../QuantityValue/"
+
+
+
+      ASLHeightMeasurement : sampling_method
+
+      ASLHeightMeasurement : timing_from_wash
+
+
+
+
+
+        ASLHeightMeasurement --&gt; "0..1" QuantityValue : timing_from_wash
+        click QuantityValue href "../QuantityValue/"
+
+
 
 
 </div>
@@ -383,7 +420,7 @@
 <tr>
 <td><a href="../periciliary_layer_depth/">periciliary_layer_depth</a></td>
 <td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Depth of periciliary layer in micrometers</td>
+<td>Depth of periciliary layer (liquid around the cilia) in micrometers - low dep...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -393,21 +430,51 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../ion_composition/">ion_composition</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Ionic composition (Cl⁻, Na⁺, K⁺)</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../fluorescent_labeling/">fluorescent_labeling</a></td>
-<td>0..1 <br/> <a href="../FluorescentLabel/">FluorescentLabel</a></td>
-<td>Fluorescent label or tracer used</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../evaporation_prevention/">evaporation_prevention</a></td>
 <td>0..1 <br/> <a href="../EvaporationControl/">EvaporationControl</a></td>
 <td>Method used to prevent evaporation</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../sampling_method/">sampling_method</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Method for sampling areas of the culture</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../culture_size/">culture_size</a></td>
+<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
+<td>Size of the culture well or surface area</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../culture_density/">culture_density</a></td>
+<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
+<td>Cell culture density per square centimeter</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../number_of_samples/">number_of_samples</a></td>
+<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>Number of sampling areas or technical replicates</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../donor_characteristics/">donor_characteristics</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Characteristics of cell donors (e</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../timing_from_wash/">timing_from_wash</a></td>
+<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
+<td>Time elapsed since last apical wash</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../sampling_duration/">sampling_duration</a></td>
+<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
+<td>Duration of the sampling period</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -478,9 +545,14 @@ slots:
 - asl_height_um
 - periciliary_layer_depth
 - imaging_protocol
-- ion_composition
-- fluorescent_labeling
 - evaporation_prevention
+- sampling_method
+- culture_size
+- culture_density
+- number_of_samples
+- donor_characteristics
+- timing_from_wash
+- sampling_duration
 
 </code></pre>
 </details>
@@ -506,7 +578,10 @@ attributes:
     inlined: true
   periciliary_layer_depth:
     name: periciliary_layer_depth
-    description: Depth of periciliary layer in micrometers
+    description: Depth of periciliary layer (liquid around the cilia) in micrometers
+      - low depth indicates disease phenotype
+    comments:
+    - Important measurement for outcome as it directly indicates phenotype
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     broad_mappings:
     - PATO:0001595
@@ -531,27 +606,6 @@ attributes:
     - ASLHeightMeasurement
     range: ImagingProtocol
     inlined: true
-  ion_composition:
-    name: ion_composition
-    description: Ionic composition (Cl⁻, Na⁺, K⁺)
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
-    rank: 1000
-    alias: ion_composition
-    owner: ASLHeightMeasurement
-    domain_of:
-    - ASLHeightMeasurement
-    range: string
-  fluorescent_labeling:
-    name: fluorescent_labeling
-    description: Fluorescent label or tracer used
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
-    rank: 1000
-    alias: fluorescent_labeling
-    owner: ASLHeightMeasurement
-    domain_of:
-    - ASLHeightMeasurement
-    range: FluorescentLabel
-    inlined: true
   evaporation_prevention:
     name: evaporation_prevention
     description: Method used to prevent evaporation
@@ -562,6 +616,92 @@ attributes:
     domain_of:
     - ASLHeightMeasurement
     range: EvaporationControl
+    inlined: true
+  sampling_method:
+    name: sampling_method
+    description: Method for sampling areas of the culture
+    comments:
+    - Include information about sampling strategy and distribution
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    rank: 1000
+    alias: sampling_method
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: string
+  culture_size:
+    name: culture_size
+    description: Size of the culture well or surface area
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    rank: 1000
+    alias: culture_size
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: QuantityValue
+    inlined: true
+  culture_density:
+    name: culture_density
+    description: Cell culture density per square centimeter
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    broad_mappings:
+    - PATO:0001351
+    rank: 1000
+    alias: culture_density
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: QuantityValue
+    inlined: true
+  number_of_samples:
+    name: number_of_samples
+    description: Number of sampling areas or technical replicates
+    comments:
+    - Typically 12-20 samples per culture depending on size
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    rank: 1000
+    alias: number_of_samples
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: integer
+  donor_characteristics:
+    name: donor_characteristics
+    description: Characteristics of cell donors (e.g., disease state, age)
+    comments:
+    - Critical for ASL height as disease state affects measurements
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    rank: 1000
+    alias: donor_characteristics
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: string
+  timing_from_wash:
+    name: timing_from_wash
+    description: Time elapsed since last apical wash
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    related_mappings:
+    - PATO:0000165
+    rank: 1000
+    alias: timing_from_wash
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: QuantityValue
+    inlined: true
+  sampling_duration:
+    name: sampling_duration
+    description: Duration of the sampling period
+    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
+    related_mappings:
+    - PATO:0000165
+    rank: 1000
+    alias: sampling_duration
+    owner: ASLHeightMeasurement
+    domain_of:
+    - ASLHeightMeasurement
+    range: QuantityValue
     inlined: true
   input_sample:
     name: input_sample
@@ -592,6 +732,13 @@ attributes:
   protocol_notes:
     name: protocol_notes
     description: Protocol or SOP notes
+    comments:
+    - For EGFR signaling include cell type, receptor location in ALI culture, probe
+      method, timing
+    - For goblet cells include media type, species, disease state, donor age, exposure
+      conditions
+    - For mucin production include focus on secreted mucins not tethered to goblet
+      cells
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     related_mappings:
     - IAO:0000310

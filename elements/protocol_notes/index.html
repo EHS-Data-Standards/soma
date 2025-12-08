@@ -347,6 +347,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -433,38 +444,8 @@ Alias: protocol_notes</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../CiliaBeatFrequencyMeasurement/">CiliaBeatFrequencyMeasurement</a></td>
-<td>Measurement of ciliary beat frequency</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../TranscriptionFactorExpressionMeasurement/">TranscriptionFactorExpressionMeasurement</a></td>
-<td>Measurement of transcription factor expression</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
-<td>Measurement of oxidative stress markers</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Measurement/">Measurement</a></td>
-<td>A generic class representing the process of measuring a biological endpoint</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../EGFRSignalingMeasurement/">EGFRSignalingMeasurement</a></td>
 <td>Measurement of EGFR pathway activation and signaling</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../MucociliaryClearanceMeasurement/">MucociliaryClearanceMeasurement</a></td>
-<td>Measurement of mucociliary clearance/transport</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
-<td>Measurement of lung function parameters</td>
 <td>no</td>
 </tr>
 <tr>
@@ -473,8 +454,8 @@ Alias: protocol_notes</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ASLHeightMeasurement/">ASLHeightMeasurement</a></td>
-<td>Measurement of airway surface liquid height</td>
+<td><a href="../LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
+<td>Measurement of lung function parameters</td>
 <td>no</td>
 </tr>
 <tr>
@@ -483,8 +464,43 @@ Alias: protocol_notes</p>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../ASLHeightMeasurement/">ASLHeightMeasurement</a></td>
+<td>Measurement of airway surface liquid height</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Measurement/">Measurement</a></td>
+<td>A generic class representing the process of measuring a biological endpoint</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../CFTRFunctionMeasurement/">CFTRFunctionMeasurement</a></td>
 <td>Measurement of CFTR-mediated ion transport function</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
+<td>Measurement of oxidative stress markers</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
+<td>Measurement of gene expression</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MucinProductionMeasurement/">MucinProductionMeasurement</a></td>
+<td>Measurement of mucin production and secretion</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MucociliaryClearanceMeasurement/">MucociliaryClearanceMeasurement</a></td>
+<td>Measurement of mucociliary clearance/transport</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CiliaBeatFrequencyMeasurement/">CiliaBeatFrequencyMeasurement</a></td>
+<td>Measurement of ciliary beat frequency</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -492,6 +508,12 @@ Alias: protocol_notes</p>
 <h2 id="properties">Properties</h2>
 <ul>
 <li>Range: <a href="../String/">String</a></li>
+</ul>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>For EGFR signaling include cell type, receptor location in ALI culture, probe method, timing</li>
+<li>For goblet cells include media type, species, disease state, donor age, exposure conditions</li>
+<li>For mucin production include focus on secreted mucins not tethered to goblet cells</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -530,6 +552,12 @@ Alias: protocol_notes</p>
 
 <pre><code class="language-yaml">name: protocol_notes
 description: Protocol or SOP notes
+comments:
+- For EGFR signaling include cell type, receptor location in ALI culture, probe method,
+  timing
+- For goblet cells include media type, species, disease state, donor age, exposure
+  conditions
+- For mucin production include focus on secreted mucins not tethered to goblet cells
 from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
 related_mappings:
 - IAO:0000310

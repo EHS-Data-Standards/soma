@@ -417,7 +417,7 @@
 
 
 <h1 id="slot-mucin_expression_level">Slot: mucin_expression_level</h1>
-<p><em>Level of mucin gene or protein expression</em></p>
+<p><em>Level of mucin gene or protein expression (e.g., MUC5AC to MUC5B ratio)</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-model/mucin_expression_level">outcomes_model:mucin_expression_level</a>
 Alias: mucin_expression_level</p>
 <!-- no inheritance hierarchy -->
@@ -432,6 +432,11 @@ Alias: mucin_expression_level</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../MucinProductionMeasurement/">MucinProductionMeasurement</a></td>
+<td>Measurement of mucin production and secretion</td>
+<td>no</td>
+</tr>
 <tr>
 <td><a href="../GobletCellMeasurement/">GobletCellMeasurement</a></td>
 <td>Measurement of goblet cell number or mucin production</td>
@@ -479,7 +484,7 @@ Alias: mucin_expression_level</p>
 <details>
 
 <pre><code class="language-yaml">name: mucin_expression_level
-description: Level of mucin gene or protein expression
+description: Level of mucin gene or protein expression (e.g., MUC5AC to MUC5B ratio)
 from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
 related_mappings:
 - GO:0070254
@@ -489,6 +494,7 @@ rank: 1000
 alias: mucin_expression_level
 domain_of:
 - GobletCellMeasurement
+- MucinProductionMeasurement
 range: QuantityValue
 inlined: true
 

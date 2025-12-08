@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://EHS-Data-Standards.github.io/outcomes-working-group/elements/TranscriptionFactorExpressionMeasurement/" rel="canonical"/>
+<link href="https://EHS-Data-Standards.github.io/outcomes-working-group/elements/GeneExpressionMeasurement/" rel="canonical"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.0" name="generator"/>
-<title>Class: TranscriptionFactorExpressionMeasurement - outcomes-working-group</title>
+<title>Class: GeneExpressionMeasurement - outcomes-working-group</title>
 <link href="../../assets/stylesheets/main.618322db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-transcriptionfactorexpressionmeasurement">
+<a class="md-skip" href="#class-geneexpressionmeasurement">
           Skip to content
         </a>
 </div>
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: TranscriptionFactorExpressionMeasurement
+              Class: GeneExpressionMeasurement
             
           </span>
 </div>
@@ -257,94 +257,94 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-transcriptionfactorexpressionmeasurement">Class: TranscriptionFactorExpressionMeasurement</h1>
-<p><em>Measurement of transcription factor expression</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-model/TranscriptionFactorExpressionMeasurement">outcomes_model:TranscriptionFactorExpressionMeasurement</a></p>
+<h1 id="class-geneexpressionmeasurement">Class: GeneExpressionMeasurement</h1>
+<p><em>Measurement of gene expression</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-model/GeneExpressionMeasurement">outcomes_model:GeneExpressionMeasurement</a></p>
 <div class="mermaid"> classDiagram
-    class TranscriptionFactorExpressionMeasurement
-    click TranscriptionFactorExpressionMeasurement href "../TranscriptionFactorExpressionMeasurement/"
-      Measurement &lt;|-- TranscriptionFactorExpressionMeasurement
+    class GeneExpressionMeasurement
+    click GeneExpressionMeasurement href "../GeneExpressionMeasurement/"
+      Measurement &lt;|-- GeneExpressionMeasurement
         click Measurement href "../Measurement/"
 
-      TranscriptionFactorExpressionMeasurement : description
+      GeneExpressionMeasurement : description
 
-      TranscriptionFactorExpressionMeasurement : gene_expression_analysis
-
-
+      GeneExpressionMeasurement : gene_expression_analysis
 
 
 
-        TranscriptionFactorExpressionMeasurement --&gt; "0..1" GeneExpressionAnalysis : gene_expression_analysis
+
+
+        GeneExpressionMeasurement --&gt; "0..1" GeneExpressionAnalysis : gene_expression_analysis
         click GeneExpressionAnalysis href "../GeneExpressionAnalysis/"
 
 
 
-      TranscriptionFactorExpressionMeasurement : id
+      GeneExpressionMeasurement : id
 
-      TranscriptionFactorExpressionMeasurement : input_sample
-
-
+      GeneExpressionMeasurement : input_sample
 
 
 
-        TranscriptionFactorExpressionMeasurement --&gt; "0..1" InputSample : input_sample
+
+
+        GeneExpressionMeasurement --&gt; "0..1" InputSample : input_sample
         click InputSample href "../InputSample/"
 
 
 
-      TranscriptionFactorExpressionMeasurement : method_assay
+      GeneExpressionMeasurement : method_assay
 
 
 
 
 
-        TranscriptionFactorExpressionMeasurement --&gt; "0..1" Assay : method_assay
+        GeneExpressionMeasurement --&gt; "0..1" Assay : method_assay
         click Assay href "../Assay/"
 
 
 
-      TranscriptionFactorExpressionMeasurement : mrna_level
+      GeneExpressionMeasurement : mrna_level
 
 
 
 
 
-        TranscriptionFactorExpressionMeasurement --&gt; "0..1" QuantityValue : mrna_level
+        GeneExpressionMeasurement --&gt; "0..1" QuantityValue : mrna_level
         click QuantityValue href "../QuantityValue/"
 
 
 
-      TranscriptionFactorExpressionMeasurement : percentage_positive_cells
+      GeneExpressionMeasurement : percentage_positive_cells
 
 
 
 
 
-        TranscriptionFactorExpressionMeasurement --&gt; "0..1" QuantityValue : percentage_positive_cells
+        GeneExpressionMeasurement --&gt; "0..1" QuantityValue : percentage_positive_cells
         click QuantityValue href "../QuantityValue/"
 
 
 
-      TranscriptionFactorExpressionMeasurement : protein_level
+      GeneExpressionMeasurement : protein_level
 
 
 
 
 
-        TranscriptionFactorExpressionMeasurement --&gt; "0..1" QuantityValue : protein_level
+        GeneExpressionMeasurement --&gt; "0..1" QuantityValue : protein_level
         click QuantityValue href "../QuantityValue/"
 
 
 
-      TranscriptionFactorExpressionMeasurement : protocol_notes
+      GeneExpressionMeasurement : protocol_notes
 
-      TranscriptionFactorExpressionMeasurement : staining_protocol
-
-
+      GeneExpressionMeasurement : staining_protocol
 
 
 
-        TranscriptionFactorExpressionMeasurement --&gt; "0..1" StainingProtocol : staining_protocol
+
+
+        GeneExpressionMeasurement --&gt; "0..1" StainingProtocol : staining_protocol
         click StainingProtocol href "../StainingProtocol/"
 
 
@@ -355,7 +355,7 @@
 <ul>
 <li><a href="../NamedEntity/">NamedEntity</a><ul>
 <li><a href="../Measurement/">Measurement</a><ul>
-<li><strong>TranscriptionFactorExpressionMeasurement</strong></li>
+<li><strong>GeneExpressionMeasurement</strong></li>
 </ul>
 </li>
 </ul>
@@ -450,11 +450,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>outcomes_model:TranscriptionFactorExpressionMeasurement</td>
+<td>outcomes_model:GeneExpressionMeasurement</td>
 </tr>
 <tr>
 <td>native</td>
-<td>outcomes_model:TranscriptionFactorExpressionMeasurement</td>
+<td>outcomes_model:GeneExpressionMeasurement</td>
 </tr>
 </tbody>
 </table>
@@ -462,8 +462,8 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: TranscriptionFactorExpressionMeasurement
-description: Measurement of transcription factor expression
+<pre><code class="language-yaml">name: GeneExpressionMeasurement
+description: Measurement of gene expression
 from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
 is_a: Measurement
 slots:
@@ -477,8 +477,8 @@ slots:
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: TranscriptionFactorExpressionMeasurement
-description: Measurement of transcription factor expression
+<pre><code class="language-yaml">name: GeneExpressionMeasurement
+description: Measurement of gene expression
 from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
 is_a: Measurement
 attributes:
@@ -490,9 +490,9 @@ attributes:
     - PATO:0000070
     rank: 1000
     alias: mrna_level
-    owner: TranscriptionFactorExpressionMeasurement
+    owner: GeneExpressionMeasurement
     domain_of:
-    - TranscriptionFactorExpressionMeasurement
+    - GeneExpressionMeasurement
     range: QuantityValue
     inlined: true
   protein_level:
@@ -503,9 +503,9 @@ attributes:
     - PATO:0000070
     rank: 1000
     alias: protein_level
-    owner: TranscriptionFactorExpressionMeasurement
+    owner: GeneExpressionMeasurement
     domain_of:
-    - TranscriptionFactorExpressionMeasurement
+    - GeneExpressionMeasurement
     range: QuantityValue
     inlined: true
   percentage_positive_cells:
@@ -514,9 +514,9 @@ attributes:
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     rank: 1000
     alias: percentage_positive_cells
-    owner: TranscriptionFactorExpressionMeasurement
+    owner: GeneExpressionMeasurement
     domain_of:
-    - TranscriptionFactorExpressionMeasurement
+    - GeneExpressionMeasurement
     range: QuantityValue
     inlined: true
   staining_protocol:
@@ -527,10 +527,11 @@ attributes:
     - OBI:0000272
     rank: 1000
     alias: staining_protocol
-    owner: TranscriptionFactorExpressionMeasurement
+    owner: GeneExpressionMeasurement
     domain_of:
-    - TranscriptionFactorExpressionMeasurement
+    - GeneExpressionMeasurement
     - GobletCellMeasurement
+    - MucinProductionMeasurement
     range: StainingProtocol
     inlined: true
   gene_expression_analysis:
@@ -543,9 +544,9 @@ attributes:
     - OBI:0000070
     rank: 1000
     alias: gene_expression_analysis
-    owner: TranscriptionFactorExpressionMeasurement
+    owner: GeneExpressionMeasurement
     domain_of:
-    - TranscriptionFactorExpressionMeasurement
+    - GeneExpressionMeasurement
     - GobletCellMeasurement
     range: GeneExpressionAnalysis
     inlined: true
@@ -559,7 +560,7 @@ attributes:
     - OBI:0000747
     rank: 1000
     alias: input_sample
-    owner: TranscriptionFactorExpressionMeasurement
+    owner: GeneExpressionMeasurement
     domain_of:
     - Measurement
     range: InputSample
@@ -571,13 +572,20 @@ attributes:
     - OBI:0000070
     rank: 1000
     alias: method_assay
-    owner: TranscriptionFactorExpressionMeasurement
+    owner: GeneExpressionMeasurement
     domain_of:
     - Measurement
     range: Assay
   protocol_notes:
     name: protocol_notes
     description: Protocol or SOP notes
+    comments:
+    - For EGFR signaling include cell type, receptor location in ALI culture, probe
+      method, timing
+    - For goblet cells include media type, species, disease state, donor age, exposure
+      conditions
+    - For mucin production include focus on secreted mucins not tethered to goblet
+      cells
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     related_mappings:
     - IAO:0000310
@@ -585,7 +593,7 @@ attributes:
     - OBI:0000272
     rank: 1000
     alias: protocol_notes
-    owner: TranscriptionFactorExpressionMeasurement
+    owner: GeneExpressionMeasurement
     domain_of:
     - Measurement
     range: string
@@ -596,7 +604,7 @@ attributes:
     rank: 1000
     identifier: true
     alias: id
-    owner: TranscriptionFactorExpressionMeasurement
+    owner: GeneExpressionMeasurement
     domain_of:
     - NamedEntity
     range: uriorcurie
@@ -607,7 +615,7 @@ attributes:
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     rank: 1000
     alias: description
-    owner: TranscriptionFactorExpressionMeasurement
+    owner: GeneExpressionMeasurement
     domain_of:
     - NamedEntity
     range: string

@@ -401,19 +401,19 @@
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../TranscriptionFactorExpressionMeasurement/">TranscriptionFactorExpressionMeasurement</a></td>
+<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
 <td><a href="../mrna_level/">mrna_level</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../TranscriptionFactorExpressionMeasurement/">TranscriptionFactorExpressionMeasurement</a></td>
+<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
 <td><a href="../protein_level/">protein_level</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../TranscriptionFactorExpressionMeasurement/">TranscriptionFactorExpressionMeasurement</a></td>
+<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
 <td><a href="../percentage_positive_cells/">percentage_positive_cells</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
@@ -457,6 +457,30 @@
 <tr>
 <td><a href="../ASLHeightMeasurement/">ASLHeightMeasurement</a></td>
 <td><a href="../periciliary_layer_depth/">periciliary_layer_depth</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../ASLHeightMeasurement/">ASLHeightMeasurement</a></td>
+<td><a href="../culture_size/">culture_size</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../ASLHeightMeasurement/">ASLHeightMeasurement</a></td>
+<td><a href="../culture_density/">culture_density</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../ASLHeightMeasurement/">ASLHeightMeasurement</a></td>
+<td><a href="../timing_from_wash/">timing_from_wash</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../ASLHeightMeasurement/">ASLHeightMeasurement</a></td>
+<td><a href="../sampling_duration/">sampling_duration</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
@@ -509,12 +533,6 @@
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../GobletCellMeasurement/">GobletCellMeasurement</a></td>
-<td><a href="../goblet_to_ciliated_ratio/">goblet_to_ciliated_ratio</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
 <td><a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
 <td><a href="../ros_level/">ros_level</a></td>
 <td>range</td>
@@ -535,6 +553,18 @@
 <tr>
 <td><a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
 <td><a href="../dna_damage_markers/">dna_damage_markers</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../MucinProductionMeasurement/">MucinProductionMeasurement</a></td>
+<td><a href="../mucin_expression_level/">mucin_expression_level</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../MucinProductionMeasurement/">MucinProductionMeasurement</a></td>
+<td><a href="../mucin_protein_concentration/">mucin_protein_concentration</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
@@ -754,7 +784,7 @@ attributes:
     description: The unit of measurement for the quantity
     examples:
     - value: Hz
-    - value: µm
+    - value: μm
     - value: mm/min
     - value: '%'
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model

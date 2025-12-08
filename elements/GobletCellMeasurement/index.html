@@ -292,17 +292,6 @@
 
 
 
-      GobletCellMeasurement : goblet_to_ciliated_ratio
-
-
-
-
-
-        GobletCellMeasurement --&gt; "0..1" QuantityValue : goblet_to_ciliated_ratio
-        click QuantityValue href "../QuantityValue/"
-
-
-
       GobletCellMeasurement : id
 
       GobletCellMeasurement : input_sample
@@ -390,13 +379,13 @@
 <tr>
 <td><a href="../goblet_cell_count/">goblet_cell_count</a></td>
 <td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Number or percentage of goblet cells</td>
+<td>Number or percentage of goblet cells (include both raw counts and relative pe...</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../mucin_expression_level/">mucin_expression_level</a></td>
 <td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Level of mucin gene or protein expression</td>
+<td>Level of mucin gene or protein expression (e</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -414,13 +403,7 @@
 <tr>
 <td><a href="../mucin_protein_concentration/">mucin_protein_concentration</a></td>
 <td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Concentration of mucin protein</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../goblet_to_ciliated_ratio/">goblet_to_ciliated_ratio</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Ratio of goblet cells to ciliated cells</td>
+<td>Concentration of mucin protein (both direct quantification and comparative me...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -505,7 +488,6 @@ slots:
 - staining_protocol
 - gene_expression_analysis
 - mucin_protein_concentration
-- goblet_to_ciliated_ratio
 - pathway_enrichment_scores
 - dose_response_data
 
@@ -520,7 +502,8 @@ is_a: Measurement
 attributes:
   goblet_cell_count:
     name: goblet_cell_count
-    description: Number or percentage of goblet cells
+    description: Number or percentage of goblet cells (include both raw counts and
+      relative percentages)
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     related_mappings:
     - CL:0000160
@@ -535,7 +518,8 @@ attributes:
     inlined: true
   mucin_expression_level:
     name: mucin_expression_level
-    description: Level of mucin gene or protein expression
+    description: Level of mucin gene or protein expression (e.g., MUC5AC to MUC5B
+      ratio)
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     related_mappings:
     - GO:0070254
@@ -546,6 +530,7 @@ attributes:
     owner: GobletCellMeasurement
     domain_of:
     - GobletCellMeasurement
+    - MucinProductionMeasurement
     range: QuantityValue
     inlined: true
   staining_protocol:
@@ -558,8 +543,9 @@ attributes:
     alias: staining_protocol
     owner: GobletCellMeasurement
     domain_of:
-    - TranscriptionFactorExpressionMeasurement
+    - GeneExpressionMeasurement
     - GobletCellMeasurement
+    - MucinProductionMeasurement
     range: StainingProtocol
     inlined: true
   gene_expression_analysis:
@@ -574,13 +560,14 @@ attributes:
     alias: gene_expression_analysis
     owner: GobletCellMeasurement
     domain_of:
-    - TranscriptionFactorExpressionMeasurement
+    - GeneExpressionMeasurement
     - GobletCellMeasurement
     range: GeneExpressionAnalysis
     inlined: true
   mucin_protein_concentration:
     name: mucin_protein_concentration
-    description: Concentration of mucin protein
+    description: Concentration of mucin protein (both direct quantification and comparative
+      measures, e.g., percent solids from apical secretion)
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     broad_mappings:
     - PATO:0000033
@@ -589,19 +576,7 @@ attributes:
     owner: GobletCellMeasurement
     domain_of:
     - GobletCellMeasurement
-    range: QuantityValue
-    inlined: true
-  goblet_to_ciliated_ratio:
-    name: goblet_to_ciliated_ratio
-    description: Ratio of goblet cells to ciliated cells
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
-    broad_mappings:
-    - PATO:0001470
-    rank: 1000
-    alias: goblet_to_ciliated_ratio
-    owner: GobletCellMeasurement
-    domain_of:
-    - GobletCellMeasurement
+    - MucinProductionMeasurement
     range: QuantityValue
     inlined: true
   pathway_enrichment_scores:
@@ -654,6 +629,13 @@ attributes:
   protocol_notes:
     name: protocol_notes
     description: Protocol or SOP notes
+    comments:
+    - For EGFR signaling include cell type, receptor location in ALI culture, probe
+      method, timing
+    - For goblet cells include media type, species, disease state, donor age, exposure
+      conditions
+    - For mucin production include focus on secreted mucins not tethered to goblet
+      cells
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     related_mappings:
     - IAO:0000310
