@@ -1,62 +1,39 @@
-name: outcomes-model
-description: 'A LinkML data model for representing biological measurements, assays,
-  and experimental protocols
-
-  in the context of outcomes research.
-
-  '
-title: Outcomes Data Model
+name: outcome-measurement-model
+description: >-
+  A LinkML data model for representing biological measurements, assays,
+  and experimental protocols in the context of outcomes research.
+title: Outcome Measurement Data Model
 see_also:
 - https://EHS-Data-Standards.github.io/outcomes-working-group
-id: https://w3id.org/EHS-Data-Standards/outcomes-model
+id: https://w3id.org/EHS-Data-Standards/outcome-measurement-model
 imports:
 - linkml:types
 license: MIT
 prefixes:
-  outcomes_model:
-    prefix_prefix: outcomes_model
-    prefix_reference: https://w3id.org/EHS-Data-Standards/outcomes-model/
-  linkml:
-    prefix_prefix: linkml
-    prefix_reference: https://w3id.org/linkml/
-  biolink:
-    prefix_prefix: biolink
-    prefix_reference: https://w3id.org/biolink/
-  rdf:
-    prefix_prefix: rdf
-    prefix_reference: http://www.w3.org/1999/02/22-rdf-syntax-ns#
-  OBI:
-    prefix_prefix: OBI
-    prefix_reference: http://purl.obolibrary.org/obo/OBI_
-  CHEBI:
-    prefix_prefix: CHEBI
-    prefix_reference: http://purl.obolibrary.org/obo/CHEBI_
-  ENVO:
-    prefix_prefix: ENVO
-    prefix_reference: http://purl.obolibrary.org/obo/ENVO_
-  PATO:
-    prefix_prefix: PATO
-    prefix_reference: http://purl.obolibrary.org/obo/PATO_
-  UO:
-    prefix_prefix: UO
-    prefix_reference: http://purl.obolibrary.org/obo/UO_
-  IAO:
-    prefix_prefix: IAO
-    prefix_reference: http://purl.obolibrary.org/obo/IAO_
-  CL:
-    prefix_prefix: CL
-    prefix_reference: http://purl.obolibrary.org/obo/CL_
-  GO:
-    prefix_prefix: GO
-    prefix_reference: http://purl.obolibrary.org/obo/GO_
-  schema:
-    prefix_prefix: schema
-    prefix_reference: http://schema.org/
+  outcome_measurement_model: https://w3id.org/EHS-Data-Standards/outcomes-model/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  OBI: http://purl.obolibrary.org/obo/OBI_
+  CHEBI: http://purl.obolibrary.org/obo/CHEBI_
+  ENVO: http://purl.obolibrary.org/obo/ENVO_
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  UO: http://purl.obolibrary.org/obo/UO_
+  IAO: http://purl.obolibrary.org/obo/IAO_
+  CL: http://purl.obolibrary.org/obo/CL_
+  GO: http://purl.obolibrary.org/obo/GO_
+  CLO: http://purl.obolibrary.org/obo/CLO_
+  PR: http://purl.obolibrary.org/obo/PR_
+  UBERON: http://purl.obolibrary.org/obo/UBERON_
+  schema: http://schema.org/
+
 default_prefix: outcomes_model
 default_range: string
+
 enums:
   AssayTypeEnum:
-    description: Types of assays from the Ontology for Biomedical Investigations (OBI)
+    description: >-
+      Types of assays from the Ontology for Biomedical Investigations (OBI)
     reachable_from:
       source_ontology: obo:obi
       source_nodes:
@@ -67,8 +44,10 @@ enums:
       OBI:0000070:
         description: assay
         meaning: OBI:0000070  # assay
+
   SupplementTypeEnum:
-    description: Categories of cell culture medium supplements
+    description: >-
+      Categories of cell culture medium supplements
     permissible_values:
       growth_factor:
         description: Proteins that stimulate cell growth, proliferation, and differentiation
@@ -91,8 +70,10 @@ enums:
       buffer:
         description: Solutions that resist changes in pH
         meaning: CHEBI:35225
+
   SubstrateTypeEnum:
-    description: Types of cell culture substrates and surfaces
+    description: >-
+      Types of cell culture substrates and surfaces
     permissible_values:
       plastic:
         description: Standard tissue culture plastic
@@ -135,8 +116,10 @@ enums:
         description: Glass surface or coverslip
         exact_mappings:
         - CHEBI:131189  # glass
+
   CellCultureGrowthModeEnum:
-    description: Cell culture growth modes
+    description: >-
+      Cell culture growth modes
     permissible_values:
       adherent:
         description: Cells grow attached to a surface
@@ -151,64 +134,76 @@ enums:
         description: Cells grown in 3D matrix or scaffold
       organoid:
         description: Self-organizing 3D tissue culture
+
 classes:
   NamedEntity:
-    description: Base class for all named entities in the model
+    description: >-
+      Base class for all named entities in the model
     slots:
     - id
     - description
+
   ChemicalEntity:
-    description: A chemical substance or compound
+    description: >-
+      A chemical substance or compound
     is_a: NamedEntity
     slots:
     - name
     - formula
     - cross_references
+
   Measurement:
-    description: 'A generic class representing the process of measuring a biological
-      endpoint.
-
-      Includes information about input samples, methods, and contextual metadata.
-
-      '
+    description: >-
+      A generic class representing the process of measuring a biological
+      endpoint. Includes information about input samples, methods, and contextual metadata.
     is_a: NamedEntity
     slots:
     - input_sample
     - method_assay
     - protocol_notes
+
   InputSample:
-    description: Description of the biological sample or experimental manipulation
+    description: >-
+      Description of the biological sample or experimental manipulation
       used as input
     is_a: NamedEntity
     slots:
     - sample_type
     - manipulation
     - exposure_conditions
+
   Assay:
-    description: The specific method or assay used to measure an endpoint
+    description: >-
+      The specific method or assay used to measure an endpoint
     is_a: NamedEntity
     slots:
     - assay_type
     - instrumentation
     - environmental_conditions
     - sop_reference
+
   QuantityValue:
-    description: A quantity value expresses a measurement with a numeric value and
+    description: >-
+      A quantity value expresses a measurement with a numeric value and
       a unit. Based on NMDC Schema QuantityValue pattern.
     slots:
     - has_numeric_value
     - has_unit
     - has_minimum_numeric_value
     - has_maximum_numeric_value
+
   CFTRFunctionMeasurement:
-    description: Measurement of CFTR-mediated ion transport function
+    description: >-
+      Measurement of CFTR-mediated ion transport function
     is_a: Measurement
     slots:
     - cftr_specific_current
     - inhibitor_sensitive_current
     - cell_culture_details
+
   BALFSputumMeasurement:
-    description: Measurement of bronchoalveolar lavage fluid or sputum components
+    description: >-
+      Measurement of bronchoalveolar lavage fluid or sputum components
     is_a: Measurement
     slots:
     - sample_collection_details
@@ -217,8 +212,10 @@ classes:
     - cytokine_levels
     - protein_concentration
     - cell_free_dna
+
   LungFunctionMeasurement:
-    description: Measurement of lung function parameters
+    description: >-
+      Measurement of lung function parameters
     is_a: Measurement
     slots:
     - fev1
@@ -229,16 +226,20 @@ classes:
     - decline_rate
     - dlco
     - feno
+
   EGFRSignalingMeasurement:
-    description: Measurement of EGFR pathway activation and signaling
+    description: >-
+      Measurement of EGFR pathway activation and signaling
     is_a: Measurement
     slots:
     - egfr_phosphorylation
     - downstream_kinase_activation
     - ligand_expression_levels
     - pathway_biomarkers
+
   GeneExpressionMeasurement:
-    description: Measurement of gene expression
+    description: >-
+      Measurement of gene expression
     is_a: Measurement
     slots:
     - mrna_level
@@ -246,8 +247,10 @@ classes:
     - percentage_positive_cells
     - staining_protocol
     - gene_expression_analysis
+
   CiliaBeatFrequencyMeasurement:
-    description: Measurement of ciliary beat frequency
+    description: >-
+      Measurement of ciliary beat frequency
     is_a: Measurement
     slots:
     - beat_frequency_hz
@@ -258,8 +261,10 @@ classes:
     - percentage_ciliated_cells
     - ciliary_motion_patterns
     - cell_type_ratios
+
   ASLHeightMeasurement:
-    description: Measurement of airway surface liquid height
+    description: >-
+      Measurement of airway surface liquid height
     is_a: Measurement
     slots:
     - asl_height_um
@@ -273,8 +278,10 @@ classes:
     - donor_characteristics
     - timing_from_wash
     - sampling_duration
+
   MucociliaryClearanceMeasurement:
-    description: Measurement of mucociliary clearance/transport
+    description: >-
+      Measurement of mucociliary clearance/transport
     is_a: Measurement
     slots:
     - transport_rate
@@ -287,8 +294,10 @@ classes:
     - biofilm_clearance_rate
     - bacterial_load
     - viral_spread_rate
+
   GobletCellMeasurement:
-    description: Measurement of goblet cell number or mucin production
+    description: >-
+      Measurement of goblet cell number or mucin production
     is_a: Measurement
     slots:
     - goblet_cell_count
@@ -298,8 +307,10 @@ classes:
     - mucin_protein_concentration
     - pathway_enrichment_scores
     - dose_response_data
+
   OxidativeStressMeasurement:
-    description: Measurement of oxidative stress markers
+    description: >-
+      Measurement of oxidative stress markers
     is_a: Measurement
     slots:
     - ros_level
@@ -311,19 +322,20 @@ classes:
     - dna_damage_markers
     - antioxidant_enzyme_activities
     - media_composition
+
   MucinProductionMeasurement:
-    description: Measurement of mucin production and secretion
+    description: >-
+      Measurement of mucin production and secretion
     is_a: Measurement
     slots:
     - mucin_expression_level
     - mucin_protein_concentration
     - staining_protocol
+
   Publication:
-    description: 'Any published piece of information, following Biolink model.
-
+    description: >-
+      Any published piece of information, following Biolink model.
       Represents scientific evidence supporting research.
-
-      '
     is_a: NamedEntity
     slots:
     - authors
@@ -340,8 +352,10 @@ classes:
         examples:
         - value: PMID:12345678
         - value: DOI:10.1234/example
+
   ImagingProtocol:
-    description: Details about imaging parameters and protocols
+    description: >-
+      Details about imaging parameters and protocols
     is_a: NamedEntity
     slots:
     - imaging_modality
@@ -350,45 +364,57 @@ classes:
     - imaging_intervals
     - spatial_resolution
     - probe_positioning
+
   FluorescentLabel:
-    description: Fluorescent labeling or tracer used in measurement
+    description: >-
+      Fluorescent labeling or tracer used in measurement
     is_a: NamedEntity
     slots:
     - fluorophore_type
     - concentration
     - wavelength
+
   EvaporationControl:
-    description: Method used to prevent evaporation during measurement - critical for preventing apical surface drying
+    description: >-
+      Method used to prevent evaporation during measurement - critical for preventing apical surface drying
     is_a: NamedEntity
     slots:
     - control_method
     - material_used
     - application_context
+
   ROSProbe:
-    description: Reactive oxygen species probe and detection details
+    description: >-
+      Reactive oxygen species probe and detection details
     is_a: NamedEntity
     slots:
     - probe_type
     - loading_conditions
     - detection_wavelength
+
   DetectionMethod:
-    description: Method used for detecting or measuring analytes
+    description: >-
+      Method used for detecting or measuring analytes
     is_a: NamedEntity
     slots:
     - detection_type
     - instrumentation
     - sensitivity
     - technical_replicates
+
   SampleCollection:
-    description: Details about biological sample collection
+    description: >-
+      Details about biological sample collection
     is_a: NamedEntity
     slots:
     - collection_method
     - processing_time
     - storage_conditions
     - sample_volume
+
   CellCultureConditions:
-    description: Detailed cell culture parameters
+    description: >-
+      Detailed cell culture parameters
     is_a: NamedEntity
     exact_mappings:
     - CLO:0037334  # Cell culture condition
@@ -403,8 +429,10 @@ classes:
     - co2_percentage
     - donor_count
     - replicates_per_donor
+
   CellCultureMedium:
-    description: Detailed formulation of cell culture medium including base medium and supplements
+    description: >-
+      Detailed formulation of cell culture medium including base medium and supplements
     is_a: NamedEntity
     slots:
     - base_medium
@@ -421,8 +449,10 @@ classes:
     - catalog_number
     - lot_number
     - preparation_date
+
   MediumSupplement:
-    description: Supplement or additive to cell culture medium
+    description: >-
+      Supplement or additive to cell culture medium
     is_a: NamedEntity
     slots:
     - supplement_type
@@ -430,16 +460,20 @@ classes:
     - concentration
     - manufacturer
     - catalog_number
+
   StainingProtocol:
-    description: Histological or immunofluorescence staining protocol
+    description: >-
+      Histological or immunofluorescence staining protocol
     is_a: NamedEntity
     slots:
     - staining_type
     - antibodies_used
     - fixation_method
     - incubation_conditions
+
   GeneExpressionAnalysis:
-    description: Gene expression measurement methodology
+    description: >-
+      Gene expression measurement methodology
     is_a: NamedEntity
     slots:
     - analysis_method
@@ -447,8 +481,10 @@ classes:
     - primers_used
     - sequencing_platform
     - sequencing_depth
+
   InflammatoryCellProfile:
-    description: Profile of inflammatory cell types and counts
+    description: >-
+      Profile of inflammatory cell types and counts
     is_a: NamedEntity
     slots:
     - neutrophil_percentage
@@ -456,8 +492,10 @@ classes:
     - macrophage_percentage
     - lymphocyte_percentage
     - total_cell_count
+
   MicrobiomeAnalysis:
-    description: Microbiome composition analysis
+    description: >-
+      Microbiome composition analysis
     is_a: NamedEntity
     slots:
     - alpha_diversity
@@ -465,28 +503,35 @@ classes:
     - taxonomic_abundance
     - sequencing_primers
     - dna_extraction_method
+
   BarrierIntegrity:
-    description: Epithelial barrier integrity measurements
+    description: >-
+      Epithelial barrier integrity measurements
     is_a: NamedEntity
     slots:
     - teer_value
     - permeability_coefficient
     - measurement_timepoint
+
   CytotoxicityMetrics:
-    description: Cell viability and cytotoxicity measurements
+    description: >-
+      Cell viability and cytotoxicity measurements
     is_a: NamedEntity
     slots:
     - ldh_release
     - mtt_reduction
     - viability_percentage
     - apoptosis_markers
+
   EnvironmentalCondition:
-    description: Environmental parameters during measurement
+    description: >-
+      Environmental parameters during measurement
     is_a: NamedEntity
     slots:
     - temperature
     - humidity
     - co2_percentage
+
 slots:
   id:
     description: A unique identifier
