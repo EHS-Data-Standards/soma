@@ -1657,14 +1657,14 @@ slots:
     domain_of:
     - CellCultureConditions
     range: string
-  days_at_ali:
-    name: days_at_ali
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/days_at_ali
+  days_at_air_liquid_interface:
+    name: days_at_air_liquid_interface
+    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes-model/days_at_air_liquid_interface
     description: Days at air-liquid interface
     from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
     related_mappings:
     - PATO:0000165
-    slot_uri: outcomes_model:days_at_ali
+    slot_uri: outcomes_model:days_at_air_liquid_interface
     owner: CellCultureConditions
     domain_of:
     - CellCultureConditions
@@ -2679,7 +2679,7 @@ classes:
     - id
     - description
     - culture_medium
-    - days_at_ali
+    - days_at_air_liquid_interface
     - passage_number
     - substrate_type
     - temperature
@@ -2789,7 +2789,7 @@ classes:
     class_uri: outcomes_model:EnvironmentalCondition
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2025-12-08T19:42:19'
-source_file_size: 32041
-generation_date: '2025-12-08T19:42:28'
+source_file_date: '2025-12-08T19:44:38'
+source_file_size: 32075
+generation_date: '2025-12-08T19:44:47'
 
