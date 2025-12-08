@@ -10,7 +10,7 @@ imports:
 - linkml:types
 license: MIT
 prefixes:
-  outcome_measurement_model: https://w3id.org/EHS-Data-Standards/outcomes-model/
+  outcome-measurement-model: https://w3id.org/EHS-Data-Standards/outcomes-model/
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
@@ -27,7 +27,7 @@ prefixes:
   UBERON: http://purl.obolibrary.org/obo/UBERON_
   schema: http://schema.org/
 
-default_prefix: outcomes_model
+default_prefix: outcome-measurement-model
 default_range: string
 
 enums:
@@ -439,10 +439,6 @@ classes:
     - serum_type
     - serum_concentration
     - supplement
-    - glucose_concentration
-    - glutamine_concentration
-    - sodium_bicarbonate_concentration
-    - calcium_concentration
     - ph
     - osmolality
     - manufacturer
@@ -456,7 +452,7 @@ classes:
     is_a: NamedEntity
     slots:
     - supplement_type
-    - supplement
+    - supplement_entity
     - concentration
     - manufacturer
     - catalog_number
@@ -1333,7 +1329,7 @@ slots:
   supplement_type:
     description: Category of supplement (e.g., growth factor, antibiotic, hormone, vitamin, amino acid)
     range: SupplementTypeEnum
-  supplement:
+  supplement_entity:
     description: The chemical entity representing the supplement
     range: ChemicalEntity
     inlined: true
