@@ -301,7 +301,7 @@ classes:
     is_a: NamedEntity
     slots:
     - culture_medium
-    - days_at_ali
+    - days_at_air_liquid_interface
     - passage_number
     - substrate_type
     - temperature
@@ -891,7 +891,7 @@ slots:
     range: string
     exact_mappings:
     - OBI:0000079  # culture medium
-  days_at_ali:
+  days_at_air_liquid_interface:
     description: Days at air-liquid interface
     range: integer
     related_mappings:
