@@ -258,6 +258,10 @@ _ensure_examples_output:  # Ensure a clean examples/output directory exists
 _gen-diagrams:
   @echo "Generating Mermaid ER diagram..."
   uv run gen-erdiagram {{source_schema_path}} > {{docdir}}/schema_diagram.mmd
+  @echo "Creating Mermaid markdown file..."
+  echo "# Schema Entity Relationship Diagram\n\nThis diagram shows the relationships between all entities in the schema.\n\n\`\`\`mermaid" > {{docdir}}/mermaid_diagram.md
+  cat {{docdir}}/schema_diagram.mmd >> {{docdir}}/mermaid_diagram.md
+  echo "\`\`\`" >> {{docdir}}/mermaid_diagram.md
   @echo "Generating PlantUML diagram..."
   uv run gen-plantuml {{source_schema_path}} > {{docdir}}/schema_diagram.puml
   @echo "Generating SQL DDL and ER diagram..."

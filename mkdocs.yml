@@ -26,7 +26,12 @@ watch:
 
 nav:
   - Home: index.md
-  - Schema: elements/index.md
+  - Schema: 
+    - Overview: elements/index.md
+    - Visualizations:
+      - Mermaid ER Diagram: elements/mermaid_diagram.md
+      - SQL ER Diagram: elements/sql_er_diagram.png
+      - PlantUML Diagram: elements/schema_diagram.puml
   - About: about.md
 
 exclude_docs: |

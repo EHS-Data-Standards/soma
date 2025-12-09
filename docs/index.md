@@ -25,6 +25,14 @@ This schema is part of the **Source-to-Outcome (S2O) continuum** framework, enab
 - Risk assessment and regulatory decision-making
 - Integration with chemical exposure and epidemiological data
 
+## Schema Visualizations
+
+The following diagrams provide visual representations of the data model structure and relationships:
+
+- **Mermaid ER Diagram**: [Interactive entity relationship diagram](elements/schema_diagram.mmd) - View the schema structure in Mermaid format
+- **SQL ER Diagram**: [SQL database entity relationship diagram](elements/sql_er_diagram.png) - Visual representation of the SQL schema
+- **PlantUML Diagram**: [UML class diagram](elements/schema_diagram.puml) - Detailed class structure in PlantUML format
+
 ## Documentation
 
 - Auto-generated [schema documentation](elements/index.md)
