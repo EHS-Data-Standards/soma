@@ -1,5 +1,5 @@
 # Auto generated from outcomes_working_group.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-10T12:28:04
+# Generation date: 2026-01-10T12:56:27
 # Schema: outcomes_working_group
 #
 # id: https://w3id.org/EHS-Data-Standards/outcomes_working_group
@@ -601,6 +601,49 @@ class ParticipantReference(YAMLRoot):
     class_class_curie: ClassVar[str] = "owg:ParticipantReference"
     class_name: ClassVar[str] = "ParticipantReference"
     class_model_uri: ClassVar[URIRef] = OWG.ParticipantReference
+
+    id: Optional[Union[str, URIorCURIE]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self.id is not None and not isinstance(self.id, URIorCURIE):
+            self.id = URIorCURIE(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CohortReference(YAMLRoot):
+    """
+    A reference to a cohort with identifier. Used when referring to cohorts in aggregated measurements and
+    participants.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OWG["CohortReference"]
+    class_class_curie: ClassVar[str] = "owg:CohortReference"
+    class_name: ClassVar[str] = "CohortReference"
+    class_model_uri: ClassVar[URIRef] = OWG.CohortReference
+
+    id: Optional[Union[str, URIorCURIE]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self.id is not None and not isinstance(self.id, URIorCURIE):
+            self.id = URIorCURIE(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class StudyReference(YAMLRoot):
+    """
+    A reference to a study with identifier. Used when referring to studies in cohorts.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OWG["StudyReference"]
+    class_class_curie: ClassVar[str] = "owg:StudyReference"
+    class_name: ClassVar[str] = "StudyReference"
+    class_model_uri: ClassVar[URIRef] = OWG.StudyReference
 
     id: Optional[Union[str, URIorCURIE]] = None
 
@@ -1254,7 +1297,7 @@ class Cohort(StudyEntity):
     class_model_uri: ClassVar[URIRef] = OWG.Cohort
 
     id: Union[str, CohortId] = None
-    part_of_study: Optional[Union[str, StudyId]] = None
+    part_of_study: Optional[Union[dict, StudyReference]] = None
     cohort_size: Optional[int] = None
     inclusion_criteria: Optional[str] = None
 
@@ -1264,8 +1307,8 @@ class Cohort(StudyEntity):
         if not isinstance(self.id, CohortId):
             self.id = CohortId(self.id)
 
-        if self.part_of_study is not None and not isinstance(self.part_of_study, StudyId):
-            self.part_of_study = StudyId(self.part_of_study)
+        if self.part_of_study is not None and not isinstance(self.part_of_study, StudyReference):
+            self.part_of_study = StudyReference(**as_dict(self.part_of_study))
 
         if self.cohort_size is not None and not isinstance(self.cohort_size, int):
             self.cohort_size = int(self.cohort_size)
@@ -1289,7 +1332,7 @@ class Participant(StudyEntity):
     class_model_uri: ClassVar[URIRef] = OWG.Participant
 
     id: Union[str, ParticipantId] = None
-    part_of_cohort: Optional[Union[str, CohortId]] = None
+    part_of_cohort: Optional[Union[dict, CohortReference]] = None
     participant_id: Optional[str] = None
     age: Optional[int] = None
     sex: Optional[Union[str, "SexEnum"]] = None
@@ -1301,8 +1344,8 @@ class Participant(StudyEntity):
         if not isinstance(self.id, ParticipantId):
             self.id = ParticipantId(self.id)
 
-        if self.part_of_cohort is not None and not isinstance(self.part_of_cohort, CohortId):
-            self.part_of_cohort = CohortId(self.part_of_cohort)
+        if self.part_of_cohort is not None and not isinstance(self.part_of_cohort, CohortReference):
+            self.part_of_cohort = CohortReference(**as_dict(self.part_of_cohort))
 
         if self.participant_id is not None and not isinstance(self.participant_id, str):
             self.participant_id = str(self.participant_id)
@@ -1466,7 +1509,7 @@ class AggregatedMeasurement(Measurement):
 
     id: Union[str, AggregatedMeasurementId] = None
     measured_entity: Optional[Union[dict, OntologyReference]] = None
-    cohort: Optional[Union[str, CohortId]] = None
+    cohort: Optional[Union[dict, CohortReference]] = None
     summary_statistic: Optional[Union[str, "SummaryStatisticEnum"]] = None
     sample_size: Optional[int] = None
     stratification: Optional[str] = None
@@ -1480,8 +1523,8 @@ class AggregatedMeasurement(Measurement):
         if self.measured_entity is not None and not isinstance(self.measured_entity, OntologyReference):
             self.measured_entity = OntologyReference(**as_dict(self.measured_entity))
 
-        if self.cohort is not None and not isinstance(self.cohort, CohortId):
-            self.cohort = CohortId(self.cohort)
+        if self.cohort is not None and not isinstance(self.cohort, CohortReference):
+            self.cohort = CohortReference(**as_dict(self.cohort))
 
         if self.summary_statistic is not None and not isinstance(self.summary_statistic, SummaryStatisticEnum):
             self.summary_statistic = SummaryStatisticEnum(self.summary_statistic)
@@ -2671,7 +2714,7 @@ slots.publications = Slot(uri=OWG.publications, name="publications", curie=OWG.c
                    model_uri=OWG.publications, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.part_of_study = Slot(uri=OWG.part_of_study, name="part_of_study", curie=OWG.curie('part_of_study'),
-                   model_uri=OWG.part_of_study, domain=None, range=Optional[Union[str, StudyId]])
+                   model_uri=OWG.part_of_study, domain=None, range=Optional[Union[dict, StudyReference]])
 
 slots.cohort_size = Slot(uri=OWG.cohort_size, name="cohort_size", curie=OWG.curie('cohort_size'),
                    model_uri=OWG.cohort_size, domain=None, range=Optional[int])
@@ -2680,7 +2723,7 @@ slots.inclusion_criteria = Slot(uri=OWG.inclusion_criteria, name="inclusion_crit
                    model_uri=OWG.inclusion_criteria, domain=None, range=Optional[str])
 
 slots.part_of_cohort = Slot(uri=BIOLINK.member_of, name="part_of_cohort", curie=BIOLINK.curie('member_of'),
-                   model_uri=OWG.part_of_cohort, domain=None, range=Optional[Union[str, CohortId]])
+                   model_uri=OWG.part_of_cohort, domain=None, range=Optional[Union[dict, CohortReference]])
 
 slots.participant_id = Slot(uri=OWG.participant_id, name="participant_id", curie=OWG.curie('participant_id'),
                    model_uri=OWG.participant_id, domain=None, range=Optional[str])
@@ -2731,7 +2774,7 @@ slots.phenotype = Slot(uri=OWG.phenotype, name="phenotype", curie=OWG.curie('phe
                    model_uri=OWG.phenotype, domain=None, range=Optional[Union[dict, OntologyReference]])
 
 slots.cohort = Slot(uri=OWG.cohort, name="cohort", curie=OWG.curie('cohort'),
-                   model_uri=OWG.cohort, domain=None, range=Optional[Union[str, CohortId]])
+                   model_uri=OWG.cohort, domain=None, range=Optional[Union[dict, CohortReference]])
 
 slots.summary_statistic = Slot(uri=OWG.summary_statistic, name="summary_statistic", curie=OWG.curie('summary_statistic'),
                    model_uri=OWG.summary_statistic, domain=None, range=Optional[Union[str, "SummaryStatisticEnum"]])
@@ -2933,3 +2976,9 @@ slots.cellTypeReference__name = Slot(uri=OWG.name, name="cellTypeReference__name
 
 slots.participantReference__id = Slot(uri=OWG.id, name="participantReference__id", curie=OWG.curie('id'),
                    model_uri=OWG.participantReference__id, domain=None, range=Optional[Union[str, URIorCURIE]])
+
+slots.cohortReference__id = Slot(uri=OWG.id, name="cohortReference__id", curie=OWG.curie('id'),
+                   model_uri=OWG.cohortReference__id, domain=None, range=Optional[Union[str, URIorCURIE]])
+
+slots.studyReference__id = Slot(uri=OWG.id, name="studyReference__id", curie=OWG.curie('id'),
+                   model_uri=OWG.studyReference__id, domain=None, range=Optional[Union[str, URIorCURIE]])

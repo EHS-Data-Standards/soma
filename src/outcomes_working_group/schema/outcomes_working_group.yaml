@@ -280,6 +280,24 @@ classes:
         range: uriorcurie
         description: The participant identifier (e.g., owg:participant-001)
 
+  CohortReference:
+    description: >-
+      A reference to a cohort with identifier.
+      Used when referring to cohorts in aggregated measurements and participants.
+    attributes:
+      id:
+        range: uriorcurie
+        description: The cohort identifier (e.g., owg:cohort-001)
+
+  StudyReference:
+    description: >-
+      A reference to a study with identifier.
+      Used when referring to studies in cohorts.
+    attributes:
+      id:
+        range: uriorcurie
+        description: The study identifier (e.g., owg:study-001)
+
   BiologicalEntity:
     abstract: true
     is_a: NamedThing
@@ -883,8 +901,9 @@ slots:
     description: Related publications
 
   part_of_study:
-    range: Study
-    description: Study that this cohort is part of
+    range: StudyReference
+    inlined: true
+    description: Study that this cohort is part of, with identifier.
 
   cohort_size:
     range: integer
@@ -895,9 +914,10 @@ slots:
     description: Criteria for cohort inclusion
 
   part_of_cohort:
-    range: Cohort
+    range: CohortReference
+    inlined: true
     slot_uri: biolink:member_of
-    description: Cohort that this participant is part of
+    description: Cohort that this participant is part of, with identifier.
 
   participant_id:
     range: string
@@ -980,8 +1000,9 @@ slots:
     description: The phenotype being measured, with identifier and name.
 
   cohort:
-    range: Cohort
-    description: The cohort for aggregated measurements
+    range: CohortReference
+    inlined: true
+    description: The cohort for aggregated measurements, with identifier.
 
   summary_statistic:
     range: SummaryStatisticEnum
