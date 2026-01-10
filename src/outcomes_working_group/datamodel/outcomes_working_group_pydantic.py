@@ -363,68 +363,6 @@ class StudyTypeEnum(str, Enum):
     """
 
 
-class DataSourceEnum(str, Enum):
-    """
-    Data sources and repositories
-    """
-    Nhanes = "Nhanes"
-    """
-    National Health and Nutrition Examination Survey
-    """
-    Chear = "Chear"
-    """
-    Children's Health Exposure Analysis Resource
-    """
-    Hhear = "Hhear"
-    """
-    Human Health Exposure Analysis Resource
-    """
-    AopWiki = "AopWiki"
-    """
-    AOP Wiki
-    """
-    Ctd = "Ctd"
-    """
-    Comparative Toxicogenomics Database
-    """
-    ToxCast = "ToxCast"
-    """
-    ToxCast
-    """
-    Tox21 = "Tox21"
-    """
-    Tox21
-    """
-    ChemBl = "ChemBl"
-    """
-    ChEMBL
-    """
-    CompTox = "CompTox"
-    """
-    CompTox Dashboard
-    """
-    GwasCatalog = "GwasCatalog"
-    """
-    GWAS Catalog
-    """
-    GeneExpressionAtlas = "GeneExpressionAtlas"
-    """
-    Gene Expression Atlas
-    """
-    UsdaPesticide = "UsdaPesticide"
-    """
-    USDA Pesticide Data Program
-    """
-    Wweia = "Wweia"
-    """
-    What We Eat In America
-    """
-    Other = "Other"
-    """
-    Other data source
-    """
-
-
 class SexEnum(str, Enum):
     """
     Biological sex
@@ -1332,7 +1270,6 @@ class Study(StudyEntity):
     population: Optional[str] = Field(default=None, description="""Study population description""", json_schema_extra = { "linkml_meta": {'domain_of': ['Study']} })
     enrollment_period: Optional[str] = Field(default=None, description="""Time period of enrollment""", json_schema_extra = { "linkml_meta": {'domain_of': ['Study']} })
     geographic_location: Optional[str] = Field(default=None, description="""Geographic location of study""", json_schema_extra = { "linkml_meta": {'domain_of': ['Study']} })
-    data_source: Optional[DataSourceEnum] = Field(default=None, description="""Source database or repository""", json_schema_extra = { "linkml_meta": {'domain_of': ['Study']} })
     principal_investigator: Optional[str] = Field(default=None, description="""Principal investigator name""", json_schema_extra = { "linkml_meta": {'domain_of': ['Study']} })
     publications: Optional[list[str]] = Field(default=[], description="""Related publications""", json_schema_extra = { "linkml_meta": {'domain_of': ['Study']} })
     id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
@@ -1400,7 +1337,6 @@ class ExposureMeasurement(Measurement):
                        'GeneExpressionMeasurement',
                        'ProteinExpressionMeasurement']} })
     sample_type: Optional[SampleTypeEnum] = Field(default=None, description="""Type of biological sample""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement']} })
-    source_database_record: Optional[str] = Field(default=None, description="""Link to original database record (URI or CURIE)""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement']} })
     observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented. This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
     quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
     range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })

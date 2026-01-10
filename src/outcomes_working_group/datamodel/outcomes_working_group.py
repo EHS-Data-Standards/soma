@@ -1,5 +1,5 @@
 # Auto generated from outcomes_working_group.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-10T15:10:55
+# Generation date: 2026-01-10T15:24:03
 # Schema: outcomes_working_group
 #
 # id: https://w3id.org/EHS-Data-Standards/outcomes_working_group
@@ -1115,7 +1115,6 @@ class Study(StudyEntity):
     population: Optional[str] = None
     enrollment_period: Optional[str] = None
     geographic_location: Optional[str] = None
-    data_source: Optional[Union[str, "DataSourceEnum"]] = None
     principal_investigator: Optional[str] = None
     publications: Optional[Union[str, list[str]]] = empty_list()
 
@@ -1136,9 +1135,6 @@ class Study(StudyEntity):
 
         if self.geographic_location is not None and not isinstance(self.geographic_location, str):
             self.geographic_location = str(self.geographic_location)
-
-        if self.data_source is not None and not isinstance(self.data_source, DataSourceEnum):
-            self.data_source = DataSourceEnum(self.data_source)
 
         if self.principal_investigator is not None and not isinstance(self.principal_investigator, str):
             self.principal_investigator = str(self.principal_investigator)
@@ -1246,7 +1242,6 @@ class ExposureMeasurement(Measurement):
     measurement_method: Optional[str] = None
     measurement_date: Optional[Union[str, XSDDate]] = None
     sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
-    source_database_record: Optional[Union[str, URIorCURIE]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -1268,9 +1263,6 @@ class ExposureMeasurement(Measurement):
 
         if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
             self.sample_type = SampleTypeEnum(self.sample_type)
-
-        if self.source_database_record is not None and not isinstance(self.source_database_record, URIorCURIE):
-            self.source_database_record = URIorCURIE(self.source_database_record)
 
         super().__post_init__(**kwargs)
 
@@ -1975,58 +1967,6 @@ class StudyTypeEnum(EnumDefinitionImpl):
         description="Types of research studies",
     )
 
-class DataSourceEnum(EnumDefinitionImpl):
-    """
-    Data sources and repositories
-    """
-    Nhanes = PermissibleValue(
-        text="Nhanes",
-        description="National Health and Nutrition Examination Survey")
-    Chear = PermissibleValue(
-        text="Chear",
-        description="Children's Health Exposure Analysis Resource")
-    Hhear = PermissibleValue(
-        text="Hhear",
-        description="Human Health Exposure Analysis Resource")
-    AopWiki = PermissibleValue(
-        text="AopWiki",
-        description="AOP Wiki")
-    Ctd = PermissibleValue(
-        text="Ctd",
-        description="Comparative Toxicogenomics Database")
-    ToxCast = PermissibleValue(
-        text="ToxCast",
-        description="ToxCast")
-    Tox21 = PermissibleValue(
-        text="Tox21",
-        description="Tox21")
-    ChemBl = PermissibleValue(
-        text="ChemBl",
-        description="ChEMBL")
-    CompTox = PermissibleValue(
-        text="CompTox",
-        description="CompTox Dashboard")
-    GwasCatalog = PermissibleValue(
-        text="GwasCatalog",
-        description="GWAS Catalog")
-    GeneExpressionAtlas = PermissibleValue(
-        text="GeneExpressionAtlas",
-        description="Gene Expression Atlas")
-    UsdaPesticide = PermissibleValue(
-        text="UsdaPesticide",
-        description="USDA Pesticide Data Program")
-    Wweia = PermissibleValue(
-        text="Wweia",
-        description="What We Eat In America")
-    Other = PermissibleValue(
-        text="Other",
-        description="Other data source")
-
-    _defn = EnumDefinition(
-        name="DataSourceEnum",
-        description="Data sources and repositories",
-    )
-
 class SexEnum(EnumDefinitionImpl):
     """
     Biological sex
@@ -2534,9 +2474,6 @@ slots.enrollment_period = Slot(uri=OWG.enrollment_period, name="enrollment_perio
 slots.geographic_location = Slot(uri=OWG.geographic_location, name="geographic_location", curie=OWG.curie('geographic_location'),
                    model_uri=OWG.geographic_location, domain=None, range=Optional[str])
 
-slots.data_source = Slot(uri=OWG.data_source, name="data_source", curie=OWG.curie('data_source'),
-                   model_uri=OWG.data_source, domain=None, range=Optional[Union[str, "DataSourceEnum"]])
-
 slots.principal_investigator = Slot(uri=OWG.principal_investigator, name="principal_investigator", curie=OWG.curie('principal_investigator'),
                    model_uri=OWG.principal_investigator, domain=None, range=Optional[str])
 
@@ -2593,9 +2530,6 @@ slots.measurement_date = Slot(uri=OWG.measurement_date, name="measurement_date",
 
 slots.sample_type = Slot(uri=OWG.sample_type, name="sample_type", curie=OWG.curie('sample_type'),
                    model_uri=OWG.sample_type, domain=None, range=Optional[Union[str, "SampleTypeEnum"]])
-
-slots.source_database_record = Slot(uri=OWG.source_database_record, name="source_database_record", curie=OWG.curie('source_database_record'),
-                   model_uri=OWG.source_database_record, domain=None, range=Optional[Union[str, URIorCURIE]])
 
 slots.biomarker_type = Slot(uri=OWG.biomarker_type, name="biomarker_type", curie=OWG.curie('biomarker_type'),
                    model_uri=OWG.biomarker_type, domain=None, range=Optional[str])
