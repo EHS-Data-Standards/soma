@@ -3,24 +3,28 @@
 # cultured at air-liquid interface (ALI), commonly used in asthma/toxicology research
 # Uses OntologyReference pattern with id + name for readability
 
-# ============ Ciliary Function Measurements ============
-ciliary_measurements:
+# ============ Phenotype Measurements (Ciliary, ASL, MCC, Goblet Cell) ============
+phenotype_measurements:
+  # Ciliary Function
   - id: owg:cilia-001-control
     name: CBF - Control ALI culture Day 21
     description: Ciliary beat frequency in untreated control ALI culture
     observation_type: CiliaryBeatFrequency
     quantity_measured:
-      value: 12.8
-      unit: UO:0000106
-      unit_label: "Hz"
+      value: "12.8"
+      unit:
+        id: UO:0000106
+        name: hertz
     range_low:
-      value: 9.0
-      unit: UO:0000106
-      unit_label: "Hz"
+      value: "9.0"
+      unit:
+        id: UO:0000106
+        name: hertz
     range_high:
-      value: 15.0
-      unit: UO:0000106
-      unit_label: "Hz"
+      value: "15.0"
+      unit:
+        id: UO:0000106
+        name: hertz
     measured_entity:
       id: GO:0005929
       name: Cilium
@@ -32,17 +36,20 @@ ciliary_measurements:
     description: Ciliary beat frequency after 24h PM2.5 exposure (50 ug/mL)
     observation_type: CiliaryBeatFrequency
     quantity_measured:
-      value: 8.2
-      unit: UO:0000106
-      unit_label: "Hz"
+      value: "8.2"
+      unit:
+        id: UO:0000106
+        name: hertz
     range_low:
-      value: 9.0
-      unit: UO:0000106
-      unit_label: "Hz"
+      value: "9.0"
+      unit:
+        id: UO:0000106
+        name: hertz
     range_high:
-      value: 15.0
-      unit: UO:0000106
-      unit_label: "Hz"
+      value: "15.0"
+      unit:
+        id: UO:0000106
+        name: hertz
     measured_entity:
       id: GO:0005929
       name: Cilium
@@ -54,17 +61,20 @@ ciliary_measurements:
     description: Percentage of epithelial surface with actively beating cilia
     observation_type: CiliaryActiveAreaPercentage
     quantity_measured:
-      value: 78.5
-      unit: UO:0000187
-      unit_label: "%"
+      value: "78.5"
+      unit:
+        id: UO:0000187
+        name: percent
     range_low:
-      value: 60.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "60.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_high:
-      value: 90.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "90.0"
+      unit:
+        id: UO:0000187
+        name: percent
     measured_entity:
       id: CL:0002145
       name: Ciliated columnar cell of tracheobronchial tree
@@ -76,41 +86,46 @@ ciliary_measurements:
     description: Mean cilia length measured by immunofluorescence microscopy
     observation_type: CiliaLength
     quantity_measured:
-      value: 6.2
-      unit: UO:0000017
-      unit_label: "um"
+      value: "6.2"
+      unit:
+        id: UO:0000017
+        name: micrometer
     range_low:
-      value: 5.0
-      unit: UO:0000017
-      unit_label: "um"
+      value: "5.0"
+      unit:
+        id: UO:0000017
+        name: micrometer
     range_high:
-      value: 8.0
-      unit: UO:0000017
-      unit_label: "um"
+      value: "8.0"
+      unit:
+        id: UO:0000017
+        name: micrometer
     measured_entity:
       id: GO:0005929
       name: Cilium
     measurement_method: Acetylated alpha-tubulin immunostaining with confocal microscopy
     measurement_date: "2024-03-15"
 
-# ============ Airway Surface Liquid Measurements ============
-asl_measurements:
+  # ASL Measurements
   - id: owg:asl-001-control
     name: ASL height - Control ALI culture
     description: Airway surface liquid depth in untreated healthy donor cells
     observation_type: ASLHeight
     quantity_measured:
-      value: 8.5
-      unit: UO:0000017
-      unit_label: "um"
+      value: "8.5"
+      unit:
+        id: UO:0000017
+        name: micrometer
     range_low:
-      value: 6.0
-      unit: UO:0000017
-      unit_label: "um"
+      value: "6.0"
+      unit:
+        id: UO:0000017
+        name: micrometer
     range_high:
-      value: 12.0
-      unit: UO:0000017
-      unit_label: "um"
+      value: "12.0"
+      unit:
+        id: UO:0000017
+        name: micrometer
     measured_entity:
       id: UBERON:0001913
       name: Airway surface liquid
@@ -122,17 +137,20 @@ asl_measurements:
     description: Reduced ASL height in cystic fibrosis donor epithelium
     observation_type: ASLHeight
     quantity_measured:
-      value: 3.2
-      unit: UO:0000017
-      unit_label: "um"
+      value: "3.2"
+      unit:
+        id: UO:0000017
+        name: micrometer
     range_low:
-      value: 6.0
-      unit: UO:0000017
-      unit_label: "um"
+      value: "6.0"
+      unit:
+        id: UO:0000017
+        name: micrometer
     range_high:
-      value: 12.0
-      unit: UO:0000017
-      unit_label: "um"
+      value: "12.0"
+      unit:
+        id: UO:0000017
+        name: micrometer
     measured_entity:
       id: UBERON:0001913
       name: Airway surface liquid
@@ -144,41 +162,46 @@ asl_measurements:
     description: Periciliary liquid layer depth surrounding cilia
     observation_type: PericiliaryLayerDepth
     quantity_measured:
-      value: 7.0
-      unit: UO:0000017
-      unit_label: "um"
+      value: "7.0"
+      unit:
+        id: UO:0000017
+        name: micrometer
     range_low:
-      value: 5.0
-      unit: UO:0000017
-      unit_label: "um"
+      value: "5.0"
+      unit:
+        id: UO:0000017
+        name: micrometer
     range_high:
-      value: 8.0
-      unit: UO:0000017
-      unit_label: "um"
+      value: "8.0"
+      unit:
+        id: UO:0000017
+        name: micrometer
     measured_entity:
       id: GO:0097730
       name: Periciliary membrane compartment
     measurement_method: Confocal microscopy with perfluorocarbon overlay
     measurement_date: "2024-03-16"
 
-# ============ Mucociliary Transport Measurements ============
-mcc_measurements:
+  # MCC Measurements
   - id: owg:mcc-001-control
     name: MCT rate - Control ALI culture
     description: Mucociliary transport rate measured with fluorescent beads
     observation_type: MucociliaryTransportRate
     quantity_measured:
-      value: 5.8
-      unit: UO:0000335
-      unit_label: "mm/min"
+      value: "5.8"
+      unit:
+        id: UO:0000335
+        name: millimeter per minute
     range_low:
-      value: 3.0
-      unit: UO:0000335
-      unit_label: "mm/min"
+      value: "3.0"
+      unit:
+        id: UO:0000335
+        name: millimeter per minute
     range_high:
-      value: 8.0
-      unit: UO:0000335
-      unit_label: "mm/min"
+      value: "8.0"
+      unit:
+        id: UO:0000335
+        name: millimeter per minute
     measured_entity:
       id: GO:0120197
       name: Mucociliary clearance
@@ -190,41 +213,46 @@ mcc_measurements:
     description: MCT rate after 24h DEP exposure (10 ug/cm2)
     observation_type: MucociliaryTransportRate
     quantity_measured:
-      value: 2.1
-      unit: UO:0000335
-      unit_label: "mm/min"
+      value: "2.1"
+      unit:
+        id: UO:0000335
+        name: millimeter per minute
     range_low:
-      value: 3.0
-      unit: UO:0000335
-      unit_label: "mm/min"
+      value: "3.0"
+      unit:
+        id: UO:0000335
+        name: millimeter per minute
     range_high:
-      value: 8.0
-      unit: UO:0000335
-      unit_label: "mm/min"
+      value: "8.0"
+      unit:
+        id: UO:0000335
+        name: millimeter per minute
     measured_entity:
       id: GO:0120197
       name: Mucociliary clearance
     measurement_method: 1um fluorescent microsphere tracking
     measurement_date: "2024-03-17"
 
-# ============ Goblet Cell Measurements ============
-goblet_cell_measurements:
+  # Goblet Cell Measurements
   - id: owg:goblet-001-control
     name: Goblet cell percentage - Control
     description: Percentage of goblet cells in differentiated ALI culture
     observation_type: GobletCellCount
     quantity_measured:
-      value: 12.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "12.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_low:
-      value: 8.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "8.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_high:
-      value: 18.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "18.0"
+      unit:
+        id: UO:0000187
+        name: percent
     measured_entity:
       id: CL:0000160
       name: Goblet cell
@@ -236,17 +264,20 @@ goblet_cell_measurements:
     description: Goblet cell hyperplasia after IL-13 stimulation (10 ng/mL, 14 days)
     observation_type: GobletCellCount
     quantity_measured:
-      value: 42.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "42.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_low:
-      value: 8.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "8.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_high:
-      value: 18.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "18.0"
+      unit:
+        id: UO:0000187
+        name: percent
     measured_entity:
       id: CL:0000160
       name: Goblet cell
@@ -258,17 +289,20 @@ goblet_cell_measurements:
     description: Ratio of goblet cells to ciliated cells in healthy epithelium
     observation_type: GobletToCiliatedRatio
     quantity_measured:
-      value: 0.18
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.18"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_low:
-      value: 0.10
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.10"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_high:
-      value: 0.25
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.25"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     measured_entity:
       id: CL:0000160
       name: Goblet cell
@@ -280,25 +314,28 @@ goblet_cell_measurements:
     description: Total mucin protein in apical wash
     observation_type: MucinProteinConcentration
     quantity_measured:
-      value: 125.0
-      unit: UO:0000274
-      unit_label: "ug/mL"
+      value: "125.0"
+      unit:
+        id: UO:0000274
+        name: microgram per milliliter
     measured_entity:
       id: GO:0070254
       name: Mucus
     measurement_method: Slot blot with anti-MUC5AC/MUC5B antibodies
     measurement_date: "2024-03-18"
 
-# ============ Oxidative Stress Measurements ============
-oxidative_stress_measurements:
+# ============ Biomarker Measurements (Oxidative Stress, Barrier, Cytotoxicity) ============
+biomarker_measurements:
+  # Oxidative Stress
   - id: owg:ros-001-control
     name: ROS level - Control ALI culture
     description: Reactive oxygen species measured by CM-H2DCFDA fluorescence
     observation_type: ReactiveOxygenSpecies
     quantity_measured:
-      value: 1.0
-      unit: UO:0000186
-      unit_label: "fold change"
+      value: "1.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     measured_entity:
       id: CHEBI:26523
       name: Reactive oxygen species
@@ -310,9 +347,10 @@ oxidative_stress_measurements:
     description: ROS induction after PM2.5 exposure (50 ug/mL, 4h)
     observation_type: ReactiveOxygenSpecies
     quantity_measured:
-      value: 3.2
-      unit: UO:0000186
-      unit_label: "fold change vs control"
+      value: "3.2"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     measured_entity:
       id: CHEBI:26523
       name: Reactive oxygen species
@@ -324,17 +362,20 @@ oxidative_stress_measurements:
     description: Glutathione redox ratio in control cells
     observation_type: GlutathioneRatio
     quantity_measured:
-      value: 45.0
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "45.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_low:
-      value: 30.0
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "30.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_high:
-      value: 60.0
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "60.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     measured_entity:
       id: CHEBI:16856
       name: Glutathione
@@ -346,41 +387,46 @@ oxidative_stress_measurements:
     description: Depleted glutathione after H2O2 exposure (200 uM, 2h)
     observation_type: GlutathioneRatio
     quantity_measured:
-      value: 12.0
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "12.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_low:
-      value: 30.0
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "30.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_high:
-      value: 60.0
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "60.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     measured_entity:
       id: CHEBI:16856
       name: Glutathione
     measurement_method: GSH/GSSG-Glo Assay (Promega)
     measurement_date: "2024-03-19"
 
-# ============ Barrier Integrity Measurements ============
-barrier_measurements:
+  # Barrier Integrity
   - id: owg:teer-001-day21
     name: TEER - Mature ALI culture Day 21
     description: Transepithelial electrical resistance indicating barrier maturity
     observation_type: TEER
     quantity_measured:
-      value: 520.0
-      unit: UO:0010045
-      unit_label: "ohm.cm2"
+      value: "520.0"
+      unit:
+        id: UO:0010045
+        name: ohm square centimeter
     range_low:
-      value: 300.0
-      unit: UO:0010045
-      unit_label: "ohm.cm2"
+      value: "300.0"
+      unit:
+        id: UO:0010045
+        name: ohm square centimeter
     range_high:
-      value: 800.0
-      unit: UO:0010045
-      unit_label: "ohm.cm2"
+      value: "800.0"
+      unit:
+        id: UO:0010045
+        name: ohm square centimeter
     measured_entity:
       id: GO:0061436
       name: Epithelial cell apical-basal polarity
@@ -392,41 +438,46 @@ barrier_measurements:
     description: Reduced TEER immediately after scratch wound injury
     observation_type: TEER
     quantity_measured:
-      value: 185.0
-      unit: UO:0010045
-      unit_label: "ohm.cm2"
+      value: "185.0"
+      unit:
+        id: UO:0010045
+        name: ohm square centimeter
     range_low:
-      value: 300.0
-      unit: UO:0010045
-      unit_label: "ohm.cm2"
+      value: "300.0"
+      unit:
+        id: UO:0010045
+        name: ohm square centimeter
     range_high:
-      value: 800.0
-      unit: UO:0010045
-      unit_label: "ohm.cm2"
+      value: "800.0"
+      unit:
+        id: UO:0010045
+        name: ohm square centimeter
     measured_entity:
       id: GO:0061436
       name: Epithelial cell apical-basal polarity
     measurement_method: EVOM2 Epithelial Voltohmmeter
     measurement_date: "2024-03-20"
 
-# ============ Cytotoxicity Measurements ============
-cytotoxicity_measurements:
+  # Cytotoxicity
   - id: owg:viability-001-control
     name: Cell viability - Control
     description: Cell viability in untreated ALI cultures
     observation_type: CellViability
     quantity_measured:
-      value: 98.5
-      unit: UO:0000187
-      unit_label: "%"
+      value: "98.5"
+      unit:
+        id: UO:0000187
+        name: percent
     range_low:
-      value: 90.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "90.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_high:
-      value: 100.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "100.0"
+      unit:
+        id: UO:0000187
+        name: percent
     measured_entity:
       id: CL:0002328
       name: Bronchial epithelial cell
@@ -438,17 +489,20 @@ cytotoxicity_measurements:
     description: Baseline LDH release in control cultures
     observation_type: LDHRelease
     quantity_measured:
-      value: 5.2
-      unit: UO:0000187
-      unit_label: "% of total"
+      value: "5.2"
+      unit:
+        id: UO:0000187
+        name: percent
     range_low:
-      value: 0.0
-      unit: UO:0000187
-      unit_label: "% of total"
+      value: "0.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_high:
-      value: 10.0
-      unit: UO:0000187
-      unit_label: "% of total"
+      value: "10.0"
+      unit:
+        id: UO:0000187
+        name: percent
     measured_entity:
       id: GO:0004134
       name: Lactate dehydrogenase
@@ -460,17 +514,20 @@ cytotoxicity_measurements:
     description: LDH release after cytotoxic exposure
     observation_type: LDHRelease
     quantity_measured:
-      value: 45.0
-      unit: UO:0000187
-      unit_label: "% of total"
+      value: "45.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_low:
-      value: 0.0
-      unit: UO:0000187
-      unit_label: "% of total"
+      value: "0.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_high:
-      value: 10.0
-      unit: UO:0000187
-      unit_label: "% of total"
+      value: "10.0"
+      unit:
+        id: UO:0000187
+        name: percent
     measured_entity:
       id: GO:0004134
       name: Lactate dehydrogenase

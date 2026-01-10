@@ -8,17 +8,20 @@ phenotype_measurements:
     description: Forced expiratory volume in 1 second, pre-bronchodilator
     observation_type: FEV1
     quantity_measured:
-      value: 2.85
-      unit: UO:0000099
-      unit_label: "L"
+      value: "2.85"
+      unit:
+        id: UO:0000099
+        name: liter
     range_low:
-      value: 3.20
-      unit: UO:0000099
-      unit_label: "L"
+      value: "3.20"
+      unit:
+        id: UO:0000099
+        name: liter
     range_high:
-      value: 4.50
-      unit: UO:0000099
-      unit_label: "L"
+      value: "4.50"
+      unit:
+        id: UO:0000099
+        name: liter
     phenotype:
       id: HP:0002094
       name: Dyspnea
@@ -30,17 +33,20 @@ phenotype_measurements:
     description: Forced vital capacity, pre-bronchodilator
     observation_type: FVC
     quantity_measured:
-      value: 4.10
-      unit: UO:0000099
-      unit_label: "L"
+      value: "4.10"
+      unit:
+        id: UO:0000099
+        name: liter
     range_low:
-      value: 4.00
-      unit: UO:0000099
-      unit_label: "L"
+      value: "4.00"
+      unit:
+        id: UO:0000099
+        name: liter
     range_high:
-      value: 5.50
-      unit: UO:0000099
-      unit_label: "L"
+      value: "5.50"
+      unit:
+        id: UO:0000099
+        name: liter
     phenotype:
       id: HP:0002094
       name: Dyspnea
@@ -52,17 +58,20 @@ phenotype_measurements:
     description: Ratio of FEV1 to FVC indicating airflow obstruction
     observation_type: FEV1_FVC_Ratio
     quantity_measured:
-      value: 0.695
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.695"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_low:
-      value: 0.70
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.70"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_high:
-      value: 0.85
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.85"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     phenotype:
       id: HP:0006536
       name: Airway obstruction
@@ -74,17 +83,20 @@ phenotype_measurements:
     description: Forced expiratory flow at 25-75% of FVC (small airways)
     observation_type: FEF25_75
     quantity_measured:
-      value: 1.95
-      unit: UO:0000269
-      unit_label: "L/s"
+      value: "1.95"
+      unit:
+        id: UO:0000269
+        name: liter per second
     range_low:
-      value: 2.50
-      unit: UO:0000269
-      unit_label: "L/s"
+      value: "2.50"
+      unit:
+        id: UO:0000269
+        name: liter per second
     range_high:
-      value: 4.50
-      unit: UO:0000269
-      unit_label: "L/s"
+      value: "4.50"
+      unit:
+        id: UO:0000269
+        name: liter per second
     phenotype:
       id: HP:0006536
       name: Airway obstruction
@@ -97,17 +109,20 @@ phenotype_measurements:
     description: Fractional exhaled nitric oxide at 50 mL/s flow rate
     observation_type: FeNO
     quantity_measured:
-      value: 42.0
-      unit: UO:0000170
-      unit_label: "ppb"
+      value: "42.0"
+      unit:
+        id: UO:0000170
+        name: parts per billion
     range_low:
-      value: 0.0
-      unit: UO:0000170
-      unit_label: "ppb"
+      value: "0.0"
+      unit:
+        id: UO:0000170
+        name: parts per billion
     range_high:
-      value: 25.0
-      unit: UO:0000170
-      unit_label: "ppb"
+      value: "25.0"
+      unit:
+        id: UO:0000170
+        name: parts per billion
     phenotype:
       id: HP:0002099
       name: Asthma
@@ -120,17 +135,20 @@ phenotype_measurements:
     description: Change in FEV1 after albuterol administration
     observation_type: BronchodilatorResponse
     quantity_measured:
-      value: 14.5
-      unit: UO:0000187
-      unit_label: "% improvement"
+      value: "14.5"
+      unit:
+        id: UO:0000187
+        name: percent
     range_low:
-      value: 0.0
-      unit: UO:0000187
-      unit_label: "% improvement"
+      value: "0.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_high:
-      value: 12.0
-      unit: UO:0000187
-      unit_label: "% improvement"
+      value: "12.0"
+      unit:
+        id: UO:0000187
+        name: percent
     phenotype:
       id: HP:0002099
       name: Asthma
@@ -143,17 +161,20 @@ phenotype_measurements:
     description: Diffusing capacity of the lung for carbon monoxide
     observation_type: DLCO
     quantity_measured:
-      value: 22.5
-      unit: UO:0000271
-      unit_label: "mL/min/mmHg"
+      value: "22.5"
+      unit:
+        id: UO:0000271
+        name: milliliter per minute per millimeter of mercury
     range_low:
-      value: 20.0
-      unit: UO:0000271
-      unit_label: "mL/min/mmHg"
+      value: "20.0"
+      unit:
+        id: UO:0000271
+        name: milliliter per minute per millimeter of mercury
     range_high:
-      value: 30.0
-      unit: UO:0000271
-      unit_label: "mL/min/mmHg"
+      value: "30.0"
+      unit:
+        id: UO:0000271
+        name: milliliter per minute per millimeter of mercury
     phenotype:
       id: HP:0002088
       name: Abnormal lung morphology
@@ -166,17 +187,20 @@ phenotype_measurements:
     description: Ciliary beat frequency measured by high-speed video microscopy
     observation_type: CiliaryBeatFrequency
     quantity_measured:
-      value: 11.2
-      unit: UO:0000106
-      unit_label: "Hz"
+      value: "11.2"
+      unit:
+        id: UO:0000106
+        name: hertz
     range_low:
-      value: 9.0
-      unit: UO:0000106
-      unit_label: "Hz"
+      value: "9.0"
+      unit:
+        id: UO:0000106
+        name: hertz
     range_high:
-      value: 15.0
-      unit: UO:0000106
-      unit_label: "Hz"
+      value: "15.0"
+      unit:
+        id: UO:0000106
+        name: hertz
     phenotype:
       id: HP:0012265
       name: Ciliary dyskinesia
@@ -188,17 +212,20 @@ phenotype_measurements:
     description: Proportion of epithelial cells with visible cilia
     observation_type: PercentageCiliatedCells
     quantity_measured:
-      value: 65.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "65.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_low:
-      value: 50.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "50.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_high:
-      value: 80.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "80.0"
+      unit:
+        id: UO:0000187
+        name: percent
     phenotype:
       id: HP:0012265
       name: Ciliary dyskinesia
@@ -211,17 +238,20 @@ phenotype_measurements:
     description: Rate of fluorescent bead transport across epithelial surface
     observation_type: MucociliaryTransportRate
     quantity_measured:
-      value: 4.8
-      unit: UO:0000335
-      unit_label: "mm/min"
+      value: "4.8"
+      unit:
+        id: UO:0000335
+        name: millimeter per minute
     range_low:
-      value: 3.0
-      unit: UO:0000335
-      unit_label: "mm/min"
+      value: "3.0"
+      unit:
+        id: UO:0000335
+        name: millimeter per minute
     range_high:
-      value: 8.0
-      unit: UO:0000335
-      unit_label: "mm/min"
+      value: "8.0"
+      unit:
+        id: UO:0000335
+        name: millimeter per minute
     phenotype:
       id: HP:0002110
       name: Bronchiectasis
@@ -234,17 +264,20 @@ phenotype_measurements:
     description: Airway surface liquid height measured by confocal microscopy
     observation_type: ASLHeight
     quantity_measured:
-      value: 7.2
-      unit: UO:0000017
-      unit_label: "um"
+      value: "7.2"
+      unit:
+        id: UO:0000017
+        name: micrometer
     range_low:
-      value: 6.0
-      unit: UO:0000017
-      unit_label: "um"
+      value: "6.0"
+      unit:
+        id: UO:0000017
+        name: micrometer
     range_high:
-      value: 12.0
-      unit: UO:0000017
-      unit_label: "um"
+      value: "12.0"
+      unit:
+        id: UO:0000017
+        name: micrometer
     phenotype:
       id: HP:0002110
       name: Bronchiectasis
@@ -257,17 +290,20 @@ phenotype_measurements:
     description: Percentage of goblet cells in bronchial epithelium
     observation_type: GobletCellCount
     quantity_measured:
-      value: 28.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "28.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_low:
-      value: 5.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "5.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_high:
-      value: 15.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "15.0"
+      unit:
+        id: UO:0000187
+        name: percent
     phenotype:
       id: HP:0002099
       name: Asthma

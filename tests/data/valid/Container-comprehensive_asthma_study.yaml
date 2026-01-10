@@ -66,9 +66,10 @@ exposure_measurements:
     description: 7-day average PM2.5 personal exposure at baseline
     observation_type: PM2_5Exposure
     quantity_measured:
-      value: 22.4
-      unit: UO:0000301
-      unit_label: "ug/m3"
+      value: "22.4"
+      unit:
+        id: UO:0000301
+        name: microgram per cubic meter
     measured_entity:
       id: ENVO:01000415
       name: PM2.5
@@ -82,9 +83,10 @@ exposure_measurements:
     description: 8-hour max ozone at residential address
     observation_type: OzoneExposure
     quantity_measured:
-      value: 0.072
-      unit: UO:0000170
-      unit_label: "ppm"
+      value: "0.072"
+      unit:
+        id: UO:0000170
+        name: parts per million
     measured_entity:
       id: CHEBI:25812
       name: Ozone
@@ -99,9 +101,10 @@ exposure_measurements:
     description: 7-day average PM2.5 personal exposure at baseline
     observation_type: PM2_5Exposure
     quantity_measured:
-      value: 15.8
-      unit: UO:0000301
-      unit_label: "ug/m3"
+      value: "15.8"
+      unit:
+        id: UO:0000301
+        name: microgram per cubic meter
     measured_entity:
       id: ENVO:01000415
       name: PM2.5
@@ -116,9 +119,10 @@ exposure_measurements:
     description: 7-day average PM2.5 personal exposure at baseline
     observation_type: PM2_5Exposure
     quantity_measured:
-      value: 35.2
-      unit: UO:0000301
-      unit_label: "ug/m3"
+      value: "35.2"
+      unit:
+        id: UO:0000301
+        name: microgram per cubic meter
     measured_entity:
       id: ENVO:01000415
       name: PM2.5
@@ -135,17 +139,20 @@ biomarker_measurements:
     description: Urinary 8-isoprostane as systemic oxidative stress marker
     observation_type: LipidPeroxidation
     quantity_measured:
-      value: 185.0
-      unit: UO:0000274
-      unit_label: "pg/mg creatinine"
+      value: "185.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milligram creatinine
     range_low:
-      value: 50.0
-      unit: UO:0000274
-      unit_label: "pg/mg creatinine"
+      value: "50.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milligram creatinine
     range_high:
-      value: 150.0
-      unit: UO:0000274
-      unit_label: "pg/mg creatinine"
+      value: "150.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milligram creatinine
     biomarker_type: Oxidative stress
     measured_entity:
       id: CHEBI:27894
@@ -160,17 +167,20 @@ biomarker_measurements:
     description: Induced sputum eosinophil percentage
     observation_type: EosinophilPercentage
     quantity_measured:
-      value: 8.5
-      unit: UO:0000187
-      unit_label: "%"
+      value: "8.5"
+      unit:
+        id: UO:0000187
+        name: percent
     range_low:
-      value: 0.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "0.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_high:
-      value: 3.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "3.0"
+      unit:
+        id: UO:0000187
+        name: percent
     biomarker_type: Inflammatory cell
     measured_entity:
       id: CL:0000771
@@ -184,17 +194,20 @@ biomarker_measurements:
     description: Induced sputum interleukin-8 concentration
     observation_type: IL8Level
     quantity_measured:
-      value: 1850.0
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "1850.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     range_low:
-      value: 200.0
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "200.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     range_high:
-      value: 1200.0
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "1200.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     biomarker_type: Pro-inflammatory cytokine
     measured_entity:
       id: PR:000001562
@@ -209,17 +222,20 @@ biomarker_measurements:
     description: Urinary 8-isoprostane in severe asthma patient with high PM2.5 exposure
     observation_type: LipidPeroxidation
     quantity_measured:
-      value: 342.0
-      unit: UO:0000274
-      unit_label: "pg/mg creatinine"
+      value: "342.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milligram creatinine
     range_low:
-      value: 50.0
-      unit: UO:0000274
-      unit_label: "pg/mg creatinine"
+      value: "50.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milligram creatinine
     range_high:
-      value: 150.0
-      unit: UO:0000274
-      unit_label: "pg/mg creatinine"
+      value: "150.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milligram creatinine
     biomarker_type: Oxidative stress
     measured_entity:
       id: CHEBI:27894
@@ -233,17 +249,20 @@ biomarker_measurements:
     description: Induced sputum neutrophil percentage in severe asthma
     observation_type: NeutrophilPercentage
     quantity_measured:
-      value: 72.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "72.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_low:
-      value: 30.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "30.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_high:
-      value: 60.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "60.0"
+      unit:
+        id: UO:0000187
+        name: percent
     biomarker_type: Inflammatory cell
     measured_entity:
       id: CL:0000775
@@ -260,17 +279,20 @@ phenotype_measurements:
     description: Pre-bronchodilator FEV1 at baseline visit
     observation_type: FEV1
     quantity_measured:
-      value: 2.65
-      unit: UO:0000099
-      unit_label: "L"
+      value: "2.65"
+      unit:
+        id: UO:0000099
+        name: liter
     range_low:
-      value: 2.90
-      unit: UO:0000099
-      unit_label: "L"
+      value: "2.90"
+      unit:
+        id: UO:0000099
+        name: liter
     range_high:
-      value: 3.80
-      unit: UO:0000099
-      unit_label: "L"
+      value: "3.80"
+      unit:
+        id: UO:0000099
+        name: liter
     phenotype:
       id: HP:0002099
       name: Asthma
@@ -282,17 +304,20 @@ phenotype_measurements:
     description: Pre-bronchodilator FVC at baseline visit
     observation_type: FVC
     quantity_measured:
-      value: 3.45
-      unit: UO:0000099
-      unit_label: "L"
+      value: "3.45"
+      unit:
+        id: UO:0000099
+        name: liter
     range_low:
-      value: 3.40
-      unit: UO:0000099
-      unit_label: "L"
+      value: "3.40"
+      unit:
+        id: UO:0000099
+        name: liter
     range_high:
-      value: 4.50
-      unit: UO:0000099
-      unit_label: "L"
+      value: "4.50"
+      unit:
+        id: UO:0000099
+        name: liter
     phenotype:
       id: HP:0002099
       name: Asthma
@@ -304,17 +329,20 @@ phenotype_measurements:
     description: FEV1/FVC ratio at baseline visit
     observation_type: FEV1_FVC_Ratio
     quantity_measured:
-      value: 0.768
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.768"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_low:
-      value: 0.70
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.70"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_high:
-      value: 0.85
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.85"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     phenotype:
       id: HP:0002099
       name: Asthma
@@ -326,17 +354,20 @@ phenotype_measurements:
     description: Fractional exhaled nitric oxide at baseline
     observation_type: FeNO
     quantity_measured:
-      value: 38.0
-      unit: UO:0000170
-      unit_label: "ppb"
+      value: "38.0"
+      unit:
+        id: UO:0000170
+        name: parts per billion
     range_low:
-      value: 0.0
-      unit: UO:0000170
-      unit_label: "ppb"
+      value: "0.0"
+      unit:
+        id: UO:0000170
+        name: parts per billion
     range_high:
-      value: 25.0
-      unit: UO:0000170
-      unit_label: "ppb"
+      value: "25.0"
+      unit:
+        id: UO:0000170
+        name: parts per billion
     phenotype:
       id: HP:0002099
       name: Asthma
@@ -349,17 +380,20 @@ phenotype_measurements:
     description: Pre-bronchodilator FEV1 at baseline visit
     observation_type: FEV1
     quantity_measured:
-      value: 3.85
-      unit: UO:0000099
-      unit_label: "L"
+      value: "3.85"
+      unit:
+        id: UO:0000099
+        name: liter
     range_low:
-      value: 3.60
-      unit: UO:0000099
-      unit_label: "L"
+      value: "3.60"
+      unit:
+        id: UO:0000099
+        name: liter
     range_high:
-      value: 4.80
-      unit: UO:0000099
-      unit_label: "L"
+      value: "4.80"
+      unit:
+        id: UO:0000099
+        name: liter
     phenotype:
       id: HP:0002099
       name: Asthma
@@ -371,17 +405,20 @@ phenotype_measurements:
     description: Fractional exhaled nitric oxide at baseline
     observation_type: FeNO
     quantity_measured:
-      value: 18.0
-      unit: UO:0000170
-      unit_label: "ppb"
+      value: "18.0"
+      unit:
+        id: UO:0000170
+        name: parts per billion
     range_low:
-      value: 0.0
-      unit: UO:0000170
-      unit_label: "ppb"
+      value: "0.0"
+      unit:
+        id: UO:0000170
+        name: parts per billion
     range_high:
-      value: 25.0
-      unit: UO:0000170
-      unit_label: "ppb"
+      value: "25.0"
+      unit:
+        id: UO:0000170
+        name: parts per billion
     phenotype:
       id: HP:0002099
       name: Asthma
@@ -394,17 +431,20 @@ phenotype_measurements:
     description: Pre-bronchodilator FEV1 showing severe obstruction
     observation_type: FEV1
     quantity_measured:
-      value: 1.52
-      unit: UO:0000099
-      unit_label: "L"
+      value: "1.52"
+      unit:
+        id: UO:0000099
+        name: liter
     range_low:
-      value: 2.40
-      unit: UO:0000099
-      unit_label: "L"
+      value: "2.40"
+      unit:
+        id: UO:0000099
+        name: liter
     range_high:
-      value: 3.20
-      unit: UO:0000099
-      unit_label: "L"
+      value: "3.20"
+      unit:
+        id: UO:0000099
+        name: liter
     phenotype:
       id: HP:0002099
       name: Asthma
@@ -416,17 +456,20 @@ phenotype_measurements:
     description: FEV1/FVC ratio showing severe obstruction
     observation_type: FEV1_FVC_Ratio
     quantity_measured:
-      value: 0.52
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.52"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_low:
-      value: 0.70
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.70"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_high:
-      value: 0.85
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.85"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     phenotype:
       id: HP:0006536
       name: Airway obstruction
@@ -438,17 +481,20 @@ phenotype_measurements:
     description: Fractional exhaled nitric oxide in severe asthma
     observation_type: FeNO
     quantity_measured:
-      value: 65.0
-      unit: UO:0000170
-      unit_label: "ppb"
+      value: "65.0"
+      unit:
+        id: UO:0000170
+        name: parts per billion
     range_low:
-      value: 0.0
-      unit: UO:0000170
-      unit_label: "ppb"
+      value: "0.0"
+      unit:
+        id: UO:0000170
+        name: parts per billion
     range_high:
-      value: 25.0
-      unit: UO:0000170
-      unit_label: "ppb"
+      value: "25.0"
+      unit:
+        id: UO:0000170
+        name: parts per billion
     phenotype:
       id: HP:0002099
       name: Asthma
@@ -462,9 +508,10 @@ aggregated_measurements:
     description: Mean 7-day PM2.5 exposure across APEX cohort at baseline
     observation_type: PM2_5Exposure
     quantity_measured:
-      value: 24.5
-      unit: UO:0000301
-      unit_label: "ug/m3"
+      value: "24.5"
+      unit:
+        id: UO:0000301
+        name: microgram per cubic meter
     measured_entity:
       id: ENVO:01000415
       name: PM2.5
@@ -477,9 +524,10 @@ aggregated_measurements:
     description: Mean FEV1 percent predicted across APEX cohort at baseline
     observation_type: FEV1
     quantity_measured:
-      value: 78.5
-      unit: UO:0000187
-      unit_label: "% predicted"
+      value: "78.5"
+      unit:
+        id: UO:0000187
+        name: percent
     measured_entity:
       id: NCIT:C38083
       name: FEV1

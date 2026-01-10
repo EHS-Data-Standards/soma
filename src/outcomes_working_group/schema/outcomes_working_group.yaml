@@ -122,6 +122,7 @@ classes:
       unit:
         range: Unit
         description: The unit of measurement
+        inlined: true
       value:
         range: string
         description: The numeric value of the quantity
@@ -534,6 +535,10 @@ slots:
     multivalued: true
     description: External database cross-references
 
+  unit_label:
+    range: string
+    description: A human-readable label for the unit
+
   # Chemical entity slots
   chebi_id:
     range: uriorcurie
@@ -906,6 +911,7 @@ slots:
   encoded_by_gene:
     range: Gene
     description: Gene that encodes this protein
+    inlined: true
 
   cl_id:
     range: uriorcurie
@@ -1054,6 +1060,66 @@ slots:
 
   cytotoxicity_measurements:
     range: BiomarkerMeasurement
+    multivalued: true
+    inlined_as_list: true
+
+  chemical_exposures:
+    range: ChemicalExposure
+    multivalued: true
+    inlined_as_list: true
+
+  dietary_exposures:
+    range: DietaryExposure
+    multivalued: true
+    inlined_as_list: true
+
+  environmental_exposures:
+    range: EnvironmentalExposure
+    multivalued: true
+    inlined_as_list: true
+
+  occupational_exposures:
+    range: OccupationalExposure
+    multivalued: true
+    inlined_as_list: true
+
+  phenotypes:
+    range: Phenotype
+    multivalued: true
+    inlined_as_list: true
+
+  diseases:
+    range: Disease
+    multivalued: true
+    inlined_as_list: true
+
+  adverse_outcomes:
+    range: AdverseOutcome
+    multivalued: true
+    inlined_as_list: true
+
+  adverse_outcome_pathways:
+    range: AdverseOutcomePathway
+    multivalued: true
+    inlined_as_list: true
+
+  cell_types:
+    range: CellType
+    multivalued: true
+    inlined_as_list: true
+
+  anatomical_entities:
+    range: AnatomicalEntity
+    multivalued: true
+    inlined_as_list: true
+
+  organisms:
+    range: Organism
+    multivalued: true
+    inlined_as_list: true
+
+  exposure_to_phenotype_associations:
+    range: ExposureToPhenotypeAssociation
     multivalued: true
     inlined_as_list: true
 

@@ -11,9 +11,10 @@ gene_expression_measurements:
     description: MUC5AC gene expression in untreated bronchial epithelial cells at ALI
     observation_type: GeneExpression
     quantity_measured:
-      value: 1.0
-      unit: UO:0000186
-      unit_label: "fold change"
+      value: "1.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_gene:
       id: NCBIGENE:4586
       name: Mucin 5AC, oligomeric mucus/gel-forming
@@ -33,9 +34,10 @@ gene_expression_measurements:
     description: MUC5AC upregulation after IL-13 stimulation (10 ng/mL, 14 days)
     observation_type: GeneExpression
     quantity_measured:
-      value: 8.5
-      unit: UO:0000186
-      unit_label: "fold change vs control"
+      value: "8.5"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_gene:
       id: NCBIGENE:4586
       name: Mucin 5AC, oligomeric mucus/gel-forming
@@ -56,9 +58,10 @@ gene_expression_measurements:
     description: MUC5B gene expression in untreated bronchial epithelial cells
     observation_type: GeneExpression
     quantity_measured:
-      value: 1.0
-      unit: UO:0000186
-      unit_label: "fold change"
+      value: "1.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_gene:
       id: NCBIGENE:727897
       name: Mucin 5B, oligomeric mucus/gel-forming
@@ -79,17 +82,20 @@ gene_expression_measurements:
     description: Ratio of MUC5AC to MUC5B mRNA in healthy epithelium
     observation_type: ExpressionRatio
     quantity_measured:
-      value: 0.45
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.45"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_low:
-      value: 0.3
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.3"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_high:
-      value: 0.8
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "0.8"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_gene:
       id: NCBIGENE:4586
       name: MUC5AC/MUC5B ratio
@@ -107,9 +113,10 @@ gene_expression_measurements:
     description: Baseline IL-8 gene expression in bronchial epithelial cells
     observation_type: GeneExpression
     quantity_measured:
-      value: 1.0
-      unit: UO:0000186
-      unit_label: "fold change"
+      value: "1.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_gene:
       id: NCBIGENE:3576
       name: C-X-C motif chemokine ligand 8
@@ -129,9 +136,10 @@ gene_expression_measurements:
     description: IL-8 upregulation after PM2.5 exposure (50 ug/mL, 24h)
     observation_type: GeneExpression
     quantity_measured:
-      value: 12.3
-      unit: UO:0000186
-      unit_label: "fold change vs control"
+      value: "12.3"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_gene:
       id: NCBIGENE:3576
       name: C-X-C motif chemokine ligand 8
@@ -152,9 +160,10 @@ gene_expression_measurements:
     description: EGFR expression from bulk RNA-seq of asthmatic bronchial brushings
     observation_type: GeneExpression
     quantity_measured:
-      value: 245.8
-      unit: UO:0000244
-      unit_label: "TPM"
+      value: "245.8"
+      unit:
+        id: UO:0000244
+        name: transcripts per million
     target_gene:
       id: NCBIGENE:1956
       name: Epidermal growth factor receptor
@@ -173,9 +182,10 @@ gene_expression_measurements:
     description: FOXJ1 expression in ciliated cell cluster from scRNA-seq
     observation_type: GeneExpression
     quantity_measured:
-      value: 3.85
-      unit: UO:0000186
-      unit_label: "log2(normalized counts)"
+      value: "3.85"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_gene:
       id: NCBIGENE:2302
       name: Forkhead box J1
@@ -198,9 +208,10 @@ protein_expression_measurements:
     description: Baseline EGFR phosphorylation at Y1068 in bronchial epithelial cells
     observation_type: ProteinPhosphorylation
     quantity_measured:
-      value: 1.0
-      unit: UO:0000186
-      unit_label: "fold change"
+      value: "1.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_protein:
       id: PR:000007223
       name: Epidermal growth factor receptor
@@ -223,9 +234,10 @@ protein_expression_measurements:
     description: EGFR phosphorylation after EGF stimulation (10 ng/mL, 15 min)
     observation_type: ProteinPhosphorylation
     quantity_measured:
-      value: 8.2
-      unit: UO:0000186
-      unit_label: "fold change vs control"
+      value: "8.2"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_protein:
       id: PR:000007223
       name: Epidermal growth factor receptor
@@ -249,9 +261,10 @@ protein_expression_measurements:
     description: ERK1/2 phosphorylation downstream of EGFR activation
     observation_type: ProteinPhosphorylation
     quantity_measured:
-      value: 5.6
-      unit: UO:0000186
-      unit_label: "fold change vs control"
+      value: "5.6"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_protein:
       id: PR:000006629
       name: Mitogen-activated protein kinase 3
@@ -272,9 +285,10 @@ protein_expression_measurements:
     description: AKT phosphorylation downstream of EGFR/PI3K activation
     observation_type: ProteinPhosphorylation
     quantity_measured:
-      value: 3.2
-      unit: UO:0000186
-      unit_label: "fold change vs control"
+      value: "3.2"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_protein:
       id: PR:000002049
       name: RAC-alpha serine/threonine-protein kinase
@@ -295,9 +309,10 @@ protein_expression_measurements:
     description: MUC5AC protein expression in bronchial biopsy from asthma patient
     observation_type: ProteinExpression
     quantity_measured:
-      value: 3.5
-      unit: UO:0000186
-      unit_label: "staining score (0-4)"
+      value: "3.5"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_protein:
       id: PR:000024842
       name: Mucin-5AC
@@ -321,9 +336,10 @@ protein_expression_measurements:
     description: ZO-1 tight junction protein expression at cell-cell contacts
     observation_type: ProteinExpression
     quantity_measured:
-      value: 1.0
-      unit: UO:0000186
-      unit_label: "fold change"
+      value: "1.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_protein:
       id: PR:000016878
       name: Tight junction protein ZO-1
@@ -342,9 +358,10 @@ protein_expression_measurements:
     description: Reduced ZO-1 expression after mechanical scratch wound
     observation_type: ProteinExpression
     quantity_measured:
-      value: 0.35
-      unit: UO:0000186
-      unit_label: "fold change vs control"
+      value: "0.35"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     target_protein:
       id: PR:000016878
       name: Tight junction protein ZO-1
@@ -364,9 +381,10 @@ protein_expression_measurements:
     description: Percentage of CD45+ leukocytes in BALF
     observation_type: PercentagePositiveCells
     quantity_measured:
-      value: 12.5
-      unit: UO:0000187
-      unit_label: "%"
+      value: "12.5"
+      unit:
+        id: UO:0000187
+        name: percent
     target_protein:
       id: PR:000001871
       name: Receptor-type tyrosine-protein phosphatase C
@@ -386,17 +404,20 @@ protein_expression_measurements:
     description: IL-8 protein concentration in cell culture supernatant
     observation_type: ProteinExpression
     quantity_measured:
-      value: 2450.0
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "2450.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     range_low:
-      value: 0.0
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "0.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     range_high:
-      value: 500.0
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "500.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     target_protein:
       id: PR:000001562
       name: Interleukin-8

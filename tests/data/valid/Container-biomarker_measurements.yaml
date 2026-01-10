@@ -9,17 +9,20 @@ biomarker_measurements:
     description: Lipid peroxidation marker in exhaled breath condensate
     observation_type: LipidPeroxidation
     quantity_measured:
-      value: 45.2
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "45.2"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     range_low:
-      value: 10.0
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "10.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     range_high:
-      value: 35.0
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "35.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     biomarker_type: Oxidative stress
     measured_entity:
       id: CHEBI:27894
@@ -33,17 +36,20 @@ biomarker_measurements:
     description: GSH/GSSG ratio in bronchoalveolar lavage fluid
     observation_type: GlutathioneRatio
     quantity_measured:
-      value: 8.5
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "8.5"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_low:
-      value: 10.0
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "10.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     range_high:
-      value: 50.0
-      unit: UO:0000186
-      unit_label: "ratio"
+      value: "50.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
     biomarker_type: Antioxidant capacity
     measured_entity:
       id: CHEBI:16856
@@ -58,17 +64,20 @@ biomarker_measurements:
     description: Interleukin-8 concentration in induced sputum
     observation_type: IL8Level
     quantity_measured:
-      value: 2450.0
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "2450.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     range_low:
-      value: 100.0
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "100.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     range_high:
-      value: 1500.0
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "1500.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     biomarker_type: Pro-inflammatory cytokine
     measured_entity:
       id: PR:000001562
@@ -82,17 +91,20 @@ biomarker_measurements:
     description: Systemic interleukin-6 concentration
     observation_type: IL6Level
     quantity_measured:
-      value: 8.7
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "8.7"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     range_low:
-      value: 0.0
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "0.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     range_high:
-      value: 5.0
-      unit: UO:0000274
-      unit_label: "pg/mL"
+      value: "5.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
     biomarker_type: Pro-inflammatory cytokine
     measured_entity:
       id: PR:000001461
@@ -107,17 +119,20 @@ biomarker_measurements:
     description: Percentage of eosinophils in induced sputum differential
     observation_type: EosinophilPercentage
     quantity_measured:
-      value: 12.5
-      unit: UO:0000187
-      unit_label: "%"
+      value: "12.5"
+      unit:
+        id: UO:0000187
+        name: percent
     range_low:
-      value: 0.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "0.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_high:
-      value: 3.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "3.0"
+      unit:
+        id: UO:0000187
+        name: percent
     biomarker_type: Inflammatory cell
     measured_entity:
       id: CL:0000771
@@ -131,17 +146,20 @@ biomarker_measurements:
     description: Percentage of neutrophils in induced sputum differential
     observation_type: NeutrophilPercentage
     quantity_measured:
-      value: 68.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "68.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_low:
-      value: 30.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "30.0"
+      unit:
+        id: UO:0000187
+        name: percent
     range_high:
-      value: 60.0
-      unit: UO:0000187
-      unit_label: "%"
+      value: "60.0"
+      unit:
+        id: UO:0000187
+        name: percent
     biomarker_type: Inflammatory cell
     measured_entity:
       id: CL:0000775
@@ -150,27 +168,26 @@ biomarker_measurements:
     measurement_method: Cytospin with Diff-Quik staining
     measurement_date: "2024-03-17"
 
-  # Note: EGFR signaling measurements (phosphorylation) are now in expression_measurements.yaml
-  # using the ProteinExpressionMeasurement class with proper target_protein,
-  # phosphorylation_site, tissue_context, and assay_method fields.
-
   # Barrier Integrity
   - id: owg:biomarker-008
     name: ALI culture TEER - In vitro sample
     description: Transepithelial electrical resistance of primary bronchial epithelial cells at ALI
     observation_type: TEER
     quantity_measured:
-      value: 485.0
-      unit: UO:0010045
-      unit_label: "ohm.cm2"
+      value: "485.0"
+      unit:
+        id: UO:0010045
+        name: ohm square centimeter
     range_low:
-      value: 300.0
-      unit: UO:0010045
-      unit_label: "ohm.cm2"
+      value: "300.0"
+      unit:
+        id: UO:0010045
+        name: ohm square centimeter
     range_high:
-      value: 800.0
-      unit: UO:0010045
-      unit_label: "ohm.cm2"
+      value: "800.0"
+      unit:
+        id: UO:0010045
+        name: ohm square centimeter
     biomarker_type: Epithelial barrier integrity
     measured_entity:
       id: CL:0002328

@@ -1,5 +1,5 @@
 # Example ExposureMeasurement data for environmental toxicant research
-# Demonstrates the new Quantity pattern with value + unit + unit_label
+# Demonstrates the Quantity pattern with value + unit object
 # and OntologyReference pattern with id + name for readability
 
 exposure_measurements:
@@ -8,17 +8,20 @@ exposure_measurements:
     description: Blood lead level measured as part of NHANES exposure assessment
     observation_type: BloodLeadLevel
     quantity_measured:
-      value: 3.2
-      unit: UO:0000275
-      unit_label: "ug/dL"
+      value: "3.2"
+      unit:
+        id: UO:0000275
+        name: microgram per deciliter
     range_low:
-      value: 0.0
-      unit: UO:0000275
-      unit_label: "ug/dL"
+      value: "0.0"
+      unit:
+        id: UO:0000275
+        name: microgram per deciliter
     range_high:
-      value: 5.0
-      unit: UO:0000275
-      unit_label: "ug/dL"
+      value: "5.0"
+      unit:
+        id: UO:0000275
+        name: microgram per deciliter
     measured_entity:
       id: CHEBI:25016
       name: Lead
@@ -32,17 +35,20 @@ exposure_measurements:
     description: Urinary cadmium level creatinine-corrected
     observation_type: BloodCadmiumLevel
     quantity_measured:
-      value: 0.45
-      unit: UO:0000275
-      unit_label: "ug/g creatinine"
+      value: "0.45"
+      unit:
+        id: UO:0000275
+        name: microgram per gram creatinine
     range_low:
-      value: 0.0
-      unit: UO:0000275
-      unit_label: "ug/g creatinine"
+      value: "0.0"
+      unit:
+        id: UO:0000275
+        name: microgram per gram creatinine
     range_high:
-      value: 1.0
-      unit: UO:0000275
-      unit_label: "ug/g creatinine"
+      value: "1.0"
+      unit:
+        id: UO:0000275
+        name: microgram per gram creatinine
     measured_entity:
       id: CHEBI:22977
       name: Cadmium
@@ -56,9 +62,10 @@ exposure_measurements:
     description: 24-hour integrated personal PM2.5 exposure from wearable monitor
     observation_type: PM2_5Exposure
     quantity_measured:
-      value: 18.5
-      unit: UO:0000301
-      unit_label: "ug/m3"
+      value: "18.5"
+      unit:
+        id: UO:0000301
+        name: microgram per cubic meter
     measured_entity:
       id: ENVO:01000415
       name: Particulate matter with aerodynamic diameter less than or equal to 2.5 micrometers
@@ -72,17 +79,20 @@ exposure_measurements:
     description: Urinary cotinine as biomarker of tobacco smoke exposure
     observation_type: UrinaryCotinineLevel
     quantity_measured:
-      value: 125.0
-      unit: UO:0000271
-      unit_label: "ng/mL"
+      value: "125.0"
+      unit:
+        id: UO:0000271
+        name: nanogram per milliliter
     range_low:
-      value: 0.0
-      unit: UO:0000271
-      unit_label: "ng/mL"
+      value: "0.0"
+      unit:
+        id: UO:0000271
+        name: nanogram per milliliter
     range_high:
-      value: 10.0
-      unit: UO:0000271
-      unit_label: "ng/mL"
+      value: "10.0"
+      unit:
+        id: UO:0000271
+        name: nanogram per milliliter
     measured_entity:
       id: CHEBI:68641
       name: Cotinine
@@ -96,9 +106,10 @@ exposure_measurements:
     description: Ambient ozone concentration at participant residence
     observation_type: OzoneExposure
     quantity_measured:
-      value: 0.065
-      unit: UO:0000170
-      unit_label: "ppm"
+      value: "0.065"
+      unit:
+        id: UO:0000170
+        name: parts per million
     measured_entity:
       id: CHEBI:25812
       name: Ozone

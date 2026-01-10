@@ -845,25 +845,29 @@ class Container(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
          'tree_root': True})
 
-    exposure_measurements: Optional[list[ExposureMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    biomarker_measurements: Optional[list[BiomarkerMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    phenotype_measurements: Optional[list[PhenotypeMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    gene_expression_measurements: Optional[list[GeneExpressionMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    protein_expression_measurements: Optional[list[ProteinExpressionMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    aggregated_measurements: Optional[list[AggregatedMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
     studies: Optional[list[Study]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
     cohorts: Optional[list[Cohort]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
     participants: Optional[list[Participant]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    chemicals: Optional[list[ChemicalEntity]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    exposure_measurements: Optional[list[ExposureMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    biomarker_measurements: Optional[list[BiomarkerMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    phenotype_measurements: Optional[list[PhenotypeMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    aggregated_measurements: Optional[list[AggregatedMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    gene_expression_measurements: Optional[list[GeneExpressionMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    protein_expression_measurements: Optional[list[ProteinExpressionMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    chemical_exposures: Optional[list[ChemicalExposure]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    dietary_exposures: Optional[list[DietaryExposure]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    environmental_exposures: Optional[list[EnvironmentalExposure]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    occupational_exposures: Optional[list[OccupationalExposure]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    phenotypes: Optional[list[Phenotype]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    diseases: Optional[list[Disease]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    adverse_outcomes: Optional[list[AdverseOutcome]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    adverse_outcome_pathways: Optional[list[AdverseOutcomePathway]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
     genes: Optional[list[Gene]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
     proteins: Optional[list[Protein]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    ciliary_measurements: Optional[list[PhenotypeMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    asl_measurements: Optional[list[PhenotypeMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    mcc_measurements: Optional[list[PhenotypeMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    goblet_cell_measurements: Optional[list[PhenotypeMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    oxidative_stress_measurements: Optional[list[BiomarkerMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    barrier_measurements: Optional[list[BiomarkerMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    cytotoxicity_measurements: Optional[list[BiomarkerMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    cell_types: Optional[list[CellType]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    anatomical_entities: Optional[list[AnatomicalEntity]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    organisms: Optional[list[Organism]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    exposure_to_phenotype_associations: Optional[list[ExposureToPhenotypeAssociation]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
 
 
 class NamedThing(ConfiguredBaseModel):
@@ -872,53 +876,37 @@ class NamedThing(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
 
 
-class UnitConcept(ConfiguredBaseModel):
+class Unit(NamedThing):
     """
     A unit of measurement from a standard ontology (UO, UCUM, QUDT)
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
          'id_prefixes': ['UO', 'UCUM', 'qudt']})
 
-    id: Optional[str] = Field(default=None, description="""The unit identifier (e.g., UO:0000009 for kilogram)""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference']} })
-    label: Optional[str] = Field(default=None, description="""Human-readable label for the unit (e.g., \"kg\")""", json_schema_extra = { "linkml_meta": {'domain_of': ['UnitConcept']} })
+    unit_label: Optional[str] = Field(default=None, description="""A human-readable label for the unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Unit']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
 
 
-class Quantity(ConfiguredBaseModel):
+class QuantityValue(ConfiguredBaseModel):
     """
     A quantity with a numeric value and unit of measurement
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'fhir:Quantity',
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    value: Optional[float] = Field(default=None, description="""The numeric value of the quantity""", json_schema_extra = { "linkml_meta": {'domain_of': ['Quantity']} })
-    unit: Optional[str] = Field(default=None, description="""The unit identifier (e.g., UO:0000009 for kilogram)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Quantity']} })
-    unit_label: Optional[str] = Field(default=None, description="""Human-readable label for the unit (e.g., \"kg\")""", json_schema_extra = { "linkml_meta": {'domain_of': ['Quantity']} })
+    unit: Optional[Unit] = Field(default=None, description="""The unit of measurement""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
+    value: Optional[str] = Field(default=None, description="""The numeric value of the quantity""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
 
 
 class QuantityRange(ConfiguredBaseModel):
@@ -928,115 +916,34 @@ class QuantityRange(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'fhir:Range',
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    lower_bound: Optional[Quantity] = Field(default=None, description="""The lower bound of the range""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityRange']} })
-    upper_bound: Optional[Quantity] = Field(default=None, description="""The upper bound of the range""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityRange']} })
+    lower_bound: Optional[QuantityValue] = Field(default=None, description="""The lower bound of the range""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityRange']} })
+    upper_bound: Optional[QuantityValue] = Field(default=None, description="""The upper bound of the range""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityRange']} })
 
 
-class OntologyReference(ConfiguredBaseModel):
+class OntologyTerm(NamedThing):
     """
     A reference to an ontology term with both identifier and human-readable name. Used for measured entities, phenotypes, and other ontology-backed concepts.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    id: Optional[str] = Field(default=None, description="""The ontology term identifier (e.g., CHEBI:25016, GO:0005929)""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference']} })
-    name: Optional[str] = Field(default=None, description="""Human-readable name for the term (e.g., \"Lead\", \"Cilium\")""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
 
 
-class GeneReference(ConfiguredBaseModel):
-    """
-    A reference to a gene with identifier, name, and symbol. Used for target_gene in expression measurements.
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
-
-    id: Optional[str] = Field(default=None, description="""The gene identifier (e.g., NCBIGENE:4586)""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference']} })
-    name: Optional[str] = Field(default=None, description="""Full gene name (e.g., \"Mucin 5AC, oligomeric mucus/gel-forming\")""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference']} })
-    symbol: Optional[str] = Field(default=None, description="""Gene symbol (e.g., \"MUC5AC\")""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneReference', 'Gene']} })
-
-
-class ProteinReference(ConfiguredBaseModel):
-    """
-    A reference to a protein with identifier, name, and encoding gene. Used for target_protein in expression measurements.
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
-
-    id: Optional[str] = Field(default=None, description="""The protein identifier (e.g., PR:000007223)""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference']} })
-    name: Optional[str] = Field(default=None, description="""Protein name (e.g., \"Epidermal growth factor receptor\")""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference']} })
-    encoded_by_gene: Optional[GeneReference] = Field(default=None, description="""The gene that encodes this protein""", json_schema_extra = { "linkml_meta": {'domain_of': ['ProteinReference', 'Protein']} })
-
-
-class TissueReference(ConfiguredBaseModel):
+class Tissue(NamedThing):
     """
     A reference to an anatomical tissue or structure with identifier and name. Used for tissue_context in expression measurements.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    id: Optional[str] = Field(default=None, description="""The anatomy identifier (e.g., UBERON:0002031)""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference']} })
-    name: Optional[str] = Field(default=None, description="""Tissue/anatomy name (e.g., \"bronchial epithelium\")""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference']} })
-
-
-class CellTypeReference(ConfiguredBaseModel):
-    """
-    A reference to a cell type with identifier and name. Used for cell_type_context in expression measurements.
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
-
-    id: Optional[str] = Field(default=None, description="""The cell type identifier (e.g., CL:0000160)""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference']} })
-    name: Optional[str] = Field(default=None, description="""Cell type name (e.g., \"goblet cell\")""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
 
 
 class BiologicalEntity(NamedThing):
@@ -1046,21 +953,8 @@ class BiologicalEntity(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1081,21 +975,8 @@ class ChemicalEntity(NamedThing):
     inchi: Optional[str] = Field(default=None, description="""InChI chemical identifier""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalEntity']} })
     smiles: Optional[str] = Field(default=None, description="""SMILES chemical structure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalEntity']} })
     molecular_formula: Optional[str] = Field(default=None, description="""Molecular formula""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalEntity']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1152,21 +1033,8 @@ class ExposureEvent(NamedThing):
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_concentration: Optional[float] = Field(default=None, description="""Concentration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_medium: Optional[ExposureMediumEnum] = Field(default=None, description="""Medium through which exposure occurs""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1179,21 +1047,8 @@ class BiologicalResponse(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1206,21 +1061,8 @@ class HealthOutcome(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1233,21 +1075,8 @@ class StudyEntity(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1260,25 +1089,12 @@ class Measurement(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented (e.g., 'blood lead level', 'BMI'). This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    quantity_measured: Optional[Quantity] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_low: Optional[Quantity] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_high: Optional[Quantity] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented. This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_high: Optional[QuantityValue] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1291,21 +1107,8 @@ class Association(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1323,21 +1126,8 @@ class ChemicalExposure(ExposureEvent):
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_concentration: Optional[float] = Field(default=None, description="""Concentration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_medium: Optional[ExposureMediumEnum] = Field(default=None, description="""Medium through which exposure occurs""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1357,21 +1147,8 @@ class DietaryExposure(ExposureEvent):
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_concentration: Optional[float] = Field(default=None, description="""Concentration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_medium: Optional[ExposureMediumEnum] = Field(default=None, description="""Medium through which exposure occurs""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1390,21 +1167,8 @@ class EnvironmentalExposure(ExposureEvent):
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_concentration: Optional[float] = Field(default=None, description="""Concentration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_medium: Optional[ExposureMediumEnum] = Field(default=None, description="""Medium through which exposure occurs""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1424,21 +1188,8 @@ class OccupationalExposure(ExposureEvent):
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_concentration: Optional[float] = Field(default=None, description="""Concentration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_medium: Optional[ExposureMediumEnum] = Field(default=None, description="""Medium through which exposure occurs""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1454,21 +1205,8 @@ class Phenotype(HealthOutcome):
 
     severity: Optional[str] = Field(default=None, description="""Severity of phenotype or disease""", json_schema_extra = { "linkml_meta": {'domain_of': ['Phenotype']} })
     onset_age: Optional[str] = Field(default=None, description="""Age of onset""", json_schema_extra = { "linkml_meta": {'domain_of': ['Phenotype']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1483,21 +1221,8 @@ class Disease(HealthOutcome):
 
     disease_category: Optional[str] = Field(default=None, description="""Category of disease""", json_schema_extra = { "linkml_meta": {'domain_of': ['Disease']} })
     affected_anatomy: Optional[str] = Field(default=None, description="""Anatomical location affected""", json_schema_extra = { "linkml_meta": {'domain_of': ['Disease']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1510,21 +1235,8 @@ class AdverseOutcome(HealthOutcome):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
     outcome_level: Optional[BiologicalOrganizationLevelEnum] = Field(default=None, description="""Level of biological organization""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcome']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1542,21 +1254,8 @@ class AdverseOutcomePathway(NamedThing):
     key_event_relationships: Optional[list[str]] = Field(default=[], description="""Relationships between key events""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcomePathway']} })
     adverse_outcome: Optional[str] = Field(default=None, description="""The adverse outcome of an AOP""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcomePathway']} })
     stressors: Optional[list[str]] = Field(default=[], description="""Chemical stressors that trigger the AOP""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcomePathway']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1576,21 +1275,8 @@ class MolecularInitiatingEvent(BiologicalResponse):
          'slot_uri': 'CL:0000000'} })
     occurs_in_anatomy: Optional[str] = Field(default=None, description="""Anatomical location where event occurs""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularInitiatingEvent', 'KeyEvent'],
          'slot_uri': 'UBERON:0001062'} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1611,21 +1297,8 @@ class KeyEvent(BiologicalResponse):
          'slot_uri': 'CL:0000000'} })
     occurs_in_anatomy: Optional[str] = Field(default=None, description="""Anatomical location where event occurs""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularInitiatingEvent', 'KeyEvent'],
          'slot_uri': 'UBERON:0001062'} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1641,21 +1314,8 @@ class KeyEventRelationship(Association):
     downstream_event: Optional[str] = Field(default=None, description="""Downstream key event""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEventRelationship']} })
     relationship_type: Optional[str] = Field(default=None, description="""Type of relationship""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEventRelationship']} })
     evidence_support: Optional[str] = Field(default=None, description="""Evidence supporting the relationship""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEventRelationship']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1675,21 +1335,8 @@ class Study(StudyEntity):
     data_source: Optional[DataSourceEnum] = Field(default=None, description="""Source database or repository""", json_schema_extra = { "linkml_meta": {'domain_of': ['Study']} })
     principal_investigator: Optional[str] = Field(default=None, description="""Principal investigator name""", json_schema_extra = { "linkml_meta": {'domain_of': ['Study']} })
     publications: Optional[list[str]] = Field(default=[], description="""Related publications""", json_schema_extra = { "linkml_meta": {'domain_of': ['Study']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1704,21 +1351,8 @@ class Cohort(StudyEntity):
     part_of_study: Optional[str] = Field(default=None, description="""Study that this cohort is part of.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Cohort']} })
     cohort_size: Optional[int] = Field(default=None, description="""Number of participants in cohort""", json_schema_extra = { "linkml_meta": {'domain_of': ['Cohort']} })
     inclusion_criteria: Optional[str] = Field(default=None, description="""Criteria for cohort inclusion""", json_schema_extra = { "linkml_meta": {'domain_of': ['Cohort']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1735,21 +1369,8 @@ class Participant(StudyEntity):
     age: Optional[int] = Field(default=None, description="""Age in years""", json_schema_extra = { "linkml_meta": {'domain_of': ['Participant']} })
     sex: Optional[SexEnum] = Field(default=None, description="""Biological sex""", json_schema_extra = { "linkml_meta": {'domain_of': ['Participant']} })
     species: Optional[str] = Field(default=None, description="""Species name""", json_schema_extra = { "linkml_meta": {'domain_of': ['Participant', 'Organism']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1761,7 +1382,7 @@ class ExposureMeasurement(Measurement):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    measured_entity: Optional[OntologyReference] = Field(default=None, description="""The entity being measured, with both identifier and human-readable name. Examples: chemical compounds (CHEBI), cell types (CL), biological processes (GO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
+    measured_entity: Optional[OntologyTerm] = Field(default=None, description="""The entity being measured, with both identifier and human-readable name. Examples: chemical compounds (CHEBI), cell types (CL), biological processes (GO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement',
                        'AggregatedMeasurement']} })
@@ -1780,25 +1401,12 @@ class ExposureMeasurement(Measurement):
                        'ProteinExpressionMeasurement']} })
     sample_type: Optional[SampleTypeEnum] = Field(default=None, description="""Type of biological sample""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement']} })
     source_database_record: Optional[str] = Field(default=None, description="""Link to original database record (URI or CURIE)""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement']} })
-    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented (e.g., 'blood lead level', 'BMI'). This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    quantity_measured: Optional[Quantity] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_low: Optional[Quantity] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_high: Optional[Quantity] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented. This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_high: Optional[QuantityValue] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1811,7 +1419,7 @@ class BiomarkerMeasurement(Measurement):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
     biomarker_type: Optional[str] = Field(default=None, description="""Type of biomarker""", json_schema_extra = { "linkml_meta": {'domain_of': ['BiomarkerMeasurement']} })
-    measured_entity: Optional[OntologyReference] = Field(default=None, description="""The entity being measured, with both identifier and human-readable name. Examples: chemical compounds (CHEBI), cell types (CL), biological processes (GO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
+    measured_entity: Optional[OntologyTerm] = Field(default=None, description="""The entity being measured, with both identifier and human-readable name. Examples: chemical compounds (CHEBI), cell types (CL), biological processes (GO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement',
                        'AggregatedMeasurement']} })
@@ -1828,25 +1436,12 @@ class BiomarkerMeasurement(Measurement):
                        'PhenotypeMeasurement',
                        'GeneExpressionMeasurement',
                        'ProteinExpressionMeasurement']} })
-    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented (e.g., 'blood lead level', 'BMI'). This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    quantity_measured: Optional[Quantity] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_low: Optional[Quantity] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_high: Optional[Quantity] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented. This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_high: Optional[QuantityValue] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1858,10 +1453,8 @@ class PhenotypeMeasurement(Measurement):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    phenotype: Optional[OntologyReference] = Field(default=None, description="""The phenotype being measured, with identifier and name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhenotypeMeasurement',
-                       'ExposureToPhenotypeAssociation',
-                       'GeneticVariantToPhenotypeAssociation']} })
-    measured_entity: Optional[OntologyReference] = Field(default=None, description="""The entity being measured, with both identifier and human-readable name. Examples: chemical compounds (CHEBI), cell types (CL), biological processes (GO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
+    phenotype: Optional[OntologyTerm] = Field(default=None, description="""The phenotype being measured, with identifier and name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhenotypeMeasurement', 'ExposureToPhenotypeAssociation']} })
+    measured_entity: Optional[OntologyTerm] = Field(default=None, description="""The entity being measured, with both identifier and human-readable name. Examples: chemical compounds (CHEBI), cell types (CL), biological processes (GO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement',
                        'AggregatedMeasurement']} })
@@ -1878,25 +1471,12 @@ class PhenotypeMeasurement(Measurement):
                        'PhenotypeMeasurement',
                        'GeneExpressionMeasurement',
                        'ProteinExpressionMeasurement']} })
-    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented (e.g., 'blood lead level', 'BMI'). This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    quantity_measured: Optional[Quantity] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_low: Optional[Quantity] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_high: Optional[Quantity] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented. This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_high: Optional[QuantityValue] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1908,7 +1488,7 @@ class AggregatedMeasurement(Measurement):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    measured_entity: Optional[OntologyReference] = Field(default=None, description="""The entity being measured, with both identifier and human-readable name. Examples: chemical compounds (CHEBI), cell types (CL), biological processes (GO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
+    measured_entity: Optional[OntologyTerm] = Field(default=None, description="""The entity being measured, with both identifier and human-readable name. Examples: chemical compounds (CHEBI), cell types (CL), biological processes (GO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement',
                        'AggregatedMeasurement']} })
@@ -1916,25 +1496,12 @@ class AggregatedMeasurement(Measurement):
     summary_statistic: Optional[SummaryStatisticEnum] = Field(default=None, description="""Type of summary statistic""", json_schema_extra = { "linkml_meta": {'domain_of': ['AggregatedMeasurement']} })
     sample_size: Optional[int] = Field(default=None, description="""Number of samples""", json_schema_extra = { "linkml_meta": {'domain_of': ['AggregatedMeasurement']} })
     stratification: Optional[str] = Field(default=None, description="""Stratification variables""", json_schema_extra = { "linkml_meta": {'domain_of': ['AggregatedMeasurement']} })
-    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented (e.g., 'blood lead level', 'BMI'). This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    quantity_measured: Optional[Quantity] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_low: Optional[Quantity] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_high: Optional[Quantity] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented. This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_high: Optional[QuantityValue] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1946,9 +1513,9 @@ class GeneExpressionMeasurement(Measurement):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    target_gene: Optional[GeneReference] = Field(default=None, description="""The gene whose expression is being measured, with identifier, name, and symbol. Use this to specify the exact gene target (e.g., MUC5AC, EGFR, IL8).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement']} })
-    tissue_context: Optional[TissueReference] = Field(default=None, description="""The anatomical tissue or structure where expression was measured, with identifier and name (e.g., bronchial epithelium, lung, nasal mucosa).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
-    cell_type_context: Optional[CellTypeReference] = Field(default=None, description="""The specific cell type where expression was measured, with identifier and name (e.g., goblet cell, ciliated cell, basal cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
+    target_gene: Optional[Gene] = Field(default=None, description="""The gene whose expression is being measured, with identifier, name, and symbol. Use this to specify the exact gene target (e.g., MUC5AC, EGFR, IL8).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement']} })
+    tissue_context: Optional[Tissue] = Field(default=None, description="""The anatomical tissue or structure where expression was measured, with identifier and name (e.g., bronchial epithelium, lung, nasal mucosa).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
+    cell_type_context: Optional[CellType] = Field(default=None, description="""The specific cell type where expression was measured, with identifier and name (e.g., goblet cell, ciliated cell, basal cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
     assay_method: Optional[ExpressionAssayMethodEnum] = Field(default=None, description="""The experimental method used to measure expression. Captures whether this was qRT-PCR, RNA-seq, Western blot, IHC, etc.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
     normalization_reference: Optional[str] = Field(default=None, description="""The reference gene or protein used for normalization (e.g., GAPDH, beta-actin, 18S rRNA, total protein).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
     participant: Optional[str] = Field(default=None, description="""The participant being measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
@@ -1961,25 +1528,12 @@ class GeneExpressionMeasurement(Measurement):
                        'PhenotypeMeasurement',
                        'GeneExpressionMeasurement',
                        'ProteinExpressionMeasurement']} })
-    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented (e.g., 'blood lead level', 'BMI'). This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    quantity_measured: Optional[Quantity] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_low: Optional[Quantity] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_high: Optional[Quantity] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented. This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_high: Optional[QuantityValue] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -1991,10 +1545,10 @@ class ProteinExpressionMeasurement(Measurement):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    target_protein: Optional[ProteinReference] = Field(default=None, description="""The protein whose expression or modification is being measured, with identifier, name, and optionally the encoding gene.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ProteinExpressionMeasurement']} })
+    target_protein: Optional[Protein] = Field(default=None, description="""The protein whose expression or modification is being measured, with identifier, name, and optionally the encoding gene.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ProteinExpressionMeasurement']} })
     phosphorylation_site: Optional[str] = Field(default=None, description="""For protein phosphorylation measurements, the specific amino acid residue that is phosphorylated (e.g., Y1068, S473, T308).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ProteinExpressionMeasurement']} })
-    tissue_context: Optional[TissueReference] = Field(default=None, description="""The anatomical tissue or structure where expression was measured, with identifier and name (e.g., bronchial epithelium, lung, nasal mucosa).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
-    cell_type_context: Optional[CellTypeReference] = Field(default=None, description="""The specific cell type where expression was measured, with identifier and name (e.g., goblet cell, ciliated cell, basal cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
+    tissue_context: Optional[Tissue] = Field(default=None, description="""The anatomical tissue or structure where expression was measured, with identifier and name (e.g., bronchial epithelium, lung, nasal mucosa).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
+    cell_type_context: Optional[CellType] = Field(default=None, description="""The specific cell type where expression was measured, with identifier and name (e.g., goblet cell, ciliated cell, basal cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
     assay_method: Optional[ExpressionAssayMethodEnum] = Field(default=None, description="""The experimental method used to measure expression. Captures whether this was qRT-PCR, RNA-seq, Western blot, IHC, etc.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
     normalization_reference: Optional[str] = Field(default=None, description="""The reference gene or protein used for normalization (e.g., GAPDH, beta-actin, 18S rRNA, total protein).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
     participant: Optional[str] = Field(default=None, description="""The participant being measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
@@ -2007,25 +1561,12 @@ class ProteinExpressionMeasurement(Measurement):
                        'PhenotypeMeasurement',
                        'GeneExpressionMeasurement',
                        'ProteinExpressionMeasurement']} })
-    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented (e.g., 'blood lead level', 'BMI'). This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    quantity_measured: Optional[Quantity] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_low: Optional[Quantity] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    range_high: Optional[Quantity] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory). Set to NULL if not provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented. This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_high: Optional[QuantityValue] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -2038,23 +1579,10 @@ class Gene(BiologicalEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
     ncbigene_id: Optional[str] = Field(default=None, description="""NCBI Gene identifier""", json_schema_extra = { "linkml_meta": {'domain_of': ['Gene']} })
-    symbol: Optional[str] = Field(default=None, description="""Gene symbol""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneReference', 'Gene']} })
-    in_taxon: Optional[str] = Field(default=None, description="""Taxonomic group""", json_schema_extra = { "linkml_meta": {'domain_of': ['Gene']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    symbol: Optional[str] = Field(default=None, description="""Gene symbol""", json_schema_extra = { "linkml_meta": {'domain_of': ['Gene', 'Protein']} })
+    in_taxon: Optional[str] = Field(default=None, description="""Taxonomic group""", json_schema_extra = { "linkml_meta": {'domain_of': ['Gene', 'Protein']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -2079,22 +1607,11 @@ class Protein(BiologicalEntity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    encoded_by_gene: Optional[str] = Field(default=None, description="""Gene that encodes this protein""", json_schema_extra = { "linkml_meta": {'domain_of': ['ProteinReference', 'Protein']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    encoded_by_gene: Optional[Gene] = Field(default=None, description="""Gene that encodes this protein""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protein']} })
+    symbol: Optional[str] = Field(default=None, description="""Gene symbol""", json_schema_extra = { "linkml_meta": {'domain_of': ['Gene', 'Protein']} })
+    in_taxon: Optional[str] = Field(default=None, description="""Taxonomic group""", json_schema_extra = { "linkml_meta": {'domain_of': ['Gene', 'Protein']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -2105,40 +1622,14 @@ class CellType(BiologicalEntity):
     A type of cell
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CL:0000000',
-         'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
+         'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
+         'id_prefixes': ['CL']})
 
-    cl_id: Optional[str] = Field(default=None, description="""Cell Ontology identifier""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellType']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
-
-    @field_validator('cl_id')
-    def pattern_cl_id(cls, v):
-        pattern=re.compile(r"^CL:\d{7}$")
-        if isinstance(v, list):
-            for element in v:
-                if isinstance(element, str) and not pattern.match(element):
-                    err_msg = f"Invalid cl_id format: {element}"
-                    raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
-            err_msg = f"Invalid cl_id format: {v}"
-            raise ValueError(err_msg)
-        return v
 
 
 class AnatomicalEntity(BiologicalEntity):
@@ -2146,40 +1637,14 @@ class AnatomicalEntity(BiologicalEntity):
     An anatomical structure or system
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'UBERON:0001062',
-         'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
+         'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
+         'id_prefixes': ['UBERON']})
 
-    uberon_id: Optional[str] = Field(default=None, description="""UBERON anatomical identifier""", json_schema_extra = { "linkml_meta": {'domain_of': ['AnatomicalEntity']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
-
-    @field_validator('uberon_id')
-    def pattern_uberon_id(cls, v):
-        pattern=re.compile(r"^UBERON:\d{7}$")
-        if isinstance(v, list):
-            for element in v:
-                if isinstance(element, str) and not pattern.match(element):
-                    err_msg = f"Invalid uberon_id format: {element}"
-                    raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
-            err_msg = f"Invalid uberon_id format: {v}"
-            raise ValueError(err_msg)
-        return v
 
 
 class Organism(BiologicalEntity):
@@ -2190,21 +1655,8 @@ class Organism(BiologicalEntity):
 
     species: Optional[str] = Field(default=None, description="""Species name""", json_schema_extra = { "linkml_meta": {'domain_of': ['Participant', 'Organism']} })
     taxon_id: Optional[str] = Field(default=None, description="""NCBI Taxonomy identifier""", json_schema_extra = { "linkml_meta": {'domain_of': ['Organism']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -2217,26 +1669,11 @@ class ExposureToPhenotypeAssociation(Association):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
     exposure: Optional[str] = Field(default=None, description="""Exposure in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureToPhenotypeAssociation']} })
-    phenotype: Optional[OntologyReference] = Field(default=None, description="""The phenotype being measured, with identifier and name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhenotypeMeasurement',
-                       'ExposureToPhenotypeAssociation',
-                       'GeneticVariantToPhenotypeAssociation']} })
+    phenotype: Optional[OntologyTerm] = Field(default=None, description="""The phenotype being measured, with identifier and name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhenotypeMeasurement', 'ExposureToPhenotypeAssociation']} })
     association_type: Optional[str] = Field(default=None, description="""Type of association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureToPhenotypeAssociation', 'GeneToDiseaseAssociation']} })
     evidence: Optional[str] = Field(default=None, description="""Evidence for association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureToPhenotypeAssociation']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -2251,21 +1688,8 @@ class ChemicalToGeneAssociation(Association):
     chemical: Optional[str] = Field(default=None, description="""Chemical in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalToGeneAssociation']} })
     gene: Optional[str] = Field(default=None, description="""Gene in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalToGeneAssociation', 'GeneToDiseaseAssociation']} })
     interaction_type: Optional[str] = Field(default=None, description="""Type of interaction""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalToGeneAssociation']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -2280,53 +1704,8 @@ class GeneToDiseaseAssociation(Association):
     gene: Optional[str] = Field(default=None, description="""Gene in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalToGeneAssociation', 'GeneToDiseaseAssociation']} })
     disease: Optional[str] = Field(default=None, description="""Disease in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneToDiseaseAssociation']} })
     association_type: Optional[str] = Field(default=None, description="""Type of association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureToPhenotypeAssociation', 'GeneToDiseaseAssociation']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
-    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
-    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
-
-
-class GeneticVariantToPhenotypeAssociation(Association):
-    """
-    An association between a genetic variant and a phenotype (e.g., from GWAS)
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
-
-    genetic_variant: Optional[str] = Field(default=None, description="""Genetic variant identifier""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneticVariantToPhenotypeAssociation']} })
-    phenotype: Optional[OntologyReference] = Field(default=None, description="""The phenotype being measured, with identifier and name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhenotypeMeasurement',
-                       'ExposureToPhenotypeAssociation',
-                       'GeneticVariantToPhenotypeAssociation']} })
-    p_value: Optional[float] = Field(default=None, description="""Statistical p-value""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneticVariantToPhenotypeAssociation']} })
-    effect_size: Optional[float] = Field(default=None, description="""Effect size of association""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneticVariantToPhenotypeAssociation']} })
-    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'UnitConcept',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing',
-                       'OntologyReference',
-                       'GeneReference',
-                       'ProteinReference',
-                       'TissueReference',
-                       'CellTypeReference'],
-         'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
     category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
@@ -2336,14 +1715,11 @@ class GeneticVariantToPhenotypeAssociation(Association):
 # see https://pydantic-docs.helpmanual.io/usage/models/#rebuilding-a-model
 Container.model_rebuild()
 NamedThing.model_rebuild()
-UnitConcept.model_rebuild()
-Quantity.model_rebuild()
+Unit.model_rebuild()
+QuantityValue.model_rebuild()
 QuantityRange.model_rebuild()
-OntologyReference.model_rebuild()
-GeneReference.model_rebuild()
-ProteinReference.model_rebuild()
-TissueReference.model_rebuild()
-CellTypeReference.model_rebuild()
+OntologyTerm.model_rebuild()
+Tissue.model_rebuild()
 BiologicalEntity.model_rebuild()
 ChemicalEntity.model_rebuild()
 ExposureEvent.model_rebuild()
@@ -2380,4 +1756,3 @@ Organism.model_rebuild()
 ExposureToPhenotypeAssociation.model_rebuild()
 ChemicalToGeneAssociation.model_rebuild()
 GeneToDiseaseAssociation.model_rebuild()
-GeneticVariantToPhenotypeAssociation.model_rebuild()
