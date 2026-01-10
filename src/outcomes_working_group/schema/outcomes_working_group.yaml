@@ -67,84 +67,31 @@ classes:
     description: >-
       A container for collections of measurements and related entities.
       Used as the root class for data validation.
-    attributes:
-      exposure_measurements:
-        range: ExposureMeasurement
-        multivalued: true
-        inlined_as_list: true
-      biomarker_measurements:
-        range: BiomarkerMeasurement
-        multivalued: true
-        inlined_as_list: true
-      phenotype_measurements:
-        range: PhenotypeMeasurement
-        multivalued: true
-        inlined_as_list: true
-      gene_expression_measurements:
-        range: GeneExpressionMeasurement
-        multivalued: true
-        inlined_as_list: true
-      protein_expression_measurements:
-        range: ProteinExpressionMeasurement
-        multivalued: true
-        inlined_as_list: true
-      aggregated_measurements:
-        range: AggregatedMeasurement
-        multivalued: true
-        inlined_as_list: true
-      studies:
-        range: Study
-        multivalued: true
-        inlined_as_list: true
-      cohorts:
-        range: Cohort
-        multivalued: true
-        inlined_as_list: true
-      participants:
-        range: Participant
-        multivalued: true
-        inlined_as_list: true
-      chemicals:
-        range: ChemicalEntity
-        multivalued: true
-        inlined_as_list: true
-      genes:
-        range: Gene
-        multivalued: true
-        inlined_as_list: true
-      proteins:
-        range: Protein
-        multivalued: true
-        inlined_as_list: true
-      # Aliases for in-vitro measurement collections
-      ciliary_measurements:
-        range: PhenotypeMeasurement
-        multivalued: true
-        inlined_as_list: true
-      asl_measurements:
-        range: PhenotypeMeasurement
-        multivalued: true
-        inlined_as_list: true
-      mcc_measurements:
-        range: PhenotypeMeasurement
-        multivalued: true
-        inlined_as_list: true
-      goblet_cell_measurements:
-        range: PhenotypeMeasurement
-        multivalued: true
-        inlined_as_list: true
-      oxidative_stress_measurements:
-        range: BiomarkerMeasurement
-        multivalued: true
-        inlined_as_list: true
-      barrier_measurements:
-        range: BiomarkerMeasurement
-        multivalued: true
-        inlined_as_list: true
-      cytotoxicity_measurements:
-        range: BiomarkerMeasurement
-        multivalued: true
-        inlined_as_list: true
+    slots:
+        - studies
+        - cohorts
+        - participants
+        - exposure_measurements
+        - biomarker_measurements
+        - phenotype_measurements
+        - aggregated_measurements
+        - gene_expression_measurements
+        - protein_expression_measurements
+        - chemical_exposures
+        - dietary_exposures
+        - environmental_exposures
+        - occupational_exposures
+        - phenotypes
+        - diseases
+        - adverse_outcomes
+        - adverse_outcome_pathways
+        - genes
+        - proteins
+        - cell_types
+        - anatomical_entities
+        - organisms
+        - exposure_to_phenotype_associations
+
 
   NamedThing:
     description: >-
@@ -156,37 +103,28 @@ classes:
       - category
       - xref
 
-  # ============ Quantity & Unit Classes ============
-
-  UnitConcept:
+  Unit:
+    is_a: NamedThing
     description: >-
       A unit of measurement from a standard ontology (UO, UCUM, QUDT)
-    attributes:
-      id:
-        range: uriorcurie
-        description: The unit identifier (e.g., UO:0000009 for kilogram)
-      label:
-        range: string
-        description: Human-readable label for the unit (e.g., "kg")
+    slots:
+      - unit_label
     id_prefixes:
       - UO
       - UCUM
       - qudt
 
-  Quantity:
+  QuantityValue:
     description: >-
       A quantity with a numeric value and unit of measurement
     class_uri: fhir:Quantity
     attributes:
-      value:
-        range: float
-        description: The numeric value of the quantity
       unit:
-        range: uriorcurie
-        description: The unit identifier (e.g., UO:0000009 for kilogram)
-      unit_label:
+        range: Unit
+        description: The unit of measurement
+      value:
         range: string
-        description: Human-readable label for the unit (e.g., "kg")
+        description: The numeric value of the quantity
 
   QuantityRange:
     description: >-
@@ -194,82 +132,23 @@ classes:
     class_uri: fhir:Range
     attributes:
       lower_bound:
-        range: Quantity
+        range: QuantityValue
         description: The lower bound of the range
       upper_bound:
-        range: Quantity
+        range: QuantityValue
         description: The upper bound of the range
 
-  # ============ Reference Classes (for inline id + name) ============
-  # These classes allow structured references with both identifier and human-readable name,
-  # improving readability and AI-friendliness of data files.
-
-  OntologyReference:
+  OntologyTerm:
+    is_a: NamedThing
     description: >-
       A reference to an ontology term with both identifier and human-readable name.
       Used for measured entities, phenotypes, and other ontology-backed concepts.
-    attributes:
-      id:
-        range: uriorcurie
-        description: The ontology term identifier (e.g., CHEBI:25016, GO:0005929)
-      name:
-        range: string
-        description: Human-readable name for the term (e.g., "Lead", "Cilium")
 
-  GeneReference:
-    description: >-
-      A reference to a gene with identifier, name, and symbol.
-      Used for target_gene in expression measurements.
-    attributes:
-      id:
-        range: uriorcurie
-        description: The gene identifier (e.g., NCBIGENE:4586)
-      name:
-        range: string
-        description: Full gene name (e.g., "Mucin 5AC, oligomeric mucus/gel-forming")
-      symbol:
-        range: string
-        description: Gene symbol (e.g., "MUC5AC")
-
-  ProteinReference:
-    description: >-
-      A reference to a protein with identifier, name, and encoding gene.
-      Used for target_protein in expression measurements.
-    attributes:
-      id:
-        range: uriorcurie
-        description: The protein identifier (e.g., PR:000007223)
-      name:
-        range: string
-        description: Protein name (e.g., "Epidermal growth factor receptor")
-      encoded_by_gene:
-        range: GeneReference
-        inlined: true
-        description: The gene that encodes this protein
-
-  TissueReference:
+  Tissue:
+    is_a: NamedThing
     description: >-
       A reference to an anatomical tissue or structure with identifier and name.
       Used for tissue_context in expression measurements.
-    attributes:
-      id:
-        range: uriorcurie
-        description: The anatomy identifier (e.g., UBERON:0002031)
-      name:
-        range: string
-        description: Tissue/anatomy name (e.g., "bronchial epithelium")
-
-  CellTypeReference:
-    description: >-
-      A reference to a cell type with identifier and name.
-      Used for cell_type_context in expression measurements.
-    attributes:
-      id:
-        range: uriorcurie
-        description: The cell type identifier (e.g., CL:0000160)
-      name:
-        range: string
-        description: Cell type name (e.g., "goblet cell")
 
   BiologicalEntity:
     abstract: true
@@ -339,8 +218,6 @@ classes:
     description: >-
       A relationship between two entities
 
-  # ============ Exposure Classes ============
-
   ChemicalExposure:
     is_a: ExposureEvent
     class_uri: ECTO:0000006
@@ -373,8 +250,6 @@ classes:
       - occupation
       - workplace
 
-  # ============ Health Outcome Classes ============
-
   Phenotype:
     is_a: HealthOutcome
     class_uri: UPHENO:0001001
@@ -405,7 +280,6 @@ classes:
     slots:
       - outcome_level
 
-  # ============ AOP Framework Classes ============
 
   AdverseOutcomePathway:
     is_a: NamedThing
@@ -454,8 +328,6 @@ classes:
       - downstream_event
       - relationship_type
       - evidence_support
-
-  # ============ Study & Measurement Classes ============
 
   Study:
     is_a: StudyEntity
@@ -536,8 +408,6 @@ classes:
       - sample_size
       - stratification
 
-  # ============ Expression Measurement Classes ============
-
   GeneExpressionMeasurement:
     is_a: Measurement
     description: >-
@@ -567,8 +437,6 @@ classes:
       - participant
       - measurement_date
 
-  # ============ Biological Entity Classes ============
-
   Gene:
     is_a: BiologicalEntity
     description: >-
@@ -584,22 +452,24 @@ classes:
       A protein or polypeptide
     slots:
       - encoded_by_gene
+      - symbol
+      - in_taxon
 
   CellType:
     is_a: BiologicalEntity
     class_uri: CL:0000000
     description: >-
       A type of cell
-    slots:
-      - cl_id
+    id_prefixes:
+      - CL
 
   AnatomicalEntity:
     is_a: BiologicalEntity
     class_uri: UBERON:0001062
     description: >-
       An anatomical structure or system
-    slots:
-      - uberon_id
+    id_prefixes:
+      - UBERON
 
   Organism:
     is_a: BiologicalEntity
@@ -608,8 +478,6 @@ classes:
     slots:
       - species
       - taxon_id
-
-  # ============ Association Classes ============
 
   ExposureToPhenotypeAssociation:
     is_a: Association
@@ -639,19 +507,9 @@ classes:
       - disease
       - association_type
 
-  GeneticVariantToPhenotypeAssociation:
-    is_a: Association
-    description: >-
-      An association between a genetic variant and a phenotype (e.g., from GWAS)
-    slots:
-      - genetic_variant
-      - phenotype
-      - p_value
-      - effect_size
-
 
 slots:
-  # Core slots
+
   id:
     identifier: true
     slot_uri: schema:identifier
@@ -660,6 +518,7 @@ slots:
 
   name:
     slot_uri: schema:name
+    range: string
     description: A human-readable name for a thing
 
   description:
@@ -910,31 +769,29 @@ slots:
   observation_type:
     range: MeasurementTypeEnum
     description: >-
-      The type of observation being represented (e.g., 'blood lead level', 'BMI').
+      The type of observation being represented.
       This field holds the key in the core key-value pair.
 
   quantity_measured:
-    range: Quantity
+    range: QuantityValue
     inlined: true
     description: >-
       The measured quantity value with its unit
 
   range_low:
-    range: Quantity
+    range: QuantityValue
     inlined: true
     description: >-
       Lower bound of reference range (e.g., from a laboratory).
-      Set to NULL if not provided.
 
   range_high:
-    range: Quantity
+    range: QuantityValue
     inlined: true
     description: >-
       Upper bound of reference range (e.g., from a laboratory).
-      Set to NULL if not provided.
 
   measured_entity:
-    range: OntologyReference
+    range: OntologyTerm
     inlined: true
     description: >-
       The entity being measured, with both identifier and human-readable name.
@@ -965,7 +822,7 @@ slots:
     description: Type of biomarker
 
   phenotype:
-    range: OntologyReference
+    range: OntologyTerm
     inlined: true
     description: The phenotype being measured, with identifier and name.
 
@@ -987,28 +844,28 @@ slots:
 
   # Expression measurement slots
   target_gene:
-    range: GeneReference
+    range: Gene
     inlined: true
     description: >-
       The gene whose expression is being measured, with identifier, name, and symbol.
       Use this to specify the exact gene target (e.g., MUC5AC, EGFR, IL8).
 
   target_protein:
-    range: ProteinReference
+    range: Protein
     inlined: true
     description: >-
       The protein whose expression or modification is being measured,
       with identifier, name, and optionally the encoding gene.
 
   tissue_context:
-    range: TissueReference
+    range: Tissue
     inlined: true
     description: >-
       The anatomical tissue or structure where expression was measured,
       with identifier and name (e.g., bronchial epithelium, lung, nasal mucosa).
 
   cell_type_context:
-    range: CellTypeReference
+    range: CellType
     inlined: true
     description: >-
       The specific cell type where expression was measured,
@@ -1105,7 +962,100 @@ slots:
     range: float
     description: Effect size of association
 
-# ============ Enums ============
+  exposure_measurements:
+    range: ExposureMeasurement
+    multivalued: true
+    inlined_as_list: true
+
+  biomarker_measurements:
+    range: BiomarkerMeasurement
+    multivalued: true
+    inlined_as_list: true
+
+  phenotype_measurements:
+    range: PhenotypeMeasurement
+    multivalued: true
+    inlined_as_list: true
+
+  gene_expression_measurements:
+    range: GeneExpressionMeasurement
+    multivalued: true
+    inlined_as_list: true
+
+  protein_expression_measurements:
+    range: ProteinExpressionMeasurement
+    multivalued: true
+    inlined_as_list: true
+
+  aggregated_measurements:
+    range: AggregatedMeasurement
+    multivalued: true
+    inlined_as_list: true
+
+  studies:
+    range: Study
+    multivalued: true
+    inlined_as_list: true
+
+  cohorts:
+    range: Cohort
+    multivalued: true
+    inlined_as_list: true
+
+  participants:
+    range: Participant
+    multivalued: true
+    inlined_as_list: true
+
+  chemicals:
+    range: ChemicalEntity
+    multivalued: true
+    inlined_as_list: true
+
+  genes:
+    range: Gene
+    multivalued: true
+    inlined_as_list: true
+
+  proteins:
+    range: Protein
+    multivalued: true
+    inlined_as_list: true
+
+  ciliary_measurements:
+    range: PhenotypeMeasurement
+    multivalued: true
+    inlined_as_list: true
+
+  asl_measurements:
+    range: PhenotypeMeasurement
+    multivalued: true
+    inlined_as_list: true
+
+  mcc_measurements:
+    range: PhenotypeMeasurement
+    multivalued: true
+    inlined_as_list: true
+
+  goblet_cell_measurements:
+    range: PhenotypeMeasurement
+    multivalued: true
+    inlined_as_list: true
+
+  oxidative_stress_measurements:
+    range: BiomarkerMeasurement
+    multivalued: true
+    inlined_as_list: true
+
+  barrier_measurements:
+    range: BiomarkerMeasurement
+    multivalued: true
+    inlined_as_list: true
+
+  cytotoxicity_measurements:
+    range: BiomarkerMeasurement
+    multivalued: true
+    inlined_as_list: true
 
 enums:
 
