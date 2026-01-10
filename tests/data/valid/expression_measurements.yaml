@@ -1,0 +1,415 @@
+# Expression Measurement Examples
+# Demonstrates the structured GeneExpressionMeasurement and ProteinExpressionMeasurement classes
+# with proper target specification, tissue/cell context, and assay methodology
+
+# ============ Gene Expression Measurements ============
+gene_expression_measurements:
+  # MUC5AC gene expression in bronchial epithelium
+  - id: owg:geneexp-001-muc5ac-control
+    name: MUC5AC mRNA - Control ALI culture
+    description: MUC5AC gene expression in untreated bronchial epithelial cells at ALI
+    observation_type: GeneExpression
+    quantity_measured:
+      value: 1.0
+      unit: UO:0000186
+      unit_label: "fold change"
+    target_gene:
+      id: NCBIGENE:4586
+      name: MUC5AC
+      symbol: MUC5AC
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    cell_type_context:
+      id: CL:0000160
+      name: goblet cell
+    assay_method: qRT_PCR
+    normalization_reference: GAPDH
+    measurement_date: "2024-03-15"
+
+  - id: owg:geneexp-002-muc5ac-il13
+    name: MUC5AC mRNA - IL-13 stimulated
+    description: MUC5AC upregulation after IL-13 stimulation (10 ng/mL, 14 days)
+    observation_type: GeneExpression
+    quantity_measured:
+      value: 8.5
+      unit: UO:0000186
+      unit_label: "fold change vs control"
+    target_gene:
+      id: NCBIGENE:4586
+      name: MUC5AC
+      symbol: MUC5AC
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    cell_type_context:
+      id: CL:0000160
+      name: goblet cell
+    assay_method: qRT_PCR
+    normalization_reference: GAPDH
+    measurement_date: "2024-03-15"
+
+  # MUC5B gene expression
+  - id: owg:geneexp-003-muc5b-control
+    name: MUC5B mRNA - Control ALI culture
+    description: MUC5B gene expression in untreated bronchial epithelial cells
+    observation_type: GeneExpression
+    quantity_measured:
+      value: 1.0
+      unit: UO:0000186
+      unit_label: "fold change"
+    target_gene:
+      id: NCBIGENE:727897
+      name: MUC5B
+      symbol: MUC5B
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    cell_type_context:
+      id: CL:0000160
+      name: goblet cell
+    assay_method: qRT_PCR
+    normalization_reference: GAPDH
+    measurement_date: "2024-03-15"
+
+  # MUC5AC/MUC5B ratio
+  - id: owg:geneexp-004-muc-ratio
+    name: MUC5AC/MUC5B expression ratio - Control
+    description: Ratio of MUC5AC to MUC5B mRNA in healthy epithelium
+    observation_type: ExpressionRatio
+    quantity_measured:
+      value: 0.45
+      unit: UO:0000186
+      unit_label: "ratio"
+    range_low:
+      value: 0.3
+      unit: UO:0000186
+      unit_label: "ratio"
+    range_high:
+      value: 0.8
+      unit: UO:0000186
+      unit_label: "ratio"
+    target_gene:
+      id: NCBIGENE:4586
+      name: MUC5AC/MUC5B ratio
+      symbol: MUC5AC
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    assay_method: qRT_PCR
+    normalization_reference: GAPDH
+    measurement_date: "2024-03-15"
+
+  # IL-8 gene expression in response to PM2.5
+  - id: owg:geneexp-005-il8-control
+    name: IL8 mRNA - Control
+    description: Baseline IL-8 gene expression in bronchial epithelial cells
+    observation_type: GeneExpression
+    quantity_measured:
+      value: 1.0
+      unit: UO:0000186
+      unit_label: "fold change"
+    target_gene:
+      id: NCBIGENE:3576
+      name: Interleukin-8
+      symbol: CXCL8
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    cell_type_context:
+      id: CL:0002328
+      name: bronchial epithelial cell
+    assay_method: qRT_PCR
+    normalization_reference: GAPDH
+    measurement_date: "2024-03-16"
+
+  - id: owg:geneexp-006-il8-pm25
+    name: IL8 mRNA - PM2.5 exposed
+    description: IL-8 upregulation after PM2.5 exposure (50 ug/mL, 24h)
+    observation_type: GeneExpression
+    quantity_measured:
+      value: 12.3
+      unit: UO:0000186
+      unit_label: "fold change vs control"
+    target_gene:
+      id: NCBIGENE:3576
+      name: Interleukin-8
+      symbol: CXCL8
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    cell_type_context:
+      id: CL:0002328
+      name: bronchial epithelial cell
+    assay_method: qRT_PCR
+    normalization_reference: GAPDH
+    measurement_date: "2024-03-16"
+
+  # RNA-seq example
+  - id: owg:geneexp-007-rnaseq
+    name: EGFR mRNA - RNA-seq
+    description: EGFR expression from bulk RNA-seq of asthmatic bronchial brushings
+    observation_type: GeneExpression
+    quantity_measured:
+      value: 245.8
+      unit: UO:0000244
+      unit_label: "TPM"
+    target_gene:
+      id: NCBIGENE:1956
+      name: Epidermal growth factor receptor
+      symbol: EGFR
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    assay_method: RNA_Seq
+    normalization_reference: TPM normalization
+    participant:
+      id: owg:participant-APEX-001
+    measurement_date: "2024-03-17"
+
+  # Single-cell RNA-seq example
+  - id: owg:geneexp-008-scrnaseq
+    name: FOXJ1 mRNA - scRNA-seq ciliated cells
+    description: FOXJ1 expression in ciliated cell cluster from scRNA-seq
+    observation_type: GeneExpression
+    quantity_measured:
+      value: 3.85
+      unit: UO:0000186
+      unit_label: "log2(normalized counts)"
+    target_gene:
+      id: NCBIGENE:2302
+      name: Forkhead box J1
+      symbol: FOXJ1
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    cell_type_context:
+      id: CL:0002145
+      name: ciliated columnar cell of tracheobronchial tree
+    assay_method: Single_Cell_RNA_Seq
+    normalization_reference: SCTransform
+    measurement_date: "2024-03-18"
+
+# ============ Protein Expression Measurements ============
+protein_expression_measurements:
+  # EGFR phosphorylation - Western blot
+  - id: owg:protexp-001-pegfr-control
+    name: pEGFR (Y1068) - Control
+    description: Baseline EGFR phosphorylation at Y1068 in bronchial epithelial cells
+    observation_type: ProteinPhosphorylation
+    quantity_measured:
+      value: 1.0
+      unit: UO:0000186
+      unit_label: "fold change"
+    target_protein:
+      id: PR:000007223
+      name: Epidermal growth factor receptor
+      encoded_by_gene:
+        id: NCBIGENE:1956
+        symbol: EGFR
+    phosphorylation_site: "Y1068"
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    cell_type_context:
+      id: CL:0002328
+      name: bronchial epithelial cell
+    assay_method: Western_Blot
+    normalization_reference: total EGFR
+    measurement_date: "2024-03-19"
+
+  - id: owg:protexp-002-pegfr-egf
+    name: pEGFR (Y1068) - EGF stimulated
+    description: EGFR phosphorylation after EGF stimulation (10 ng/mL, 15 min)
+    observation_type: ProteinPhosphorylation
+    quantity_measured:
+      value: 8.2
+      unit: UO:0000186
+      unit_label: "fold change vs control"
+    target_protein:
+      id: PR:000007223
+      name: Epidermal growth factor receptor
+      encoded_by_gene:
+        id: NCBIGENE:1956
+        symbol: EGFR
+    phosphorylation_site: "Y1068"
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    cell_type_context:
+      id: CL:0002328
+      name: bronchial epithelial cell
+    assay_method: Western_Blot
+    normalization_reference: total EGFR
+    measurement_date: "2024-03-19"
+
+  # ERK phosphorylation downstream of EGFR
+  - id: owg:protexp-003-perk-egf
+    name: pERK1/2 - EGF stimulated
+    description: ERK1/2 phosphorylation downstream of EGFR activation
+    observation_type: ProteinPhosphorylation
+    quantity_measured:
+      value: 5.6
+      unit: UO:0000186
+      unit_label: "fold change vs control"
+    target_protein:
+      id: PR:000006629
+      name: Mitogen-activated protein kinase 3
+      encoded_by_gene:
+        id: NCBIGENE:5595
+        symbol: MAPK1
+    phosphorylation_site: "T202/Y204"
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    assay_method: Western_Blot
+    normalization_reference: total ERK1/2
+    measurement_date: "2024-03-19"
+
+  # AKT phosphorylation
+  - id: owg:protexp-004-pakt
+    name: pAKT (S473) - EGF stimulated
+    description: AKT phosphorylation downstream of EGFR/PI3K activation
+    observation_type: ProteinPhosphorylation
+    quantity_measured:
+      value: 3.2
+      unit: UO:0000186
+      unit_label: "fold change vs control"
+    target_protein:
+      id: PR:000002049
+      name: RAC-alpha serine/threonine-protein kinase
+      encoded_by_gene:
+        id: NCBIGENE:207
+        symbol: AKT1
+    phosphorylation_site: "S473"
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    assay_method: Western_Blot
+    normalization_reference: total AKT
+    measurement_date: "2024-03-19"
+
+  # MUC5AC protein by immunohistochemistry
+  - id: owg:protexp-005-muc5ac-ihc
+    name: MUC5AC protein - IHC in bronchial biopsy
+    description: MUC5AC protein expression in bronchial biopsy from asthma patient
+    observation_type: ProteinExpression
+    quantity_measured:
+      value: 3.5
+      unit: UO:0000186
+      unit_label: "staining score (0-4)"
+    target_protein:
+      id: PR:000024842
+      name: Mucin-5AC
+      encoded_by_gene:
+        id: NCBIGENE:4586
+        symbol: MUC5AC
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    cell_type_context:
+      id: CL:0000160
+      name: goblet cell
+    assay_method: Immunohistochemistry
+    normalization_reference: H-score
+    participant:
+      id: owg:participant-APEX-001
+    measurement_date: "2024-03-20"
+
+  # Tight junction protein expression
+  - id: owg:protexp-006-zo1
+    name: ZO-1 protein - Control ALI
+    description: ZO-1 tight junction protein expression at cell-cell contacts
+    observation_type: ProteinExpression
+    quantity_measured:
+      value: 1.0
+      unit: UO:0000186
+      unit_label: "fold change"
+    target_protein:
+      id: PR:000016878
+      name: Tight junction protein ZO-1
+      encoded_by_gene:
+        id: NCBIGENE:7082
+        symbol: TJP1
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    assay_method: Immunofluorescence
+    normalization_reference: DAPI nuclear count
+    measurement_date: "2024-03-20"
+
+  - id: owg:protexp-007-zo1-injured
+    name: ZO-1 protein - After epithelial injury
+    description: Reduced ZO-1 expression after mechanical scratch wound
+    observation_type: ProteinExpression
+    quantity_measured:
+      value: 0.35
+      unit: UO:0000186
+      unit_label: "fold change vs control"
+    target_protein:
+      id: PR:000016878
+      name: Tight junction protein ZO-1
+      encoded_by_gene:
+        id: NCBIGENE:7082
+        symbol: TJP1
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    assay_method: Immunofluorescence
+    normalization_reference: DAPI nuclear count
+    measurement_date: "2024-03-20"
+
+  # Flow cytometry example
+  - id: owg:protexp-008-cd45-flow
+    name: CD45+ cells - Flow cytometry
+    description: Percentage of CD45+ leukocytes in BALF
+    observation_type: PercentagePositiveCells
+    quantity_measured:
+      value: 12.5
+      unit: UO:0000187
+      unit_label: "%"
+    target_protein:
+      id: PR:000001871
+      name: Receptor-type tyrosine-protein phosphatase C
+      encoded_by_gene:
+        id: NCBIGENE:5788
+        symbol: PTPRC
+    tissue_context:
+      id: UBERON:0001959
+      name: bronchoalveolar lavage fluid
+    assay_method: Flow_Cytometry
+    participant:
+      id: owg:participant-APEX-002
+    measurement_date: "2024-03-21"
+
+  # ELISA example
+  - id: owg:protexp-009-il8-elisa
+    name: IL-8 protein - ELISA
+    description: IL-8 protein concentration in cell culture supernatant
+    observation_type: ProteinExpression
+    quantity_measured:
+      value: 2450.0
+      unit: UO:0000274
+      unit_label: "pg/mL"
+    range_low:
+      value: 0.0
+      unit: UO:0000274
+      unit_label: "pg/mL"
+    range_high:
+      value: 500.0
+      unit: UO:0000274
+      unit_label: "pg/mL"
+    target_protein:
+      id: PR:000001562
+      name: Interleukin-8
+      encoded_by_gene:
+        id: NCBIGENE:3576
+        symbol: CXCL8
+    tissue_context:
+      id: UBERON:0002031
+      name: bronchial epithelium
+    cell_type_context:
+      id: CL:0002328
+      name: bronchial epithelial cell
+    assay_method: ELISA
+    measurement_date: "2024-03-21"

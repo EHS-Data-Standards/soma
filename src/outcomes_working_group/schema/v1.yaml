@@ -1,0 +1,1355 @@
+name: outcome-measurement-model
+description: >-
+  A LinkML data model for representing biological measurements, assays,
+  and experimental protocols in the context of outcomes research.
+title: Outcome Measurement Data Model
+see_also:
+- https://EHS-Data-Standards.github.io/outcomes-working-group
+id: https://w3id.org/EHS-Data-Standards/outcome-measurement-model
+imports:
+- linkml:types
+license: MIT
+prefixes:
+  outcome-measurement-model: https://w3id.org/EHS-Data-Standards/outcomes-model/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  OBI: http://purl.obolibrary.org/obo/OBI_
+  CHEBI: http://purl.obolibrary.org/obo/CHEBI_
+  ENVO: http://purl.obolibrary.org/obo/ENVO_
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  UO: http://purl.obolibrary.org/obo/UO_
+  IAO: http://purl.obolibrary.org/obo/IAO_
+  CL: http://purl.obolibrary.org/obo/CL_
+  GO: http://purl.obolibrary.org/obo/GO_
+  CLO: http://purl.obolibrary.org/obo/CLO_
+  PR: http://purl.obolibrary.org/obo/PR_
+  UBERON: http://purl.obolibrary.org/obo/UBERON_
+  schema: http://schema.org/
+
+default_prefix: outcome-measurement-model
+default_range: string
+
+enums:
+  AssayTypeEnum:
+    description: >-
+      Types of assays from the Ontology for Biomedical Investigations (OBI)
+    reachable_from:
+      source_ontology: obo:obi
+      source_nodes:
+      - OBI:0000070  # assay
+      relationship_types:
+      - rdfs:subClassOf
+    permissible_values:
+      OBI:0000070:
+        description: assay
+        meaning: OBI:0000070  # assay
+
+  SupplementTypeEnum:
+    description: >-
+      Categories of cell culture medium supplements
+    permissible_values:
+      growth_factor:
+        description: Proteins that stimulate cell growth, proliferation, and differentiation
+        meaning: CHEBI:23924
+      antibiotic:
+        description: Antimicrobial substances used to prevent contamination
+        meaning: CHEBI:33281
+      hormone:
+        description: Signaling molecules that regulate physiology and behavior
+        meaning: CHEBI:24621
+      vitamin:
+        description: Organic compounds essential for normal growth and nutrition
+        meaning: CHEBI:33229
+      amino_acid:
+        description: Organic compounds that are building blocks of proteins
+        meaning: CHEBI:33709
+      cytokine:
+        description: Small proteins important in cell signaling
+        meaning: CHEBI:63895
+      buffer:
+        description: Solutions that resist changes in pH
+        meaning: CHEBI:35225
+
+  SubstrateTypeEnum:
+    description: >-
+      Types of cell culture substrates and surfaces
+    permissible_values:
+      plastic:
+        description: Standard tissue culture plastic
+        broad_mappings:
+        - OBI:0000953  # processed material
+        - CHEBI:46669  # polyester
+      collagen_coated:
+        description: Collagen-coated surface for enhanced cell attachment
+        related_mappings:
+        - CHEBI:3815  # collagen
+        broad_mappings:
+        - OBI:0100031  # biomaterial
+      matrigel:
+        description: Basement membrane matrix
+        narrow_mappings:
+        - OBI:0100031  # biomaterial
+        related_mappings:
+        - GO:0005604  # basement membrane
+      fibronectin_coated:
+        description: Fibronectin-coated surface
+        related_mappings:
+        - PR:000007245  # fibronectin
+        broad_mappings:
+        - OBI:0100031  # biomaterial
+      laminin_coated:
+        description: Laminin-coated surface
+        related_mappings:
+        - GO:0043256  # laminin complex
+        broad_mappings:
+        - OBI:0100031  # biomaterial
+      transwell_insert:
+        description: Permeable support for air-liquid interface culture
+        exact_mappings:
+        - OBI:0001950  # cell culture insert
+      hydrogel:
+        description: Three-dimensional hydrogel matrix
+        exact_mappings:
+        - CHEBI:17790  # hydrogel
+      glass:
+        description: Glass surface or coverslip
+        exact_mappings:
+        - CHEBI:131189  # glass
+
+  CellCultureGrowthModeEnum:
+    description: >-
+      Cell culture growth modes
+    permissible_values:
+      adherent:
+        description: Cells grow attached to a surface
+        meaning: CLO:0000028
+      suspension:
+        description: Cells grow suspended in culture medium
+        meaning: CLO:0000029
+      air_liquid_interface:
+        description: Cells cultured at interface between air and liquid medium
+        meaning: OBI:0600047
+      three_dimensional:
+        description: Cells grown in 3D matrix or scaffold
+      organoid:
+        description: Self-organizing 3D tissue culture
+
+classes:
+  NamedEntity:
+    description: >-
+      Base class for all named entities in the model
+    slots:
+    - id
+    - description
+
+  ChemicalEntity:
+    description: >-
+      A chemical substance or compound
+    is_a: NamedEntity
+    slots:
+    - name
+    - formula
+    - cross_reference
+
+  Measurement:
+    description: >-
+      A generic class representing the process of measuring a biological
+      endpoint. Includes information about input samples, methods, and contextual metadata.
+    is_a: NamedEntity
+    slots:
+    - input_sample
+    - method_assay
+    - protocol_notes
+
+  InputSample:
+    description: >-
+      Description of the biological sample or experimental manipulation
+      used as input
+    is_a: NamedEntity
+    slots:
+    - sample_type
+    - manipulation
+    - exposure_conditions
+
+  Assay:
+    description: >-
+      The specific method or assay used to measure an endpoint
+    is_a: NamedEntity
+    slots:
+    - assay_type
+    - instrumentation
+    - environmental_conditions
+    - sop_reference
+
+  QuantityValue:
+    description: >-
+      A quantity value expresses a measurement with a numeric value and
+      a unit. Based on NMDC Schema QuantityValue pattern.
+    slots:
+    - has_numeric_value
+    - has_unit
+    - has_minimum_numeric_value
+    - has_maximum_numeric_value
+
+  CFTRFunctionMeasurement:
+    description: >-
+      Measurement of CFTR-mediated ion transport function
+    is_a: Measurement
+    slots:
+    - cftr_specific_current
+    - inhibitor_sensitive_current
+    - cell_culture_details
+
+  BALFSputumMeasurement:
+    description: >-
+      Measurement of bronchoalveolar lavage fluid or sputum components
+    is_a: Measurement
+    slots:
+    - sample_collection_details
+    - inflammatory_cell_profile
+    - microbiome_analysis
+    - cytokine_level
+    - protein_concentration
+    - cell_free_dna
+
+  LungFunctionMeasurement:
+    description: >-
+      Measurement of lung function parameters
+    is_a: Measurement
+    slots:
+    - fev1
+    - fvc
+    - fev1_fvc_ratio
+    - fef25_75
+    - bronchodilator_response
+    - decline_rate
+    - dlco
+    - feno
+
+  EGFRSignalingMeasurement:
+    description: >-
+      Measurement of EGFR pathway activation and signaling
+    is_a: Measurement
+    slots:
+    - egfr_phosphorylation
+    - downstream_kinase_activation
+    - ligand_expression_level
+    - pathway_biomarker
+
+  GeneExpressionMeasurement:
+    description: >-
+      Measurement of gene expression
+    is_a: Measurement
+    slots:
+    - mrna_level
+    - protein_level
+    - percentage_positive_cells
+    - staining_protocol
+    - gene_expression_analysis
+
+  CiliaBeatFrequencyMeasurement:
+    description: >-
+      Measurement of ciliary beat frequency
+    is_a: Measurement
+    slots:
+    - beat_frequency_hz
+    - active_area_percentage
+    - imaging_protocol
+    - cilia_per_cell
+    - cilia_length
+    - percentage_ciliated_cells
+    - ciliary_motion_patterns
+    - cell_type_ratios
+
+  ASLHeightMeasurement:
+    description: >-
+      Measurement of airway surface liquid height
+    is_a: Measurement
+    slots:
+    - asl_height_um
+    - periciliary_layer_depth
+    - imaging_protocol
+    - evaporation_prevention
+    - sampling_method
+    - culture_size
+    - culture_density
+    - number_of_samples
+    - donor_characteristics
+    - timing_from_wash
+    - sampling_duration
+
+  MucociliaryClearanceMeasurement:
+    description: >-
+      Measurement of mucociliary clearance/transport
+    is_a: Measurement
+    slots:
+    - transport_rate
+    - directionality
+    - particle_tracking_method
+    - fluorescent_tracer
+    - mucus_layer_thickness
+    - bacterial_biofilm_detail
+    - viral_infection_detail
+    - biofilm_clearance_rate
+    - bacterial_load
+    - viral_spread_rate
+
+  GobletCellMeasurement:
+    description: >-
+      Measurement of goblet cell number or mucin production
+    is_a: Measurement
+    slots:
+    - goblet_cell_count
+    - mucin_expression_level
+    - staining_protocol
+    - gene_expression_analysis
+    - mucin_protein_concentration
+    - pathway_enrichment_score
+    - dose_response_data
+
+  OxidativeStressMeasurement:
+    description: >-
+      Measurement of oxidative stress markers
+    is_a: Measurement
+    slots:
+    - ros_level
+    - lipid_peroxidation
+    - antioxidant_capacity
+    - ros_probe
+    - detection_method_details
+    - protein_oxidation_marker
+    - dna_damage_marker
+    - antioxidant_enzyme_activity
+    - media_composition
+
+  MucinProductionMeasurement:
+    description: >-
+      Measurement of mucin production and secretion
+    is_a: Measurement
+    slots:
+    - mucin_expression_level
+    - mucin_protein_concentration
+    - staining_protocol
+
+  Publication:
+    description: >-
+      Any published piece of information, following Biolink model.
+      Represents scientific evidence supporting research.
+    is_a: NamedEntity
+    slots:
+    - author
+    - pages
+    - summary
+    - keyword
+    - mesh_term
+    - publication_type
+    - cross_reference
+    slot_usage:
+      id:
+        description: Preferentially a PMID, DOI, or industry-standard identifier (ISBN,
+          ISSN)
+        examples:
+        - value: PMID:12345678
+        - value: DOI:10.1234/example
+
+  ImagingProtocol:
+    description: >-
+      Details about imaging parameters and protocols
+    is_a: NamedEntity
+    slots:
+    - imaging_modality
+    - frame_rate
+    - imaging_duration
+    - imaging_intervals
+    - spatial_resolution
+    - probe_positioning
+
+  FluorescentLabel:
+    description: >-
+      Fluorescent labeling or tracer used in measurement
+    is_a: NamedEntity
+    slots:
+    - fluorophore_type
+    - concentration
+    - wavelength
+
+  EvaporationControl:
+    description: >-
+      Method used to prevent evaporation during measurement - critical for preventing apical surface drying
+    is_a: NamedEntity
+    slots:
+    - control_method
+    - material_used
+    - application_context
+
+  ROSProbe:
+    description: >-
+      Reactive oxygen species probe and detection details
+    is_a: NamedEntity
+    slots:
+    - probe_type
+    - loading_conditions
+    - detection_wavelength
+
+  DetectionMethod:
+    description: >-
+      Method used for detecting or measuring analytes
+    is_a: NamedEntity
+    slots:
+    - detection_type
+    - instrumentation
+    - sensitivity
+    - technical_replicates
+
+  SampleCollection:
+    description: >-
+      Details about biological sample collection
+    is_a: NamedEntity
+    slots:
+    - collection_method
+    - processing_time
+    - storage_conditions
+    - sample_volume
+
+  CellCultureConditions:
+    description: >-
+      Detailed cell culture parameters
+    is_a: NamedEntity
+    exact_mappings:
+    - CLO:0037334  # Cell culture condition
+    slots:
+    - culture_medium
+    - days_at_air_liquid_interface
+    - passage_number
+    - substrate_type
+    - cell_culture_growth_mode
+    - temperature
+    - humidity
+    - co2_percentage
+    - donor_count
+    - replicates_per_donor
+
+  CellCultureMedium:
+    description: >-
+      Detailed formulation of cell culture medium including base medium and supplements
+    is_a: NamedEntity
+    slots:
+    - base_medium
+    - serum_type
+    - serum_concentration
+    - supplement
+    - ph
+    - osmolality
+    - manufacturer
+    - catalog_number
+    - lot_number
+    - preparation_date
+
+  MediumSupplement:
+    description: >-
+      Supplement or additive to cell culture medium
+    is_a: NamedEntity
+    slots:
+    - supplement_type
+    - supplement_entity
+    - concentration
+    - manufacturer
+    - catalog_number
+
+  StainingProtocol:
+    description: >-
+      Histological or immunofluorescence staining protocol
+    is_a: NamedEntity
+    slots:
+    - staining_type
+    - antibody_used
+    - fixation_method
+    - incubation_conditions
+
+  GeneExpressionAnalysis:
+    description: >-
+      Gene expression measurement methodology
+    is_a: NamedEntity
+    slots:
+    - analysis_method
+    - normalization_gene
+    - primer_used
+    - sequencing_platform
+    - sequencing_depth
+
+  InflammatoryCellProfile:
+    description: >-
+      Profile of inflammatory cell types and counts
+    is_a: NamedEntity
+    slots:
+    - neutrophil_percentage
+    - eosinophil_percentage
+    - macrophage_percentage
+    - lymphocyte_percentage
+    - total_cell_count
+
+  MicrobiomeAnalysis:
+    description: >-
+      Microbiome composition analysis
+    is_a: NamedEntity
+    slots:
+    - alpha_diversity
+    - beta_diversity
+    - taxonomic_abundance
+    - sequencing_primer
+    - dna_extraction_method
+
+  BarrierIntegrity:
+    description: >-
+      Epithelial barrier integrity measurements
+    is_a: NamedEntity
+    slots:
+    - teer_value
+    - permeability_coefficient
+    - measurement_timepoint
+
+  CytotoxicityMetrics:
+    description: >-
+      Cell viability and cytotoxicity measurements
+    is_a: NamedEntity
+    slots:
+    - ldh_release
+    - mtt_reduction
+    - viability_percentage
+    - apoptosis_marker
+
+  EnvironmentalCondition:
+    description: >-
+      Environmental parameters during measurement
+    is_a: NamedEntity
+    slots:
+    - temperature
+    - humidity
+    - co2_percentage
+
+slots:
+  id:
+    description: A unique identifier
+    identifier: true
+    range: uriorcurie
+    required: true
+  description:
+    description: A detailed description
+    range: string
+  input_sample:
+    description: Description of input samples and manipulations
+    range: InputSample
+    exact_mappings:
+    - OBI:0100051  # specimen
+    related_mappings:
+    - OBI:0000747  # material sample
+  method_assay:
+    description: The method or assay used
+    range: Assay
+    exact_mappings:
+    - OBI:0000070  # assay
+  protocol_notes:
+    description: Protocol or SOP notes
+    range: string
+    broad_mappings:
+    - OBI:0000272  # protocol
+    related_mappings:
+    - IAO:0000310  # document
+    comments:
+    - For EGFR signaling include cell type, receptor location in ALI culture, probe method, timing
+    - For goblet cells include media type, species, disease state, donor age, exposure conditions
+    - For mucin production include focus on secreted mucins not tethered to goblet cells
+  sample_type:
+    description: Type of biological sample
+    range: string
+    examples:
+    - value: Primary human airway epithelial cells at ALI
+    - value: MucilAir 3D tissue model
+    broad_mappings:
+    - OBI:0100051  # specimen
+  manipulation:
+    description: Experimental manipulation applied
+    range: string
+    broad_mappings:
+    - OBI:0000011  # planned process
+  exposure_conditions:
+    description: Exposure or treatment conditions
+    range: string
+    related_mappings:
+    - ENVO:01000254  # environmental system
+    - PATO:0001018  # physical quality
+  assay_type:
+    description: Type of assay or method, constrained to OBI assay terms
+    range: AssayTypeEnum
+    exact_mappings:
+    - OBI:0000070  # assay
+  instrumentation:
+    description: Specific instruments or equipment used
+    range: string
+    broad_mappings:
+    - OBI:0000968  # device
+  environmental_conditions:
+    description: Environmental conditions during measurement
+    range: EnvironmentalCondition
+    multivalued: true
+    inlined: true
+    related_mappings:
+    - ENVO:01000254  # environmental system
+    - PATO:0001018  # physical quality
+  sop_reference:
+    description: Reference to standard operating procedure
+    range: string
+    broad_mappings:
+    - OBI:0000272  # protocol
+    related_mappings:
+    - IAO:0000310  # document
+  has_numeric_value:
+    description: The numeric value of a quantity
+    range: float
+    broad_mappings:
+    - IAO:0000109  # measurement datum
+  has_unit:
+    description: The unit of measurement for the quantity
+    range: string
+    examples:
+    - value: Hz
+    - value: μm
+    - value: mm/min
+    - value: '%'
+    exact_mappings:
+    - UO:0000000  # unit
+  has_minimum_numeric_value:
+    description: The minimum value in a range
+    range: float
+  has_maximum_numeric_value:
+    description: The maximum value in a range
+    range: float
+  cftr_specific_current:
+    description: CFTR-mediated chloride secretory current
+    range: QuantityValue
+    inlined: true
+  inhibitor_sensitive_current:
+    description: Inhibitor-sensitive current measurement
+    range: QuantityValue
+    inlined: true
+  cell_culture_conditions:
+    description: Conditions for cell culture (ALI days, medium, etc.)
+    range: string
+  beat_frequency_hz:
+    description: Ciliary beat frequency in Hz
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000044  # frequency
+    related_mappings:
+    - GO:0003341  # cilium movement
+  active_area_percentage:
+    description: Percentage of active ciliated area
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0001555  # has number of
+  imaging_conditions:
+    description: Imaging parameters and conditions
+    range: string
+  asl_height_um:
+    description: Airway surface liquid height in micrometers
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000119  # height
+  periciliary_layer_depth:
+    description: Depth of periciliary layer (liquid around the cilia) in micrometers - low depth indicates disease phenotype
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0001595  # depth
+    comments:
+    - Important measurement for outcome as it directly indicates phenotype
+  imaging_modality:
+    description: Imaging modality used (confocal, OCT, etc.)
+    range: string
+    broad_mappings:
+    - OBI:0000185  # imaging assay
+  transport_rate:
+    description: Mucociliary transport rate
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000161  # rate
+    related_mappings:
+    - GO:0120197  # mucociliary clearance
+  directionality:
+    description: Directionality of mucociliary transport
+    range: string
+    broad_mappings:
+    - PATO:0001527  # quiet
+  particle_tracking_method:
+    description: Method used for tracking particles or mucus
+    range: string
+  goblet_cell_count:
+    description: Number or percentage of goblet cells (include both raw counts and relative percentages)
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000070  # amount
+    related_mappings:
+    - CL:0000160  # goblet cell
+  mucin_expression_level:
+    description: Level of mucin gene or protein expression (e.g., MUC5AC to MUC5B ratio)
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000070  # amount
+    related_mappings:
+    - GO:0070254  # mucus secretion
+  staining_method:
+    description: Histological staining method used
+    range: string
+  ros_level:
+    description: Reactive oxygen species level
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000070  # amount
+    related_mappings:
+    - CHEBI:26523  # reactive oxygen species
+  lipid_peroxidation:
+    description: Lipid peroxidation markers (MDA, 8-isoprostane, etc.)
+    range: QuantityValue
+    inlined: true
+    related_mappings:
+    - GO:0016491  # oxidoreductase activity
+  antioxidant_capacity:
+    description: Antioxidant capacity (GSH/GSSG ratio, enzyme activity)
+    range: QuantityValue
+    inlined: true
+  imaging_protocol:
+    description: Imaging protocol and parameters
+    range: ImagingProtocol
+    inlined: true
+    exact_mappings:
+    - OBI:0000272  # protocol
+  ion_composition:
+    description: Ionic composition (Cl−, Na+, K+)
+    range: string
+  fluorescent_labeling:
+    description: Fluorescent label or tracer used
+    range: FluorescentLabel
+    inlined: true
+  evaporation_prevention:
+    description: Method used to prevent evaporation
+    range: EvaporationControl
+    inlined: true
+  cilia_per_cell:
+    description: Number of cilia per cell
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000070  # amount
+  cilia_length:
+    description: Length of cilia
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000122  # length
+  percentage_ciliated_cells:
+    description: Percentage of cells that are ciliated
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0001555  # has number of
+  ciliary_motion_patterns:
+    description: Patterns of ciliary motion
+    range: string
+    related_mappings:
+    - GO:0003341  # cilium movement
+  cell_type_ratios:
+    description: Ratios between different cell types
+    range: string
+  fluorescent_tracer:
+    description: Fluorescent tracers used for tracking
+    range: FluorescentLabel
+    inlined: true
+    multivalued: true
+  mucus_layer_thickness:
+    description: Thickness of mucus layer
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000915  # thickness
+  bacterial_biofilm_detail:
+    description: Details about bacterial biofilm preparation and characteristics
+    range: string
+    multivalued: true
+  viral_infection_detail:
+    description: Details about viral infection protocol
+    range: string
+    multivalued: true
+  biofilm_clearance_rate:
+    description: Rate of bacterial biofilm clearance
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000161  # rate
+  bacterial_load:
+    description: Bacterial load (CFU or similar)
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000070  # amount
+  viral_spread_rate:
+    description: Rate of viral spread
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000161  # rate
+  staining_protocol:
+    description: Staining protocol details
+    range: StainingProtocol
+    inlined: true
+    exact_mappings:
+    - OBI:0000272  # protocol
+  gene_expression_analysis:
+    description: Gene expression analysis methodology
+    range: GeneExpressionAnalysis
+    inlined: true
+    broad_mappings:
+    - OBI:0000070  # assay
+    related_mappings:
+    - OBI:0000424  # transcription profiling assay
+  mucin_protein_concentration:
+    description: Concentration of mucin protein (both direct quantification and comparative measures, e.g., percent solids from apical secretion)
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000033  # concentration of
+  goblet_to_ciliated_ratio:
+    description: Ratio of goblet cells to ciliated cells
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0001470  # ratio
+  pathway_enrichment_score:
+    description: Enrichment scores for biological pathways
+    range: string
+    multivalued: true
+  dose_response_data:
+    description: Dose-response relationship data
+    range: string
+  cell_culture_details:
+    description: Detailed cell culture conditions
+    range: CellCultureConditions
+    inlined: true
+  ros_probe:
+    description: ROS probe details
+    range: ROSProbe
+    inlined: true
+  detection_method_details:
+    description: Detection method details
+    range: DetectionMethod
+    inlined: true
+    multivalued: true
+    broad_mappings:
+    - OBI:0000070  # assay
+  protein_oxidation_marker:
+    description: Protein oxidation markers (carbonyls, nitrotyrosine)
+    range: string
+    multivalued: true
+  dna_damage_marker:
+    description: DNA damage markers (8-OHdG)
+    range: QuantityValue
+    inlined: true
+    multivalued: true
+  antioxidant_enzyme_activity:
+    description: Antioxidant enzyme activities (SOD, catalase, GPx)
+    range: string
+    multivalued: true
+  barrier_integrity:
+    description: Epithelial barrier integrity measurements
+    range: BarrierIntegrity
+    inlined: true
+  cytotoxicity_metrics:
+    description: Cytotoxicity measurements
+    range: CytotoxicityMetrics
+    inlined: true
+  sample_collection_details:
+    description: Sample collection protocol details
+    range: SampleCollection
+    inlined: true
+  inflammatory_cell_profile:
+    description: Inflammatory cell type profile
+    range: InflammatoryCellProfile
+    inlined: true
+  microbiome_analysis:
+    description: Microbiome composition analysis
+    range: MicrobiomeAnalysis
+    inlined: true
+  cytokine_level:
+    description: Cytokine and chemokine levels
+    range: string
+    multivalued: true
+    broad_mappings:
+    - PATO:0000033  # concentration of
+  protein_concentration:
+    description: Total protein concentration
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000033  # concentration of
+  cell_free_dna:
+    description: Cell-free DNA measurement
+    range: QuantityValue
+    inlined: true
+  fev1:
+    description: Forced expiratory volume in 1 second
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000918  # volume
+  fvc:
+    description: Forced vital capacity
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000918  # volume
+  fev1_fvc_ratio:
+    description: Ratio of FEV1 to FVC
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0001470  # ratio
+  fef25_75:
+    description: Forced expiratory flow 25-75%
+    range: QuantityValue
+    inlined: true
+  bronchodilator_response:
+    description: Response to bronchodilator
+    range: QuantityValue
+    inlined: true
+  decline_rate:
+    description: Longitudinal decline rate
+    range: QuantityValue
+    inlined: true
+  dlco:
+    description: Diffusing capacity of the lung for carbon monoxide
+    range: QuantityValue
+    inlined: true
+  feno:
+    description: Fractional exhaled nitric oxide
+    range: QuantityValue
+    inlined: true
+  egfr_phosphorylation:
+    description: EGFR phosphorylation levels including phosphorylation site specificity (e.g., Y1173, Y1068)
+    range: QuantityValue
+    inlined: true
+    comments:
+    - Specify phosphorylation site as this indicates activation state
+    - Western blot is most common detection method due to antibody specificity
+  downstream_kinase_activation:
+    description: Activation levels of downstream kinases (ERK, AKT)
+    range: string
+    comments:
+    - Not specific to EGFR alone, combine with phosphorylation data or inhibitor controls
+  ligand_expression_level:
+    description: Expression levels of EGFR ligands
+    range: string
+    multivalued: true
+    comments:
+    - Supportive evidence but requires additional validation
+  pathway_biomarker:
+    description: Pathway-specific biomarker signatures
+    range: string
+    multivalued: true
+  mrna_level:
+    description: mRNA expression level
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000070  # amount
+  protein_level:
+    description: Protein expression level
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000070  # amount
+  percentage_positive_cells:
+    description: Percentage of positive cells
+    range: QuantityValue
+    inlined: true
+  frame_rate:
+    description: Image acquisition frame rate
+    range: QuantityValue
+    inlined: true
+    related_mappings:
+    - PATO:0000161  # rate
+  imaging_duration:
+    description: Duration of imaging session
+    range: QuantityValue
+    inlined: true
+    related_mappings:
+    - PATO:0001309  # duration
+  imaging_intervals:
+    description: Time intervals between image acquisitions
+    range: string
+  spatial_resolution:
+    description: Spatial resolution of imaging
+    range: QuantityValue
+    inlined: true
+  probe_positioning:
+    description: Probe or sensor positioning protocol
+    range: string
+  fluorophore_type:
+    description: Type of fluorophore used
+    range: string
+  concentration:
+    description: Concentration of reagent or compound
+    range: QuantityValue
+    inlined: true
+  wavelength:
+    description: Wavelength for excitation or emission
+    range: QuantityValue
+    inlined: true
+  control_method:
+    description: Method used for control
+    range: string
+  material_used:
+    description: Material used in protocol
+    range: string
+  probe_type:
+    description: Type of probe used
+    range: string
+  loading_conditions:
+    description: Conditions for loading probe or dye
+    range: string
+  detection_wavelength:
+    description: Wavelength for detection
+    range: QuantityValue
+    inlined: true
+  detection_type:
+    description: Type of detection method
+    range: string
+  sensitivity:
+    description: Sensitivity of detection method
+    range: string
+  technical_replicates:
+    description: Number of technical replicates
+    range: integer
+  collection_method:
+    description: Method for sample collection
+    range: string
+  processing_time:
+    description: Time from collection to processing
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000165  # time
+  storage_conditions:
+    description: Storage temperature and conditions
+    range: string
+  sample_volume:
+    description: Volume of sample collected
+    range: QuantityValue
+    inlined: true
+  culture_medium:
+    description: Cell culture medium formulation
+    range: CellCultureMedium
+    inlined: true
+    exact_mappings:
+    - OBI:0000079  # culture medium
+  days_at_air_liquid_interface:
+    description: Days at air-liquid interface
+    range: integer
+    related_mappings:
+    - PATO:0000165  # time
+  passage_number:
+    description: Cell passage number
+    range: integer
+    exact_mappings:
+    - CLO:0000170  # cell passageble capability
+  substrate_type:
+    description: Type of culture substrate
+    range: SubstrateTypeEnum
+  temperature:
+    description: Temperature setting
+    range: QuantityValue
+    inlined: true
+    exact_mappings:
+    - PATO:0000146  # temperature
+  humidity:
+    description: Humidity level
+    range: QuantityValue
+    inlined: true
+    exact_mappings:
+    - PATO:0015009  # humidity
+  co2_percentage:
+    description: CO2 percentage in incubator
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0000033  # concentration of
+  donor_count:
+    description: Number of unique donors
+    range: integer
+    related_mappings:
+    - PATO:0000070  # amount
+  replicates_per_donor:
+    description: Number of replicates per donor
+    range: integer
+  staining_type:
+    description: Type of staining (histological, immunofluorescence)
+    range: string
+    broad_mappings:
+    - OBI:0302887  # staining
+    comments:
+    - AB-PAS staining for carbohydrates to assess mucins
+    - Immunochemical methods for quantification
+    - Single cell RNA-seq for cell type changes
+    - For mucin production measurements, include targets for MUC5 (MUC5AC, MUC5B)
+  antibody_used:
+    description: Antibodies used in staining
+    range: string
+    multivalued: true
+  fixation_method:
+    description: Method for tissue/cell fixation
+    range: string
+    related_mappings:
+    - OBI:0302887  # staining
+  incubation_conditions:
+    description: Incubation time and temperature
+    range: string
+  analysis_method:
+    description: Method for analysis (qRT-PCR, RNA-seq)
+    range: string
+    broad_mappings:
+    - OBI:0000070  # assay
+  normalization_gene:
+    description: Genes used for normalization
+    range: string
+    multivalued: true
+  primer_used:
+    description: PCR primers used
+    range: string
+    multivalued: true
+  sequencing_platform:
+    description: Platform used for sequencing
+    range: string
+  sequencing_depth:
+    description: Sequencing depth or read count
+    range: integer
+  neutrophil_percentage:
+    description: Percentage of neutrophils
+    range: QuantityValue
+    inlined: true
+  eosinophil_percentage:
+    description: Percentage of eosinophils
+    range: QuantityValue
+    inlined: true
+  macrophage_percentage:
+    description: Percentage of macrophages
+    range: QuantityValue
+    inlined: true
+  lymphocyte_percentage:
+    description: Percentage of lymphocytes
+    range: QuantityValue
+    inlined: true
+  total_cell_count:
+    description: Total cell count
+    range: QuantityValue
+    inlined: true
+  alpha_diversity:
+    description: Alpha diversity metric
+    range: QuantityValue
+    inlined: true
+  beta_diversity:
+    description: Beta diversity metric
+    range: string
+  taxonomic_abundance:
+    description: Taxonomic abundance data
+    range: string
+    multivalued: true
+  sequencing_primer:
+    description: Primers used for sequencing (16S, ITS)
+    range: string
+    multivalued: true
+  dna_extraction_method:
+    description: Method for DNA extraction
+    range: string
+  teer_value:
+    description: Transepithelial electrical resistance value
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0001025  # pressure
+  permeability_coefficient:
+    description: Permeability coefficient
+    range: QuantityValue
+    inlined: true
+  measurement_timepoint:
+    description: Timepoint of measurement
+    range: string
+  ldh_release:
+    description: Lactate dehydrogenase release
+    range: QuantityValue
+    inlined: true
+  mtt_reduction:
+    description: MTT reduction assay result
+    range: QuantityValue
+    inlined: true
+  viability_percentage:
+    description: Cell viability percentage
+    range: QuantityValue
+    inlined: true
+  apoptosis_marker:
+    description: Apoptosis marker levels
+    range: string
+    multivalued: true
+  author:
+    description: Connects publications to contributor lists, formatted as comma-delimited
+      names
+    range: string
+    multivalued: true
+  pages:
+    description: Page numbers (start and end) or total pages
+    range: string
+  summary:
+    description: Executive summary or abstract of the publication
+    range: string
+  keyword:
+    description: Keywords or tags for the publication
+    range: string
+    multivalued: true
+  mesh_term:
+    description: Medical Subject Headings (MeSH) terms for indexing
+    range: string
+    multivalued: true
+  publication_type:
+    description: Ontology term for categorizing publication format (e.g., journal
+      article, book chapter, review)
+    range: string
+    required: false
+  sampling_method:
+    description: Method for sampling areas of the culture
+    range: string
+    comments:
+    - Include information about sampling strategy and distribution
+  culture_size:
+    description: Size of the culture well or surface area
+    range: QuantityValue
+    inlined: true
+  number_of_samples:
+    description: Number of sampling areas or technical replicates
+    range: integer
+    comments:
+    - Typically 12-20 samples per culture depending on size
+  donor_characteristics:
+    description: Characteristics of cell donors (e.g., disease state, age)
+    range: string
+    comments:
+    - Critical for ASL height as disease state affects measurements
+  timing_from_wash:
+    description: Time elapsed since last apical wash
+    range: QuantityValue
+    inlined: true
+    related_mappings:
+    - PATO:0000165  # time
+  sampling_duration:
+    description: Duration of the sampling period
+    range: QuantityValue
+    inlined: true
+    related_mappings:
+    - PATO:0000165  # time
+  culture_density:
+    description: Cell culture density per square centimeter
+    range: QuantityValue
+    inlined: true
+    broad_mappings:
+    - PATO:0001351  # density
+  media_composition:
+    description: Culture media composition details for in vitro oxidative stress measures
+    range: string
+    comments:
+    - Critical for oxidative stress measurements as media components can affect ROS
+  application_context:
+    description: Context where evaporation control method is applied (e.g., culture incubation, microscope imaging)
+    range: string
+    examples:
+    - value: culture incubation
+    - value: microscope imaging
+  base_medium:
+    description: Base medium type (e.g., DMEM, RPMI, Ham's F-12)
+    range: string
+    examples:
+    - value: DMEM/F12
+    - value: RPMI 1640
+    - value: MEM
+    - value: Ham's F-12
+    - value: BEGM
+  serum_type:
+    description: Type of serum used (e.g., FBS, human serum, serum-free)
+    range: string
+    examples:
+    - value: Fetal Bovine Serum
+    - value: Human AB Serum
+    - value: Serum-free
+  serum_concentration:
+    description: Serum concentration as percentage
+    range: QuantityValue
+    inlined: true
+  supplement:
+    description: List of medium supplements with concentrations
+    range: MediumSupplement
+    multivalued: true
+    inlined: true
+  ph:
+    description: pH of the medium
+    range: QuantityValue
+    inlined: true
+    exact_mappings:
+    - PATO:0001842  # acidity
+  osmolality:
+    description: Osmolality of the medium in mOsm/kg
+    range: QuantityValue
+    inlined: true
+    exact_mappings:
+    - PATO:0001655  # osmolality
+  manufacturer:
+    description: Manufacturer of the product
+    range: string
+  catalog_number:
+    description: Catalog number from manufacturer
+    range: string
+  lot_number:
+    description: Lot or batch number
+    range: string
+  preparation_date:
+    description: Date when medium was prepared
+    range: date
+  supplement_type:
+    description: Category of supplement (e.g., growth factor, antibiotic, hormone, vitamin, amino acid)
+    range: SupplementTypeEnum
+  supplement_entity:
+    description: The chemical entity representing the supplement
+    range: ChemicalEntity
+    inlined: true
+  name:
+    description: Human-readable name of the entity
+    range: string
+    slot_uri: rdfs:label
+  formula:
+    description: Chemical formula (e.g., C6H12O6 for glucose)
+    range: string
+  cross_reference:
+    description: Database cross-references (e.g., CHEBI:17234, PubChem:5793)
+    range: uriorcurie
+    multivalued: true
+    examples:
+    - value: CHEBI:17234
+    - value: PubChem:5793
+    - value: CAS:50-99-7
+  cell_culture_growth_mode:
+    description: Mode of cell culture growth (adherent, suspension, ALI, etc.)
+    range: CellCultureGrowthModeEnum
+    exact_mappings:
+    - CLO:0000030  # cell culture growth mode

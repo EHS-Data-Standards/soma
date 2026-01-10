@@ -1,0 +1,287 @@
+# Example PhenotypeMeasurement data for respiratory health outcomes
+# Includes lung function tests, FeNO, and ciliary function measurements
+
+phenotype_measurements:
+  # Spirometry - Lung Function Tests
+  - id: owg:phenotype-001
+    name: FEV1 measurement - Participant P001
+    description: Forced expiratory volume in 1 second, pre-bronchodilator
+    observation_type: FEV1
+    quantity_measured:
+      value: 2.85
+      unit: UO:0000099
+      unit_label: "L"
+    range_low:
+      value: 3.20
+      unit: UO:0000099
+      unit_label: "L"
+    range_high:
+      value: 4.50
+      unit: UO:0000099
+      unit_label: "L"
+    phenotype:
+      id: HP:0002094
+      name: Dyspnea
+    participant:
+      id: owg:participant-001
+    measurement_date: "2024-03-15"
+
+  - id: owg:phenotype-002
+    name: FVC measurement - Participant P001
+    description: Forced vital capacity, pre-bronchodilator
+    observation_type: FVC
+    quantity_measured:
+      value: 4.10
+      unit: UO:0000099
+      unit_label: "L"
+    range_low:
+      value: 4.00
+      unit: UO:0000099
+      unit_label: "L"
+    range_high:
+      value: 5.50
+      unit: UO:0000099
+      unit_label: "L"
+    phenotype:
+      id: HP:0002094
+      name: Dyspnea
+    participant:
+      id: owg:participant-001
+    measurement_date: "2024-03-15"
+
+  - id: owg:phenotype-003
+    name: FEV1/FVC ratio - Participant P001
+    description: Ratio of FEV1 to FVC indicating airflow obstruction
+    observation_type: FEV1_FVC_Ratio
+    quantity_measured:
+      value: 0.695
+      unit: UO:0000186
+      unit_label: "ratio"
+    range_low:
+      value: 0.70
+      unit: UO:0000186
+      unit_label: "ratio"
+    range_high:
+      value: 0.85
+      unit: UO:0000186
+      unit_label: "ratio"
+    phenotype:
+      id: HP:0006536
+      name: Airway obstruction
+    participant:
+      id: owg:participant-001
+    measurement_date: "2024-03-15"
+
+  - id: owg:phenotype-004
+    name: FEF25-75 measurement - Participant P001
+    description: Forced expiratory flow at 25-75% of FVC (small airways)
+    observation_type: FEF25_75
+    quantity_measured:
+      value: 1.95
+      unit: UO:0000269
+      unit_label: "L/s"
+    range_low:
+      value: 2.50
+      unit: UO:0000269
+      unit_label: "L/s"
+    range_high:
+      value: 4.50
+      unit: UO:0000269
+      unit_label: "L/s"
+    phenotype:
+      id: HP:0006536
+      name: Airway obstruction
+    participant:
+      id: owg:participant-001
+    measurement_date: "2024-03-15"
+
+  # FeNO - Airway Inflammation Marker
+  - id: owg:phenotype-005
+    name: FeNO measurement - Participant P002
+    description: Fractional exhaled nitric oxide at 50 mL/s flow rate
+    observation_type: FeNO
+    quantity_measured:
+      value: 42.0
+      unit: UO:0000170
+      unit_label: "ppb"
+    range_low:
+      value: 0.0
+      unit: UO:0000170
+      unit_label: "ppb"
+    range_high:
+      value: 25.0
+      unit: UO:0000170
+      unit_label: "ppb"
+    phenotype:
+      id: HP:0002099
+      name: Asthma
+    participant:
+      id: owg:participant-002
+    measurement_date: "2024-03-16"
+
+  # Bronchodilator Response
+  - id: owg:phenotype-006
+    name: Bronchodilator response - Participant P002
+    description: Change in FEV1 after albuterol administration
+    observation_type: BronchodilatorResponse
+    quantity_measured:
+      value: 14.5
+      unit: UO:0000187
+      unit_label: "% improvement"
+    range_low:
+      value: 0.0
+      unit: UO:0000187
+      unit_label: "% improvement"
+    range_high:
+      value: 12.0
+      unit: UO:0000187
+      unit_label: "% improvement"
+    phenotype:
+      id: HP:0002099
+      name: Asthma
+    participant:
+      id: owg:participant-002
+    measurement_date: "2024-03-16"
+
+  # Diffusing Capacity
+  - id: owg:phenotype-007
+    name: DLCO measurement - Participant P003
+    description: Diffusing capacity of the lung for carbon monoxide
+    observation_type: DLCO
+    quantity_measured:
+      value: 22.5
+      unit: UO:0000271
+      unit_label: "mL/min/mmHg"
+    range_low:
+      value: 20.0
+      unit: UO:0000271
+      unit_label: "mL/min/mmHg"
+    range_high:
+      value: 30.0
+      unit: UO:0000271
+      unit_label: "mL/min/mmHg"
+    phenotype:
+      id: HP:0002088
+      name: Abnormal lung morphology
+    participant:
+      id: owg:participant-003
+    measurement_date: "2024-03-17"
+
+  # Ciliary Function (from in vitro ALI cultures)
+  - id: owg:phenotype-008
+    name: Ciliary beat frequency - ALI culture from P004
+    description: Ciliary beat frequency measured by high-speed video microscopy
+    observation_type: CiliaryBeatFrequency
+    quantity_measured:
+      value: 11.2
+      unit: UO:0000106
+      unit_label: "Hz"
+    range_low:
+      value: 9.0
+      unit: UO:0000106
+      unit_label: "Hz"
+    range_high:
+      value: 15.0
+      unit: UO:0000106
+      unit_label: "Hz"
+    phenotype:
+      id: HP:0012265
+      name: Ciliary dyskinesia
+    participant:
+      id: owg:participant-004
+    measurement_date: "2024-03-18"
+
+  - id: owg:phenotype-009
+    name: Percentage ciliated cells - ALI culture from P004
+    description: Proportion of epithelial cells with visible cilia
+    observation_type: PercentageCiliatedCells
+    quantity_measured:
+      value: 65.0
+      unit: UO:0000187
+      unit_label: "%"
+    range_low:
+      value: 50.0
+      unit: UO:0000187
+      unit_label: "%"
+    range_high:
+      value: 80.0
+      unit: UO:0000187
+      unit_label: "%"
+    phenotype:
+      id: HP:0012265
+      name: Ciliary dyskinesia
+    participant:
+      id: owg:participant-004
+    measurement_date: "2024-03-18"
+
+  # Mucociliary Clearance
+  - id: owg:phenotype-010
+    name: Mucociliary transport rate - ALI culture from P005
+    description: Rate of fluorescent bead transport across epithelial surface
+    observation_type: MucociliaryTransportRate
+    quantity_measured:
+      value: 4.8
+      unit: UO:0000335
+      unit_label: "mm/min"
+    range_low:
+      value: 3.0
+      unit: UO:0000335
+      unit_label: "mm/min"
+    range_high:
+      value: 8.0
+      unit: UO:0000335
+      unit_label: "mm/min"
+    phenotype:
+      id: HP:0002110
+      name: Bronchiectasis
+    participant:
+      id: owg:participant-005
+    measurement_date: "2024-03-19"
+
+  # Airway Surface Liquid Height
+  - id: owg:phenotype-011
+    name: ASL height - ALI culture from P005
+    description: Airway surface liquid height measured by confocal microscopy
+    observation_type: ASLHeight
+    quantity_measured:
+      value: 7.2
+      unit: UO:0000017
+      unit_label: "um"
+    range_low:
+      value: 6.0
+      unit: UO:0000017
+      unit_label: "um"
+    range_high:
+      value: 12.0
+      unit: UO:0000017
+      unit_label: "um"
+    phenotype:
+      id: HP:0002110
+      name: Bronchiectasis
+    participant:
+      id: owg:participant-005
+    measurement_date: "2024-03-19"
+
+  # Goblet Cell Measurements
+  - id: owg:phenotype-012
+    name: Goblet cell percentage - Bronchial biopsy P006
+    description: Percentage of goblet cells in bronchial epithelium
+    observation_type: GobletCellCount
+    quantity_measured:
+      value: 28.0
+      unit: UO:0000187
+      unit_label: "%"
+    range_low:
+      value: 5.0
+      unit: UO:0000187
+      unit_label: "%"
+    range_high:
+      value: 15.0
+      unit: UO:0000187
+      unit_label: "%"
+    phenotype:
+      id: HP:0002099
+      name: Asthma
+    participant:
+      id: owg:participant-006
+    measurement_date: "2024-03-20"

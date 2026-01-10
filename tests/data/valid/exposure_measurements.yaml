@@ -1,0 +1,112 @@
+# Example ExposureMeasurement data for environmental toxicant research
+# Demonstrates the new Quantity pattern with value + unit + unit_label
+
+exposure_measurements:
+  - id: owg:exposure-001
+    name: Blood lead measurement - Participant P001
+    description: Blood lead level measured as part of NHANES exposure assessment
+    observation_type: BloodLeadLevel
+    quantity_measured:
+      value: 3.2
+      unit: UO:0000275
+      unit_label: "ug/dL"
+    range_low:
+      value: 0.0
+      unit: UO:0000275
+      unit_label: "ug/dL"
+    range_high:
+      value: 5.0
+      unit: UO:0000275
+      unit_label: "ug/dL"
+    measured_entity:
+      id: CHEBI:25016
+      name: Lead
+    participant:
+      id: owg:participant-001
+    measurement_method: ICP-MS
+    measurement_date: "2024-03-15"
+    sample_type: Blood
+
+  - id: owg:exposure-002
+    name: Urinary cadmium measurement - Participant P001
+    description: Urinary cadmium level creatinine-corrected
+    observation_type: BloodCadmiumLevel
+    quantity_measured:
+      value: 0.45
+      unit: UO:0000275
+      unit_label: "ug/g creatinine"
+    range_low:
+      value: 0.0
+      unit: UO:0000275
+      unit_label: "ug/g creatinine"
+    range_high:
+      value: 1.0
+      unit: UO:0000275
+      unit_label: "ug/g creatinine"
+    measured_entity:
+      id: CHEBI:22977
+      name: Cadmium
+    participant:
+      id: owg:participant-001
+    measurement_method: ICP-MS
+    measurement_date: "2024-03-15"
+    sample_type: Urine
+
+  - id: owg:exposure-003
+    name: PM2.5 personal exposure - Participant P002
+    description: 24-hour integrated personal PM2.5 exposure from wearable monitor
+    observation_type: PM2_5Exposure
+    quantity_measured:
+      value: 18.5
+      unit: UO:0000301
+      unit_label: "ug/m3"
+    measured_entity:
+      id: ENVO:01000415
+      name: Particulate matter with diameter less than 2.5 micrometers
+    participant:
+      id: owg:participant-002
+    measurement_method: Personal exposure monitor (RTI MicroPEM)
+    measurement_date: "2024-03-16"
+    sample_type: Air
+
+  - id: owg:exposure-004
+    name: Urinary cotinine - Participant P003
+    description: Urinary cotinine as biomarker of tobacco smoke exposure
+    observation_type: UrinaryCotinineLevel
+    quantity_measured:
+      value: 125.0
+      unit: UO:0000271
+      unit_label: "ng/mL"
+    range_low:
+      value: 0.0
+      unit: UO:0000271
+      unit_label: "ng/mL"
+    range_high:
+      value: 10.0
+      unit: UO:0000271
+      unit_label: "ng/mL"
+    measured_entity:
+      id: CHEBI:68641
+      name: Cotinine
+    participant:
+      id: owg:participant-003
+    measurement_method: LC-MS/MS
+    measurement_date: "2024-03-17"
+    sample_type: Urine
+
+  - id: owg:exposure-005
+    name: Ozone exposure - Participant P004
+    description: Ambient ozone concentration at participant residence
+    observation_type: OzoneExposure
+    quantity_measured:
+      value: 0.065
+      unit: UO:0000170
+      unit_label: "ppm"
+    measured_entity:
+      id: CHEBI:25812
+      name: Ozone
+    participant:
+      id: owg:participant-004
+    measurement_method: UV photometric analyzer
+    measurement_date: "2024-03-18"
+    sample_type: Air
