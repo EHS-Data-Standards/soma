@@ -1,14 +1,20 @@
 from __future__ import annotations
 
 import re
+import sys
 from datetime import (
-    date
+    date,
+    datetime,
+    time
 )
+from decimal import Decimal
 from enum import Enum
 from typing import (
     Any,
     ClassVar,
-    Optional
+    Literal,
+    Optional,
+    Union
 )
 
 from pydantic import (
@@ -89,6 +95,8 @@ linkml_meta = LinkMLMeta({'default_prefix': 'owg',
                                       'prefix_reference': 'http://identifiers.org/chembl.compound/'},
                   'CL': {'prefix_prefix': 'CL',
                          'prefix_reference': 'http://purl.obolibrary.org/obo/CL_'},
+                  'CLO': {'prefix_prefix': 'CLO',
+                          'prefix_reference': 'http://purl.obolibrary.org/obo/CLO_'},
                   'CTD.CHEMICAL': {'prefix_prefix': 'CTD.CHEMICAL',
                                    'prefix_reference': 'http://ctdbase.org/detail.go?type=chem&acc='},
                   'CTD.GENE': {'prefix_prefix': 'CTD.GENE',
@@ -117,8 +125,12 @@ linkml_meta = LinkMLMeta({'default_prefix': 'owg',
                             'prefix_reference': 'http://purl.obolibrary.org/obo/MONDO_'},
                   'MP': {'prefix_prefix': 'MP',
                          'prefix_reference': 'http://purl.obolibrary.org/obo/MP_'},
+                  'NAMO': {'prefix_prefix': 'NAMO',
+                           'prefix_reference': 'http://purl.obolibrary.org/obo/NAMO_'},
                   'NCBIGENE': {'prefix_prefix': 'NCBIGENE',
                                'prefix_reference': 'https://www.ncbi.nlm.nih.gov/gene/'},
+                  'NCBITaxon': {'prefix_prefix': 'NCBITaxon',
+                                'prefix_reference': 'http://purl.obolibrary.org/obo/NCBITaxon_'},
                   'NCIT': {'prefix_prefix': 'NCIT',
                            'prefix_reference': 'http://purl.obolibrary.org/obo/NCIT_'},
                   'NHANES': {'prefix_prefix': 'NHANES',
@@ -799,6 +811,316 @@ class RelationshipToHouseholdHeadEnum(str, Enum):
     """
 
 
+class EnvironmentalMeasurementTypeEnum(str, Enum):
+    """
+    Types of environmental conditions measured for cell culture systems. Used to constrain observation_type in EnvironmentalMeasurement.
+    """
+    co2_percentage = "co2_percentage"
+    """
+    Carbon dioxide percentage in incubator atmosphere
+    """
+    o2_percentage = "o2_percentage"
+    """
+    Oxygen percentage in incubator (for hypoxic cultures)
+    """
+    temperature = "temperature"
+    """
+    Incubator or culture temperature
+    """
+    humidity = "humidity"
+    """
+    Relative humidity in incubator
+    """
+    nitrogen_balance = "nitrogen_balance"
+    """
+    Nitrogen percentage in atmosphere
+    """
+    ph = "ph"
+    """
+    pH of culture medium
+    """
+
+
+class MechanicalMeasurementTypeEnum(str, Enum):
+    """
+    Types of mechanical stimulation parameters for advanced culture systems like organ-on-chip and microphysiological systems. Used to constrain observation_type in MechanicalMeasurement.
+    """
+    stretch_frequency = "stretch_frequency"
+    """
+    Frequency of cyclic mechanical stretch (Hz)
+    """
+    stretch_amplitude = "stretch_amplitude"
+    """
+    Amplitude of mechanical stretch as percentage of original length
+    """
+    shear_stress = "shear_stress"
+    """
+    Fluid shear stress applied to cells (dyn/cm2 or Pa)
+    """
+    flow_rate = "flow_rate"
+    """
+    Fluid flow rate in microfluidic or perfusion systems
+    """
+    perfusion_rate = "perfusion_rate"
+    """
+    Media perfusion rate for continuous culture systems
+    """
+    pressure = "pressure"
+    """
+    Hydrostatic or pneumatic pressure
+    """
+
+
+class MembranePropertyTypeEnum(str, Enum):
+    """
+    Types of membrane properties measured for transwell, ALI, and organ-on-chip culture systems. Used to constrain observation_type in MembranePropertyMeasurement.
+    """
+    pore_size = "pore_size"
+    """
+    Diameter of membrane pores (typically in micrometers)
+    """
+    pore_density = "pore_density"
+    """
+    Number of pores per unit area
+    """
+    thickness = "thickness"
+    """
+    Membrane thickness
+    """
+    surface_area = "surface_area"
+    """
+    Total membrane surface area
+    """
+    teer = "teer"
+    """
+    Transepithelial electrical resistance
+    """
+
+
+class CellCultureGrowthModeEnum(str, Enum):
+    """
+    Cell culture growth modes including traditional and advanced systems. Based on CLO cell culture growth mode terms.
+    """
+    adherent = "adherent"
+    """
+    Cells grow attached to a surface
+    """
+    suspension = "suspension"
+    """
+    Cells grow suspended in culture medium
+    """
+    air_liquid_interface = "air_liquid_interface"
+    """
+    Cells cultured at interface between air and liquid medium (ALI)
+    """
+    three_dimensional = "three_dimensional"
+    """
+    Cells grown in 3D matrix or scaffold
+    """
+    organoid = "organoid"
+    """
+    Self-organizing 3D tissue culture from stem cells
+    """
+    spheroid = "spheroid"
+    """
+    Spherical cellular aggregates formed by self-aggregation
+    """
+
+
+class SubstrateTypeEnum(str, Enum):
+    """
+    Types of cell culture substrates and surfaces. Includes traditional and advanced substrate materials.
+    """
+    plastic = "plastic"
+    """
+    Standard tissue culture-treated plastic
+    """
+    collagen_coated = "collagen_coated"
+    """
+    Collagen-coated surface for enhanced cell attachment
+    """
+    matrigel = "matrigel"
+    """
+    Basement membrane matrix (Matrigel/Geltrex)
+    """
+    fibronectin_coated = "fibronectin_coated"
+    """
+    Fibronectin-coated surface
+    """
+    laminin_coated = "laminin_coated"
+    """
+    Laminin-coated surface
+    """
+    transwell_insert = "transwell_insert"
+    """
+    Permeable support for air-liquid interface culture
+    """
+    hydrogel = "hydrogel"
+    """
+    Three-dimensional hydrogel matrix
+    """
+    glass = "glass"
+    """
+    Glass surface or coverslip
+    """
+    pdms = "pdms"
+    """
+    Polydimethylsiloxane (for microfluidics/organ-on-chip)
+    """
+
+
+class SupplementTypeEnum(str, Enum):
+    """
+    Categories of cell culture medium supplements and additives.
+    """
+    growth_factor = "growth_factor"
+    """
+    Proteins that stimulate cell growth, proliferation, and differentiation
+    """
+    antibiotic = "antibiotic"
+    """
+    Antimicrobial substances used to prevent bacterial contamination
+    """
+    antifungal = "antifungal"
+    """
+    Antifungal agents to prevent fungal contamination
+    """
+    hormone = "hormone"
+    """
+    Signaling molecules that regulate cell physiology
+    """
+    vitamin = "vitamin"
+    """
+    Organic compounds essential for normal growth and nutrition
+    """
+    amino_acid = "amino_acid"
+    """
+    Amino acid supplements for protein synthesis
+    """
+    cytokine = "cytokine"
+    """
+    Small proteins important in cell signaling
+    """
+    buffer = "buffer"
+    """
+    pH buffering agents (HEPES, bicarbonate)
+    """
+    serum = "serum"
+    """
+    Serum supplements (FBS, human serum)
+    """
+    differentiation_factor = "differentiation_factor"
+    """
+    Factors that induce or maintain cell differentiation
+    """
+
+
+class CellLineModificationEnum(str, Enum):
+    """
+    Types of genetic or other modifications applied to cell lines.
+    """
+    none = "none"
+    """
+    Unmodified cell line
+    """
+    transfection = "transfection"
+    """
+    Transient or stable DNA/RNA transfection
+    """
+    viral_transduction = "viral_transduction"
+    """
+    Viral vector-mediated gene transfer (lentiviral, adenoviral, AAV)
+    """
+    crispr_knockout = "crispr_knockout"
+    """
+    CRISPR/Cas9-mediated gene knockout
+    """
+    crispr_knockin = "crispr_knockin"
+    """
+    CRISPR/Cas9-mediated gene knockin or base editing
+    """
+    rnai = "rnai"
+    """
+    RNA interference-mediated gene knockdown (siRNA, shRNA)
+    """
+    overexpression = "overexpression"
+    """
+    Stable or transient gene overexpression
+    """
+    reporter = "reporter"
+    """
+    Reporter gene insertion (GFP, luciferase, fluorescent proteins)
+    """
+    immortalization = "immortalization"
+    """
+    Immortalization of primary cells (hTERT, SV40, etc.)
+    """
+
+
+class ThreeDArchitectureEnum(str, Enum):
+    """
+    Types of three-dimensional cell culture architectures.
+    """
+    spheroid = "spheroid"
+    """
+    Spherical cellular aggregates formed by self-aggregation
+    """
+    organoid = "organoid"
+    """
+    Self-organizing 3D tissue derived from stem cells
+    """
+    scaffold_based = "scaffold_based"
+    """
+    Cells grown on/in synthetic or natural scaffolds
+    """
+    hydrogel_encapsulated = "hydrogel_encapsulated"
+    """
+    Cells encapsulated within hydrogel matrix
+    """
+    bioprinted = "bioprinted"
+    """
+    3D bioprinted tissue constructs
+    """
+    microcarrier = "microcarrier"
+    """
+    Cells grown on microcarrier beads in suspension
+    """
+    hanging_drop = "hanging_drop"
+    """
+    Spheroids formed using hanging drop method
+    """
+
+
+class CoCultureConfigurationEnum(str, Enum):
+    """
+    Physical configurations for co-culture systems combining multiple cell types.
+    """
+    direct_contact = "direct_contact"
+    """
+    Cell types in direct physical contact on same surface
+    """
+    transwell = "transwell"
+    """
+    Cell types separated by permeable membrane insert
+    """
+    conditioned_medium = "conditioned_medium"
+    """
+    One cell type exposed to conditioned medium from another
+    """
+    microfluidic = "microfluidic"
+    """
+    Cell types in separate microfluidic compartments with shared media
+    """
+    spheroid_core_shell = "spheroid_core_shell"
+    """
+    One cell type forms core, another forms surrounding shell
+    """
+    patterned = "patterned"
+    """
+    Cell types arranged in defined spatial patterns
+    """
+
+
 
 class Container(ConfiguredBaseModel):
     """
@@ -838,6 +1160,13 @@ class Container(ConfiguredBaseModel):
     households: Optional[list[Household]] = Field(default=[], description="""Households within a block group or geographic area.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'BlockGroup']} })
     persons: Optional[list[Person]] = Field(default=[], description="""Persons (individuals) in the container. Can be used for top-level person collections or for linking persons to study participants.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
     schools: Optional[list[School]] = Field(default=[], description="""Schools where synthetic population persons may be assigned.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    cellular_systems: Optional[list[CellularSystem]] = Field(default=[], description="""Collection of cellular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    two_d_cell_cultures: Optional[list[TwoDCellCulture]] = Field(default=[], description="""Collection of 2D cell cultures.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    three_d_cell_cultures: Optional[list[ThreeDCellCulture]] = Field(default=[], description="""Collection of 3D cell cultures.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    co_cultures: Optional[list[CoCulture]] = Field(default=[], description="""Collection of co-cultures.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    cell_lines: Optional[list[CellLine]] = Field(default=[], description="""Collection of cell lines.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    environmental_measurements: Optional[list[EnvironmentalMeasurement]] = Field(default=[], description="""Collection of environmental condition measurements (CO2, O2, temperature, humidity, pH) for the culture system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'CellCultureConditions', 'CellularSystem']} })
+    mechanical_measurements: Optional[list[MechanicalMeasurement]] = Field(default=[], description="""Collection of mechanical stimulation measurements (stretch, shear, flow) for advanced culture systems like organ-on-chip.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'CellularSystem']} })
 
 
 class NamedThing(ConfiguredBaseModel):
@@ -1556,6 +1885,305 @@ class ProteinExpressionMeasurement(Measurement):
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
 
 
+class EnvironmentalMeasurement(Measurement):
+    """
+    A measurement of environmental conditions for cell culture systems including temperature, CO2, O2 percentage, humidity, and pH. Used to document incubator and culture conditions.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
+         'slot_usage': {'observation_type': {'description': 'The type of environmental '
+                                                            'parameter measured.',
+                                             'name': 'observation_type',
+                                             'range': 'EnvironmentalMeasurementTypeEnum'}}})
+
+    observation_type: Optional[EnvironmentalMeasurementTypeEnum] = Field(default=None, description="""The type of environmental parameter measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_high: Optional[QuantityValue] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+
+
+class MechanicalMeasurement(Measurement):
+    """
+    A measurement of mechanical stimulation parameters for advanced culture systems like organ-on-chip and microphysiological systems. Includes stretch frequency/amplitude, shear stress, flow rate, and pressure.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
+         'slot_usage': {'observation_type': {'description': 'The type of mechanical '
+                                                            'parameter measured.',
+                                             'name': 'observation_type',
+                                             'range': 'MechanicalMeasurementTypeEnum'}}})
+
+    observation_type: Optional[MechanicalMeasurementTypeEnum] = Field(default=None, description="""The type of mechanical parameter measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_high: Optional[QuantityValue] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+
+
+class MembranePropertyMeasurement(Measurement):
+    """
+    A measurement of membrane properties for transwell, ALI, and organ-on-chip culture systems. Includes pore size, pore density, thickness, surface area, and TEER.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
+         'slot_usage': {'observation_type': {'description': 'The type of membrane '
+                                                            'property measured.',
+                                             'name': 'observation_type',
+                                             'range': 'MembranePropertyTypeEnum'}}})
+
+    membrane_material: Optional[str] = Field(default=None, description="""Material of the porous membrane (e.g., PET, polycarbonate, PDMS).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MembranePropertyMeasurement']} })
+    observation_type: Optional[MembranePropertyTypeEnum] = Field(default=None, description="""The type of membrane property measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    range_high: Optional[QuantityValue] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+
+
+class CellLine(NamedThing):
+    """
+    A cell line - a genetically stable cultured cell population that contains individual cell line cells. Reference to a specific cell line with identifiers from cell line repositories.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CLO:0000031',
+         'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
+         'id_prefixes': ['CLO']})
+
+    cell_culture_type: Optional[CellType] = Field(default=None, description="""The cell type being cultured, with ontology reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'CellularSystem'], 'slot_uri': 'EFO:0000324'} })
+    model_species: Optional[Organism] = Field(default=None, description="""The species of origin for the cells in the model system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'ModelSystem']} })
+    tissue_origin: Optional[AnatomicalEntity] = Field(default=None, description="""Tissue from which the cell line was derived.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine']} })
+    disease_state: Optional[Disease] = Field(default=None, description="""Disease state of the cell line donor (if applicable).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine']} })
+    supplier: Optional[str] = Field(default=None, description="""Supplier or repository of the cell line (e.g., ATCC, Coriell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine']} })
+    catalog_number: Optional[str] = Field(default=None, description="""Catalog number from manufacturer.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'CellCultureMedium', 'MediumSupplement']} })
+    authentication_method: Optional[str] = Field(default=None, description="""Method used to authenticate the cell line (e.g., STR profiling).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine']} })
+    mycoplasma_status: Optional[str] = Field(default=None, description="""Mycoplasma testing status (positive, negative, not tested).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+
+
+class CellCultureConditions(NamedThing):
+    """
+    Detailed cell culture parameters including medium, environment, and timing.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'exact_mappings': ['CLO:0037334'],
+         'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
+
+    culture_media: Optional[CellCultureMedium] = Field(default=None, description="""Cell culture medium formulation with supplements.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'CellularSystem']} })
+    days_at_air_liquid_interface: Optional[int] = Field(default=None, description="""Number of days cells have been cultured at air-liquid interface (ALI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions']} })
+    passage_number: Optional[int] = Field(default=None, description="""Cell passage number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'TwoDCellCulture'],
+         'exact_mappings': ['CLO:0000170']} })
+    substrate_type: Optional[SubstrateTypeEnum] = Field(default=None, description="""Type of culture substrate or surface material.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'TwoDCellCulture']} })
+    cell_culture_growth_mode: Optional[CellCultureGrowthModeEnum] = Field(default=None, description="""Mode of cell culture growth (adherent, suspension, ALI, 3D, etc.)""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'CellularSystem'],
+         'exact_mappings': ['CLO:0000030']} })
+    environmental_measurements: Optional[list[EnvironmentalMeasurement]] = Field(default=[], description="""Collection of environmental condition measurements (CO2, O2, temperature, humidity, pH) for the culture system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'CellCultureConditions', 'CellularSystem']} })
+    donor_count: Optional[int] = Field(default=None, description="""Number of unique cell donors used in the experiment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions']} })
+    replicates_per_donor: Optional[int] = Field(default=None, description="""Number of biological replicates per donor.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+
+
+class CellCultureMedium(NamedThing):
+    """
+    Detailed formulation of cell culture medium including base medium and supplements.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
+
+    base_medium: Optional[str] = Field(default=None, description="""Base medium type (e.g., DMEM, RPMI 1640, Ham's F-12, BEGM).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureMedium']} })
+    serum_type: Optional[str] = Field(default=None, description="""Type of serum used (e.g., FBS, human serum, serum-free).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureMedium']} })
+    serum_concentration: Optional[QuantityValue] = Field(default=None, description="""Serum concentration as percentage.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureMedium']} })
+    supplements: Optional[list[MediumSupplement]] = Field(default=[], description="""List of medium supplements with concentrations.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureMedium']} })
+    osmolality: Optional[QuantityValue] = Field(default=None, description="""Osmolality of the medium in mOsm/kg.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureMedium']} })
+    manufacturer: Optional[str] = Field(default=None, description="""Manufacturer of the product.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureMedium', 'MediumSupplement']} })
+    catalog_number: Optional[str] = Field(default=None, description="""Catalog number from manufacturer.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'CellCultureMedium', 'MediumSupplement']} })
+    lot_number: Optional[str] = Field(default=None, description="""Lot or batch number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureMedium']} })
+    preparation_date: Optional[date] = Field(default=None, description="""Date when medium was prepared.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureMedium']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+
+
+class MediumSupplement(NamedThing):
+    """
+    Supplement or additive to cell culture medium.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
+
+    supplement_type: Optional[SupplementTypeEnum] = Field(default=None, description="""Category of supplement (growth factor, antibiotic, hormone, vitamin, etc.)""", json_schema_extra = { "linkml_meta": {'domain_of': ['MediumSupplement']} })
+    supplement_entity: Optional[ChemicalEntity] = Field(default=None, description="""The chemical entity representing the supplement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MediumSupplement']} })
+    concentration: Optional[QuantityValue] = Field(default=None, description="""Concentration of supplement or reagent.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MediumSupplement']} })
+    manufacturer: Optional[str] = Field(default=None, description="""Manufacturer of the product.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureMedium', 'MediumSupplement']} })
+    catalog_number: Optional[str] = Field(default=None, description="""Catalog number from manufacturer.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'CellCultureMedium', 'MediumSupplement']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+
+
+class ModelSystem(NamedThing):
+    """
+    Abstract base class for model systems used in biomedical research. Encompasses cellular systems, microphysiological systems, and in silico models.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
+         'class_uri': 'NAMO:0000000',
+         'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
+
+    model_species: Optional[Organism] = Field(default=None, description="""The species of origin for the cells in the model system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'ModelSystem']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+
+
+class CellularSystem(ModelSystem):
+    """
+    Cell-based model systems that use living cells to model biological processes. Includes 2D cultures, 3D systems, and co-cultures. Abstract base class for specific culture types.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
+         'class_uri': 'NAMO:0000001',
+         'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
+
+    cell_line: Optional[CellLine] = Field(default=None, description="""The cell line used in the culture system. References a genetically stable cultured cell population.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'slot_uri': 'CLO:0000031'} })
+    cell_line_lineage: Optional[str] = Field(default=None, description="""The lineage or derivation history of the cell line, including original tissue source and passage history.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    primary_cultured_cell: Optional[CellType] = Field(default=None, description="""Primary cells directly isolated from tissue, not from an established cell line. Reference to Cell Ontology term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    cell_culture_type: Optional[CellType] = Field(default=None, description="""The cell type being cultured, with ontology reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'CellularSystem'], 'slot_uri': 'EFO:0000324'} })
+    anatomical_origin: Optional[AnatomicalEntity] = Field(default=None, description="""The anatomical location from which cells were derived (e.g., lung, intestine).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'slot_uri': 'UBERON:0001062'} })
+    cell_culture_growth_mode: Optional[CellCultureGrowthModeEnum] = Field(default=None, description="""Mode of cell culture growth (adherent, suspension, ALI, 3D, etc.)""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'CellularSystem'],
+         'exact_mappings': ['CLO:0000030']} })
+    cell_line_modification: Optional[CellLineModificationEnum] = Field(default=None, description="""Genetic or other modifications applied to the cell line (e.g., transfection, CRISPR editing, viral transduction).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    induced_pluripotent_stem_cell_line: Optional[bool] = Field(default=None, description="""Whether this is an induced pluripotent stem cell (iPSC) line.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'exact_mappings': ['CLO:0037307']} })
+    culture_conditions: Optional[CellCultureConditions] = Field(default=None, description="""Detailed cell culture conditions including medium, environment, and timing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    culture_media: Optional[CellCultureMedium] = Field(default=None, description="""Cell culture medium formulation with supplements.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'CellularSystem']} })
+    environmental_measurements: Optional[list[EnvironmentalMeasurement]] = Field(default=[], description="""Collection of environmental condition measurements (CO2, O2, temperature, humidity, pH) for the culture system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'CellCultureConditions', 'CellularSystem']} })
+    mechanical_measurements: Optional[list[MechanicalMeasurement]] = Field(default=[], description="""Collection of mechanical stimulation measurements (stretch, shear, flow) for advanced culture systems like organ-on-chip.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'CellularSystem']} })
+    membrane_properties: Optional[list[MembranePropertyMeasurement]] = Field(default=[], description="""Collection of membrane property measurements (pore size, TEER) for transwell and organ-on-chip systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    model_species: Optional[Organism] = Field(default=None, description="""The species of origin for the cells in the model system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'ModelSystem']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+
+
+class TwoDCellCulture(CellularSystem):
+    """
+    Conventional monolayer cell cultures grown on flat surfaces. Includes adherent and suspension cultures in standard tissue culture vessels.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'NAMO:0000002',
+         'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
+         'id_prefixes': ['owg']})
+
+    substrate_type: Optional[SubstrateTypeEnum] = Field(default=None, description="""Type of culture substrate or surface material.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'TwoDCellCulture']} })
+    confluence_level: Optional[QuantityValue] = Field(default=None, description="""Confluence level of adherent culture as percentage.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TwoDCellCulture']} })
+    passage_number: Optional[int] = Field(default=None, description="""Cell passage number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'TwoDCellCulture'],
+         'exact_mappings': ['CLO:0000170']} })
+    seeding_density: Optional[QuantityValue] = Field(default=None, description="""Cell seeding density (cells per cm2 or per mL).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TwoDCellCulture']} })
+    coating: Optional[str] = Field(default=None, description="""Surface coating applied to membrane or substrate.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TwoDCellCulture']} })
+    cell_line: Optional[CellLine] = Field(default=None, description="""The cell line used in the culture system. References a genetically stable cultured cell population.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'slot_uri': 'CLO:0000031'} })
+    cell_line_lineage: Optional[str] = Field(default=None, description="""The lineage or derivation history of the cell line, including original tissue source and passage history.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    primary_cultured_cell: Optional[CellType] = Field(default=None, description="""Primary cells directly isolated from tissue, not from an established cell line. Reference to Cell Ontology term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    cell_culture_type: Optional[CellType] = Field(default=None, description="""The cell type being cultured, with ontology reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'CellularSystem'], 'slot_uri': 'EFO:0000324'} })
+    anatomical_origin: Optional[AnatomicalEntity] = Field(default=None, description="""The anatomical location from which cells were derived (e.g., lung, intestine).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'slot_uri': 'UBERON:0001062'} })
+    cell_culture_growth_mode: Optional[CellCultureGrowthModeEnum] = Field(default=None, description="""Mode of cell culture growth (adherent, suspension, ALI, 3D, etc.)""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'CellularSystem'],
+         'exact_mappings': ['CLO:0000030']} })
+    cell_line_modification: Optional[CellLineModificationEnum] = Field(default=None, description="""Genetic or other modifications applied to the cell line (e.g., transfection, CRISPR editing, viral transduction).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    induced_pluripotent_stem_cell_line: Optional[bool] = Field(default=None, description="""Whether this is an induced pluripotent stem cell (iPSC) line.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'exact_mappings': ['CLO:0037307']} })
+    culture_conditions: Optional[CellCultureConditions] = Field(default=None, description="""Detailed cell culture conditions including medium, environment, and timing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    culture_media: Optional[CellCultureMedium] = Field(default=None, description="""Cell culture medium formulation with supplements.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'CellularSystem']} })
+    environmental_measurements: Optional[list[EnvironmentalMeasurement]] = Field(default=[], description="""Collection of environmental condition measurements (CO2, O2, temperature, humidity, pH) for the culture system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'CellCultureConditions', 'CellularSystem']} })
+    mechanical_measurements: Optional[list[MechanicalMeasurement]] = Field(default=[], description="""Collection of mechanical stimulation measurements (stretch, shear, flow) for advanced culture systems like organ-on-chip.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'CellularSystem']} })
+    membrane_properties: Optional[list[MembranePropertyMeasurement]] = Field(default=[], description="""Collection of membrane property measurements (pore size, TEER) for transwell and organ-on-chip systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    model_species: Optional[Organism] = Field(default=None, description="""The species of origin for the cells in the model system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'ModelSystem']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+
+
+class ThreeDCellCulture(CellularSystem):
+    """
+    Three-dimensional cell culture systems including spheroids, organoids, and scaffold-based cultures. Provides enhanced physiological relevance with 3D architecture.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'NAMO:0000003',
+         'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
+         'id_prefixes': ['owg']})
+
+    three_d_architecture: Optional[ThreeDArchitectureEnum] = Field(default=None, description="""Type of 3D culture architecture (spheroid, organoid, scaffold-based, etc.)""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThreeDCellCulture']} })
+    matrix_composition: Optional[str] = Field(default=None, description="""Composition of the 3D matrix or scaffold material (e.g., Matrigel, collagen, alginate, synthetic hydrogel).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThreeDCellCulture']} })
+    size_range: Optional[QuantityRange] = Field(default=None, description="""Size range of 3D structures (diameter for spheroids/organoids).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThreeDCellCulture']} })
+    organoid_type: Optional[str] = Field(default=None, description="""Specific type of organoid (e.g., intestinal, cerebral, lung, liver).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThreeDCellCulture']} })
+    cell_line: Optional[CellLine] = Field(default=None, description="""The cell line used in the culture system. References a genetically stable cultured cell population.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'slot_uri': 'CLO:0000031'} })
+    cell_line_lineage: Optional[str] = Field(default=None, description="""The lineage or derivation history of the cell line, including original tissue source and passage history.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    primary_cultured_cell: Optional[CellType] = Field(default=None, description="""Primary cells directly isolated from tissue, not from an established cell line. Reference to Cell Ontology term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    cell_culture_type: Optional[CellType] = Field(default=None, description="""The cell type being cultured, with ontology reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'CellularSystem'], 'slot_uri': 'EFO:0000324'} })
+    anatomical_origin: Optional[AnatomicalEntity] = Field(default=None, description="""The anatomical location from which cells were derived (e.g., lung, intestine).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'slot_uri': 'UBERON:0001062'} })
+    cell_culture_growth_mode: Optional[CellCultureGrowthModeEnum] = Field(default=None, description="""Mode of cell culture growth (adherent, suspension, ALI, 3D, etc.)""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'CellularSystem'],
+         'exact_mappings': ['CLO:0000030']} })
+    cell_line_modification: Optional[CellLineModificationEnum] = Field(default=None, description="""Genetic or other modifications applied to the cell line (e.g., transfection, CRISPR editing, viral transduction).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    induced_pluripotent_stem_cell_line: Optional[bool] = Field(default=None, description="""Whether this is an induced pluripotent stem cell (iPSC) line.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'exact_mappings': ['CLO:0037307']} })
+    culture_conditions: Optional[CellCultureConditions] = Field(default=None, description="""Detailed cell culture conditions including medium, environment, and timing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    culture_media: Optional[CellCultureMedium] = Field(default=None, description="""Cell culture medium formulation with supplements.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'CellularSystem']} })
+    environmental_measurements: Optional[list[EnvironmentalMeasurement]] = Field(default=[], description="""Collection of environmental condition measurements (CO2, O2, temperature, humidity, pH) for the culture system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'CellCultureConditions', 'CellularSystem']} })
+    mechanical_measurements: Optional[list[MechanicalMeasurement]] = Field(default=[], description="""Collection of mechanical stimulation measurements (stretch, shear, flow) for advanced culture systems like organ-on-chip.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'CellularSystem']} })
+    membrane_properties: Optional[list[MembranePropertyMeasurement]] = Field(default=[], description="""Collection of membrane property measurements (pore size, TEER) for transwell and organ-on-chip systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    model_species: Optional[Organism] = Field(default=None, description="""The species of origin for the cells in the model system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'ModelSystem']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+
+
+class CoCulture(CellularSystem):
+    """
+    Co-culture systems combining multiple cell types to simulate tissue microenvironments and cell-cell interactions.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'NAMO:0000004',
+         'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
+         'id_prefixes': ['owg']})
+
+    coculture_configuration: Optional[CoCultureConfigurationEnum] = Field(default=None, description="""Physical configuration of co-culture (direct contact, transwell, microfluidic).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CoCulture']} })
+    cell_type_ratios: Optional[list[str]] = Field(default=[], description="""Ratios between different cell types in co-culture (e.g., \"epithelial:stromal = 3:1\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['CoCulture']} })
+    cell_line: Optional[CellLine] = Field(default=None, description="""The cell line used in the culture system. References a genetically stable cultured cell population.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'slot_uri': 'CLO:0000031'} })
+    cell_line_lineage: Optional[str] = Field(default=None, description="""The lineage or derivation history of the cell line, including original tissue source and passage history.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    primary_cultured_cell: Optional[CellType] = Field(default=None, description="""Primary cells directly isolated from tissue, not from an established cell line. Reference to Cell Ontology term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    cell_culture_type: Optional[CellType] = Field(default=None, description="""The cell type being cultured, with ontology reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'CellularSystem'], 'slot_uri': 'EFO:0000324'} })
+    anatomical_origin: Optional[AnatomicalEntity] = Field(default=None, description="""The anatomical location from which cells were derived (e.g., lung, intestine).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'slot_uri': 'UBERON:0001062'} })
+    cell_culture_growth_mode: Optional[CellCultureGrowthModeEnum] = Field(default=None, description="""Mode of cell culture growth (adherent, suspension, ALI, 3D, etc.)""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'CellularSystem'],
+         'exact_mappings': ['CLO:0000030']} })
+    cell_line_modification: Optional[CellLineModificationEnum] = Field(default=None, description="""Genetic or other modifications applied to the cell line (e.g., transfection, CRISPR editing, viral transduction).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    induced_pluripotent_stem_cell_line: Optional[bool] = Field(default=None, description="""Whether this is an induced pluripotent stem cell (iPSC) line.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'exact_mappings': ['CLO:0037307']} })
+    culture_conditions: Optional[CellCultureConditions] = Field(default=None, description="""Detailed cell culture conditions including medium, environment, and timing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    culture_media: Optional[CellCultureMedium] = Field(default=None, description="""Cell culture medium formulation with supplements.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'CellularSystem']} })
+    environmental_measurements: Optional[list[EnvironmentalMeasurement]] = Field(default=[], description="""Collection of environmental condition measurements (CO2, O2, temperature, humidity, pH) for the culture system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'CellCultureConditions', 'CellularSystem']} })
+    mechanical_measurements: Optional[list[MechanicalMeasurement]] = Field(default=[], description="""Collection of mechanical stimulation measurements (stretch, shear, flow) for advanced culture systems like organ-on-chip.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'CellularSystem']} })
+    membrane_properties: Optional[list[MembranePropertyMeasurement]] = Field(default=[], description="""Collection of membrane property measurements (pore size, TEER) for transwell and organ-on-chip systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    model_species: Optional[Organism] = Field(default=None, description="""The species of origin for the cells in the model system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'ModelSystem']} })
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+
+
 class Gene(BiologicalEntity):
     """
     A gene or genetic element
@@ -2006,6 +2634,18 @@ PhenotypeMeasurement.model_rebuild()
 AggregatedMeasurement.model_rebuild()
 GeneExpressionMeasurement.model_rebuild()
 ProteinExpressionMeasurement.model_rebuild()
+EnvironmentalMeasurement.model_rebuild()
+MechanicalMeasurement.model_rebuild()
+MembranePropertyMeasurement.model_rebuild()
+CellLine.model_rebuild()
+CellCultureConditions.model_rebuild()
+CellCultureMedium.model_rebuild()
+MediumSupplement.model_rebuild()
+ModelSystem.model_rebuild()
+CellularSystem.model_rebuild()
+TwoDCellCulture.model_rebuild()
+ThreeDCellCulture.model_rebuild()
+CoCulture.model_rebuild()
 Gene.model_rebuild()
 Protein.model_rebuild()
 CellType.model_rebuild()

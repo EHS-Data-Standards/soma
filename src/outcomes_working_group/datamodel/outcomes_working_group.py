@@ -1,42 +1,63 @@
 # Auto generated from outcomes_working_group.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-10T16:34:06
+# Generation date: 2026-01-10T17:55:22
 # Schema: outcomes_working_group
 #
 # id: https://w3id.org/EHS-Data-Standards/outcomes_working_group
 # description: A LinkML data model for representing biological measurements, assays, and experimental protocols in the context of outcomes research.
 # license: MIT
 
+import dataclasses
 import re
 from dataclasses import dataclass
+from datetime import (
+    date,
+    datetime,
+    time
+)
 from typing import (
     Any,
     ClassVar,
+    Dict,
+    List,
     Optional,
     Union
 )
 
 from jsonasobj2 import (
+    JsonObj,
     as_dict
 )
 from linkml_runtime.linkml_model.meta import (
     EnumDefinition,
-    PermissibleValue
+    PermissibleValue,
+    PvFormulaOptions
 )
 from linkml_runtime.utils.curienamespace import CurieNamespace
 from linkml_runtime.utils.enumerations import EnumDefinitionImpl
+from linkml_runtime.utils.formatutils import (
+    camelcase,
+    sfx,
+    underscore
+)
 from linkml_runtime.utils.metamodelcore import (
+    bnode,
     empty_dict,
     empty_list
 )
 from linkml_runtime.utils.slot import Slot
 from linkml_runtime.utils.yamlutils import (
-    YAMLRoot
+    YAMLRoot,
+    extended_float,
+    extended_int,
+    extended_str
 )
 from rdflib import (
+    Namespace,
     URIRef
 )
 
-from linkml_runtime.utils.metamodelcore import URIorCURIE, XSDDate
+from linkml_runtime.linkml_model.types import Boolean, Date, Float, Integer, String, Uriorcurie
+from linkml_runtime.utils.metamodelcore import Bool, URIorCURIE, XSDDate
 
 metamodel_version = "1.7.0"
 version = None
@@ -46,6 +67,7 @@ AOPWIKI = CurieNamespace('AOPWIKI', 'https://aopwiki.org/aops/')
 CHEBI = CurieNamespace('CHEBI', 'http://purl.obolibrary.org/obo/CHEBI_')
 CHEMBL_COMPOUND = CurieNamespace('CHEMBL_COMPOUND', 'http://identifiers.org/chembl.compound/')
 CL = CurieNamespace('CL', 'http://purl.obolibrary.org/obo/CL_')
+CLO = CurieNamespace('CLO', 'http://purl.obolibrary.org/obo/CLO_')
 CTD_CHEMICAL = CurieNamespace('CTD_CHEMICAL', 'http://ctdbase.org/detail.go?type=chem&acc=')
 CTD_GENE = CurieNamespace('CTD_GENE', 'http://ctdbase.org/detail.go?type=gene&acc=')
 DTXSID = CurieNamespace('DTXSID', 'https://comptox.epa.gov/dashboard/dsstoxdb/results?search=')
@@ -60,7 +82,9 @@ HHEAR = CurieNamespace('HHEAR', 'http://hadatac.org/ont/hhear#')
 HP = CurieNamespace('HP', 'http://purl.obolibrary.org/obo/HP_')
 MONDO = CurieNamespace('MONDO', 'http://purl.obolibrary.org/obo/MONDO_')
 MP = CurieNamespace('MP', 'http://purl.obolibrary.org/obo/MP_')
+NAMO = CurieNamespace('NAMO', 'http://purl.obolibrary.org/obo/NAMO_')
 NCBIGENE = CurieNamespace('NCBIGENE', 'https://www.ncbi.nlm.nih.gov/gene/')
+NCBITAXON = CurieNamespace('NCBITaxon', 'http://purl.obolibrary.org/obo/NCBITaxon_')
 NCIT = CurieNamespace('NCIT', 'http://purl.obolibrary.org/obo/NCIT_')
 NHANES = CurieNamespace('NHANES', 'https://wwwn.cdc.gov/Nchs/Nhanes/')
 OBI = CurieNamespace('OBI', 'http://purl.obolibrary.org/obo/OBI_')
@@ -217,6 +241,54 @@ class ProteinExpressionMeasurementId(MeasurementId):
     pass
 
 
+class EnvironmentalMeasurementId(MeasurementId):
+    pass
+
+
+class MechanicalMeasurementId(MeasurementId):
+    pass
+
+
+class MembranePropertyMeasurementId(MeasurementId):
+    pass
+
+
+class CellLineId(NamedThingId):
+    pass
+
+
+class CellCultureConditionsId(NamedThingId):
+    pass
+
+
+class CellCultureMediumId(NamedThingId):
+    pass
+
+
+class MediumSupplementId(NamedThingId):
+    pass
+
+
+class ModelSystemId(NamedThingId):
+    pass
+
+
+class CellularSystemId(ModelSystemId):
+    pass
+
+
+class TwoDCellCultureId(CellularSystemId):
+    pass
+
+
+class ThreeDCellCultureId(CellularSystemId):
+    pass
+
+
+class CoCultureId(CellularSystemId):
+    pass
+
+
 class GeneId(BiologicalEntityId):
     pass
 
@@ -328,6 +400,13 @@ class Container(YAMLRoot):
     households: Optional[Union[dict[Union[str, HouseholdId], Union[dict, "Household"]], list[Union[dict, "Household"]]]] = empty_dict()
     persons: Optional[Union[dict[Union[str, PersonId], Union[dict, "Person"]], list[Union[dict, "Person"]]]] = empty_dict()
     schools: Optional[Union[dict[Union[str, SchoolId], Union[dict, "School"]], list[Union[dict, "School"]]]] = empty_dict()
+    cellular_systems: Optional[Union[dict[Union[str, CellularSystemId], Union[dict, "CellularSystem"]], list[Union[dict, "CellularSystem"]]]] = empty_dict()
+    two_d_cell_cultures: Optional[Union[dict[Union[str, TwoDCellCultureId], Union[dict, "TwoDCellCulture"]], list[Union[dict, "TwoDCellCulture"]]]] = empty_dict()
+    three_d_cell_cultures: Optional[Union[dict[Union[str, ThreeDCellCultureId], Union[dict, "ThreeDCellCulture"]], list[Union[dict, "ThreeDCellCulture"]]]] = empty_dict()
+    co_cultures: Optional[Union[dict[Union[str, CoCultureId], Union[dict, "CoCulture"]], list[Union[dict, "CoCulture"]]]] = empty_dict()
+    cell_lines: Optional[Union[dict[Union[str, CellLineId], Union[dict, "CellLine"]], list[Union[dict, "CellLine"]]]] = empty_dict()
+    environmental_measurements: Optional[Union[dict[Union[str, EnvironmentalMeasurementId], Union[dict, "EnvironmentalMeasurement"]], list[Union[dict, "EnvironmentalMeasurement"]]]] = empty_dict()
+    mechanical_measurements: Optional[Union[dict[Union[str, MechanicalMeasurementId], Union[dict, "MechanicalMeasurement"]], list[Union[dict, "MechanicalMeasurement"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         self._normalize_inlined_as_list(slot_name="studies", slot_type=Study, key_name="id", keyed=True)
@@ -391,6 +470,20 @@ class Container(YAMLRoot):
         self._normalize_inlined_as_list(slot_name="persons", slot_type=Person, key_name="id", keyed=True)
 
         self._normalize_inlined_as_list(slot_name="schools", slot_type=School, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="cellular_systems", slot_type=CellularSystem, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="two_d_cell_cultures", slot_type=TwoDCellCulture, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="three_d_cell_cultures", slot_type=ThreeDCellCulture, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="co_cultures", slot_type=CoCulture, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="cell_lines", slot_type=CellLine, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="environmental_measurements", slot_type=EnvironmentalMeasurement, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="mechanical_measurements", slot_type=MechanicalMeasurement, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -1555,6 +1648,512 @@ class ProteinExpressionMeasurement(Measurement):
 
         if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
             self.measurement_date = XSDDate(self.measurement_date)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class EnvironmentalMeasurement(Measurement):
+    """
+    A measurement of environmental conditions for cell culture systems including temperature, CO2, O2 percentage,
+    humidity, and pH. Used to document incubator and culture conditions.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OWG["EnvironmentalMeasurement"]
+    class_class_curie: ClassVar[str] = "owg:EnvironmentalMeasurement"
+    class_name: ClassVar[str] = "EnvironmentalMeasurement"
+    class_model_uri: ClassVar[URIRef] = OWG.EnvironmentalMeasurement
+
+    id: Union[str, EnvironmentalMeasurementId] = None
+    observation_type: Optional[Union[str, "EnvironmentalMeasurementTypeEnum"]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, EnvironmentalMeasurementId):
+            self.id = EnvironmentalMeasurementId(self.id)
+
+        if self.observation_type is not None and not isinstance(self.observation_type, EnvironmentalMeasurementTypeEnum):
+            self.observation_type = EnvironmentalMeasurementTypeEnum(self.observation_type)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class MechanicalMeasurement(Measurement):
+    """
+    A measurement of mechanical stimulation parameters for advanced culture systems like organ-on-chip and
+    microphysiological systems. Includes stretch frequency/amplitude, shear stress, flow rate, and pressure.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OWG["MechanicalMeasurement"]
+    class_class_curie: ClassVar[str] = "owg:MechanicalMeasurement"
+    class_name: ClassVar[str] = "MechanicalMeasurement"
+    class_model_uri: ClassVar[URIRef] = OWG.MechanicalMeasurement
+
+    id: Union[str, MechanicalMeasurementId] = None
+    observation_type: Optional[Union[str, "MechanicalMeasurementTypeEnum"]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, MechanicalMeasurementId):
+            self.id = MechanicalMeasurementId(self.id)
+
+        if self.observation_type is not None and not isinstance(self.observation_type, MechanicalMeasurementTypeEnum):
+            self.observation_type = MechanicalMeasurementTypeEnum(self.observation_type)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class MembranePropertyMeasurement(Measurement):
+    """
+    A measurement of membrane properties for transwell, ALI, and organ-on-chip culture systems. Includes pore size,
+    pore density, thickness, surface area, and TEER.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OWG["MembranePropertyMeasurement"]
+    class_class_curie: ClassVar[str] = "owg:MembranePropertyMeasurement"
+    class_name: ClassVar[str] = "MembranePropertyMeasurement"
+    class_model_uri: ClassVar[URIRef] = OWG.MembranePropertyMeasurement
+
+    id: Union[str, MembranePropertyMeasurementId] = None
+    membrane_material: Optional[str] = None
+    observation_type: Optional[Union[str, "MembranePropertyTypeEnum"]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, MembranePropertyMeasurementId):
+            self.id = MembranePropertyMeasurementId(self.id)
+
+        if self.membrane_material is not None and not isinstance(self.membrane_material, str):
+            self.membrane_material = str(self.membrane_material)
+
+        if self.observation_type is not None and not isinstance(self.observation_type, MembranePropertyTypeEnum):
+            self.observation_type = MembranePropertyTypeEnum(self.observation_type)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CellLine(NamedThing):
+    """
+    A cell line - a genetically stable cultured cell population that contains individual cell line cells. Reference to
+    a specific cell line with identifiers from cell line repositories.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = CLO["0000031"]
+    class_class_curie: ClassVar[str] = "CLO:0000031"
+    class_name: ClassVar[str] = "CellLine"
+    class_model_uri: ClassVar[URIRef] = OWG.CellLine
+
+    id: Union[str, CellLineId] = None
+    cell_culture_type: Optional[Union[dict, "CellType"]] = None
+    model_species: Optional[Union[dict, "Organism"]] = None
+    tissue_origin: Optional[Union[dict, "AnatomicalEntity"]] = None
+    disease_state: Optional[Union[dict, Disease]] = None
+    supplier: Optional[str] = None
+    catalog_number: Optional[str] = None
+    authentication_method: Optional[str] = None
+    mycoplasma_status: Optional[str] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, CellLineId):
+            self.id = CellLineId(self.id)
+
+        if self.cell_culture_type is not None and not isinstance(self.cell_culture_type, CellType):
+            self.cell_culture_type = CellType(**as_dict(self.cell_culture_type))
+
+        if self.model_species is not None and not isinstance(self.model_species, Organism):
+            self.model_species = Organism(**as_dict(self.model_species))
+
+        if self.tissue_origin is not None and not isinstance(self.tissue_origin, AnatomicalEntity):
+            self.tissue_origin = AnatomicalEntity(**as_dict(self.tissue_origin))
+
+        if self.disease_state is not None and not isinstance(self.disease_state, Disease):
+            self.disease_state = Disease(**as_dict(self.disease_state))
+
+        if self.supplier is not None and not isinstance(self.supplier, str):
+            self.supplier = str(self.supplier)
+
+        if self.catalog_number is not None and not isinstance(self.catalog_number, str):
+            self.catalog_number = str(self.catalog_number)
+
+        if self.authentication_method is not None and not isinstance(self.authentication_method, str):
+            self.authentication_method = str(self.authentication_method)
+
+        if self.mycoplasma_status is not None and not isinstance(self.mycoplasma_status, str):
+            self.mycoplasma_status = str(self.mycoplasma_status)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CellCultureConditions(NamedThing):
+    """
+    Detailed cell culture parameters including medium, environment, and timing.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OWG["CellCultureConditions"]
+    class_class_curie: ClassVar[str] = "owg:CellCultureConditions"
+    class_name: ClassVar[str] = "CellCultureConditions"
+    class_model_uri: ClassVar[URIRef] = OWG.CellCultureConditions
+
+    id: Union[str, CellCultureConditionsId] = None
+    culture_media: Optional[Union[dict, "CellCultureMedium"]] = None
+    days_at_air_liquid_interface: Optional[int] = None
+    passage_number: Optional[int] = None
+    substrate_type: Optional[Union[str, "SubstrateTypeEnum"]] = None
+    cell_culture_growth_mode: Optional[Union[str, "CellCultureGrowthModeEnum"]] = None
+    environmental_measurements: Optional[Union[dict[Union[str, EnvironmentalMeasurementId], Union[dict, EnvironmentalMeasurement]], list[Union[dict, EnvironmentalMeasurement]]]] = empty_dict()
+    donor_count: Optional[int] = None
+    replicates_per_donor: Optional[int] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, CellCultureConditionsId):
+            self.id = CellCultureConditionsId(self.id)
+
+        if self.culture_media is not None and not isinstance(self.culture_media, CellCultureMedium):
+            self.culture_media = CellCultureMedium(**as_dict(self.culture_media))
+
+        if self.days_at_air_liquid_interface is not None and not isinstance(self.days_at_air_liquid_interface, int):
+            self.days_at_air_liquid_interface = int(self.days_at_air_liquid_interface)
+
+        if self.passage_number is not None and not isinstance(self.passage_number, int):
+            self.passage_number = int(self.passage_number)
+
+        if self.substrate_type is not None and not isinstance(self.substrate_type, SubstrateTypeEnum):
+            self.substrate_type = SubstrateTypeEnum(self.substrate_type)
+
+        if self.cell_culture_growth_mode is not None and not isinstance(self.cell_culture_growth_mode, CellCultureGrowthModeEnum):
+            self.cell_culture_growth_mode = CellCultureGrowthModeEnum(self.cell_culture_growth_mode)
+
+        self._normalize_inlined_as_list(slot_name="environmental_measurements", slot_type=EnvironmentalMeasurement, key_name="id", keyed=True)
+
+        if self.donor_count is not None and not isinstance(self.donor_count, int):
+            self.donor_count = int(self.donor_count)
+
+        if self.replicates_per_donor is not None and not isinstance(self.replicates_per_donor, int):
+            self.replicates_per_donor = int(self.replicates_per_donor)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CellCultureMedium(NamedThing):
+    """
+    Detailed formulation of cell culture medium including base medium and supplements.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OWG["CellCultureMedium"]
+    class_class_curie: ClassVar[str] = "owg:CellCultureMedium"
+    class_name: ClassVar[str] = "CellCultureMedium"
+    class_model_uri: ClassVar[URIRef] = OWG.CellCultureMedium
+
+    id: Union[str, CellCultureMediumId] = None
+    base_medium: Optional[str] = None
+    serum_type: Optional[str] = None
+    serum_concentration: Optional[Union[dict, QuantityValue]] = None
+    supplements: Optional[Union[dict[Union[str, MediumSupplementId], Union[dict, "MediumSupplement"]], list[Union[dict, "MediumSupplement"]]]] = empty_dict()
+    osmolality: Optional[Union[dict, QuantityValue]] = None
+    manufacturer: Optional[str] = None
+    catalog_number: Optional[str] = None
+    lot_number: Optional[str] = None
+    preparation_date: Optional[Union[str, XSDDate]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, CellCultureMediumId):
+            self.id = CellCultureMediumId(self.id)
+
+        if self.base_medium is not None and not isinstance(self.base_medium, str):
+            self.base_medium = str(self.base_medium)
+
+        if self.serum_type is not None and not isinstance(self.serum_type, str):
+            self.serum_type = str(self.serum_type)
+
+        if self.serum_concentration is not None and not isinstance(self.serum_concentration, QuantityValue):
+            self.serum_concentration = QuantityValue(**as_dict(self.serum_concentration))
+
+        self._normalize_inlined_as_list(slot_name="supplements", slot_type=MediumSupplement, key_name="id", keyed=True)
+
+        if self.osmolality is not None and not isinstance(self.osmolality, QuantityValue):
+            self.osmolality = QuantityValue(**as_dict(self.osmolality))
+
+        if self.manufacturer is not None and not isinstance(self.manufacturer, str):
+            self.manufacturer = str(self.manufacturer)
+
+        if self.catalog_number is not None and not isinstance(self.catalog_number, str):
+            self.catalog_number = str(self.catalog_number)
+
+        if self.lot_number is not None and not isinstance(self.lot_number, str):
+            self.lot_number = str(self.lot_number)
+
+        if self.preparation_date is not None and not isinstance(self.preparation_date, XSDDate):
+            self.preparation_date = XSDDate(self.preparation_date)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class MediumSupplement(NamedThing):
+    """
+    Supplement or additive to cell culture medium.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OWG["MediumSupplement"]
+    class_class_curie: ClassVar[str] = "owg:MediumSupplement"
+    class_name: ClassVar[str] = "MediumSupplement"
+    class_model_uri: ClassVar[URIRef] = OWG.MediumSupplement
+
+    id: Union[str, MediumSupplementId] = None
+    supplement_type: Optional[Union[str, "SupplementTypeEnum"]] = None
+    supplement_entity: Optional[Union[dict, ChemicalEntity]] = None
+    concentration: Optional[Union[dict, QuantityValue]] = None
+    manufacturer: Optional[str] = None
+    catalog_number: Optional[str] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, MediumSupplementId):
+            self.id = MediumSupplementId(self.id)
+
+        if self.supplement_type is not None and not isinstance(self.supplement_type, SupplementTypeEnum):
+            self.supplement_type = SupplementTypeEnum(self.supplement_type)
+
+        if self.supplement_entity is not None and not isinstance(self.supplement_entity, ChemicalEntity):
+            self.supplement_entity = ChemicalEntity(**as_dict(self.supplement_entity))
+
+        if self.concentration is not None and not isinstance(self.concentration, QuantityValue):
+            self.concentration = QuantityValue(**as_dict(self.concentration))
+
+        if self.manufacturer is not None and not isinstance(self.manufacturer, str):
+            self.manufacturer = str(self.manufacturer)
+
+        if self.catalog_number is not None and not isinstance(self.catalog_number, str):
+            self.catalog_number = str(self.catalog_number)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ModelSystem(NamedThing):
+    """
+    Abstract base class for model systems used in biomedical research. Encompasses cellular systems,
+    microphysiological systems, and in silico models.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NAMO["0000000"]
+    class_class_curie: ClassVar[str] = "NAMO:0000000"
+    class_name: ClassVar[str] = "ModelSystem"
+    class_model_uri: ClassVar[URIRef] = OWG.ModelSystem
+
+    id: Union[str, ModelSystemId] = None
+    model_species: Optional[Union[dict, "Organism"]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self.model_species is not None and not isinstance(self.model_species, Organism):
+            self.model_species = Organism(**as_dict(self.model_species))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CellularSystem(ModelSystem):
+    """
+    Cell-based model systems that use living cells to model biological processes. Includes 2D cultures, 3D systems,
+    and co-cultures. Abstract base class for specific culture types.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NAMO["0000001"]
+    class_class_curie: ClassVar[str] = "NAMO:0000001"
+    class_name: ClassVar[str] = "CellularSystem"
+    class_model_uri: ClassVar[URIRef] = OWG.CellularSystem
+
+    id: Union[str, CellularSystemId] = None
+    cell_line: Optional[Union[dict, CellLine]] = None
+    cell_line_lineage: Optional[str] = None
+    primary_cultured_cell: Optional[Union[dict, "CellType"]] = None
+    cell_culture_type: Optional[Union[dict, "CellType"]] = None
+    anatomical_origin: Optional[Union[dict, "AnatomicalEntity"]] = None
+    cell_culture_growth_mode: Optional[Union[str, "CellCultureGrowthModeEnum"]] = None
+    cell_line_modification: Optional[Union[str, "CellLineModificationEnum"]] = None
+    induced_pluripotent_stem_cell_line: Optional[Union[bool, Bool]] = None
+    culture_conditions: Optional[Union[dict, CellCultureConditions]] = None
+    culture_media: Optional[Union[dict, CellCultureMedium]] = None
+    environmental_measurements: Optional[Union[dict[Union[str, EnvironmentalMeasurementId], Union[dict, EnvironmentalMeasurement]], list[Union[dict, EnvironmentalMeasurement]]]] = empty_dict()
+    mechanical_measurements: Optional[Union[dict[Union[str, MechanicalMeasurementId], Union[dict, MechanicalMeasurement]], list[Union[dict, MechanicalMeasurement]]]] = empty_dict()
+    membrane_properties: Optional[Union[dict[Union[str, MembranePropertyMeasurementId], Union[dict, MembranePropertyMeasurement]], list[Union[dict, MembranePropertyMeasurement]]]] = empty_dict()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self.cell_line is not None and not isinstance(self.cell_line, CellLine):
+            self.cell_line = CellLine(**as_dict(self.cell_line))
+
+        if self.cell_line_lineage is not None and not isinstance(self.cell_line_lineage, str):
+            self.cell_line_lineage = str(self.cell_line_lineage)
+
+        if self.primary_cultured_cell is not None and not isinstance(self.primary_cultured_cell, CellType):
+            self.primary_cultured_cell = CellType(**as_dict(self.primary_cultured_cell))
+
+        if self.cell_culture_type is not None and not isinstance(self.cell_culture_type, CellType):
+            self.cell_culture_type = CellType(**as_dict(self.cell_culture_type))
+
+        if self.anatomical_origin is not None and not isinstance(self.anatomical_origin, AnatomicalEntity):
+            self.anatomical_origin = AnatomicalEntity(**as_dict(self.anatomical_origin))
+
+        if self.cell_culture_growth_mode is not None and not isinstance(self.cell_culture_growth_mode, CellCultureGrowthModeEnum):
+            self.cell_culture_growth_mode = CellCultureGrowthModeEnum(self.cell_culture_growth_mode)
+
+        if self.cell_line_modification is not None and not isinstance(self.cell_line_modification, CellLineModificationEnum):
+            self.cell_line_modification = CellLineModificationEnum(self.cell_line_modification)
+
+        if self.induced_pluripotent_stem_cell_line is not None and not isinstance(self.induced_pluripotent_stem_cell_line, Bool):
+            self.induced_pluripotent_stem_cell_line = Bool(self.induced_pluripotent_stem_cell_line)
+
+        if self.culture_conditions is not None and not isinstance(self.culture_conditions, CellCultureConditions):
+            self.culture_conditions = CellCultureConditions(**as_dict(self.culture_conditions))
+
+        if self.culture_media is not None and not isinstance(self.culture_media, CellCultureMedium):
+            self.culture_media = CellCultureMedium(**as_dict(self.culture_media))
+
+        self._normalize_inlined_as_list(slot_name="environmental_measurements", slot_type=EnvironmentalMeasurement, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="mechanical_measurements", slot_type=MechanicalMeasurement, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="membrane_properties", slot_type=MembranePropertyMeasurement, key_name="id", keyed=True)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class TwoDCellCulture(CellularSystem):
+    """
+    Conventional monolayer cell cultures grown on flat surfaces. Includes adherent and suspension cultures in standard
+    tissue culture vessels.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NAMO["0000002"]
+    class_class_curie: ClassVar[str] = "NAMO:0000002"
+    class_name: ClassVar[str] = "TwoDCellCulture"
+    class_model_uri: ClassVar[URIRef] = OWG.TwoDCellCulture
+
+    id: Union[str, TwoDCellCultureId] = None
+    substrate_type: Optional[Union[str, "SubstrateTypeEnum"]] = None
+    confluence_level: Optional[Union[dict, QuantityValue]] = None
+    passage_number: Optional[int] = None
+    seeding_density: Optional[Union[dict, QuantityValue]] = None
+    coating: Optional[str] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, TwoDCellCultureId):
+            self.id = TwoDCellCultureId(self.id)
+
+        if self.substrate_type is not None and not isinstance(self.substrate_type, SubstrateTypeEnum):
+            self.substrate_type = SubstrateTypeEnum(self.substrate_type)
+
+        if self.confluence_level is not None and not isinstance(self.confluence_level, QuantityValue):
+            self.confluence_level = QuantityValue(**as_dict(self.confluence_level))
+
+        if self.passage_number is not None and not isinstance(self.passage_number, int):
+            self.passage_number = int(self.passage_number)
+
+        if self.seeding_density is not None and not isinstance(self.seeding_density, QuantityValue):
+            self.seeding_density = QuantityValue(**as_dict(self.seeding_density))
+
+        if self.coating is not None and not isinstance(self.coating, str):
+            self.coating = str(self.coating)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ThreeDCellCulture(CellularSystem):
+    """
+    Three-dimensional cell culture systems including spheroids, organoids, and scaffold-based cultures. Provides
+    enhanced physiological relevance with 3D architecture.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NAMO["0000003"]
+    class_class_curie: ClassVar[str] = "NAMO:0000003"
+    class_name: ClassVar[str] = "ThreeDCellCulture"
+    class_model_uri: ClassVar[URIRef] = OWG.ThreeDCellCulture
+
+    id: Union[str, ThreeDCellCultureId] = None
+    three_d_architecture: Optional[Union[str, "ThreeDArchitectureEnum"]] = None
+    matrix_composition: Optional[str] = None
+    size_range: Optional[Union[dict, QuantityRange]] = None
+    organoid_type: Optional[str] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, ThreeDCellCultureId):
+            self.id = ThreeDCellCultureId(self.id)
+
+        if self.three_d_architecture is not None and not isinstance(self.three_d_architecture, ThreeDArchitectureEnum):
+            self.three_d_architecture = ThreeDArchitectureEnum(self.three_d_architecture)
+
+        if self.matrix_composition is not None and not isinstance(self.matrix_composition, str):
+            self.matrix_composition = str(self.matrix_composition)
+
+        if self.size_range is not None and not isinstance(self.size_range, QuantityRange):
+            self.size_range = QuantityRange(**as_dict(self.size_range))
+
+        if self.organoid_type is not None and not isinstance(self.organoid_type, str):
+            self.organoid_type = str(self.organoid_type)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CoCulture(CellularSystem):
+    """
+    Co-culture systems combining multiple cell types to simulate tissue microenvironments and cell-cell interactions.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NAMO["0000004"]
+    class_class_curie: ClassVar[str] = "NAMO:0000004"
+    class_name: ClassVar[str] = "CoCulture"
+    class_model_uri: ClassVar[URIRef] = OWG.CoCulture
+
+    id: Union[str, CoCultureId] = None
+    coculture_configuration: Optional[Union[str, "CoCultureConfigurationEnum"]] = None
+    cell_type_ratios: Optional[Union[str, list[str]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, CoCultureId):
+            self.id = CoCultureId(self.id)
+
+        if self.coculture_configuration is not None and not isinstance(self.coculture_configuration, CoCultureConfigurationEnum):
+            self.coculture_configuration = CoCultureConfigurationEnum(self.coculture_configuration)
+
+        if not isinstance(self.cell_type_ratios, list):
+            self.cell_type_ratios = [self.cell_type_ratios] if self.cell_type_ratios is not None else []
+        self.cell_type_ratios = [v if isinstance(v, str) else str(v) for v in self.cell_type_ratios]
 
         super().__post_init__(**kwargs)
 
@@ -2780,6 +3379,307 @@ class RelationshipToHouseholdHeadEnum(EnumDefinitionImpl):
         description="""Relationship of a person to the household head (householder) in census data. Based on PUMS RELP variable coding.""",
     )
 
+class EnvironmentalMeasurementTypeEnum(EnumDefinitionImpl):
+    """
+    Types of environmental conditions measured for cell culture systems. Used to constrain observation_type in
+    EnvironmentalMeasurement.
+    """
+    co2_percentage = PermissibleValue(
+        text="co2_percentage",
+        description="Carbon dioxide percentage in incubator atmosphere")
+    o2_percentage = PermissibleValue(
+        text="o2_percentage",
+        description="Oxygen percentage in incubator (for hypoxic cultures)")
+    temperature = PermissibleValue(
+        text="temperature",
+        description="Incubator or culture temperature",
+        meaning=PATO["0000146"])
+    humidity = PermissibleValue(
+        text="humidity",
+        description="Relative humidity in incubator",
+        meaning=PATO["0015009"])
+    nitrogen_balance = PermissibleValue(
+        text="nitrogen_balance",
+        description="Nitrogen percentage in atmosphere")
+    ph = PermissibleValue(
+        text="ph",
+        description="pH of culture medium",
+        meaning=PATO["0001842"])
+
+    _defn = EnumDefinition(
+        name="EnvironmentalMeasurementTypeEnum",
+        description="""Types of environmental conditions measured for cell culture systems. Used to constrain observation_type in EnvironmentalMeasurement.""",
+    )
+
+class MechanicalMeasurementTypeEnum(EnumDefinitionImpl):
+    """
+    Types of mechanical stimulation parameters for advanced culture systems like organ-on-chip and microphysiological
+    systems. Used to constrain observation_type in MechanicalMeasurement.
+    """
+    stretch_frequency = PermissibleValue(
+        text="stretch_frequency",
+        description="Frequency of cyclic mechanical stretch (Hz)")
+    stretch_amplitude = PermissibleValue(
+        text="stretch_amplitude",
+        description="Amplitude of mechanical stretch as percentage of original length")
+    shear_stress = PermissibleValue(
+        text="shear_stress",
+        description="Fluid shear stress applied to cells (dyn/cm2 or Pa)")
+    flow_rate = PermissibleValue(
+        text="flow_rate",
+        description="Fluid flow rate in microfluidic or perfusion systems")
+    perfusion_rate = PermissibleValue(
+        text="perfusion_rate",
+        description="Media perfusion rate for continuous culture systems")
+    pressure = PermissibleValue(
+        text="pressure",
+        description="Hydrostatic or pneumatic pressure",
+        meaning=PATO["0001025"])
+
+    _defn = EnumDefinition(
+        name="MechanicalMeasurementTypeEnum",
+        description="""Types of mechanical stimulation parameters for advanced culture systems like organ-on-chip and microphysiological systems. Used to constrain observation_type in MechanicalMeasurement.""",
+    )
+
+class MembranePropertyTypeEnum(EnumDefinitionImpl):
+    """
+    Types of membrane properties measured for transwell, ALI, and organ-on-chip culture systems. Used to constrain
+    observation_type in MembranePropertyMeasurement.
+    """
+    pore_size = PermissibleValue(
+        text="pore_size",
+        description="Diameter of membrane pores (typically in micrometers)")
+    pore_density = PermissibleValue(
+        text="pore_density",
+        description="Number of pores per unit area")
+    thickness = PermissibleValue(
+        text="thickness",
+        description="Membrane thickness",
+        meaning=PATO["0000915"])
+    surface_area = PermissibleValue(
+        text="surface_area",
+        description="Total membrane surface area")
+    teer = PermissibleValue(
+        text="teer",
+        description="Transepithelial electrical resistance")
+
+    _defn = EnumDefinition(
+        name="MembranePropertyTypeEnum",
+        description="""Types of membrane properties measured for transwell, ALI, and organ-on-chip culture systems. Used to constrain observation_type in MembranePropertyMeasurement.""",
+    )
+
+class CellCultureGrowthModeEnum(EnumDefinitionImpl):
+    """
+    Cell culture growth modes including traditional and advanced systems. Based on CLO cell culture growth mode terms.
+    """
+    adherent = PermissibleValue(
+        text="adherent",
+        description="Cells grow attached to a surface",
+        meaning=CLO["0000028"])
+    suspension = PermissibleValue(
+        text="suspension",
+        description="Cells grow suspended in culture medium",
+        meaning=CLO["0000029"])
+    air_liquid_interface = PermissibleValue(
+        text="air_liquid_interface",
+        description="Cells cultured at interface between air and liquid medium (ALI)",
+        meaning=OBI["0600047"])
+    three_dimensional = PermissibleValue(
+        text="three_dimensional",
+        description="Cells grown in 3D matrix or scaffold")
+    organoid = PermissibleValue(
+        text="organoid",
+        description="Self-organizing 3D tissue culture from stem cells")
+    spheroid = PermissibleValue(
+        text="spheroid",
+        description="Spherical cellular aggregates formed by self-aggregation")
+
+    _defn = EnumDefinition(
+        name="CellCultureGrowthModeEnum",
+        description="""Cell culture growth modes including traditional and advanced systems. Based on CLO cell culture growth mode terms.""",
+    )
+
+class SubstrateTypeEnum(EnumDefinitionImpl):
+    """
+    Types of cell culture substrates and surfaces. Includes traditional and advanced substrate materials.
+    """
+    plastic = PermissibleValue(
+        text="plastic",
+        description="Standard tissue culture-treated plastic")
+    collagen_coated = PermissibleValue(
+        text="collagen_coated",
+        description="Collagen-coated surface for enhanced cell attachment")
+    matrigel = PermissibleValue(
+        text="matrigel",
+        description="Basement membrane matrix (Matrigel/Geltrex)")
+    fibronectin_coated = PermissibleValue(
+        text="fibronectin_coated",
+        description="Fibronectin-coated surface")
+    laminin_coated = PermissibleValue(
+        text="laminin_coated",
+        description="Laminin-coated surface")
+    transwell_insert = PermissibleValue(
+        text="transwell_insert",
+        description="Permeable support for air-liquid interface culture")
+    hydrogel = PermissibleValue(
+        text="hydrogel",
+        description="Three-dimensional hydrogel matrix")
+    glass = PermissibleValue(
+        text="glass",
+        description="Glass surface or coverslip")
+    pdms = PermissibleValue(
+        text="pdms",
+        description="Polydimethylsiloxane (for microfluidics/organ-on-chip)")
+
+    _defn = EnumDefinition(
+        name="SubstrateTypeEnum",
+        description="""Types of cell culture substrates and surfaces. Includes traditional and advanced substrate materials.""",
+    )
+
+class SupplementTypeEnum(EnumDefinitionImpl):
+    """
+    Categories of cell culture medium supplements and additives.
+    """
+    growth_factor = PermissibleValue(
+        text="growth_factor",
+        description="Proteins that stimulate cell growth, proliferation, and differentiation",
+        meaning=CHEBI["23924"])
+    antibiotic = PermissibleValue(
+        text="antibiotic",
+        description="Antimicrobial substances used to prevent bacterial contamination",
+        meaning=CHEBI["33281"])
+    antifungal = PermissibleValue(
+        text="antifungal",
+        description="Antifungal agents to prevent fungal contamination",
+        meaning=CHEBI["35718"])
+    hormone = PermissibleValue(
+        text="hormone",
+        description="Signaling molecules that regulate cell physiology",
+        meaning=CHEBI["24621"])
+    vitamin = PermissibleValue(
+        text="vitamin",
+        description="Organic compounds essential for normal growth and nutrition",
+        meaning=CHEBI["33229"])
+    amino_acid = PermissibleValue(
+        text="amino_acid",
+        description="Amino acid supplements for protein synthesis",
+        meaning=CHEBI["33709"])
+    cytokine = PermissibleValue(
+        text="cytokine",
+        description="Small proteins important in cell signaling",
+        meaning=CHEBI["63895"])
+    buffer = PermissibleValue(
+        text="buffer",
+        description="pH buffering agents (HEPES, bicarbonate)",
+        meaning=CHEBI["35225"])
+    serum = PermissibleValue(
+        text="serum",
+        description="Serum supplements (FBS, human serum)")
+    differentiation_factor = PermissibleValue(
+        text="differentiation_factor",
+        description="Factors that induce or maintain cell differentiation")
+
+    _defn = EnumDefinition(
+        name="SupplementTypeEnum",
+        description="Categories of cell culture medium supplements and additives.",
+    )
+
+class CellLineModificationEnum(EnumDefinitionImpl):
+    """
+    Types of genetic or other modifications applied to cell lines.
+    """
+    none = PermissibleValue(
+        text="none",
+        description="Unmodified cell line")
+    transfection = PermissibleValue(
+        text="transfection",
+        description="Transient or stable DNA/RNA transfection")
+    viral_transduction = PermissibleValue(
+        text="viral_transduction",
+        description="Viral vector-mediated gene transfer (lentiviral, adenoviral, AAV)")
+    crispr_knockout = PermissibleValue(
+        text="crispr_knockout",
+        description="CRISPR/Cas9-mediated gene knockout")
+    crispr_knockin = PermissibleValue(
+        text="crispr_knockin",
+        description="CRISPR/Cas9-mediated gene knockin or base editing")
+    rnai = PermissibleValue(
+        text="rnai",
+        description="RNA interference-mediated gene knockdown (siRNA, shRNA)")
+    overexpression = PermissibleValue(
+        text="overexpression",
+        description="Stable or transient gene overexpression")
+    reporter = PermissibleValue(
+        text="reporter",
+        description="Reporter gene insertion (GFP, luciferase, fluorescent proteins)")
+    immortalization = PermissibleValue(
+        text="immortalization",
+        description="Immortalization of primary cells (hTERT, SV40, etc.)")
+
+    _defn = EnumDefinition(
+        name="CellLineModificationEnum",
+        description="Types of genetic or other modifications applied to cell lines.",
+    )
+
+class ThreeDArchitectureEnum(EnumDefinitionImpl):
+    """
+    Types of three-dimensional cell culture architectures.
+    """
+    spheroid = PermissibleValue(
+        text="spheroid",
+        description="Spherical cellular aggregates formed by self-aggregation")
+    organoid = PermissibleValue(
+        text="organoid",
+        description="Self-organizing 3D tissue derived from stem cells")
+    scaffold_based = PermissibleValue(
+        text="scaffold_based",
+        description="Cells grown on/in synthetic or natural scaffolds")
+    hydrogel_encapsulated = PermissibleValue(
+        text="hydrogel_encapsulated",
+        description="Cells encapsulated within hydrogel matrix")
+    bioprinted = PermissibleValue(
+        text="bioprinted",
+        description="3D bioprinted tissue constructs")
+    microcarrier = PermissibleValue(
+        text="microcarrier",
+        description="Cells grown on microcarrier beads in suspension")
+    hanging_drop = PermissibleValue(
+        text="hanging_drop",
+        description="Spheroids formed using hanging drop method")
+
+    _defn = EnumDefinition(
+        name="ThreeDArchitectureEnum",
+        description="Types of three-dimensional cell culture architectures.",
+    )
+
+class CoCultureConfigurationEnum(EnumDefinitionImpl):
+    """
+    Physical configurations for co-culture systems combining multiple cell types.
+    """
+    direct_contact = PermissibleValue(
+        text="direct_contact",
+        description="Cell types in direct physical contact on same surface")
+    transwell = PermissibleValue(
+        text="transwell",
+        description="Cell types separated by permeable membrane insert")
+    conditioned_medium = PermissibleValue(
+        text="conditioned_medium",
+        description="One cell type exposed to conditioned medium from another")
+    microfluidic = PermissibleValue(
+        text="microfluidic",
+        description="Cell types in separate microfluidic compartments with shared media")
+    spheroid_core_shell = PermissibleValue(
+        text="spheroid_core_shell",
+        description="One cell type forms core, another forms surrounding shell")
+    patterned = PermissibleValue(
+        text="patterned",
+        description="Cell types arranged in defined spatial patterns")
+
+    _defn = EnumDefinition(
+        name="CoCultureConfigurationEnum",
+        description="Physical configurations for co-culture systems combining multiple cell types.",
+    )
+
 # Slots
 class slots:
     pass
@@ -3264,6 +4164,159 @@ slots.relationship_to_household_head = Slot(uri=OWG.relationship_to_household_he
 slots.race = Slot(uri=OWG.race, name="race", curie=OWG.curie('race'),
                    model_uri=OWG.race, domain=None, range=Optional[str])
 
+slots.cell_line = Slot(uri=CLO['0000031'], name="cell_line", curie=CLO.curie('0000031'),
+                   model_uri=OWG.cell_line, domain=None, range=Optional[Union[dict, CellLine]])
+
+slots.cell_line_lineage = Slot(uri=OWG.cell_line_lineage, name="cell_line_lineage", curie=OWG.curie('cell_line_lineage'),
+                   model_uri=OWG.cell_line_lineage, domain=None, range=Optional[str])
+
+slots.cell_line_modification = Slot(uri=OWG.cell_line_modification, name="cell_line_modification", curie=OWG.curie('cell_line_modification'),
+                   model_uri=OWG.cell_line_modification, domain=None, range=Optional[Union[str, "CellLineModificationEnum"]])
+
+slots.induced_pluripotent_stem_cell_line = Slot(uri=OWG.induced_pluripotent_stem_cell_line, name="induced_pluripotent_stem_cell_line", curie=OWG.curie('induced_pluripotent_stem_cell_line'),
+                   model_uri=OWG.induced_pluripotent_stem_cell_line, domain=None, range=Optional[Union[bool, Bool]])
+
+slots.primary_cultured_cell = Slot(uri=OWG.primary_cultured_cell, name="primary_cultured_cell", curie=OWG.curie('primary_cultured_cell'),
+                   model_uri=OWG.primary_cultured_cell, domain=None, range=Optional[Union[dict, CellType]])
+
+slots.cell_culture_type = Slot(uri=EFO['0000324'], name="cell_culture_type", curie=EFO.curie('0000324'),
+                   model_uri=OWG.cell_culture_type, domain=None, range=Optional[Union[dict, CellType]])
+
+slots.anatomical_origin = Slot(uri=UBERON['0001062'], name="anatomical_origin", curie=UBERON.curie('0001062'),
+                   model_uri=OWG.anatomical_origin, domain=None, range=Optional[Union[dict, AnatomicalEntity]])
+
+slots.model_species = Slot(uri=OWG.model_species, name="model_species", curie=OWG.curie('model_species'),
+                   model_uri=OWG.model_species, domain=None, range=Optional[Union[dict, Organism]])
+
+slots.cell_culture_growth_mode = Slot(uri=OWG.cell_culture_growth_mode, name="cell_culture_growth_mode", curie=OWG.curie('cell_culture_growth_mode'),
+                   model_uri=OWG.cell_culture_growth_mode, domain=None, range=Optional[Union[str, "CellCultureGrowthModeEnum"]])
+
+slots.substrate_type = Slot(uri=OWG.substrate_type, name="substrate_type", curie=OWG.curie('substrate_type'),
+                   model_uri=OWG.substrate_type, domain=None, range=Optional[Union[str, "SubstrateTypeEnum"]])
+
+slots.culture_conditions = Slot(uri=OWG.culture_conditions, name="culture_conditions", curie=OWG.curie('culture_conditions'),
+                   model_uri=OWG.culture_conditions, domain=None, range=Optional[Union[dict, CellCultureConditions]])
+
+slots.culture_media = Slot(uri=OWG.culture_media, name="culture_media", curie=OWG.curie('culture_media'),
+                   model_uri=OWG.culture_media, domain=None, range=Optional[Union[dict, CellCultureMedium]])
+
+slots.environmental_measurements = Slot(uri=OWG.environmental_measurements, name="environmental_measurements", curie=OWG.curie('environmental_measurements'),
+                   model_uri=OWG.environmental_measurements, domain=None, range=Optional[Union[dict[Union[str, EnvironmentalMeasurementId], Union[dict, EnvironmentalMeasurement]], list[Union[dict, EnvironmentalMeasurement]]]])
+
+slots.mechanical_measurements = Slot(uri=OWG.mechanical_measurements, name="mechanical_measurements", curie=OWG.curie('mechanical_measurements'),
+                   model_uri=OWG.mechanical_measurements, domain=None, range=Optional[Union[dict[Union[str, MechanicalMeasurementId], Union[dict, MechanicalMeasurement]], list[Union[dict, MechanicalMeasurement]]]])
+
+slots.membrane_properties = Slot(uri=OWG.membrane_properties, name="membrane_properties", curie=OWG.curie('membrane_properties'),
+                   model_uri=OWG.membrane_properties, domain=None, range=Optional[Union[dict[Union[str, MembranePropertyMeasurementId], Union[dict, MembranePropertyMeasurement]], list[Union[dict, MembranePropertyMeasurement]]]])
+
+slots.three_d_architecture = Slot(uri=OWG.three_d_architecture, name="three_d_architecture", curie=OWG.curie('three_d_architecture'),
+                   model_uri=OWG.three_d_architecture, domain=None, range=Optional[Union[str, "ThreeDArchitectureEnum"]])
+
+slots.matrix_composition = Slot(uri=OWG.matrix_composition, name="matrix_composition", curie=OWG.curie('matrix_composition'),
+                   model_uri=OWG.matrix_composition, domain=None, range=Optional[str])
+
+slots.size_range = Slot(uri=OWG.size_range, name="size_range", curie=OWG.curie('size_range'),
+                   model_uri=OWG.size_range, domain=None, range=Optional[Union[dict, QuantityRange]])
+
+slots.organoid_type = Slot(uri=OWG.organoid_type, name="organoid_type", curie=OWG.curie('organoid_type'),
+                   model_uri=OWG.organoid_type, domain=None, range=Optional[str])
+
+slots.coculture_configuration = Slot(uri=OWG.coculture_configuration, name="coculture_configuration", curie=OWG.curie('coculture_configuration'),
+                   model_uri=OWG.coculture_configuration, domain=None, range=Optional[Union[str, "CoCultureConfigurationEnum"]])
+
+slots.cell_type_ratios = Slot(uri=OWG.cell_type_ratios, name="cell_type_ratios", curie=OWG.curie('cell_type_ratios'),
+                   model_uri=OWG.cell_type_ratios, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.membrane_material = Slot(uri=OWG.membrane_material, name="membrane_material", curie=OWG.curie('membrane_material'),
+                   model_uri=OWG.membrane_material, domain=None, range=Optional[str])
+
+slots.coating = Slot(uri=OWG.coating, name="coating", curie=OWG.curie('coating'),
+                   model_uri=OWG.coating, domain=None, range=Optional[str])
+
+slots.confluence_level = Slot(uri=OWG.confluence_level, name="confluence_level", curie=OWG.curie('confluence_level'),
+                   model_uri=OWG.confluence_level, domain=None, range=Optional[Union[dict, QuantityValue]])
+
+slots.seeding_density = Slot(uri=OWG.seeding_density, name="seeding_density", curie=OWG.curie('seeding_density'),
+                   model_uri=OWG.seeding_density, domain=None, range=Optional[Union[dict, QuantityValue]])
+
+slots.passage_number = Slot(uri=OWG.passage_number, name="passage_number", curie=OWG.curie('passage_number'),
+                   model_uri=OWG.passage_number, domain=None, range=Optional[int])
+
+slots.days_at_air_liquid_interface = Slot(uri=OWG.days_at_air_liquid_interface, name="days_at_air_liquid_interface", curie=OWG.curie('days_at_air_liquid_interface'),
+                   model_uri=OWG.days_at_air_liquid_interface, domain=None, range=Optional[int])
+
+slots.donor_count = Slot(uri=OWG.donor_count, name="donor_count", curie=OWG.curie('donor_count'),
+                   model_uri=OWG.donor_count, domain=None, range=Optional[int])
+
+slots.replicates_per_donor = Slot(uri=OWG.replicates_per_donor, name="replicates_per_donor", curie=OWG.curie('replicates_per_donor'),
+                   model_uri=OWG.replicates_per_donor, domain=None, range=Optional[int])
+
+slots.base_medium = Slot(uri=OWG.base_medium, name="base_medium", curie=OWG.curie('base_medium'),
+                   model_uri=OWG.base_medium, domain=None, range=Optional[str])
+
+slots.serum_type = Slot(uri=OWG.serum_type, name="serum_type", curie=OWG.curie('serum_type'),
+                   model_uri=OWG.serum_type, domain=None, range=Optional[str])
+
+slots.serum_concentration = Slot(uri=OWG.serum_concentration, name="serum_concentration", curie=OWG.curie('serum_concentration'),
+                   model_uri=OWG.serum_concentration, domain=None, range=Optional[Union[dict, QuantityValue]])
+
+slots.supplements = Slot(uri=OWG.supplements, name="supplements", curie=OWG.curie('supplements'),
+                   model_uri=OWG.supplements, domain=None, range=Optional[Union[dict[Union[str, MediumSupplementId], Union[dict, MediumSupplement]], list[Union[dict, MediumSupplement]]]])
+
+slots.osmolality = Slot(uri=OWG.osmolality, name="osmolality", curie=OWG.curie('osmolality'),
+                   model_uri=OWG.osmolality, domain=None, range=Optional[Union[dict, QuantityValue]])
+
+slots.manufacturer = Slot(uri=OWG.manufacturer, name="manufacturer", curie=OWG.curie('manufacturer'),
+                   model_uri=OWG.manufacturer, domain=None, range=Optional[str])
+
+slots.catalog_number = Slot(uri=OWG.catalog_number, name="catalog_number", curie=OWG.curie('catalog_number'),
+                   model_uri=OWG.catalog_number, domain=None, range=Optional[str])
+
+slots.lot_number = Slot(uri=OWG.lot_number, name="lot_number", curie=OWG.curie('lot_number'),
+                   model_uri=OWG.lot_number, domain=None, range=Optional[str])
+
+slots.preparation_date = Slot(uri=OWG.preparation_date, name="preparation_date", curie=OWG.curie('preparation_date'),
+                   model_uri=OWG.preparation_date, domain=None, range=Optional[Union[str, XSDDate]])
+
+slots.supplement_type = Slot(uri=OWG.supplement_type, name="supplement_type", curie=OWG.curie('supplement_type'),
+                   model_uri=OWG.supplement_type, domain=None, range=Optional[Union[str, "SupplementTypeEnum"]])
+
+slots.supplement_entity = Slot(uri=OWG.supplement_entity, name="supplement_entity", curie=OWG.curie('supplement_entity'),
+                   model_uri=OWG.supplement_entity, domain=None, range=Optional[Union[dict, ChemicalEntity]])
+
+slots.concentration = Slot(uri=OWG.concentration, name="concentration", curie=OWG.curie('concentration'),
+                   model_uri=OWG.concentration, domain=None, range=Optional[Union[dict, QuantityValue]])
+
+slots.tissue_origin = Slot(uri=OWG.tissue_origin, name="tissue_origin", curie=OWG.curie('tissue_origin'),
+                   model_uri=OWG.tissue_origin, domain=None, range=Optional[Union[dict, AnatomicalEntity]])
+
+slots.disease_state = Slot(uri=OWG.disease_state, name="disease_state", curie=OWG.curie('disease_state'),
+                   model_uri=OWG.disease_state, domain=None, range=Optional[Union[dict, Disease]])
+
+slots.supplier = Slot(uri=OWG.supplier, name="supplier", curie=OWG.curie('supplier'),
+                   model_uri=OWG.supplier, domain=None, range=Optional[str])
+
+slots.authentication_method = Slot(uri=OWG.authentication_method, name="authentication_method", curie=OWG.curie('authentication_method'),
+                   model_uri=OWG.authentication_method, domain=None, range=Optional[str])
+
+slots.mycoplasma_status = Slot(uri=OWG.mycoplasma_status, name="mycoplasma_status", curie=OWG.curie('mycoplasma_status'),
+                   model_uri=OWG.mycoplasma_status, domain=None, range=Optional[str])
+
+slots.cellular_systems = Slot(uri=OWG.cellular_systems, name="cellular_systems", curie=OWG.curie('cellular_systems'),
+                   model_uri=OWG.cellular_systems, domain=None, range=Optional[Union[dict[Union[str, CellularSystemId], Union[dict, CellularSystem]], list[Union[dict, CellularSystem]]]])
+
+slots.two_d_cell_cultures = Slot(uri=OWG.two_d_cell_cultures, name="two_d_cell_cultures", curie=OWG.curie('two_d_cell_cultures'),
+                   model_uri=OWG.two_d_cell_cultures, domain=None, range=Optional[Union[dict[Union[str, TwoDCellCultureId], Union[dict, TwoDCellCulture]], list[Union[dict, TwoDCellCulture]]]])
+
+slots.three_d_cell_cultures = Slot(uri=OWG.three_d_cell_cultures, name="three_d_cell_cultures", curie=OWG.curie('three_d_cell_cultures'),
+                   model_uri=OWG.three_d_cell_cultures, domain=None, range=Optional[Union[dict[Union[str, ThreeDCellCultureId], Union[dict, ThreeDCellCulture]], list[Union[dict, ThreeDCellCulture]]]])
+
+slots.co_cultures = Slot(uri=OWG.co_cultures, name="co_cultures", curie=OWG.curie('co_cultures'),
+                   model_uri=OWG.co_cultures, domain=None, range=Optional[Union[dict[Union[str, CoCultureId], Union[dict, CoCulture]], list[Union[dict, CoCulture]]]])
+
+slots.cell_lines = Slot(uri=OWG.cell_lines, name="cell_lines", curie=OWG.curie('cell_lines'),
+                   model_uri=OWG.cell_lines, domain=None, range=Optional[Union[dict[Union[str, CellLineId], Union[dict, CellLine]], list[Union[dict, CellLine]]]])
+
 slots.quantityValue__unit = Slot(uri=OWG.unit, name="quantityValue__unit", curie=OWG.curie('unit'),
                    model_uri=OWG.quantityValue__unit, domain=None, range=Optional[Union[dict, Unit]])
 
@@ -3281,6 +4334,15 @@ slots.Participant_age = Slot(uri=OWG.age, name="Participant_age", curie=OWG.curi
 
 slots.Participant_sex = Slot(uri=OWG.sex, name="Participant_sex", curie=OWG.curie('sex'),
                    model_uri=OWG.Participant_sex, domain=Participant, range=Optional[Union[str, "SexEnum"]])
+
+slots.EnvironmentalMeasurement_observation_type = Slot(uri=OWG.observation_type, name="EnvironmentalMeasurement_observation_type", curie=OWG.curie('observation_type'),
+                   model_uri=OWG.EnvironmentalMeasurement_observation_type, domain=EnvironmentalMeasurement, range=Optional[Union[str, "EnvironmentalMeasurementTypeEnum"]])
+
+slots.MechanicalMeasurement_observation_type = Slot(uri=OWG.observation_type, name="MechanicalMeasurement_observation_type", curie=OWG.curie('observation_type'),
+                   model_uri=OWG.MechanicalMeasurement_observation_type, domain=MechanicalMeasurement, range=Optional[Union[str, "MechanicalMeasurementTypeEnum"]])
+
+slots.MembranePropertyMeasurement_observation_type = Slot(uri=OWG.observation_type, name="MembranePropertyMeasurement_observation_type", curie=OWG.curie('observation_type'),
+                   model_uri=OWG.MembranePropertyMeasurement_observation_type, domain=MembranePropertyMeasurement, range=Optional[Union[str, "MembranePropertyTypeEnum"]])
 
 slots.Person_age = Slot(uri=OWG.age, name="Person_age", curie=OWG.curie('age'),
                    model_uri=OWG.Person_age, domain=Person, range=Optional[int])

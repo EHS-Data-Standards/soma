@@ -42,6 +42,12 @@ prefixes:
   OBI: http://purl.obolibrary.org/obo/OBI_
   GO: http://purl.obolibrary.org/obo/GO_
   PR: http://purl.obolibrary.org/obo/PR_
+  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
+  CLO: http://purl.obolibrary.org/obo/CLO_
+
+  # New Approach Methodologies Ontology
+  NAMO: http://purl.obolibrary.org/obo/NAMO_
+
   fhir: http://hl7.org/fhir/
   qudt: http://qudt.org/vocab/unit/
   UCUM: http://unitsofmeasure.org/
@@ -102,6 +108,14 @@ classes:
         - households
         - persons
         - schools
+        # Cell culture and model system entities
+        - cellular_systems
+        - two_d_cell_cultures
+        - three_d_cell_cultures
+        - co_cultures
+        - cell_lines
+        - environmental_measurements
+        - mechanical_measurements
 
 
   NamedThing:
@@ -463,6 +477,193 @@ classes:
       - normalization_reference
       - participant
       - measurement_date
+
+  # ==========================================================================
+  # Cell Culture Environment and Mechanical Measurements
+  # ==========================================================================
+
+  EnvironmentalMeasurement:
+    is_a: Measurement
+    description: >-
+      A measurement of environmental conditions for cell culture systems
+      including temperature, CO2, O2 percentage, humidity, and pH.
+      Used to document incubator and culture conditions.
+    slot_usage:
+      observation_type:
+        range: EnvironmentalMeasurementTypeEnum
+        description: The type of environmental parameter measured.
+
+  MechanicalMeasurement:
+    is_a: Measurement
+    description: >-
+      A measurement of mechanical stimulation parameters for advanced culture
+      systems like organ-on-chip and microphysiological systems. Includes
+      stretch frequency/amplitude, shear stress, flow rate, and pressure.
+    slot_usage:
+      observation_type:
+        range: MechanicalMeasurementTypeEnum
+        description: The type of mechanical parameter measured.
+
+  MembranePropertyMeasurement:
+    is_a: Measurement
+    description: >-
+      A measurement of membrane properties for transwell, ALI, and
+      organ-on-chip culture systems. Includes pore size, pore density,
+      thickness, surface area, and TEER.
+    slots:
+      - membrane_material
+    slot_usage:
+      observation_type:
+        range: MembranePropertyTypeEnum
+        description: The type of membrane property measured.
+
+  # ==========================================================================
+  # Cell Culture Supporting Classes
+  # ==========================================================================
+
+  CellLine:
+    is_a: NamedThing
+    class_uri: CLO:0000031
+    description: >-
+      A cell line - a genetically stable cultured cell population that
+      contains individual cell line cells. Reference to a specific cell line
+      with identifiers from cell line repositories.
+    slots:
+      - cell_culture_type
+      - model_species
+      - tissue_origin
+      - disease_state
+      - supplier
+      - catalog_number
+      - authentication_method
+      - mycoplasma_status
+    id_prefixes:
+      - CLO
+
+  CellCultureConditions:
+    is_a: NamedThing
+    exact_mappings:
+      - CLO:0037334  # Cell culture condition
+    description: >-
+      Detailed cell culture parameters including medium, environment, and timing.
+    slots:
+      - culture_media
+      - days_at_air_liquid_interface
+      - passage_number
+      - substrate_type
+      - cell_culture_growth_mode
+      - environmental_measurements
+      - donor_count
+      - replicates_per_donor
+
+  CellCultureMedium:
+    is_a: NamedThing
+    description: >-
+      Detailed formulation of cell culture medium including base medium
+      and supplements.
+    slots:
+      - base_medium
+      - serum_type
+      - serum_concentration
+      - supplements
+      - osmolality
+      - manufacturer
+      - catalog_number
+      - lot_number
+      - preparation_date
+
+  MediumSupplement:
+    is_a: NamedThing
+    description: >-
+      Supplement or additive to cell culture medium.
+    slots:
+      - supplement_type
+      - supplement_entity
+      - concentration
+      - manufacturer
+      - catalog_number
+
+  # ==========================================================================
+  # Model System Class Hierarchy
+  # ==========================================================================
+
+  ModelSystem:
+    abstract: true
+    is_a: NamedThing
+    class_uri: NAMO:0000000
+    description: >-
+      Abstract base class for model systems used in biomedical research.
+      Encompasses cellular systems, microphysiological systems, and in silico models.
+    slots:
+      - model_species
+
+  CellularSystem:
+    abstract: true
+    is_a: ModelSystem
+    class_uri: NAMO:0000001
+    description: >-
+      Cell-based model systems that use living cells to model biological processes.
+      Includes 2D cultures, 3D systems, and co-cultures. Abstract base class for
+      specific culture types.
+    slots:
+      # Cell identity
+      - cell_line
+      - cell_line_lineage
+      - primary_cultured_cell
+      - cell_culture_type
+      - anatomical_origin
+      # Culture properties
+      - cell_culture_growth_mode
+      - cell_line_modification
+      - induced_pluripotent_stem_cell_line
+      - culture_conditions
+      - culture_media
+      # Measurements
+      - environmental_measurements
+      - mechanical_measurements
+      - membrane_properties
+
+  TwoDCellCulture:
+    is_a: CellularSystem
+    class_uri: NAMO:0000002
+    description: >-
+      Conventional monolayer cell cultures grown on flat surfaces.
+      Includes adherent and suspension cultures in standard tissue culture vessels.
+    slots:
+      - substrate_type
+      - confluence_level
+      - passage_number
+      - seeding_density
+      - coating
+    id_prefixes:
+      - owg
+
+  ThreeDCellCulture:
+    is_a: CellularSystem
+    class_uri: NAMO:0000003
+    description: >-
+      Three-dimensional cell culture systems including spheroids, organoids,
+      and scaffold-based cultures. Provides enhanced physiological relevance
+      with 3D architecture.
+    slots:
+      - three_d_architecture
+      - matrix_composition
+      - size_range
+      - organoid_type
+    id_prefixes:
+      - owg
+
+  CoCulture:
+    is_a: CellularSystem
+    class_uri: NAMO:0000004
+    description: >-
+      Co-culture systems combining multiple cell types to simulate tissue
+      microenvironments and cell-cell interactions.
+    slots:
+      - coculture_configuration
+      - cell_type_ratios
+    id_prefixes:
+      - owg
 
   Gene:
     is_a: BiologicalEntity
@@ -1567,6 +1768,323 @@ slots:
       Race of the person. Derived from census race categories.
     range: string
 
+  # ============================================================================
+  # Cell Culture and Model System Slots
+  # ============================================================================
+
+  # Cell identity slots
+  cell_line:
+    range: CellLine
+    slot_uri: CLO:0000031
+    description: >-
+      The cell line used in the culture system. References a genetically stable
+      cultured cell population.
+    inlined: true
+
+  cell_line_lineage:
+    range: string
+    description: >-
+      The lineage or derivation history of the cell line, including original
+      tissue source and passage history.
+
+  cell_line_modification:
+    range: CellLineModificationEnum
+    description: >-
+      Genetic or other modifications applied to the cell line
+      (e.g., transfection, CRISPR editing, viral transduction).
+
+  induced_pluripotent_stem_cell_line:
+    range: boolean
+    description: >-
+      Whether this is an induced pluripotent stem cell (iPSC) line.
+    exact_mappings:
+      - CLO:0037307  # induced pluripotent stem cell line cell
+
+  primary_cultured_cell:
+    range: CellType
+    description: >-
+      Primary cells directly isolated from tissue, not from an established cell line.
+      Reference to Cell Ontology term.
+    inlined: true
+
+  cell_culture_type:
+    range: CellType
+    slot_uri: EFO:0000324
+    description: >-
+      The cell type being cultured, with ontology reference.
+    inlined: true
+
+  anatomical_origin:
+    range: AnatomicalEntity
+    slot_uri: UBERON:0001062
+    description: >-
+      The anatomical location from which cells were derived (e.g., lung, intestine).
+    inlined: true
+
+  model_species:
+    range: Organism
+    description: >-
+      The species of origin for the cells in the model system.
+    inlined: true
+
+  # Culture property slots
+  cell_culture_growth_mode:
+    range: CellCultureGrowthModeEnum
+    exact_mappings:
+      - CLO:0000030
+    description: >-
+      Mode of cell culture growth (adherent, suspension, ALI, 3D, etc.)
+
+  substrate_type:
+    range: SubstrateTypeEnum
+    description: >-
+      Type of culture substrate or surface material.
+
+  culture_conditions:
+    range: CellCultureConditions
+    description: >-
+      Detailed cell culture conditions including medium, environment, and timing.
+    inlined: true
+
+  culture_media:
+    range: CellCultureMedium
+    description: >-
+      Cell culture medium formulation with supplements.
+    inlined: true
+
+  # Measurement collection slots
+  environmental_measurements:
+    range: EnvironmentalMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Collection of environmental condition measurements (CO2, O2, temperature,
+      humidity, pH) for the culture system.
+
+  mechanical_measurements:
+    range: MechanicalMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Collection of mechanical stimulation measurements (stretch, shear, flow)
+      for advanced culture systems like organ-on-chip.
+
+  membrane_properties:
+    range: MembranePropertyMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Collection of membrane property measurements (pore size, TEER) for
+      transwell and organ-on-chip systems.
+
+  # 3D culture slots
+  three_d_architecture:
+    range: ThreeDArchitectureEnum
+    description: >-
+      Type of 3D culture architecture (spheroid, organoid, scaffold-based, etc.)
+
+  matrix_composition:
+    range: string
+    description: >-
+      Composition of the 3D matrix or scaffold material (e.g., Matrigel,
+      collagen, alginate, synthetic hydrogel).
+
+  size_range:
+    range: QuantityRange
+    description: >-
+      Size range of 3D structures (diameter for spheroids/organoids).
+    inlined: true
+
+  organoid_type:
+    range: string
+    description: >-
+      Specific type of organoid (e.g., intestinal, cerebral, lung, liver).
+
+  # Co-culture slots
+  coculture_configuration:
+    range: CoCultureConfigurationEnum
+    description: >-
+      Physical configuration of co-culture (direct contact, transwell, microfluidic).
+
+  cell_type_ratios:
+    range: string
+    multivalued: true
+    description: >-
+      Ratios between different cell types in co-culture (e.g., "epithelial:stromal = 3:1").
+
+  # Membrane and mechanical slots
+  membrane_material:
+    range: string
+    description: >-
+      Material of the porous membrane (e.g., PET, polycarbonate, PDMS).
+
+  coating:
+    range: string
+    description: >-
+      Surface coating applied to membrane or substrate.
+
+  # Additional culture parameter slots
+  confluence_level:
+    range: QuantityValue
+    description: >-
+      Confluence level of adherent culture as percentage.
+    inlined: true
+
+  seeding_density:
+    range: QuantityValue
+    description: >-
+      Cell seeding density (cells per cm2 or per mL).
+    inlined: true
+
+  passage_number:
+    range: integer
+    description: >-
+      Cell passage number.
+    exact_mappings:
+      - CLO:0000170  # cell passage capability
+
+  days_at_air_liquid_interface:
+    range: integer
+    description: >-
+      Number of days cells have been cultured at air-liquid interface (ALI).
+
+  donor_count:
+    range: integer
+    description: >-
+      Number of unique cell donors used in the experiment.
+
+  replicates_per_donor:
+    range: integer
+    description: >-
+      Number of biological replicates per donor.
+
+  # Supporting class slots for CellCultureMedium
+  base_medium:
+    range: string
+    description: >-
+      Base medium type (e.g., DMEM, RPMI 1640, Ham's F-12, BEGM).
+
+  serum_type:
+    range: string
+    description: >-
+      Type of serum used (e.g., FBS, human serum, serum-free).
+
+  serum_concentration:
+    range: QuantityValue
+    description: >-
+      Serum concentration as percentage.
+    inlined: true
+
+  supplements:
+    range: MediumSupplement
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      List of medium supplements with concentrations.
+
+  osmolality:
+    range: QuantityValue
+    description: >-
+      Osmolality of the medium in mOsm/kg.
+    inlined: true
+
+  manufacturer:
+    range: string
+    description: >-
+      Manufacturer of the product.
+
+  catalog_number:
+    range: string
+    description: >-
+      Catalog number from manufacturer.
+
+  lot_number:
+    range: string
+    description: >-
+      Lot or batch number.
+
+  preparation_date:
+    range: date
+    description: >-
+      Date when medium was prepared.
+
+  # Supplement slots
+  supplement_type:
+    range: SupplementTypeEnum
+    description: >-
+      Category of supplement (growth factor, antibiotic, hormone, vitamin, etc.)
+
+  supplement_entity:
+    range: ChemicalEntity
+    description: >-
+      The chemical entity representing the supplement.
+    inlined: true
+
+  concentration:
+    range: QuantityValue
+    description: >-
+      Concentration of supplement or reagent.
+    inlined: true
+
+  # CellLine reference slots
+  tissue_origin:
+    range: AnatomicalEntity
+    description: >-
+      Tissue from which the cell line was derived.
+    inlined: true
+
+  disease_state:
+    range: Disease
+    description: >-
+      Disease state of the cell line donor (if applicable).
+    inlined: true
+
+  supplier:
+    range: string
+    description: >-
+      Supplier or repository of the cell line (e.g., ATCC, Coriell).
+
+  authentication_method:
+    range: string
+    description: >-
+      Method used to authenticate the cell line (e.g., STR profiling).
+
+  mycoplasma_status:
+    range: string
+    description: >-
+      Mycoplasma testing status (positive, negative, not tested).
+
+  # Collection slots for Container
+  cellular_systems:
+    range: CellularSystem
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of cellular systems.
+
+  two_d_cell_cultures:
+    range: TwoDCellCulture
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of 2D cell cultures.
+
+  three_d_cell_cultures:
+    range: ThreeDCellCulture
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of 3D cell cultures.
+
+  co_cultures:
+    range: CoCulture
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of co-cultures.
+
+  cell_lines:
+    range: CellLine
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of cell lines.
+
 enums:
 
   ExposureRouteEnum:
@@ -1965,4 +2483,268 @@ enums:
         description: Foster parent
       other_nonrelative:
         description: Other non-relative
+
+  # ============================================================================
+  # Cell Culture and Model System Enums
+  # ============================================================================
+
+  EnvironmentalMeasurementTypeEnum:
+    description: >-
+      Types of environmental conditions measured for cell culture systems.
+      Used to constrain observation_type in EnvironmentalMeasurement.
+    permissible_values:
+      co2_percentage:
+        description: Carbon dioxide percentage in incubator atmosphere
+        broad_mappings:
+          - PATO:0000033  # concentration of
+      o2_percentage:
+        description: Oxygen percentage in incubator (for hypoxic cultures)
+        broad_mappings:
+          - PATO:0000033  # concentration of
+      temperature:
+        description: Incubator or culture temperature
+        meaning: PATO:0000146
+      humidity:
+        description: Relative humidity in incubator
+        meaning: PATO:0015009
+      nitrogen_balance:
+        description: Nitrogen percentage in atmosphere
+        broad_mappings:
+          - PATO:0000033  # concentration of
+      ph:
+        description: pH of culture medium
+        meaning: PATO:0001842
+
+  MechanicalMeasurementTypeEnum:
+    description: >-
+      Types of mechanical stimulation parameters for advanced culture systems
+      like organ-on-chip and microphysiological systems.
+      Used to constrain observation_type in MechanicalMeasurement.
+    permissible_values:
+      stretch_frequency:
+        description: Frequency of cyclic mechanical stretch (Hz)
+        broad_mappings:
+          - PATO:0000044  # frequency
+      stretch_amplitude:
+        description: Amplitude of mechanical stretch as percentage of original length
+        broad_mappings:
+          - PATO:0000070  # amount
+      shear_stress:
+        description: Fluid shear stress applied to cells (dyn/cm2 or Pa)
+        broad_mappings:
+          - PATO:0001025  # pressure
+      flow_rate:
+        description: Fluid flow rate in microfluidic or perfusion systems
+        broad_mappings:
+          - PATO:0000161  # rate
+      perfusion_rate:
+        description: Media perfusion rate for continuous culture systems
+        broad_mappings:
+          - PATO:0000161  # rate
+      pressure:
+        description: Hydrostatic or pneumatic pressure
+        meaning: PATO:0001025
+
+  MembranePropertyTypeEnum:
+    description: >-
+      Types of membrane properties measured for transwell, ALI,
+      and organ-on-chip culture systems.
+      Used to constrain observation_type in MembranePropertyMeasurement.
+    permissible_values:
+      pore_size:
+        description: Diameter of membrane pores (typically in micrometers)
+        broad_mappings:
+          - PATO:0001323  # size
+      pore_density:
+        description: Number of pores per unit area
+        broad_mappings:
+          - PATO:0001351  # density
+      thickness:
+        description: Membrane thickness
+        meaning: PATO:0000915
+      surface_area:
+        description: Total membrane surface area
+        broad_mappings:
+          - PATO:0001323  # size
+      teer:
+        description: Transepithelial electrical resistance
+        broad_mappings:
+          - PATO:0001025  # pressure (electrical resistance)
+
+  CellCultureGrowthModeEnum:
+    description: >-
+      Cell culture growth modes including traditional and advanced systems.
+      Based on CLO cell culture growth mode terms.
+    permissible_values:
+      adherent:
+        description: Cells grow attached to a surface
+        meaning: CLO:0000028
+      suspension:
+        description: Cells grow suspended in culture medium
+        meaning: CLO:0000029
+      air_liquid_interface:
+        description: Cells cultured at interface between air and liquid medium (ALI)
+        meaning: OBI:0600047
+      three_dimensional:
+        description: Cells grown in 3D matrix or scaffold
+      organoid:
+        description: Self-organizing 3D tissue culture from stem cells
+      spheroid:
+        description: Spherical cellular aggregates formed by self-aggregation
+
+  SubstrateTypeEnum:
+    description: >-
+      Types of cell culture substrates and surfaces.
+      Includes traditional and advanced substrate materials.
+    permissible_values:
+      plastic:
+        description: Standard tissue culture-treated plastic
+        broad_mappings:
+          - OBI:0000953  # processed material
+      collagen_coated:
+        description: Collagen-coated surface for enhanced cell attachment
+        related_mappings:
+          - CHEBI:3815  # collagen
+        broad_mappings:
+          - OBI:0100031  # biomaterial
+      matrigel:
+        description: Basement membrane matrix (Matrigel/Geltrex)
+        narrow_mappings:
+          - OBI:0100031  # biomaterial
+        related_mappings:
+          - GO:0005604  # basement membrane
+      fibronectin_coated:
+        description: Fibronectin-coated surface
+        related_mappings:
+          - PR:000007245  # fibronectin
+        broad_mappings:
+          - OBI:0100031  # biomaterial
+      laminin_coated:
+        description: Laminin-coated surface
+        related_mappings:
+          - GO:0043256  # laminin complex
+        broad_mappings:
+          - OBI:0100031  # biomaterial
+      transwell_insert:
+        description: Permeable support for air-liquid interface culture
+        exact_mappings:
+          - OBI:0001950  # cell culture insert
+      hydrogel:
+        description: Three-dimensional hydrogel matrix
+        exact_mappings:
+          - CHEBI:17790  # hydrogel
+      glass:
+        description: Glass surface or coverslip
+        exact_mappings:
+          - CHEBI:131189  # glass
+      pdms:
+        description: Polydimethylsiloxane (for microfluidics/organ-on-chip)
+        broad_mappings:
+          - CHEBI:46669  # polysiloxane
+
+  SupplementTypeEnum:
+    description: >-
+      Categories of cell culture medium supplements and additives.
+    permissible_values:
+      growth_factor:
+        description: Proteins that stimulate cell growth, proliferation, and differentiation
+        meaning: CHEBI:23924
+      antibiotic:
+        description: Antimicrobial substances used to prevent bacterial contamination
+        meaning: CHEBI:33281
+      antifungal:
+        description: Antifungal agents to prevent fungal contamination
+        meaning: CHEBI:35718
+      hormone:
+        description: Signaling molecules that regulate cell physiology
+        meaning: CHEBI:24621
+      vitamin:
+        description: Organic compounds essential for normal growth and nutrition
+        meaning: CHEBI:33229
+      amino_acid:
+        description: Amino acid supplements for protein synthesis
+        meaning: CHEBI:33709
+      cytokine:
+        description: Small proteins important in cell signaling
+        meaning: CHEBI:63895
+      buffer:
+        description: pH buffering agents (HEPES, bicarbonate)
+        meaning: CHEBI:35225
+      serum:
+        description: Serum supplements (FBS, human serum)
+        broad_mappings:
+          - UBERON:0001977  # blood serum
+      differentiation_factor:
+        description: Factors that induce or maintain cell differentiation
+        broad_mappings:
+          - CHEBI:23924  # growth factor
+
+  CellLineModificationEnum:
+    description: >-
+      Types of genetic or other modifications applied to cell lines.
+    permissible_values:
+      none:
+        description: Unmodified cell line
+      transfection:
+        description: Transient or stable DNA/RNA transfection
+        related_mappings:
+          - OBI:0600034  # transfection
+      viral_transduction:
+        description: Viral vector-mediated gene transfer (lentiviral, adenoviral, AAV)
+        related_mappings:
+          - OBI:0600040  # transduction
+      crispr_knockout:
+        description: CRISPR/Cas9-mediated gene knockout
+      crispr_knockin:
+        description: CRISPR/Cas9-mediated gene knockin or base editing
+      rnai:
+        description: RNA interference-mediated gene knockdown (siRNA, shRNA)
+      overexpression:
+        description: Stable or transient gene overexpression
+      reporter:
+        description: Reporter gene insertion (GFP, luciferase, fluorescent proteins)
+      immortalization:
+        description: Immortalization of primary cells (hTERT, SV40, etc.)
+
+  ThreeDArchitectureEnum:
+    description: >-
+      Types of three-dimensional cell culture architectures.
+    permissible_values:
+      spheroid:
+        description: Spherical cellular aggregates formed by self-aggregation
+      organoid:
+        description: Self-organizing 3D tissue derived from stem cells
+      scaffold_based:
+        description: Cells grown on/in synthetic or natural scaffolds
+        related_mappings:
+          - OBI:0100031  # biomaterial
+      hydrogel_encapsulated:
+        description: Cells encapsulated within hydrogel matrix
+        related_mappings:
+          - CHEBI:17790  # hydrogel
+      bioprinted:
+        description: 3D bioprinted tissue constructs
+      microcarrier:
+        description: Cells grown on microcarrier beads in suspension
+      hanging_drop:
+        description: Spheroids formed using hanging drop method
+
+  CoCultureConfigurationEnum:
+    description: >-
+      Physical configurations for co-culture systems combining multiple cell types.
+    permissible_values:
+      direct_contact:
+        description: Cell types in direct physical contact on same surface
+      transwell:
+        description: Cell types separated by permeable membrane insert
+        exact_mappings:
+          - OBI:0001950  # cell culture insert
+      conditioned_medium:
+        description: One cell type exposed to conditioned medium from another
+      microfluidic:
+        description: Cell types in separate microfluidic compartments with shared media
+      spheroid_core_shell:
+        description: One cell type forms core, another forms surrounding shell
+      patterned:
+        description: Cell types arranged in defined spatial patterns
 
