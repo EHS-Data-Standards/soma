@@ -716,6 +716,7 @@ classes:
       to a test substance. Captures exposure timing, frequency, aerosol generation
       parameters, and other in vitro-specific details.
     slots:
+      - exposed_system
       - exposure_material
       - exposure_frequency
       - exposure_regiment
@@ -2350,6 +2351,13 @@ slots:
       State of agglomeration/aggregation in the exposure medium.
 
   # InVitroExposure slots
+  exposed_system:
+    range: CellularSystem
+    description: >-
+      The cell culture system (2D, 3D, or co-culture) that was exposed to the
+      test substance. Links the exposure event to the biological model.
+    inlined: true
+
   exposure_material:
     range: ExposureMaterial
     description: >-

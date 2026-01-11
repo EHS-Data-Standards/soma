@@ -484,6 +484,10 @@ in_vitro_exposures:
   - id: owg:invitro-bap-ali-exposure
     name: ALI BaP Aerosol Exposure
     description: Aerosol exposure of ALI-differentiated HBECs to BaP
+    # Links exposure to the cell culture model (NEW relationship)
+    exposed_system:
+      id: owg:3d-ali-hbec-control
+      name: ALI-HBEC Culture - Control
     # Inherits from ExposureEvent
     exposed_to_chemical:
       id: CHEBI:29865
@@ -556,6 +560,10 @@ in_vitro_exposures:
   - id: owg:invitro-dep-submerged-exposure
     name: DEP Submerged Exposure
     description: Submerged exposure of A549 cells to diesel exhaust particles
+    # Links exposure to the 2D A549 cell culture
+    exposed_system:
+      id: owg:2d-a549-control
+      name: A549 Monolayer - Control
     exposed_to_chemical:
       id: owg:substance-dep
       name: Diesel Exhaust Particles
