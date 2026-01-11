@@ -1,231 +1,145 @@
-# Outcomes Data Model
+# Outcomes Working Group Data Model
 
-A LinkML data model for representing biological measurements, assays, and experimental protocols.
+The Outcomes Working Group Data Model is a [LinkML](https://linkml.io/) schema for representing biological measurements, assays, and experimental protocols in the context of environmental health sciences (EHS) outcomes research.
 
-## Overview
+## Purpose
 
-This schema provides a structured framework for capturing biological measurement data with rich 
-contextual information to support reproducibility and cross-study comparison. The model is designed 
-to represent various types of measurements relevant to respiratory AOPs (adverse outcome pathways).
+This data model provides a standardized way to capture and exchange data about:
 
-## Core Architecture
+- **Exposure events** - Chemical, dietary, environmental, and occupational exposures
+- **Biological measurements** - Biomarkers, gene/protein expression, phenotypes
+- **Health outcomes** - Diseases, adverse outcomes, and phenotypic traits
+- **Study metadata** - Studies, cohorts, and participant information
+- **Adverse Outcome Pathways (AOPs)** - Mechanistic links from exposure to outcome
+- **Model systems** - Cell cultures, organoids, and in vitro exposure systems
 
-### Base Classes
+## Key Features
 
-#### NamedEntity
-The base class for all entities in the model, providing:
-- `id`: Unique identifier (required)
-- `description`: Detailed description
+The schema integrates with major biomedical ontologies including:
 
-#### Measurement
-The central class representing a biological measurement process, extending `NamedEntity` with:
-- `input_sample`: The biological sample or experimental setup (InputSample)
-- `method_assay`: The assay or method used (Assay)
-- `protocol_notes`: Protocol or SOP notes
+| Domain | Ontologies |
+|--------|-----------|
+| Chemicals | ChEBI, PubChem, ChEMBL, DSSTox |
+| Phenotypes | HP, MP, ZP, UPHENO |
+| Diseases | MONDO |
+| Anatomy | UBERON |
+| Cell Types | CL, CLO |
+| Exposures | ECTO, ENVO |
+| Units | UO, UCUM, QUDT |
 
-#### InputSample
-Describes the biological sample or experimental manipulation:
-- `sample_type`: Type of biological sample (e.g., "Primary human airway epithelial cells at ALI")
-- `manipulation`: Experimental manipulation applied
-- `exposure_conditions`: Exposure or treatment conditions
+### Flexible Measurement Framework
 
-#### Assay
-The specific method used to measure an endpoint:
-- `assay_type`: Type of assay (constrained to OBI ontology terms via AssayTypeEnum)
-- `instrumentation`: Specific instruments or equipment used
-- `environmental_conditions`: Environmental parameters during measurement (EnvironmentalCondition)
-- `sop_reference`: Reference to standard operating procedure
+The model supports multiple measurement types:
 
-#### QuantityValue
-A reusable pattern for expressing measurements with units (based on NMDC Schema):
-- `has_numeric_value`: The numeric value
-- `has_unit`: The unit of measurement (e.g., "Hz", "�m", "mm/min", "%")
-- `has_minimum_numeric_value`: Minimum value in a range
-- `has_maximum_numeric_value`: Maximum value in a range
+- **ExposureMeasurement** - Quantified exposure levels
+- **BiomarkerMeasurement** - Biological marker concentrations
+- **PhenotypeMeasurement** - Observable trait measurements
+- **GeneExpressionMeasurement** - mRNA expression levels
+- **ProteinExpressionMeasurement** - Protein levels and modifications
+- **AggregatedMeasurement** - Summary statistics across cohorts
 
-## Specialized Measurement Classes
+### In Vitro Systems Support
 
-All specialized measurement classes extend the base `Measurement` class:
+Comprehensive support for cell-based model systems:
 
-### CFTRFunctionMeasurement
-Measurement of CFTR-mediated ion transport function
-- CFTR-specific current measurements
-- Inhibitor-sensitive current data
-- Cell culture details
+- 2D and 3D cell cultures
+- Co-culture systems
+- Air-liquid interface exposures
+- Aerosol generation parameters
+- Environmental and mechanical measurements
 
-### BALFSputumMeasurement
-Measurement of bronchoalveolar lavage fluid or sputum components
-- Sample collection details
-- Inflammatory cell profiles
-- Microbiome analysis
-- Cytokine levels
-- Protein concentration
-- Cell-free DNA
+### Synthetic Population Modeling
 
-### LungFunctionMeasurement
-Measurement of lung function parameters
-- FEV1, FVC, FEV1/FVC ratio
-- FEF25-75
-- Bronchodilator response
-- Decline rate
-- DLCO, FeNO
+Geographic hierarchy for population-level analysis:
 
-### EGFRSignalingMeasurement
-Measurement of EGFR pathway activation and signaling
-- EGFR phosphorylation levels
-- Downstream kinase activation
-- Ligand expression levels
-- Pathway biomarkers
+- States, Counties, Census Tracts, Block Groups
+- Households and Persons
+- School assignments
 
-### TranscriptionFactorExpressionMeasurement
-Measurement of transcription factor expression (generalized for any transcription factor)
-- mRNA expression level
-- Protein expression level
-- Percentage of positive cells
-- Staining protocol details
-- Gene expression analysis methodology
+## Getting Started
 
-### CiliaBeatFrequencyMeasurement
-Measurement of ciliary beat frequency
-- Beat frequency in Hz
-- Active area percentage
-- Imaging protocol
-- Cilia per cell, cilia length
-- Percentage ciliated cells
-- Ciliary motion patterns
-- Cell type ratios
+### Browse the Schema
 
-### ASLHeightMeasurement
-Measurement of airway surface liquid height
-- ASL height in micrometers
-- Periciliary layer depth
-- Imaging protocol
-- Ion composition
-- Fluorescent labeling
-- Evaporation prevention methods
+Navigate to the [Schema Overview](elements/index.md) to explore all classes, slots, and enumerations defined in the model.
 
-### MucociliaryClearanceMeasurement
-Measurement of mucociliary clearance/transport
-- Transport rate
-- Directionality
-- Particle tracking methods
-- Fluorescent tracers
-- Mucus layer thickness
-- Bacterial biofilm and viral infection details
-- Biofilm clearance rate, bacterial load, viral spread rate
+### View Diagrams
 
-### GobletCellMeasurement
-Measurement of goblet cell number or mucin production
-- Goblet cell count
-- Mucin expression level
-- Staining protocol
-- Gene expression analysis
-- Mucin protein concentration
-- Goblet-to-ciliated cell ratio
-- Pathway enrichment scores
-- Dose-response data
+Visual representations of the schema are available:
 
-### OxidativeStressMeasurement
-Measurement of oxidative stress markers
-- ROS level
-- Lipid peroxidation markers
-- Antioxidant capacity
-- ROS probe details
-- Detection method details
-- Protein oxidation markers
-- DNA damage markers
-- Antioxidant enzyme activities
-- Barrier integrity
-- Cytotoxicity metrics
+- [Mermaid ER Diagram](elements/mermaid_diagram.md) - Interactive entity-relationship diagram
+- [SQL ER Diagram](elements/sql_er_diagram.png) - Database schema visualization
 
-## Supporting Classes
+### Use the Schema
 
-### EnvironmentalCondition
-Environmental parameters during measurement:
-- Temperature
-- Humidity
-- CO� percentage
+The schema can be used to:
 
-### ImagingProtocol
-Details about imaging parameters and protocols:
-- Imaging modality (confocal, OCT, etc.)
-- Frame rate
-- Imaging duration and intervals
-- Spatial resolution
-- Probe positioning
+1. **Validate data** - Ensure your data conforms to the model
+2. **Generate code** - Create Python dataclasses, Pydantic models, JSON Schema
+3. **Transform data** - Convert between JSON, YAML, RDF, and other formats
 
-### CellCultureConditions
-Detailed cell culture parameters:
-- Culture medium formulation
-- Days at air-liquid interface (ALI)
-- Passage number
-- Substrate type
-- Temperature, humidity, CO� percentage
-- Donor count and replicates per donor
+## Example Data
 
-### StainingProtocol
-Histological or immunofluorescence staining protocol:
-- Staining type
-- Antibodies used
-- Fixation method
-- Incubation conditions
+The repository includes several complete example datasets demonstrating different aspects
+of the data model. Browse them on GitHub or download for local use.
 
-### GeneExpressionAnalysis
-Gene expression measurement methodology:
-- Analysis method (qRT-PCR, RNA-seq)
-- Normalization genes
-- Primers used
-- Sequencing platform and depth
+### Complete Study Examples
 
-### Publication
-Scientific publication information (following Biolink model):
-- Authors
-- Pages
-- Summary/abstract
-- Keywords
-- MeSH terms
-- Publication type
-- Cross-references (xref)
+| Example | Description |
+|---------|-------------|
+| [Comprehensive Asthma Study](https://github.com/EHS-Data-Standards/outcomes-working-group/blob/main/tests/data/valid/Container-comprehensive_asthma_study.yaml) | Full cohort study with participants, exposures, biomarkers, and phenotypes |
+| [PM2.5 Cohort Exposure Study](https://github.com/EHS-Data-Standards/outcomes-working-group/blob/main/tests/data/valid/Container-pm25_cohort_exposure_study.yaml) | Air pollution exposure study with environmental measurements |
+| [Synthetic Population Study](https://github.com/EHS-Data-Standards/outcomes-working-group/blob/main/tests/data/valid/Container-synthetic_population_study.yaml) | Geographic hierarchy with households, persons, and study linkage |
 
-### Additional Supporting Classes
+### In Vitro and Cell Culture Examples
 
-- **FluorescentLabel**: Fluorescent labeling or tracer details
-- **EvaporationControl**: Methods to prevent evaporation
-- **ROSProbe**: Reactive oxygen species probe details
-- **DetectionMethod**: Method for detecting/measuring analytes
-- **SampleCollection**: Biological sample collection details
-- **InflammatoryCellProfile**: Profile of inflammatory cell types
-- **MicrobiomeAnalysis**: Microbiome composition analysis
-- **BarrierIntegrity**: Epithelial barrier integrity measurements
-- **CytotoxicityMetrics**: Cell viability and cytotoxicity measurements
+| Example | Description |
+|---------|-------------|
+| [Cell Culture Toxicant Study](https://github.com/EHS-Data-Standards/outcomes-working-group/blob/main/tests/data/valid/Container-cell_culture_toxicant_study.yaml) | 2D, 3D, and organ-on-chip models with BaP exposure |
+| [In Vitro Airway Measurements](https://github.com/EHS-Data-Standards/outcomes-working-group/blob/main/tests/data/valid/Container-in_vitro_airway_measurements.yaml) | ALI cultures with ciliary function and mucus measurements |
 
-## Ontology Integration
+### Measurement Type Examples
 
-The schema integrates with standard ontologies:
-- **OBI** (Ontology for Biomedical Investigations): Assay types
-- **CHEBI**: Chemical entities
-- **ENVO**: Environmental ontology terms
-- **Biolink**: Publication and entity modeling patterns
+| Example | Description |
+|---------|-------------|
+| [Exposure Measurements](https://github.com/EHS-Data-Standards/outcomes-working-group/blob/main/tests/data/valid/Container-exposure_measurements.yaml) | PM2.5, ozone, and cotinine exposure data |
+| [Biomarker Measurements](https://github.com/EHS-Data-Standards/outcomes-working-group/blob/main/tests/data/valid/Container-biomarker_measurements.yaml) | Oxidative stress and inflammatory biomarkers |
+| [Phenotype Measurements](https://github.com/EHS-Data-Standards/outcomes-working-group/blob/main/tests/data/valid/Container-phenotype_measurements.yaml) | Pulmonary function and clinical phenotypes |
+| [Expression Measurements](https://github.com/EHS-Data-Standards/outcomes-working-group/blob/main/tests/data/valid/Container-expression_measurements.yaml) | Gene and protein expression data |
 
-### AssayTypeEnum
-Assay types are constrained to OBI terms via dynamic enumeration:
-- Source ontology: `obo:obi`
-- Root node: `OBI:0000070` (assay)
-- Relationship: `rdfs:subClassOf`
+### Quick Example
 
-## Design Principles
+Here's a minimal example showing the core patterns:
 
-1. **Modularity**: Specialized measurement classes inherit from a common base
-2. **Reusability**: Common patterns like QuantityValue are used throughout
-3. **Rich Context**: Environmental conditions, protocols, and methodological details are captured
-4. **Ontology-Driven**: Use of standard ontologies for interoperability
-5. **Flexibility**: Support for various measurement types while maintaining consistency
+```yaml
+studies:
+  - id: owg:study001
+    name: "Example Exposure Study"
+    study_type: "cohort study"
+    population: "Adults aged 18-65"
 
-## License
+participants:
+  - id: owg:participant001
+    participant_id: "P001"
+    age: 45
+    sex: female
+    part_of_cohort: owg:cohort001
 
-MIT
+exposure_measurements:
+  - id: owg:measurement001
+    name: "Lead blood level"
+    participant: owg:participant001
+    measured_entity:
+      id: CHEBI:25016
+      name: "lead atom"
+    quantity_measured:
+      value: "3.5"
+      unit:
+        id: UO:0000274
+        name: "microgram per deciliter"
+```
 
-## More Information
+## Resources
 
-- Schema repository: https://EHS-Data-Standards.github.io/outcomes-working-group
-- Schema ID: https://w3id.org/EHS-Data-Standards/outcomes-model
+- [GitHub Repository](https://github.com/EHS-Data-Standards/outcomes-working-group)
+- [LinkML Documentation](https://linkml.io/linkml/)
+- [About This Project](about.md)
