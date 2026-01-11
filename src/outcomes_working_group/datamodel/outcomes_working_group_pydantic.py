@@ -177,23 +177,23 @@ class ExposureRouteEnum(str, Enum):
     """
     Routes of exposure to chemicals or environmental factors
     """
-    Oral = "Oral"
+    oral = "oral"
     """
     Oral ingestion
     """
-    Dermal = "Dermal"
+    dermal = "dermal"
     """
     Dermal contact
     """
-    Inhalation = "Inhalation"
+    inhalation = "inhalation"
     """
     Inhalation
     """
-    Injection = "Injection"
+    injection = "injection"
     """
     Injection
     """
-    Unknown = "Unknown"
+    unknown = "unknown"
     """
     Unknown route
     """
@@ -203,31 +203,31 @@ class ExposureMediumEnum(str, Enum):
     """
     Medium through which exposure occurs
     """
-    Air = "Air"
+    air = "air"
     """
     Air
     """
-    Water = "Water"
+    water = "water"
     """
     Water
     """
-    Food = "Food"
+    food = "food"
     """
     Food
     """
-    Soil = "Soil"
+    soil = "soil"
     """
     Soil
     """
-    Dust = "Dust"
+    dust = "dust"
     """
     Dust
     """
-    ConsumerProduct = "ConsumerProduct"
+    consumer_product = "consumer_product"
     """
     Consumer product
     """
-    Unknown = "Unknown"
+    unknown = "unknown"
     """
     Unknown medium
     """
@@ -237,67 +237,67 @@ class ExpressionAssayMethodEnum(str, Enum):
     """
     Methods used to measure gene or protein expression. Includes transcriptomic, proteomic, and imaging-based approaches.
     """
-    qRT_PCR = "qRT_PCR"
+    qrt_pcr = "qrt_pcr"
     """
     Quantitative real-time polymerase chain reaction
     """
-    RNA_Seq = "RNA_Seq"
+    rna_seq = "rna_seq"
     """
     RNA sequencing (bulk)
     """
-    Single_Cell_RNA_Seq = "Single_Cell_RNA_Seq"
+    single_cell_rna_seq = "single_cell_rna_seq"
     """
     Single-cell RNA sequencing
     """
-    Microarray = "Microarray"
+    microarray = "microarray"
     """
     Gene expression microarray
     """
-    NanoString = "NanoString"
+    nanostring = "nanostring"
     """
     NanoString nCounter gene expression assay
     """
-    Northern_Blot = "Northern_Blot"
+    northern_blot = "northern_blot"
     """
     Northern blot for RNA detection
     """
-    In_Situ_Hybridization = "In_Situ_Hybridization"
+    in_situ_hybridization = "in_situ_hybridization"
     """
     In situ hybridization (ISH, FISH, RNAscope)
     """
-    Western_Blot = "Western_Blot"
+    western_blot = "western_blot"
     """
     Western blot (immunoblot) for protein detection
     """
-    ELISA = "ELISA"
+    elisa = "elisa"
     """
     Enzyme-linked immunosorbent assay
     """
-    Immunohistochemistry = "Immunohistochemistry"
+    immunohistochemistry = "immunohistochemistry"
     """
     Immunohistochemistry on tissue sections
     """
-    Immunofluorescence = "Immunofluorescence"
+    immunofluorescence = "immunofluorescence"
     """
     Immunofluorescence staining
     """
-    Flow_Cytometry = "Flow_Cytometry"
+    flow_cytometry = "flow_cytometry"
     """
     Flow cytometry for protein expression
     """
-    Mass_Spectrometry = "Mass_Spectrometry"
+    mass_spectrometry = "mass_spectrometry"
     """
     Mass spectrometry-based proteomics
     """
-    Immunoprecipitation = "Immunoprecipitation"
+    immunoprecipitation = "immunoprecipitation"
     """
     Immunoprecipitation followed by detection
     """
-    Luminex = "Luminex"
+    luminex = "luminex"
     """
     Luminex multiplex bead-based assay
     """
-    Other = "Other"
+    other = "other"
     """
     Other assay method not listed
     """
@@ -307,27 +307,27 @@ class BiologicalOrganizationLevelEnum(str, Enum):
     """
     Levels of biological organization
     """
-    Molecular = "Molecular"
+    molecular = "molecular"
     """
     Molecular level
     """
-    Cellular = "Cellular"
+    cellular = "cellular"
     """
     Cellular level
     """
-    Tissue = "Tissue"
+    tissue = "tissue"
     """
     Tissue level
     """
-    Organ = "Organ"
+    organ = "organ"
     """
     Organ level
     """
-    Organism = "Organism"
+    organism = "organism"
     """
     Organism level
     """
-    Population = "Population"
+    population = "population"
     """
     Population level
     """
@@ -337,31 +337,31 @@ class StudyTypeEnum(str, Enum):
     """
     Types of research studies
     """
-    Cohort = "Cohort"
+    cohort = "cohort"
     """
     Cohort study
     """
-    CrossSectional = "CrossSectional"
+    cross_sectional = "cross_sectional"
     """
     Cross-sectional study
     """
-    CaseControl = "CaseControl"
+    case_control = "case_control"
     """
     Case-control study
     """
-    RandomizedControlledTrial = "RandomizedControlledTrial"
+    randomized_controlled_trial = "randomized_controlled_trial"
     """
     Randomized controlled trial
     """
-    Survey = "Survey"
+    survey = "survey"
     """
     Survey
     """
-    Gwas = "Gwas"
+    gwas = "gwas"
     """
     Genome-wide association study
     """
-    Other = "Other"
+    other = "other"
     """
     Other study type
     """
@@ -371,15 +371,15 @@ class SexEnum(str, Enum):
     """
     Biological sex
     """
-    Male = "Male"
+    male = "male"
     """
     Male
     """
-    Female = "Female"
+    female = "female"
     """
     Female
     """
-    Unknown = "Unknown"
+    unknown = "unknown"
     """
     Unknown
     """
@@ -389,51 +389,51 @@ class SampleTypeEnum(str, Enum):
     """
     Types of biological and environmental samples
     """
-    Blood = "Blood"
+    blood = "blood"
     """
     Blood sample
     """
-    Urine = "Urine"
+    urine = "urine"
     """
     Urine sample
     """
-    Serum = "Serum"
+    serum = "serum"
     """
     Serum sample
     """
-    Plasma = "Plasma"
+    plasma = "plasma"
     """
     Plasma sample
     """
-    Tissue = "Tissue"
+    tissue = "tissue"
     """
     Tissue sample
     """
-    Saliva = "Saliva"
+    saliva = "saliva"
     """
     Saliva sample
     """
-    Hair = "Hair"
+    hair = "hair"
     """
     Hair sample
     """
-    Nail = "Nail"
+    nail = "nail"
     """
     Nail sample
     """
-    Air = "Air"
+    air = "air"
     """
     Air sample (environmental)
     """
-    Water = "Water"
+    water = "water"
     """
     Water sample (environmental)
     """
-    Soil = "Soil"
+    soil = "soil"
     """
     Soil sample (environmental)
     """
-    Other = "Other"
+    other = "other"
     """
     Other sample type
     """
@@ -443,35 +443,35 @@ class SummaryStatisticEnum(str, Enum):
     """
     Types of summary statistics
     """
-    Mean = "Mean"
+    mean = "mean"
     """
     Arithmetic mean
     """
-    Median = "Median"
+    median = "median"
     """
     Median
     """
-    Mode = "Mode"
+    mode = "mode"
     """
     Mode
     """
-    Percentile = "Percentile"
+    percentile = "percentile"
     """
     Percentile
     """
-    StandardDeviation = "StandardDeviation"
+    standard_deviation = "standard_deviation"
     """
     Standard deviation
     """
-    Variance = "Variance"
+    variance = "variance"
     """
     Variance
     """
-    Range = "Range"
+    range = "range"
     """
     Range
     """
-    InterquartileRange = "InterquartileRange"
+    interquartile_range = "interquartile_range"
     """
     Interquartile range
     """
@@ -489,7 +489,7 @@ class MeasurementTypeEnum(str, Enum):
     """
     Forced vital capacity
     """
-    FEV1_FVC_Ratio = "FEV1_FVC_Ratio"
+    FEV1_FEC_ratio = "FEV1_FEC_ratio"
     """
     Ratio of FEV1 to FVC (Tiffeneau-Pinelli index)
     """
@@ -497,7 +497,7 @@ class MeasurementTypeEnum(str, Enum):
     """
     Forced expiratory flow at 25-75% of FVC
     """
-    PeakExpiratoryFlow = "PeakExpiratoryFlow"
+    peak_expiratory_flow = "peak_expiratory_flow"
     """
     Peak expiratory flow rate
     """
@@ -509,119 +509,119 @@ class MeasurementTypeEnum(str, Enum):
     """
     Fractional exhaled nitric oxide (airway inflammation marker)
     """
-    BronchodilatorResponse = "BronchodilatorResponse"
+    bronchodilator_response = "bronchodilator_response"
     """
     Change in lung function after bronchodilator administration
     """
-    LungFunctionDeclineRate = "LungFunctionDeclineRate"
+    lung_function_decline_rate = "lung_function_decline_rate"
     """
     Rate of decline in lung function over time
     """
-    CiliaryBeatFrequency = "CiliaryBeatFrequency"
+    ciliary_beat_frequency = "ciliary_beat_frequency"
     """
     Frequency of ciliary beating in Hz
     """
-    CiliaryActiveAreaPercentage = "CiliaryActiveAreaPercentage"
+    ciliary_active_area_percentage = "ciliary_active_area_percentage"
     """
     Percentage of epithelial surface with active cilia
     """
-    CiliaPerCell = "CiliaPerCell"
+    cilia_per_cell = "cilia_per_cell"
     """
     Number of cilia per epithelial cell
     """
-    CiliaLength = "CiliaLength"
+    cilia_length = "cilia_length"
     """
     Length of cilia in micrometers
     """
-    PercentageCiliatedCells = "PercentageCiliatedCells"
+    percentage_ciliated_cells = "percentage_ciliated_cells"
     """
     Percentage of cells that are ciliated
     """
-    ASLHeight = "ASLHeight"
+    asl_height = "asl_height"
     """
     Airway surface liquid height in micrometers
     """
-    PericiliaryLayerDepth = "PericiliaryLayerDepth"
+    periciliary_layer_depth = "periciliary_layer_depth"
     """
     Depth of periciliary liquid layer (reduced in disease)
     """
-    MucusLayerThickness = "MucusLayerThickness"
+    mucus_layer_thickness = "mucus_layer_thickness"
     """
     Thickness of the mucus gel layer
     """
-    MucociliaryTransportRate = "MucociliaryTransportRate"
+    mucociliary_transport_rate = "mucociliary_transport_rate"
     """
     Rate of mucociliary transport (mm/min)
     """
-    MucociliaryDirectionality = "MucociliaryDirectionality"
+    mucociliary_directionality = "mucociliary_directionality"
     """
     Directionality and coordination of mucociliary transport
     """
-    ParticleClearanceRate = "ParticleClearanceRate"
+    particle_clearance_rate = "particle_clearance_rate"
     """
     Rate of particle clearance from airways
     """
-    GobletCellCount = "GobletCellCount"
+    goblet_cell_count = "goblet_cell_count"
     """
     Number or percentage of goblet cells
     """
-    GobletToCiliatedRatio = "GobletToCiliatedRatio"
+    goblet_to_ciliated_ratio = "goblet_to_ciliated_ratio"
     """
     Ratio of goblet cells to ciliated cells
     """
-    MucinProteinConcentration = "MucinProteinConcentration"
+    mucin_protein_concentration = "mucin_protein_concentration"
     """
     Concentration of secreted mucin protein
     """
-    MucusViscosity = "MucusViscosity"
+    mucus_viscosity = "mucus_viscosity"
     """
     Viscosity of airway mucus
     """
-    CFTRChlorideSecretion = "CFTRChlorideSecretion"
+    CFTR_chloride_secretion = "CFTR_chloride_secretion"
     """
     CFTR-mediated chloride secretory current
     """
-    InhibitorSensitiveCurrent = "InhibitorSensitiveCurrent"
+    inhibitor_sensitive_current = "inhibitor_sensitive_current"
     """
     Current sensitive to CFTR inhibitors (e.g., CFTRinh-172)
     """
-    SweatChlorideConcentration = "SweatChlorideConcentration"
+    sweat_chloride_concentration = "sweat_chloride_concentration"
     """
     Chloride concentration in sweat (CF diagnostic)
     """
-    ReactiveOxygenSpecies = "ReactiveOxygenSpecies"
+    reactive_oxygen_species = "reactive_oxygen_species"
     """
     Reactive oxygen species (ROS) level
     """
-    LipidPeroxidation = "LipidPeroxidation"
+    lipid_peroxidation = "lipid_peroxidation"
     """
     Lipid peroxidation markers (MDA, 8-isoprostane)
     """
-    ProteinCarbonyls = "ProteinCarbonyls"
+    protein_carbonyls = "protein_carbonyls"
     """
     Protein carbonyl content (protein oxidation marker)
     """
-    DNA_8OHdG = "DNA_8OHdG"
+    DNA_8ohdg = "DNA_8ohdg"
     """
     8-hydroxydeoxyguanosine (DNA oxidative damage marker)
     """
-    GlutathioneRatio = "GlutathioneRatio"
+    glutathione_ratio = "glutathione_ratio"
     """
     GSH/GSSG ratio (antioxidant capacity)
     """
-    SuperoxideDismutaseActivity = "SuperoxideDismutaseActivity"
+    superoxide_dismutase_activity = "superoxide_dismutase_activity"
     """
     Superoxide dismutase (SOD) enzyme activity
     """
-    CatalaseActivity = "CatalaseActivity"
+    catalase_activity = "catalase_activity"
     """
     Catalase enzyme activity
     """
-    GlutathionePeroxidaseActivity = "GlutathionePeroxidaseActivity"
+    glutathione_peroxidase_activity = "glutathione_peroxidase_activity"
     """
     Glutathione peroxidase (GPx) activity
     """
-    TotalAntioxidantCapacity = "TotalAntioxidantCapacity"
+    total_antioxidant_capacity = "total_antioxidant_capacity"
     """
     Total antioxidant capacity of sample
     """
@@ -629,151 +629,139 @@ class MeasurementTypeEnum(str, Enum):
     """
     Transepithelial electrical resistance
     """
-    ParacellularPermeability = "ParacellularPermeability"
+    paracellular_permeability = "paracellular_permeability"
     """
     Paracellular permeability coefficient
     """
-    IL6Level = "IL6Level"
+    IL6_level = "IL6_level"
     """
     Interleukin-6 concentration
     """
-    IL8Level = "IL8Level"
+    IL8_level = "IL8_level"
     """
     Interleukin-8 (CXCL8) concentration
     """
-    IL13Level = "IL13Level"
+    IL13_level = "IL13_level"
     """
     Interleukin-13 concentration
     """
-    TNFAlphaLevel = "TNFAlphaLevel"
+    TNF_alpha_level = "TNF_alpha_level"
     """
     Tumor necrosis factor alpha concentration
     """
-    NeutrophilPercentage = "NeutrophilPercentage"
+    neutrophil_percentage = "neutrophil_percentage"
     """
     Percentage of neutrophils in BALF or sputum
     """
-    EosinophilPercentage = "EosinophilPercentage"
+    eosinophil_percentage = "eosinophil_percentage"
     """
     Percentage of eosinophils in BALF or sputum
     """
-    MacrophagePercentage = "MacrophagePercentage"
+    macrophage_percentage = "macrophage_percentage"
     """
     Percentage of macrophages in BALF or sputum
     """
-    TotalInflammatoryCell = "TotalInflammatoryCell"
+    total_inflammatory_cell = "total_inflammatory_cell"
     """
     Total inflammatory cell count
     """
-    LDHRelease = "LDHRelease"
+    LDH_release = "LDH_release"
     """
     Lactate dehydrogenase release (cell damage marker)
     """
-    CellViability = "CellViability"
+    cell_viability = "cell_viability"
     """
     Cell viability percentage
     """
-    MTTReduction = "MTTReduction"
+    mtt_reduction = "mtt_reduction"
     """
     MTT assay result (metabolic activity)
     """
-    ApoptosisRate = "ApoptosisRate"
+    apoptosis_rate = "apoptosis_rate"
     """
     Rate of apoptotic cell death
     """
-    GeneExpression = "GeneExpression"
+    gene_expression = "gene_expression"
     """
     Gene expression level (mRNA). Use with GeneExpressionMeasurement class to specify target_gene, tissue_context, and assay_method.
     """
-    ProteinExpression = "ProteinExpression"
+    protein_expression = "protein_expression"
     """
     Protein expression level. Use with ProteinExpressionMeasurement class to specify target_protein, tissue_context, and assay_method.
     """
-    ProteinPhosphorylation = "ProteinPhosphorylation"
+    protein_phosphorylation = "protein_phosphorylation"
     """
     Protein phosphorylation level. Use with ProteinExpressionMeasurement class and specify phosphorylation_site (e.g., Y1068 for EGFR).
     """
-    ProteinLocalization = "ProteinLocalization"
+    protein_localization = "protein_localization"
     """
     Protein subcellular localization (membrane, cytoplasm, nucleus). Use with ProteinExpressionMeasurement class.
     """
-    ExpressionRatio = "ExpressionRatio"
+    expression_ratio = "expression_ratio"
     """
     Ratio of expression between two genes or proteins (e.g., MUC5AC/MUC5B ratio). Specify both targets in description.
     """
-    PercentagePositiveCells = "PercentagePositiveCells"
+    percentage_positive_cells = "percentage_positive_cells"
     """
     Percentage of cells positive for a marker (IHC, flow cytometry)
     """
-    BloodLeadLevel = "BloodLeadLevel"
-    """
-    Blood lead concentration
-    """
-    BloodCadmiumLevel = "BloodCadmiumLevel"
-    """
-    Blood cadmium concentration
-    """
-    BloodMercuryLevel = "BloodMercuryLevel"
-    """
-    Blood mercury concentration
-    """
-    UrinaryArsenicLevel = "UrinaryArsenicLevel"
+    urinary_arsenic_level = "urinary_arsenic_level"
     """
     Urinary arsenic concentration
     """
-    UrinaryCotinineLevel = "UrinaryCotinineLevel"
+    urinary_cotinine_level = "urinary_cotinine_level"
     """
     Urinary cotinine (tobacco exposure biomarker)
     """
-    UrinaryBPALevel = "UrinaryBPALevel"
+    urinary_bpa_level = "urinary_bpa_level"
     """
     Urinary bisphenol A concentration
     """
-    UrinaryPhthalateMetabolites = "UrinaryPhthalateMetabolites"
+    urinary_phthalate_metabolites = "urinary_phthalate_metabolites"
     """
     Urinary phthalate metabolite concentrations
     """
-    PM2_5Exposure = "PM2_5Exposure"
+    pm2_5_exposure = "pm2_5_exposure"
     """
     Fine particulate matter (PM2.5) exposure level
     """
-    OzoneExposure = "OzoneExposure"
+    ozone_exposure = "ozone_exposure"
     """
     Ozone exposure concentration
     """
-    NO2Exposure = "NO2Exposure"
+    NO2_exposure = "NO2_exposure"
     """
     Nitrogen dioxide exposure concentration
     """
-    PolycyclicAromaticHydrocarbons = "PolycyclicAromaticHydrocarbons"
+    polycyclic_aromatic_hydrocarbons = "polycyclic_aromatic_hydrocarbons"
     """
     PAH metabolite levels
     """
-    BodyMassIndex = "BodyMassIndex"
+    body_mass_index = "body_mass_index"
     """
     Body mass index (BMI)
     """
-    BodyWeight = "BodyWeight"
+    body_weight = "body_weight"
     """
     Body weight measurement
     """
-    Height = "Height"
+    height = "height"
     """
     Height measurement
     """
-    AlphaDiversity = "AlphaDiversity"
+    alpha_diversity = "alpha_diversity"
     """
     Microbiome alpha diversity metric
     """
-    BetaDiversity = "BetaDiversity"
+    beta_diversity = "beta_diversity"
     """
     Microbiome beta diversity metric
     """
-    BacterialLoad = "BacterialLoad"
+    bacterial_load = "bacterial_load"
     """
     Total bacterial load (CFU or 16S copies)
     """
-    Other = "Other"
+    other = "other"
     """
     Other measurement type not listed
     """
@@ -783,35 +771,35 @@ class RelationshipToHouseholdHeadEnum(str, Enum):
     """
     Relationship of a person to the household head (householder) in census data. Based on PUMS RELP variable coding.
     """
-    Householder = "Householder"
+    householder = "householder"
     """
     Reference person (head of household)
     """
-    Spouse = "Spouse"
+    spouse = "spouse"
     """
     Husband or wife of the householder
     """
-    Child = "Child"
+    child = "child"
     """
     Biological, adopted, or stepchild of the householder
     """
-    OtherRelative = "OtherRelative"
+    other_relative = "other_relative"
     """
     Other relative of the householder (parent, sibling, grandchild, etc.)
     """
-    Nonrelative = "Nonrelative"
+    nonrelative = "nonrelative"
     """
     Non-relative of the householder (roommate, boarder, etc.)
     """
-    FosterChild = "FosterChild"
+    foster_child = "foster_child"
     """
     Foster child
     """
-    FosterParent = "FosterParent"
+    foster_parent = "foster_parent"
     """
     Foster parent
     """
-    OtherNonrelative = "OtherNonrelative"
+    other_nonrelative = "other_nonrelative"
     """
     Other non-relative
     """
@@ -825,29 +813,29 @@ class Container(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
          'tree_root': True})
 
-    studies: Optional[list[Study]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    cohorts: Optional[list[Cohort]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    participants: Optional[list[Participant]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    exposure_measurements: Optional[list[ExposureMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    biomarker_measurements: Optional[list[BiomarkerMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    phenotype_measurements: Optional[list[PhenotypeMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    aggregated_measurements: Optional[list[AggregatedMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    gene_expression_measurements: Optional[list[GeneExpressionMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    protein_expression_measurements: Optional[list[ProteinExpressionMeasurement]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    chemical_exposures: Optional[list[ChemicalExposure]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    dietary_exposures: Optional[list[DietaryExposure]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    environmental_exposures: Optional[list[EnvironmentalExposure]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    occupational_exposures: Optional[list[OccupationalExposure]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    phenotypes: Optional[list[Phenotype]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    diseases: Optional[list[Disease]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    adverse_outcomes: Optional[list[AdverseOutcome]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    adverse_outcome_pathways: Optional[list[AdverseOutcomePathway]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    genes: Optional[list[Gene]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    proteins: Optional[list[Protein]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    cell_types: Optional[list[CellType]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    anatomical_entities: Optional[list[AnatomicalEntity]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    organisms: Optional[list[Organism]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
-    exposure_to_phenotype_associations: Optional[list[ExposureToPhenotypeAssociation]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    studies: Optional[list[Study]] = Field(default=[], description="""Collection of research studies in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    cohorts: Optional[list[Cohort]] = Field(default=[], description="""Collection of study cohorts in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    participants: Optional[list[Participant]] = Field(default=[], description="""Collection of study participants in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    exposure_measurements: Optional[list[ExposureMeasurement]] = Field(default=[], description="""Collection of exposure measurements in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    biomarker_measurements: Optional[list[BiomarkerMeasurement]] = Field(default=[], description="""Collection of biomarker measurements in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    phenotype_measurements: Optional[list[PhenotypeMeasurement]] = Field(default=[], description="""Collection of phenotype measurements in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    aggregated_measurements: Optional[list[AggregatedMeasurement]] = Field(default=[], description="""Collection of aggregated or summary measurements in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    gene_expression_measurements: Optional[list[GeneExpressionMeasurement]] = Field(default=[], description="""Collection of gene expression measurements in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    protein_expression_measurements: Optional[list[ProteinExpressionMeasurement]] = Field(default=[], description="""Collection of protein expression measurements in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    chemical_exposures: Optional[list[ChemicalExposure]] = Field(default=[], description="""Collection of chemical exposure events in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    dietary_exposures: Optional[list[DietaryExposure]] = Field(default=[], description="""Collection of dietary exposure events in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    environmental_exposures: Optional[list[EnvironmentalExposure]] = Field(default=[], description="""Collection of environmental exposure events in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    occupational_exposures: Optional[list[OccupationalExposure]] = Field(default=[], description="""Collection of occupational exposure events in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    phenotypes: Optional[list[Phenotype]] = Field(default=[], description="""Collection of phenotypes in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    diseases: Optional[list[Disease]] = Field(default=[], description="""Collection of diseases in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    adverse_outcomes: Optional[list[AdverseOutcome]] = Field(default=[], description="""Collection of adverse outcomes in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    adverse_outcome_pathways: Optional[list[AdverseOutcomePathway]] = Field(default=[], description="""Collection of adverse outcome pathways in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    genes: Optional[list[Gene]] = Field(default=[], description="""Collection of genes in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    proteins: Optional[list[Protein]] = Field(default=[], description="""Collection of proteins in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    cell_types: Optional[list[CellType]] = Field(default=[], description="""Collection of cell types in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    anatomical_entities: Optional[list[AnatomicalEntity]] = Field(default=[], description="""Collection of anatomical entities in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    organisms: Optional[list[Organism]] = Field(default=[], description="""Collection of organisms in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
+    exposure_to_phenotype_associations: Optional[list[ExposureToPhenotypeAssociation]] = Field(default=[], description="""Collection of exposure-to-phenotype associations in the container.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
     states: Optional[list[State]] = Field(default=[], description="""U.S. states or territories with their geographic hierarchies.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
     public_use_microdata_areas: Optional[list[PublicUseMicrodataArea]] = Field(default=[], description="""Public Use Microdata Areas (PUMAs) within a state. PUMAs are non-overlapping statistical geographic areas containing no fewer than 100,000 people each.""", json_schema_extra = { "linkml_meta": {'aliases': ['pumas'], 'domain_of': ['Container', 'State']} })
     counties: Optional[list[County]] = Field(default=[], description="""Counties within a state or geographic region.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'State']} })
