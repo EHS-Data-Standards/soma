@@ -1779,13 +1779,13 @@ enums:
       FVC:
         description: Forced vital capacity
         meaning: NCIT:C38082
-      FEV1_FVC_Ratio:
+      FEV1_FEC_ratio:
         description: Ratio of FEV1 to FVC (Tiffeneau-Pinelli index)
         meaning: NCIT:C120835
       FEF25_75:
         description: Forced expiratory flow at 25-75% of FVC
         meaning: NCIT:C38085
-      PeakExpiratoryFlow:
+      peak_expiratory_flow:
         description: Peak expiratory flow rate
         meaning: NCIT:C38086
       DLCO:
@@ -1794,161 +1794,154 @@ enums:
       FeNO:
         description: Fractional exhaled nitric oxide (airway inflammation marker)
         meaning: NCIT:C124353
-      BronchodilatorResponse:
+      bronchodilator_response:
         description: Change in lung function after bronchodilator administration
-      LungFunctionDeclineRate:
+      lung_function_decline_rate:
         description: Rate of decline in lung function over time
-      CiliaryBeatFrequency:
+      ciliary_beat_frequency:
         description: Frequency of ciliary beating in Hz
         meaning: GO:0003341
-      CiliaryActiveAreaPercentage:
+      ciliary_active_area_percentage:
         description: Percentage of epithelial surface with active cilia
-      CiliaPerCell:
+      cilia_per_cell:
         description: Number of cilia per epithelial cell
-      CiliaLength:
+      cilia_length:
         description: Length of cilia in micrometers
-      PercentageCiliatedCells:
+      percentage_ciliated_cells:
         description: Percentage of cells that are ciliated
-      ASLHeight:
+      asl_height:
         description: Airway surface liquid height in micrometers
-      PericiliaryLayerDepth:
+      periciliary_layer_depth:
         description: Depth of periciliary liquid layer (reduced in disease)
-      MucusLayerThickness:
+      mucus_layer_thickness:
         description: Thickness of the mucus gel layer
-      MucociliaryTransportRate:
+      mucociliary_transport_rate:
         description: Rate of mucociliary transport (mm/min)
         meaning: GO:0120197
-      MucociliaryDirectionality:
+      mucociliary_directionality:
         description: Directionality and coordination of mucociliary transport
-      ParticleClearanceRate:
+      particle_clearance_rate:
         description: Rate of particle clearance from airways
-      GobletCellCount:
+      goblet_cell_count:
         description: Number or percentage of goblet cells
         meaning: CL:0000160
-      GobletToCiliatedRatio:
+      goblet_to_ciliated_ratio:
         description: Ratio of goblet cells to ciliated cells
-      MucinProteinConcentration:
+      mucin_protein_concentration:
         description: Concentration of secreted mucin protein
-      MucusViscosity:
+      mucus_viscosity:
         description: Viscosity of airway mucus
-      CFTRChlorideSecretion:
+      CFTR_chloride_secretion:
         description: CFTR-mediated chloride secretory current
-      InhibitorSensitiveCurrent:
+      inhibitor_sensitive_current:
         description: Current sensitive to CFTR inhibitors (e.g., CFTRinh-172)
-      SweatChlorideConcentration:
+      sweat_chloride_concentration:
         description: Chloride concentration in sweat (CF diagnostic)
-      ReactiveOxygenSpecies:
+      reactive_oxygen_species:
         description: Reactive oxygen species (ROS) level
         meaning: CHEBI:26523
-      LipidPeroxidation:
+      lipid_peroxidation:
         description: Lipid peroxidation markers (MDA, 8-isoprostane)
-      ProteinCarbonyls:
+      protein_carbonyls:
         description: Protein carbonyl content (protein oxidation marker)
-      DNA_8OHdG:
+      DNA_8ohdg:
         description: 8-hydroxydeoxyguanosine (DNA oxidative damage marker)
-      GlutathioneRatio:
+      glutathione_ratio:
         description: GSH/GSSG ratio (antioxidant capacity)
-      SuperoxideDismutaseActivity:
+      superoxide_dismutase_activity:
         description: Superoxide dismutase (SOD) enzyme activity
-      CatalaseActivity:
+      catalase_activity:
         description: Catalase enzyme activity
-      GlutathionePeroxidaseActivity:
+      glutathione_peroxidase_activity:
         description: Glutathione peroxidase (GPx) activity
-      TotalAntioxidantCapacity:
+      total_antioxidant_capacity:
         description: Total antioxidant capacity of sample
       TEER:
         description: Transepithelial electrical resistance
-      ParacellularPermeability:
+      paracellular_permeability:
         description: Paracellular permeability coefficient
-      IL6Level:
+      IL6_level:
         description: Interleukin-6 concentration
         meaning: NCIT:C20487
-      IL8Level:
+      IL8_level:
         description: Interleukin-8 (CXCL8) concentration
         meaning: NCIT:C20506
-      IL13Level:
+      IL13_level:
         description: Interleukin-13 concentration
         meaning: NCIT:C20497
-      TNFAlphaLevel:
+      TNF_alpha_level:
         description: Tumor necrosis factor alpha concentration
         meaning: NCIT:C20535
-      NeutrophilPercentage:
+      neutrophil_percentage:
         description: Percentage of neutrophils in BALF or sputum
-      EosinophilPercentage:
+      eosinophil_percentage:
         description: Percentage of eosinophils in BALF or sputum
-      MacrophagePercentage:
+      macrophage_percentage:
         description: Percentage of macrophages in BALF or sputum
-      TotalInflammatoryCell:
+      total_inflammatory_cell:
         description: Total inflammatory cell count
-      LDHRelease:
+      LDH_release:
         description: Lactate dehydrogenase release (cell damage marker)
-      CellViability:
+      cell_viability:
         description: Cell viability percentage
-      MTTReduction:
+      mtt_reduction:
         description: MTT assay result (metabolic activity)
-      ApoptosisRate:
+      apoptosis_rate:
         description: Rate of apoptotic cell death
-      GeneExpression:
+      gene_expression:
         description: >-
           Gene expression level (mRNA). Use with GeneExpressionMeasurement class
           to specify target_gene, tissue_context, and assay_method.
-      ProteinExpression:
+      protein_expression:
         description: >-
           Protein expression level. Use with ProteinExpressionMeasurement class
           to specify target_protein, tissue_context, and assay_method.
-      ProteinPhosphorylation:
+      protein_phosphorylation:
         description: >-
           Protein phosphorylation level. Use with ProteinExpressionMeasurement class
           and specify phosphorylation_site (e.g., Y1068 for EGFR).
-      ProteinLocalization:
+      protein_localization:
         description: >-
           Protein subcellular localization (membrane, cytoplasm, nucleus).
           Use with ProteinExpressionMeasurement class.
-      ExpressionRatio:
+      expression_ratio:
         description: >-
           Ratio of expression between two genes or proteins
           (e.g., MUC5AC/MUC5B ratio). Specify both targets in description.
-      PercentagePositiveCells:
+      percentage_positive_cells:
         description: Percentage of cells positive for a marker (IHC, flow cytometry)
-      BloodLeadLevel:
-        description: Blood lead concentration
-        meaning: HHEAR:00000001
-      BloodCadmiumLevel:
-        description: Blood cadmium concentration
-      BloodMercuryLevel:
-        description: Blood mercury concentration
-      UrinaryArsenicLevel:
+      urinary_arsenic_level:
         description: Urinary arsenic concentration
-      UrinaryCotinineLevel:
+      urinary_cotinine_level:
         description: Urinary cotinine (tobacco exposure biomarker)
-      UrinaryBPALevel:
+      urinary_bpa_level:
         description: Urinary bisphenol A concentration
-      UrinaryPhthalateMetabolites:
+      urinary_phthalate_metabolites:
         description: Urinary phthalate metabolite concentrations
-      PM2_5Exposure:
+      pm2_5_exposure:
         description: Fine particulate matter (PM2.5) exposure level
-      OzoneExposure:
+      ozone_exposure:
         description: Ozone exposure concentration
-      NO2Exposure:
+      NO2_exposure:
         description: Nitrogen dioxide exposure concentration
-      PolycyclicAromaticHydrocarbons:
+      polycyclic_aromatic_hydrocarbons:
         description: PAH metabolite levels
-      BodyMassIndex:
+      body_mass_index:
         description: Body mass index (BMI)
         meaning: NCIT:C16358
-      BodyWeight:
+      body_weight:
         description: Body weight measurement
         meaning: NCIT:C81328
-      Height:
+      height:
         description: Height measurement
         meaning: NCIT:C25347
-      AlphaDiversity:
+      alpha_diversity:
         description: Microbiome alpha diversity metric
-      BetaDiversity:
+      beta_diversity:
         description: Microbiome beta diversity metric
-      BacterialLoad:
+      bacterial_load:
         description: Total bacterial load (CFU or 16S copies)
-      Other:
+      other:
         description: Other measurement type not listed
 
   RelationshipToHouseholdHeadEnum:
@@ -1956,20 +1949,20 @@ enums:
       Relationship of a person to the household head (householder) in census data.
       Based on PUMS RELP variable coding.
     permissible_values:
-      Householder:
+      householder:
         description: Reference person (head of household)
-      Spouse:
+      spouse:
         description: Husband or wife of the householder
-      Child:
+      child:
         description: Biological, adopted, or stepchild of the householder
-      OtherRelative:
+      other_relative:
         description: Other relative of the householder (parent, sibling, grandchild, etc.)
-      Nonrelative:
+      nonrelative:
         description: Non-relative of the householder (roommate, boarder, etc.)
-      FosterChild:
+      foster_child:
         description: Foster child
-      FosterParent:
+      foster_parent:
         description: Foster parent
-      OtherNonrelative:
+      other_nonrelative:
         description: Other non-relative
 
