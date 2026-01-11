@@ -767,6 +767,74 @@ class MeasurementTypeEnum(str, Enum):
     """
     Total bacterial load (CFU or 16S copies)
     """
+    co2_percentage = "co2_percentage"
+    """
+    Carbon dioxide percentage in incubator atmosphere
+    """
+    o2_percentage = "o2_percentage"
+    """
+    Oxygen percentage in incubator (for hypoxic cultures)
+    """
+    temperature = "temperature"
+    """
+    Incubator or culture temperature
+    """
+    humidity = "humidity"
+    """
+    Relative humidity in incubator
+    """
+    nitrogen_balance = "nitrogen_balance"
+    """
+    Nitrogen percentage in atmosphere
+    """
+    ph = "ph"
+    """
+    pH of culture medium
+    """
+    stretch_frequency = "stretch_frequency"
+    """
+    Frequency of cyclic mechanical stretch (Hz)
+    """
+    stretch_amplitude = "stretch_amplitude"
+    """
+    Amplitude of mechanical stretch as percentage
+    """
+    shear_stress = "shear_stress"
+    """
+    Fluid shear stress applied to cells (dyn/cm2 or Pa)
+    """
+    flow_rate = "flow_rate"
+    """
+    Fluid flow rate in microfluidic or perfusion systems
+    """
+    perfusion_rate = "perfusion_rate"
+    """
+    Media perfusion rate for continuous culture systems
+    """
+    pressure = "pressure"
+    """
+    Hydrostatic or pneumatic pressure
+    """
+    pore_size = "pore_size"
+    """
+    Diameter of membrane pores (typically in micrometers)
+    """
+    pore_density = "pore_density"
+    """
+    Number of pores per unit area
+    """
+    thickness = "thickness"
+    """
+    Membrane thickness
+    """
+    surface_area = "surface_area"
+    """
+    Total membrane surface area
+    """
+    teer = "teer"
+    """
+    Transepithelial electrical resistance (membrane property)
+    """
     other = "other"
     """
     Other measurement type not listed
@@ -808,92 +876,6 @@ class RelationshipToHouseholdHeadEnum(str, Enum):
     other_nonrelative = "other_nonrelative"
     """
     Other non-relative
-    """
-
-
-class EnvironmentalMeasurementTypeEnum(str, Enum):
-    """
-    Types of environmental conditions measured for cell culture systems. Used to constrain observation_type in EnvironmentalMeasurement.
-    """
-    co2_percentage = "co2_percentage"
-    """
-    Carbon dioxide percentage in incubator atmosphere
-    """
-    o2_percentage = "o2_percentage"
-    """
-    Oxygen percentage in incubator (for hypoxic cultures)
-    """
-    temperature = "temperature"
-    """
-    Incubator or culture temperature
-    """
-    humidity = "humidity"
-    """
-    Relative humidity in incubator
-    """
-    nitrogen_balance = "nitrogen_balance"
-    """
-    Nitrogen percentage in atmosphere
-    """
-    ph = "ph"
-    """
-    pH of culture medium
-    """
-
-
-class MechanicalMeasurementTypeEnum(str, Enum):
-    """
-    Types of mechanical stimulation parameters for advanced culture systems like organ-on-chip and microphysiological systems. Used to constrain observation_type in MechanicalMeasurement.
-    """
-    stretch_frequency = "stretch_frequency"
-    """
-    Frequency of cyclic mechanical stretch (Hz)
-    """
-    stretch_amplitude = "stretch_amplitude"
-    """
-    Amplitude of mechanical stretch as percentage of original length
-    """
-    shear_stress = "shear_stress"
-    """
-    Fluid shear stress applied to cells (dyn/cm2 or Pa)
-    """
-    flow_rate = "flow_rate"
-    """
-    Fluid flow rate in microfluidic or perfusion systems
-    """
-    perfusion_rate = "perfusion_rate"
-    """
-    Media perfusion rate for continuous culture systems
-    """
-    pressure = "pressure"
-    """
-    Hydrostatic or pneumatic pressure
-    """
-
-
-class MembranePropertyTypeEnum(str, Enum):
-    """
-    Types of membrane properties measured for transwell, ALI, and organ-on-chip culture systems. Used to constrain observation_type in MembranePropertyMeasurement.
-    """
-    pore_size = "pore_size"
-    """
-    Diameter of membrane pores (typically in micrometers)
-    """
-    pore_density = "pore_density"
-    """
-    Number of pores per unit area
-    """
-    thickness = "thickness"
-    """
-    Membrane thickness
-    """
-    surface_area = "surface_area"
-    """
-    Total membrane surface area
-    """
-    teer = "teer"
-    """
-    Transepithelial electrical resistance
     """
 
 
@@ -1327,7 +1309,7 @@ class ExposureEvent(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    exposed_to_chemical: Optional[str] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
+    exposed_to_chemical: Optional[ChemicalEntity] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
     exposure_route: Optional[ExposureRouteEnum] = Field(default=None, description="""Route of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_concentration: Optional[float] = Field(default=None, description="""Concentration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
@@ -1420,7 +1402,7 @@ class ChemicalExposure(ExposureEvent):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'ECTO:0000006',
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    exposed_to_chemical: Optional[str] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
+    exposed_to_chemical: Optional[ChemicalEntity] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
     exposure_route: Optional[ExposureRouteEnum] = Field(default=None, description="""Route of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_concentration: Optional[float] = Field(default=None, description="""Concentration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
@@ -1441,7 +1423,7 @@ class DietaryExposure(ExposureEvent):
 
     food_item: Optional[str] = Field(default=None, description="""Food item consumed""", json_schema_extra = { "linkml_meta": {'domain_of': ['DietaryExposure']} })
     serving_size: Optional[str] = Field(default=None, description="""Serving size""", json_schema_extra = { "linkml_meta": {'domain_of': ['DietaryExposure']} })
-    exposed_to_chemical: Optional[str] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
+    exposed_to_chemical: Optional[ChemicalEntity] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
     exposure_route: Optional[ExposureRouteEnum] = Field(default=None, description="""Route of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_concentration: Optional[float] = Field(default=None, description="""Concentration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
@@ -1461,7 +1443,7 @@ class EnvironmentalExposure(ExposureEvent):
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
     environmental_context: Optional[str] = Field(default=None, description="""Environmental context of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnvironmentalExposure']} })
-    exposed_to_chemical: Optional[str] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
+    exposed_to_chemical: Optional[ChemicalEntity] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
     exposure_route: Optional[ExposureRouteEnum] = Field(default=None, description="""Route of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_concentration: Optional[float] = Field(default=None, description="""Concentration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
@@ -1482,7 +1464,7 @@ class OccupationalExposure(ExposureEvent):
 
     occupation: Optional[str] = Field(default=None, description="""Occupation related to exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['OccupationalExposure']} })
     workplace: Optional[str] = Field(default=None, description="""Workplace where exposure occurs""", json_schema_extra = { "linkml_meta": {'domain_of': ['OccupationalExposure']} })
-    exposed_to_chemical: Optional[str] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
+    exposed_to_chemical: Optional[ChemicalEntity] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
     exposure_route: Optional[ExposureRouteEnum] = Field(default=None, description="""Route of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_concentration: Optional[float] = Field(default=None, description="""Concentration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
@@ -1519,7 +1501,7 @@ class Disease(HealthOutcome):
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
     disease_category: Optional[str] = Field(default=None, description="""Category of disease""", json_schema_extra = { "linkml_meta": {'domain_of': ['Disease']} })
-    affected_anatomy: Optional[str] = Field(default=None, description="""Anatomical location affected""", json_schema_extra = { "linkml_meta": {'domain_of': ['Disease']} })
+    affected_anatomy: Optional[AnatomicalEntity] = Field(default=None, description="""Anatomical location affected""", json_schema_extra = { "linkml_meta": {'domain_of': ['Disease']} })
     id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1646,7 +1628,7 @@ class Cohort(StudyEntity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    part_of_study: Optional[str] = Field(default=None, description="""Study that this cohort is part of.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Cohort']} })
+    part_of_study: Optional[Study] = Field(default=None, description="""Study that this cohort is part of.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Cohort']} })
     cohort_size: Optional[int] = Field(default=None, description="""Number of participants in cohort""", json_schema_extra = { "linkml_meta": {'domain_of': ['Cohort']} })
     inclusion_criteria: Optional[str] = Field(default=None, description="""Criteria for cohort inclusion""", json_schema_extra = { "linkml_meta": {'domain_of': ['Cohort']} })
     id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
@@ -1676,7 +1658,7 @@ class Participant(StudyEntity):
                                 'name': 'sex'}}})
 
     person: Optional[str] = Field(default=None, description="""The person (individual) who is participating in this study. Links the study participation role to the actual individual.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Participant']} })
-    part_of_cohort: Optional[str] = Field(default=None, description="""Cohort that this participant is part of.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Participant'], 'slot_uri': 'biolink:member_of'} })
+    part_of_cohort: Optional[Cohort] = Field(default=None, description="""Cohort that this participant is part of.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Participant'], 'slot_uri': 'biolink:member_of'} })
     participant_id: Optional[str] = Field(default=None, description="""Participant identifier""", json_schema_extra = { "linkml_meta": {'domain_of': ['Participant']} })
     age: Optional[int] = Field(default=None, description="""Age of the participant in years at the time of study enrollment. This is a study-specific value that may differ from other study registrations or the person's current age.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Participant', 'Person']} })
     sex: Optional[SexEnum] = Field(default=None, description="""Biological sex of the participant as recorded at study enrollment. This is the value captured during study registration and may be used for stratification or eligibility criteria.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Participant', 'Person']} })
@@ -1700,7 +1682,7 @@ class ExposureMeasurement(Measurement):
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement',
                        'AggregatedMeasurement']} })
-    participant: Optional[str] = Field(default=None, description="""The participant being measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
+    participant: Optional[Participant] = Field(default=None, description="""The participant being measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement',
                        'GeneExpressionMeasurement',
@@ -1713,7 +1695,7 @@ class ExposureMeasurement(Measurement):
                        'PhenotypeMeasurement',
                        'GeneExpressionMeasurement',
                        'ProteinExpressionMeasurement']} })
-    sample_type: Optional[SampleTypeEnum] = Field(default=None, description="""Type of biological sample""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement']} })
+    sample_type: Optional[SampleTypeEnum] = Field(default=None, description="""Type of biological sample""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement', 'BiomarkerMeasurement']} })
     observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented. This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
     quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
     range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
@@ -1736,11 +1718,12 @@ class BiomarkerMeasurement(Measurement):
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement',
                        'AggregatedMeasurement']} })
-    participant: Optional[str] = Field(default=None, description="""The participant being measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
+    participant: Optional[Participant] = Field(default=None, description="""The participant being measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement',
                        'GeneExpressionMeasurement',
                        'ProteinExpressionMeasurement']} })
+    sample_type: Optional[SampleTypeEnum] = Field(default=None, description="""Type of biological sample""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement', 'BiomarkerMeasurement']} })
     measurement_method: Optional[str] = Field(default=None, description="""Method used for measurement""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement']} })
@@ -1771,7 +1754,7 @@ class PhenotypeMeasurement(Measurement):
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement',
                        'AggregatedMeasurement']} })
-    participant: Optional[str] = Field(default=None, description="""The participant being measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
+    participant: Optional[Participant] = Field(default=None, description="""The participant being measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement',
                        'GeneExpressionMeasurement',
@@ -1805,7 +1788,7 @@ class AggregatedMeasurement(Measurement):
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement',
                        'AggregatedMeasurement']} })
-    cohort: Optional[str] = Field(default=None, description="""The cohort for aggregated measurements.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AggregatedMeasurement']} })
+    cohort: Optional[Cohort] = Field(default=None, description="""The cohort for aggregated measurements.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AggregatedMeasurement']} })
     summary_statistic: Optional[SummaryStatisticEnum] = Field(default=None, description="""Type of summary statistic""", json_schema_extra = { "linkml_meta": {'domain_of': ['AggregatedMeasurement']} })
     sample_size: Optional[int] = Field(default=None, description="""Number of samples""", json_schema_extra = { "linkml_meta": {'domain_of': ['AggregatedMeasurement']} })
     stratification: Optional[str] = Field(default=None, description="""Stratification variables""", json_schema_extra = { "linkml_meta": {'domain_of': ['AggregatedMeasurement']} })
@@ -1831,7 +1814,7 @@ class GeneExpressionMeasurement(Measurement):
     cell_type_context: Optional[CellType] = Field(default=None, description="""The specific cell type where expression was measured, with identifier and name (e.g., goblet cell, ciliated cell, basal cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
     assay_method: Optional[ExpressionAssayMethodEnum] = Field(default=None, description="""The experimental method used to measure expression. Captures whether this was qRT-PCR, RNA-seq, Western blot, IHC, etc.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
     normalization_reference: Optional[str] = Field(default=None, description="""The reference gene or protein used for normalization (e.g., GAPDH, beta-actin, 18S rRNA, total protein).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
-    participant: Optional[str] = Field(default=None, description="""The participant being measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
+    participant: Optional[Participant] = Field(default=None, description="""The participant being measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement',
                        'GeneExpressionMeasurement',
@@ -1864,7 +1847,7 @@ class ProteinExpressionMeasurement(Measurement):
     cell_type_context: Optional[CellType] = Field(default=None, description="""The specific cell type where expression was measured, with identifier and name (e.g., goblet cell, ciliated cell, basal cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
     assay_method: Optional[ExpressionAssayMethodEnum] = Field(default=None, description="""The experimental method used to measure expression. Captures whether this was qRT-PCR, RNA-seq, Western blot, IHC, etc.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
     normalization_reference: Optional[str] = Field(default=None, description="""The reference gene or protein used for normalization (e.g., GAPDH, beta-actin, 18S rRNA, total protein).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionMeasurement', 'ProteinExpressionMeasurement']} })
-    participant: Optional[str] = Field(default=None, description="""The participant being measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
+    participant: Optional[Participant] = Field(default=None, description="""The participant being measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureMeasurement',
                        'BiomarkerMeasurement',
                        'PhenotypeMeasurement',
                        'GeneExpressionMeasurement',
@@ -1887,15 +1870,11 @@ class ProteinExpressionMeasurement(Measurement):
 
 class EnvironmentalMeasurement(Measurement):
     """
-    A measurement of environmental conditions for cell culture systems including temperature, CO2, O2 percentage, humidity, and pH. Used to document incubator and culture conditions.
+    A measurement of environmental conditions for cell culture systems including temperature, CO2, O2 percentage, humidity, and pH. Used to document incubator and culture conditions. Valid observation_type values include: co2_percentage, o2_percentage, temperature, humidity, nitrogen_balance, ph.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
-         'slot_usage': {'observation_type': {'description': 'The type of environmental '
-                                                            'parameter measured.',
-                                             'name': 'observation_type',
-                                             'range': 'EnvironmentalMeasurementTypeEnum'}}})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    observation_type: Optional[EnvironmentalMeasurementTypeEnum] = Field(default=None, description="""The type of environmental parameter measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented. This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
     quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
     range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
     range_high: Optional[QuantityValue] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
@@ -1908,15 +1887,11 @@ class EnvironmentalMeasurement(Measurement):
 
 class MechanicalMeasurement(Measurement):
     """
-    A measurement of mechanical stimulation parameters for advanced culture systems like organ-on-chip and microphysiological systems. Includes stretch frequency/amplitude, shear stress, flow rate, and pressure.
+    A measurement of mechanical stimulation parameters for advanced culture systems like organ-on-chip and microphysiological systems. Includes stretch frequency/amplitude, shear stress, flow rate, and pressure. Valid observation_type values include: stretch_frequency, stretch_amplitude, shear_stress, flow_rate, perfusion_rate, pressure.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
-         'slot_usage': {'observation_type': {'description': 'The type of mechanical '
-                                                            'parameter measured.',
-                                             'name': 'observation_type',
-                                             'range': 'MechanicalMeasurementTypeEnum'}}})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    observation_type: Optional[MechanicalMeasurementTypeEnum] = Field(default=None, description="""The type of mechanical parameter measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented. This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
     quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
     range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
     range_high: Optional[QuantityValue] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
@@ -1929,16 +1904,12 @@ class MechanicalMeasurement(Measurement):
 
 class MembranePropertyMeasurement(Measurement):
     """
-    A measurement of membrane properties for transwell, ALI, and organ-on-chip culture systems. Includes pore size, pore density, thickness, surface area, and TEER.
+    A measurement of membrane properties for transwell, ALI, and organ-on-chip culture systems. Includes pore size, pore density, thickness, surface area, and TEER. Valid observation_type values include: pore_size, pore_density, thickness, surface_area, teer.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
-         'slot_usage': {'observation_type': {'description': 'The type of membrane '
-                                                            'property measured.',
-                                             'name': 'observation_type',
-                                             'range': 'MembranePropertyTypeEnum'}}})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
     membrane_material: Optional[str] = Field(default=None, description="""Material of the porous membrane (e.g., PET, polycarbonate, PDMS).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MembranePropertyMeasurement']} })
-    observation_type: Optional[MembranePropertyTypeEnum] = Field(default=None, description="""The type of membrane property measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
+    observation_type: Optional[MeasurementTypeEnum] = Field(default=None, description="""The type of observation being represented. This field holds the key in the core key-value pair.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
     quantity_measured: Optional[QuantityValue] = Field(default=None, description="""The measured quantity value with its unit""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
     range_low: Optional[QuantityValue] = Field(default=None, description="""Lower bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
     range_high: Optional[QuantityValue] = Field(default=None, description="""Upper bound of reference range (e.g., from a laboratory).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Measurement']} })
@@ -1983,7 +1954,10 @@ class CellCultureConditions(NamedThing):
     days_at_air_liquid_interface: Optional[int] = Field(default=None, description="""Number of days cells have been cultured at air-liquid interface (ALI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions']} })
     passage_number: Optional[int] = Field(default=None, description="""Cell passage number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'TwoDCellCulture'],
          'exact_mappings': ['CLO:0000170']} })
-    substrate_type: Optional[SubstrateTypeEnum] = Field(default=None, description="""Type of culture substrate or surface material.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'TwoDCellCulture']} })
+    substrate_type: Optional[SubstrateTypeEnum] = Field(default=None, description="""Type of culture substrate or surface material.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions',
+                       'TwoDCellCulture',
+                       'ThreeDCellCulture',
+                       'CoCulture']} })
     cell_culture_growth_mode: Optional[CellCultureGrowthModeEnum] = Field(default=None, description="""Mode of cell culture growth (adherent, suspension, ALI, 3D, etc.)""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'CellularSystem'],
          'exact_mappings': ['CLO:0000030']} })
     environmental_measurements: Optional[list[EnvironmentalMeasurement]] = Field(default=[], description="""Collection of environmental condition measurements (CO2, O2, temperature, humidity, pH) for the culture system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container', 'CellCultureConditions', 'CellularSystem']} })
@@ -2090,7 +2064,10 @@ class TwoDCellCulture(CellularSystem):
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
          'id_prefixes': ['owg']})
 
-    substrate_type: Optional[SubstrateTypeEnum] = Field(default=None, description="""Type of culture substrate or surface material.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'TwoDCellCulture']} })
+    substrate_type: Optional[SubstrateTypeEnum] = Field(default=None, description="""Type of culture substrate or surface material.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions',
+                       'TwoDCellCulture',
+                       'ThreeDCellCulture',
+                       'CoCulture']} })
     confluence_level: Optional[QuantityValue] = Field(default=None, description="""Confluence level of adherent culture as percentage.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TwoDCellCulture']} })
     passage_number: Optional[int] = Field(default=None, description="""Cell passage number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions', 'TwoDCellCulture'],
          'exact_mappings': ['CLO:0000170']} })
@@ -2130,6 +2107,10 @@ class ThreeDCellCulture(CellularSystem):
     matrix_composition: Optional[str] = Field(default=None, description="""Composition of the 3D matrix or scaffold material (e.g., Matrigel, collagen, alginate, synthetic hydrogel).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThreeDCellCulture']} })
     size_range: Optional[QuantityRange] = Field(default=None, description="""Size range of 3D structures (diameter for spheroids/organoids).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThreeDCellCulture']} })
     organoid_type: Optional[str] = Field(default=None, description="""Specific type of organoid (e.g., intestinal, cerebral, lung, liver).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThreeDCellCulture']} })
+    substrate_type: Optional[SubstrateTypeEnum] = Field(default=None, description="""Type of culture substrate or surface material.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions',
+                       'TwoDCellCulture',
+                       'ThreeDCellCulture',
+                       'CoCulture']} })
     cell_line: Optional[CellLine] = Field(default=None, description="""The cell line used in the culture system. References a genetically stable cultured cell population.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'slot_uri': 'CLO:0000031'} })
     cell_line_lineage: Optional[str] = Field(default=None, description="""The lineage or derivation history of the cell line, including original tissue source and passage history.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
     primary_cultured_cell: Optional[CellType] = Field(default=None, description="""Primary cells directly isolated from tissue, not from an established cell line. Reference to Cell Ontology term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
@@ -2162,6 +2143,10 @@ class CoCulture(CellularSystem):
 
     coculture_configuration: Optional[CoCultureConfigurationEnum] = Field(default=None, description="""Physical configuration of co-culture (direct contact, transwell, microfluidic).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CoCulture']} })
     cell_type_ratios: Optional[list[str]] = Field(default=[], description="""Ratios between different cell types in co-culture (e.g., \"epithelial:stromal = 3:1\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['CoCulture']} })
+    substrate_type: Optional[SubstrateTypeEnum] = Field(default=None, description="""Type of culture substrate or surface material.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions',
+                       'TwoDCellCulture',
+                       'ThreeDCellCulture',
+                       'CoCulture']} })
     cell_line: Optional[CellLine] = Field(default=None, description="""The cell line used in the culture system. References a genetically stable cultured cell population.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem'], 'slot_uri': 'CLO:0000031'} })
     cell_line_lineage: Optional[str] = Field(default=None, description="""The lineage or derivation history of the cell line, including original tissue source and passage history.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
     primary_cultured_cell: Optional[CellType] = Field(default=None, description="""Primary cells directly isolated from tissue, not from an established cell line. Reference to Cell Ontology term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
@@ -2280,7 +2265,7 @@ class ExposureToPhenotypeAssociation(Association):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    exposure: Optional[str] = Field(default=None, description="""Exposure in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureToPhenotypeAssociation']} })
+    exposure: Optional[ExposureEvent] = Field(default=None, description="""Exposure in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureToPhenotypeAssociation']} })
     phenotype: Optional[OntologyTerm] = Field(default=None, description="""The phenotype being measured, with identifier and name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhenotypeMeasurement', 'ExposureToPhenotypeAssociation']} })
     association_type: Optional[str] = Field(default=None, description="""Type of association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureToPhenotypeAssociation', 'GeneToDiseaseAssociation']} })
     evidence: Optional[str] = Field(default=None, description="""Evidence for association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureToPhenotypeAssociation']} })
@@ -2297,8 +2282,8 @@ class ChemicalToGeneAssociation(Association):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    chemical: Optional[str] = Field(default=None, description="""Chemical in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalToGeneAssociation']} })
-    gene: Optional[str] = Field(default=None, description="""Gene in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalToGeneAssociation', 'GeneToDiseaseAssociation']} })
+    chemical: Optional[ChemicalEntity] = Field(default=None, description="""Chemical in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalToGeneAssociation']} })
+    gene: Optional[Gene] = Field(default=None, description="""Gene in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalToGeneAssociation', 'GeneToDiseaseAssociation']} })
     interaction_type: Optional[str] = Field(default=None, description="""Type of interaction""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalToGeneAssociation']} })
     id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
@@ -2313,8 +2298,8 @@ class GeneToDiseaseAssociation(Association):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
-    gene: Optional[str] = Field(default=None, description="""Gene in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalToGeneAssociation', 'GeneToDiseaseAssociation']} })
-    disease: Optional[str] = Field(default=None, description="""Disease in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneToDiseaseAssociation']} })
+    gene: Optional[Gene] = Field(default=None, description="""Gene in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalToGeneAssociation', 'GeneToDiseaseAssociation']} })
+    disease: Optional[Disease] = Field(default=None, description="""Disease in association""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneToDiseaseAssociation']} })
     association_type: Optional[str] = Field(default=None, description="""Type of association""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureToPhenotypeAssociation', 'GeneToDiseaseAssociation']} })
     id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })

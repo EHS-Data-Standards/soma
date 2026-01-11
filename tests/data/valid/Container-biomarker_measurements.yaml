@@ -27,7 +27,9 @@ biomarker_measurements:
     measured_entity:
       id: CHEBI:27894
       name: 8-isoprostane
-    participant: owg:participant-001
+    participant:
+      id: owg:participant-001
+      name: Participant 001
     measurement_method: ELISA
     measurement_date: "2024-03-15"
 
@@ -54,7 +56,9 @@ biomarker_measurements:
     measured_entity:
       id: CHEBI:16856
       name: Glutathione
-    participant: owg:participant-001
+    participant:
+      id: owg:participant-001
+      name: Participant 001
     measurement_method: HPLC with fluorescence detection
     measurement_date: "2024-03-15"
 
@@ -82,7 +86,9 @@ biomarker_measurements:
     measured_entity:
       id: PR:000001562
       name: Interleukin-8
-    participant: owg:participant-002
+    participant:
+      id: owg:participant-002
+      name: Participant 002
     measurement_method: Multiplex cytokine assay (Luminex)
     measurement_date: "2024-03-16"
 
@@ -109,7 +115,9 @@ biomarker_measurements:
     measured_entity:
       id: PR:000001461
       name: Interleukin-6
-    participant: owg:participant-002
+    participant:
+      id: owg:participant-002
+      name: Participant 002
     measurement_method: High-sensitivity ELISA
     measurement_date: "2024-03-16"
 
@@ -137,7 +145,9 @@ biomarker_measurements:
     measured_entity:
       id: CL:0000771
       name: Eosinophil
-    participant: owg:participant-003
+    participant:
+      id: owg:participant-003
+      name: Participant 003
     measurement_method: Cytospin with Diff-Quik staining
     measurement_date: "2024-03-17"
 
@@ -164,7 +174,9 @@ biomarker_measurements:
     measured_entity:
       id: CL:0000775
       name: Neutrophil
-    participant: owg:participant-003
+    participant:
+      id: owg:participant-003
+      name: Participant 003
     measurement_method: Cytospin with Diff-Quik staining
     measurement_date: "2024-03-17"
 
@@ -192,6 +204,8 @@ biomarker_measurements:
     measured_entity:
       id: CL:0002328
       name: Bronchial epithelial cell
-    participant: owg:participant-004
+    participant:
+      id: owg:participant-004
+      name: Participant 004
     measurement_method: EVOM2 Epithelial Voltohmmeter
     measurement_date: "2024-03-18"

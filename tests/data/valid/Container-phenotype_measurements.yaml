@@ -25,7 +25,9 @@ phenotype_measurements:
     phenotype:
       id: HP:0002094
       name: Dyspnea
-    participant: owg:participant-001
+    participant:
+      id: owg:participant-001
+      name: Participant 001
     measurement_date: "2024-03-15"
 
   - id: owg:phenotype-002
@@ -50,7 +52,9 @@ phenotype_measurements:
     phenotype:
       id: HP:0002094
       name: Dyspnea
-    participant: owg:participant-001
+    participant:
+      id: owg:participant-001
+      name: Participant 001
     measurement_date: "2024-03-15"
 
   - id: owg:phenotype-003
@@ -75,7 +79,9 @@ phenotype_measurements:
     phenotype:
       id: HP:0006536
       name: Airway obstruction
-    participant: owg:participant-001
+    participant:
+      id: owg:participant-001
+      name: Participant 001
     measurement_date: "2024-03-15"
 
   - id: owg:phenotype-004
@@ -100,7 +106,9 @@ phenotype_measurements:
     phenotype:
       id: HP:0006536
       name: Airway obstruction
-    participant: owg:participant-001
+    participant:
+      id: owg:participant-001
+      name: Participant 001
     measurement_date: "2024-03-15"
 
   # FeNO - Airway Inflammation Marker
@@ -126,7 +134,9 @@ phenotype_measurements:
     phenotype:
       id: HP:0002099
       name: Asthma
-    participant: owg:participant-002
+    participant:
+      id: owg:participant-002
+      name: Participant 002
     measurement_date: "2024-03-16"
 
   # Bronchodilator Response
@@ -152,7 +162,9 @@ phenotype_measurements:
     phenotype:
       id: HP:0002099
       name: Asthma
-    participant: owg:participant-002
+    participant:
+      id: owg:participant-002
+      name: Participant 002
     measurement_date: "2024-03-16"
 
   # Diffusing Capacity
@@ -178,7 +190,9 @@ phenotype_measurements:
     phenotype:
       id: HP:0002088
       name: Abnormal lung morphology
-    participant: owg:participant-003
+    participant:
+      id: owg:participant-003
+      name: Participant 003
     measurement_date: "2024-03-17"
 
   # Ciliary Function (from in vitro ALI cultures)
@@ -204,7 +218,9 @@ phenotype_measurements:
     phenotype:
       id: HP:0012265
       name: Ciliary dyskinesia
-    participant: owg:participant-004
+    participant:
+      id: owg:participant-004
+      name: Participant 004
     measurement_date: "2024-03-18"
 
   - id: owg:phenotype-009
@@ -229,7 +245,9 @@ phenotype_measurements:
     phenotype:
       id: HP:0012265
       name: Ciliary dyskinesia
-    participant: owg:participant-004
+    participant:
+      id: owg:participant-004
+      name: Participant 004
     measurement_date: "2024-03-18"
 
   # Mucociliary Clearance
@@ -255,7 +273,9 @@ phenotype_measurements:
     phenotype:
       id: HP:0002110
       name: Bronchiectasis
-    participant: owg:participant-005
+    participant:
+      id: owg:participant-005
+      name: Participant 005
     measurement_date: "2024-03-19"
 
   # Airway Surface Liquid Height
@@ -281,7 +301,9 @@ phenotype_measurements:
     phenotype:
       id: HP:0002110
       name: Bronchiectasis
-    participant: owg:participant-005
+    participant:
+      id: owg:participant-005
+      name: Participant 005
     measurement_date: "2024-03-19"
 
   # Goblet Cell Measurements
@@ -307,5 +329,7 @@ phenotype_measurements:
     phenotype:
       id: HP:0002099
       name: Asthma
-    participant: owg:participant-006
+    participant:
+      id: owg:participant-006
+      name: Participant 006
     measurement_date: "2024-03-20"

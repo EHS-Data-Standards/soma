@@ -173,7 +173,9 @@ gene_expression_measurements:
       name: bronchial epithelium
     assay_method: rna_seq
     normalization_reference: TPM normalization
-    participant: owg:participant-APEX-001
+    participant:
+      id: owg:participant-APEX-001
+      name: APEX-001
     measurement_date: "2024-03-17"
 
   # Single-cell RNA-seq example
@@ -327,7 +329,9 @@ protein_expression_measurements:
       name: goblet cell
     assay_method: immunohistochemistry
     normalization_reference: H-score
-    participant: owg:participant-APEX-001
+    participant:
+      id: owg:participant-APEX-001
+      name: APEX-001
     measurement_date: "2024-03-20"
 
   # Tight junction protein expression
@@ -395,7 +399,9 @@ protein_expression_measurements:
       id: UBERON:0001959
       name: bronchoalveolar lavage fluid
     assay_method: flow_cytometry
-    participant: owg:participant-APEX-002
+    participant:
+      id: owg:participant-APEX-002
+      name: APEX-002
     measurement_date: "2024-03-21"
 
   # ELISA example

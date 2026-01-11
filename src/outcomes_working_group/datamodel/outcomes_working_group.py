@@ -1,5 +1,5 @@
 # Auto generated from outcomes_working_group.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-10T17:55:22
+# Generation date: 2026-01-10T18:25:37
 # Schema: outcomes_working_group
 #
 # id: https://w3id.org/EHS-Data-Standards/outcomes_working_group
@@ -736,15 +736,15 @@ class ExposureEvent(NamedThing):
     class_model_uri: ClassVar[URIRef] = OWG.ExposureEvent
 
     id: Union[str, ExposureEventId] = None
-    exposed_to_chemical: Optional[Union[str, ChemicalEntityId]] = None
+    exposed_to_chemical: Optional[Union[dict, ChemicalEntity]] = None
     exposure_route: Optional[Union[str, "ExposureRouteEnum"]] = None
     exposure_duration: Optional[str] = None
     exposure_concentration: Optional[float] = None
     exposure_medium: Optional[Union[str, "ExposureMediumEnum"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self.exposed_to_chemical is not None and not isinstance(self.exposed_to_chemical, ChemicalEntityId):
-            self.exposed_to_chemical = ChemicalEntityId(self.exposed_to_chemical)
+        if self.exposed_to_chemical is not None and not isinstance(self.exposed_to_chemical, ChemicalEntity):
+            self.exposed_to_chemical = ChemicalEntity(**as_dict(self.exposed_to_chemical))
 
         if self.exposure_route is not None and not isinstance(self.exposure_route, ExposureRouteEnum):
             self.exposure_route = ExposureRouteEnum(self.exposure_route)
@@ -1008,7 +1008,7 @@ class Disease(HealthOutcome):
 
     id: Union[str, DiseaseId] = None
     disease_category: Optional[str] = None
-    affected_anatomy: Optional[Union[str, AnatomicalEntityId]] = None
+    affected_anatomy: Optional[Union[dict, "AnatomicalEntity"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -1019,8 +1019,8 @@ class Disease(HealthOutcome):
         if self.disease_category is not None and not isinstance(self.disease_category, str):
             self.disease_category = str(self.disease_category)
 
-        if self.affected_anatomy is not None and not isinstance(self.affected_anatomy, AnatomicalEntityId):
-            self.affected_anatomy = AnatomicalEntityId(self.affected_anatomy)
+        if self.affected_anatomy is not None and not isinstance(self.affected_anatomy, AnatomicalEntity):
+            self.affected_anatomy = AnatomicalEntity(**as_dict(self.affected_anatomy))
 
         super().__post_init__(**kwargs)
 
@@ -1293,7 +1293,7 @@ class Cohort(StudyEntity):
     class_model_uri: ClassVar[URIRef] = OWG.Cohort
 
     id: Union[str, CohortId] = None
-    part_of_study: Optional[Union[str, StudyId]] = None
+    part_of_study: Optional[Union[dict, Study]] = None
     cohort_size: Optional[int] = None
     inclusion_criteria: Optional[str] = None
 
@@ -1303,8 +1303,8 @@ class Cohort(StudyEntity):
         if not isinstance(self.id, CohortId):
             self.id = CohortId(self.id)
 
-        if self.part_of_study is not None and not isinstance(self.part_of_study, StudyId):
-            self.part_of_study = StudyId(self.part_of_study)
+        if self.part_of_study is not None and not isinstance(self.part_of_study, Study):
+            self.part_of_study = Study(**as_dict(self.part_of_study))
 
         if self.cohort_size is not None and not isinstance(self.cohort_size, int):
             self.cohort_size = int(self.cohort_size)
@@ -1331,7 +1331,7 @@ class Participant(StudyEntity):
 
     id: Union[str, ParticipantId] = None
     person: Optional[Union[str, PersonId]] = None
-    part_of_cohort: Optional[Union[str, CohortId]] = None
+    part_of_cohort: Optional[Union[dict, Cohort]] = None
     participant_id: Optional[str] = None
     age: Optional[int] = None
     sex: Optional[Union[str, "SexEnum"]] = None
@@ -1348,8 +1348,8 @@ class Participant(StudyEntity):
         if self.person is not None and not isinstance(self.person, PersonId):
             self.person = PersonId(self.person)
 
-        if self.part_of_cohort is not None and not isinstance(self.part_of_cohort, CohortId):
-            self.part_of_cohort = CohortId(self.part_of_cohort)
+        if self.part_of_cohort is not None and not isinstance(self.part_of_cohort, Cohort):
+            self.part_of_cohort = Cohort(**as_dict(self.part_of_cohort))
 
         if self.participant_id is not None and not isinstance(self.participant_id, str):
             self.participant_id = str(self.participant_id)
@@ -1386,7 +1386,7 @@ class ExposureMeasurement(Measurement):
 
     id: Union[str, ExposureMeasurementId] = None
     measured_entity: Optional[Union[dict, OntologyTerm]] = None
-    participant: Optional[Union[str, ParticipantId]] = None
+    participant: Optional[Union[dict, Participant]] = None
     measurement_method: Optional[str] = None
     measurement_date: Optional[Union[str, XSDDate]] = None
     sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
@@ -1400,8 +1400,8 @@ class ExposureMeasurement(Measurement):
         if self.measured_entity is not None and not isinstance(self.measured_entity, OntologyTerm):
             self.measured_entity = OntologyTerm(**as_dict(self.measured_entity))
 
-        if self.participant is not None and not isinstance(self.participant, ParticipantId):
-            self.participant = ParticipantId(self.participant)
+        if self.participant is not None and not isinstance(self.participant, Participant):
+            self.participant = Participant(**as_dict(self.participant))
 
         if self.measurement_method is not None and not isinstance(self.measurement_method, str):
             self.measurement_method = str(self.measurement_method)
@@ -1430,7 +1430,8 @@ class BiomarkerMeasurement(Measurement):
     id: Union[str, BiomarkerMeasurementId] = None
     biomarker_type: Optional[str] = None
     measured_entity: Optional[Union[dict, OntologyTerm]] = None
-    participant: Optional[Union[str, ParticipantId]] = None
+    participant: Optional[Union[dict, Participant]] = None
+    sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
     measurement_method: Optional[str] = None
     measurement_date: Optional[Union[str, XSDDate]] = None
 
@@ -1446,8 +1447,11 @@ class BiomarkerMeasurement(Measurement):
         if self.measured_entity is not None and not isinstance(self.measured_entity, OntologyTerm):
             self.measured_entity = OntologyTerm(**as_dict(self.measured_entity))
 
-        if self.participant is not None and not isinstance(self.participant, ParticipantId):
-            self.participant = ParticipantId(self.participant)
+        if self.participant is not None and not isinstance(self.participant, Participant):
+            self.participant = Participant(**as_dict(self.participant))
+
+        if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
+            self.sample_type = SampleTypeEnum(self.sample_type)
 
         if self.measurement_method is not None and not isinstance(self.measurement_method, str):
             self.measurement_method = str(self.measurement_method)
@@ -1473,7 +1477,7 @@ class PhenotypeMeasurement(Measurement):
     id: Union[str, PhenotypeMeasurementId] = None
     phenotype: Optional[Union[dict, OntologyTerm]] = None
     measured_entity: Optional[Union[dict, OntologyTerm]] = None
-    participant: Optional[Union[str, ParticipantId]] = None
+    participant: Optional[Union[dict, Participant]] = None
     measurement_method: Optional[str] = None
     measurement_date: Optional[Union[str, XSDDate]] = None
 
@@ -1489,8 +1493,8 @@ class PhenotypeMeasurement(Measurement):
         if self.measured_entity is not None and not isinstance(self.measured_entity, OntologyTerm):
             self.measured_entity = OntologyTerm(**as_dict(self.measured_entity))
 
-        if self.participant is not None and not isinstance(self.participant, ParticipantId):
-            self.participant = ParticipantId(self.participant)
+        if self.participant is not None and not isinstance(self.participant, Participant):
+            self.participant = Participant(**as_dict(self.participant))
 
         if self.measurement_method is not None and not isinstance(self.measurement_method, str):
             self.measurement_method = str(self.measurement_method)
@@ -1515,7 +1519,7 @@ class AggregatedMeasurement(Measurement):
 
     id: Union[str, AggregatedMeasurementId] = None
     measured_entity: Optional[Union[dict, OntologyTerm]] = None
-    cohort: Optional[Union[str, CohortId]] = None
+    cohort: Optional[Union[dict, Cohort]] = None
     summary_statistic: Optional[Union[str, "SummaryStatisticEnum"]] = None
     sample_size: Optional[int] = None
     stratification: Optional[str] = None
@@ -1529,8 +1533,8 @@ class AggregatedMeasurement(Measurement):
         if self.measured_entity is not None and not isinstance(self.measured_entity, OntologyTerm):
             self.measured_entity = OntologyTerm(**as_dict(self.measured_entity))
 
-        if self.cohort is not None and not isinstance(self.cohort, CohortId):
-            self.cohort = CohortId(self.cohort)
+        if self.cohort is not None and not isinstance(self.cohort, Cohort):
+            self.cohort = Cohort(**as_dict(self.cohort))
 
         if self.summary_statistic is not None and not isinstance(self.summary_statistic, SummaryStatisticEnum):
             self.summary_statistic = SummaryStatisticEnum(self.summary_statistic)
@@ -1563,7 +1567,7 @@ class GeneExpressionMeasurement(Measurement):
     cell_type_context: Optional[Union[dict, "CellType"]] = None
     assay_method: Optional[Union[str, "ExpressionAssayMethodEnum"]] = None
     normalization_reference: Optional[str] = None
-    participant: Optional[Union[str, ParticipantId]] = None
+    participant: Optional[Union[dict, Participant]] = None
     measurement_date: Optional[Union[str, XSDDate]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
@@ -1587,8 +1591,8 @@ class GeneExpressionMeasurement(Measurement):
         if self.normalization_reference is not None and not isinstance(self.normalization_reference, str):
             self.normalization_reference = str(self.normalization_reference)
 
-        if self.participant is not None and not isinstance(self.participant, ParticipantId):
-            self.participant = ParticipantId(self.participant)
+        if self.participant is not None and not isinstance(self.participant, Participant):
+            self.participant = Participant(**as_dict(self.participant))
 
         if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
             self.measurement_date = XSDDate(self.measurement_date)
@@ -1616,7 +1620,7 @@ class ProteinExpressionMeasurement(Measurement):
     cell_type_context: Optional[Union[dict, "CellType"]] = None
     assay_method: Optional[Union[str, "ExpressionAssayMethodEnum"]] = None
     normalization_reference: Optional[str] = None
-    participant: Optional[Union[str, ParticipantId]] = None
+    participant: Optional[Union[dict, Participant]] = None
     measurement_date: Optional[Union[str, XSDDate]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
@@ -1643,8 +1647,8 @@ class ProteinExpressionMeasurement(Measurement):
         if self.normalization_reference is not None and not isinstance(self.normalization_reference, str):
             self.normalization_reference = str(self.normalization_reference)
 
-        if self.participant is not None and not isinstance(self.participant, ParticipantId):
-            self.participant = ParticipantId(self.participant)
+        if self.participant is not None and not isinstance(self.participant, Participant):
+            self.participant = Participant(**as_dict(self.participant))
 
         if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
             self.measurement_date = XSDDate(self.measurement_date)
@@ -1656,7 +1660,8 @@ class ProteinExpressionMeasurement(Measurement):
 class EnvironmentalMeasurement(Measurement):
     """
     A measurement of environmental conditions for cell culture systems including temperature, CO2, O2 percentage,
-    humidity, and pH. Used to document incubator and culture conditions.
+    humidity, and pH. Used to document incubator and culture conditions. Valid observation_type values include:
+    co2_percentage, o2_percentage, temperature, humidity, nitrogen_balance, ph.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -1666,16 +1671,12 @@ class EnvironmentalMeasurement(Measurement):
     class_model_uri: ClassVar[URIRef] = OWG.EnvironmentalMeasurement
 
     id: Union[str, EnvironmentalMeasurementId] = None
-    observation_type: Optional[Union[str, "EnvironmentalMeasurementTypeEnum"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
         if not isinstance(self.id, EnvironmentalMeasurementId):
             self.id = EnvironmentalMeasurementId(self.id)
-
-        if self.observation_type is not None and not isinstance(self.observation_type, EnvironmentalMeasurementTypeEnum):
-            self.observation_type = EnvironmentalMeasurementTypeEnum(self.observation_type)
 
         super().__post_init__(**kwargs)
 
@@ -1684,7 +1685,9 @@ class EnvironmentalMeasurement(Measurement):
 class MechanicalMeasurement(Measurement):
     """
     A measurement of mechanical stimulation parameters for advanced culture systems like organ-on-chip and
-    microphysiological systems. Includes stretch frequency/amplitude, shear stress, flow rate, and pressure.
+    microphysiological systems. Includes stretch frequency/amplitude, shear stress, flow rate, and pressure. Valid
+    observation_type values include: stretch_frequency, stretch_amplitude, shear_stress, flow_rate, perfusion_rate,
+    pressure.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -1694,16 +1697,12 @@ class MechanicalMeasurement(Measurement):
     class_model_uri: ClassVar[URIRef] = OWG.MechanicalMeasurement
 
     id: Union[str, MechanicalMeasurementId] = None
-    observation_type: Optional[Union[str, "MechanicalMeasurementTypeEnum"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
         if not isinstance(self.id, MechanicalMeasurementId):
             self.id = MechanicalMeasurementId(self.id)
-
-        if self.observation_type is not None and not isinstance(self.observation_type, MechanicalMeasurementTypeEnum):
-            self.observation_type = MechanicalMeasurementTypeEnum(self.observation_type)
 
         super().__post_init__(**kwargs)
 
@@ -1712,7 +1711,8 @@ class MechanicalMeasurement(Measurement):
 class MembranePropertyMeasurement(Measurement):
     """
     A measurement of membrane properties for transwell, ALI, and organ-on-chip culture systems. Includes pore size,
-    pore density, thickness, surface area, and TEER.
+    pore density, thickness, surface area, and TEER. Valid observation_type values include: pore_size, pore_density,
+    thickness, surface_area, teer.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -1723,7 +1723,6 @@ class MembranePropertyMeasurement(Measurement):
 
     id: Union[str, MembranePropertyMeasurementId] = None
     membrane_material: Optional[str] = None
-    observation_type: Optional[Union[str, "MembranePropertyTypeEnum"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -1733,9 +1732,6 @@ class MembranePropertyMeasurement(Measurement):
 
         if self.membrane_material is not None and not isinstance(self.membrane_material, str):
             self.membrane_material = str(self.membrane_material)
-
-        if self.observation_type is not None and not isinstance(self.observation_type, MembranePropertyTypeEnum):
-            self.observation_type = MembranePropertyTypeEnum(self.observation_type)
 
         super().__post_init__(**kwargs)
 
@@ -2104,6 +2100,7 @@ class ThreeDCellCulture(CellularSystem):
     matrix_composition: Optional[str] = None
     size_range: Optional[Union[dict, QuantityRange]] = None
     organoid_type: Optional[str] = None
+    substrate_type: Optional[Union[str, "SubstrateTypeEnum"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -2123,6 +2120,9 @@ class ThreeDCellCulture(CellularSystem):
         if self.organoid_type is not None and not isinstance(self.organoid_type, str):
             self.organoid_type = str(self.organoid_type)
 
+        if self.substrate_type is not None and not isinstance(self.substrate_type, SubstrateTypeEnum):
+            self.substrate_type = SubstrateTypeEnum(self.substrate_type)
+
         super().__post_init__(**kwargs)
 
 
@@ -2141,6 +2141,7 @@ class CoCulture(CellularSystem):
     id: Union[str, CoCultureId] = None
     coculture_configuration: Optional[Union[str, "CoCultureConfigurationEnum"]] = None
     cell_type_ratios: Optional[Union[str, list[str]]] = empty_list()
+    substrate_type: Optional[Union[str, "SubstrateTypeEnum"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -2154,6 +2155,9 @@ class CoCulture(CellularSystem):
         if not isinstance(self.cell_type_ratios, list):
             self.cell_type_ratios = [self.cell_type_ratios] if self.cell_type_ratios is not None else []
         self.cell_type_ratios = [v if isinstance(v, str) else str(v) for v in self.cell_type_ratios]
+
+        if self.substrate_type is not None and not isinstance(self.substrate_type, SubstrateTypeEnum):
+            self.substrate_type = SubstrateTypeEnum(self.substrate_type)
 
         super().__post_init__(**kwargs)
 
@@ -2318,7 +2322,7 @@ class ExposureToPhenotypeAssociation(Association):
     class_model_uri: ClassVar[URIRef] = OWG.ExposureToPhenotypeAssociation
 
     id: Union[str, ExposureToPhenotypeAssociationId] = None
-    exposure: Optional[Union[str, ExposureEventId]] = None
+    exposure: Optional[Union[dict, ExposureEvent]] = None
     phenotype: Optional[Union[dict, OntologyTerm]] = None
     association_type: Optional[str] = None
     evidence: Optional[str] = None
@@ -2329,8 +2333,8 @@ class ExposureToPhenotypeAssociation(Association):
         if not isinstance(self.id, ExposureToPhenotypeAssociationId):
             self.id = ExposureToPhenotypeAssociationId(self.id)
 
-        if self.exposure is not None and not isinstance(self.exposure, ExposureEventId):
-            self.exposure = ExposureEventId(self.exposure)
+        if self.exposure is not None and not isinstance(self.exposure, ExposureEvent):
+            self.exposure = ExposureEvent(**as_dict(self.exposure))
 
         if self.phenotype is not None and not isinstance(self.phenotype, OntologyTerm):
             self.phenotype = OntologyTerm(**as_dict(self.phenotype))
@@ -2357,8 +2361,8 @@ class ChemicalToGeneAssociation(Association):
     class_model_uri: ClassVar[URIRef] = OWG.ChemicalToGeneAssociation
 
     id: Union[str, ChemicalToGeneAssociationId] = None
-    chemical: Optional[Union[str, ChemicalEntityId]] = None
-    gene: Optional[Union[str, GeneId]] = None
+    chemical: Optional[Union[dict, ChemicalEntity]] = None
+    gene: Optional[Union[dict, Gene]] = None
     interaction_type: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
@@ -2367,11 +2371,11 @@ class ChemicalToGeneAssociation(Association):
         if not isinstance(self.id, ChemicalToGeneAssociationId):
             self.id = ChemicalToGeneAssociationId(self.id)
 
-        if self.chemical is not None and not isinstance(self.chemical, ChemicalEntityId):
-            self.chemical = ChemicalEntityId(self.chemical)
+        if self.chemical is not None and not isinstance(self.chemical, ChemicalEntity):
+            self.chemical = ChemicalEntity(**as_dict(self.chemical))
 
-        if self.gene is not None and not isinstance(self.gene, GeneId):
-            self.gene = GeneId(self.gene)
+        if self.gene is not None and not isinstance(self.gene, Gene):
+            self.gene = Gene(**as_dict(self.gene))
 
         if self.interaction_type is not None and not isinstance(self.interaction_type, str):
             self.interaction_type = str(self.interaction_type)
@@ -2392,8 +2396,8 @@ class GeneToDiseaseAssociation(Association):
     class_model_uri: ClassVar[URIRef] = OWG.GeneToDiseaseAssociation
 
     id: Union[str, GeneToDiseaseAssociationId] = None
-    gene: Optional[Union[str, GeneId]] = None
-    disease: Optional[Union[str, DiseaseId]] = None
+    gene: Optional[Union[dict, Gene]] = None
+    disease: Optional[Union[dict, Disease]] = None
     association_type: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
@@ -2402,11 +2406,11 @@ class GeneToDiseaseAssociation(Association):
         if not isinstance(self.id, GeneToDiseaseAssociationId):
             self.id = GeneToDiseaseAssociationId(self.id)
 
-        if self.gene is not None and not isinstance(self.gene, GeneId):
-            self.gene = GeneId(self.gene)
+        if self.gene is not None and not isinstance(self.gene, Gene):
+            self.gene = Gene(**as_dict(self.gene))
 
-        if self.disease is not None and not isinstance(self.disease, DiseaseId):
-            self.disease = DiseaseId(self.disease)
+        if self.disease is not None and not isinstance(self.disease, Disease):
+            self.disease = Disease(**as_dict(self.disease))
 
         if self.association_type is not None and not isinstance(self.association_type, str):
             self.association_type = str(self.association_type)
@@ -3336,6 +3340,62 @@ class MeasurementTypeEnum(EnumDefinitionImpl):
     bacterial_load = PermissibleValue(
         text="bacterial_load",
         description="Total bacterial load (CFU or 16S copies)")
+    co2_percentage = PermissibleValue(
+        text="co2_percentage",
+        description="Carbon dioxide percentage in incubator atmosphere")
+    o2_percentage = PermissibleValue(
+        text="o2_percentage",
+        description="Oxygen percentage in incubator (for hypoxic cultures)")
+    temperature = PermissibleValue(
+        text="temperature",
+        description="Incubator or culture temperature",
+        meaning=PATO["0000146"])
+    humidity = PermissibleValue(
+        text="humidity",
+        description="Relative humidity in incubator",
+        meaning=PATO["0015009"])
+    nitrogen_balance = PermissibleValue(
+        text="nitrogen_balance",
+        description="Nitrogen percentage in atmosphere")
+    ph = PermissibleValue(
+        text="ph",
+        description="pH of culture medium",
+        meaning=PATO["0001842"])
+    stretch_frequency = PermissibleValue(
+        text="stretch_frequency",
+        description="Frequency of cyclic mechanical stretch (Hz)")
+    stretch_amplitude = PermissibleValue(
+        text="stretch_amplitude",
+        description="Amplitude of mechanical stretch as percentage")
+    shear_stress = PermissibleValue(
+        text="shear_stress",
+        description="Fluid shear stress applied to cells (dyn/cm2 or Pa)")
+    flow_rate = PermissibleValue(
+        text="flow_rate",
+        description="Fluid flow rate in microfluidic or perfusion systems")
+    perfusion_rate = PermissibleValue(
+        text="perfusion_rate",
+        description="Media perfusion rate for continuous culture systems")
+    pressure = PermissibleValue(
+        text="pressure",
+        description="Hydrostatic or pneumatic pressure",
+        meaning=PATO["0001025"])
+    pore_size = PermissibleValue(
+        text="pore_size",
+        description="Diameter of membrane pores (typically in micrometers)")
+    pore_density = PermissibleValue(
+        text="pore_density",
+        description="Number of pores per unit area")
+    thickness = PermissibleValue(
+        text="thickness",
+        description="Membrane thickness",
+        meaning=PATO["0000915"])
+    surface_area = PermissibleValue(
+        text="surface_area",
+        description="Total membrane surface area")
+    teer = PermissibleValue(
+        text="teer",
+        description="Transepithelial electrical resistance (membrane property)")
     other = PermissibleValue(
         text="other",
         description="Other measurement type not listed")
@@ -3377,95 +3437,6 @@ class RelationshipToHouseholdHeadEnum(EnumDefinitionImpl):
     _defn = EnumDefinition(
         name="RelationshipToHouseholdHeadEnum",
         description="""Relationship of a person to the household head (householder) in census data. Based on PUMS RELP variable coding.""",
-    )
-
-class EnvironmentalMeasurementTypeEnum(EnumDefinitionImpl):
-    """
-    Types of environmental conditions measured for cell culture systems. Used to constrain observation_type in
-    EnvironmentalMeasurement.
-    """
-    co2_percentage = PermissibleValue(
-        text="co2_percentage",
-        description="Carbon dioxide percentage in incubator atmosphere")
-    o2_percentage = PermissibleValue(
-        text="o2_percentage",
-        description="Oxygen percentage in incubator (for hypoxic cultures)")
-    temperature = PermissibleValue(
-        text="temperature",
-        description="Incubator or culture temperature",
-        meaning=PATO["0000146"])
-    humidity = PermissibleValue(
-        text="humidity",
-        description="Relative humidity in incubator",
-        meaning=PATO["0015009"])
-    nitrogen_balance = PermissibleValue(
-        text="nitrogen_balance",
-        description="Nitrogen percentage in atmosphere")
-    ph = PermissibleValue(
-        text="ph",
-        description="pH of culture medium",
-        meaning=PATO["0001842"])
-
-    _defn = EnumDefinition(
-        name="EnvironmentalMeasurementTypeEnum",
-        description="""Types of environmental conditions measured for cell culture systems. Used to constrain observation_type in EnvironmentalMeasurement.""",
-    )
-
-class MechanicalMeasurementTypeEnum(EnumDefinitionImpl):
-    """
-    Types of mechanical stimulation parameters for advanced culture systems like organ-on-chip and microphysiological
-    systems. Used to constrain observation_type in MechanicalMeasurement.
-    """
-    stretch_frequency = PermissibleValue(
-        text="stretch_frequency",
-        description="Frequency of cyclic mechanical stretch (Hz)")
-    stretch_amplitude = PermissibleValue(
-        text="stretch_amplitude",
-        description="Amplitude of mechanical stretch as percentage of original length")
-    shear_stress = PermissibleValue(
-        text="shear_stress",
-        description="Fluid shear stress applied to cells (dyn/cm2 or Pa)")
-    flow_rate = PermissibleValue(
-        text="flow_rate",
-        description="Fluid flow rate in microfluidic or perfusion systems")
-    perfusion_rate = PermissibleValue(
-        text="perfusion_rate",
-        description="Media perfusion rate for continuous culture systems")
-    pressure = PermissibleValue(
-        text="pressure",
-        description="Hydrostatic or pneumatic pressure",
-        meaning=PATO["0001025"])
-
-    _defn = EnumDefinition(
-        name="MechanicalMeasurementTypeEnum",
-        description="""Types of mechanical stimulation parameters for advanced culture systems like organ-on-chip and microphysiological systems. Used to constrain observation_type in MechanicalMeasurement.""",
-    )
-
-class MembranePropertyTypeEnum(EnumDefinitionImpl):
-    """
-    Types of membrane properties measured for transwell, ALI, and organ-on-chip culture systems. Used to constrain
-    observation_type in MembranePropertyMeasurement.
-    """
-    pore_size = PermissibleValue(
-        text="pore_size",
-        description="Diameter of membrane pores (typically in micrometers)")
-    pore_density = PermissibleValue(
-        text="pore_density",
-        description="Number of pores per unit area")
-    thickness = PermissibleValue(
-        text="thickness",
-        description="Membrane thickness",
-        meaning=PATO["0000915"])
-    surface_area = PermissibleValue(
-        text="surface_area",
-        description="Total membrane surface area")
-    teer = PermissibleValue(
-        text="teer",
-        description="Transepithelial electrical resistance")
-
-    _defn = EnumDefinition(
-        name="MembranePropertyTypeEnum",
-        description="""Types of membrane properties measured for transwell, ALI, and organ-on-chip culture systems. Used to constrain observation_type in MembranePropertyMeasurement.""",
     )
 
 class CellCultureGrowthModeEnum(EnumDefinitionImpl):
@@ -3730,7 +3701,7 @@ slots.molecular_formula = Slot(uri=OWG.molecular_formula, name="molecular_formul
                    model_uri=OWG.molecular_formula, domain=None, range=Optional[str])
 
 slots.exposed_to_chemical = Slot(uri=CHEBI['24431'], name="exposed_to_chemical", curie=CHEBI.curie('24431'),
-                   model_uri=OWG.exposed_to_chemical, domain=None, range=Optional[Union[str, ChemicalEntityId]])
+                   model_uri=OWG.exposed_to_chemical, domain=None, range=Optional[Union[dict, ChemicalEntity]])
 
 slots.exposure_route = Slot(uri=OWG.exposure_route, name="exposure_route", curie=OWG.curie('exposure_route'),
                    model_uri=OWG.exposure_route, domain=None, range=Optional[Union[str, "ExposureRouteEnum"]])
@@ -3769,7 +3740,7 @@ slots.disease_category = Slot(uri=OWG.disease_category, name="disease_category",
                    model_uri=OWG.disease_category, domain=None, range=Optional[str])
 
 slots.affected_anatomy = Slot(uri=OWG.affected_anatomy, name="affected_anatomy", curie=OWG.curie('affected_anatomy'),
-                   model_uri=OWG.affected_anatomy, domain=None, range=Optional[Union[str, AnatomicalEntityId]])
+                   model_uri=OWG.affected_anatomy, domain=None, range=Optional[Union[dict, AnatomicalEntity]])
 
 slots.outcome_level = Slot(uri=OWG.outcome_level, name="outcome_level", curie=OWG.curie('outcome_level'),
                    model_uri=OWG.outcome_level, domain=None, range=Optional[Union[str, "BiologicalOrganizationLevelEnum"]])
@@ -3841,7 +3812,7 @@ slots.publications = Slot(uri=OWG.publications, name="publications", curie=OWG.c
                    model_uri=OWG.publications, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.part_of_study = Slot(uri=OWG.part_of_study, name="part_of_study", curie=OWG.curie('part_of_study'),
-                   model_uri=OWG.part_of_study, domain=None, range=Optional[Union[str, StudyId]])
+                   model_uri=OWG.part_of_study, domain=None, range=Optional[Union[dict, Study]])
 
 slots.cohort_size = Slot(uri=OWG.cohort_size, name="cohort_size", curie=OWG.curie('cohort_size'),
                    model_uri=OWG.cohort_size, domain=None, range=Optional[int])
@@ -3850,7 +3821,7 @@ slots.inclusion_criteria = Slot(uri=OWG.inclusion_criteria, name="inclusion_crit
                    model_uri=OWG.inclusion_criteria, domain=None, range=Optional[str])
 
 slots.part_of_cohort = Slot(uri=BIOLINK.member_of, name="part_of_cohort", curie=BIOLINK.curie('member_of'),
-                   model_uri=OWG.part_of_cohort, domain=None, range=Optional[Union[str, CohortId]])
+                   model_uri=OWG.part_of_cohort, domain=None, range=Optional[Union[dict, Cohort]])
 
 slots.participant_id = Slot(uri=OWG.participant_id, name="participant_id", curie=OWG.curie('participant_id'),
                    model_uri=OWG.participant_id, domain=None, range=Optional[str])
@@ -3892,7 +3863,7 @@ slots.measured_entity = Slot(uri=OWG.measured_entity, name="measured_entity", cu
                    model_uri=OWG.measured_entity, domain=None, range=Optional[Union[dict, OntologyTerm]])
 
 slots.participant = Slot(uri=OWG.participant, name="participant", curie=OWG.curie('participant'),
-                   model_uri=OWG.participant, domain=None, range=Optional[Union[str, ParticipantId]])
+                   model_uri=OWG.participant, domain=None, range=Optional[Union[dict, Participant]])
 
 slots.measurement_method = Slot(uri=OWG.measurement_method, name="measurement_method", curie=OWG.curie('measurement_method'),
                    model_uri=OWG.measurement_method, domain=None, range=Optional[str])
@@ -3910,7 +3881,7 @@ slots.phenotype = Slot(uri=OWG.phenotype, name="phenotype", curie=OWG.curie('phe
                    model_uri=OWG.phenotype, domain=None, range=Optional[Union[dict, OntologyTerm]])
 
 slots.cohort = Slot(uri=OWG.cohort, name="cohort", curie=OWG.curie('cohort'),
-                   model_uri=OWG.cohort, domain=None, range=Optional[Union[str, CohortId]])
+                   model_uri=OWG.cohort, domain=None, range=Optional[Union[dict, Cohort]])
 
 slots.summary_statistic = Slot(uri=OWG.summary_statistic, name="summary_statistic", curie=OWG.curie('summary_statistic'),
                    model_uri=OWG.summary_statistic, domain=None, range=Optional[Union[str, "SummaryStatisticEnum"]])
@@ -3967,16 +3938,16 @@ slots.taxon_id = Slot(uri=OWG.taxon_id, name="taxon_id", curie=OWG.curie('taxon_
                    model_uri=OWG.taxon_id, domain=None, range=Optional[str])
 
 slots.exposure = Slot(uri=OWG.exposure, name="exposure", curie=OWG.curie('exposure'),
-                   model_uri=OWG.exposure, domain=None, range=Optional[Union[str, ExposureEventId]])
+                   model_uri=OWG.exposure, domain=None, range=Optional[Union[dict, ExposureEvent]])
 
 slots.chemical = Slot(uri=OWG.chemical, name="chemical", curie=OWG.curie('chemical'),
-                   model_uri=OWG.chemical, domain=None, range=Optional[Union[str, ChemicalEntityId]])
+                   model_uri=OWG.chemical, domain=None, range=Optional[Union[dict, ChemicalEntity]])
 
 slots.gene = Slot(uri=OWG.gene, name="gene", curie=OWG.curie('gene'),
-                   model_uri=OWG.gene, domain=None, range=Optional[Union[str, GeneId]])
+                   model_uri=OWG.gene, domain=None, range=Optional[Union[dict, Gene]])
 
 slots.disease = Slot(uri=OWG.disease, name="disease", curie=OWG.curie('disease'),
-                   model_uri=OWG.disease, domain=None, range=Optional[Union[str, DiseaseId]])
+                   model_uri=OWG.disease, domain=None, range=Optional[Union[dict, Disease]])
 
 slots.association_type = Slot(uri=OWG.association_type, name="association_type", curie=OWG.curie('association_type'),
                    model_uri=OWG.association_type, domain=None, range=Optional[str])
@@ -4334,15 +4305,6 @@ slots.Participant_age = Slot(uri=OWG.age, name="Participant_age", curie=OWG.curi
 
 slots.Participant_sex = Slot(uri=OWG.sex, name="Participant_sex", curie=OWG.curie('sex'),
                    model_uri=OWG.Participant_sex, domain=Participant, range=Optional[Union[str, "SexEnum"]])
-
-slots.EnvironmentalMeasurement_observation_type = Slot(uri=OWG.observation_type, name="EnvironmentalMeasurement_observation_type", curie=OWG.curie('observation_type'),
-                   model_uri=OWG.EnvironmentalMeasurement_observation_type, domain=EnvironmentalMeasurement, range=Optional[Union[str, "EnvironmentalMeasurementTypeEnum"]])
-
-slots.MechanicalMeasurement_observation_type = Slot(uri=OWG.observation_type, name="MechanicalMeasurement_observation_type", curie=OWG.curie('observation_type'),
-                   model_uri=OWG.MechanicalMeasurement_observation_type, domain=MechanicalMeasurement, range=Optional[Union[str, "MechanicalMeasurementTypeEnum"]])
-
-slots.MembranePropertyMeasurement_observation_type = Slot(uri=OWG.observation_type, name="MembranePropertyMeasurement_observation_type", curie=OWG.curie('observation_type'),
-                   model_uri=OWG.MembranePropertyMeasurement_observation_type, domain=MembranePropertyMeasurement, range=Optional[Union[str, "MembranePropertyTypeEnum"]])
 
 slots.Person_age = Slot(uri=OWG.age, name="Person_age", curie=OWG.curie('age'),
                    model_uri=OWG.Person_age, domain=Person, range=Optional[int])

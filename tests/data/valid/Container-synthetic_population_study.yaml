@@ -27,7 +27,9 @@ cohorts:
   - id: owg:cohort-ENVIRO-main
     name: ENVIRO Main Cohort
     description: Primary study cohort including all enrolled participants
-    part_of_study: owg:study-ENVIRO-HEALTH
+    part_of_study:
+      id: owg:study-ENVIRO-HEALTH
+      name: Environmental Health Outcomes Study
     cohort_size: 3
     inclusion_criteria: "Adults aged 18+ from Research County synthetic population"
 
@@ -144,7 +146,9 @@ participants:
     name: ENVIRO-001
     description: Study participant enrolled from synthetic population
     person: owg:person-SP-001
-    part_of_cohort: owg:cohort-ENVIRO-main
+    part_of_cohort:
+      id: owg:cohort-ENVIRO-main
+      name: ENVIRO Main Cohort
     participant_id: ENVIRO-001
     age: 43  # Study-specific age at enrollment (different from Person.age)
     sex: male  # Same as Person.sex in this case
@@ -156,7 +160,9 @@ participants:
     name: ENVIRO-002
     description: Study participant enrolled from synthetic population
     person: owg:person-SP-002
-    part_of_cohort: owg:cohort-ENVIRO-main
+    part_of_cohort:
+      id: owg:cohort-ENVIRO-main
+      name: ENVIRO Main Cohort
     participant_id: ENVIRO-002
     age: 41  # Study-specific age at enrollment
     sex: female
@@ -168,7 +174,9 @@ participants:
     name: ENVIRO-003
     description: Study participant enrolled from synthetic population
     person: owg:person-SP-004
-    part_of_cohort: owg:cohort-ENVIRO-main
+    part_of_cohort:
+      id: owg:cohort-ENVIRO-main
+      name: ENVIRO Main Cohort
     participant_id: ENVIRO-003
     age: 56  # Study-specific age at enrollment
     sex: female
@@ -293,7 +301,9 @@ exposure_measurements:
       unit:
         id: UO:0000301
         name: microgram per cubic meter
-    participant: owg:participant-ENVIRO-001
+    participant:
+      id: owg:participant-ENVIRO-001
+      name: ENVIRO-001
     measurement_method: Personal exposure monitor (RTI MicroPEM)
     measurement_date: "2024-04-01"
     sample_type: air
@@ -307,7 +317,9 @@ exposure_measurements:
       unit:
         id: UO:0000301
         name: microgram per cubic meter
-    participant: owg:participant-ENVIRO-002
+    participant:
+      id: owg:participant-ENVIRO-002
+      name: ENVIRO-002
     measurement_method: Personal exposure monitor (RTI MicroPEM)
     measurement_date: "2024-04-01"
     sample_type: air
@@ -321,7 +333,9 @@ exposure_measurements:
       unit:
         id: UO:0000301
         name: microgram per cubic meter
-    participant: owg:participant-ENVIRO-003
+    participant:
+      id: owg:participant-ENVIRO-003
+      name: ENVIRO-003
     measurement_method: Personal exposure monitor (RTI MicroPEM)
     measurement_date: "2024-04-15"
     sample_type: air
@@ -339,7 +353,9 @@ phenotype_measurements:
       unit:
         id: UO:0000099
         name: liter
-    participant: owg:participant-ENVIRO-001
+    participant:
+      id: owg:participant-ENVIRO-001
+      name: ENVIRO-001
     measurement_method: Spirometry
     measurement_date: "2024-04-01"
 
@@ -352,7 +368,9 @@ phenotype_measurements:
       unit:
         id: UO:0000099
         name: liter
-    participant: owg:participant-ENVIRO-002
+    participant:
+      id: owg:participant-ENVIRO-002
+      name: ENVIRO-002
     measurement_method: Spirometry
     measurement_date: "2024-04-01"
 
@@ -365,6 +383,8 @@ phenotype_measurements:
       unit:
         id: UO:0000099
         name: liter
-    participant: owg:participant-ENVIRO-003
+    participant:
+      id: owg:participant-ENVIRO-003
+      name: ENVIRO-003
     measurement_method: Spirometry
     measurement_date: "2024-04-15"

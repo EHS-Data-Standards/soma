@@ -424,6 +424,7 @@ classes:
       - biomarker_type
       - measured_entity
       - participant
+      - sample_type
       - measurement_method
       - measurement_date
 
@@ -488,10 +489,8 @@ classes:
       A measurement of environmental conditions for cell culture systems
       including temperature, CO2, O2 percentage, humidity, and pH.
       Used to document incubator and culture conditions.
-    slot_usage:
-      observation_type:
-        range: EnvironmentalMeasurementTypeEnum
-        description: The type of environmental parameter measured.
+      Valid observation_type values include: co2_percentage, o2_percentage,
+      temperature, humidity, nitrogen_balance, ph.
 
   MechanicalMeasurement:
     is_a: Measurement
@@ -499,10 +498,8 @@ classes:
       A measurement of mechanical stimulation parameters for advanced culture
       systems like organ-on-chip and microphysiological systems. Includes
       stretch frequency/amplitude, shear stress, flow rate, and pressure.
-    slot_usage:
-      observation_type:
-        range: MechanicalMeasurementTypeEnum
-        description: The type of mechanical parameter measured.
+      Valid observation_type values include: stretch_frequency, stretch_amplitude,
+      shear_stress, flow_rate, perfusion_rate, pressure.
 
   MembranePropertyMeasurement:
     is_a: Measurement
@@ -510,12 +507,10 @@ classes:
       A measurement of membrane properties for transwell, ALI, and
       organ-on-chip culture systems. Includes pore size, pore density,
       thickness, surface area, and TEER.
+      Valid observation_type values include: pore_size, pore_density,
+      thickness, surface_area, teer.
     slots:
       - membrane_material
-    slot_usage:
-      observation_type:
-        range: MembranePropertyTypeEnum
-        description: The type of membrane property measured.
 
   # ==========================================================================
   # Cell Culture Supporting Classes
@@ -650,6 +645,7 @@ classes:
       - matrix_composition
       - size_range
       - organoid_type
+      - substrate_type
     id_prefixes:
       - owg
 
@@ -662,6 +658,7 @@ classes:
     slots:
       - coculture_configuration
       - cell_type_ratios
+      - substrate_type
     id_prefixes:
       - owg
 
@@ -962,6 +959,7 @@ slots:
     range: ChemicalEntity
     slot_uri: CHEBI:24431
     description: The chemical entity involved in the exposure
+    inlined: true
 
   exposure_route:
     range: ExposureRouteEnum
@@ -1014,6 +1012,7 @@ slots:
   affected_anatomy:
     range: AnatomicalEntity
     description: Anatomical location affected
+    inlined: true
 
   outcome_level:
     range: BiologicalOrganizationLevelEnum
@@ -1118,6 +1117,7 @@ slots:
   part_of_study:
     range: Study
     description: Study that this cohort is part of.
+    inlined: true
 
   cohort_size:
     range: integer
@@ -1131,6 +1131,7 @@ slots:
     range: Cohort
     slot_uri: biolink:member_of
     description: Cohort that this participant is part of.
+    inlined: true
 
   participant_id:
     range: string
@@ -1206,6 +1207,7 @@ slots:
   participant:
     range: Participant
     description: The participant being measured.
+    inlined: true
 
   measurement_method:
     range: string
@@ -1231,6 +1233,7 @@ slots:
   cohort:
     range: Cohort
     description: The cohort for aggregated measurements.
+    inlined: true
 
   summary_statistic:
     range: SummaryStatisticEnum
@@ -1328,18 +1331,22 @@ slots:
   exposure:
     range: ExposureEvent
     description: Exposure in association
+    inlined: true
 
   chemical:
     range: ChemicalEntity
     description: Chemical in association
+    inlined: true
 
   gene:
     range: Gene
     description: Gene in association
+    inlined: true
 
   disease:
     range: Disease
     description: Disease in association
+    inlined: true
 
   association_type:
     range: string
@@ -2459,6 +2466,48 @@ enums:
         description: Microbiome beta diversity metric
       bacterial_load:
         description: Total bacterial load (CFU or 16S copies)
+      # Environmental measurement types (for cell culture conditions)
+      co2_percentage:
+        description: Carbon dioxide percentage in incubator atmosphere
+      o2_percentage:
+        description: Oxygen percentage in incubator (for hypoxic cultures)
+      temperature:
+        description: Incubator or culture temperature
+        meaning: PATO:0000146
+      humidity:
+        description: Relative humidity in incubator
+        meaning: PATO:0015009
+      nitrogen_balance:
+        description: Nitrogen percentage in atmosphere
+      ph:
+        description: pH of culture medium
+        meaning: PATO:0001842
+      # Mechanical measurement types (for organ-on-chip systems)
+      stretch_frequency:
+        description: Frequency of cyclic mechanical stretch (Hz)
+      stretch_amplitude:
+        description: Amplitude of mechanical stretch as percentage
+      shear_stress:
+        description: Fluid shear stress applied to cells (dyn/cm2 or Pa)
+      flow_rate:
+        description: Fluid flow rate in microfluidic or perfusion systems
+      perfusion_rate:
+        description: Media perfusion rate for continuous culture systems
+      pressure:
+        description: Hydrostatic or pneumatic pressure
+        meaning: PATO:0001025
+      # Membrane property types (for transwell/ALI systems)
+      pore_size:
+        description: Diameter of membrane pores (typically in micrometers)
+      pore_density:
+        description: Number of pores per unit area
+      thickness:
+        description: Membrane thickness
+        meaning: PATO:0000915
+      surface_area:
+        description: Total membrane surface area
+      teer:
+        description: Transepithelial electrical resistance (membrane property)
       other:
         description: Other measurement type not listed
 
@@ -2487,89 +2536,6 @@ enums:
   # ============================================================================
   # Cell Culture and Model System Enums
   # ============================================================================
-
-  EnvironmentalMeasurementTypeEnum:
-    description: >-
-      Types of environmental conditions measured for cell culture systems.
-      Used to constrain observation_type in EnvironmentalMeasurement.
-    permissible_values:
-      co2_percentage:
-        description: Carbon dioxide percentage in incubator atmosphere
-        broad_mappings:
-          - PATO:0000033  # concentration of
-      o2_percentage:
-        description: Oxygen percentage in incubator (for hypoxic cultures)
-        broad_mappings:
-          - PATO:0000033  # concentration of
-      temperature:
-        description: Incubator or culture temperature
-        meaning: PATO:0000146
-      humidity:
-        description: Relative humidity in incubator
-        meaning: PATO:0015009
-      nitrogen_balance:
-        description: Nitrogen percentage in atmosphere
-        broad_mappings:
-          - PATO:0000033  # concentration of
-      ph:
-        description: pH of culture medium
-        meaning: PATO:0001842
-
-  MechanicalMeasurementTypeEnum:
-    description: >-
-      Types of mechanical stimulation parameters for advanced culture systems
-      like organ-on-chip and microphysiological systems.
-      Used to constrain observation_type in MechanicalMeasurement.
-    permissible_values:
-      stretch_frequency:
-        description: Frequency of cyclic mechanical stretch (Hz)
-        broad_mappings:
-          - PATO:0000044  # frequency
-      stretch_amplitude:
-        description: Amplitude of mechanical stretch as percentage of original length
-        broad_mappings:
-          - PATO:0000070  # amount
-      shear_stress:
-        description: Fluid shear stress applied to cells (dyn/cm2 or Pa)
-        broad_mappings:
-          - PATO:0001025  # pressure
-      flow_rate:
-        description: Fluid flow rate in microfluidic or perfusion systems
-        broad_mappings:
-          - PATO:0000161  # rate
-      perfusion_rate:
-        description: Media perfusion rate for continuous culture systems
-        broad_mappings:
-          - PATO:0000161  # rate
-      pressure:
-        description: Hydrostatic or pneumatic pressure
-        meaning: PATO:0001025
-
-  MembranePropertyTypeEnum:
-    description: >-
-      Types of membrane properties measured for transwell, ALI,
-      and organ-on-chip culture systems.
-      Used to constrain observation_type in MembranePropertyMeasurement.
-    permissible_values:
-      pore_size:
-        description: Diameter of membrane pores (typically in micrometers)
-        broad_mappings:
-          - PATO:0001323  # size
-      pore_density:
-        description: Number of pores per unit area
-        broad_mappings:
-          - PATO:0001351  # density
-      thickness:
-        description: Membrane thickness
-        meaning: PATO:0000915
-      surface_area:
-        description: Total membrane surface area
-        broad_mappings:
-          - PATO:0001323  # size
-      teer:
-        description: Transepithelial electrical resistance
-        broad_mappings:
-          - PATO:0001025  # pressure (electrical resistance)
 
   CellCultureGrowthModeEnum:
     description: >-

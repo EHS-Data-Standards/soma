@@ -15,7 +15,9 @@ exposure_measurements:
     measured_entity:
       id: ENVO:01000415
       name: Particulate matter with aerodynamic diameter less than or equal to 2.5 micrometers
-    participant: owg:participant-002
+    participant:
+      id: owg:participant-002
+      name: Participant 002
     measurement_method: Personal exposure monitor (RTI MicroPEM)
     measurement_date: "2024-03-16"
     sample_type: air
@@ -42,7 +44,9 @@ exposure_measurements:
     measured_entity:
       id: CHEBI:68641
       name: Cotinine
-    participant: owg:participant-003
+    participant:
+      id: owg:participant-003
+      name: Participant 003
     measurement_method: LC-MS/MS
     measurement_date: "2024-03-17"
     sample_type: urine
@@ -59,7 +63,9 @@ exposure_measurements:
     measured_entity:
       id: CHEBI:25812
       name: Ozone
-    participant: owg:participant-004
+    participant:
+      id: owg:participant-004
+      name: Participant 004
     measurement_method: UV photometric analyzer
     measurement_date: "2024-03-18"
     sample_type: air
