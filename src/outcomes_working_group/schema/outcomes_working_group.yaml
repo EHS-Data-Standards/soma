@@ -210,6 +210,7 @@ classes:
     description: >-
       An event in which an organism is exposed to a chemical or environmental factor
     slots:
+      - exposed_subject
       - exposed_to_chemical
       - exposure_route
       - exposure_duration
@@ -227,6 +228,15 @@ classes:
     is_a: NamedThing
     description: >-
       A health-related outcome including phenotypes and diseases
+
+  ExposableSubject:
+    abstract: true
+    is_a: NamedThing
+    description: >-
+      An entity that can be exposed to a substance or environmental factor.
+      This abstract class provides a common parent for both biological model
+      systems (cell cultures, organoids) and study participants, enabling
+      polymorphic linking from ExposureEvent to any exposable subject.
 
   StudyEntity:
     abstract: true
@@ -386,6 +396,8 @@ classes:
 
   Participant:
     is_a: StudyEntity
+    mixins:
+      - ExposableSubject
     description: >-
       A role representing an individual's participation in a study. Links a Person
       to a specific study cohort and captures study-specific identifiers and attributes.
@@ -591,7 +603,7 @@ classes:
 
   ModelSystem:
     abstract: true
-    is_a: NamedThing
+    is_a: ExposableSubject
     class_uri: NAMO:0000000
     description: >-
       Abstract base class for model systems used in biomedical research.
@@ -716,7 +728,6 @@ classes:
       to a test substance. Captures exposure timing, frequency, aerosol generation
       parameters, and other in vitro-specific details.
     slots:
-      - exposed_system
       - exposure_material
       - exposure_frequency
       - exposure_regiment
@@ -1108,6 +1119,15 @@ slots:
     description: Molecular formula
 
   # Exposure slots
+  exposed_subject:
+    range: ExposableSubject
+    description: >-
+      The subject being exposed to a substance or environmental factor.
+      Can be either a model system (cell culture, organoid) or a study participant.
+      This polymorphic slot enables unified exposure tracking across in vitro
+      and population-based studies.
+    inlined: true
+
   exposed_to_chemical:
     range: ChemicalEntity
     slot_uri: CHEBI:24431
