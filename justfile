@@ -73,6 +73,7 @@ update: _update-template _update-linkml
 clean: _clean_project
   rm -rf tmp
   rm -rf {{docdir}}/*.md
+  rm -rf docs/examples
 
 # (Re-)Generate project and documentation locally
 [group('model development')]
@@ -100,8 +101,9 @@ lint-fix:
 
 # Generate md documentation for the schema
 [group('model development')]
-gen-doc: _gen-yaml _gen-diagrams
+gen-doc: _gen-yaml _gen-diagrams _copy-examples
   uv run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
+  @just _copy-docs
 
 # Build docs and run test server
 [group('model development')]
@@ -253,6 +255,19 @@ _clean_project:
 _ensure_examples_output:  # Ensure a clean examples/output directory exists
   -mkdir -p examples/output
   -rm -rf examples/output/*.*
+
+# Copy example data files to docs directory for documentation site
+_copy-examples:
+  @echo "Copying example data files to docs..."
+  -mkdir -p docs/examples
+  cp tests/data/valid/*.yaml docs/examples/
+  @echo "Example files copied successfully!"
+
+# Copy static documentation files from src/docs to docs
+_copy-docs:
+  @echo "Copying static documentation files..."
+  cp src/docs/*.md docs/
+  @echo "Static docs copied successfully!"
 
 # Generate ER diagrams and object models
 _gen-diagrams:
