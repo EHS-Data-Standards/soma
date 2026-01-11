@@ -278,7 +278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../about.md" class="md-nav__link">
         
   
   
@@ -417,8 +417,8 @@
 
 
 <h1 id="slot-frame_rate">Slot: frame_rate</h1>
-<p><em>Image acquisition frame rate</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-model/frame_rate">outcomes_model:frame_rate</a>
+<p><em>Frame rate of video acquisition in frames per second.</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-working-group/frame_rate">owg:frame_rate</a>
 Alias: frame_rate</p>
 <!-- no inheritance hierarchy -->
 
@@ -433,8 +433,8 @@ Alias: frame_rate</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../ImagingProtocol/">ImagingProtocol</a></td>
-<td>Details about imaging parameters and protocols</td>
+<td><a href="../Analysis/">Analysis</a></td>
+<td>Data analysis and processing parameters describing how measurement data was a...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -446,7 +446,7 @@ Alias: frame_rate</p>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
-<li>from schema: https://w3id.org/EHS-Data-Standards/outcomes-model</li>
+<li>from schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group</li>
 </ul>
 <h2 id="mappings">Mappings</h2>
 <table>
@@ -459,35 +459,26 @@ Alias: frame_rate</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>outcomes_model:frame_rate</td>
+<td>owg:frame_rate</td>
 </tr>
 <tr>
 <td>native</td>
-<td>outcomes_model:frame_rate</td>
-</tr>
-<tr>
-<td>related</td>
-<td>PATO:0000161</td>
+<td>owg:frame_rate</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-
-<pre><code class="language-yaml">name: frame_rate
-description: Image acquisition frame rate
-from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
-related_mappings:
-- PATO:0000161
-rank: 1000
-alias: frame_rate
-domain_of:
-- ImagingProtocol
-range: QuantityValue
-inlined: true
-
-</code></pre>
-
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">frame_rate</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Frame rate of video acquisition in frames per second.</span>
+<span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">frame_rate</span>
+<span class="nt">domain_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Analysis</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
 </details>
 
 

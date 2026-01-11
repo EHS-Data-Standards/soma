@@ -1,0 +1,390 @@
+# Comprehensive test data file exercising synthetic population classes
+# in combination with study, cohort, and participant entities.
+#
+# This demonstrates:
+# 1. Full geographic hierarchy: State -> County -> CensusTract -> BlockGroup -> Household -> Person
+# 2. Person-to-Participant linkage showing the role distinction
+# 3. Age/sex differences between Person (census snapshot) and Participant (study enrollment)
+# 4. Schools assigned to school-age persons
+# 5. Exposure measurements on participants linked to persons
+
+# =============================================================================
+# Studies and Cohorts
+# =============================================================================
+studies:
+  - id: owg:study-ENVIRO-HEALTH
+    name: Environmental Health Outcomes Study
+    description: >-
+      A longitudinal cohort study examining the relationship between environmental
+      exposures and respiratory health outcomes in a synthetic population sample.
+    study_type: cohort
+    population: Synthetic population sample from Research County, State of Research
+    enrollment_period: "2023-2024"
+    geographic_location: Research County, RS
+    principal_investigator: Dr. Jane Smith
+
+cohorts:
+  - id: owg:cohort-ENVIRO-main
+    name: ENVIRO Main Cohort
+    description: Primary study cohort including all enrolled participants
+    part_of_study:
+      id: owg:study-ENVIRO-HEALTH
+      name: Environmental Health Outcomes Study
+    cohort_size: 3
+    inclusion_criteria: "Adults aged 18+ from Research County synthetic population"
+
+# =============================================================================
+# Schools (for school-age persons)
+# =============================================================================
+schools:
+  - id: owg:school-lincoln-elementary
+    name: Lincoln Elementary School
+    description: Public elementary school serving grades K-5
+    federal_information_processing_standard_code: "99001001"
+    state_federal_information_processing_standard_code: "99"
+    county_federal_information_processing_standard_code: "001"
+    census_tract_federal_information_processing_standard_code: "000100"
+    block_group_federal_information_processing_standard_code: "1"
+
+# =============================================================================
+# Persons (from synthetic population - census snapshot data)
+# =============================================================================
+persons:
+  # Person 1: Adult male, head of household
+  - id: owg:person-SP-001
+    name: Synthetic Person 001
+    description: Adult male householder from synthetic population
+    age: 42  # Census age at time of data collection
+    sex: male
+    race: White
+    species: Homo sapiens
+    state_federal_information_processing_standard_code: "99"
+    county_federal_information_processing_standard_code: "001"
+    census_tract_federal_information_processing_standard_code: "000100"
+    block_group_federal_information_processing_standard_code: "1"
+    serial_number: "2023000001234"
+    household_identifier: "HH-001"
+    household_head_age: 42
+    household_income: 75000.00
+    household_head_race: White
+    household_size: 4
+    person_order: 1
+    relationship_to_household_head: householder
+
+  # Person 2: Adult female, spouse
+  - id: owg:person-SP-002
+    name: Synthetic Person 002
+    description: Adult female spouse from synthetic population
+    age: 40  # Census age
+    sex: female
+    race: White
+    species: Homo sapiens
+    state_federal_information_processing_standard_code: "99"
+    county_federal_information_processing_standard_code: "001"
+    census_tract_federal_information_processing_standard_code: "000100"
+    block_group_federal_information_processing_standard_code: "1"
+    serial_number: "2023000001234"
+    household_identifier: "HH-001"
+    household_head_age: 42
+    household_income: 75000.00
+    household_head_race: White
+    household_size: 4
+    person_order: 2
+    relationship_to_household_head: spouse
+
+  # Person 3: Child, school-age
+  - id: owg:person-SP-003
+    name: Synthetic Person 003
+    description: Child from synthetic population, assigned to school
+    age: 10  # Census age
+    sex: male
+    race: White
+    species: Homo sapiens
+    state_federal_information_processing_standard_code: "99"
+    county_federal_information_processing_standard_code: "001"
+    census_tract_federal_information_processing_standard_code: "000100"
+    block_group_federal_information_processing_standard_code: "1"
+    serial_number: "2023000001234"
+    household_identifier: "HH-001"
+    household_head_age: 42
+    household_income: 75000.00
+    household_head_race: White
+    household_size: 4
+    person_order: 3
+    relationship_to_household_head: child
+    assigned_school: owg:school-lincoln-elementary
+
+  # Person 4: Adult from different household
+  - id: owg:person-SP-004
+    name: Synthetic Person 004
+    description: Adult female householder from synthetic population
+    age: 55
+    sex: female
+    race: Black or African American
+    species: Homo sapiens
+    state_federal_information_processing_standard_code: "99"
+    county_federal_information_processing_standard_code: "001"
+    census_tract_federal_information_processing_standard_code: "000100"
+    block_group_federal_information_processing_standard_code: "2"
+    serial_number: "2023000005678"
+    household_identifier: "HH-002"
+    household_head_age: 55
+    household_income: 52000.00
+    household_head_race: Black or African American
+    household_size: 1
+    person_order: 1
+    relationship_to_household_head: householder
+
+# =============================================================================
+# Participants (study enrollment role - links Person to Cohort)
+# Age and sex are recorded at enrollment and may differ from Person values
+# =============================================================================
+participants:
+  # Participant 1: Person SP-001 enrolled in study
+  # Note: Age at enrollment (43) differs from census age (42) - enrolled a year after census
+  - id: owg:participant-ENVIRO-001
+    name: ENVIRO-001
+    description: Study participant enrolled from synthetic population
+    person: owg:person-SP-001
+    part_of_cohort:
+      id: owg:cohort-ENVIRO-main
+      name: ENVIRO Main Cohort
+    participant_id: ENVIRO-001
+    age: 43  # Study-specific age at enrollment (different from Person.age)
+    sex: male  # Same as Person.sex in this case
+    enrollment_date: "2024-03-15"
+    study_arm: Treatment
+
+  # Participant 2: Person SP-002 enrolled in study
+  - id: owg:participant-ENVIRO-002
+    name: ENVIRO-002
+    description: Study participant enrolled from synthetic population
+    person: owg:person-SP-002
+    part_of_cohort:
+      id: owg:cohort-ENVIRO-main
+      name: ENVIRO Main Cohort
+    participant_id: ENVIRO-002
+    age: 41  # Study-specific age at enrollment
+    sex: female
+    enrollment_date: "2024-03-15"
+    study_arm: Control
+
+  # Participant 3: Person SP-004 enrolled in study
+  - id: owg:participant-ENVIRO-003
+    name: ENVIRO-003
+    description: Study participant enrolled from synthetic population
+    person: owg:person-SP-004
+    part_of_cohort:
+      id: owg:cohort-ENVIRO-main
+      name: ENVIRO Main Cohort
+    participant_id: ENVIRO-003
+    age: 56  # Study-specific age at enrollment
+    sex: female
+    enrollment_date: "2024-04-01"
+    study_arm: Treatment
+
+# =============================================================================
+# Households (demonstrating nested person structure)
+# =============================================================================
+households:
+  - id: owg:household-HH-001
+    name: Household HH-001
+    description: Four-person household in block group 1
+    serial_number: "2023000001234"
+    household_identifier: "HH-001"
+    household_head_age: 42
+    household_income: 75000.00
+    household_head_race: White
+    household_size: 4
+    household_persons:
+      - id: owg:person-HH001-P1
+        name: Householder
+        age: 42
+        sex: male
+        race: White
+        person_order: 1
+        relationship_to_household_head: householder
+      - id: owg:person-HH001-P2
+        name: Spouse
+        age: 40
+        sex: female
+        race: White
+        person_order: 2
+        relationship_to_household_head: spouse
+      - id: owg:person-HH001-P3
+        name: Child 1
+        age: 10
+        sex: male
+        race: White
+        person_order: 3
+        relationship_to_household_head: child
+      - id: owg:person-HH001-P4
+        name: Child 2
+        age: 7
+        sex: female
+        race: White
+        person_order: 4
+        relationship_to_household_head: child
+
+  - id: owg:household-HH-002
+    name: Household HH-002
+    description: Single-person household in block group 2
+    serial_number: "2023000005678"
+    household_identifier: "HH-002"
+    household_head_age: 55
+    household_income: 52000.00
+    household_head_race: Black or African American
+    household_size: 1
+    household_persons:
+      - id: owg:person-HH002-P1
+        name: Householder
+        age: 55
+        sex: female
+        race: Black or African American
+        person_order: 1
+        relationship_to_household_head: householder
+
+# =============================================================================
+# Geographic Hierarchy (State -> County -> CensusTract -> BlockGroup)
+# =============================================================================
+states:
+  - id: owg:state-RS
+    name: State of Research
+    description: Fictional state for testing synthetic population schema
+    federal_information_processing_standard_code: "99"
+    abbreviation: RS
+    counties:
+      - id: owg:county-RC
+        name: Research County
+        description: County containing synthetic population
+        federal_information_processing_standard_code: "001"
+        state_federal_information_processing_standard_code: "99"
+        census_tracts:
+          - id: owg:tract-000100
+            name: Census Tract 000100
+            description: Census tract containing study area
+            federal_information_processing_standard_code: "000100"
+            state_federal_information_processing_standard_code: "99"
+            county_federal_information_processing_standard_code: "001"
+            block_groups:
+              - id: owg:bg-1
+                name: Block Group 1
+                description: Block group with household HH-001
+                federal_information_processing_standard_code: "1"
+                state_federal_information_processing_standard_code: "99"
+                county_federal_information_processing_standard_code: "001"
+                census_tract_federal_information_processing_standard_code: "000100"
+              - id: owg:bg-2
+                name: Block Group 2
+                description: Block group with household HH-002
+                federal_information_processing_standard_code: "2"
+                state_federal_information_processing_standard_code: "99"
+                county_federal_information_processing_standard_code: "001"
+                census_tract_federal_information_processing_standard_code: "000100"
+    public_use_microdata_areas:
+      - id: owg:puma-99001
+        name: Research County PUMA
+        description: PUMA covering Research County
+        federal_information_processing_standard_code: "00100"
+        state_federal_information_processing_standard_code: "99"
+
+# =============================================================================
+# Exposure Measurements (linked to participants from synthetic population)
+# =============================================================================
+exposure_measurements:
+  - id: owg:measurement-ENVIRO-PM25-001
+    name: PM2.5 Exposure ENVIRO-001
+    description: Fine particulate matter exposure measurement for participant ENVIRO-001
+    observation_type: pm2_5_exposure
+    quantity_measured:
+      value: "12.5"
+      unit:
+        id: UO:0000301
+        name: microgram per cubic meter
+    participant:
+      id: owg:participant-ENVIRO-001
+      name: ENVIRO-001
+    measurement_method: Personal exposure monitor (RTI MicroPEM)
+    measurement_date: "2024-04-01"
+    sample_type: air
+
+  - id: owg:measurement-ENVIRO-PM25-002
+    name: PM2.5 Exposure ENVIRO-002
+    description: Fine particulate matter exposure measurement for participant ENVIRO-002
+    observation_type: pm2_5_exposure
+    quantity_measured:
+      value: "15.2"
+      unit:
+        id: UO:0000301
+        name: microgram per cubic meter
+    participant:
+      id: owg:participant-ENVIRO-002
+      name: ENVIRO-002
+    measurement_method: Personal exposure monitor (RTI MicroPEM)
+    measurement_date: "2024-04-01"
+    sample_type: air
+
+  - id: owg:measurement-ENVIRO-PM25-003
+    name: PM2.5 Exposure ENVIRO-003
+    description: Fine particulate matter exposure measurement for participant ENVIRO-003
+    observation_type: pm2_5_exposure
+    quantity_measured:
+      value: "18.7"
+      unit:
+        id: UO:0000301
+        name: microgram per cubic meter
+    participant:
+      id: owg:participant-ENVIRO-003
+      name: ENVIRO-003
+    measurement_method: Personal exposure monitor (RTI MicroPEM)
+    measurement_date: "2024-04-15"
+    sample_type: air
+
+# =============================================================================
+# Phenotype Measurements (lung function linked to participants)
+# =============================================================================
+phenotype_measurements:
+  - id: owg:measurement-ENVIRO-FEV1-001
+    name: FEV1 ENVIRO-001
+    description: Forced expiratory volume measurement for participant ENVIRO-001
+    observation_type: FEV1
+    quantity_measured:
+      value: "3.8"
+      unit:
+        id: UO:0000099
+        name: liter
+    participant:
+      id: owg:participant-ENVIRO-001
+      name: ENVIRO-001
+    measurement_method: Spirometry
+    measurement_date: "2024-04-01"
+
+  - id: owg:measurement-ENVIRO-FEV1-002
+    name: FEV1 ENVIRO-002
+    description: Forced expiratory volume measurement for participant ENVIRO-002
+    observation_type: FEV1
+    quantity_measured:
+      value: "2.9"
+      unit:
+        id: UO:0000099
+        name: liter
+    participant:
+      id: owg:participant-ENVIRO-002
+      name: ENVIRO-002
+    measurement_method: Spirometry
+    measurement_date: "2024-04-01"
+
+  - id: owg:measurement-ENVIRO-FEV1-003
+    name: FEV1 ENVIRO-003
+    description: Forced expiratory volume measurement for participant ENVIRO-003
+    observation_type: FEV1
+    quantity_measured:
+      value: "2.4"
+      unit:
+        id: UO:0000099
+        name: liter
+    participant:
+      id: owg:participant-ENVIRO-003
+      name: ENVIRO-003
+    measurement_method: Spirometry
+    measurement_date: "2024-04-15"

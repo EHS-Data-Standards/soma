@@ -1,0 +1,71 @@
+# Example ExposureMeasurement data for environmental toxicant research
+# Demonstrates the Quantity pattern with value + unit object
+# and OntologyReference pattern with id + name for readability
+
+exposure_measurements:
+  - id: owg:exposure-003
+    name: PM2.5 personal exposure - Participant P002
+    description: 24-hour integrated personal PM2.5 exposure from wearable monitor
+    observation_type: pm2_5_exposure
+    quantity_measured:
+      value: "18.5"
+      unit:
+        id: UO:0000301
+        name: microgram per cubic meter
+    measured_entity:
+      id: ENVO:01000415
+      name: Particulate matter with aerodynamic diameter less than or equal to 2.5 micrometers
+    participant:
+      id: owg:participant-002
+      name: Participant 002
+    measurement_method: Personal exposure monitor (RTI MicroPEM)
+    measurement_date: "2024-03-16"
+    sample_type: air
+
+  - id: owg:exposure-004
+    name: Urinary cotinine - Participant P003
+    description: Urinary cotinine as biomarker of tobacco smoke exposure
+    observation_type: urinary_cotinine_level
+    quantity_measured:
+      value: "125.0"
+      unit:
+        id: UO:0000271
+        name: nanogram per milliliter
+    range_low:
+      value: "0.0"
+      unit:
+        id: UO:0000271
+        name: nanogram per milliliter
+    range_high:
+      value: "10.0"
+      unit:
+        id: UO:0000271
+        name: nanogram per milliliter
+    measured_entity:
+      id: CHEBI:68641
+      name: Cotinine
+    participant:
+      id: owg:participant-003
+      name: Participant 003
+    measurement_method: LC-MS/MS
+    measurement_date: "2024-03-17"
+    sample_type: urine
+
+  - id: owg:exposure-005
+    name: Ozone exposure - Participant P004
+    description: Ambient ozone concentration at participant residence
+    observation_type: ozone_exposure
+    quantity_measured:
+      value: "0.065"
+      unit:
+        id: UO:0000170
+        name: parts per million
+    measured_entity:
+      id: CHEBI:25812
+      name: Ozone
+    participant:
+      id: owg:participant-004
+      name: Participant 004
+    measurement_method: UV photometric analyzer
+    measurement_date: "2024-03-18"
+    sample_type: air

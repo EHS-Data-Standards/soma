@@ -278,7 +278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../about.md" class="md-nav__link">
         
   
   
@@ -417,8 +417,8 @@
 
 
 <h1 id="slot-id">Slot: id</h1>
-<p><em>A unique identifier</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-model/id">outcomes_model:id</a>
+<p><em>A unique identifier for a thing</em></p>
+<p>URI: <a href="http://schema.org/identifier">schema:identifier</a>
 Alias: id</p>
 <!-- no inheritance hierarchy -->
 
@@ -433,153 +433,343 @@ Alias: id</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../GeneExpressionAnalysis/">GeneExpressionAnalysis</a></td>
-<td>Gene expression measurement methodology</td>
+<td><a href="../KeyEvent/">KeyEvent</a></td>
+<td>A measurable change in biological state that is a step in an Adverse Outcome ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../NamedThing/">NamedThing</a></td>
+<td>A generic grouping for any identifiable entity in the exposome</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../School/">School</a></td>
+<td>A school entity representing an educational institution where synthetic popul...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CoCulture/">CoCulture</a></td>
+<td>Co-culture systems combining multiple cell types to simulate tissue microenvi...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Study/">Study</a></td>
+<td>A research study or survey</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../Measurement/">Measurement</a></td>
-<td>A generic class representing the process of measuring a biological endpoint</td>
+<td>A measurement observation with a typed quantity value and optional reference ...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../GobletCellMeasurement/">GobletCellMeasurement</a></td>
-<td>Measurement of goblet cell number or mucin production</td>
+<td><a href="../PhenotypeMeasurement/">PhenotypeMeasurement</a></td>
+<td>A measurement of a phenotypic trait or functional assay</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ImagingProtocol/">ImagingProtocol</a></td>
-<td>Details about imaging parameters and protocols</td>
+<td><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></td>
+<td>Three-dimensional cell culture systems including spheroids, organoids, and sc...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../EGFRSignalingMeasurement/">EGFRSignalingMeasurement</a></td>
-<td>Measurement of EGFR pathway activation and signaling</td>
+<td><a href="../Protein/">Protein</a></td>
+<td>A protein or polypeptide</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Assay/">Assay</a></td>
-<td>The specific method or assay used to measure an endpoint</td>
+<td><a href="../Organism/">Organism</a></td>
+<td>An individual organism</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../FluorescentLabel/">FluorescentLabel</a></td>
-<td>Fluorescent labeling or tracer used in measurement</td>
+<td><a href="../Gene/">Gene</a></td>
+<td>A gene or genetic element</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../DetectionMethod/">DetectionMethod</a></td>
-<td>Method used for detecting or measuring analytes</td>
+<td><a href="../BiologicalEntity/">BiologicalEntity</a></td>
+<td>Biological entities including genes, proteins, cells, and anatomical structur...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../BALFSputumMeasurement/">BALFSputumMeasurement</a></td>
-<td>Measurement of bronchoalveolar lavage fluid or sputum components</td>
+<td><a href="../CellLine/">CellLine</a></td>
+<td>A cell line - a genetically stable cultured cell population that contains ind...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
-<td>Measurement of lung function parameters</td>
+<td><a href="../ExposureMeasurement/">ExposureMeasurement</a></td>
+<td>A measurement of exposure to a chemical or environmental factor</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../NamedEntity/">NamedEntity</a></td>
-<td>Base class for all named entities in the model</td>
+<td><a href="../ParticleProperties/">ParticleProperties</a></td>
+<td>Physical and chemical properties of particulate test materials including nano...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ASLHeightMeasurement/">ASLHeightMeasurement</a></td>
-<td>Measurement of airway surface liquid height</td>
+<td><a href="../BiologicalResponse/">BiologicalResponse</a></td>
+<td>A biological response at the molecular, cellular, or tissue level</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../BarrierIntegrity/">BarrierIntegrity</a></td>
-<td>Epithelial barrier integrity measurements</td>
+<td><a href="../AggregatedMeasurement/">AggregatedMeasurement</a></td>
+<td>An aggregated or summary measurement across a cohort or population</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../EvaporationControl/">EvaporationControl</a></td>
-<td>Method used to prevent evaporation during measurement - critical for preventi...</td>
+<td><a href="../MediumSupplement/">MediumSupplement</a></td>
+<td>Supplement or additive to cell culture medium</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../StainingProtocol/">StainingProtocol</a></td>
-<td>Histological or immunofluorescence staining protocol</td>
+<td><a href="../County/">County</a></td>
+<td>A county or equivalent administrative subdivision with associated properties</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../EnvironmentalCondition/">EnvironmentalCondition</a></td>
-<td>Environmental parameters during measurement</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
-<td>Measurement of gene expression</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../MucinProductionMeasurement/">MucinProductionMeasurement</a></td>
-<td>Measurement of mucin production and secretion</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../MicrobiomeAnalysis/">MicrobiomeAnalysis</a></td>
-<td>Microbiome composition analysis</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ROSProbe/">ROSProbe</a></td>
-<td>Reactive oxygen species probe and detection details</td>
+<td><a href="../InVitroExposure/">InVitroExposure</a></td>
+<td>An in vitro exposure event describing how cells or tissues were exposed to a ...</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../CellCultureConditions/">CellCultureConditions</a></td>
-<td>Detailed cell culture parameters</td>
+<td>Detailed cell culture parameters including medium, environment, and timing</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Publication/">Publication</a></td>
-<td>Any published piece of information, following Biolink model</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../CiliaBeatFrequencyMeasurement/">CiliaBeatFrequencyMeasurement</a></td>
-<td>Measurement of ciliary beat frequency</td>
+<td><a href="../HealthOutcome/">HealthOutcome</a></td>
+<td>A health-related outcome including phenotypes and diseases</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../MucociliaryClearanceMeasurement/">MucociliaryClearanceMeasurement</a></td>
-<td>Measurement of mucociliary clearance/transport</td>
+<td><a href="../Tissue/">Tissue</a></td>
+<td>A reference to an anatomical tissue or structure with identifier and name</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../CFTRFunctionMeasurement/">CFTRFunctionMeasurement</a></td>
-<td>Measurement of CFTR-mediated ion transport function</td>
+<td><a href="../Disease/">Disease</a></td>
+<td>A disease or medical condition</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../SampleCollection/">SampleCollection</a></td>
-<td>Details about biological sample collection</td>
+<td><a href="../BlockGroup/">BlockGroup</a></td>
+<td>A statistical division within a census tract, typically containing between 60...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../CytotoxicityMetrics/">CytotoxicityMetrics</a></td>
-<td>Cell viability and cytotoxicity measurements</td>
+<td><a href="../KeyEventRelationship/">KeyEventRelationship</a></td>
+<td>A directional relationship between two key events in an AOP</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../InputSample/">InputSample</a></td>
-<td>Description of the biological sample or experimental manipulation used as inp...</td>
+<td><a href="../Person/">Person</a></td>
+<td>A person (individual human being) with demographic and geographic attributes</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
-<td>Measurement of oxidative stress markers</td>
+<td><a href="../MembranePropertyMeasurement/">MembranePropertyMeasurement</a></td>
+<td>A measurement of membrane properties for transwell, ALI, and organ-on-chip cu...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../InflammatoryCellProfile/">InflammatoryCellProfile</a></td>
-<td>Profile of inflammatory cell types and counts</td>
+<td><a href="../AerosolGeneration/">AerosolGeneration</a></td>
+<td>Parameters describing aerosol generation for inhalation toxicology studies</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MolecularInitiatingEvent/">MolecularInitiatingEvent</a></td>
+<td>The initial molecular-level perturbation that starts an Adverse Outcome Pathw...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../GeneToDiseaseAssociation/">GeneToDiseaseAssociation</a></td>
+<td>An association between a gene and a disease</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Cohort/">Cohort</a></td>
+<td>A group of individuals in a study</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../AnatomicalEntity/">AnatomicalEntity</a></td>
+<td>An anatomical structure or system</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ExposureEvent/">ExposureEvent</a></td>
+<td>An event in which an organism is exposed to a chemical or environmental facto...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MechanicalMeasurement/">MechanicalMeasurement</a></td>
+<td>A measurement of mechanical stimulation parameters for advanced culture syste...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../OccupationalExposure/">OccupationalExposure</a></td>
+<td>Exposure in an occupational setting</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../AdverseOutcomePathway/">AdverseOutcomePathway</a></td>
+<td>A sequence of causally linked events at different levels of biological organi...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../BiomarkerMeasurement/">BiomarkerMeasurement</a></td>
+<td>A measurement of a biological marker</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DietaryExposure/">DietaryExposure</a></td>
+<td>Exposure through dietary consumption</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Participant/">Participant</a></td>
+<td>A role representing an individual's participation in a study</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Unit/">Unit</a></td>
+<td>A unit of measurement from a standard ontology (UO, UCUM, QUDT)</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../EnvironmentalExposure/">EnvironmentalExposure</a></td>
+<td>Exposure to environmental factors</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Phenotype/">Phenotype</a></td>
+<td>An observable characteristic or trait</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../EnvironmentalMeasurement/">EnvironmentalMeasurement</a></td>
+<td>A measurement of environmental conditions for cell culture systems including ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CellularSystem/">CellularSystem</a></td>
+<td>Cell-based model systems that use living cells to model biological processes</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Analysis/">Analysis</a></td>
+<td>Data analysis and processing parameters describing how measurement data was a...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SamplePreparation/">SamplePreparation</a></td>
+<td>Pre-exposure sample preparation procedures for in vitro systems</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CensusTract/">CensusTract</a></td>
+<td>A census tract is a small, relatively permanent geographic area within a coun...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ChemicalToGeneAssociation/">ChemicalToGeneAssociation</a></td>
+<td>An association between a chemical and a gene</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../GeographicEntity/">GeographicEntity</a></td>
+<td>Abstract base class for geographic entities used in synthetic population mode...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../StudyEntity/">StudyEntity</a></td>
+<td>Entities related to studies, cohorts, and participants</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
+<td>A measurement of gene expression (mRNA level) in a specific biological contex...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../TwoDCellCulture/">TwoDCellCulture</a></td>
+<td>Conventional monolayer cell cultures grown on flat surfaces</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CellType/">CellType</a></td>
+<td>A type of cell</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ChemicalEntity/">ChemicalEntity</a></td>
+<td>A chemical entity including compounds, drugs, and metabolites</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../PublicUseMicrodataArea/">PublicUseMicrodataArea</a></td>
+<td>Public Use Microdata Areas (PUMAs) are non-overlapping, statistical geographi...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../OntologyTerm/">OntologyTerm</a></td>
+<td>A reference to an ontology term with both identifier and human-readable name</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ChemicalExposure/">ChemicalExposure</a></td>
+<td>Exposure to a chemical substance</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
+<td>A measurement of protein expression or post-translational modification (e</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../State/">State</a></td>
+<td>A U</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Association/">Association</a></td>
+<td>A relationship between two entities</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ExposureMaterial/">ExposureMaterial</a></td>
+<td>Detailed specification of the test article or substance used in an exposure e...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CellCultureMedium/">CellCultureMedium</a></td>
+<td>Detailed formulation of cell culture medium including base medium and supplem...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ExposureToPhenotypeAssociation/">ExposureToPhenotypeAssociation</a></td>
+<td>An association between an exposure and a phenotype</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Household/">Household</a></td>
+<td>A household entity representing a group of people living together in a single...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../AdverseOutcome/">AdverseOutcome</a></td>
+<td>An adverse health outcome in the context of an Adverse Outcome Pathway</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ModelSystem/">ModelSystem</a></td>
+<td>Abstract base class for model systems used in biomedical research</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ExposableSubject/">ExposableSubject</a></td>
+<td>An entity that can be exposed to a substance or environmental factor</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -596,7 +786,7 @@ Alias: id</p>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
-<li>from schema: https://w3id.org/EHS-Data-Standards/outcomes-model</li>
+<li>from schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group</li>
 </ul>
 <h2 id="mappings">Mappings</h2>
 <table>
@@ -609,30 +799,28 @@ Alias: id</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>outcomes_model:id</td>
+<td>schema:identifier</td>
 </tr>
 <tr>
 <td>native</td>
-<td>outcomes_model:id</td>
+<td>owg:id</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-
-<pre><code class="language-yaml">name: id
-description: A unique identifier
-from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
-rank: 1000
-identifier: true
-alias: id
-domain_of:
-- NamedEntity
-range: uriorcurie
-required: true
-
-</code></pre>
-
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A unique identifier for a thing</span>
+<span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema:identifier</span>
+<span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
+<span class="nt">domain_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
+<span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
 </details>
 
 

@@ -278,7 +278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../about.md" class="md-nav__link">
         
   
   
@@ -417,8 +417,8 @@
 
 
 <h1 id="slot-substrate_type">Slot: substrate_type</h1>
-<p><em>Type of culture substrate</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-model/substrate_type">outcomes_model:substrate_type</a>
+<p><em>Type of culture substrate or surface material.</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-working-group/substrate_type">owg:substrate_type</a>
 Alias: substrate_type</p>
 <!-- no inheritance hierarchy -->
 
@@ -433,20 +433,35 @@ Alias: substrate_type</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></td>
+<td>Three-dimensional cell culture systems including spheroids, organoids, and sc...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../TwoDCellCulture/">TwoDCellCulture</a></td>
+<td>Conventional monolayer cell cultures grown on flat surfaces</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../CellCultureConditions/">CellCultureConditions</a></td>
-<td>Detailed cell culture parameters</td>
+<td>Detailed cell culture parameters including medium, environment, and timing</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CoCulture/">CoCulture</a></td>
+<td>Co-culture systems combining multiple cell types to simulate tissue microenvi...</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>Range: <a href="../SubstrateTypeEnum/">SubstrateTypeEnum</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
-<li>from schema: https://w3id.org/EHS-Data-Standards/outcomes-model</li>
+<li>from schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group</li>
 </ul>
 <h2 id="mappings">Mappings</h2>
 <table>
@@ -459,28 +474,28 @@ Alias: substrate_type</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>outcomes_model:substrate_type</td>
+<td>owg:substrate_type</td>
 </tr>
 <tr>
 <td>native</td>
-<td>outcomes_model:substrate_type</td>
+<td>owg:substrate_type</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-
-<pre><code class="language-yaml">name: substrate_type
-description: Type of culture substrate
-from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
-rank: 1000
-alias: substrate_type
-domain_of:
-- CellCultureConditions
-range: string
-
-</code></pre>
-
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">substrate_type</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type of culture substrate or surface material.</span>
+<span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">substrate_type</span>
+<span class="nt">domain_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellCultureConditions</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ThreeDCellCulture</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CoCulture</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SubstrateTypeEnum</span>
+</code></pre></div>
 </details>
 
 

@@ -278,7 +278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../about.md" class="md-nav__link">
         
   
   
@@ -340,17 +340,6 @@
     <span class="md-ellipsis">
       
         Properties
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Examples
       
     </span>
   </a>
@@ -429,7 +418,7 @@
 
 <h1 id="slot-sample_type">Slot: sample_type</h1>
 <p><em>Type of biological sample</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-model/sample_type">outcomes_model:sample_type</a>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-working-group/sample_type">owg:sample_type</a>
 Alias: sample_type</p>
 <!-- no inheritance hierarchy -->
 
@@ -444,36 +433,25 @@ Alias: sample_type</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../InputSample/">InputSample</a></td>
-<td>Description of the biological sample or experimental manipulation used as inp...</td>
+<td><a href="../ExposureMeasurement/">ExposureMeasurement</a></td>
+<td>A measurement of exposure to a chemical or environmental factor</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../BiomarkerMeasurement/">BiomarkerMeasurement</a></td>
+<td>A measurement of a biological marker</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>Range: <a href="../SampleTypeEnum/">SampleTypeEnum</a></li>
 </ul>
-<h2 id="examples">Examples</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Primary human airway epithelial cells at ALI</td>
-</tr>
-<tr>
-<td>MucilAir 3D tissue model</td>
-</tr>
-</tbody>
-</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
-<li>from schema: https://w3id.org/EHS-Data-Standards/outcomes-model</li>
+<li>from schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group</li>
 </ul>
 <h2 id="mappings">Mappings</h2>
 <table>
@@ -486,37 +464,26 @@ Alias: sample_type</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>outcomes_model:sample_type</td>
+<td>owg:sample_type</td>
 </tr>
 <tr>
 <td>native</td>
-<td>outcomes_model:sample_type</td>
-</tr>
-<tr>
-<td>broad</td>
-<td>OBI:0100051</td>
+<td>owg:sample_type</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-
-<pre><code class="language-yaml">name: sample_type
-description: Type of biological sample
-examples:
-- value: Primary human airway epithelial cells at ALI
-- value: MucilAir 3D tissue model
-from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
-broad_mappings:
-- OBI:0100051
-rank: 1000
-alias: sample_type
-domain_of:
-- InputSample
-range: string
-
-</code></pre>
-
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_type</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type of biological sample</span>
+<span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_type</span>
+<span class="nt">domain_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExposureMeasurement</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiomarkerMeasurement</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SampleTypeEnum</span>
+</code></pre></div>
 </details>
 
 

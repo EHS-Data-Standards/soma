@@ -1,0 +1,211 @@
+# Example BiomarkerMeasurement data for respiratory health research
+# Includes oxidative stress markers, inflammatory cytokines, and CFTR function
+# Uses OntologyReference pattern with id + name for readability
+
+biomarker_measurements:
+  # Oxidative Stress Markers
+  - id: owg:biomarker-001
+    name: Exhaled breath condensate 8-isoprostane - Participant P001
+    description: Lipid peroxidation marker in exhaled breath condensate
+    observation_type: lipid_peroxidation
+    quantity_measured:
+      value: "45.2"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
+    range_low:
+      value: "10.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
+    range_high:
+      value: "35.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
+    biomarker_type: Oxidative stress
+    measured_entity:
+      id: CHEBI:27894
+      name: 8-isoprostane
+    participant:
+      id: owg:participant-001
+      name: Participant 001
+    measurement_method: ELISA
+    measurement_date: "2024-03-15"
+
+  - id: owg:biomarker-002
+    name: BALF glutathione ratio - Participant P001
+    description: GSH/GSSG ratio in bronchoalveolar lavage fluid
+    observation_type: glutathione_ratio
+    quantity_measured:
+      value: "8.5"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
+    range_low:
+      value: "10.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
+    range_high:
+      value: "50.0"
+      unit:
+        id: UO:0000186
+        name: dimensionless unit
+    biomarker_type: Antioxidant capacity
+    measured_entity:
+      id: CHEBI:16856
+      name: Glutathione
+    participant:
+      id: owg:participant-001
+      name: Participant 001
+    measurement_method: HPLC with fluorescence detection
+    measurement_date: "2024-03-15"
+
+  # Inflammatory Cytokines
+  - id: owg:biomarker-003
+    name: Sputum IL-8 level - Participant P002
+    description: Interleukin-8 concentration in induced sputum
+    observation_type: IL8_level
+    quantity_measured:
+      value: "2450.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
+    range_low:
+      value: "100.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
+    range_high:
+      value: "1500.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
+    biomarker_type: Pro-inflammatory cytokine
+    measured_entity:
+      id: PR:000001562
+      name: Interleukin-8
+    participant:
+      id: owg:participant-002
+      name: Participant 002
+    measurement_method: Multiplex cytokine assay (Luminex)
+    measurement_date: "2024-03-16"
+
+  - id: owg:biomarker-004
+    name: Serum IL-6 level - Participant P002
+    description: Systemic interleukin-6 concentration
+    observation_type: IL6_level
+    quantity_measured:
+      value: "8.7"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
+    range_low:
+      value: "0.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
+    range_high:
+      value: "5.0"
+      unit:
+        id: UO:0000274
+        name: picogram per milliliter
+    biomarker_type: Pro-inflammatory cytokine
+    measured_entity:
+      id: PR:000001461
+      name: Interleukin-6
+    participant:
+      id: owg:participant-002
+      name: Participant 002
+    measurement_method: High-sensitivity ELISA
+    measurement_date: "2024-03-16"
+
+  # Inflammatory Cell Differentials
+  - id: owg:biomarker-005
+    name: Sputum eosinophil percentage - Participant P003
+    description: Percentage of eosinophils in induced sputum differential
+    observation_type: eosinophil_percentage
+    quantity_measured:
+      value: "12.5"
+      unit:
+        id: UO:0000187
+        name: percent
+    range_low:
+      value: "0.0"
+      unit:
+        id: UO:0000187
+        name: percent
+    range_high:
+      value: "3.0"
+      unit:
+        id: UO:0000187
+        name: percent
+    biomarker_type: Inflammatory cell
+    measured_entity:
+      id: CL:0000771
+      name: Eosinophil
+    participant:
+      id: owg:participant-003
+      name: Participant 003
+    measurement_method: Cytospin with Diff-Quik staining
+    measurement_date: "2024-03-17"
+
+  - id: owg:biomarker-006
+    name: Sputum neutrophil percentage - Participant P003
+    description: Percentage of neutrophils in induced sputum differential
+    observation_type: neutrophil_percentage
+    quantity_measured:
+      value: "68.0"
+      unit:
+        id: UO:0000187
+        name: percent
+    range_low:
+      value: "30.0"
+      unit:
+        id: UO:0000187
+        name: percent
+    range_high:
+      value: "60.0"
+      unit:
+        id: UO:0000187
+        name: percent
+    biomarker_type: Inflammatory cell
+    measured_entity:
+      id: CL:0000775
+      name: Neutrophil
+    participant:
+      id: owg:participant-003
+      name: Participant 003
+    measurement_method: Cytospin with Diff-Quik staining
+    measurement_date: "2024-03-17"
+
+  # Barrier Integrity
+  - id: owg:biomarker-008
+    name: ALI culture TEER - In vitro sample
+    description: Transepithelial electrical resistance of primary bronchial epithelial cells at ALI
+    observation_type: TEER
+    quantity_measured:
+      value: "485.0"
+      unit:
+        id: UO:0010045
+        name: ohm square centimeter
+    range_low:
+      value: "300.0"
+      unit:
+        id: UO:0010045
+        name: ohm square centimeter
+    range_high:
+      value: "800.0"
+      unit:
+        id: UO:0010045
+        name: ohm square centimeter
+    biomarker_type: Epithelial barrier integrity
+    measured_entity:
+      id: CL:0002328
+      name: Bronchial epithelial cell
+    participant:
+      id: owg:participant-004
+      name: Participant 004
+    measurement_method: EVOM2 Epithelial Voltohmmeter
+    measurement_date: "2024-03-18"

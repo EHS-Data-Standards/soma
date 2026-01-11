@@ -278,7 +278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../about.md" class="md-nav__link">
         
   
   
@@ -417,8 +417,8 @@
 
 
 <h1 id="slot-days_at_air_liquid_interface">Slot: days_at_air_liquid_interface</h1>
-<p><em>Days at air-liquid interface</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-model/days_at_air_liquid_interface">outcomes_model:days_at_air_liquid_interface</a>
+<p><em>Number of days cells have been cultured at air-liquid interface (ALI).</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-working-group/days_at_air_liquid_interface">owg:days_at_air_liquid_interface</a>
 Alias: days_at_air_liquid_interface</p>
 <!-- no inheritance hierarchy -->
 
@@ -434,7 +434,7 @@ Alias: days_at_air_liquid_interface</p>
 <tbody>
 <tr>
 <td><a href="../CellCultureConditions/">CellCultureConditions</a></td>
-<td>Detailed cell culture parameters</td>
+<td>Detailed cell culture parameters including medium, environment, and timing</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -446,7 +446,7 @@ Alias: days_at_air_liquid_interface</p>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
-<li>from schema: https://w3id.org/EHS-Data-Standards/outcomes-model</li>
+<li>from schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group</li>
 </ul>
 <h2 id="mappings">Mappings</h2>
 <table>
@@ -459,34 +459,25 @@ Alias: days_at_air_liquid_interface</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>outcomes_model:days_at_air_liquid_interface</td>
+<td>owg:days_at_air_liquid_interface</td>
 </tr>
 <tr>
 <td>native</td>
-<td>outcomes_model:days_at_air_liquid_interface</td>
-</tr>
-<tr>
-<td>related</td>
-<td>PATO:0000165</td>
+<td>owg:days_at_air_liquid_interface</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-
-<pre><code class="language-yaml">name: days_at_air_liquid_interface
-description: Days at air-liquid interface
-from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
-related_mappings:
-- PATO:0000165
-rank: 1000
-alias: days_at_air_liquid_interface
-domain_of:
-- CellCultureConditions
-range: integer
-
-</code></pre>
-
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">days_at_air_liquid_interface</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of days cells have been cultured at air-liquid interface (ALI).</span>
+<span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">days_at_air_liquid_interface</span>
+<span class="nt">domain_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellCultureConditions</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
+</code></pre></div>
 </details>
 
 

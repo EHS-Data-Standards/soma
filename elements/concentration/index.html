@@ -278,7 +278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../about.md" class="md-nav__link">
         
   
   
@@ -417,8 +417,8 @@
 
 
 <h1 id="slot-concentration">Slot: concentration</h1>
-<p><em>Concentration of reagent or compound</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-model/concentration">outcomes_model:concentration</a>
+<p><em>Concentration of supplement or reagent.</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-working-group/concentration">owg:concentration</a>
 Alias: concentration</p>
 <!-- no inheritance hierarchy -->
 
@@ -433,8 +433,8 @@ Alias: concentration</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../FluorescentLabel/">FluorescentLabel</a></td>
-<td>Fluorescent labeling or tracer used in measurement</td>
+<td><a href="../MediumSupplement/">MediumSupplement</a></td>
+<td>Supplement or additive to cell culture medium</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -446,7 +446,7 @@ Alias: concentration</p>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
-<li>from schema: https://w3id.org/EHS-Data-Standards/outcomes-model</li>
+<li>from schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group</li>
 </ul>
 <h2 id="mappings">Mappings</h2>
 <table>
@@ -459,29 +459,26 @@ Alias: concentration</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>outcomes_model:concentration</td>
+<td>owg:concentration</td>
 </tr>
 <tr>
 <td>native</td>
-<td>outcomes_model:concentration</td>
+<td>owg:concentration</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-
-<pre><code class="language-yaml">name: concentration
-description: Concentration of reagent or compound
-from_schema: https://w3id.org/EHS-Data-Standards/outcomes-model
-rank: 1000
-alias: concentration
-domain_of:
-- FluorescentLabel
-range: QuantityValue
-inlined: true
-
-</code></pre>
-
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">concentration</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concentration of supplement or reagent.</span>
+<span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">concentration</span>
+<span class="nt">domain_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MediumSupplement</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
 </details>
 
 
