@@ -1723,6 +1723,7 @@ class ExposureEvent(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
+    exposed_subject: Optional[ExposableSubject] = Field(default=None, description="""The subject being exposed to a substance or environmental factor. Can be either a model system (cell culture, organoid) or a study participant. This polymorphic slot enables unified exposure tracking across in vitro and population-based studies.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposed_to_chemical: Optional[ChemicalEntity] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
     exposure_route: Optional[ExposureRouteEnum] = Field(default=None, description="""Route of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
@@ -1752,6 +1753,20 @@ class BiologicalResponse(NamedThing):
 class HealthOutcome(NamedThing):
     """
     A health-related outcome including phenotypes and diseases
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
+         'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
+
+    id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A human-readable description for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+    category: Optional[list[str]] = Field(default=[], description="""A category or type for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+    xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
+
+
+class ExposableSubject(NamedThing):
+    """
+    An entity that can be exposed to a substance or environmental factor. This abstract class provides a common parent for both biological model systems (cell cultures, organoids) and study participants, enabling polymorphic linking from ExposureEvent to any exposable subject.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
@@ -1816,6 +1831,7 @@ class ChemicalExposure(ExposureEvent):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'ECTO:0000006',
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
+    exposed_subject: Optional[ExposableSubject] = Field(default=None, description="""The subject being exposed to a substance or environmental factor. Can be either a model system (cell culture, organoid) or a study participant. This polymorphic slot enables unified exposure tracking across in vitro and population-based studies.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposed_to_chemical: Optional[ChemicalEntity] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
     exposure_route: Optional[ExposureRouteEnum] = Field(default=None, description="""Route of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
@@ -1837,6 +1853,7 @@ class DietaryExposure(ExposureEvent):
 
     food_item: Optional[str] = Field(default=None, description="""Food item consumed""", json_schema_extra = { "linkml_meta": {'domain_of': ['DietaryExposure']} })
     serving_size: Optional[str] = Field(default=None, description="""Serving size""", json_schema_extra = { "linkml_meta": {'domain_of': ['DietaryExposure']} })
+    exposed_subject: Optional[ExposableSubject] = Field(default=None, description="""The subject being exposed to a substance or environmental factor. Can be either a model system (cell culture, organoid) or a study participant. This polymorphic slot enables unified exposure tracking across in vitro and population-based studies.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposed_to_chemical: Optional[ChemicalEntity] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
     exposure_route: Optional[ExposureRouteEnum] = Field(default=None, description="""Route of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
@@ -1857,6 +1874,7 @@ class EnvironmentalExposure(ExposureEvent):
          'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group'})
 
     environmental_context: Optional[str] = Field(default=None, description="""Environmental context of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnvironmentalExposure']} })
+    exposed_subject: Optional[ExposableSubject] = Field(default=None, description="""The subject being exposed to a substance or environmental factor. Can be either a model system (cell culture, organoid) or a study participant. This polymorphic slot enables unified exposure tracking across in vitro and population-based studies.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposed_to_chemical: Optional[ChemicalEntity] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
     exposure_route: Optional[ExposureRouteEnum] = Field(default=None, description="""Route of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
@@ -1878,6 +1896,7 @@ class OccupationalExposure(ExposureEvent):
 
     occupation: Optional[str] = Field(default=None, description="""Occupation related to exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['OccupationalExposure']} })
     workplace: Optional[str] = Field(default=None, description="""Workplace where exposure occurs""", json_schema_extra = { "linkml_meta": {'domain_of': ['OccupationalExposure']} })
+    exposed_subject: Optional[ExposableSubject] = Field(default=None, description="""The subject being exposed to a substance or environmental factor. Can be either a model system (cell culture, organoid) or a study participant. This polymorphic slot enables unified exposure tracking across in vitro and population-based studies.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposed_to_chemical: Optional[ChemicalEntity] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
     exposure_route: Optional[ExposureRouteEnum] = Field(default=None, description="""Route of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
@@ -2052,11 +2071,12 @@ class Cohort(StudyEntity):
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
 
 
-class Participant(StudyEntity):
+class Participant(StudyEntity, ExposableSubject):
     """
     A role representing an individual's participation in a study. Links a Person to a specific study cohort and captures study-specific identifiers and attributes. Age and sex are recorded at enrollment and may differ from the Person's current values or values in other study registrations.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/outcomes_working_group',
+         'mixins': ['ExposableSubject'],
          'slot_usage': {'age': {'description': 'Age of the participant in years at the '
                                                'time of study enrollment. This is a '
                                                'study-specific value that may differ '
@@ -2433,7 +2453,7 @@ class MediumSupplement(NamedThing):
     xref: Optional[list[str]] = Field(default=[], description="""External database cross-references""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing']} })
 
 
-class ModelSystem(NamedThing):
+class ModelSystem(ExposableSubject):
     """
     Abstract base class for model systems used in biomedical research. Encompasses cellular systems, microphysiological systems, and in silico models.
     """
@@ -2661,6 +2681,7 @@ class InVitroExposure(ExposureEvent):
     aerosol_generation: Optional[AerosolGeneration] = Field(default=None, description="""Parameters for aerosol generation (for inhalation studies).""", json_schema_extra = { "linkml_meta": {'domain_of': ['InVitroExposure']} })
     sample_preparation: Optional[SamplePreparation] = Field(default=None, description="""Pre-exposure sample preparation procedures.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InVitroExposure']} })
     dose_normalization_method: Optional[DoseNormalizationMethodEnum] = Field(default=None, description="""Method used to normalize dose (per area, per cell count, per protein, etc.)""", json_schema_extra = { "linkml_meta": {'domain_of': ['InVitroExposure', 'Analysis']} })
+    exposed_subject: Optional[ExposableSubject] = Field(default=None, description="""The subject being exposed to a substance or environmental factor. Can be either a model system (cell culture, organoid) or a study participant. This polymorphic slot enables unified exposure tracking across in vitro and population-based studies.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposed_to_chemical: Optional[ChemicalEntity] = Field(default=None, description="""The chemical entity involved in the exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent'], 'slot_uri': 'CHEBI:24431'} })
     exposure_route: Optional[ExposureRouteEnum] = Field(default=None, description="""Route of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
     exposure_duration: Optional[str] = Field(default=None, description="""Duration of exposure""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureEvent']} })
@@ -3186,6 +3207,7 @@ ChemicalEntity.model_rebuild()
 ExposureEvent.model_rebuild()
 BiologicalResponse.model_rebuild()
 HealthOutcome.model_rebuild()
+ExposableSubject.model_rebuild()
 StudyEntity.model_rebuild()
 Measurement.model_rebuild()
 Association.model_rebuild()

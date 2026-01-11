@@ -1,5 +1,5 @@
 # Auto generated from outcomes_working_group.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-10T19:02:18
+# Generation date: 2026-01-10T19:25:56
 # Schema: outcomes_working_group
 #
 # id: https://w3id.org/EHS-Data-Standards/outcomes_working_group
@@ -149,6 +149,10 @@ class HealthOutcomeId(NamedThingId):
     pass
 
 
+class ExposableSubjectId(NamedThingId):
+    pass
+
+
 class StudyEntityId(NamedThingId):
     pass
 
@@ -269,7 +273,7 @@ class MediumSupplementId(NamedThingId):
     pass
 
 
-class ModelSystemId(NamedThingId):
+class ModelSystemId(ExposableSubjectId):
     pass
 
 
@@ -778,6 +782,7 @@ class ExposureEvent(NamedThing):
     class_model_uri: ClassVar[URIRef] = OWG.ExposureEvent
 
     id: Union[str, ExposureEventId] = None
+    exposed_subject: Optional[Union[dict, "ExposableSubject"]] = None
     exposed_to_chemical: Optional[Union[dict, ChemicalEntity]] = None
     exposure_route: Optional[Union[str, "ExposureRouteEnum"]] = None
     exposure_duration: Optional[str] = None
@@ -785,6 +790,9 @@ class ExposureEvent(NamedThing):
     exposure_medium: Optional[Union[str, "ExposureMediumEnum"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
+        if self.exposed_subject is not None and not isinstance(self.exposed_subject, ExposableSubject):
+            self.exposed_subject = ExposableSubject(**as_dict(self.exposed_subject))
+
         if self.exposed_to_chemical is not None and not isinstance(self.exposed_to_chemical, ChemicalEntity):
             self.exposed_to_chemical = ChemicalEntity(**as_dict(self.exposed_to_chemical))
 
@@ -830,6 +838,22 @@ class HealthOutcome(NamedThing):
     class_model_uri: ClassVar[URIRef] = OWG.HealthOutcome
 
     id: Union[str, HealthOutcomeId] = None
+
+@dataclass(repr=False)
+class ExposableSubject(NamedThing):
+    """
+    An entity that can be exposed to a substance or environmental factor. This abstract class provides a common parent
+    for both biological model systems (cell cultures, organoids) and study participants, enabling polymorphic linking
+    from ExposureEvent to any exposable subject.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OWG["ExposableSubject"]
+    class_class_curie: ClassVar[str] = "owg:ExposableSubject"
+    class_name: ClassVar[str] = "ExposableSubject"
+    class_model_uri: ClassVar[URIRef] = OWG.ExposableSubject
+
+    id: Union[str, ExposableSubjectId] = None
 
 @dataclass(repr=False)
 class StudyEntity(NamedThing):
@@ -1372,6 +1396,10 @@ class Participant(StudyEntity):
     class_model_uri: ClassVar[URIRef] = OWG.Participant
 
     id: Union[str, ParticipantId] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    category: Optional[Union[str, list[str]]] = empty_list()
+    xref: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
     person: Optional[Union[str, PersonId]] = None
     part_of_cohort: Optional[Union[dict, Cohort]] = None
     participant_id: Optional[str] = None
@@ -1386,6 +1414,20 @@ class Participant(StudyEntity):
             self.MissingRequiredField("id")
         if not isinstance(self.id, ParticipantId):
             self.id = ParticipantId(self.id)
+
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if not isinstance(self.category, list):
+            self.category = [self.category] if self.category is not None else []
+        self.category = [v if isinstance(v, str) else str(v) for v in self.category]
+
+        if not isinstance(self.xref, list):
+            self.xref = [self.xref] if self.xref is not None else []
+        self.xref = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.xref]
 
         if self.person is not None and not isinstance(self.person, PersonId):
             self.person = PersonId(self.person)
@@ -1990,7 +2032,7 @@ class MediumSupplement(NamedThing):
 
 
 @dataclass(repr=False)
-class ModelSystem(NamedThing):
+class ModelSystem(ExposableSubject):
     """
     Abstract base class for model systems used in biomedical research. Encompasses cellular systems,
     microphysiological systems, and in silico models.
@@ -4574,6 +4616,9 @@ slots.smiles = Slot(uri=OWG.smiles, name="smiles", curie=OWG.curie('smiles'),
 slots.molecular_formula = Slot(uri=OWG.molecular_formula, name="molecular_formula", curie=OWG.curie('molecular_formula'),
                    model_uri=OWG.molecular_formula, domain=None, range=Optional[str])
 
+slots.exposed_subject = Slot(uri=OWG.exposed_subject, name="exposed_subject", curie=OWG.curie('exposed_subject'),
+                   model_uri=OWG.exposed_subject, domain=None, range=Optional[Union[dict, ExposableSubject]])
+
 slots.exposed_to_chemical = Slot(uri=CHEBI['24431'], name="exposed_to_chemical", curie=CHEBI.curie('24431'),
                    model_uri=OWG.exposed_to_chemical, domain=None, range=Optional[Union[dict, ChemicalEntity]])
 
@@ -5215,6 +5260,9 @@ slots.particle_composition = Slot(uri=OWG.particle_composition, name="particle_c
 
 slots.agglomeration_state = Slot(uri=OWG.agglomeration_state, name="agglomeration_state", curie=OWG.curie('agglomeration_state'),
                    model_uri=OWG.agglomeration_state, domain=None, range=Optional[str])
+
+slots.exposed_system = Slot(uri=OWG.exposed_system, name="exposed_system", curie=OWG.curie('exposed_system'),
+                   model_uri=OWG.exposed_system, domain=None, range=Optional[Union[dict, CellularSystem]])
 
 slots.exposure_material = Slot(uri=OWG.exposure_material, name="exposure_material", curie=OWG.curie('exposure_material'),
                    model_uri=OWG.exposure_material, domain=None, range=Optional[Union[dict, ExposureMaterial]])
