@@ -93,6 +93,7 @@ classes:
         - diseases
         - adverse_outcomes
         - adverse_outcome_pathways
+        - assessments
         - genes
         - proteins
         - cell_types
@@ -123,6 +124,12 @@ classes:
         - aerosol_generations
         - sample_preparations
         - analyses
+        # Paper extension entities (S&T Framework)
+        - protocols
+        - assays
+        - observations
+        - outcome_contributions
+        - evidence_collection
 
 
   NamedThing:
@@ -219,9 +226,10 @@ classes:
 
   BiologicalResponse:
     abstract: true
-    is_a: NamedThing
+    is_a: Response
     description: >-
-      A biological response at the molecular, cellular, or tissue level
+      A biological response at the molecular, cellular, or tissue level.
+      Extends Response with biology-specific attributes.
 
   HealthOutcome:
     abstract: true
@@ -248,12 +256,17 @@ classes:
     abstract: true
     is_a: NamedThing
     description: >-
-      A measurement observation with a typed quantity value and optional reference ranges
+      A measurement observation with a typed quantity value and optional reference ranges.
+      Can be linked to source Observation and the Assay that generated it.
     slots:
       - observation_type
       - quantity_measured
       - range_low
       - range_high
+      - source_observation
+      - performed_by_assay
+      - measurement_interpretation
+      - measurement_quality
 
   Association:
     abstract: true
@@ -365,12 +378,27 @@ classes:
   KeyEventRelationship:
     is_a: Association
     description: >-
-      A directional relationship between two key events in an AOP
+      A directional relationship between two key events in an AOP.
+      Updated to support structured Evidence objects while maintaining
+      backward compatibility with string-based evidence_support.
     slots:
       - upstream_event
       - downstream_event
       - relationship_type
       - evidence_support
+      - ker_evidence
+      - assessments
+
+  Assessment:
+    is_a: NamedThing
+    description: >-
+      A domain-specific grouping of measurement types that together provide
+      evidence for assessing whether a key event relationship is supported.
+      Captures expert-curated measurement protocols for specific AOP contexts
+      such as asthma adverse outcome pathways.
+    slots:
+      - assessed_key_event_relationship
+      - measurement_types
 
   Study:
     is_a: StudyEntity
@@ -826,6 +854,197 @@ classes:
       - final_metric
       - final_metric_unit
 
+  # ==========================================================================
+  # Paper Extension Classes: Response Hierarchy
+  # ==========================================================================
+
+  Response:
+    abstract: true
+    is_a: NamedThing
+    description: >-
+      Abstract base class for any response in a biological system.
+      Provides common attributes for biological responses at any level
+      of organization, from molecular to organism.
+    slots:
+      - response_context
+      - temporal_properties
+
+  TemporalProperties:
+    description: >-
+      Temporal characteristics of a biological response or event.
+    attributes:
+      onset_time:
+        range: string
+        description: Time after exposure when response begins
+      duration:
+        range: string
+        description: Duration of the response
+      reversibility:
+        range: ReversibilityEnum
+        description: Whether the response is reversible
+
+  # ==========================================================================
+  # Paper Extension Classes: Evidence Hierarchy
+  # ==========================================================================
+
+  Evidence:
+    abstract: true
+    is_a: NamedThing
+    description: >-
+      Abstract base class for evidence supporting a scientific claim.
+      Provides common attributes for evidence type, strength, and provenance.
+    slots:
+      - evidence_type
+      - evidence_strength
+      - source_references
+      - confidence_level
+
+  KEREvidence:
+    is_a: Evidence
+    description: >-
+      Evidence specific to Key Event Relationships in Adverse Outcome Pathways.
+      Extends base Evidence with KER-specific attributes following AOP-Wiki
+      weight of evidence considerations.
+    slots:
+      - biological_plausibility
+      - empirical_support
+      - uncertainties
+      - quantitative_understanding
+
+  ExperimentalEvidence:
+    is_a: Evidence
+    description: >-
+      Evidence derived from experimental studies including in vitro,
+      in vivo, and clinical observations.
+    slots:
+      - study_type
+      - sample_size
+
+  # ==========================================================================
+  # Paper Extension Classes: Protocol and Assay
+  # ==========================================================================
+
+  ProtocolEquipment:
+    description: >-
+      Equipment specification for a protocol.
+    attributes:
+      equipment_name:
+        range: string
+        description: Name of the equipment
+      equipment_type:
+        range: string
+        description: Type/category of equipment
+      manufacturer:
+        range: string
+        description: Equipment manufacturer
+      model:
+        range: string
+        description: Equipment model
+      calibration_requirements:
+        range: string
+        description: Calibration requirements
+
+  ProtocolParameter:
+    description: >-
+      A configurable parameter within a protocol.
+    attributes:
+      parameter_name:
+        range: string
+        description: Name of the parameter
+      parameter_value:
+        range: string
+        description: Value of the parameter
+      parameter_unit:
+        range: Unit
+        inlined: true
+        description: Unit for the parameter value
+
+  Protocol:
+    is_a: NamedThing
+    description: >-
+      A standardized procedure or method for conducting an experiment or assay.
+      Captures methodology, equipment, and parameters for reproducibility.
+    slots:
+      - protocol_type
+      - protocol_version
+      - sop_reference
+      - methodology
+      - protocol_equipment
+      - protocol_parameters
+      - validation_status
+      - last_updated
+
+  Assay:
+    is_a: NamedThing
+    class_uri: OBI:0000070
+    description: >-
+      A planned process with the objective to produce information about
+      the material entity that is the evaluant. Links protocols to measurements
+      and captures assay-specific details.
+    slots:
+      - assay_type
+      - assay_protocol
+      - assay_instrumentation
+      - target_entity
+      - measurement_outputs
+      - detection_method
+      - assay_sensitivity
+      - assay_specificity
+      - dynamic_range
+      - throughput
+
+  # ==========================================================================
+  # Paper Extension Classes: Observation
+  # ==========================================================================
+
+  Observation:
+    is_a: NamedThing
+    description: >-
+      A raw observation from an assay or measurement procedure. Captures
+      the original observation with context before quantification or
+      interpretation. Provides provenance for measurements.
+    slots:
+      - observation_timestamp
+      - observer
+      - observation_context
+      - raw_value
+      - raw_unit
+      - observation_method
+      - observation_notes
+      - quality_flags
+      - instrument_readings
+      - performed_by_assay
+
+  # ==========================================================================
+  # Paper Extension Classes: Outcome Contribution
+  # ==========================================================================
+
+  ContributingElement:
+    is_a: NamedThing
+    description: >-
+      An element that contributes to an adverse outcome. Can be a KeyEvent,
+      BiologicalProcess, Measurement, or other relevant entity.
+    slots:
+      - element_type
+      - element_reference
+      - mechanistic_role
+
+  OutcomeContribution:
+    is_a: Association
+    description: >-
+      A relationship linking an AdverseOutcome to elements that contribute
+      to it. Follows the KeyEventRelationship pattern to enable decomposition
+      of complex outcomes into their contributing components.
+    slots:
+      - outcome
+      - contributing_element
+      - contribution_type
+      - ker_evidence
+      - assessments
+      - contribution_weight
+      - necessity
+      - sufficiency
+
   Gene:
     is_a: BiologicalEntity
     description: >-
@@ -1198,20 +1417,24 @@ slots:
 
   molecular_initiating_event:
     range: MolecularInitiatingEvent
+    inlined: true
     description: The molecular initiating event of an AOP
 
   key_events:
     range: KeyEvent
     multivalued: true
+    inlined_as_list: true
     description: Key events in an AOP
 
   key_event_relationships:
     range: KeyEventRelationship
     multivalued: true
+    inlined_as_list: true
     description: Relationships between key events
 
   adverse_outcome:
     range: AdverseOutcome
+    inlined: true
     description: The adverse outcome of an AOP
 
   stressors:
@@ -1247,10 +1470,12 @@ slots:
 
   upstream_event:
     range: KeyEvent
+    inlined: true
     description: Upstream key event
 
   downstream_event:
     range: KeyEvent
+    inlined: true
     description: Downstream key event
 
   relationship_type:
@@ -1259,7 +1484,36 @@ slots:
 
   evidence_support:
     range: string
-    description: Evidence supporting the relationship
+    description: >-
+      Evidence supporting the relationship. DEPRECATED: Use 'ker_evidence' slot
+      with structured KEREvidence objects instead for new data. This slot is
+      retained for backward compatibility with existing data.
+    deprecated: >-
+      Use the 'ker_evidence' slot with structured Evidence objects for new data.
+
+  assessments:
+    range: Assessment
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    description: >-
+      Domain-specific assessments that group measurement types for evaluating
+      key events in adverse outcome pathways. Each assessment defines expert-curated
+      measurement protocols for specific biological endpoints.
+
+  # Assessment slots
+  assessed_key_event_relationship:
+    range: KeyEventRelationship
+    description: >-
+      The key event relationship that this assessment provides evidence for.
+
+  measurement_types:
+    range: MeasurementTypeEnum
+    multivalued: true
+    description: >-
+      The measurement types that are part of this assessment.
+      These are the specific observation types that together provide
+      evidence for the assessed key event relationship.
 
   # Study slots
   study_type:
@@ -2763,6 +3017,403 @@ slots:
       Reference to the analysis method and parameters used for this measurement.
     inlined: true
 
+  # ==========================================================================
+  # Response and Temporal Properties Slots (Paper Extension)
+  # ==========================================================================
+
+  response_context:
+    range: string
+    description: >-
+      The context or conditions under which the response was observed.
+
+  temporal_properties:
+    range: TemporalProperties
+    inlined: true
+    description: >-
+      Temporal characteristics of the response including onset, duration,
+      and reversibility.
+
+  onset_time:
+    range: string
+    description: >-
+      Time after exposure when response begins.
+
+  duration:
+    range: string
+    description: >-
+      Duration of the response.
+
+  reversibility:
+    range: ReversibilityEnum
+    description: >-
+      Whether the response is reversible.
+
+  # ==========================================================================
+  # Evidence Slots (Paper Extension)
+  # ==========================================================================
+
+  evidence_type:
+    range: EvidenceTypeEnum
+    description: >-
+      The type of evidence (e.g., experimental, computational, observational).
+
+  evidence_strength:
+    range: EvidenceStrengthEnum
+    description: >-
+      Qualitative assessment of evidence strength (strong, moderate, weak).
+
+  source_references:
+    range: string
+    multivalued: true
+    description: >-
+      References to source publications, databases, or datasets supporting this evidence.
+
+  confidence_level:
+    range: ConfidenceLevelEnum
+    description: >-
+      Overall confidence level in the evidence.
+
+  biological_plausibility:
+    range: string
+    description: >-
+      Assessment of the biological plausibility of the relationship.
+
+  empirical_support:
+    range: string
+    description: >-
+      Summary of empirical evidence supporting the relationship.
+
+  uncertainties:
+    range: string
+    multivalued: true
+    description: >-
+      Known uncertainties or limitations in the evidence.
+
+  quantitative_understanding:
+    range: string
+    description: >-
+      Description of quantitative understanding of the relationship.
+
+  ker_evidence:
+    range: KEREvidence
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Structured evidence objects supporting a key event relationship.
+      Replaces the deprecated string-based evidence_support slot.
+
+  # ==========================================================================
+  # Protocol Slots (Paper Extension)
+  # ==========================================================================
+
+  protocol_type:
+    range: ProtocolTypeEnum
+    description: >-
+      The type of protocol (e.g., sample_preparation, assay_execution, analysis).
+
+  protocol_version:
+    range: string
+    description: >-
+      Version identifier for the protocol.
+
+  sop_reference:
+    range: string
+    description: >-
+      Reference to a standard operating procedure document (URL, DOI, or document ID).
+
+  methodology:
+    range: string
+    description: >-
+      Description of the methodology.
+
+  protocol_equipment:
+    range: ProtocolEquipment
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Equipment required for this protocol.
+
+  protocol_parameters:
+    range: ProtocolParameter
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Configurable parameters for this protocol.
+
+  validation_status:
+    range: ValidationStatusEnum
+    description: >-
+      Current validation status of the protocol.
+
+  last_updated:
+    range: date
+    description: >-
+      Date when the protocol was last updated.
+
+  # ==========================================================================
+  # Assay Slots (Paper Extension)
+  # ==========================================================================
+
+  assay_type:
+    range: AssayTypeEnum
+    description: >-
+      The type of assay from OBI ontology.
+
+  assay_protocol:
+    range: Protocol
+    inlined: true
+    description: >-
+      The protocol used for this assay.
+
+  assay_instrumentation:
+    range: string
+    multivalued: true
+    description: >-
+      Instruments used in the assay.
+
+  target_entity:
+    range: NamedThing
+    inlined: true
+    description: >-
+      The entity being measured or assessed by this assay.
+
+  measurement_outputs:
+    range: MeasurementTypeEnum
+    multivalued: true
+    description: >-
+      Types of measurements produced by this assay.
+
+  detection_method:
+    range: string
+    description: >-
+      Method used for detection (e.g., fluorescence, absorbance).
+
+  assay_sensitivity:
+    range: QuantityValue
+    inlined: true
+    description: >-
+      Lower limit of detection for the assay.
+
+  assay_specificity:
+    range: string
+    description: >-
+      Specificity characteristics of the assay.
+
+  dynamic_range:
+    range: QuantityRange
+    inlined: true
+    description: >-
+      Dynamic range of the assay.
+
+  throughput:
+    range: string
+    description: >-
+      Throughput capacity of the assay.
+
+  # ==========================================================================
+  # Observation Slots (Paper Extension)
+  # ==========================================================================
+
+  observation_timestamp:
+    range: datetime
+    description: >-
+      The timestamp when the observation was made.
+
+  observer:
+    range: string
+    description: >-
+      The person or system that made the observation.
+
+  observation_context:
+    range: string
+    description: >-
+      The context or conditions under which the observation was made.
+
+  raw_value:
+    range: string
+    description: >-
+      The raw, unprocessed value from the observation.
+
+  raw_unit:
+    range: Unit
+    inlined: true
+    description: >-
+      The unit of the raw value.
+
+  observation_method:
+    range: string
+    description: >-
+      The method used to make the observation.
+
+  observation_notes:
+    range: string
+    description: >-
+      Free-text notes about the observation.
+
+  quality_flags:
+    range: QualityFlagEnum
+    multivalued: true
+    description: >-
+      Quality control flags for this observation.
+
+  instrument_readings:
+    range: string
+    multivalued: true
+    description: >-
+      Raw instrument readings associated with this observation.
+
+  performed_by_assay:
+    range: Assay
+    inlined: true
+    description: >-
+      The assay that generated this observation.
+
+  source_observation:
+    range: Observation
+    inlined: true
+    description: >-
+      The source observation from which this measurement was derived.
+
+  measurement_interpretation:
+    range: string
+    description: >-
+      Interpretation or clinical significance of the measurement.
+
+  measurement_quality:
+    range: MeasurementQualityEnum
+    description: >-
+      Quality assessment of the measurement.
+
+  # ==========================================================================
+  # OutcomeContribution Slots (Paper Extension)
+  # ==========================================================================
+
+  outcome:
+    range: AdverseOutcome
+    required: true
+    inlined: true
+    description: >-
+      The adverse outcome to which this contribution applies.
+
+  contributing_element:
+    range: ContributingElement
+    required: true
+    inlined: true
+    description: >-
+      The element contributing to the adverse outcome.
+
+  contribution_type:
+    range: ContributionTypeEnum
+    description: >-
+      The type of contribution (e.g., causal, modulatory, correlative).
+
+  contribution_weight:
+    range: float
+    description: >-
+      Relative weight or importance of this contribution (0.0-1.0).
+
+  necessity:
+    range: NecessityEnum
+    description: >-
+      Whether this element is necessary for the outcome.
+
+  sufficiency:
+    range: SufficiencyEnum
+    description: >-
+      Whether this element is sufficient to cause the outcome.
+
+  element_type:
+    range: ContributingElementTypeEnum
+    description: >-
+      The type of contributing element.
+
+  element_reference:
+    range: NamedThing
+    inlined: true
+    description: >-
+      Reference to the actual element (KeyEvent, Measurement, etc.).
+
+  mechanistic_role:
+    range: string
+    description: >-
+      Description of the mechanistic role this element plays.
+
+  # ==========================================================================
+  # Container Collection Slots for New Classes (Paper Extension)
+  # ==========================================================================
+
+  protocols:
+    range: Protocol
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of protocols in the container.
+
+  assays:
+    range: Assay
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of assays in the container.
+
+  observations:
+    range: Observation
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of raw observations in the container.
+
+  outcome_contributions:
+    range: OutcomeContribution
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of outcome contribution relationships in the container.
+
+  evidence_collection:
+    range: Evidence
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of evidence objects in the container.
+
+  # ==========================================================================
+  # Protocol Supporting Class Slots
+  # ==========================================================================
+
+  equipment_name:
+    range: string
+    description: Name of the equipment.
+
+  equipment_type:
+    range: string
+    description: Type/category of equipment.
+
+  equipment_manufacturer:
+    range: string
+    description: Equipment manufacturer.
+
+  equipment_model:
+    range: string
+    description: Equipment model.
+
+  calibration_requirements:
+    range: string
+    description: Calibration requirements for the equipment.
+
+  parameter_name:
+    range: string
+    description: Name of the parameter.
+
+  parameter_value:
+    range: string
+    description: Value of the parameter.
+
+  parameter_unit:
+    range: Unit
+    inlined: true
+    description: Unit for the parameter value.
+
+  acceptable_range:
+    range: QuantityRange
+    inlined: true
+    description: Acceptable range for this parameter.
+
 enums:
 
   ExposureRouteEnum:
@@ -3181,6 +3832,187 @@ enums:
         description: Transepithelial electrical resistance (membrane property)
       other:
         description: Other measurement type not listed
+
+  # ============================================================================
+  # Domain-specific Assessment Measurement Type Enums
+  # These group MeasurementTypeEnum values by assessment domain for AOPs
+  # ============================================================================
+
+  ASLAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for airway surface liquid (ASL) assessment.
+      Used to assess hydration status of airway epithelium.
+    permissible_values:
+      asl_height:
+        description: Airway surface liquid height in micrometers
+      periciliary_layer_depth:
+        description: Depth of periciliary liquid layer (reduced in disease)
+      mucus_layer_thickness:
+        description: Thickness of the mucus gel layer
+
+  CiliaryFunctionAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for ciliary function assessment.
+      Used to assess ciliary beating and motility in airway epithelium.
+    permissible_values:
+      ciliary_beat_frequency:
+        description: Frequency of ciliary beating in Hz
+      ciliary_active_area_percentage:
+        description: Percentage of epithelial surface with active cilia
+      cilia_per_cell:
+        description: Number of cilia per epithelial cell
+      cilia_length:
+        description: Length of cilia in micrometers
+      percentage_ciliated_cells:
+        description: Percentage of cells that are ciliated
+
+  MucociliaryClearanceAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for mucociliary clearance (MCC) assessment.
+      Used to assess the coordinated transport of mucus by cilia.
+    permissible_values:
+      mucociliary_transport_rate:
+        description: Rate of mucociliary transport (mm/min)
+      mucociliary_directionality:
+        description: Directionality and coordination of mucociliary transport
+      particle_clearance_rate:
+        description: Rate of particle clearance from airways
+      mucus_layer_thickness:
+        description: Thickness of the mucus gel layer
+      bacterial_load:
+        description: Bacterial load (CFU or similar)
+
+  GobletCellAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for goblet cell and mucin assessment.
+      Used to assess goblet cell hyperplasia and mucus hypersecretion.
+    permissible_values:
+      goblet_cell_count:
+        description: Number or percentage of goblet cells
+      goblet_to_ciliated_ratio:
+        description: Ratio of goblet cells to ciliated cells
+      mucin_protein_concentration:
+        description: Concentration of secreted mucin protein
+      mucus_viscosity:
+        description: Viscosity of airway mucus
+
+  MucinProductionAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for mucin production assessment.
+      Used to assess mucin gene/protein expression and secretion.
+    permissible_values:
+      mucin_protein_concentration:
+        description: Concentration of secreted mucin protein
+      gene_expression:
+        description: Mucin gene expression (MUC5AC, MUC5B)
+      protein_expression:
+        description: Mucin protein expression level
+
+  LungFunctionAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for lung function assessment.
+      Used to assess respiratory function in human subjects.
+    permissible_values:
+      FEV1:
+        description: Forced expiratory volume in 1 second
+      FVC:
+        description: Forced vital capacity
+      FEV1_FEC_ratio:
+        description: Ratio of FEV1 to FVC (Tiffeneau-Pinelli index)
+      FEF25_75:
+        description: Forced expiratory flow at 25-75% of FVC
+      peak_expiratory_flow:
+        description: Peak expiratory flow rate
+      DLCO:
+        description: Diffusing capacity of the lung for carbon monoxide
+      FeNO:
+        description: Fractional exhaled nitric oxide (airway inflammation marker)
+      bronchodilator_response:
+        description: Change in lung function after bronchodilator administration
+      lung_function_decline_rate:
+        description: Rate of decline in lung function over time
+
+  CFTRFunctionAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for CFTR function assessment.
+      Used to assess cystic fibrosis transmembrane conductance regulator activity.
+    permissible_values:
+      CFTR_chloride_secretion:
+        description: CFTR-mediated chloride secretory current
+      inhibitor_sensitive_current:
+        description: Current sensitive to CFTR inhibitors (e.g., CFTRinh-172)
+      sweat_chloride_concentration:
+        description: Chloride concentration in sweat (CF diagnostic)
+
+  OxidativeStressAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for oxidative stress assessment.
+      Used to assess reactive oxygen species and antioxidant status.
+    permissible_values:
+      reactive_oxygen_species:
+        description: Reactive oxygen species (ROS) level
+      lipid_peroxidation:
+        description: Lipid peroxidation markers (MDA, 8-isoprostane)
+      protein_carbonyls:
+        description: Protein carbonyl content (protein oxidation marker)
+      DNA_8ohdg:
+        description: 8-hydroxydeoxyguanosine (DNA oxidative damage marker)
+      glutathione_ratio:
+        description: GSH/GSSG ratio (antioxidant capacity)
+      superoxide_dismutase_activity:
+        description: Superoxide dismutase (SOD) enzyme activity
+      catalase_activity:
+        description: Catalase enzyme activity
+      glutathione_peroxidase_activity:
+        description: Glutathione peroxidase (GPx) activity
+      total_antioxidant_capacity:
+        description: Total antioxidant capacity of sample
+
+  BALFSputumAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for BALF and sputum assessment.
+      Used to assess airway inflammation via bronchoalveolar lavage or induced sputum.
+    permissible_values:
+      neutrophil_percentage:
+        description: Percentage of neutrophils in BALF or sputum
+      eosinophil_percentage:
+        description: Percentage of eosinophils in BALF or sputum
+      macrophage_percentage:
+        description: Percentage of macrophages in BALF or sputum
+      total_inflammatory_cell:
+        description: Total inflammatory cell count
+      IL6_level:
+        description: Interleukin-6 concentration
+      IL8_level:
+        description: Interleukin-8 (CXCL8) concentration
+      IL13_level:
+        description: Interleukin-13 concentration
+      TNF_alpha_level:
+        description: Tumor necrosis factor alpha concentration
+
+  EGFRSignalingAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for EGFR signaling pathway assessment.
+      Used to assess epidermal growth factor receptor activation and downstream signaling.
+    permissible_values:
+      protein_phosphorylation:
+        description: EGFR phosphorylation levels (Y1068, Y1173 sites)
+      protein_expression:
+        description: EGFR and ligand expression levels
+      gene_expression:
+        description: EGFR pathway gene expression
+
+  GeneExpressionAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for gene expression assessment.
+      Used to assess mRNA levels and transcriptional responses.
+    permissible_values:
+      gene_expression:
+        description: Gene expression level (mRNA)
+      expression_ratio:
+        description: Ratio of expression between genes
+      percentage_positive_cells:
+        description: Percentage of cells positive for a marker
 
   RelationshipToHouseholdHeadEnum:
     description: >-
@@ -3619,4 +4451,228 @@ enums:
         description: Best quality replicate selected
       sum:
         description: Sum of replicate values
+
+  # ==========================================================================
+  # Paper Extension Enums: Response, Evidence, Protocol, Observation, Outcome
+  # ==========================================================================
+
+  ReversibilityEnum:
+    description: >-
+      Whether a biological response is reversible.
+    permissible_values:
+      reversible:
+        description: Response is fully reversible
+      partially_reversible:
+        description: Response is partially reversible
+      irreversible:
+        description: Response is not reversible
+      unknown:
+        description: Reversibility is not known
+
+  EvidenceTypeEnum:
+    description: >-
+      Types of evidence supporting a scientific claim.
+    permissible_values:
+      experimental:
+        description: Evidence from controlled experiments
+      observational:
+        description: Evidence from observational studies
+      computational:
+        description: Evidence from computational/in silico studies
+      clinical:
+        description: Evidence from clinical studies
+      epidemiological:
+        description: Evidence from epidemiological studies
+      mechanistic:
+        description: Evidence from mechanistic studies
+      expert_opinion:
+        description: Evidence based on expert opinion or consensus
+      literature_review:
+        description: Evidence from systematic literature review
+
+  EvidenceStrengthEnum:
+    description: >-
+      Qualitative assessment of evidence strength.
+    permissible_values:
+      strong:
+        description: Strong empirical support with consistent findings
+      moderate:
+        description: Moderate support with some inconsistencies
+      weak:
+        description: Weak or limited support
+      not_specified:
+        description: Evidence strength not specified
+
+  ConfidenceLevelEnum:
+    description: >-
+      Overall confidence level in evidence or assessment.
+    permissible_values:
+      high:
+        description: High confidence in the evidence
+      medium:
+        description: Medium confidence in the evidence
+      low:
+        description: Low confidence in the evidence
+      very_low:
+        description: Very low confidence in the evidence
+
+  ProtocolTypeEnum:
+    description: >-
+      Types of experimental protocols.
+    permissible_values:
+      sample_preparation:
+        description: Protocol for preparing samples
+      assay_execution:
+        description: Protocol for executing an assay
+      data_analysis:
+        description: Protocol for data analysis
+      quality_control:
+        description: Protocol for quality control
+      cell_culture:
+        description: Protocol for cell culture procedures
+      exposure:
+        description: Protocol for exposure procedures
+      imaging:
+        description: Protocol for imaging procedures
+      staining:
+        description: Protocol for staining procedures
+
+  ValidationStatusEnum:
+    description: >-
+      Validation status of a protocol.
+    permissible_values:
+      validated:
+        description: Protocol has been validated
+      under_validation:
+        description: Protocol is currently being validated
+      not_validated:
+        description: Protocol has not been validated
+      deprecated:
+        description: Protocol is deprecated
+
+  AssayTypeEnum:
+    description: >-
+      Types of assays from the Ontology for Biomedical Investigations (OBI).
+    permissible_values:
+      gene_expression_assay:
+        description: Assay measuring gene expression
+        meaning: OBI:0001225
+      protein_assay:
+        description: Assay measuring proteins
+        meaning: OBI:0000185
+      cell_viability_assay:
+        description: Assay measuring cell viability
+        meaning: OBI:0000925
+      cytotoxicity_assay:
+        description: Assay measuring cytotoxicity
+        meaning: OBI:0002041
+      imaging_assay:
+        description: Assay using imaging
+        meaning: OBI:0000185
+      electrophysiology_assay:
+        description: Electrophysiology measurement
+        meaning: OBI:0001917
+      biochemical_assay:
+        description: Biochemical measurement assay
+      functional_assay:
+        description: Functional outcome assay
+      high_throughput_screening:
+        description: High-throughput screening assay
+        meaning: OBI:0000919
+
+  QualityFlagEnum:
+    description: >-
+      Quality control flags for observations.
+    permissible_values:
+      passed:
+        description: Observation passed quality control
+      below_detection_limit:
+        description: Value below detection limit
+      above_detection_limit:
+        description: Value above detection limit
+      outlier:
+        description: Identified as statistical outlier
+      contamination_suspected:
+        description: Possible contamination
+      instrument_error:
+        description: Instrument error noted
+      replicate_disagreement:
+        description: Replicates do not agree
+      incomplete_data:
+        description: Data collection was incomplete
+
+  MeasurementQualityEnum:
+    description: >-
+      Quality assessment of a measurement.
+    permissible_values:
+      high:
+        description: High quality measurement
+      acceptable:
+        description: Acceptable quality
+      low:
+        description: Low quality - use with caution
+      failed:
+        description: Failed quality control
+
+  ContributionTypeEnum:
+    description: >-
+      Types of contribution to an adverse outcome.
+    permissible_values:
+      causal:
+        description: Direct causal contribution
+      modulatory:
+        description: Modulates the outcome without direct causation
+      correlative:
+        description: Correlated with outcome
+      protective:
+        description: Protective against the outcome
+      exacerbating:
+        description: Exacerbates the outcome
+      prerequisite:
+        description: Required before outcome can occur
+
+  NecessityEnum:
+    description: >-
+      Whether an element is necessary for an outcome.
+    permissible_values:
+      necessary:
+        description: Element is necessary for the outcome
+      not_necessary:
+        description: Element is not necessary
+      conditionally_necessary:
+        description: Necessary under certain conditions
+      unknown:
+        description: Necessity is unknown
+
+  SufficiencyEnum:
+    description: >-
+      Whether an element is sufficient to cause an outcome.
+    permissible_values:
+      sufficient:
+        description: Element is sufficient to cause outcome
+      not_sufficient:
+        description: Element is not sufficient alone
+      conditionally_sufficient:
+        description: Sufficient under certain conditions
+      unknown:
+        description: Sufficiency is unknown
+
+  ContributingElementTypeEnum:
+    description: >-
+      Types of elements that can contribute to an adverse outcome.
+    permissible_values:
+      key_event:
+        description: A key event in an AOP
+      biological_process:
+        description: A biological process
+      measurement:
+        description: A measured value
+      exposure:
+        description: An exposure event
+      genetic_factor:
+        description: A genetic factor or variant
+      environmental_factor:
+        description: An environmental factor
+      molecular_initiating_event:
+        description: A molecular initiating event
 
