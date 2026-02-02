@@ -40,7 +40,7 @@ The model is built using:
 |--------|-----------------------------------------------------------------|
 | Measurements | Biomarkers, phenotypes, gene/protein expression                 |
 | Model Systems | Cell cultures and in vitro exposure systems                     |
- | Value Set Defintions | Controlled vocabularies for key entities with ontology mappings |
+ | Value Set Definitions | Controlled vocabularies for key entities with ontology mappings |
 
 ## Contributing
 
