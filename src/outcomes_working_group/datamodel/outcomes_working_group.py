@@ -1,9 +1,9 @@
-# Auto generated from v2.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-10T20:00:37
+# Auto generated from outcomes_working_group.yaml by pythongen.py version: 0.0.1
+# Generation date: 2026-02-02T12:47:28
 # Schema: outcomes_working_group
 #
 # id: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-# description: A LinkML data model for representing biological measurements, assays, and experimental protocols in the context of outcomes research.
+# description: A LinkML data model for representing biological measurements, assays, and experimental protocols in the context of outcomes research. This is the main entry point that imports the measurement base schema and domain-specific microschemas.
 # license: MIT
 
 import dataclasses
@@ -56,332 +56,100 @@ from rdflib import (
     URIRef
 )
 
-from linkml_runtime.linkml_model.types import Boolean, Date, Float, Integer, String, Uriorcurie
-from linkml_runtime.utils.metamodelcore import Bool, URIorCURIE, XSDDate
+from linkml_runtime.linkml_model.types import Date, Integer, String, Uriorcurie
+from linkml_runtime.utils.metamodelcore import URIorCURIE, XSDDate
 
 metamodel_version = "1.7.0"
 version = None
 
 # Namespaces
-AOPWIKI = CurieNamespace('AOPWIKI', 'https://aopwiki.org/aops/')
 CHEBI = CurieNamespace('CHEBI', 'http://purl.obolibrary.org/obo/CHEBI_')
-CHEMBL_COMPOUND = CurieNamespace('CHEMBL_COMPOUND', 'http://identifiers.org/chembl.compound/')
 CL = CurieNamespace('CL', 'http://purl.obolibrary.org/obo/CL_')
-CLO = CurieNamespace('CLO', 'http://purl.obolibrary.org/obo/CLO_')
-CTD_CHEMICAL = CurieNamespace('CTD_CHEMICAL', 'http://ctdbase.org/detail.go?type=chem&acc=')
-CTD_GENE = CurieNamespace('CTD_GENE', 'http://ctdbase.org/detail.go?type=gene&acc=')
-DTXSID = CurieNamespace('DTXSID', 'https://comptox.epa.gov/dashboard/dsstoxdb/results?search=')
-ECTO = CurieNamespace('ECTO', 'http://purl.obolibrary.org/obo/ECTO_')
-EFO = CurieNamespace('EFO', 'http://identifiers.org/efo/')
 ENVO = CurieNamespace('ENVO', 'http://purl.obolibrary.org/obo/ENVO_')
-FOODON = CurieNamespace('FOODON', 'http://purl.obolibrary.org/obo/FOODON_')
 GO = CurieNamespace('GO', 'http://purl.obolibrary.org/obo/GO_')
-GWAS = CurieNamespace('GWAS', 'https://www.ebi.ac.uk/gwas/studies/')
-GXA = CurieNamespace('GXA', 'https://www.ebi.ac.uk/gxa/experiments/')
-HHEAR = CurieNamespace('HHEAR', 'http://hadatac.org/ont/hhear#')
 HP = CurieNamespace('HP', 'http://purl.obolibrary.org/obo/HP_')
-MONDO = CurieNamespace('MONDO', 'http://purl.obolibrary.org/obo/MONDO_')
-MP = CurieNamespace('MP', 'http://purl.obolibrary.org/obo/MP_')
-NAMO = CurieNamespace('NAMO', 'http://purl.obolibrary.org/obo/NAMO_')
-NCBIGENE = CurieNamespace('NCBIGENE', 'https://www.ncbi.nlm.nih.gov/gene/')
-NCBITAXON = CurieNamespace('NCBITaxon', 'http://purl.obolibrary.org/obo/NCBITaxon_')
-NCIT = CurieNamespace('NCIT', 'http://purl.obolibrary.org/obo/NCIT_')
-NHANES = CurieNamespace('NHANES', 'https://wwwn.cdc.gov/Nchs/Nhanes/')
 OBI = CurieNamespace('OBI', 'http://purl.obolibrary.org/obo/OBI_')
-OMRSE = CurieNamespace('OMRSE', 'http://purl.obolibrary.org/obo/OMRSE_')
 PATO = CurieNamespace('PATO', 'http://purl.obolibrary.org/obo/PATO_')
-PR = CurieNamespace('PR', 'http://purl.obolibrary.org/obo/PR_')
-PUBCHEM_COMPOUND = CurieNamespace('PUBCHEM_COMPOUND', 'http://identifiers.org/pubchem.compound/')
-RO = CurieNamespace('RO', 'http://purl.obolibrary.org/obo/RO_')
-UBERON = CurieNamespace('UBERON', 'http://purl.obolibrary.org/obo/UBERON_')
-UCUM = CurieNamespace('UCUM', 'http://unitsofmeasure.org/')
+QUDT = CurieNamespace('QUDT', 'http://example.org/UNKNOWN/QUDT/')
+UCUM = CurieNamespace('UCUM', 'http://example.org/UNKNOWN/UCUM/')
 UO = CurieNamespace('UO', 'http://purl.obolibrary.org/obo/UO_')
-UPHENO = CurieNamespace('UPHENO', 'http://purl.obolibrary.org/obo/UPHENO_')
-USDA_PESTICIDE = CurieNamespace('USDA_PESTICIDE', 'https://www.ams.usda.gov/datasets/pdp/')
-ZP = CurieNamespace('ZP', 'http://purl.obolibrary.org/obo/ZP_')
-BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
-CHEAR = CurieNamespace('chear', 'http://hadatac.org/ont/chear#')
-FHIR = CurieNamespace('fhir', 'http://hl7.org/fhir/')
+BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
-OWG = CurieNamespace('owg', 'https://w3id.org/EHS-Data-Standards/outcomes-working-group/')
-QUDT = CurieNamespace('qudt', 'http://qudt.org/vocab/unit/')
+MEASUREMENT_BASE = CurieNamespace('measurement_base', 'https://w3id.org/EHS-Data-Standards/measurement_base/')
+MEASUREMENT_MICROSCHEMAS = CurieNamespace('measurement_microschemas', 'https://w3id.org/EHS-Data-Standards/measurement_microschemas/')
+OUTCOMES_WORKING_GROUP = CurieNamespace('outcomes_working_group', 'https://w3id.org/EHS-Data-Standards/outcomes_working_group/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
-WIKIDATA = CurieNamespace('wikidata', 'http://www.wikidata.org/entity/')
-DEFAULT_ = OWG
+DEFAULT_ = OUTCOMES_WORKING_GROUP
 
 
 # Types
 
 # Class references
-class NamedThingId(URIorCURIE):
+class MeasurementId(URIorCURIE):
     pass
 
 
-class UnitId(NamedThingId):
+class AssayId(URIorCURIE):
     pass
 
 
-class OntologyTermId(NamedThingId):
+class MethodId(URIorCURIE):
     pass
 
 
-class TissueId(NamedThingId):
+class ProtocolId(URIorCURIE):
     pass
 
 
-class BiologicalEntityId(NamedThingId):
+class UnitId(URIorCURIE):
     pass
 
 
-class ChemicalEntityId(NamedThingId):
+class NamedEntityId(URIorCURIE):
     pass
 
 
-class ExposureEventId(NamedThingId):
+class CiliaryFunctionMeasurementId(URIorCURIE):
     pass
 
 
-class BiologicalResponseId(NamedThingId):
+class ASLMeasurementId(URIorCURIE):
     pass
 
 
-class HealthOutcomeId(NamedThingId):
+class MCCMeasurementId(URIorCURIE):
     pass
 
 
-class ExposableSubjectId(NamedThingId):
+class OxidativeStressMeasurementId(URIorCURIE):
     pass
 
 
-class StudyEntityId(NamedThingId):
+class CFTRMeasurementId(URIorCURIE):
     pass
 
 
-class MeasurementId(NamedThingId):
+class EGFRMeasurementId(URIorCURIE):
     pass
 
 
-class AssociationId(NamedThingId):
+class GobletCellMucinMeasurementId(URIorCURIE):
     pass
 
 
-class ChemicalExposureId(ExposureEventId):
+class BALFSputumMeasurementId(URIorCURIE):
     pass
 
 
-class DietaryExposureId(ExposureEventId):
+class LungFunctionMeasurementId(URIorCURIE):
     pass
 
 
-class EnvironmentalExposureId(ExposureEventId):
+class FoxJMeasurementId(URIorCURIE):
     pass
 
 
-class OccupationalExposureId(ExposureEventId):
-    pass
-
-
-class PhenotypeId(HealthOutcomeId):
-    pass
-
-
-class DiseaseId(HealthOutcomeId):
-    pass
-
-
-class AdverseOutcomeId(HealthOutcomeId):
-    pass
-
-
-class AdverseOutcomePathwayId(NamedThingId):
-    pass
-
-
-class MolecularInitiatingEventId(BiologicalResponseId):
-    pass
-
-
-class KeyEventId(BiologicalResponseId):
-    pass
-
-
-class KeyEventRelationshipId(AssociationId):
-    pass
-
-
-class StudyId(StudyEntityId):
-    pass
-
-
-class CohortId(StudyEntityId):
-    pass
-
-
-class ParticipantId(StudyEntityId):
-    pass
-
-
-class ExposureMeasurementId(MeasurementId):
-    pass
-
-
-class BiomarkerMeasurementId(MeasurementId):
-    pass
-
-
-class PhenotypeMeasurementId(MeasurementId):
-    pass
-
-
-class AggregatedMeasurementId(MeasurementId):
-    pass
-
-
-class GeneExpressionMeasurementId(MeasurementId):
-    pass
-
-
-class ProteinExpressionMeasurementId(MeasurementId):
-    pass
-
-
-class EnvironmentalMeasurementId(MeasurementId):
-    pass
-
-
-class MechanicalMeasurementId(MeasurementId):
-    pass
-
-
-class MembranePropertyMeasurementId(MeasurementId):
-    pass
-
-
-class CellLineId(NamedThingId):
-    pass
-
-
-class CellCultureConditionsId(NamedThingId):
-    pass
-
-
-class CellCultureMediumId(NamedThingId):
-    pass
-
-
-class MediumSupplementId(NamedThingId):
-    pass
-
-
-class ModelSystemId(ExposableSubjectId):
-    pass
-
-
-class CellularSystemId(ModelSystemId):
-    pass
-
-
-class TwoDCellCultureId(CellularSystemId):
-    pass
-
-
-class ThreeDCellCultureId(CellularSystemId):
-    pass
-
-
-class CoCultureId(CellularSystemId):
-    pass
-
-
-class ExposureMaterialId(NamedThingId):
-    pass
-
-
-class ParticlePropertiesId(NamedThingId):
-    pass
-
-
-class InVitroExposureId(ExposureEventId):
-    pass
-
-
-class AerosolGenerationId(NamedThingId):
-    pass
-
-
-class SamplePreparationId(NamedThingId):
-    pass
-
-
-class AnalysisId(NamedThingId):
-    pass
-
-
-class GeneId(BiologicalEntityId):
-    pass
-
-
-class ProteinId(BiologicalEntityId):
-    pass
-
-
-class CellTypeId(BiologicalEntityId):
-    pass
-
-
-class AnatomicalEntityId(BiologicalEntityId):
-    pass
-
-
-class OrganismId(BiologicalEntityId):
-    pass
-
-
-class ExposureToPhenotypeAssociationId(AssociationId):
-    pass
-
-
-class ChemicalToGeneAssociationId(AssociationId):
-    pass
-
-
-class GeneToDiseaseAssociationId(AssociationId):
-    pass
-
-
-class GeographicEntityId(NamedThingId):
-    pass
-
-
-class StateId(GeographicEntityId):
-    pass
-
-
-class PublicUseMicrodataAreaId(GeographicEntityId):
-    pass
-
-
-class CountyId(GeographicEntityId):
-    pass
-
-
-class CensusTractId(GeographicEntityId):
-    pass
-
-
-class BlockGroupId(GeographicEntityId):
-    pass
-
-
-class SchoolId(NamedThingId):
-    pass
-
-
-class HouseholdId(NamedThingId):
-    pass
-
-
-class PersonId(NamedThingId):
+class ExposureBiomarkerMeasurementId(URIorCURIE):
     pass
 
 
@@ -392,171 +160,88 @@ class Container(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["Container"]
-    class_class_curie: ClassVar[str] = "owg:Container"
+    class_class_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP["Container"]
+    class_class_curie: ClassVar[str] = "outcomes_working_group:Container"
     class_name: ClassVar[str] = "Container"
-    class_model_uri: ClassVar[URIRef] = OWG.Container
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.Container
 
-    studies: Optional[Union[dict[Union[str, StudyId], Union[dict, "Study"]], list[Union[dict, "Study"]]]] = empty_dict()
-    cohorts: Optional[Union[dict[Union[str, CohortId], Union[dict, "Cohort"]], list[Union[dict, "Cohort"]]]] = empty_dict()
-    participants: Optional[Union[dict[Union[str, ParticipantId], Union[dict, "Participant"]], list[Union[dict, "Participant"]]]] = empty_dict()
-    exposure_measurements: Optional[Union[dict[Union[str, ExposureMeasurementId], Union[dict, "ExposureMeasurement"]], list[Union[dict, "ExposureMeasurement"]]]] = empty_dict()
-    biomarker_measurements: Optional[Union[dict[Union[str, BiomarkerMeasurementId], Union[dict, "BiomarkerMeasurement"]], list[Union[dict, "BiomarkerMeasurement"]]]] = empty_dict()
-    phenotype_measurements: Optional[Union[dict[Union[str, PhenotypeMeasurementId], Union[dict, "PhenotypeMeasurement"]], list[Union[dict, "PhenotypeMeasurement"]]]] = empty_dict()
-    aggregated_measurements: Optional[Union[dict[Union[str, AggregatedMeasurementId], Union[dict, "AggregatedMeasurement"]], list[Union[dict, "AggregatedMeasurement"]]]] = empty_dict()
-    gene_expression_measurements: Optional[Union[dict[Union[str, GeneExpressionMeasurementId], Union[dict, "GeneExpressionMeasurement"]], list[Union[dict, "GeneExpressionMeasurement"]]]] = empty_dict()
-    protein_expression_measurements: Optional[Union[dict[Union[str, ProteinExpressionMeasurementId], Union[dict, "ProteinExpressionMeasurement"]], list[Union[dict, "ProteinExpressionMeasurement"]]]] = empty_dict()
-    chemical_exposures: Optional[Union[dict[Union[str, ChemicalExposureId], Union[dict, "ChemicalExposure"]], list[Union[dict, "ChemicalExposure"]]]] = empty_dict()
-    dietary_exposures: Optional[Union[dict[Union[str, DietaryExposureId], Union[dict, "DietaryExposure"]], list[Union[dict, "DietaryExposure"]]]] = empty_dict()
-    environmental_exposures: Optional[Union[dict[Union[str, EnvironmentalExposureId], Union[dict, "EnvironmentalExposure"]], list[Union[dict, "EnvironmentalExposure"]]]] = empty_dict()
-    occupational_exposures: Optional[Union[dict[Union[str, OccupationalExposureId], Union[dict, "OccupationalExposure"]], list[Union[dict, "OccupationalExposure"]]]] = empty_dict()
-    phenotypes: Optional[Union[dict[Union[str, PhenotypeId], Union[dict, "Phenotype"]], list[Union[dict, "Phenotype"]]]] = empty_dict()
-    diseases: Optional[Union[dict[Union[str, DiseaseId], Union[dict, "Disease"]], list[Union[dict, "Disease"]]]] = empty_dict()
-    adverse_outcomes: Optional[Union[dict[Union[str, AdverseOutcomeId], Union[dict, "AdverseOutcome"]], list[Union[dict, "AdverseOutcome"]]]] = empty_dict()
-    adverse_outcome_pathways: Optional[Union[dict[Union[str, AdverseOutcomePathwayId], Union[dict, "AdverseOutcomePathway"]], list[Union[dict, "AdverseOutcomePathway"]]]] = empty_dict()
-    genes: Optional[Union[dict[Union[str, GeneId], Union[dict, "Gene"]], list[Union[dict, "Gene"]]]] = empty_dict()
-    proteins: Optional[Union[dict[Union[str, ProteinId], Union[dict, "Protein"]], list[Union[dict, "Protein"]]]] = empty_dict()
-    cell_types: Optional[Union[dict[Union[str, CellTypeId], Union[dict, "CellType"]], list[Union[dict, "CellType"]]]] = empty_dict()
-    anatomical_entities: Optional[Union[dict[Union[str, AnatomicalEntityId], Union[dict, "AnatomicalEntity"]], list[Union[dict, "AnatomicalEntity"]]]] = empty_dict()
-    organisms: Optional[Union[dict[Union[str, OrganismId], Union[dict, "Organism"]], list[Union[dict, "Organism"]]]] = empty_dict()
-    exposure_to_phenotype_associations: Optional[Union[dict[Union[str, ExposureToPhenotypeAssociationId], Union[dict, "ExposureToPhenotypeAssociation"]], list[Union[dict, "ExposureToPhenotypeAssociation"]]]] = empty_dict()
-    states: Optional[Union[dict[Union[str, StateId], Union[dict, "State"]], list[Union[dict, "State"]]]] = empty_dict()
-    public_use_microdata_areas: Optional[Union[dict[Union[str, PublicUseMicrodataAreaId], Union[dict, "PublicUseMicrodataArea"]], list[Union[dict, "PublicUseMicrodataArea"]]]] = empty_dict()
-    counties: Optional[Union[dict[Union[str, CountyId], Union[dict, "County"]], list[Union[dict, "County"]]]] = empty_dict()
-    census_tracts: Optional[Union[dict[Union[str, CensusTractId], Union[dict, "CensusTract"]], list[Union[dict, "CensusTract"]]]] = empty_dict()
-    block_groups: Optional[Union[dict[Union[str, BlockGroupId], Union[dict, "BlockGroup"]], list[Union[dict, "BlockGroup"]]]] = empty_dict()
-    households: Optional[Union[dict[Union[str, HouseholdId], Union[dict, "Household"]], list[Union[dict, "Household"]]]] = empty_dict()
-    persons: Optional[Union[dict[Union[str, PersonId], Union[dict, "Person"]], list[Union[dict, "Person"]]]] = empty_dict()
-    schools: Optional[Union[dict[Union[str, SchoolId], Union[dict, "School"]], list[Union[dict, "School"]]]] = empty_dict()
-    cellular_systems: Optional[Union[dict[Union[str, CellularSystemId], Union[dict, "CellularSystem"]], list[Union[dict, "CellularSystem"]]]] = empty_dict()
-    two_d_cell_cultures: Optional[Union[dict[Union[str, TwoDCellCultureId], Union[dict, "TwoDCellCulture"]], list[Union[dict, "TwoDCellCulture"]]]] = empty_dict()
-    three_d_cell_cultures: Optional[Union[dict[Union[str, ThreeDCellCultureId], Union[dict, "ThreeDCellCulture"]], list[Union[dict, "ThreeDCellCulture"]]]] = empty_dict()
-    co_cultures: Optional[Union[dict[Union[str, CoCultureId], Union[dict, "CoCulture"]], list[Union[dict, "CoCulture"]]]] = empty_dict()
-    cell_lines: Optional[Union[dict[Union[str, CellLineId], Union[dict, "CellLine"]], list[Union[dict, "CellLine"]]]] = empty_dict()
-    environmental_measurements: Optional[Union[dict[Union[str, EnvironmentalMeasurementId], Union[dict, "EnvironmentalMeasurement"]], list[Union[dict, "EnvironmentalMeasurement"]]]] = empty_dict()
-    mechanical_measurements: Optional[Union[dict[Union[str, MechanicalMeasurementId], Union[dict, "MechanicalMeasurement"]], list[Union[dict, "MechanicalMeasurement"]]]] = empty_dict()
-    in_vitro_exposures: Optional[Union[dict[Union[str, InVitroExposureId], Union[dict, "InVitroExposure"]], list[Union[dict, "InVitroExposure"]]]] = empty_dict()
-    exposure_materials: Optional[Union[dict[Union[str, ExposureMaterialId], Union[dict, "ExposureMaterial"]], list[Union[dict, "ExposureMaterial"]]]] = empty_dict()
-    particle_properties_collection: Optional[Union[dict[Union[str, ParticlePropertiesId], Union[dict, "ParticleProperties"]], list[Union[dict, "ParticleProperties"]]]] = empty_dict()
-    aerosol_generations: Optional[Union[dict[Union[str, AerosolGenerationId], Union[dict, "AerosolGeneration"]], list[Union[dict, "AerosolGeneration"]]]] = empty_dict()
-    sample_preparations: Optional[Union[dict[Union[str, SamplePreparationId], Union[dict, "SamplePreparation"]], list[Union[dict, "SamplePreparation"]]]] = empty_dict()
-    analyses: Optional[Union[dict[Union[str, AnalysisId], Union[dict, "Analysis"]], list[Union[dict, "Analysis"]]]] = empty_dict()
+    ciliary_measurements: Optional[Union[dict[Union[str, CiliaryFunctionMeasurementId], Union[dict, "CiliaryFunctionMeasurement"]], list[Union[dict, "CiliaryFunctionMeasurement"]]]] = empty_dict()
+    asl_measurements: Optional[Union[dict[Union[str, ASLMeasurementId], Union[dict, "ASLMeasurement"]], list[Union[dict, "ASLMeasurement"]]]] = empty_dict()
+    mcc_measurements: Optional[Union[dict[Union[str, MCCMeasurementId], Union[dict, "MCCMeasurement"]], list[Union[dict, "MCCMeasurement"]]]] = empty_dict()
+    oxidative_stress_measurements: Optional[Union[dict[Union[str, OxidativeStressMeasurementId], Union[dict, "OxidativeStressMeasurement"]], list[Union[dict, "OxidativeStressMeasurement"]]]] = empty_dict()
+    cftr_measurements: Optional[Union[dict[Union[str, CFTRMeasurementId], Union[dict, "CFTRMeasurement"]], list[Union[dict, "CFTRMeasurement"]]]] = empty_dict()
+    egfr_measurements: Optional[Union[dict[Union[str, EGFRMeasurementId], Union[dict, "EGFRMeasurement"]], list[Union[dict, "EGFRMeasurement"]]]] = empty_dict()
+    goblet_cell_mucin_measurements: Optional[Union[dict[Union[str, GobletCellMucinMeasurementId], Union[dict, "GobletCellMucinMeasurement"]], list[Union[dict, "GobletCellMucinMeasurement"]]]] = empty_dict()
+    balf_sputum_measurements: Optional[Union[dict[Union[str, BALFSputumMeasurementId], Union[dict, "BALFSputumMeasurement"]], list[Union[dict, "BALFSputumMeasurement"]]]] = empty_dict()
+    lung_function_measurements: Optional[Union[dict[Union[str, LungFunctionMeasurementId], Union[dict, "LungFunctionMeasurement"]], list[Union[dict, "LungFunctionMeasurement"]]]] = empty_dict()
+    foxj_measurements: Optional[Union[dict[Union[str, FoxJMeasurementId], Union[dict, "FoxJMeasurement"]], list[Union[dict, "FoxJMeasurement"]]]] = empty_dict()
+    exposure_biomarker_measurements: Optional[Union[dict[Union[str, ExposureBiomarkerMeasurementId], Union[dict, "ExposureBiomarkerMeasurement"]], list[Union[dict, "ExposureBiomarkerMeasurement"]]]] = empty_dict()
+    protocols: Optional[Union[dict[Union[str, ProtocolId], Union[dict, "Protocol"]], list[Union[dict, "Protocol"]]]] = empty_dict()
+    methods: Optional[Union[dict[Union[str, MethodId], Union[dict, "Method"]], list[Union[dict, "Method"]]]] = empty_dict()
+    assays: Optional[Union[dict[Union[str, AssayId], Union[dict, "Assay"]], list[Union[dict, "Assay"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        self._normalize_inlined_as_list(slot_name="studies", slot_type=Study, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="ciliary_measurements", slot_type=CiliaryFunctionMeasurement, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="cohorts", slot_type=Cohort, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="asl_measurements", slot_type=ASLMeasurement, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="participants", slot_type=Participant, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="mcc_measurements", slot_type=MCCMeasurement, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="exposure_measurements", slot_type=ExposureMeasurement, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="oxidative_stress_measurements", slot_type=OxidativeStressMeasurement, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="biomarker_measurements", slot_type=BiomarkerMeasurement, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="cftr_measurements", slot_type=CFTRMeasurement, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="phenotype_measurements", slot_type=PhenotypeMeasurement, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="egfr_measurements", slot_type=EGFRMeasurement, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="aggregated_measurements", slot_type=AggregatedMeasurement, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="goblet_cell_mucin_measurements", slot_type=GobletCellMucinMeasurement, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="gene_expression_measurements", slot_type=GeneExpressionMeasurement, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="balf_sputum_measurements", slot_type=BALFSputumMeasurement, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="protein_expression_measurements", slot_type=ProteinExpressionMeasurement, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="lung_function_measurements", slot_type=LungFunctionMeasurement, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="chemical_exposures", slot_type=ChemicalExposure, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="foxj_measurements", slot_type=FoxJMeasurement, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="dietary_exposures", slot_type=DietaryExposure, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="exposure_biomarker_measurements", slot_type=ExposureBiomarkerMeasurement, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="environmental_exposures", slot_type=EnvironmentalExposure, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="protocols", slot_type=Protocol, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="occupational_exposures", slot_type=OccupationalExposure, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="methods", slot_type=Method, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="phenotypes", slot_type=Phenotype, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="diseases", slot_type=Disease, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="adverse_outcomes", slot_type=AdverseOutcome, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="adverse_outcome_pathways", slot_type=AdverseOutcomePathway, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="genes", slot_type=Gene, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="proteins", slot_type=Protein, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="cell_types", slot_type=CellType, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="anatomical_entities", slot_type=AnatomicalEntity, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="organisms", slot_type=Organism, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="exposure_to_phenotype_associations", slot_type=ExposureToPhenotypeAssociation, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="states", slot_type=State, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="public_use_microdata_areas", slot_type=PublicUseMicrodataArea, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="counties", slot_type=County, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="census_tracts", slot_type=CensusTract, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="block_groups", slot_type=BlockGroup, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="households", slot_type=Household, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="persons", slot_type=Person, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="schools", slot_type=School, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="cellular_systems", slot_type=CellularSystem, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="two_d_cell_cultures", slot_type=TwoDCellCulture, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="three_d_cell_cultures", slot_type=ThreeDCellCulture, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="co_cultures", slot_type=CoCulture, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="cell_lines", slot_type=CellLine, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="environmental_measurements", slot_type=EnvironmentalMeasurement, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="mechanical_measurements", slot_type=MechanicalMeasurement, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="in_vitro_exposures", slot_type=InVitroExposure, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="exposure_materials", slot_type=ExposureMaterial, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="particle_properties_collection", slot_type=ParticleProperties, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="aerosol_generations", slot_type=AerosolGeneration, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="sample_preparations", slot_type=SamplePreparation, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="analyses", slot_type=Analysis, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="assays", slot_type=Assay, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class NamedThing(YAMLRoot):
+class Measurement(YAMLRoot):
     """
-    A generic grouping for any identifiable entity in the exposome
+    The result of applying an assay to a specific sample at a specific time, producing a value (or values). This is
+    the interface that domain-specific measurement microschemas implement.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["NamedThing"]
-    class_class_curie: ClassVar[str] = "owg:NamedThing"
-    class_name: ClassVar[str] = "NamedThing"
-    class_model_uri: ClassVar[URIRef] = OWG.NamedThing
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_BASE["Measurement"]
+    class_class_curie: ClassVar[str] = "measurement_base:Measurement"
+    class_name: ClassVar[str] = "Measurement"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.Measurement
 
-    id: Union[str, NamedThingId] = None
+    id: Union[str, MeasurementId] = None
     name: Optional[str] = None
     description: Optional[str] = None
-    category: Optional[Union[str, list[str]]] = empty_list()
-    xref: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
+    observation_type: Optional[str] = None
+    quantity_measured: Optional[Union[dict, "QuantityValue"]] = None
+    range_low: Optional[Union[dict, "QuantityValue"]] = None
+    range_high: Optional[Union[dict, "QuantityValue"]] = None
+    measured_entity: Optional[Union[dict, "NamedEntity"]] = None
+    measurement_method: Optional[str] = None
+    measurement_date: Optional[Union[str, XSDDate]] = None
+    uses: Optional[Union[dict, "Assay"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, NamedThingId):
-            self.id = NamedThingId(self.id)
+        if not isinstance(self.id, MeasurementId):
+            self.id = MeasurementId(self.id)
 
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
@@ -564,332 +249,8 @@ class NamedThing(YAMLRoot):
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
 
-        if not isinstance(self.category, list):
-            self.category = [self.category] if self.category is not None else []
-        self.category = [v if isinstance(v, str) else str(v) for v in self.category]
-
-        if not isinstance(self.xref, list):
-            self.xref = [self.xref] if self.xref is not None else []
-        self.xref = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.xref]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Unit(NamedThing):
-    """
-    A unit of measurement from a standard ontology (UO, UCUM, QUDT)
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["Unit"]
-    class_class_curie: ClassVar[str] = "owg:Unit"
-    class_name: ClassVar[str] = "Unit"
-    class_model_uri: ClassVar[URIRef] = OWG.Unit
-
-    id: Union[str, UnitId] = None
-    unit_label: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, UnitId):
-            self.id = UnitId(self.id)
-
-        if self.unit_label is not None and not isinstance(self.unit_label, str):
-            self.unit_label = str(self.unit_label)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class QuantityValue(YAMLRoot):
-    """
-    A quantity with a numeric value and unit of measurement
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FHIR["Quantity"]
-    class_class_curie: ClassVar[str] = "fhir:Quantity"
-    class_name: ClassVar[str] = "QuantityValue"
-    class_model_uri: ClassVar[URIRef] = OWG.QuantityValue
-
-    unit: Optional[Union[dict, Unit]] = None
-    value: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self.unit is not None and not isinstance(self.unit, Unit):
-            self.unit = Unit(**as_dict(self.unit))
-
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class QuantityRange(YAMLRoot):
-    """
-    A range of quantities with lower and upper bounds
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FHIR["Range"]
-    class_class_curie: ClassVar[str] = "fhir:Range"
-    class_name: ClassVar[str] = "QuantityRange"
-    class_model_uri: ClassVar[URIRef] = OWG.QuantityRange
-
-    lower_bound: Optional[Union[dict, QuantityValue]] = None
-    upper_bound: Optional[Union[dict, QuantityValue]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self.lower_bound is not None and not isinstance(self.lower_bound, QuantityValue):
-            self.lower_bound = QuantityValue(**as_dict(self.lower_bound))
-
-        if self.upper_bound is not None and not isinstance(self.upper_bound, QuantityValue):
-            self.upper_bound = QuantityValue(**as_dict(self.upper_bound))
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class OntologyTerm(NamedThing):
-    """
-    A reference to an ontology term with both identifier and human-readable name. Used for measured entities,
-    phenotypes, and other ontology-backed concepts.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["OntologyTerm"]
-    class_class_curie: ClassVar[str] = "owg:OntologyTerm"
-    class_name: ClassVar[str] = "OntologyTerm"
-    class_model_uri: ClassVar[URIRef] = OWG.OntologyTerm
-
-    id: Union[str, OntologyTermId] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, OntologyTermId):
-            self.id = OntologyTermId(self.id)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Tissue(NamedThing):
-    """
-    A reference to an anatomical tissue or structure with identifier and name. Used for tissue_context in expression
-    measurements.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["Tissue"]
-    class_class_curie: ClassVar[str] = "owg:Tissue"
-    class_name: ClassVar[str] = "Tissue"
-    class_model_uri: ClassVar[URIRef] = OWG.Tissue
-
-    id: Union[str, TissueId] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, TissueId):
-            self.id = TissueId(self.id)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class BiologicalEntity(NamedThing):
-    """
-    Biological entities including genes, proteins, cells, and anatomical structures
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["BiologicalEntity"]
-    class_class_curie: ClassVar[str] = "owg:BiologicalEntity"
-    class_name: ClassVar[str] = "BiologicalEntity"
-    class_model_uri: ClassVar[URIRef] = OWG.BiologicalEntity
-
-    id: Union[str, BiologicalEntityId] = None
-
-@dataclass(repr=False)
-class ChemicalEntity(NamedThing):
-    """
-    A chemical entity including compounds, drugs, and metabolites
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = CHEBI["24431"]
-    class_class_curie: ClassVar[str] = "CHEBI:24431"
-    class_name: ClassVar[str] = "ChemicalEntity"
-    class_model_uri: ClassVar[URIRef] = OWG.ChemicalEntity
-
-    id: Union[str, ChemicalEntityId] = None
-    chebi_id: Optional[Union[str, URIorCURIE]] = None
-    dtxsid: Optional[str] = None
-    chembl_id: Optional[str] = None
-    pubchem_cid: Optional[int] = None
-    cas_number: Optional[str] = None
-    inchi: Optional[str] = None
-    smiles: Optional[str] = None
-    molecular_formula: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, ChemicalEntityId):
-            self.id = ChemicalEntityId(self.id)
-
-        if self.chebi_id is not None and not isinstance(self.chebi_id, URIorCURIE):
-            self.chebi_id = URIorCURIE(self.chebi_id)
-
-        if self.dtxsid is not None and not isinstance(self.dtxsid, str):
-            self.dtxsid = str(self.dtxsid)
-
-        if self.chembl_id is not None and not isinstance(self.chembl_id, str):
-            self.chembl_id = str(self.chembl_id)
-
-        if self.pubchem_cid is not None and not isinstance(self.pubchem_cid, int):
-            self.pubchem_cid = int(self.pubchem_cid)
-
-        if self.cas_number is not None and not isinstance(self.cas_number, str):
-            self.cas_number = str(self.cas_number)
-
-        if self.inchi is not None and not isinstance(self.inchi, str):
-            self.inchi = str(self.inchi)
-
-        if self.smiles is not None and not isinstance(self.smiles, str):
-            self.smiles = str(self.smiles)
-
-        if self.molecular_formula is not None and not isinstance(self.molecular_formula, str):
-            self.molecular_formula = str(self.molecular_formula)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class ExposureEvent(NamedThing):
-    """
-    An event in which an organism is exposed to a chemical or environmental factor
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["ExposureEvent"]
-    class_class_curie: ClassVar[str] = "owg:ExposureEvent"
-    class_name: ClassVar[str] = "ExposureEvent"
-    class_model_uri: ClassVar[URIRef] = OWG.ExposureEvent
-
-    id: Union[str, ExposureEventId] = None
-    exposed_subject: Optional[Union[dict, "ExposableSubject"]] = None
-    exposed_to_chemical: Optional[Union[dict, ChemicalEntity]] = None
-    exposure_route: Optional[Union[str, "ExposureRouteEnum"]] = None
-    exposure_duration: Optional[str] = None
-    exposure_concentration: Optional[float] = None
-    exposure_medium: Optional[Union[str, "ExposureMediumEnum"]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self.exposed_subject is not None and not isinstance(self.exposed_subject, ExposableSubject):
-            self.exposed_subject = ExposableSubject(**as_dict(self.exposed_subject))
-
-        if self.exposed_to_chemical is not None and not isinstance(self.exposed_to_chemical, ChemicalEntity):
-            self.exposed_to_chemical = ChemicalEntity(**as_dict(self.exposed_to_chemical))
-
-        if self.exposure_route is not None and not isinstance(self.exposure_route, ExposureRouteEnum):
-            self.exposure_route = ExposureRouteEnum(self.exposure_route)
-
-        if self.exposure_duration is not None and not isinstance(self.exposure_duration, str):
-            self.exposure_duration = str(self.exposure_duration)
-
-        if self.exposure_concentration is not None and not isinstance(self.exposure_concentration, float):
-            self.exposure_concentration = float(self.exposure_concentration)
-
-        if self.exposure_medium is not None and not isinstance(self.exposure_medium, ExposureMediumEnum):
-            self.exposure_medium = ExposureMediumEnum(self.exposure_medium)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class BiologicalResponse(NamedThing):
-    """
-    A biological response at the molecular, cellular, or tissue level
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["BiologicalResponse"]
-    class_class_curie: ClassVar[str] = "owg:BiologicalResponse"
-    class_name: ClassVar[str] = "BiologicalResponse"
-    class_model_uri: ClassVar[URIRef] = OWG.BiologicalResponse
-
-    id: Union[str, BiologicalResponseId] = None
-
-@dataclass(repr=False)
-class HealthOutcome(NamedThing):
-    """
-    A health-related outcome including phenotypes and diseases
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["HealthOutcome"]
-    class_class_curie: ClassVar[str] = "owg:HealthOutcome"
-    class_name: ClassVar[str] = "HealthOutcome"
-    class_model_uri: ClassVar[URIRef] = OWG.HealthOutcome
-
-    id: Union[str, HealthOutcomeId] = None
-
-@dataclass(repr=False)
-class ExposableSubject(NamedThing):
-    """
-    An entity that can be exposed to a substance or environmental factor. This abstract class provides a common parent
-    for both biological model systems (cell cultures, organoids) and study participants, enabling polymorphic linking
-    from ExposureEvent to any exposable subject.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["ExposableSubject"]
-    class_class_curie: ClassVar[str] = "owg:ExposableSubject"
-    class_name: ClassVar[str] = "ExposableSubject"
-    class_model_uri: ClassVar[URIRef] = OWG.ExposableSubject
-
-    id: Union[str, ExposableSubjectId] = None
-
-@dataclass(repr=False)
-class StudyEntity(NamedThing):
-    """
-    Entities related to studies, cohorts, and participants
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["StudyEntity"]
-    class_class_curie: ClassVar[str] = "owg:StudyEntity"
-    class_name: ClassVar[str] = "StudyEntity"
-    class_model_uri: ClassVar[URIRef] = OWG.StudyEntity
-
-    id: Union[str, StudyEntityId] = None
-
-@dataclass(repr=False)
-class Measurement(NamedThing):
-    """
-    A measurement observation with a typed quantity value and optional reference ranges
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["Measurement"]
-    class_class_curie: ClassVar[str] = "owg:Measurement"
-    class_name: ClassVar[str] = "Measurement"
-    class_model_uri: ClassVar[URIRef] = OWG.Measurement
-
-    id: Union[str, MeasurementId] = None
-    observation_type: Optional[Union[str, "MeasurementTypeEnum"]] = None
-    quantity_measured: Optional[Union[dict, QuantityValue]] = None
-    range_low: Optional[Union[dict, QuantityValue]] = None
-    range_high: Optional[Union[dict, QuantityValue]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self.observation_type is not None and not isinstance(self.observation_type, MeasurementTypeEnum):
-            self.observation_type = MeasurementTypeEnum(self.observation_type)
+        if self.observation_type is not None and not isinstance(self.observation_type, str):
+            self.observation_type = str(self.observation_type)
 
         if self.quantity_measured is not None and not isinstance(self.quantity_measured, QuantityValue):
             self.quantity_measured = QuantityValue(**as_dict(self.quantity_measured))
@@ -900,520 +261,43 @@ class Measurement(NamedThing):
         if self.range_high is not None and not isinstance(self.range_high, QuantityValue):
             self.range_high = QuantityValue(**as_dict(self.range_high))
 
-        super().__post_init__(**kwargs)
+        if self.measured_entity is not None and not isinstance(self.measured_entity, NamedEntity):
+            self.measured_entity = NamedEntity(**as_dict(self.measured_entity))
 
+        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
+            self.measurement_method = str(self.measurement_method)
 
-@dataclass(repr=False)
-class Association(NamedThing):
-    """
-    A relationship between two entities
-    """
-    _inherited_slots: ClassVar[list[str]] = []
+        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
+            self.measurement_date = XSDDate(self.measurement_date)
 
-    class_class_uri: ClassVar[URIRef] = OWG["Association"]
-    class_class_curie: ClassVar[str] = "owg:Association"
-    class_name: ClassVar[str] = "Association"
-    class_model_uri: ClassVar[URIRef] = OWG.Association
-
-    id: Union[str, AssociationId] = None
-
-@dataclass(repr=False)
-class ChemicalExposure(ExposureEvent):
-    """
-    Exposure to a chemical substance
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = ECTO["0000006"]
-    class_class_curie: ClassVar[str] = "ECTO:0000006"
-    class_name: ClassVar[str] = "ChemicalExposure"
-    class_model_uri: ClassVar[URIRef] = OWG.ChemicalExposure
-
-    id: Union[str, ChemicalExposureId] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, ChemicalExposureId):
-            self.id = ChemicalExposureId(self.id)
+        if self.uses is not None and not isinstance(self.uses, Assay):
+            self.uses = Assay(**as_dict(self.uses))
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class DietaryExposure(ExposureEvent):
+class Assay(YAMLRoot):
     """
-    Exposure through dietary consumption
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FOODON["00002403"]
-    class_class_curie: ClassVar[str] = "FOODON:00002403"
-    class_name: ClassVar[str] = "DietaryExposure"
-    class_model_uri: ClassVar[URIRef] = OWG.DietaryExposure
-
-    id: Union[str, DietaryExposureId] = None
-    food_item: Optional[str] = None
-    serving_size: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, DietaryExposureId):
-            self.id = DietaryExposureId(self.id)
-
-        if self.food_item is not None and not isinstance(self.food_item, str):
-            self.food_item = str(self.food_item)
-
-        if self.serving_size is not None and not isinstance(self.serving_size, str):
-            self.serving_size = str(self.serving_size)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class EnvironmentalExposure(ExposureEvent):
-    """
-    Exposure to environmental factors
+    A test or experiment used to measure a specific biological or chemical activity; assays generate data on how a
+    substance affects cells, tissues, or systems.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = ECTO["0000001"]
-    class_class_curie: ClassVar[str] = "ECTO:0000001"
-    class_name: ClassVar[str] = "EnvironmentalExposure"
-    class_model_uri: ClassVar[URIRef] = OWG.EnvironmentalExposure
-
-    id: Union[str, EnvironmentalExposureId] = None
-    environmental_context: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, EnvironmentalExposureId):
-            self.id = EnvironmentalExposureId(self.id)
-
-        if self.environmental_context is not None and not isinstance(self.environmental_context, str):
-            self.environmental_context = str(self.environmental_context)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class OccupationalExposure(ExposureEvent):
-    """
-    Exposure in an occupational setting
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = ECTO["0000002"]
-    class_class_curie: ClassVar[str] = "ECTO:0000002"
-    class_name: ClassVar[str] = "OccupationalExposure"
-    class_model_uri: ClassVar[URIRef] = OWG.OccupationalExposure
-
-    id: Union[str, OccupationalExposureId] = None
-    occupation: Optional[str] = None
-    workplace: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, OccupationalExposureId):
-            self.id = OccupationalExposureId(self.id)
-
-        if self.occupation is not None and not isinstance(self.occupation, str):
-            self.occupation = str(self.occupation)
-
-        if self.workplace is not None and not isinstance(self.workplace, str):
-            self.workplace = str(self.workplace)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Phenotype(HealthOutcome):
-    """
-    An observable characteristic or trait
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = UPHENO["0001001"]
-    class_class_curie: ClassVar[str] = "UPHENO:0001001"
-    class_name: ClassVar[str] = "Phenotype"
-    class_model_uri: ClassVar[URIRef] = OWG.Phenotype
-
-    id: Union[str, PhenotypeId] = None
-    severity: Optional[str] = None
-    onset_age: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, PhenotypeId):
-            self.id = PhenotypeId(self.id)
-
-        if self.severity is not None and not isinstance(self.severity, str):
-            self.severity = str(self.severity)
-
-        if self.onset_age is not None and not isinstance(self.onset_age, str):
-            self.onset_age = str(self.onset_age)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Disease(HealthOutcome):
-    """
-    A disease or medical condition
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = MONDO["0000001"]
-    class_class_curie: ClassVar[str] = "MONDO:0000001"
-    class_name: ClassVar[str] = "Disease"
-    class_model_uri: ClassVar[URIRef] = OWG.Disease
-
-    id: Union[str, DiseaseId] = None
-    disease_category: Optional[str] = None
-    affected_anatomy: Optional[Union[dict, "AnatomicalEntity"]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, DiseaseId):
-            self.id = DiseaseId(self.id)
-
-        if self.disease_category is not None and not isinstance(self.disease_category, str):
-            self.disease_category = str(self.disease_category)
-
-        if self.affected_anatomy is not None and not isinstance(self.affected_anatomy, AnatomicalEntity):
-            self.affected_anatomy = AnatomicalEntity(**as_dict(self.affected_anatomy))
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class AdverseOutcome(HealthOutcome):
-    """
-    An adverse health outcome in the context of an Adverse Outcome Pathway
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["AdverseOutcome"]
-    class_class_curie: ClassVar[str] = "owg:AdverseOutcome"
-    class_name: ClassVar[str] = "AdverseOutcome"
-    class_model_uri: ClassVar[URIRef] = OWG.AdverseOutcome
-
-    id: Union[str, AdverseOutcomeId] = None
-    outcome_level: Optional[Union[str, "BiologicalOrganizationLevelEnum"]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, AdverseOutcomeId):
-            self.id = AdverseOutcomeId(self.id)
-
-        if self.outcome_level is not None and not isinstance(self.outcome_level, BiologicalOrganizationLevelEnum):
-            self.outcome_level = BiologicalOrganizationLevelEnum(self.outcome_level)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class AdverseOutcomePathway(NamedThing):
-    """
-    A sequence of causally linked events at different levels of biological organization that lead from exposure to
-    adverse health outcomes
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["AdverseOutcomePathway"]
-    class_class_curie: ClassVar[str] = "owg:AdverseOutcomePathway"
-    class_name: ClassVar[str] = "AdverseOutcomePathway"
-    class_model_uri: ClassVar[URIRef] = OWG.AdverseOutcomePathway
-
-    id: Union[str, AdverseOutcomePathwayId] = None
-    aopwiki_id: Optional[str] = None
-    molecular_initiating_event: Optional[Union[str, MolecularInitiatingEventId]] = None
-    key_events: Optional[Union[Union[str, KeyEventId], list[Union[str, KeyEventId]]]] = empty_list()
-    key_event_relationships: Optional[Union[Union[str, KeyEventRelationshipId], list[Union[str, KeyEventRelationshipId]]]] = empty_list()
-    adverse_outcome: Optional[Union[str, AdverseOutcomeId]] = None
-    stressors: Optional[Union[Union[str, ChemicalEntityId], list[Union[str, ChemicalEntityId]]]] = empty_list()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, AdverseOutcomePathwayId):
-            self.id = AdverseOutcomePathwayId(self.id)
-
-        if self.aopwiki_id is not None and not isinstance(self.aopwiki_id, str):
-            self.aopwiki_id = str(self.aopwiki_id)
-
-        if self.molecular_initiating_event is not None and not isinstance(self.molecular_initiating_event, MolecularInitiatingEventId):
-            self.molecular_initiating_event = MolecularInitiatingEventId(self.molecular_initiating_event)
-
-        if not isinstance(self.key_events, list):
-            self.key_events = [self.key_events] if self.key_events is not None else []
-        self.key_events = [v if isinstance(v, KeyEventId) else KeyEventId(v) for v in self.key_events]
-
-        if not isinstance(self.key_event_relationships, list):
-            self.key_event_relationships = [self.key_event_relationships] if self.key_event_relationships is not None else []
-        self.key_event_relationships = [v if isinstance(v, KeyEventRelationshipId) else KeyEventRelationshipId(v) for v in self.key_event_relationships]
-
-        if self.adverse_outcome is not None and not isinstance(self.adverse_outcome, AdverseOutcomeId):
-            self.adverse_outcome = AdverseOutcomeId(self.adverse_outcome)
-
-        if not isinstance(self.stressors, list):
-            self.stressors = [self.stressors] if self.stressors is not None else []
-        self.stressors = [v if isinstance(v, ChemicalEntityId) else ChemicalEntityId(v) for v in self.stressors]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class MolecularInitiatingEvent(BiologicalResponse):
-    """
-    The initial molecular-level perturbation that starts an Adverse Outcome Pathway
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = ECTO["3000000"]
-    class_class_curie: ClassVar[str] = "ECTO:3000000"
-    class_name: ClassVar[str] = "MolecularInitiatingEvent"
-    class_model_uri: ClassVar[URIRef] = OWG.MolecularInitiatingEvent
-
-    id: Union[str, MolecularInitiatingEventId] = None
-    biological_process: Optional[str] = None
-    biological_object: Optional[str] = None
-    biological_action: Optional[str] = None
-    occurs_in_cell_type: Optional[Union[str, CellTypeId]] = None
-    occurs_in_anatomy: Optional[Union[str, AnatomicalEntityId]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, MolecularInitiatingEventId):
-            self.id = MolecularInitiatingEventId(self.id)
-
-        if self.biological_process is not None and not isinstance(self.biological_process, str):
-            self.biological_process = str(self.biological_process)
-
-        if self.biological_object is not None and not isinstance(self.biological_object, str):
-            self.biological_object = str(self.biological_object)
-
-        if self.biological_action is not None and not isinstance(self.biological_action, str):
-            self.biological_action = str(self.biological_action)
-
-        if self.occurs_in_cell_type is not None and not isinstance(self.occurs_in_cell_type, CellTypeId):
-            self.occurs_in_cell_type = CellTypeId(self.occurs_in_cell_type)
-
-        if self.occurs_in_anatomy is not None and not isinstance(self.occurs_in_anatomy, AnatomicalEntityId):
-            self.occurs_in_anatomy = AnatomicalEntityId(self.occurs_in_anatomy)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class KeyEvent(BiologicalResponse):
-    """
-    A measurable change in biological state that is a step in an Adverse Outcome Pathway
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = ECTO["1000000"]
-    class_class_curie: ClassVar[str] = "ECTO:1000000"
-    class_name: ClassVar[str] = "KeyEvent"
-    class_model_uri: ClassVar[URIRef] = OWG.KeyEvent
-
-    id: Union[str, KeyEventId] = None
-    biological_process: Optional[str] = None
-    biological_object: Optional[str] = None
-    biological_action: Optional[str] = None
-    level_of_biological_organization: Optional[Union[str, "BiologicalOrganizationLevelEnum"]] = None
-    occurs_in_cell_type: Optional[Union[str, CellTypeId]] = None
-    occurs_in_anatomy: Optional[Union[str, AnatomicalEntityId]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, KeyEventId):
-            self.id = KeyEventId(self.id)
-
-        if self.biological_process is not None and not isinstance(self.biological_process, str):
-            self.biological_process = str(self.biological_process)
-
-        if self.biological_object is not None and not isinstance(self.biological_object, str):
-            self.biological_object = str(self.biological_object)
-
-        if self.biological_action is not None and not isinstance(self.biological_action, str):
-            self.biological_action = str(self.biological_action)
-
-        if self.level_of_biological_organization is not None and not isinstance(self.level_of_biological_organization, BiologicalOrganizationLevelEnum):
-            self.level_of_biological_organization = BiologicalOrganizationLevelEnum(self.level_of_biological_organization)
-
-        if self.occurs_in_cell_type is not None and not isinstance(self.occurs_in_cell_type, CellTypeId):
-            self.occurs_in_cell_type = CellTypeId(self.occurs_in_cell_type)
-
-        if self.occurs_in_anatomy is not None and not isinstance(self.occurs_in_anatomy, AnatomicalEntityId):
-            self.occurs_in_anatomy = AnatomicalEntityId(self.occurs_in_anatomy)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class KeyEventRelationship(Association):
-    """
-    A directional relationship between two key events in an AOP
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["KeyEventRelationship"]
-    class_class_curie: ClassVar[str] = "owg:KeyEventRelationship"
-    class_name: ClassVar[str] = "KeyEventRelationship"
-    class_model_uri: ClassVar[URIRef] = OWG.KeyEventRelationship
-
-    id: Union[str, KeyEventRelationshipId] = None
-    upstream_event: Optional[Union[str, KeyEventId]] = None
-    downstream_event: Optional[Union[str, KeyEventId]] = None
-    relationship_type: Optional[str] = None
-    evidence_support: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, KeyEventRelationshipId):
-            self.id = KeyEventRelationshipId(self.id)
-
-        if self.upstream_event is not None and not isinstance(self.upstream_event, KeyEventId):
-            self.upstream_event = KeyEventId(self.upstream_event)
-
-        if self.downstream_event is not None and not isinstance(self.downstream_event, KeyEventId):
-            self.downstream_event = KeyEventId(self.downstream_event)
-
-        if self.relationship_type is not None and not isinstance(self.relationship_type, str):
-            self.relationship_type = str(self.relationship_type)
-
-        if self.evidence_support is not None and not isinstance(self.evidence_support, str):
-            self.evidence_support = str(self.evidence_support)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Study(StudyEntity):
-    """
-    A research study or survey
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = EFO["0001444"]
-    class_class_curie: ClassVar[str] = "EFO:0001444"
-    class_name: ClassVar[str] = "Study"
-    class_model_uri: ClassVar[URIRef] = OWG.Study
-
-    id: Union[str, StudyId] = None
-    study_type: Optional[Union[str, "StudyTypeEnum"]] = None
-    population: Optional[str] = None
-    enrollment_period: Optional[str] = None
-    geographic_location: Optional[str] = None
-    principal_investigator: Optional[str] = None
-    publications: Optional[Union[str, list[str]]] = empty_list()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, StudyId):
-            self.id = StudyId(self.id)
-
-        if self.study_type is not None and not isinstance(self.study_type, StudyTypeEnum):
-            self.study_type = StudyTypeEnum(self.study_type)
-
-        if self.population is not None and not isinstance(self.population, str):
-            self.population = str(self.population)
-
-        if self.enrollment_period is not None and not isinstance(self.enrollment_period, str):
-            self.enrollment_period = str(self.enrollment_period)
-
-        if self.geographic_location is not None and not isinstance(self.geographic_location, str):
-            self.geographic_location = str(self.geographic_location)
-
-        if self.principal_investigator is not None and not isinstance(self.principal_investigator, str):
-            self.principal_investigator = str(self.principal_investigator)
-
-        if not isinstance(self.publications, list):
-            self.publications = [self.publications] if self.publications is not None else []
-        self.publications = [v if isinstance(v, str) else str(v) for v in self.publications]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Cohort(StudyEntity):
-    """
-    A group of individuals in a study
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["Cohort"]
-    class_class_curie: ClassVar[str] = "owg:Cohort"
-    class_name: ClassVar[str] = "Cohort"
-    class_model_uri: ClassVar[URIRef] = OWG.Cohort
-
-    id: Union[str, CohortId] = None
-    part_of_study: Optional[Union[dict, Study]] = None
-    cohort_size: Optional[int] = None
-    inclusion_criteria: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, CohortId):
-            self.id = CohortId(self.id)
-
-        if self.part_of_study is not None and not isinstance(self.part_of_study, Study):
-            self.part_of_study = Study(**as_dict(self.part_of_study))
-
-        if self.cohort_size is not None and not isinstance(self.cohort_size, int):
-            self.cohort_size = int(self.cohort_size)
-
-        if self.inclusion_criteria is not None and not isinstance(self.inclusion_criteria, str):
-            self.inclusion_criteria = str(self.inclusion_criteria)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Participant(StudyEntity):
-    """
-    A role representing an individual's participation in a study. Links a Person to a specific study cohort and
-    captures study-specific identifiers and attributes. Age and sex are recorded at enrollment and may differ from the
-    Person's current values or values in other study registrations.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["Participant"]
-    class_class_curie: ClassVar[str] = "owg:Participant"
-    class_name: ClassVar[str] = "Participant"
-    class_model_uri: ClassVar[URIRef] = OWG.Participant
-
-    id: Union[str, ParticipantId] = None
+    class_class_uri: ClassVar[URIRef] = OBI["0000070"]
+    class_class_curie: ClassVar[str] = "OBI:0000070"
+    class_name: ClassVar[str] = "Assay"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.Assay
+
+    id: Union[str, AssayId] = None
     name: Optional[str] = None
     description: Optional[str] = None
-    category: Optional[Union[str, list[str]]] = empty_list()
-    xref: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
-    person: Optional[Union[str, PersonId]] = None
-    part_of_cohort: Optional[Union[dict, Cohort]] = None
-    participant_id: Optional[str] = None
-    age: Optional[int] = None
-    sex: Optional[Union[str, "SexEnum"]] = None
-    enrollment_date: Optional[Union[str, XSDDate]] = None
-    withdrawal_date: Optional[Union[str, XSDDate]] = None
-    study_arm: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, ParticipantId):
-            self.id = ParticipantId(self.id)
+        if not isinstance(self.id, AssayId):
+            self.id = AssayId(self.id)
 
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
@@ -1421,2356 +305,1594 @@ class Participant(StudyEntity):
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
 
-        if not isinstance(self.category, list):
-            self.category = [self.category] if self.category is not None else []
-        self.category = [v if isinstance(v, str) else str(v) for v in self.category]
-
-        if not isinstance(self.xref, list):
-            self.xref = [self.xref] if self.xref is not None else []
-        self.xref = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.xref]
-
-        if self.person is not None and not isinstance(self.person, PersonId):
-            self.person = PersonId(self.person)
-
-        if self.part_of_cohort is not None and not isinstance(self.part_of_cohort, Cohort):
-            self.part_of_cohort = Cohort(**as_dict(self.part_of_cohort))
-
-        if self.participant_id is not None and not isinstance(self.participant_id, str):
-            self.participant_id = str(self.participant_id)
-
-        if self.age is not None and not isinstance(self.age, int):
-            self.age = int(self.age)
-
-        if self.sex is not None and not isinstance(self.sex, SexEnum):
-            self.sex = SexEnum(self.sex)
-
-        if self.enrollment_date is not None and not isinstance(self.enrollment_date, XSDDate):
-            self.enrollment_date = XSDDate(self.enrollment_date)
-
-        if self.withdrawal_date is not None and not isinstance(self.withdrawal_date, XSDDate):
-            self.withdrawal_date = XSDDate(self.withdrawal_date)
-
-        if self.study_arm is not None and not isinstance(self.study_arm, str):
-            self.study_arm = str(self.study_arm)
-
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class ExposureMeasurement(Measurement):
+class Method(YAMLRoot):
     """
-    A measurement of exposure to a chemical or environmental factor
+    A general approach or technique used to collect, measure, or analyze data (e.g., qPCR, RNA-Seq, high-speed video
+    microscopy, ELISA).
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["ExposureMeasurement"]
-    class_class_curie: ClassVar[str] = "owg:ExposureMeasurement"
-    class_name: ClassVar[str] = "ExposureMeasurement"
-    class_model_uri: ClassVar[URIRef] = OWG.ExposureMeasurement
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_BASE["Method"]
+    class_class_curie: ClassVar[str] = "measurement_base:Method"
+    class_name: ClassVar[str] = "Method"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.Method
 
-    id: Union[str, ExposureMeasurementId] = None
-    measured_entity: Optional[Union[dict, OntologyTerm]] = None
-    participant: Optional[Union[dict, Participant]] = None
-    measurement_method: Optional[str] = None
-    measurement_date: Optional[Union[str, XSDDate]] = None
-    sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
+    id: Union[str, MethodId] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    implements: Optional[Union[dict, Assay]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, ExposureMeasurementId):
-            self.id = ExposureMeasurementId(self.id)
+        if not isinstance(self.id, MethodId):
+            self.id = MethodId(self.id)
 
-        if self.measured_entity is not None and not isinstance(self.measured_entity, OntologyTerm):
-            self.measured_entity = OntologyTerm(**as_dict(self.measured_entity))
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
-        if self.participant is not None and not isinstance(self.participant, Participant):
-            self.participant = Participant(**as_dict(self.participant))
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
-        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
-            self.measurement_method = str(self.measurement_method)
-
-        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
-            self.measurement_date = XSDDate(self.measurement_date)
-
-        if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
-            self.sample_type = SampleTypeEnum(self.sample_type)
+        if self.implements is not None and not isinstance(self.implements, Assay):
+            self.implements = Assay(**as_dict(self.implements))
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class BiomarkerMeasurement(Measurement):
+class Protocol(YAMLRoot):
     """
-    A measurement of a biological marker
+    A detailed set of steps for how to perform a test or collect data; protocols ensure consistency across
+    laboratories or studies when generating exposure or biological data.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["BiomarkerMeasurement"]
-    class_class_curie: ClassVar[str] = "owg:BiomarkerMeasurement"
-    class_name: ClassVar[str] = "BiomarkerMeasurement"
-    class_model_uri: ClassVar[URIRef] = OWG.BiomarkerMeasurement
+    class_class_uri: ClassVar[URIRef] = OBI["0000272"]
+    class_class_curie: ClassVar[str] = "OBI:0000272"
+    class_name: ClassVar[str] = "Protocol"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.Protocol
 
-    id: Union[str, BiomarkerMeasurementId] = None
-    biomarker_type: Optional[str] = None
-    measured_entity: Optional[Union[dict, OntologyTerm]] = None
-    participant: Optional[Union[dict, Participant]] = None
-    sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
-    measurement_method: Optional[str] = None
-    measurement_date: Optional[Union[str, XSDDate]] = None
+    id: Union[str, ProtocolId] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    specified_by: Optional[Union[dict, Method]] = None
+    follows: Optional[Union[dict, Assay]] = None
+    study_context: Optional[Union[str, "StudyContextEnum"]] = None
+    imaging_frame_rate: Optional[Union[dict, "QuantityValue"]] = None
+    imaging_duration: Optional[Union[dict, "QuantityValue"]] = None
+    spatial_resolution: Optional[Union[dict, "QuantityValue"]] = None
+    temperature_control: Optional[Union[dict, "QuantityValue"]] = None
+    humidity_control: Optional[Union[dict, "QuantityValue"]] = None
+    evaporation_control: Optional[str] = None
+    detection_method: Optional[str] = None
+    staining_type: Optional[str] = None
+    antibody_used: Optional[Union[str, list[str]]] = empty_list()
+    probe_type: Optional[str] = None
+    normalization_method: Optional[str] = None
+    replicate_count: Optional[int] = None
+    quality_control_criteria: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, BiomarkerMeasurementId):
-            self.id = BiomarkerMeasurementId(self.id)
+        if not isinstance(self.id, ProtocolId):
+            self.id = ProtocolId(self.id)
 
-        if self.biomarker_type is not None and not isinstance(self.biomarker_type, str):
-            self.biomarker_type = str(self.biomarker_type)
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
-        if self.measured_entity is not None and not isinstance(self.measured_entity, OntologyTerm):
-            self.measured_entity = OntologyTerm(**as_dict(self.measured_entity))
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
-        if self.participant is not None and not isinstance(self.participant, Participant):
-            self.participant = Participant(**as_dict(self.participant))
+        if self.specified_by is not None and not isinstance(self.specified_by, Method):
+            self.specified_by = Method(**as_dict(self.specified_by))
 
-        if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
-            self.sample_type = SampleTypeEnum(self.sample_type)
+        if self.follows is not None and not isinstance(self.follows, Assay):
+            self.follows = Assay(**as_dict(self.follows))
 
-        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
-            self.measurement_method = str(self.measurement_method)
+        if self.study_context is not None and not isinstance(self.study_context, StudyContextEnum):
+            self.study_context = StudyContextEnum(self.study_context)
 
-        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
-            self.measurement_date = XSDDate(self.measurement_date)
+        if self.imaging_frame_rate is not None and not isinstance(self.imaging_frame_rate, QuantityValue):
+            self.imaging_frame_rate = QuantityValue(**as_dict(self.imaging_frame_rate))
 
-        super().__post_init__(**kwargs)
+        if self.imaging_duration is not None and not isinstance(self.imaging_duration, QuantityValue):
+            self.imaging_duration = QuantityValue(**as_dict(self.imaging_duration))
 
+        if self.spatial_resolution is not None and not isinstance(self.spatial_resolution, QuantityValue):
+            self.spatial_resolution = QuantityValue(**as_dict(self.spatial_resolution))
 
-@dataclass(repr=False)
-class PhenotypeMeasurement(Measurement):
-    """
-    A measurement of a phenotypic trait or functional assay
-    """
-    _inherited_slots: ClassVar[list[str]] = []
+        if self.temperature_control is not None and not isinstance(self.temperature_control, QuantityValue):
+            self.temperature_control = QuantityValue(**as_dict(self.temperature_control))
 
-    class_class_uri: ClassVar[URIRef] = OWG["PhenotypeMeasurement"]
-    class_class_curie: ClassVar[str] = "owg:PhenotypeMeasurement"
-    class_name: ClassVar[str] = "PhenotypeMeasurement"
-    class_model_uri: ClassVar[URIRef] = OWG.PhenotypeMeasurement
+        if self.humidity_control is not None and not isinstance(self.humidity_control, QuantityValue):
+            self.humidity_control = QuantityValue(**as_dict(self.humidity_control))
 
-    id: Union[str, PhenotypeMeasurementId] = None
-    phenotype: Optional[Union[dict, OntologyTerm]] = None
-    measured_entity: Optional[Union[dict, OntologyTerm]] = None
-    participant: Optional[Union[dict, Participant]] = None
-    measurement_method: Optional[str] = None
-    measurement_date: Optional[Union[str, XSDDate]] = None
+        if self.evaporation_control is not None and not isinstance(self.evaporation_control, str):
+            self.evaporation_control = str(self.evaporation_control)
 
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, PhenotypeMeasurementId):
-            self.id = PhenotypeMeasurementId(self.id)
+        if self.detection_method is not None and not isinstance(self.detection_method, str):
+            self.detection_method = str(self.detection_method)
 
-        if self.phenotype is not None and not isinstance(self.phenotype, OntologyTerm):
-            self.phenotype = OntologyTerm(**as_dict(self.phenotype))
+        if self.staining_type is not None and not isinstance(self.staining_type, str):
+            self.staining_type = str(self.staining_type)
 
-        if self.measured_entity is not None and not isinstance(self.measured_entity, OntologyTerm):
-            self.measured_entity = OntologyTerm(**as_dict(self.measured_entity))
+        if not isinstance(self.antibody_used, list):
+            self.antibody_used = [self.antibody_used] if self.antibody_used is not None else []
+        self.antibody_used = [v if isinstance(v, str) else str(v) for v in self.antibody_used]
 
-        if self.participant is not None and not isinstance(self.participant, Participant):
-            self.participant = Participant(**as_dict(self.participant))
+        if self.probe_type is not None and not isinstance(self.probe_type, str):
+            self.probe_type = str(self.probe_type)
 
-        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
-            self.measurement_method = str(self.measurement_method)
+        if self.normalization_method is not None and not isinstance(self.normalization_method, str):
+            self.normalization_method = str(self.normalization_method)
 
-        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
-            self.measurement_date = XSDDate(self.measurement_date)
+        if self.replicate_count is not None and not isinstance(self.replicate_count, int):
+            self.replicate_count = int(self.replicate_count)
+
+        if self.quality_control_criteria is not None and not isinstance(self.quality_control_criteria, str):
+            self.quality_control_criteria = str(self.quality_control_criteria)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class AggregatedMeasurement(Measurement):
+class InVitroContext(YAMLRoot):
     """
-    An aggregated or summary measurement across a cohort or population
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["AggregatedMeasurement"]
-    class_class_curie: ClassVar[str] = "owg:AggregatedMeasurement"
-    class_name: ClassVar[str] = "AggregatedMeasurement"
-    class_model_uri: ClassVar[URIRef] = OWG.AggregatedMeasurement
-
-    id: Union[str, AggregatedMeasurementId] = None
-    measured_entity: Optional[Union[dict, OntologyTerm]] = None
-    cohort: Optional[Union[dict, Cohort]] = None
-    summary_statistic: Optional[Union[str, "SummaryStatisticEnum"]] = None
-    sample_size: Optional[int] = None
-    stratification: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, AggregatedMeasurementId):
-            self.id = AggregatedMeasurementId(self.id)
-
-        if self.measured_entity is not None and not isinstance(self.measured_entity, OntologyTerm):
-            self.measured_entity = OntologyTerm(**as_dict(self.measured_entity))
-
-        if self.cohort is not None and not isinstance(self.cohort, Cohort):
-            self.cohort = Cohort(**as_dict(self.cohort))
-
-        if self.summary_statistic is not None and not isinstance(self.summary_statistic, SummaryStatisticEnum):
-            self.summary_statistic = SummaryStatisticEnum(self.summary_statistic)
-
-        if self.sample_size is not None and not isinstance(self.sample_size, int):
-            self.sample_size = int(self.sample_size)
-
-        if self.stratification is not None and not isinstance(self.stratification, str):
-            self.stratification = str(self.stratification)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class GeneExpressionMeasurement(Measurement):
-    """
-    A measurement of gene expression (mRNA level) in a specific biological context. Captures the target gene,
-    tissue/cell type context, and assay methodology.
+    Context slots for in vitro measurements using cell culture systems. Mix this into microschemas that can be
+    performed on cultured cells.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["GeneExpressionMeasurement"]
-    class_class_curie: ClassVar[str] = "owg:GeneExpressionMeasurement"
-    class_name: ClassVar[str] = "GeneExpressionMeasurement"
-    class_model_uri: ClassVar[URIRef] = OWG.GeneExpressionMeasurement
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_BASE["InVitroContext"]
+    class_class_curie: ClassVar[str] = "measurement_base:InVitroContext"
+    class_name: ClassVar[str] = "InVitroContext"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.InVitroContext
 
-    id: Union[str, GeneExpressionMeasurementId] = None
-    target_gene: Optional[Union[dict, "Gene"]] = None
-    tissue_context: Optional[Union[dict, Tissue]] = None
-    cell_type_context: Optional[Union[dict, "CellType"]] = None
-    assay_method: Optional[Union[str, "ExpressionAssayMethodEnum"]] = None
-    normalization_reference: Optional[str] = None
-    participant: Optional[Union[dict, Participant]] = None
-    measurement_date: Optional[Union[str, XSDDate]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, GeneExpressionMeasurementId):
-            self.id = GeneExpressionMeasurementId(self.id)
-
-        if self.target_gene is not None and not isinstance(self.target_gene, Gene):
-            self.target_gene = Gene(**as_dict(self.target_gene))
-
-        if self.tissue_context is not None and not isinstance(self.tissue_context, Tissue):
-            self.tissue_context = Tissue(**as_dict(self.tissue_context))
-
-        if self.cell_type_context is not None and not isinstance(self.cell_type_context, CellType):
-            self.cell_type_context = CellType(**as_dict(self.cell_type_context))
-
-        if self.assay_method is not None and not isinstance(self.assay_method, ExpressionAssayMethodEnum):
-            self.assay_method = ExpressionAssayMethodEnum(self.assay_method)
-
-        if self.normalization_reference is not None and not isinstance(self.normalization_reference, str):
-            self.normalization_reference = str(self.normalization_reference)
-
-        if self.participant is not None and not isinstance(self.participant, Participant):
-            self.participant = Participant(**as_dict(self.participant))
-
-        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
-            self.measurement_date = XSDDate(self.measurement_date)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class ProteinExpressionMeasurement(Measurement):
-    """
-    A measurement of protein expression or post-translational modification (e.g., phosphorylation) in a specific
-    biological context.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["ProteinExpressionMeasurement"]
-    class_class_curie: ClassVar[str] = "owg:ProteinExpressionMeasurement"
-    class_name: ClassVar[str] = "ProteinExpressionMeasurement"
-    class_model_uri: ClassVar[URIRef] = OWG.ProteinExpressionMeasurement
-
-    id: Union[str, ProteinExpressionMeasurementId] = None
-    target_protein: Optional[Union[dict, "Protein"]] = None
-    phosphorylation_site: Optional[str] = None
-    tissue_context: Optional[Union[dict, Tissue]] = None
-    cell_type_context: Optional[Union[dict, "CellType"]] = None
-    assay_method: Optional[Union[str, "ExpressionAssayMethodEnum"]] = None
-    normalization_reference: Optional[str] = None
-    participant: Optional[Union[dict, Participant]] = None
-    measurement_date: Optional[Union[str, XSDDate]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, ProteinExpressionMeasurementId):
-            self.id = ProteinExpressionMeasurementId(self.id)
-
-        if self.target_protein is not None and not isinstance(self.target_protein, Protein):
-            self.target_protein = Protein(**as_dict(self.target_protein))
-
-        if self.phosphorylation_site is not None and not isinstance(self.phosphorylation_site, str):
-            self.phosphorylation_site = str(self.phosphorylation_site)
-
-        if self.tissue_context is not None and not isinstance(self.tissue_context, Tissue):
-            self.tissue_context = Tissue(**as_dict(self.tissue_context))
-
-        if self.cell_type_context is not None and not isinstance(self.cell_type_context, CellType):
-            self.cell_type_context = CellType(**as_dict(self.cell_type_context))
-
-        if self.assay_method is not None and not isinstance(self.assay_method, ExpressionAssayMethodEnum):
-            self.assay_method = ExpressionAssayMethodEnum(self.assay_method)
-
-        if self.normalization_reference is not None and not isinstance(self.normalization_reference, str):
-            self.normalization_reference = str(self.normalization_reference)
-
-        if self.participant is not None and not isinstance(self.participant, Participant):
-            self.participant = Participant(**as_dict(self.participant))
-
-        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
-            self.measurement_date = XSDDate(self.measurement_date)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class EnvironmentalMeasurement(Measurement):
-    """
-    A measurement of environmental conditions for cell culture systems including temperature, CO2, O2 percentage,
-    humidity, and pH. Used to document incubator and culture conditions. Valid observation_type values include:
-    co2_percentage, o2_percentage, temperature, humidity, nitrogen_balance, ph.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["EnvironmentalMeasurement"]
-    class_class_curie: ClassVar[str] = "owg:EnvironmentalMeasurement"
-    class_name: ClassVar[str] = "EnvironmentalMeasurement"
-    class_model_uri: ClassVar[URIRef] = OWG.EnvironmentalMeasurement
-
-    id: Union[str, EnvironmentalMeasurementId] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, EnvironmentalMeasurementId):
-            self.id = EnvironmentalMeasurementId(self.id)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class MechanicalMeasurement(Measurement):
-    """
-    A measurement of mechanical stimulation parameters for advanced culture systems like organ-on-chip and
-    microphysiological systems. Includes stretch frequency/amplitude, shear stress, flow rate, and pressure. Valid
-    observation_type values include: stretch_frequency, stretch_amplitude, shear_stress, flow_rate, perfusion_rate,
-    pressure.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["MechanicalMeasurement"]
-    class_class_curie: ClassVar[str] = "owg:MechanicalMeasurement"
-    class_name: ClassVar[str] = "MechanicalMeasurement"
-    class_model_uri: ClassVar[URIRef] = OWG.MechanicalMeasurement
-
-    id: Union[str, MechanicalMeasurementId] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, MechanicalMeasurementId):
-            self.id = MechanicalMeasurementId(self.id)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class MembranePropertyMeasurement(Measurement):
-    """
-    A measurement of membrane properties for transwell, ALI, and organ-on-chip culture systems. Includes pore size,
-    pore density, thickness, surface area, and TEER. Valid observation_type values include: pore_size, pore_density,
-    thickness, surface_area, teer.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["MembranePropertyMeasurement"]
-    class_class_curie: ClassVar[str] = "owg:MembranePropertyMeasurement"
-    class_name: ClassVar[str] = "MembranePropertyMeasurement"
-    class_model_uri: ClassVar[URIRef] = OWG.MembranePropertyMeasurement
-
-    id: Union[str, MembranePropertyMeasurementId] = None
-    membrane_material: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, MembranePropertyMeasurementId):
-            self.id = MembranePropertyMeasurementId(self.id)
-
-        if self.membrane_material is not None and not isinstance(self.membrane_material, str):
-            self.membrane_material = str(self.membrane_material)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class CellLine(NamedThing):
-    """
-    A cell line - a genetically stable cultured cell population that contains individual cell line cells. Reference to
-    a specific cell line with identifiers from cell line repositories.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = CLO["0000031"]
-    class_class_curie: ClassVar[str] = "CLO:0000031"
-    class_name: ClassVar[str] = "CellLine"
-    class_model_uri: ClassVar[URIRef] = OWG.CellLine
-
-    id: Union[str, CellLineId] = None
-    cell_culture_type: Optional[Union[dict, "CellType"]] = None
-    model_species: Optional[Union[dict, "Organism"]] = None
-    tissue_origin: Optional[Union[dict, "AnatomicalEntity"]] = None
-    disease_state: Optional[Union[dict, Disease]] = None
-    supplier: Optional[str] = None
-    catalog_number: Optional[str] = None
-    authentication_method: Optional[str] = None
-    mycoplasma_status: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, CellLineId):
-            self.id = CellLineId(self.id)
-
-        if self.cell_culture_type is not None and not isinstance(self.cell_culture_type, CellType):
-            self.cell_culture_type = CellType(**as_dict(self.cell_culture_type))
-
-        if self.model_species is not None and not isinstance(self.model_species, Organism):
-            self.model_species = Organism(**as_dict(self.model_species))
-
-        if self.tissue_origin is not None and not isinstance(self.tissue_origin, AnatomicalEntity):
-            self.tissue_origin = AnatomicalEntity(**as_dict(self.tissue_origin))
-
-        if self.disease_state is not None and not isinstance(self.disease_state, Disease):
-            self.disease_state = Disease(**as_dict(self.disease_state))
-
-        if self.supplier is not None and not isinstance(self.supplier, str):
-            self.supplier = str(self.supplier)
-
-        if self.catalog_number is not None and not isinstance(self.catalog_number, str):
-            self.catalog_number = str(self.catalog_number)
-
-        if self.authentication_method is not None and not isinstance(self.authentication_method, str):
-            self.authentication_method = str(self.authentication_method)
-
-        if self.mycoplasma_status is not None and not isinstance(self.mycoplasma_status, str):
-            self.mycoplasma_status = str(self.mycoplasma_status)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class CellCultureConditions(NamedThing):
-    """
-    Detailed cell culture parameters including medium, environment, and timing.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["CellCultureConditions"]
-    class_class_curie: ClassVar[str] = "owg:CellCultureConditions"
-    class_name: ClassVar[str] = "CellCultureConditions"
-    class_model_uri: ClassVar[URIRef] = OWG.CellCultureConditions
-
-    id: Union[str, CellCultureConditionsId] = None
-    culture_media: Optional[Union[dict, "CellCultureMedium"]] = None
-    days_at_air_liquid_interface: Optional[int] = None
+    cell_culture_system: Optional[str] = None
+    days_at_differentiation: Optional[int] = None
     passage_number: Optional[int] = None
-    substrate_type: Optional[Union[str, "SubstrateTypeEnum"]] = None
-    cell_culture_growth_mode: Optional[Union[str, "CellCultureGrowthModeEnum"]] = None
-    environmental_measurements: Optional[Union[dict[Union[str, EnvironmentalMeasurementId], Union[dict, EnvironmentalMeasurement]], list[Union[dict, EnvironmentalMeasurement]]]] = empty_dict()
-    donor_count: Optional[int] = None
+    substrate_type: Optional[str] = None
+    donor_info: Optional[str] = None
     replicates_per_donor: Optional[int] = None
+    culture_medium: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, CellCultureConditionsId):
-            self.id = CellCultureConditionsId(self.id)
+        if self.cell_culture_system is not None and not isinstance(self.cell_culture_system, str):
+            self.cell_culture_system = str(self.cell_culture_system)
 
-        if self.culture_media is not None and not isinstance(self.culture_media, CellCultureMedium):
-            self.culture_media = CellCultureMedium(**as_dict(self.culture_media))
-
-        if self.days_at_air_liquid_interface is not None and not isinstance(self.days_at_air_liquid_interface, int):
-            self.days_at_air_liquid_interface = int(self.days_at_air_liquid_interface)
+        if self.days_at_differentiation is not None and not isinstance(self.days_at_differentiation, int):
+            self.days_at_differentiation = int(self.days_at_differentiation)
 
         if self.passage_number is not None and not isinstance(self.passage_number, int):
             self.passage_number = int(self.passage_number)
 
-        if self.substrate_type is not None and not isinstance(self.substrate_type, SubstrateTypeEnum):
-            self.substrate_type = SubstrateTypeEnum(self.substrate_type)
+        if self.substrate_type is not None and not isinstance(self.substrate_type, str):
+            self.substrate_type = str(self.substrate_type)
 
-        if self.cell_culture_growth_mode is not None and not isinstance(self.cell_culture_growth_mode, CellCultureGrowthModeEnum):
-            self.cell_culture_growth_mode = CellCultureGrowthModeEnum(self.cell_culture_growth_mode)
-
-        self._normalize_inlined_as_list(slot_name="environmental_measurements", slot_type=EnvironmentalMeasurement, key_name="id", keyed=True)
-
-        if self.donor_count is not None and not isinstance(self.donor_count, int):
-            self.donor_count = int(self.donor_count)
+        if self.donor_info is not None and not isinstance(self.donor_info, str):
+            self.donor_info = str(self.donor_info)
 
         if self.replicates_per_donor is not None and not isinstance(self.replicates_per_donor, int):
             self.replicates_per_donor = int(self.replicates_per_donor)
 
+        if self.culture_medium is not None and not isinstance(self.culture_medium, str):
+            self.culture_medium = str(self.culture_medium)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class CellCultureMedium(NamedThing):
+class InVivoContext(YAMLRoot):
     """
-    Detailed formulation of cell culture medium including base medium and supplements.
+    Context slots for in vivo measurements from human or animal subjects. Mix this into microschemas that can be
+    performed on living subjects.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["CellCultureMedium"]
-    class_class_curie: ClassVar[str] = "owg:CellCultureMedium"
-    class_name: ClassVar[str] = "CellCultureMedium"
-    class_model_uri: ClassVar[URIRef] = OWG.CellCultureMedium
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_BASE["InVivoContext"]
+    class_class_curie: ClassVar[str] = "measurement_base:InVivoContext"
+    class_name: ClassVar[str] = "InVivoContext"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.InVivoContext
 
-    id: Union[str, CellCultureMediumId] = None
-    base_medium: Optional[str] = None
-    serum_type: Optional[str] = None
-    serum_concentration: Optional[Union[dict, QuantityValue]] = None
-    supplements: Optional[Union[dict[Union[str, MediumSupplementId], Union[dict, "MediumSupplement"]], list[Union[dict, "MediumSupplement"]]]] = empty_dict()
-    osmolality: Optional[Union[dict, QuantityValue]] = None
-    manufacturer: Optional[str] = None
-    catalog_number: Optional[str] = None
-    lot_number: Optional[str] = None
-    preparation_date: Optional[Union[str, XSDDate]] = None
+    participant: Optional[Union[dict, "NamedEntity"]] = None
+    sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
+    collection_site: Optional[str] = None
+    collection_date: Optional[Union[str, XSDDate]] = None
+    subject_characteristics: Optional[str] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self.participant is not None and not isinstance(self.participant, NamedEntity):
+            self.participant = NamedEntity(**as_dict(self.participant))
+
+        if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
+            self.sample_type = SampleTypeEnum(self.sample_type)
+
+        if self.collection_site is not None and not isinstance(self.collection_site, str):
+            self.collection_site = str(self.collection_site)
+
+        if self.collection_date is not None and not isinstance(self.collection_date, XSDDate):
+            self.collection_date = XSDDate(self.collection_date)
+
+        if self.subject_characteristics is not None and not isinstance(self.subject_characteristics, str):
+            self.subject_characteristics = str(self.subject_characteristics)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class QuantityValue(YAMLRoot):
+    """
+    A quantity with a numeric value and unit of measurement.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_BASE["QuantityValue"]
+    class_class_curie: ClassVar[str] = "measurement_base:QuantityValue"
+    class_name: ClassVar[str] = "QuantityValue"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.QuantityValue
+
+    value: Optional[str] = None
+    unit: Optional[Union[dict, "Unit"]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self.value is not None and not isinstance(self.value, str):
+            self.value = str(self.value)
+
+        if self.unit is not None and not isinstance(self.unit, Unit):
+            self.unit = Unit(**as_dict(self.unit))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Unit(YAMLRoot):
+    """
+    A unit of measurement from a standard ontology (UO, UCUM, QUDT).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_BASE["Unit"]
+    class_class_curie: ClassVar[str] = "measurement_base:Unit"
+    class_name: ClassVar[str] = "Unit"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.Unit
+
+    id: Union[str, UnitId] = None
+    name: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, CellCultureMediumId):
-            self.id = CellCultureMediumId(self.id)
+        if not isinstance(self.id, UnitId):
+            self.id = UnitId(self.id)
 
-        if self.base_medium is not None and not isinstance(self.base_medium, str):
-            self.base_medium = str(self.base_medium)
-
-        if self.serum_type is not None and not isinstance(self.serum_type, str):
-            self.serum_type = str(self.serum_type)
-
-        if self.serum_concentration is not None and not isinstance(self.serum_concentration, QuantityValue):
-            self.serum_concentration = QuantityValue(**as_dict(self.serum_concentration))
-
-        self._normalize_inlined_as_list(slot_name="supplements", slot_type=MediumSupplement, key_name="id", keyed=True)
-
-        if self.osmolality is not None and not isinstance(self.osmolality, QuantityValue):
-            self.osmolality = QuantityValue(**as_dict(self.osmolality))
-
-        if self.manufacturer is not None and not isinstance(self.manufacturer, str):
-            self.manufacturer = str(self.manufacturer)
-
-        if self.catalog_number is not None and not isinstance(self.catalog_number, str):
-            self.catalog_number = str(self.catalog_number)
-
-        if self.lot_number is not None and not isinstance(self.lot_number, str):
-            self.lot_number = str(self.lot_number)
-
-        if self.preparation_date is not None and not isinstance(self.preparation_date, XSDDate):
-            self.preparation_date = XSDDate(self.preparation_date)
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class MediumSupplement(NamedThing):
+class NamedEntity(YAMLRoot):
     """
-    Supplement or additive to cell culture medium.
+    A reference to an entity with an identifier and name. Used for measured_entity, participant, etc.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["MediumSupplement"]
-    class_class_curie: ClassVar[str] = "owg:MediumSupplement"
-    class_name: ClassVar[str] = "MediumSupplement"
-    class_model_uri: ClassVar[URIRef] = OWG.MediumSupplement
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_BASE["NamedEntity"]
+    class_class_curie: ClassVar[str] = "measurement_base:NamedEntity"
+    class_name: ClassVar[str] = "NamedEntity"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.NamedEntity
 
-    id: Union[str, MediumSupplementId] = None
-    supplement_type: Optional[Union[str, "SupplementTypeEnum"]] = None
-    supplement_entity: Optional[Union[dict, ChemicalEntity]] = None
-    concentration: Optional[Union[dict, QuantityValue]] = None
-    manufacturer: Optional[str] = None
-    catalog_number: Optional[str] = None
+    id: Union[str, NamedEntityId] = None
+    name: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, MediumSupplementId):
-            self.id = MediumSupplementId(self.id)
+        if not isinstance(self.id, NamedEntityId):
+            self.id = NamedEntityId(self.id)
 
-        if self.supplement_type is not None and not isinstance(self.supplement_type, SupplementTypeEnum):
-            self.supplement_type = SupplementTypeEnum(self.supplement_type)
-
-        if self.supplement_entity is not None and not isinstance(self.supplement_entity, ChemicalEntity):
-            self.supplement_entity = ChemicalEntity(**as_dict(self.supplement_entity))
-
-        if self.concentration is not None and not isinstance(self.concentration, QuantityValue):
-            self.concentration = QuantityValue(**as_dict(self.concentration))
-
-        if self.manufacturer is not None and not isinstance(self.manufacturer, str):
-            self.manufacturer = str(self.manufacturer)
-
-        if self.catalog_number is not None and not isinstance(self.catalog_number, str):
-            self.catalog_number = str(self.catalog_number)
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class ModelSystem(ExposableSubject):
+class CiliaryFunctionMeasurement(YAMLRoot):
     """
-    Abstract base class for model systems used in biomedical research. Encompasses cellular systems,
-    microphysiological systems, and in silico models.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NAMO["0000000"]
-    class_class_curie: ClassVar[str] = "NAMO:0000000"
-    class_name: ClassVar[str] = "ModelSystem"
-    class_model_uri: ClassVar[URIRef] = OWG.ModelSystem
-
-    id: Union[str, ModelSystemId] = None
-    model_species: Optional[Union[dict, "Organism"]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self.model_species is not None and not isinstance(self.model_species, Organism):
-            self.model_species = Organism(**as_dict(self.model_species))
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class CellularSystem(ModelSystem):
-    """
-    Cell-based model systems that use living cells to model biological processes. Includes 2D cultures, 3D systems,
-    and co-cultures. Abstract base class for specific culture types.
+    Measurement of ciliary function including beat frequency, active area, cilia morphology, and ciliated cell
+    populations. Can be performed in vitro on ALI cultures or in vivo via intranasal imaging (e.g., μOCT).
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NAMO["0000001"]
-    class_class_curie: ClassVar[str] = "NAMO:0000001"
-    class_name: ClassVar[str] = "CellularSystem"
-    class_model_uri: ClassVar[URIRef] = OWG.CellularSystem
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_MICROSCHEMAS["CiliaryFunctionMeasurement"]
+    class_class_curie: ClassVar[str] = "measurement_microschemas:CiliaryFunctionMeasurement"
+    class_name: ClassVar[str] = "CiliaryFunctionMeasurement"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.CiliaryFunctionMeasurement
 
-    id: Union[str, CellularSystemId] = None
-    cell_line: Optional[Union[dict, CellLine]] = None
-    cell_line_lineage: Optional[str] = None
-    primary_cultured_cell: Optional[Union[dict, "CellType"]] = None
-    cell_culture_type: Optional[Union[dict, "CellType"]] = None
-    anatomical_origin: Optional[Union[dict, "AnatomicalEntity"]] = None
-    cell_culture_growth_mode: Optional[Union[str, "CellCultureGrowthModeEnum"]] = None
-    cell_line_modification: Optional[Union[str, "CellLineModificationEnum"]] = None
-    induced_pluripotent_stem_cell_line: Optional[Union[bool, Bool]] = None
-    culture_conditions: Optional[Union[dict, CellCultureConditions]] = None
-    culture_media: Optional[Union[dict, CellCultureMedium]] = None
-    environmental_measurements: Optional[Union[dict[Union[str, EnvironmentalMeasurementId], Union[dict, EnvironmentalMeasurement]], list[Union[dict, EnvironmentalMeasurement]]]] = empty_dict()
-    mechanical_measurements: Optional[Union[dict[Union[str, MechanicalMeasurementId], Union[dict, MechanicalMeasurement]], list[Union[dict, MechanicalMeasurement]]]] = empty_dict()
-    membrane_properties: Optional[Union[dict[Union[str, MembranePropertyMeasurementId], Union[dict, MembranePropertyMeasurement]], list[Union[dict, MembranePropertyMeasurement]]]] = empty_dict()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self.cell_line is not None and not isinstance(self.cell_line, CellLine):
-            self.cell_line = CellLine(**as_dict(self.cell_line))
-
-        if self.cell_line_lineage is not None and not isinstance(self.cell_line_lineage, str):
-            self.cell_line_lineage = str(self.cell_line_lineage)
-
-        if self.primary_cultured_cell is not None and not isinstance(self.primary_cultured_cell, CellType):
-            self.primary_cultured_cell = CellType(**as_dict(self.primary_cultured_cell))
-
-        if self.cell_culture_type is not None and not isinstance(self.cell_culture_type, CellType):
-            self.cell_culture_type = CellType(**as_dict(self.cell_culture_type))
-
-        if self.anatomical_origin is not None and not isinstance(self.anatomical_origin, AnatomicalEntity):
-            self.anatomical_origin = AnatomicalEntity(**as_dict(self.anatomical_origin))
-
-        if self.cell_culture_growth_mode is not None and not isinstance(self.cell_culture_growth_mode, CellCultureGrowthModeEnum):
-            self.cell_culture_growth_mode = CellCultureGrowthModeEnum(self.cell_culture_growth_mode)
-
-        if self.cell_line_modification is not None and not isinstance(self.cell_line_modification, CellLineModificationEnum):
-            self.cell_line_modification = CellLineModificationEnum(self.cell_line_modification)
-
-        if self.induced_pluripotent_stem_cell_line is not None and not isinstance(self.induced_pluripotent_stem_cell_line, Bool):
-            self.induced_pluripotent_stem_cell_line = Bool(self.induced_pluripotent_stem_cell_line)
-
-        if self.culture_conditions is not None and not isinstance(self.culture_conditions, CellCultureConditions):
-            self.culture_conditions = CellCultureConditions(**as_dict(self.culture_conditions))
-
-        if self.culture_media is not None and not isinstance(self.culture_media, CellCultureMedium):
-            self.culture_media = CellCultureMedium(**as_dict(self.culture_media))
-
-        self._normalize_inlined_as_list(slot_name="environmental_measurements", slot_type=EnvironmentalMeasurement, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="mechanical_measurements", slot_type=MechanicalMeasurement, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="membrane_properties", slot_type=MembranePropertyMeasurement, key_name="id", keyed=True)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class TwoDCellCulture(CellularSystem):
-    """
-    Conventional monolayer cell cultures grown on flat surfaces. Includes adherent and suspension cultures in standard
-    tissue culture vessels.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NAMO["0000002"]
-    class_class_curie: ClassVar[str] = "NAMO:0000002"
-    class_name: ClassVar[str] = "TwoDCellCulture"
-    class_model_uri: ClassVar[URIRef] = OWG.TwoDCellCulture
-
-    id: Union[str, TwoDCellCultureId] = None
-    substrate_type: Optional[Union[str, "SubstrateTypeEnum"]] = None
-    confluence_level: Optional[Union[dict, QuantityValue]] = None
+    id: Union[str, CiliaryFunctionMeasurementId] = None
+    observation_type: Optional[Union[str, "CiliaryFunctionObservationTypeEnum"]] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    quantity_measured: Optional[Union[dict, QuantityValue]] = None
+    range_low: Optional[Union[dict, QuantityValue]] = None
+    range_high: Optional[Union[dict, QuantityValue]] = None
+    measured_entity: Optional[Union[dict, NamedEntity]] = None
+    measurement_method: Optional[str] = None
+    measurement_date: Optional[Union[str, XSDDate]] = None
+    uses: Optional[Union[dict, Assay]] = None
+    cell_culture_system: Optional[str] = None
+    days_at_differentiation: Optional[int] = None
     passage_number: Optional[int] = None
-    seeding_density: Optional[Union[dict, QuantityValue]] = None
-    coating: Optional[str] = None
+    substrate_type: Optional[str] = None
+    donor_info: Optional[str] = None
+    replicates_per_donor: Optional[int] = None
+    culture_medium: Optional[str] = None
+    participant: Optional[Union[dict, NamedEntity]] = None
+    sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
+    collection_site: Optional[str] = None
+    collection_date: Optional[Union[str, XSDDate]] = None
+    subject_characteristics: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, TwoDCellCultureId):
-            self.id = TwoDCellCultureId(self.id)
+        if not isinstance(self.id, CiliaryFunctionMeasurementId):
+            self.id = CiliaryFunctionMeasurementId(self.id)
 
-        if self.substrate_type is not None and not isinstance(self.substrate_type, SubstrateTypeEnum):
-            self.substrate_type = SubstrateTypeEnum(self.substrate_type)
+        if self.observation_type is not None and not isinstance(self.observation_type, CiliaryFunctionObservationTypeEnum):
+            self.observation_type = CiliaryFunctionObservationTypeEnum(self.observation_type)
 
-        if self.confluence_level is not None and not isinstance(self.confluence_level, QuantityValue):
-            self.confluence_level = QuantityValue(**as_dict(self.confluence_level))
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if self.quantity_measured is not None and not isinstance(self.quantity_measured, QuantityValue):
+            self.quantity_measured = QuantityValue(**as_dict(self.quantity_measured))
+
+        if self.range_low is not None and not isinstance(self.range_low, QuantityValue):
+            self.range_low = QuantityValue(**as_dict(self.range_low))
+
+        if self.range_high is not None and not isinstance(self.range_high, QuantityValue):
+            self.range_high = QuantityValue(**as_dict(self.range_high))
+
+        if self.measured_entity is not None and not isinstance(self.measured_entity, NamedEntity):
+            self.measured_entity = NamedEntity(**as_dict(self.measured_entity))
+
+        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
+            self.measurement_method = str(self.measurement_method)
+
+        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
+            self.measurement_date = XSDDate(self.measurement_date)
+
+        if self.uses is not None and not isinstance(self.uses, Assay):
+            self.uses = Assay(**as_dict(self.uses))
+
+        if self.cell_culture_system is not None and not isinstance(self.cell_culture_system, str):
+            self.cell_culture_system = str(self.cell_culture_system)
+
+        if self.days_at_differentiation is not None and not isinstance(self.days_at_differentiation, int):
+            self.days_at_differentiation = int(self.days_at_differentiation)
 
         if self.passage_number is not None and not isinstance(self.passage_number, int):
             self.passage_number = int(self.passage_number)
 
-        if self.seeding_density is not None and not isinstance(self.seeding_density, QuantityValue):
-            self.seeding_density = QuantityValue(**as_dict(self.seeding_density))
+        if self.substrate_type is not None and not isinstance(self.substrate_type, str):
+            self.substrate_type = str(self.substrate_type)
 
-        if self.coating is not None and not isinstance(self.coating, str):
-            self.coating = str(self.coating)
+        if self.donor_info is not None and not isinstance(self.donor_info, str):
+            self.donor_info = str(self.donor_info)
+
+        if self.replicates_per_donor is not None and not isinstance(self.replicates_per_donor, int):
+            self.replicates_per_donor = int(self.replicates_per_donor)
+
+        if self.culture_medium is not None and not isinstance(self.culture_medium, str):
+            self.culture_medium = str(self.culture_medium)
+
+        if self.participant is not None and not isinstance(self.participant, NamedEntity):
+            self.participant = NamedEntity(**as_dict(self.participant))
+
+        if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
+            self.sample_type = SampleTypeEnum(self.sample_type)
+
+        if self.collection_site is not None and not isinstance(self.collection_site, str):
+            self.collection_site = str(self.collection_site)
+
+        if self.collection_date is not None and not isinstance(self.collection_date, XSDDate):
+            self.collection_date = XSDDate(self.collection_date)
+
+        if self.subject_characteristics is not None and not isinstance(self.subject_characteristics, str):
+            self.subject_characteristics = str(self.subject_characteristics)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class ThreeDCellCulture(CellularSystem):
+class ASLMeasurement(YAMLRoot):
     """
-    Three-dimensional cell culture systems including spheroids, organoids, and scaffold-based cultures. Provides
-    enhanced physiological relevance with 3D architecture.
+    Measurement of airway surface liquid properties including ASL height, periciliary layer depth, and ion
+    composition. Critical for assessing airway hydration status in CF and other mucociliary disorders.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NAMO["0000003"]
-    class_class_curie: ClassVar[str] = "NAMO:0000003"
-    class_name: ClassVar[str] = "ThreeDCellCulture"
-    class_model_uri: ClassVar[URIRef] = OWG.ThreeDCellCulture
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_MICROSCHEMAS["ASLMeasurement"]
+    class_class_curie: ClassVar[str] = "measurement_microschemas:ASLMeasurement"
+    class_name: ClassVar[str] = "ASLMeasurement"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.ASLMeasurement
 
-    id: Union[str, ThreeDCellCultureId] = None
-    three_d_architecture: Optional[Union[str, "ThreeDArchitectureEnum"]] = None
-    matrix_composition: Optional[str] = None
-    size_range: Optional[Union[dict, QuantityRange]] = None
-    organoid_type: Optional[str] = None
-    substrate_type: Optional[Union[str, "SubstrateTypeEnum"]] = None
+    id: Union[str, ASLMeasurementId] = None
+    observation_type: Optional[Union[str, "ASLObservationTypeEnum"]] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    quantity_measured: Optional[Union[dict, QuantityValue]] = None
+    range_low: Optional[Union[dict, QuantityValue]] = None
+    range_high: Optional[Union[dict, QuantityValue]] = None
+    measured_entity: Optional[Union[dict, NamedEntity]] = None
+    measurement_method: Optional[str] = None
+    measurement_date: Optional[Union[str, XSDDate]] = None
+    uses: Optional[Union[dict, Assay]] = None
+    cell_culture_system: Optional[str] = None
+    days_at_differentiation: Optional[int] = None
+    passage_number: Optional[int] = None
+    substrate_type: Optional[str] = None
+    donor_info: Optional[str] = None
+    replicates_per_donor: Optional[int] = None
+    culture_medium: Optional[str] = None
+    participant: Optional[Union[dict, NamedEntity]] = None
+    sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
+    collection_site: Optional[str] = None
+    collection_date: Optional[Union[str, XSDDate]] = None
+    subject_characteristics: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, ThreeDCellCultureId):
-            self.id = ThreeDCellCultureId(self.id)
+        if not isinstance(self.id, ASLMeasurementId):
+            self.id = ASLMeasurementId(self.id)
 
-        if self.three_d_architecture is not None and not isinstance(self.three_d_architecture, ThreeDArchitectureEnum):
-            self.three_d_architecture = ThreeDArchitectureEnum(self.three_d_architecture)
+        if self.observation_type is not None and not isinstance(self.observation_type, ASLObservationTypeEnum):
+            self.observation_type = ASLObservationTypeEnum(self.observation_type)
 
-        if self.matrix_composition is not None and not isinstance(self.matrix_composition, str):
-            self.matrix_composition = str(self.matrix_composition)
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
-        if self.size_range is not None and not isinstance(self.size_range, QuantityRange):
-            self.size_range = QuantityRange(**as_dict(self.size_range))
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
-        if self.organoid_type is not None and not isinstance(self.organoid_type, str):
-            self.organoid_type = str(self.organoid_type)
+        if self.quantity_measured is not None and not isinstance(self.quantity_measured, QuantityValue):
+            self.quantity_measured = QuantityValue(**as_dict(self.quantity_measured))
 
-        if self.substrate_type is not None and not isinstance(self.substrate_type, SubstrateTypeEnum):
-            self.substrate_type = SubstrateTypeEnum(self.substrate_type)
+        if self.range_low is not None and not isinstance(self.range_low, QuantityValue):
+            self.range_low = QuantityValue(**as_dict(self.range_low))
+
+        if self.range_high is not None and not isinstance(self.range_high, QuantityValue):
+            self.range_high = QuantityValue(**as_dict(self.range_high))
+
+        if self.measured_entity is not None and not isinstance(self.measured_entity, NamedEntity):
+            self.measured_entity = NamedEntity(**as_dict(self.measured_entity))
+
+        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
+            self.measurement_method = str(self.measurement_method)
+
+        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
+            self.measurement_date = XSDDate(self.measurement_date)
+
+        if self.uses is not None and not isinstance(self.uses, Assay):
+            self.uses = Assay(**as_dict(self.uses))
+
+        if self.cell_culture_system is not None and not isinstance(self.cell_culture_system, str):
+            self.cell_culture_system = str(self.cell_culture_system)
+
+        if self.days_at_differentiation is not None and not isinstance(self.days_at_differentiation, int):
+            self.days_at_differentiation = int(self.days_at_differentiation)
+
+        if self.passage_number is not None and not isinstance(self.passage_number, int):
+            self.passage_number = int(self.passage_number)
+
+        if self.substrate_type is not None and not isinstance(self.substrate_type, str):
+            self.substrate_type = str(self.substrate_type)
+
+        if self.donor_info is not None and not isinstance(self.donor_info, str):
+            self.donor_info = str(self.donor_info)
+
+        if self.replicates_per_donor is not None and not isinstance(self.replicates_per_donor, int):
+            self.replicates_per_donor = int(self.replicates_per_donor)
+
+        if self.culture_medium is not None and not isinstance(self.culture_medium, str):
+            self.culture_medium = str(self.culture_medium)
+
+        if self.participant is not None and not isinstance(self.participant, NamedEntity):
+            self.participant = NamedEntity(**as_dict(self.participant))
+
+        if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
+            self.sample_type = SampleTypeEnum(self.sample_type)
+
+        if self.collection_site is not None and not isinstance(self.collection_site, str):
+            self.collection_site = str(self.collection_site)
+
+        if self.collection_date is not None and not isinstance(self.collection_date, XSDDate):
+            self.collection_date = XSDDate(self.collection_date)
+
+        if self.subject_characteristics is not None and not isinstance(self.subject_characteristics, str):
+            self.subject_characteristics = str(self.subject_characteristics)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class CoCulture(CellularSystem):
+class MCCMeasurement(YAMLRoot):
     """
-    Co-culture systems combining multiple cell types to simulate tissue microenvironments and cell-cell interactions.
+    Measurement of mucociliary clearance and transport including mucus transport rate, directionality, and clearance
+    efficiency. Assesses the coordinated function of cilia and mucus for pathogen clearance.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NAMO["0000004"]
-    class_class_curie: ClassVar[str] = "NAMO:0000004"
-    class_name: ClassVar[str] = "CoCulture"
-    class_model_uri: ClassVar[URIRef] = OWG.CoCulture
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_MICROSCHEMAS["MCCMeasurement"]
+    class_class_curie: ClassVar[str] = "measurement_microschemas:MCCMeasurement"
+    class_name: ClassVar[str] = "MCCMeasurement"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.MCCMeasurement
 
-    id: Union[str, CoCultureId] = None
-    coculture_configuration: Optional[Union[str, "CoCultureConfigurationEnum"]] = None
-    cell_type_ratios: Optional[Union[str, list[str]]] = empty_list()
-    substrate_type: Optional[Union[str, "SubstrateTypeEnum"]] = None
+    id: Union[str, MCCMeasurementId] = None
+    observation_type: Optional[Union[str, "MCCObservationTypeEnum"]] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    quantity_measured: Optional[Union[dict, QuantityValue]] = None
+    range_low: Optional[Union[dict, QuantityValue]] = None
+    range_high: Optional[Union[dict, QuantityValue]] = None
+    measured_entity: Optional[Union[dict, NamedEntity]] = None
+    measurement_method: Optional[str] = None
+    measurement_date: Optional[Union[str, XSDDate]] = None
+    uses: Optional[Union[dict, Assay]] = None
+    cell_culture_system: Optional[str] = None
+    days_at_differentiation: Optional[int] = None
+    passage_number: Optional[int] = None
+    substrate_type: Optional[str] = None
+    donor_info: Optional[str] = None
+    replicates_per_donor: Optional[int] = None
+    culture_medium: Optional[str] = None
+    participant: Optional[Union[dict, NamedEntity]] = None
+    sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
+    collection_site: Optional[str] = None
+    collection_date: Optional[Union[str, XSDDate]] = None
+    subject_characteristics: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, CoCultureId):
-            self.id = CoCultureId(self.id)
+        if not isinstance(self.id, MCCMeasurementId):
+            self.id = MCCMeasurementId(self.id)
 
-        if self.coculture_configuration is not None and not isinstance(self.coculture_configuration, CoCultureConfigurationEnum):
-            self.coculture_configuration = CoCultureConfigurationEnum(self.coculture_configuration)
+        if self.observation_type is not None and not isinstance(self.observation_type, MCCObservationTypeEnum):
+            self.observation_type = MCCObservationTypeEnum(self.observation_type)
 
-        if not isinstance(self.cell_type_ratios, list):
-            self.cell_type_ratios = [self.cell_type_ratios] if self.cell_type_ratios is not None else []
-        self.cell_type_ratios = [v if isinstance(v, str) else str(v) for v in self.cell_type_ratios]
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
-        if self.substrate_type is not None and not isinstance(self.substrate_type, SubstrateTypeEnum):
-            self.substrate_type = SubstrateTypeEnum(self.substrate_type)
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if self.quantity_measured is not None and not isinstance(self.quantity_measured, QuantityValue):
+            self.quantity_measured = QuantityValue(**as_dict(self.quantity_measured))
+
+        if self.range_low is not None and not isinstance(self.range_low, QuantityValue):
+            self.range_low = QuantityValue(**as_dict(self.range_low))
+
+        if self.range_high is not None and not isinstance(self.range_high, QuantityValue):
+            self.range_high = QuantityValue(**as_dict(self.range_high))
+
+        if self.measured_entity is not None and not isinstance(self.measured_entity, NamedEntity):
+            self.measured_entity = NamedEntity(**as_dict(self.measured_entity))
+
+        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
+            self.measurement_method = str(self.measurement_method)
+
+        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
+            self.measurement_date = XSDDate(self.measurement_date)
+
+        if self.uses is not None and not isinstance(self.uses, Assay):
+            self.uses = Assay(**as_dict(self.uses))
+
+        if self.cell_culture_system is not None and not isinstance(self.cell_culture_system, str):
+            self.cell_culture_system = str(self.cell_culture_system)
+
+        if self.days_at_differentiation is not None and not isinstance(self.days_at_differentiation, int):
+            self.days_at_differentiation = int(self.days_at_differentiation)
+
+        if self.passage_number is not None and not isinstance(self.passage_number, int):
+            self.passage_number = int(self.passage_number)
+
+        if self.substrate_type is not None and not isinstance(self.substrate_type, str):
+            self.substrate_type = str(self.substrate_type)
+
+        if self.donor_info is not None and not isinstance(self.donor_info, str):
+            self.donor_info = str(self.donor_info)
+
+        if self.replicates_per_donor is not None and not isinstance(self.replicates_per_donor, int):
+            self.replicates_per_donor = int(self.replicates_per_donor)
+
+        if self.culture_medium is not None and not isinstance(self.culture_medium, str):
+            self.culture_medium = str(self.culture_medium)
+
+        if self.participant is not None and not isinstance(self.participant, NamedEntity):
+            self.participant = NamedEntity(**as_dict(self.participant))
+
+        if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
+            self.sample_type = SampleTypeEnum(self.sample_type)
+
+        if self.collection_site is not None and not isinstance(self.collection_site, str):
+            self.collection_site = str(self.collection_site)
+
+        if self.collection_date is not None and not isinstance(self.collection_date, XSDDate):
+            self.collection_date = XSDDate(self.collection_date)
+
+        if self.subject_characteristics is not None and not isinstance(self.subject_characteristics, str):
+            self.subject_characteristics = str(self.subject_characteristics)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class ExposureMaterial(NamedThing):
+class OxidativeStressMeasurement(YAMLRoot):
     """
-    Detailed specification of the test article or substance used in an exposure experiment. Extends chemical entity
-    information with physical form, purity, and particle properties relevant for toxicology studies.
+    Measurement of oxidative stress markers including reactive oxygen species, lipid peroxidation products, protein
+    oxidation, DNA damage, and antioxidant capacity. Key molecular initiating event in respiratory toxicology AOPs.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["ExposureMaterial"]
-    class_class_curie: ClassVar[str] = "owg:ExposureMaterial"
-    class_name: ClassVar[str] = "ExposureMaterial"
-    class_model_uri: ClassVar[URIRef] = OWG.ExposureMaterial
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_MICROSCHEMAS["OxidativeStressMeasurement"]
+    class_class_curie: ClassVar[str] = "measurement_microschemas:OxidativeStressMeasurement"
+    class_name: ClassVar[str] = "OxidativeStressMeasurement"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.OxidativeStressMeasurement
 
-    id: Union[str, ExposureMaterialId] = None
-    test_substance: Optional[Union[dict, ChemicalEntity]] = None
-    chemical_form: Optional[Union[str, "ChemicalFormEnum"]] = None
-    nominal_concentration: Optional[Union[dict, QuantityValue]] = None
-    applied_dose: Optional[Union[dict, QuantityValue]] = None
-    purity: Optional[Union[dict, QuantityValue]] = None
-    composition: Optional[str] = None
-    vehicle_solvent: Optional[str] = None
-    particle_properties: Optional[Union[dict, "ParticleProperties"]] = None
-    source_lot_number: Optional[str] = None
-    manufacturer: Optional[str] = None
-    catalog_number: Optional[str] = None
+    id: Union[str, OxidativeStressMeasurementId] = None
+    observation_type: Optional[Union[str, "OxidativeStressObservationTypeEnum"]] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    quantity_measured: Optional[Union[dict, QuantityValue]] = None
+    range_low: Optional[Union[dict, QuantityValue]] = None
+    range_high: Optional[Union[dict, QuantityValue]] = None
+    measured_entity: Optional[Union[dict, NamedEntity]] = None
+    measurement_method: Optional[str] = None
+    measurement_date: Optional[Union[str, XSDDate]] = None
+    uses: Optional[Union[dict, Assay]] = None
+    cell_culture_system: Optional[str] = None
+    days_at_differentiation: Optional[int] = None
+    passage_number: Optional[int] = None
+    substrate_type: Optional[str] = None
+    donor_info: Optional[str] = None
+    replicates_per_donor: Optional[int] = None
+    culture_medium: Optional[str] = None
+    participant: Optional[Union[dict, NamedEntity]] = None
+    sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
+    collection_site: Optional[str] = None
+    collection_date: Optional[Union[str, XSDDate]] = None
+    subject_characteristics: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, ExposureMaterialId):
-            self.id = ExposureMaterialId(self.id)
+        if not isinstance(self.id, OxidativeStressMeasurementId):
+            self.id = OxidativeStressMeasurementId(self.id)
 
-        if self.test_substance is not None and not isinstance(self.test_substance, ChemicalEntity):
-            self.test_substance = ChemicalEntity(**as_dict(self.test_substance))
+        if self.observation_type is not None and not isinstance(self.observation_type, OxidativeStressObservationTypeEnum):
+            self.observation_type = OxidativeStressObservationTypeEnum(self.observation_type)
 
-        if self.chemical_form is not None and not isinstance(self.chemical_form, ChemicalFormEnum):
-            self.chemical_form = ChemicalFormEnum(self.chemical_form)
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
-        if self.nominal_concentration is not None and not isinstance(self.nominal_concentration, QuantityValue):
-            self.nominal_concentration = QuantityValue(**as_dict(self.nominal_concentration))
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
-        if self.applied_dose is not None and not isinstance(self.applied_dose, QuantityValue):
-            self.applied_dose = QuantityValue(**as_dict(self.applied_dose))
+        if self.quantity_measured is not None and not isinstance(self.quantity_measured, QuantityValue):
+            self.quantity_measured = QuantityValue(**as_dict(self.quantity_measured))
 
-        if self.purity is not None and not isinstance(self.purity, QuantityValue):
-            self.purity = QuantityValue(**as_dict(self.purity))
+        if self.range_low is not None and not isinstance(self.range_low, QuantityValue):
+            self.range_low = QuantityValue(**as_dict(self.range_low))
 
-        if self.composition is not None and not isinstance(self.composition, str):
-            self.composition = str(self.composition)
+        if self.range_high is not None and not isinstance(self.range_high, QuantityValue):
+            self.range_high = QuantityValue(**as_dict(self.range_high))
 
-        if self.vehicle_solvent is not None and not isinstance(self.vehicle_solvent, str):
-            self.vehicle_solvent = str(self.vehicle_solvent)
+        if self.measured_entity is not None and not isinstance(self.measured_entity, NamedEntity):
+            self.measured_entity = NamedEntity(**as_dict(self.measured_entity))
 
-        if self.particle_properties is not None and not isinstance(self.particle_properties, ParticleProperties):
-            self.particle_properties = ParticleProperties(**as_dict(self.particle_properties))
+        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
+            self.measurement_method = str(self.measurement_method)
 
-        if self.source_lot_number is not None and not isinstance(self.source_lot_number, str):
-            self.source_lot_number = str(self.source_lot_number)
+        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
+            self.measurement_date = XSDDate(self.measurement_date)
 
-        if self.manufacturer is not None and not isinstance(self.manufacturer, str):
-            self.manufacturer = str(self.manufacturer)
+        if self.uses is not None and not isinstance(self.uses, Assay):
+            self.uses = Assay(**as_dict(self.uses))
 
-        if self.catalog_number is not None and not isinstance(self.catalog_number, str):
-            self.catalog_number = str(self.catalog_number)
+        if self.cell_culture_system is not None and not isinstance(self.cell_culture_system, str):
+            self.cell_culture_system = str(self.cell_culture_system)
+
+        if self.days_at_differentiation is not None and not isinstance(self.days_at_differentiation, int):
+            self.days_at_differentiation = int(self.days_at_differentiation)
+
+        if self.passage_number is not None and not isinstance(self.passage_number, int):
+            self.passage_number = int(self.passage_number)
+
+        if self.substrate_type is not None and not isinstance(self.substrate_type, str):
+            self.substrate_type = str(self.substrate_type)
+
+        if self.donor_info is not None and not isinstance(self.donor_info, str):
+            self.donor_info = str(self.donor_info)
+
+        if self.replicates_per_donor is not None and not isinstance(self.replicates_per_donor, int):
+            self.replicates_per_donor = int(self.replicates_per_donor)
+
+        if self.culture_medium is not None and not isinstance(self.culture_medium, str):
+            self.culture_medium = str(self.culture_medium)
+
+        if self.participant is not None and not isinstance(self.participant, NamedEntity):
+            self.participant = NamedEntity(**as_dict(self.participant))
+
+        if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
+            self.sample_type = SampleTypeEnum(self.sample_type)
+
+        if self.collection_site is not None and not isinstance(self.collection_site, str):
+            self.collection_site = str(self.collection_site)
+
+        if self.collection_date is not None and not isinstance(self.collection_date, XSDDate):
+            self.collection_date = XSDDate(self.collection_date)
+
+        if self.subject_characteristics is not None and not isinstance(self.subject_characteristics, str):
+            self.subject_characteristics = str(self.subject_characteristics)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class ParticleProperties(NamedThing):
+class CFTRMeasurement(YAMLRoot):
     """
-    Physical and chemical properties of particulate test materials including nanoparticles, aerosols, and other
-    particle-based exposures. Essential for characterizing inhaled toxicants and nanomaterials.
+    Measurement of CFTR (cystic fibrosis transmembrane conductance regulator) function including chloride secretion,
+    CFTR-mediated current, and clinical indicators like sweat chloride concentration.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["ParticleProperties"]
-    class_class_curie: ClassVar[str] = "owg:ParticleProperties"
-    class_name: ClassVar[str] = "ParticleProperties"
-    class_model_uri: ClassVar[URIRef] = OWG.ParticleProperties
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_MICROSCHEMAS["CFTRMeasurement"]
+    class_class_curie: ClassVar[str] = "measurement_microschemas:CFTRMeasurement"
+    class_name: ClassVar[str] = "CFTRMeasurement"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.CFTRMeasurement
 
-    id: Union[str, ParticlePropertiesId] = None
-    particle_size: Optional[Union[dict, QuantityValue]] = None
-    particle_size_distribution: Optional[str] = None
-    surface_area: Optional[Union[dict, QuantityValue]] = None
-    zeta_potential: Optional[Union[dict, QuantityValue]] = None
-    hydrodynamic_diameter: Optional[Union[dict, QuantityValue]] = None
-    polydispersity_index: Optional[float] = None
-    particle_morphology: Optional[str] = None
-    particle_composition: Optional[str] = None
-    agglomeration_state: Optional[str] = None
+    id: Union[str, CFTRMeasurementId] = None
+    observation_type: Optional[Union[str, "CFTRObservationTypeEnum"]] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    quantity_measured: Optional[Union[dict, QuantityValue]] = None
+    range_low: Optional[Union[dict, QuantityValue]] = None
+    range_high: Optional[Union[dict, QuantityValue]] = None
+    measured_entity: Optional[Union[dict, NamedEntity]] = None
+    measurement_method: Optional[str] = None
+    measurement_date: Optional[Union[str, XSDDate]] = None
+    uses: Optional[Union[dict, Assay]] = None
+    cell_culture_system: Optional[str] = None
+    days_at_differentiation: Optional[int] = None
+    passage_number: Optional[int] = None
+    substrate_type: Optional[str] = None
+    donor_info: Optional[str] = None
+    replicates_per_donor: Optional[int] = None
+    culture_medium: Optional[str] = None
+    participant: Optional[Union[dict, NamedEntity]] = None
+    sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
+    collection_site: Optional[str] = None
+    collection_date: Optional[Union[str, XSDDate]] = None
+    subject_characteristics: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, ParticlePropertiesId):
-            self.id = ParticlePropertiesId(self.id)
+        if not isinstance(self.id, CFTRMeasurementId):
+            self.id = CFTRMeasurementId(self.id)
 
-        if self.particle_size is not None and not isinstance(self.particle_size, QuantityValue):
-            self.particle_size = QuantityValue(**as_dict(self.particle_size))
+        if self.observation_type is not None and not isinstance(self.observation_type, CFTRObservationTypeEnum):
+            self.observation_type = CFTRObservationTypeEnum(self.observation_type)
 
-        if self.particle_size_distribution is not None and not isinstance(self.particle_size_distribution, str):
-            self.particle_size_distribution = str(self.particle_size_distribution)
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
-        if self.surface_area is not None and not isinstance(self.surface_area, QuantityValue):
-            self.surface_area = QuantityValue(**as_dict(self.surface_area))
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
-        if self.zeta_potential is not None and not isinstance(self.zeta_potential, QuantityValue):
-            self.zeta_potential = QuantityValue(**as_dict(self.zeta_potential))
+        if self.quantity_measured is not None and not isinstance(self.quantity_measured, QuantityValue):
+            self.quantity_measured = QuantityValue(**as_dict(self.quantity_measured))
 
-        if self.hydrodynamic_diameter is not None and not isinstance(self.hydrodynamic_diameter, QuantityValue):
-            self.hydrodynamic_diameter = QuantityValue(**as_dict(self.hydrodynamic_diameter))
+        if self.range_low is not None and not isinstance(self.range_low, QuantityValue):
+            self.range_low = QuantityValue(**as_dict(self.range_low))
 
-        if self.polydispersity_index is not None and not isinstance(self.polydispersity_index, float):
-            self.polydispersity_index = float(self.polydispersity_index)
+        if self.range_high is not None and not isinstance(self.range_high, QuantityValue):
+            self.range_high = QuantityValue(**as_dict(self.range_high))
 
-        if self.particle_morphology is not None and not isinstance(self.particle_morphology, str):
-            self.particle_morphology = str(self.particle_morphology)
+        if self.measured_entity is not None and not isinstance(self.measured_entity, NamedEntity):
+            self.measured_entity = NamedEntity(**as_dict(self.measured_entity))
 
-        if self.particle_composition is not None and not isinstance(self.particle_composition, str):
-            self.particle_composition = str(self.particle_composition)
+        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
+            self.measurement_method = str(self.measurement_method)
 
-        if self.agglomeration_state is not None and not isinstance(self.agglomeration_state, str):
-            self.agglomeration_state = str(self.agglomeration_state)
+        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
+            self.measurement_date = XSDDate(self.measurement_date)
+
+        if self.uses is not None and not isinstance(self.uses, Assay):
+            self.uses = Assay(**as_dict(self.uses))
+
+        if self.cell_culture_system is not None and not isinstance(self.cell_culture_system, str):
+            self.cell_culture_system = str(self.cell_culture_system)
+
+        if self.days_at_differentiation is not None and not isinstance(self.days_at_differentiation, int):
+            self.days_at_differentiation = int(self.days_at_differentiation)
+
+        if self.passage_number is not None and not isinstance(self.passage_number, int):
+            self.passage_number = int(self.passage_number)
+
+        if self.substrate_type is not None and not isinstance(self.substrate_type, str):
+            self.substrate_type = str(self.substrate_type)
+
+        if self.donor_info is not None and not isinstance(self.donor_info, str):
+            self.donor_info = str(self.donor_info)
+
+        if self.replicates_per_donor is not None and not isinstance(self.replicates_per_donor, int):
+            self.replicates_per_donor = int(self.replicates_per_donor)
+
+        if self.culture_medium is not None and not isinstance(self.culture_medium, str):
+            self.culture_medium = str(self.culture_medium)
+
+        if self.participant is not None and not isinstance(self.participant, NamedEntity):
+            self.participant = NamedEntity(**as_dict(self.participant))
+
+        if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
+            self.sample_type = SampleTypeEnum(self.sample_type)
+
+        if self.collection_site is not None and not isinstance(self.collection_site, str):
+            self.collection_site = str(self.collection_site)
+
+        if self.collection_date is not None and not isinstance(self.collection_date, XSDDate):
+            self.collection_date = XSDDate(self.collection_date)
+
+        if self.subject_characteristics is not None and not isinstance(self.subject_characteristics, str):
+            self.subject_characteristics = str(self.subject_characteristics)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class InVitroExposure(ExposureEvent):
+class EGFRMeasurement(YAMLRoot):
     """
-    An in vitro exposure event describing how cells or tissues were exposed to a test substance. Captures exposure
-    timing, frequency, aerosol generation parameters, and other in vitro-specific details.
+    Measurement of EGFR (epidermal growth factor receptor) pathway activation including receptor phosphorylation,
+    downstream kinase activation, and ligand expression. Key signaling pathway in airway inflammation and mucin
+    regulation.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["InVitroExposure"]
-    class_class_curie: ClassVar[str] = "owg:InVitroExposure"
-    class_name: ClassVar[str] = "InVitroExposure"
-    class_model_uri: ClassVar[URIRef] = OWG.InVitroExposure
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_MICROSCHEMAS["EGFRMeasurement"]
+    class_class_curie: ClassVar[str] = "measurement_microschemas:EGFRMeasurement"
+    class_name: ClassVar[str] = "EGFRMeasurement"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.EGFRMeasurement
 
-    id: Union[str, InVitroExposureId] = None
-    exposure_material: Optional[Union[dict, ExposureMaterial]] = None
-    exposure_frequency: Optional[str] = None
-    exposure_regiment: Optional[Union[str, "ExposureRegimentEnum"]] = None
-    time_post_exposure: Optional[Union[dict, QuantityValue]] = None
-    exposure_temperature: Optional[Union[dict, QuantityValue]] = None
-    control_description: Optional[str] = None
-    control_type: Optional[Union[str, "ControlTypeEnum"]] = None
-    number_of_replicates: Optional[int] = None
-    effective_deposition: Optional[Union[dict, QuantityValue]] = None
-    deposited_dose: Optional[Union[dict, QuantityValue]] = None
-    baseline_teer: Optional[Union[dict, QuantityValue]] = None
-    aerosol_generation: Optional[Union[dict, "AerosolGeneration"]] = None
-    sample_preparation: Optional[Union[dict, "SamplePreparation"]] = None
-    dose_normalization_method: Optional[Union[str, "DoseNormalizationMethodEnum"]] = None
+    id: Union[str, EGFRMeasurementId] = None
+    observation_type: Optional[Union[str, "EGFRObservationTypeEnum"]] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    quantity_measured: Optional[Union[dict, QuantityValue]] = None
+    range_low: Optional[Union[dict, QuantityValue]] = None
+    range_high: Optional[Union[dict, QuantityValue]] = None
+    measured_entity: Optional[Union[dict, NamedEntity]] = None
+    measurement_method: Optional[str] = None
+    measurement_date: Optional[Union[str, XSDDate]] = None
+    uses: Optional[Union[dict, Assay]] = None
+    cell_culture_system: Optional[str] = None
+    days_at_differentiation: Optional[int] = None
+    passage_number: Optional[int] = None
+    substrate_type: Optional[str] = None
+    donor_info: Optional[str] = None
+    replicates_per_donor: Optional[int] = None
+    culture_medium: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, InVitroExposureId):
-            self.id = InVitroExposureId(self.id)
+        if not isinstance(self.id, EGFRMeasurementId):
+            self.id = EGFRMeasurementId(self.id)
 
-        if self.exposure_material is not None and not isinstance(self.exposure_material, ExposureMaterial):
-            self.exposure_material = ExposureMaterial(**as_dict(self.exposure_material))
+        if self.observation_type is not None and not isinstance(self.observation_type, EGFRObservationTypeEnum):
+            self.observation_type = EGFRObservationTypeEnum(self.observation_type)
 
-        if self.exposure_frequency is not None and not isinstance(self.exposure_frequency, str):
-            self.exposure_frequency = str(self.exposure_frequency)
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
-        if self.exposure_regiment is not None and not isinstance(self.exposure_regiment, ExposureRegimentEnum):
-            self.exposure_regiment = ExposureRegimentEnum(self.exposure_regiment)
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
-        if self.time_post_exposure is not None and not isinstance(self.time_post_exposure, QuantityValue):
-            self.time_post_exposure = QuantityValue(**as_dict(self.time_post_exposure))
+        if self.quantity_measured is not None and not isinstance(self.quantity_measured, QuantityValue):
+            self.quantity_measured = QuantityValue(**as_dict(self.quantity_measured))
 
-        if self.exposure_temperature is not None and not isinstance(self.exposure_temperature, QuantityValue):
-            self.exposure_temperature = QuantityValue(**as_dict(self.exposure_temperature))
+        if self.range_low is not None and not isinstance(self.range_low, QuantityValue):
+            self.range_low = QuantityValue(**as_dict(self.range_low))
 
-        if self.control_description is not None and not isinstance(self.control_description, str):
-            self.control_description = str(self.control_description)
+        if self.range_high is not None and not isinstance(self.range_high, QuantityValue):
+            self.range_high = QuantityValue(**as_dict(self.range_high))
 
-        if self.control_type is not None and not isinstance(self.control_type, ControlTypeEnum):
-            self.control_type = ControlTypeEnum(self.control_type)
+        if self.measured_entity is not None and not isinstance(self.measured_entity, NamedEntity):
+            self.measured_entity = NamedEntity(**as_dict(self.measured_entity))
 
-        if self.number_of_replicates is not None and not isinstance(self.number_of_replicates, int):
-            self.number_of_replicates = int(self.number_of_replicates)
+        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
+            self.measurement_method = str(self.measurement_method)
 
-        if self.effective_deposition is not None and not isinstance(self.effective_deposition, QuantityValue):
-            self.effective_deposition = QuantityValue(**as_dict(self.effective_deposition))
+        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
+            self.measurement_date = XSDDate(self.measurement_date)
 
-        if self.deposited_dose is not None and not isinstance(self.deposited_dose, QuantityValue):
-            self.deposited_dose = QuantityValue(**as_dict(self.deposited_dose))
+        if self.uses is not None and not isinstance(self.uses, Assay):
+            self.uses = Assay(**as_dict(self.uses))
 
-        if self.baseline_teer is not None and not isinstance(self.baseline_teer, QuantityValue):
-            self.baseline_teer = QuantityValue(**as_dict(self.baseline_teer))
+        if self.cell_culture_system is not None and not isinstance(self.cell_culture_system, str):
+            self.cell_culture_system = str(self.cell_culture_system)
 
-        if self.aerosol_generation is not None and not isinstance(self.aerosol_generation, AerosolGeneration):
-            self.aerosol_generation = AerosolGeneration(**as_dict(self.aerosol_generation))
+        if self.days_at_differentiation is not None and not isinstance(self.days_at_differentiation, int):
+            self.days_at_differentiation = int(self.days_at_differentiation)
 
-        if self.sample_preparation is not None and not isinstance(self.sample_preparation, SamplePreparation):
-            self.sample_preparation = SamplePreparation(**as_dict(self.sample_preparation))
+        if self.passage_number is not None and not isinstance(self.passage_number, int):
+            self.passage_number = int(self.passage_number)
 
-        if self.dose_normalization_method is not None and not isinstance(self.dose_normalization_method, DoseNormalizationMethodEnum):
-            self.dose_normalization_method = DoseNormalizationMethodEnum(self.dose_normalization_method)
+        if self.substrate_type is not None and not isinstance(self.substrate_type, str):
+            self.substrate_type = str(self.substrate_type)
+
+        if self.donor_info is not None and not isinstance(self.donor_info, str):
+            self.donor_info = str(self.donor_info)
+
+        if self.replicates_per_donor is not None and not isinstance(self.replicates_per_donor, int):
+            self.replicates_per_donor = int(self.replicates_per_donor)
+
+        if self.culture_medium is not None and not isinstance(self.culture_medium, str):
+            self.culture_medium = str(self.culture_medium)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class AerosolGeneration(NamedThing):
+class GobletCellMucinMeasurement(YAMLRoot):
     """
-    Parameters describing aerosol generation for inhalation toxicology studies. Includes generation method, equipment,
-    and characterization of the generated aerosol for air-liquid interface and other exposure systems.
+    Measurement of goblet cell populations and mucin production including goblet cell counts, mucin gene/protein
+    expression, and mucus properties. Assesses goblet cell hyperplasia and mucus hypersecretion phenotypes.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["AerosolGeneration"]
-    class_class_curie: ClassVar[str] = "owg:AerosolGeneration"
-    class_name: ClassVar[str] = "AerosolGeneration"
-    class_model_uri: ClassVar[URIRef] = OWG.AerosolGeneration
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_MICROSCHEMAS["GobletCellMucinMeasurement"]
+    class_class_curie: ClassVar[str] = "measurement_microschemas:GobletCellMucinMeasurement"
+    class_name: ClassVar[str] = "GobletCellMucinMeasurement"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.GobletCellMucinMeasurement
 
-    id: Union[str, AerosolGenerationId] = None
-    aerosol_generation_method: Optional[Union[str, "AerosolGenerationMethodEnum"]] = None
-    aerosol_generation_equipment: Optional[str] = None
-    aerosol_concentration: Optional[Union[dict, QuantityValue]] = None
-    aerosol_flow_rate: Optional[Union[dict, QuantityValue]] = None
-    aerosol_exposure_duration: Optional[Union[dict, QuantityValue]] = None
-    mass_median_aerodynamic_diameter: Optional[Union[dict, QuantityValue]] = None
-    geometric_standard_deviation: Optional[float] = None
-    aerosol_characterization_method: Optional[str] = None
+    id: Union[str, GobletCellMucinMeasurementId] = None
+    observation_type: Optional[Union[str, "GobletCellMucinObservationTypeEnum"]] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    quantity_measured: Optional[Union[dict, QuantityValue]] = None
+    range_low: Optional[Union[dict, QuantityValue]] = None
+    range_high: Optional[Union[dict, QuantityValue]] = None
+    measured_entity: Optional[Union[dict, NamedEntity]] = None
+    measurement_method: Optional[str] = None
+    measurement_date: Optional[Union[str, XSDDate]] = None
+    uses: Optional[Union[dict, Assay]] = None
+    cell_culture_system: Optional[str] = None
+    days_at_differentiation: Optional[int] = None
+    passage_number: Optional[int] = None
+    substrate_type: Optional[str] = None
+    donor_info: Optional[str] = None
+    replicates_per_donor: Optional[int] = None
+    culture_medium: Optional[str] = None
+    participant: Optional[Union[dict, NamedEntity]] = None
+    sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
+    collection_site: Optional[str] = None
+    collection_date: Optional[Union[str, XSDDate]] = None
+    subject_characteristics: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, AerosolGenerationId):
-            self.id = AerosolGenerationId(self.id)
+        if not isinstance(self.id, GobletCellMucinMeasurementId):
+            self.id = GobletCellMucinMeasurementId(self.id)
 
-        if self.aerosol_generation_method is not None and not isinstance(self.aerosol_generation_method, AerosolGenerationMethodEnum):
-            self.aerosol_generation_method = AerosolGenerationMethodEnum(self.aerosol_generation_method)
+        if self.observation_type is not None and not isinstance(self.observation_type, GobletCellMucinObservationTypeEnum):
+            self.observation_type = GobletCellMucinObservationTypeEnum(self.observation_type)
 
-        if self.aerosol_generation_equipment is not None and not isinstance(self.aerosol_generation_equipment, str):
-            self.aerosol_generation_equipment = str(self.aerosol_generation_equipment)
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
-        if self.aerosol_concentration is not None and not isinstance(self.aerosol_concentration, QuantityValue):
-            self.aerosol_concentration = QuantityValue(**as_dict(self.aerosol_concentration))
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
-        if self.aerosol_flow_rate is not None and not isinstance(self.aerosol_flow_rate, QuantityValue):
-            self.aerosol_flow_rate = QuantityValue(**as_dict(self.aerosol_flow_rate))
+        if self.quantity_measured is not None and not isinstance(self.quantity_measured, QuantityValue):
+            self.quantity_measured = QuantityValue(**as_dict(self.quantity_measured))
 
-        if self.aerosol_exposure_duration is not None and not isinstance(self.aerosol_exposure_duration, QuantityValue):
-            self.aerosol_exposure_duration = QuantityValue(**as_dict(self.aerosol_exposure_duration))
+        if self.range_low is not None and not isinstance(self.range_low, QuantityValue):
+            self.range_low = QuantityValue(**as_dict(self.range_low))
 
-        if self.mass_median_aerodynamic_diameter is not None and not isinstance(self.mass_median_aerodynamic_diameter, QuantityValue):
-            self.mass_median_aerodynamic_diameter = QuantityValue(**as_dict(self.mass_median_aerodynamic_diameter))
+        if self.range_high is not None and not isinstance(self.range_high, QuantityValue):
+            self.range_high = QuantityValue(**as_dict(self.range_high))
 
-        if self.geometric_standard_deviation is not None and not isinstance(self.geometric_standard_deviation, float):
-            self.geometric_standard_deviation = float(self.geometric_standard_deviation)
+        if self.measured_entity is not None and not isinstance(self.measured_entity, NamedEntity):
+            self.measured_entity = NamedEntity(**as_dict(self.measured_entity))
 
-        if self.aerosol_characterization_method is not None and not isinstance(self.aerosol_characterization_method, str):
-            self.aerosol_characterization_method = str(self.aerosol_characterization_method)
+        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
+            self.measurement_method = str(self.measurement_method)
+
+        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
+            self.measurement_date = XSDDate(self.measurement_date)
+
+        if self.uses is not None and not isinstance(self.uses, Assay):
+            self.uses = Assay(**as_dict(self.uses))
+
+        if self.cell_culture_system is not None and not isinstance(self.cell_culture_system, str):
+            self.cell_culture_system = str(self.cell_culture_system)
+
+        if self.days_at_differentiation is not None and not isinstance(self.days_at_differentiation, int):
+            self.days_at_differentiation = int(self.days_at_differentiation)
+
+        if self.passage_number is not None and not isinstance(self.passage_number, int):
+            self.passage_number = int(self.passage_number)
+
+        if self.substrate_type is not None and not isinstance(self.substrate_type, str):
+            self.substrate_type = str(self.substrate_type)
+
+        if self.donor_info is not None and not isinstance(self.donor_info, str):
+            self.donor_info = str(self.donor_info)
+
+        if self.replicates_per_donor is not None and not isinstance(self.replicates_per_donor, int):
+            self.replicates_per_donor = int(self.replicates_per_donor)
+
+        if self.culture_medium is not None and not isinstance(self.culture_medium, str):
+            self.culture_medium = str(self.culture_medium)
+
+        if self.participant is not None and not isinstance(self.participant, NamedEntity):
+            self.participant = NamedEntity(**as_dict(self.participant))
+
+        if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
+            self.sample_type = SampleTypeEnum(self.sample_type)
+
+        if self.collection_site is not None and not isinstance(self.collection_site, str):
+            self.collection_site = str(self.collection_site)
+
+        if self.collection_date is not None and not isinstance(self.collection_date, XSDDate):
+            self.collection_date = XSDDate(self.collection_date)
+
+        if self.subject_characteristics is not None and not isinstance(self.subject_characteristics, str):
+            self.subject_characteristics = str(self.subject_characteristics)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class SamplePreparation(NamedThing):
+class BALFSputumMeasurement(YAMLRoot):
     """
-    Pre-exposure sample preparation procedures for in vitro systems. Includes ASL-specific preparations like mucus
-    removal and other treatments applied before exposure.
+    Measurement of bronchoalveolar lavage fluid (BALF) or sputum components including inflammatory cell profiles,
+    cytokine levels, microbiome composition, and protein concentrations. Clinical assessment of airway inflammation.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["SamplePreparation"]
-    class_class_curie: ClassVar[str] = "owg:SamplePreparation"
-    class_name: ClassVar[str] = "SamplePreparation"
-    class_model_uri: ClassVar[URIRef] = OWG.SamplePreparation
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_MICROSCHEMAS["BALFSputumMeasurement"]
+    class_class_curie: ClassVar[str] = "measurement_microschemas:BALFSputumMeasurement"
+    class_name: ClassVar[str] = "BALFSputumMeasurement"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.BALFSputumMeasurement
 
-    id: Union[str, SamplePreparationId] = None
-    mucus_removal_performed: Optional[Union[bool, Bool]] = None
-    mucus_removal_method: Optional[str] = None
-    debris_removal_performed: Optional[Union[bool, Bool]] = None
-    debris_removal_method: Optional[str] = None
-    wash_steps: Optional[str] = None
-    equilibration_time: Optional[Union[dict, QuantityValue]] = None
-    pre_exposure_treatment: Optional[str] = None
-    surface_preparation: Optional[str] = None
+    id: Union[str, BALFSputumMeasurementId] = None
+    observation_type: Optional[Union[str, "BALFSputumObservationTypeEnum"]] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    quantity_measured: Optional[Union[dict, QuantityValue]] = None
+    range_low: Optional[Union[dict, QuantityValue]] = None
+    range_high: Optional[Union[dict, QuantityValue]] = None
+    measured_entity: Optional[Union[dict, NamedEntity]] = None
+    measurement_method: Optional[str] = None
+    measurement_date: Optional[Union[str, XSDDate]] = None
+    uses: Optional[Union[dict, Assay]] = None
+    participant: Optional[Union[dict, NamedEntity]] = None
+    sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
+    collection_site: Optional[str] = None
+    collection_date: Optional[Union[str, XSDDate]] = None
+    subject_characteristics: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, SamplePreparationId):
-            self.id = SamplePreparationId(self.id)
+        if not isinstance(self.id, BALFSputumMeasurementId):
+            self.id = BALFSputumMeasurementId(self.id)
 
-        if self.mucus_removal_performed is not None and not isinstance(self.mucus_removal_performed, Bool):
-            self.mucus_removal_performed = Bool(self.mucus_removal_performed)
+        if self.observation_type is not None and not isinstance(self.observation_type, BALFSputumObservationTypeEnum):
+            self.observation_type = BALFSputumObservationTypeEnum(self.observation_type)
 
-        if self.mucus_removal_method is not None and not isinstance(self.mucus_removal_method, str):
-            self.mucus_removal_method = str(self.mucus_removal_method)
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
-        if self.debris_removal_performed is not None and not isinstance(self.debris_removal_performed, Bool):
-            self.debris_removal_performed = Bool(self.debris_removal_performed)
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
-        if self.debris_removal_method is not None and not isinstance(self.debris_removal_method, str):
-            self.debris_removal_method = str(self.debris_removal_method)
+        if self.quantity_measured is not None and not isinstance(self.quantity_measured, QuantityValue):
+            self.quantity_measured = QuantityValue(**as_dict(self.quantity_measured))
 
-        if self.wash_steps is not None and not isinstance(self.wash_steps, str):
-            self.wash_steps = str(self.wash_steps)
+        if self.range_low is not None and not isinstance(self.range_low, QuantityValue):
+            self.range_low = QuantityValue(**as_dict(self.range_low))
 
-        if self.equilibration_time is not None and not isinstance(self.equilibration_time, QuantityValue):
-            self.equilibration_time = QuantityValue(**as_dict(self.equilibration_time))
+        if self.range_high is not None and not isinstance(self.range_high, QuantityValue):
+            self.range_high = QuantityValue(**as_dict(self.range_high))
 
-        if self.pre_exposure_treatment is not None and not isinstance(self.pre_exposure_treatment, str):
-            self.pre_exposure_treatment = str(self.pre_exposure_treatment)
+        if self.measured_entity is not None and not isinstance(self.measured_entity, NamedEntity):
+            self.measured_entity = NamedEntity(**as_dict(self.measured_entity))
 
-        if self.surface_preparation is not None and not isinstance(self.surface_preparation, str):
-            self.surface_preparation = str(self.surface_preparation)
+        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
+            self.measurement_method = str(self.measurement_method)
+
+        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
+            self.measurement_date = XSDDate(self.measurement_date)
+
+        if self.uses is not None and not isinstance(self.uses, Assay):
+            self.uses = Assay(**as_dict(self.uses))
+
+        if self.participant is not None and not isinstance(self.participant, NamedEntity):
+            self.participant = NamedEntity(**as_dict(self.participant))
+
+        if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
+            self.sample_type = SampleTypeEnum(self.sample_type)
+
+        if self.collection_site is not None and not isinstance(self.collection_site, str):
+            self.collection_site = str(self.collection_site)
+
+        if self.collection_date is not None and not isinstance(self.collection_date, XSDDate):
+            self.collection_date = XSDDate(self.collection_date)
+
+        if self.subject_characteristics is not None and not isinstance(self.subject_characteristics, str):
+            self.subject_characteristics = str(self.subject_characteristics)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Analysis(NamedThing):
+class LungFunctionMeasurement(YAMLRoot):
     """
-    Data analysis and processing parameters describing how measurement data was acquired, processed, normalized, and
-    quality controlled. Links to measurements to provide complete provenance of derived values.
+    Measurement of lung function parameters via spirometry and other pulmonary function tests including FEV1, FVC,
+    FEV1/FVC ratio, and diffusing capacity. Clinical outcomes for respiratory health assessment.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["Analysis"]
-    class_class_curie: ClassVar[str] = "owg:Analysis"
-    class_name: ClassVar[str] = "Analysis"
-    class_model_uri: ClassVar[URIRef] = OWG.Analysis
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_MICROSCHEMAS["LungFunctionMeasurement"]
+    class_class_curie: ClassVar[str] = "measurement_microschemas:LungFunctionMeasurement"
+    class_name: ClassVar[str] = "LungFunctionMeasurement"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.LungFunctionMeasurement
 
-    id: Union[str, AnalysisId] = None
-    normalization_performed: Optional[Union[bool, Bool]] = None
-    data_normalization_method: Optional[Union[str, "DataNormalizationMethodEnum"]] = None
-    viability_normalized: Optional[Union[bool, Bool]] = None
-    baseline_definition: Optional[str] = None
-    dose_normalization_method: Optional[Union[str, "DoseNormalizationMethodEnum"]] = None
-    raw_data_type: Optional[Union[str, "RawDataTypeEnum"]] = None
-    analysis_software: Optional[str] = None
-    analysis_software_version: Optional[str] = None
-    automation_level: Optional[Union[str, "AutomationLevelEnum"]] = None
-    algorithm_type: Optional[str] = None
-    pipeline_reference: Optional[str] = None
-    data_transformation: Optional[Union[str, "DataTransformationEnum"]] = None
-    replicate_combination_method: Optional[Union[str, "ReplicateCombinationMethodEnum"]] = None
-    outlier_detection_method: Optional[str] = None
-    outlier_removal_performed: Optional[Union[bool, Bool]] = None
-    imaging_magnification: Optional[str] = None
-    pixel_size: Optional[Union[dict, QuantityValue]] = None
-    voxel_depth: Optional[Union[dict, QuantityValue]] = None
-    z_step_size: Optional[Union[dict, QuantityValue]] = None
-    number_of_z_slices: Optional[int] = None
-    temporal_resolution: Optional[Union[dict, QuantityValue]] = None
-    acquisition_duration: Optional[Union[dict, QuantityValue]] = None
-    motion_stabilization_applied: Optional[Union[bool, Bool]] = None
-    frame_rate: Optional[Union[dict, QuantityValue]] = None
-    flow_profile_during_imaging: Optional[str] = None
-    measurements_per_replicate: Optional[int] = None
-    qc_acceptance_criteria: Optional[str] = None
-    qc_passed: Optional[Union[bool, Bool]] = None
-    comparison_to_historical_controls: Optional[str] = None
-    final_metric: Optional[str] = None
-    final_metric_unit: Optional[Union[dict, Unit]] = None
+    id: Union[str, LungFunctionMeasurementId] = None
+    observation_type: Optional[Union[str, "LungFunctionObservationTypeEnum"]] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    quantity_measured: Optional[Union[dict, QuantityValue]] = None
+    range_low: Optional[Union[dict, QuantityValue]] = None
+    range_high: Optional[Union[dict, QuantityValue]] = None
+    measured_entity: Optional[Union[dict, NamedEntity]] = None
+    measurement_method: Optional[str] = None
+    measurement_date: Optional[Union[str, XSDDate]] = None
+    uses: Optional[Union[dict, Assay]] = None
+    participant: Optional[Union[dict, NamedEntity]] = None
+    sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
+    collection_site: Optional[str] = None
+    collection_date: Optional[Union[str, XSDDate]] = None
+    subject_characteristics: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, AnalysisId):
-            self.id = AnalysisId(self.id)
+        if not isinstance(self.id, LungFunctionMeasurementId):
+            self.id = LungFunctionMeasurementId(self.id)
 
-        if self.normalization_performed is not None and not isinstance(self.normalization_performed, Bool):
-            self.normalization_performed = Bool(self.normalization_performed)
+        if self.observation_type is not None and not isinstance(self.observation_type, LungFunctionObservationTypeEnum):
+            self.observation_type = LungFunctionObservationTypeEnum(self.observation_type)
 
-        if self.data_normalization_method is not None and not isinstance(self.data_normalization_method, DataNormalizationMethodEnum):
-            self.data_normalization_method = DataNormalizationMethodEnum(self.data_normalization_method)
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
-        if self.viability_normalized is not None and not isinstance(self.viability_normalized, Bool):
-            self.viability_normalized = Bool(self.viability_normalized)
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
-        if self.baseline_definition is not None and not isinstance(self.baseline_definition, str):
-            self.baseline_definition = str(self.baseline_definition)
+        if self.quantity_measured is not None and not isinstance(self.quantity_measured, QuantityValue):
+            self.quantity_measured = QuantityValue(**as_dict(self.quantity_measured))
 
-        if self.dose_normalization_method is not None and not isinstance(self.dose_normalization_method, DoseNormalizationMethodEnum):
-            self.dose_normalization_method = DoseNormalizationMethodEnum(self.dose_normalization_method)
+        if self.range_low is not None and not isinstance(self.range_low, QuantityValue):
+            self.range_low = QuantityValue(**as_dict(self.range_low))
 
-        if self.raw_data_type is not None and not isinstance(self.raw_data_type, RawDataTypeEnum):
-            self.raw_data_type = RawDataTypeEnum(self.raw_data_type)
+        if self.range_high is not None and not isinstance(self.range_high, QuantityValue):
+            self.range_high = QuantityValue(**as_dict(self.range_high))
 
-        if self.analysis_software is not None and not isinstance(self.analysis_software, str):
-            self.analysis_software = str(self.analysis_software)
+        if self.measured_entity is not None and not isinstance(self.measured_entity, NamedEntity):
+            self.measured_entity = NamedEntity(**as_dict(self.measured_entity))
 
-        if self.analysis_software_version is not None and not isinstance(self.analysis_software_version, str):
-            self.analysis_software_version = str(self.analysis_software_version)
+        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
+            self.measurement_method = str(self.measurement_method)
 
-        if self.automation_level is not None and not isinstance(self.automation_level, AutomationLevelEnum):
-            self.automation_level = AutomationLevelEnum(self.automation_level)
+        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
+            self.measurement_date = XSDDate(self.measurement_date)
 
-        if self.algorithm_type is not None and not isinstance(self.algorithm_type, str):
-            self.algorithm_type = str(self.algorithm_type)
+        if self.uses is not None and not isinstance(self.uses, Assay):
+            self.uses = Assay(**as_dict(self.uses))
 
-        if self.pipeline_reference is not None and not isinstance(self.pipeline_reference, str):
-            self.pipeline_reference = str(self.pipeline_reference)
+        if self.participant is not None and not isinstance(self.participant, NamedEntity):
+            self.participant = NamedEntity(**as_dict(self.participant))
 
-        if self.data_transformation is not None and not isinstance(self.data_transformation, DataTransformationEnum):
-            self.data_transformation = DataTransformationEnum(self.data_transformation)
+        if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
+            self.sample_type = SampleTypeEnum(self.sample_type)
 
-        if self.replicate_combination_method is not None and not isinstance(self.replicate_combination_method, ReplicateCombinationMethodEnum):
-            self.replicate_combination_method = ReplicateCombinationMethodEnum(self.replicate_combination_method)
+        if self.collection_site is not None and not isinstance(self.collection_site, str):
+            self.collection_site = str(self.collection_site)
 
-        if self.outlier_detection_method is not None and not isinstance(self.outlier_detection_method, str):
-            self.outlier_detection_method = str(self.outlier_detection_method)
+        if self.collection_date is not None and not isinstance(self.collection_date, XSDDate):
+            self.collection_date = XSDDate(self.collection_date)
 
-        if self.outlier_removal_performed is not None and not isinstance(self.outlier_removal_performed, Bool):
-            self.outlier_removal_performed = Bool(self.outlier_removal_performed)
-
-        if self.imaging_magnification is not None and not isinstance(self.imaging_magnification, str):
-            self.imaging_magnification = str(self.imaging_magnification)
-
-        if self.pixel_size is not None and not isinstance(self.pixel_size, QuantityValue):
-            self.pixel_size = QuantityValue(**as_dict(self.pixel_size))
-
-        if self.voxel_depth is not None and not isinstance(self.voxel_depth, QuantityValue):
-            self.voxel_depth = QuantityValue(**as_dict(self.voxel_depth))
-
-        if self.z_step_size is not None and not isinstance(self.z_step_size, QuantityValue):
-            self.z_step_size = QuantityValue(**as_dict(self.z_step_size))
-
-        if self.number_of_z_slices is not None and not isinstance(self.number_of_z_slices, int):
-            self.number_of_z_slices = int(self.number_of_z_slices)
-
-        if self.temporal_resolution is not None and not isinstance(self.temporal_resolution, QuantityValue):
-            self.temporal_resolution = QuantityValue(**as_dict(self.temporal_resolution))
-
-        if self.acquisition_duration is not None and not isinstance(self.acquisition_duration, QuantityValue):
-            self.acquisition_duration = QuantityValue(**as_dict(self.acquisition_duration))
-
-        if self.motion_stabilization_applied is not None and not isinstance(self.motion_stabilization_applied, Bool):
-            self.motion_stabilization_applied = Bool(self.motion_stabilization_applied)
-
-        if self.frame_rate is not None and not isinstance(self.frame_rate, QuantityValue):
-            self.frame_rate = QuantityValue(**as_dict(self.frame_rate))
-
-        if self.flow_profile_during_imaging is not None and not isinstance(self.flow_profile_during_imaging, str):
-            self.flow_profile_during_imaging = str(self.flow_profile_during_imaging)
-
-        if self.measurements_per_replicate is not None and not isinstance(self.measurements_per_replicate, int):
-            self.measurements_per_replicate = int(self.measurements_per_replicate)
-
-        if self.qc_acceptance_criteria is not None and not isinstance(self.qc_acceptance_criteria, str):
-            self.qc_acceptance_criteria = str(self.qc_acceptance_criteria)
-
-        if self.qc_passed is not None and not isinstance(self.qc_passed, Bool):
-            self.qc_passed = Bool(self.qc_passed)
-
-        if self.comparison_to_historical_controls is not None and not isinstance(self.comparison_to_historical_controls, str):
-            self.comparison_to_historical_controls = str(self.comparison_to_historical_controls)
-
-        if self.final_metric is not None and not isinstance(self.final_metric, str):
-            self.final_metric = str(self.final_metric)
-
-        if self.final_metric_unit is not None and not isinstance(self.final_metric_unit, Unit):
-            self.final_metric_unit = Unit(**as_dict(self.final_metric_unit))
+        if self.subject_characteristics is not None and not isinstance(self.subject_characteristics, str):
+            self.subject_characteristics = str(self.subject_characteristics)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Gene(BiologicalEntity):
+class FoxJMeasurement(YAMLRoot):
     """
-    A gene or genetic element
+    Measurement of FoxJ1 expression and related ciliogenesis markers. FoxJ1 is a master regulator of
+    multiciliogenesis, and its expression indicates ciliated cell differentiation status.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["Gene"]
-    class_class_curie: ClassVar[str] = "owg:Gene"
-    class_name: ClassVar[str] = "Gene"
-    class_model_uri: ClassVar[URIRef] = OWG.Gene
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_MICROSCHEMAS["FoxJMeasurement"]
+    class_class_curie: ClassVar[str] = "measurement_microschemas:FoxJMeasurement"
+    class_name: ClassVar[str] = "FoxJMeasurement"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.FoxJMeasurement
 
-    id: Union[str, GeneId] = None
-    ncbigene_id: Optional[str] = None
-    symbol: Optional[str] = None
-    in_taxon: Optional[str] = None
+    id: Union[str, FoxJMeasurementId] = None
+    observation_type: Optional[Union[str, "FoxJObservationTypeEnum"]] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    quantity_measured: Optional[Union[dict, QuantityValue]] = None
+    range_low: Optional[Union[dict, QuantityValue]] = None
+    range_high: Optional[Union[dict, QuantityValue]] = None
+    measured_entity: Optional[Union[dict, NamedEntity]] = None
+    measurement_method: Optional[str] = None
+    measurement_date: Optional[Union[str, XSDDate]] = None
+    uses: Optional[Union[dict, Assay]] = None
+    cell_culture_system: Optional[str] = None
+    days_at_differentiation: Optional[int] = None
+    passage_number: Optional[int] = None
+    substrate_type: Optional[str] = None
+    donor_info: Optional[str] = None
+    replicates_per_donor: Optional[int] = None
+    culture_medium: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, GeneId):
-            self.id = GeneId(self.id)
+        if not isinstance(self.id, FoxJMeasurementId):
+            self.id = FoxJMeasurementId(self.id)
 
-        if self.ncbigene_id is not None and not isinstance(self.ncbigene_id, str):
-            self.ncbigene_id = str(self.ncbigene_id)
+        if self.observation_type is not None and not isinstance(self.observation_type, FoxJObservationTypeEnum):
+            self.observation_type = FoxJObservationTypeEnum(self.observation_type)
 
-        if self.symbol is not None and not isinstance(self.symbol, str):
-            self.symbol = str(self.symbol)
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
-        if self.in_taxon is not None and not isinstance(self.in_taxon, str):
-            self.in_taxon = str(self.in_taxon)
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if self.quantity_measured is not None and not isinstance(self.quantity_measured, QuantityValue):
+            self.quantity_measured = QuantityValue(**as_dict(self.quantity_measured))
+
+        if self.range_low is not None and not isinstance(self.range_low, QuantityValue):
+            self.range_low = QuantityValue(**as_dict(self.range_low))
+
+        if self.range_high is not None and not isinstance(self.range_high, QuantityValue):
+            self.range_high = QuantityValue(**as_dict(self.range_high))
+
+        if self.measured_entity is not None and not isinstance(self.measured_entity, NamedEntity):
+            self.measured_entity = NamedEntity(**as_dict(self.measured_entity))
+
+        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
+            self.measurement_method = str(self.measurement_method)
+
+        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
+            self.measurement_date = XSDDate(self.measurement_date)
+
+        if self.uses is not None and not isinstance(self.uses, Assay):
+            self.uses = Assay(**as_dict(self.uses))
+
+        if self.cell_culture_system is not None and not isinstance(self.cell_culture_system, str):
+            self.cell_culture_system = str(self.cell_culture_system)
+
+        if self.days_at_differentiation is not None and not isinstance(self.days_at_differentiation, int):
+            self.days_at_differentiation = int(self.days_at_differentiation)
+
+        if self.passage_number is not None and not isinstance(self.passage_number, int):
+            self.passage_number = int(self.passage_number)
+
+        if self.substrate_type is not None and not isinstance(self.substrate_type, str):
+            self.substrate_type = str(self.substrate_type)
+
+        if self.donor_info is not None and not isinstance(self.donor_info, str):
+            self.donor_info = str(self.donor_info)
+
+        if self.replicates_per_donor is not None and not isinstance(self.replicates_per_donor, int):
+            self.replicates_per_donor = int(self.replicates_per_donor)
+
+        if self.culture_medium is not None and not isinstance(self.culture_medium, str):
+            self.culture_medium = str(self.culture_medium)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Protein(BiologicalEntity):
+class ExposureBiomarkerMeasurement(YAMLRoot):
     """
-    A protein or polypeptide
+    Measurement of biomarkers indicating exposure to environmental agents including urinary metabolites (e.g.,
+    cotinine for tobacco smoke), blood levels, and other exposure indicators.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OWG["Protein"]
-    class_class_curie: ClassVar[str] = "owg:Protein"
-    class_name: ClassVar[str] = "Protein"
-    class_model_uri: ClassVar[URIRef] = OWG.Protein
+    class_class_uri: ClassVar[URIRef] = MEASUREMENT_MICROSCHEMAS["ExposureBiomarkerMeasurement"]
+    class_class_curie: ClassVar[str] = "measurement_microschemas:ExposureBiomarkerMeasurement"
+    class_name: ClassVar[str] = "ExposureBiomarkerMeasurement"
+    class_model_uri: ClassVar[URIRef] = OUTCOMES_WORKING_GROUP.ExposureBiomarkerMeasurement
 
-    id: Union[str, ProteinId] = None
-    encoded_by_gene: Optional[Union[dict, Gene]] = None
-    symbol: Optional[str] = None
-    in_taxon: Optional[str] = None
+    id: Union[str, ExposureBiomarkerMeasurementId] = None
+    observation_type: Optional[Union[str, "ExposureBiomarkerObservationTypeEnum"]] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    quantity_measured: Optional[Union[dict, QuantityValue]] = None
+    range_low: Optional[Union[dict, QuantityValue]] = None
+    range_high: Optional[Union[dict, QuantityValue]] = None
+    measured_entity: Optional[Union[dict, NamedEntity]] = None
+    measurement_method: Optional[str] = None
+    measurement_date: Optional[Union[str, XSDDate]] = None
+    uses: Optional[Union[dict, Assay]] = None
+    participant: Optional[Union[dict, NamedEntity]] = None
+    sample_type: Optional[Union[str, "SampleTypeEnum"]] = None
+    collection_site: Optional[str] = None
+    collection_date: Optional[Union[str, XSDDate]] = None
+    subject_characteristics: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, ProteinId):
-            self.id = ProteinId(self.id)
+        if not isinstance(self.id, ExposureBiomarkerMeasurementId):
+            self.id = ExposureBiomarkerMeasurementId(self.id)
 
-        if self.encoded_by_gene is not None and not isinstance(self.encoded_by_gene, Gene):
-            self.encoded_by_gene = Gene(**as_dict(self.encoded_by_gene))
+        if self.observation_type is not None and not isinstance(self.observation_type, ExposureBiomarkerObservationTypeEnum):
+            self.observation_type = ExposureBiomarkerObservationTypeEnum(self.observation_type)
 
-        if self.symbol is not None and not isinstance(self.symbol, str):
-            self.symbol = str(self.symbol)
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
-        if self.in_taxon is not None and not isinstance(self.in_taxon, str):
-            self.in_taxon = str(self.in_taxon)
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
-        super().__post_init__(**kwargs)
+        if self.quantity_measured is not None and not isinstance(self.quantity_measured, QuantityValue):
+            self.quantity_measured = QuantityValue(**as_dict(self.quantity_measured))
 
+        if self.range_low is not None and not isinstance(self.range_low, QuantityValue):
+            self.range_low = QuantityValue(**as_dict(self.range_low))
 
-@dataclass(repr=False)
-class CellType(BiologicalEntity):
-    """
-    A type of cell
-    """
-    _inherited_slots: ClassVar[list[str]] = []
+        if self.range_high is not None and not isinstance(self.range_high, QuantityValue):
+            self.range_high = QuantityValue(**as_dict(self.range_high))
 
-    class_class_uri: ClassVar[URIRef] = CL["0000000"]
-    class_class_curie: ClassVar[str] = "CL:0000000"
-    class_name: ClassVar[str] = "CellType"
-    class_model_uri: ClassVar[URIRef] = OWG.CellType
+        if self.measured_entity is not None and not isinstance(self.measured_entity, NamedEntity):
+            self.measured_entity = NamedEntity(**as_dict(self.measured_entity))
 
-    id: Union[str, CellTypeId] = None
+        if self.measurement_method is not None and not isinstance(self.measurement_method, str):
+            self.measurement_method = str(self.measurement_method)
 
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, CellTypeId):
-            self.id = CellTypeId(self.id)
+        if self.measurement_date is not None and not isinstance(self.measurement_date, XSDDate):
+            self.measurement_date = XSDDate(self.measurement_date)
 
-        super().__post_init__(**kwargs)
+        if self.uses is not None and not isinstance(self.uses, Assay):
+            self.uses = Assay(**as_dict(self.uses))
 
+        if self.participant is not None and not isinstance(self.participant, NamedEntity):
+            self.participant = NamedEntity(**as_dict(self.participant))
 
-@dataclass(repr=False)
-class AnatomicalEntity(BiologicalEntity):
-    """
-    An anatomical structure or system
-    """
-    _inherited_slots: ClassVar[list[str]] = []
+        if self.sample_type is not None and not isinstance(self.sample_type, SampleTypeEnum):
+            self.sample_type = SampleTypeEnum(self.sample_type)
 
-    class_class_uri: ClassVar[URIRef] = UBERON["0001062"]
-    class_class_curie: ClassVar[str] = "UBERON:0001062"
-    class_name: ClassVar[str] = "AnatomicalEntity"
-    class_model_uri: ClassVar[URIRef] = OWG.AnatomicalEntity
+        if self.collection_site is not None and not isinstance(self.collection_site, str):
+            self.collection_site = str(self.collection_site)
 
-    id: Union[str, AnatomicalEntityId] = None
+        if self.collection_date is not None and not isinstance(self.collection_date, XSDDate):
+            self.collection_date = XSDDate(self.collection_date)
 
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, AnatomicalEntityId):
-            self.id = AnatomicalEntityId(self.id)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Organism(BiologicalEntity):
-    """
-    An individual organism
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["Organism"]
-    class_class_curie: ClassVar[str] = "owg:Organism"
-    class_name: ClassVar[str] = "Organism"
-    class_model_uri: ClassVar[URIRef] = OWG.Organism
-
-    id: Union[str, OrganismId] = None
-    species: Optional[str] = None
-    taxon_id: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, OrganismId):
-            self.id = OrganismId(self.id)
-
-        if self.species is not None and not isinstance(self.species, str):
-            self.species = str(self.species)
-
-        if self.taxon_id is not None and not isinstance(self.taxon_id, str):
-            self.taxon_id = str(self.taxon_id)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class ExposureToPhenotypeAssociation(Association):
-    """
-    An association between an exposure and a phenotype
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["ExposureToPhenotypeAssociation"]
-    class_class_curie: ClassVar[str] = "owg:ExposureToPhenotypeAssociation"
-    class_name: ClassVar[str] = "ExposureToPhenotypeAssociation"
-    class_model_uri: ClassVar[URIRef] = OWG.ExposureToPhenotypeAssociation
-
-    id: Union[str, ExposureToPhenotypeAssociationId] = None
-    exposure: Optional[Union[dict, ExposureEvent]] = None
-    phenotype: Optional[Union[dict, OntologyTerm]] = None
-    association_type: Optional[str] = None
-    evidence: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, ExposureToPhenotypeAssociationId):
-            self.id = ExposureToPhenotypeAssociationId(self.id)
-
-        if self.exposure is not None and not isinstance(self.exposure, ExposureEvent):
-            self.exposure = ExposureEvent(**as_dict(self.exposure))
-
-        if self.phenotype is not None and not isinstance(self.phenotype, OntologyTerm):
-            self.phenotype = OntologyTerm(**as_dict(self.phenotype))
-
-        if self.association_type is not None and not isinstance(self.association_type, str):
-            self.association_type = str(self.association_type)
-
-        if self.evidence is not None and not isinstance(self.evidence, str):
-            self.evidence = str(self.evidence)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class ChemicalToGeneAssociation(Association):
-    """
-    An association between a chemical and a gene
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["ChemicalToGeneAssociation"]
-    class_class_curie: ClassVar[str] = "owg:ChemicalToGeneAssociation"
-    class_name: ClassVar[str] = "ChemicalToGeneAssociation"
-    class_model_uri: ClassVar[URIRef] = OWG.ChemicalToGeneAssociation
-
-    id: Union[str, ChemicalToGeneAssociationId] = None
-    chemical: Optional[Union[dict, ChemicalEntity]] = None
-    gene: Optional[Union[dict, Gene]] = None
-    interaction_type: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, ChemicalToGeneAssociationId):
-            self.id = ChemicalToGeneAssociationId(self.id)
-
-        if self.chemical is not None and not isinstance(self.chemical, ChemicalEntity):
-            self.chemical = ChemicalEntity(**as_dict(self.chemical))
-
-        if self.gene is not None and not isinstance(self.gene, Gene):
-            self.gene = Gene(**as_dict(self.gene))
-
-        if self.interaction_type is not None and not isinstance(self.interaction_type, str):
-            self.interaction_type = str(self.interaction_type)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class GeneToDiseaseAssociation(Association):
-    """
-    An association between a gene and a disease
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["GeneToDiseaseAssociation"]
-    class_class_curie: ClassVar[str] = "owg:GeneToDiseaseAssociation"
-    class_name: ClassVar[str] = "GeneToDiseaseAssociation"
-    class_model_uri: ClassVar[URIRef] = OWG.GeneToDiseaseAssociation
-
-    id: Union[str, GeneToDiseaseAssociationId] = None
-    gene: Optional[Union[dict, Gene]] = None
-    disease: Optional[Union[dict, Disease]] = None
-    association_type: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, GeneToDiseaseAssociationId):
-            self.id = GeneToDiseaseAssociationId(self.id)
-
-        if self.gene is not None and not isinstance(self.gene, Gene):
-            self.gene = Gene(**as_dict(self.gene))
-
-        if self.disease is not None and not isinstance(self.disease, Disease):
-            self.disease = Disease(**as_dict(self.disease))
-
-        if self.association_type is not None and not isinstance(self.association_type, str):
-            self.association_type = str(self.association_type)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class GeographicEntity(NamedThing):
-    """
-    Abstract base class for geographic entities used in synthetic population modeling. Provides common geographic
-    identifier infrastructure.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["GeographicEntity"]
-    class_class_curie: ClassVar[str] = "owg:GeographicEntity"
-    class_name: ClassVar[str] = "GeographicEntity"
-    class_model_uri: ClassVar[URIRef] = OWG.GeographicEntity
-
-    id: Union[str, GeographicEntityId] = None
-    federal_information_processing_standard_code: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self.federal_information_processing_standard_code is not None and not isinstance(self.federal_information_processing_standard_code, str):
-            self.federal_information_processing_standard_code = str(self.federal_information_processing_standard_code)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class State(GeographicEntity):
-    """
-    A U.S. state or equivalent territory with associated geographic properties. Contains counties and public use
-    microdata areas.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["State"]
-    class_class_curie: ClassVar[str] = "owg:State"
-    class_name: ClassVar[str] = "State"
-    class_model_uri: ClassVar[URIRef] = OWG.State
-
-    id: Union[str, StateId] = None
-    abbreviation: Optional[str] = None
-    counties: Optional[Union[dict[Union[str, CountyId], Union[dict, "County"]], list[Union[dict, "County"]]]] = empty_dict()
-    public_use_microdata_areas: Optional[Union[dict[Union[str, PublicUseMicrodataAreaId], Union[dict, "PublicUseMicrodataArea"]], list[Union[dict, "PublicUseMicrodataArea"]]]] = empty_dict()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, StateId):
-            self.id = StateId(self.id)
-
-        if self.abbreviation is not None and not isinstance(self.abbreviation, str):
-            self.abbreviation = str(self.abbreviation)
-
-        self._normalize_inlined_as_list(slot_name="counties", slot_type=County, key_name="id", keyed=True)
-
-        self._normalize_inlined_as_list(slot_name="public_use_microdata_areas", slot_type=PublicUseMicrodataArea, key_name="id", keyed=True)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class PublicUseMicrodataArea(GeographicEntity):
-    """
-    Public Use Microdata Areas (PUMAs) are non-overlapping, statistical geographic areas that partition each state or
-    equivalent entity into geographic areas containing no fewer than 100,000 people each. They cover the entirety of
-    the United States, Puerto Rico, and Guam.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["PublicUseMicrodataArea"]
-    class_class_curie: ClassVar[str] = "owg:PublicUseMicrodataArea"
-    class_name: ClassVar[str] = "PublicUseMicrodataArea"
-    class_model_uri: ClassVar[URIRef] = OWG.PublicUseMicrodataArea
-
-    id: Union[str, PublicUseMicrodataAreaId] = None
-    state_federal_information_processing_standard_code: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, PublicUseMicrodataAreaId):
-            self.id = PublicUseMicrodataAreaId(self.id)
-
-        if self.state_federal_information_processing_standard_code is not None and not isinstance(self.state_federal_information_processing_standard_code, str):
-            self.state_federal_information_processing_standard_code = str(self.state_federal_information_processing_standard_code)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class County(GeographicEntity):
-    """
-    A county or equivalent administrative subdivision with associated properties. Contains census tracts.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["County"]
-    class_class_curie: ClassVar[str] = "owg:County"
-    class_name: ClassVar[str] = "County"
-    class_model_uri: ClassVar[URIRef] = OWG.County
-
-    id: Union[str, CountyId] = None
-    state_federal_information_processing_standard_code: Optional[str] = None
-    census_tracts: Optional[Union[dict[Union[str, CensusTractId], Union[dict, "CensusTract"]], list[Union[dict, "CensusTract"]]]] = empty_dict()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, CountyId):
-            self.id = CountyId(self.id)
-
-        if self.state_federal_information_processing_standard_code is not None and not isinstance(self.state_federal_information_processing_standard_code, str):
-            self.state_federal_information_processing_standard_code = str(self.state_federal_information_processing_standard_code)
-
-        self._normalize_inlined_as_list(slot_name="census_tracts", slot_type=CensusTract, key_name="id", keyed=True)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class CensusTract(GeographicEntity):
-    """
-    A census tract is a small, relatively permanent geographic area within a county, used to collect and present
-    demographic data from the census, usually containing between 2,500 and 8,000 residents and designed to be as
-    homogeneous as possible in terms of population characteristics and living conditions.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["CensusTract"]
-    class_class_curie: ClassVar[str] = "owg:CensusTract"
-    class_name: ClassVar[str] = "CensusTract"
-    class_model_uri: ClassVar[URIRef] = OWG.CensusTract
-
-    id: Union[str, CensusTractId] = None
-    state_federal_information_processing_standard_code: Optional[str] = None
-    county_federal_information_processing_standard_code: Optional[str] = None
-    block_groups: Optional[Union[dict[Union[str, BlockGroupId], Union[dict, "BlockGroup"]], list[Union[dict, "BlockGroup"]]]] = empty_dict()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, CensusTractId):
-            self.id = CensusTractId(self.id)
-
-        if self.state_federal_information_processing_standard_code is not None and not isinstance(self.state_federal_information_processing_standard_code, str):
-            self.state_federal_information_processing_standard_code = str(self.state_federal_information_processing_standard_code)
-
-        if self.county_federal_information_processing_standard_code is not None and not isinstance(self.county_federal_information_processing_standard_code, str):
-            self.county_federal_information_processing_standard_code = str(self.county_federal_information_processing_standard_code)
-
-        self._normalize_inlined_as_list(slot_name="block_groups", slot_type=BlockGroup, key_name="id", keyed=True)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class BlockGroup(GeographicEntity):
-    """
-    A statistical division within a census tract, typically containing between 600 and 3,000 people, which is used by
-    the Census Bureau to present demographic data at a smaller, more localized level than the entire census tract.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["BlockGroup"]
-    class_class_curie: ClassVar[str] = "owg:BlockGroup"
-    class_name: ClassVar[str] = "BlockGroup"
-    class_model_uri: ClassVar[URIRef] = OWG.BlockGroup
-
-    id: Union[str, BlockGroupId] = None
-    census_tract_federal_information_processing_standard_code: Optional[str] = None
-    state_federal_information_processing_standard_code: Optional[str] = None
-    county_federal_information_processing_standard_code: Optional[str] = None
-    households: Optional[Union[dict[Union[str, HouseholdId], Union[dict, "Household"]], list[Union[dict, "Household"]]]] = empty_dict()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, BlockGroupId):
-            self.id = BlockGroupId(self.id)
-
-        if self.census_tract_federal_information_processing_standard_code is not None and not isinstance(self.census_tract_federal_information_processing_standard_code, str):
-            self.census_tract_federal_information_processing_standard_code = str(self.census_tract_federal_information_processing_standard_code)
-
-        if self.state_federal_information_processing_standard_code is not None and not isinstance(self.state_federal_information_processing_standard_code, str):
-            self.state_federal_information_processing_standard_code = str(self.state_federal_information_processing_standard_code)
-
-        if self.county_federal_information_processing_standard_code is not None and not isinstance(self.county_federal_information_processing_standard_code, str):
-            self.county_federal_information_processing_standard_code = str(self.county_federal_information_processing_standard_code)
-
-        self._normalize_inlined_as_list(slot_name="households", slot_type=Household, key_name="id", keyed=True)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class School(NamedThing):
-    """
-    A school entity representing an educational institution where synthetic population persons may be assigned for
-    modeling purposes.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["School"]
-    class_class_curie: ClassVar[str] = "owg:School"
-    class_name: ClassVar[str] = "School"
-    class_model_uri: ClassVar[URIRef] = OWG.School
-
-    id: Union[str, SchoolId] = None
-    federal_information_processing_standard_code: Optional[str] = None
-    state_federal_information_processing_standard_code: Optional[str] = None
-    county_federal_information_processing_standard_code: Optional[str] = None
-    census_tract_federal_information_processing_standard_code: Optional[str] = None
-    block_group_federal_information_processing_standard_code: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, SchoolId):
-            self.id = SchoolId(self.id)
-
-        if self.federal_information_processing_standard_code is not None and not isinstance(self.federal_information_processing_standard_code, str):
-            self.federal_information_processing_standard_code = str(self.federal_information_processing_standard_code)
-
-        if self.state_federal_information_processing_standard_code is not None and not isinstance(self.state_federal_information_processing_standard_code, str):
-            self.state_federal_information_processing_standard_code = str(self.state_federal_information_processing_standard_code)
-
-        if self.county_federal_information_processing_standard_code is not None and not isinstance(self.county_federal_information_processing_standard_code, str):
-            self.county_federal_information_processing_standard_code = str(self.county_federal_information_processing_standard_code)
-
-        if self.census_tract_federal_information_processing_standard_code is not None and not isinstance(self.census_tract_federal_information_processing_standard_code, str):
-            self.census_tract_federal_information_processing_standard_code = str(self.census_tract_federal_information_processing_standard_code)
-
-        if self.block_group_federal_information_processing_standard_code is not None and not isinstance(self.block_group_federal_information_processing_standard_code, str):
-            self.block_group_federal_information_processing_standard_code = str(self.block_group_federal_information_processing_standard_code)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Household(NamedThing):
-    """
-    A household entity representing a group of people living together in a single dwelling unit. Used in synthetic
-    population modeling.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["Household"]
-    class_class_curie: ClassVar[str] = "owg:Household"
-    class_name: ClassVar[str] = "Household"
-    class_model_uri: ClassVar[URIRef] = OWG.Household
-
-    id: Union[str, HouseholdId] = None
-    serial_number: Optional[str] = None
-    household_identifier: Optional[str] = None
-    household_head_age: Optional[int] = None
-    household_income: Optional[float] = None
-    household_head_race: Optional[str] = None
-    household_size: Optional[int] = None
-    household_persons: Optional[Union[dict[Union[str, PersonId], Union[dict, "Person"]], list[Union[dict, "Person"]]]] = empty_dict()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, HouseholdId):
-            self.id = HouseholdId(self.id)
-
-        if self.serial_number is not None and not isinstance(self.serial_number, str):
-            self.serial_number = str(self.serial_number)
-
-        if self.household_identifier is not None and not isinstance(self.household_identifier, str):
-            self.household_identifier = str(self.household_identifier)
-
-        if self.household_head_age is not None and not isinstance(self.household_head_age, int):
-            self.household_head_age = int(self.household_head_age)
-
-        if self.household_income is not None and not isinstance(self.household_income, float):
-            self.household_income = float(self.household_income)
-
-        if self.household_head_race is not None and not isinstance(self.household_head_race, str):
-            self.household_head_race = str(self.household_head_race)
-
-        if self.household_size is not None and not isinstance(self.household_size, int):
-            self.household_size = int(self.household_size)
-
-        self._normalize_inlined_as_list(slot_name="household_persons", slot_type=Person, key_name="id", keyed=True)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Person(NamedThing):
-    """
-    A person (individual human being) with demographic and geographic attributes. Persons can participate in studies
-    through the Participant role, which links a Person to a specific study cohort. In synthetic population contexts,
-    persons are members of households within geographic hierarchies. Age and sex on Person represent current or
-    snapshot values from the source data (e.g., census), distinct from study-specific values captured on Participant
-    at enrollment.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OWG["Person"]
-    class_class_curie: ClassVar[str] = "owg:Person"
-    class_name: ClassVar[str] = "Person"
-    class_model_uri: ClassVar[URIRef] = OWG.Person
-
-    id: Union[str, PersonId] = None
-    age: Optional[int] = None
-    sex: Optional[Union[str, "SexEnum"]] = None
-    race: Optional[str] = None
-    species: Optional[str] = None
-    state_federal_information_processing_standard_code: Optional[str] = None
-    county_federal_information_processing_standard_code: Optional[str] = None
-    census_tract_federal_information_processing_standard_code: Optional[str] = None
-    block_group_federal_information_processing_standard_code: Optional[str] = None
-    serial_number: Optional[str] = None
-    household_identifier: Optional[str] = None
-    household_head_age: Optional[int] = None
-    household_income: Optional[float] = None
-    household_head_race: Optional[str] = None
-    household_size: Optional[int] = None
-    assigned_school: Optional[Union[str, SchoolId]] = None
-    person_order: Optional[int] = None
-    relationship_to_household_head: Optional[Union[str, "RelationshipToHouseholdHeadEnum"]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, PersonId):
-            self.id = PersonId(self.id)
-
-        if self.age is not None and not isinstance(self.age, int):
-            self.age = int(self.age)
-
-        if self.sex is not None and not isinstance(self.sex, SexEnum):
-            self.sex = SexEnum(self.sex)
-
-        if self.race is not None and not isinstance(self.race, str):
-            self.race = str(self.race)
-
-        if self.species is not None and not isinstance(self.species, str):
-            self.species = str(self.species)
-
-        if self.state_federal_information_processing_standard_code is not None and not isinstance(self.state_federal_information_processing_standard_code, str):
-            self.state_federal_information_processing_standard_code = str(self.state_federal_information_processing_standard_code)
-
-        if self.county_federal_information_processing_standard_code is not None and not isinstance(self.county_federal_information_processing_standard_code, str):
-            self.county_federal_information_processing_standard_code = str(self.county_federal_information_processing_standard_code)
-
-        if self.census_tract_federal_information_processing_standard_code is not None and not isinstance(self.census_tract_federal_information_processing_standard_code, str):
-            self.census_tract_federal_information_processing_standard_code = str(self.census_tract_federal_information_processing_standard_code)
-
-        if self.block_group_federal_information_processing_standard_code is not None and not isinstance(self.block_group_federal_information_processing_standard_code, str):
-            self.block_group_federal_information_processing_standard_code = str(self.block_group_federal_information_processing_standard_code)
-
-        if self.serial_number is not None and not isinstance(self.serial_number, str):
-            self.serial_number = str(self.serial_number)
-
-        if self.household_identifier is not None and not isinstance(self.household_identifier, str):
-            self.household_identifier = str(self.household_identifier)
-
-        if self.household_head_age is not None and not isinstance(self.household_head_age, int):
-            self.household_head_age = int(self.household_head_age)
-
-        if self.household_income is not None and not isinstance(self.household_income, float):
-            self.household_income = float(self.household_income)
-
-        if self.household_head_race is not None and not isinstance(self.household_head_race, str):
-            self.household_head_race = str(self.household_head_race)
-
-        if self.household_size is not None and not isinstance(self.household_size, int):
-            self.household_size = int(self.household_size)
-
-        if self.assigned_school is not None and not isinstance(self.assigned_school, SchoolId):
-            self.assigned_school = SchoolId(self.assigned_school)
-
-        if self.person_order is not None and not isinstance(self.person_order, int):
-            self.person_order = int(self.person_order)
-
-        if self.relationship_to_household_head is not None and not isinstance(self.relationship_to_household_head, RelationshipToHouseholdHeadEnum):
-            self.relationship_to_household_head = RelationshipToHouseholdHeadEnum(self.relationship_to_household_head)
+        if self.subject_characteristics is not None and not isinstance(self.subject_characteristics, str):
+            self.subject_characteristics = str(self.subject_characteristics)
 
         super().__post_init__(**kwargs)
 
 
 # Enumerations
-class ExposureRouteEnum(EnumDefinitionImpl):
+class StudyContextEnum(EnumDefinitionImpl):
     """
-    Routes of exposure to chemicals or environmental factors
+    The experimental context for a protocol or measurement.
     """
-    oral = PermissibleValue(
-        text="oral",
-        description="Oral ingestion",
-        meaning=ECTO["0000895"])
-    dermal = PermissibleValue(
-        text="dermal",
-        description="Dermal contact",
-        meaning=ECTO["0000896"])
-    inhalation = PermissibleValue(
-        text="inhalation",
-        description="Inhalation",
-        meaning=ECTO["0000897"])
-    injection = PermissibleValue(
-        text="injection",
-        description="Injection")
-    unknown = PermissibleValue(
-        text="unknown",
-        description="Unknown route")
+    in_vitro = PermissibleValue(
+        text="in_vitro",
+        description="Performed on cultured cells or tissues")
+    in_vivo = PermissibleValue(
+        text="in_vivo",
+        description="Performed on living human or animal subjects")
+    ex_vivo = PermissibleValue(
+        text="ex_vivo",
+        description="Performed on tissue removed from an organism")
 
     _defn = EnumDefinition(
-        name="ExposureRouteEnum",
-        description="Routes of exposure to chemicals or environmental factors",
-    )
-
-class ExposureMediumEnum(EnumDefinitionImpl):
-    """
-    Medium through which exposure occurs
-    """
-    air = PermissibleValue(
-        text="air",
-        description="Air",
-        meaning=ENVO["00002005"])
-    water = PermissibleValue(
-        text="water",
-        description="Water",
-        meaning=ENVO["00002006"])
-    food = PermissibleValue(
-        text="food",
-        description="Food",
-        meaning=FOODON["00002403"])
-    soil = PermissibleValue(
-        text="soil",
-        description="Soil",
-        meaning=ENVO["00001998"])
-    dust = PermissibleValue(
-        text="dust",
-        description="Dust")
-    consumer_product = PermissibleValue(
-        text="consumer_product",
-        description="Consumer product")
-    unknown = PermissibleValue(
-        text="unknown",
-        description="Unknown medium")
-
-    _defn = EnumDefinition(
-        name="ExposureMediumEnum",
-        description="Medium through which exposure occurs",
-    )
-
-class ExpressionAssayMethodEnum(EnumDefinitionImpl):
-    """
-    Methods used to measure gene or protein expression. Includes transcriptomic, proteomic, and imaging-based
-    approaches.
-    """
-    qrt_pcr = PermissibleValue(
-        text="qrt_pcr",
-        description="Quantitative real-time polymerase chain reaction",
-        meaning=OBI["0000893"])
-    rna_seq = PermissibleValue(
-        text="rna_seq",
-        description="RNA sequencing (bulk)",
-        meaning=OBI["0001271"])
-    single_cell_rna_seq = PermissibleValue(
-        text="single_cell_rna_seq",
-        description="Single-cell RNA sequencing",
-        meaning=OBI["0002631"])
-    microarray = PermissibleValue(
-        text="microarray",
-        description="Gene expression microarray",
-        meaning=OBI["0000424"])
-    nanostring = PermissibleValue(
-        text="nanostring",
-        description="NanoString nCounter gene expression assay",
-        meaning=OBI["0002142"])
-    northern_blot = PermissibleValue(
-        text="northern_blot",
-        description="Northern blot for RNA detection",
-        meaning=OBI["0000822"])
-    in_situ_hybridization = PermissibleValue(
-        text="in_situ_hybridization",
-        description="In situ hybridization (ISH, FISH, RNAscope)",
-        meaning=OBI["0001686"])
-    western_blot = PermissibleValue(
-        text="western_blot",
-        description="Western blot (immunoblot) for protein detection",
-        meaning=OBI["0000714"])
-    elisa = PermissibleValue(
-        text="elisa",
-        description="Enzyme-linked immunosorbent assay",
-        meaning=OBI["0000661"])
-    immunohistochemistry = PermissibleValue(
-        text="immunohistochemistry",
-        description="Immunohistochemistry on tissue sections",
-        meaning=OBI["0001986"])
-    immunofluorescence = PermissibleValue(
-        text="immunofluorescence",
-        description="Immunofluorescence staining",
-        meaning=OBI["0001501"])
-    flow_cytometry = PermissibleValue(
-        text="flow_cytometry",
-        description="Flow cytometry for protein expression",
-        meaning=OBI["0000916"])
-    mass_spectrometry = PermissibleValue(
-        text="mass_spectrometry",
-        description="Mass spectrometry-based proteomics",
-        meaning=OBI["0000470"])
-    immunoprecipitation = PermissibleValue(
-        text="immunoprecipitation",
-        description="Immunoprecipitation followed by detection",
-        meaning=OBI["0000928"])
-    luminex = PermissibleValue(
-        text="luminex",
-        description="Luminex multiplex bead-based assay",
-        meaning=OBI["0001632"])
-    other = PermissibleValue(
-        text="other",
-        description="Other assay method not listed")
-
-    _defn = EnumDefinition(
-        name="ExpressionAssayMethodEnum",
-        description="""Methods used to measure gene or protein expression. Includes transcriptomic, proteomic, and imaging-based approaches.""",
-    )
-
-class BiologicalOrganizationLevelEnum(EnumDefinitionImpl):
-    """
-    Levels of biological organization
-    """
-    molecular = PermissibleValue(
-        text="molecular",
-        description="Molecular level",
-        meaning=EFO["0001432"])
-    cellular = PermissibleValue(
-        text="cellular",
-        description="Cellular level",
-        meaning=CL["0000000"])
-    tissue = PermissibleValue(
-        text="tissue",
-        description="Tissue level",
-        meaning=UBERON["0000479"])
-    organ = PermissibleValue(
-        text="organ",
-        description="Organ level",
-        meaning=UBERON["0000062"])
-    organism = PermissibleValue(
-        text="organism",
-        description="Organism level",
-        meaning=UBERON["0000468"])
-    population = PermissibleValue(
-        text="population",
-        description="Population level")
-
-    _defn = EnumDefinition(
-        name="BiologicalOrganizationLevelEnum",
-        description="Levels of biological organization",
-    )
-
-class StudyTypeEnum(EnumDefinitionImpl):
-    """
-    Types of research studies
-    """
-    cohort = PermissibleValue(
-        text="cohort",
-        description="Cohort study",
-        meaning=EFO["0001444"])
-    cross_sectional = PermissibleValue(
-        text="cross_sectional",
-        description="Cross-sectional study",
-        meaning=EFO["0001745"])
-    case_control = PermissibleValue(
-        text="case_control",
-        description="Case-control study",
-        meaning=EFO["0001427"])
-    randomized_controlled_trial = PermissibleValue(
-        text="randomized_controlled_trial",
-        description="Randomized controlled trial",
-        meaning=EFO["0001427"])
-    survey = PermissibleValue(
-        text="survey",
-        description="Survey")
-    gwas = PermissibleValue(
-        text="gwas",
-        description="Genome-wide association study",
-        meaning=EFO["0000508"])
-    other = PermissibleValue(
-        text="other",
-        description="Other study type")
-
-    _defn = EnumDefinition(
-        name="StudyTypeEnum",
-        description="Types of research studies",
-    )
-
-class SexEnum(EnumDefinitionImpl):
-    """
-    Biological sex
-    """
-    male = PermissibleValue(
-        text="male",
-        description="Male",
-        meaning=PATO["0000384"])
-    female = PermissibleValue(
-        text="female",
-        description="Female",
-        meaning=PATO["0000383"])
-    unknown = PermissibleValue(
-        text="unknown",
-        description="Unknown")
-
-    _defn = EnumDefinition(
-        name="SexEnum",
-        description="Biological sex",
+        name="StudyContextEnum",
+        description="The experimental context for a protocol or measurement.",
     )
 
 class SampleTypeEnum(EnumDefinitionImpl):
     """
-    Types of biological and environmental samples
+    Types of biological samples for in vivo measurements.
     """
-    blood = PermissibleValue(
-        text="blood",
-        description="Blood sample")
     urine = PermissibleValue(
         text="urine",
         description="Urine sample")
-    serum = PermissibleValue(
-        text="serum",
-        description="Serum sample")
-    plasma = PermissibleValue(
-        text="plasma",
-        description="Plasma sample")
-    tissue = PermissibleValue(
-        text="tissue",
-        description="Tissue sample")
-    saliva = PermissibleValue(
-        text="saliva",
-        description="Saliva sample")
-    hair = PermissibleValue(
-        text="hair",
-        description="Hair sample")
-    nail = PermissibleValue(
-        text="nail",
-        description="Nail sample")
-    air = PermissibleValue(
-        text="air",
-        description="Air sample (environmental)")
-    water = PermissibleValue(
-        text="water",
-        description="Water sample (environmental)")
-    soil = PermissibleValue(
-        text="soil",
-        description="Soil sample (environmental)")
-    other = PermissibleValue(
-        text="other",
-        description="Other sample type")
+    blood = PermissibleValue(
+        text="blood",
+        description="Blood sample (whole blood, serum, or plasma)")
+    sputum = PermissibleValue(
+        text="sputum",
+        description="Induced or spontaneous sputum")
+    balf = PermissibleValue(
+        text="balf",
+        description="Bronchoalveolar lavage fluid")
+    nasal_epithelium = PermissibleValue(
+        text="nasal_epithelium",
+        description="Nasal epithelial sample")
+    bronchial_epithelium = PermissibleValue(
+        text="bronchial_epithelium",
+        description="Bronchial epithelial sample")
+    exhaled_breath_condensate = PermissibleValue(
+        text="exhaled_breath_condensate",
+        description="Exhaled breath condensate (EBC)")
+    biopsy = PermissibleValue(
+        text="biopsy",
+        description="Tissue biopsy")
+    sweat = PermissibleValue(
+        text="sweat",
+        description="Sweat sample (e.g., for sweat chloride test)")
 
     _defn = EnumDefinition(
         name="SampleTypeEnum",
-        description="Types of biological and environmental samples",
+        description="Types of biological samples for in vivo measurements.",
     )
 
-class SummaryStatisticEnum(EnumDefinitionImpl):
+class CiliaryFunctionObservationTypeEnum(EnumDefinitionImpl):
     """
-    Types of summary statistics
+    Observation types for ciliary function measurements.
     """
-    mean = PermissibleValue(
-        text="mean",
-        description="Arithmetic mean")
-    median = PermissibleValue(
-        text="median",
-        description="Median")
-    mode = PermissibleValue(
-        text="mode",
-        description="Mode")
-    percentile = PermissibleValue(
-        text="percentile",
-        description="Percentile")
-    standard_deviation = PermissibleValue(
-        text="standard_deviation",
-        description="Standard deviation")
-    variance = PermissibleValue(
-        text="variance",
-        description="Variance")
-    range = PermissibleValue(
-        text="range",
-        description="Range")
-    interquartile_range = PermissibleValue(
-        text="interquartile_range",
-        description="Interquartile range")
-
-    _defn = EnumDefinition(
-        name="SummaryStatisticEnum",
-        description="Types of summary statistics",
-    )
-
-class MeasurementTypeEnum(EnumDefinitionImpl):
-    """
-    Types of measurements and observations for outcomes research, with emphasis on respiratory health and
-    environmental toxicant effects.
-    """
-    FEV1 = PermissibleValue(
-        text="FEV1",
-        description="Forced expiratory volume in 1 second",
-        meaning=NCIT["C38083"])
-    FVC = PermissibleValue(
-        text="FVC",
-        description="Forced vital capacity",
-        meaning=NCIT["C38082"])
-    FEV1_FEC_ratio = PermissibleValue(
-        text="FEV1_FEC_ratio",
-        description="Ratio of FEV1 to FVC (Tiffeneau-Pinelli index)",
-        meaning=NCIT["C120835"])
-    FEF25_75 = PermissibleValue(
-        text="FEF25_75",
-        description="Forced expiratory flow at 25-75% of FVC",
-        meaning=NCIT["C38085"])
-    peak_expiratory_flow = PermissibleValue(
-        text="peak_expiratory_flow",
-        description="Peak expiratory flow rate",
-        meaning=NCIT["C38086"])
-    DLCO = PermissibleValue(
-        text="DLCO",
-        description="Diffusing capacity of the lung for carbon monoxide",
-        meaning=NCIT["C38087"])
-    FeNO = PermissibleValue(
-        text="FeNO",
-        description="Fractional exhaled nitric oxide (airway inflammation marker)",
-        meaning=NCIT["C124353"])
-    bronchodilator_response = PermissibleValue(
-        text="bronchodilator_response",
-        description="Change in lung function after bronchodilator administration")
-    lung_function_decline_rate = PermissibleValue(
-        text="lung_function_decline_rate",
-        description="Rate of decline in lung function over time")
     ciliary_beat_frequency = PermissibleValue(
         text="ciliary_beat_frequency",
-        description="Frequency of ciliary beating in Hz",
+        description="Ciliary beat frequency (Hz)",
         meaning=GO["0003341"])
     ciliary_active_area_percentage = PermissibleValue(
         text="ciliary_active_area_percentage",
-        description="Percentage of epithelial surface with active cilia")
-    cilia_per_cell = PermissibleValue(
-        text="cilia_per_cell",
-        description="Number of cilia per epithelial cell")
+        description="Percentage of epithelial surface with actively beating cilia")
     cilia_length = PermissibleValue(
         text="cilia_length",
-        description="Length of cilia in micrometers")
+        description="Length of cilia (μm)")
+    cilia_per_cell = PermissibleValue(
+        text="cilia_per_cell",
+        description="Number of cilia per cell")
     percentage_ciliated_cells = PermissibleValue(
         text="percentage_ciliated_cells",
         description="Percentage of cells that are ciliated")
+    ciliary_motion_pattern = PermissibleValue(
+        text="ciliary_motion_pattern",
+        description="Pattern of ciliary motion (coordinated, dyskinetic, immotile)")
+    ciliary_beat_amplitude = PermissibleValue(
+        text="ciliary_beat_amplitude",
+        description="Amplitude of ciliary beat stroke")
+
+    _defn = EnumDefinition(
+        name="CiliaryFunctionObservationTypeEnum",
+        description="Observation types for ciliary function measurements.",
+    )
+
+class ASLObservationTypeEnum(EnumDefinitionImpl):
+    """
+    Observation types for airway surface liquid measurements.
+    """
     asl_height = PermissibleValue(
         text="asl_height",
-        description="Airway surface liquid height in micrometers")
+        description="Airway surface liquid height/depth (μm)")
     periciliary_layer_depth = PermissibleValue(
         text="periciliary_layer_depth",
-        description="Depth of periciliary liquid layer (reduced in disease)")
+        description="Periciliary layer (PCL) depth (μm)")
     mucus_layer_thickness = PermissibleValue(
         text="mucus_layer_thickness",
-        description="Thickness of the mucus gel layer")
+        description="Thickness of the mucus gel layer (μm)")
+    asl_chloride_concentration = PermissibleValue(
+        text="asl_chloride_concentration",
+        description="Chloride ion concentration in ASL")
+    asl_sodium_concentration = PermissibleValue(
+        text="asl_sodium_concentration",
+        description="Sodium ion concentration in ASL")
+    asl_potassium_concentration = PermissibleValue(
+        text="asl_potassium_concentration",
+        description="Potassium ion concentration in ASL")
+    asl_ph = PermissibleValue(
+        text="asl_ph",
+        description="pH of airway surface liquid")
+
+    _defn = EnumDefinition(
+        name="ASLObservationTypeEnum",
+        description="Observation types for airway surface liquid measurements.",
+    )
+
+class MCCObservationTypeEnum(EnumDefinitionImpl):
+    """
+    Observation types for mucociliary clearance measurements.
+    """
     mucociliary_transport_rate = PermissibleValue(
         text="mucociliary_transport_rate",
-        description="Rate of mucociliary transport (mm/min)",
+        description="Rate of mucus/particle transport (mm/min or μm/s)",
         meaning=GO["0120197"])
-    mucociliary_directionality = PermissibleValue(
-        text="mucociliary_directionality",
-        description="Directionality and coordination of mucociliary transport")
-    particle_clearance_rate = PermissibleValue(
-        text="particle_clearance_rate",
-        description="Rate of particle clearance from airways")
-    goblet_cell_count = PermissibleValue(
-        text="goblet_cell_count",
-        description="Number or percentage of goblet cells",
-        meaning=CL["0000160"])
-    goblet_to_ciliated_ratio = PermissibleValue(
-        text="goblet_to_ciliated_ratio",
-        description="Ratio of goblet cells to ciliated cells")
-    mucin_protein_concentration = PermissibleValue(
-        text="mucin_protein_concentration",
-        description="Concentration of secreted mucin protein")
-    mucus_viscosity = PermissibleValue(
-        text="mucus_viscosity",
-        description="Viscosity of airway mucus")
-    CFTR_chloride_secretion = PermissibleValue(
-        text="CFTR_chloride_secretion",
-        description="CFTR-mediated chloride secretory current")
-    inhibitor_sensitive_current = PermissibleValue(
-        text="inhibitor_sensitive_current",
-        description="Current sensitive to CFTR inhibitors (e.g., CFTRinh-172)")
-    sweat_chloride_concentration = PermissibleValue(
-        text="sweat_chloride_concentration",
-        description="Chloride concentration in sweat (CF diagnostic)")
+    transport_directionality = PermissibleValue(
+        text="transport_directionality",
+        description="Directionality of mucociliary transport")
+    percentage_active_transport = PermissibleValue(
+        text="percentage_active_transport",
+        description="Percentage of surface with active mucociliary transport")
+    particle_clearance_time = PermissibleValue(
+        text="particle_clearance_time",
+        description="Time to clear particles from a defined region")
+    biofilm_clearance_rate = PermissibleValue(
+        text="biofilm_clearance_rate",
+        description="Rate of bacterial biofilm clearance")
+    bacterial_load = PermissibleValue(
+        text="bacterial_load",
+        description="Bacterial load remaining after clearance (CFU)")
+
+    _defn = EnumDefinition(
+        name="MCCObservationTypeEnum",
+        description="Observation types for mucociliary clearance measurements.",
+    )
+
+class OxidativeStressObservationTypeEnum(EnumDefinitionImpl):
+    """
+    Observation types for oxidative stress measurements.
+    """
     reactive_oxygen_species = PermissibleValue(
         text="reactive_oxygen_species",
-        description="Reactive oxygen species (ROS) level",
+        description="Reactive oxygen species level (fluorescence intensity or fold change)",
         meaning=CHEBI["26523"])
-    lipid_peroxidation = PermissibleValue(
-        text="lipid_peroxidation",
-        description="Lipid peroxidation markers (MDA, 8-isoprostane)")
-    protein_carbonyls = PermissibleValue(
-        text="protein_carbonyls",
-        description="Protein carbonyl content (protein oxidation marker)")
-    DNA_8ohdg = PermissibleValue(
-        text="DNA_8ohdg",
-        description="8-hydroxydeoxyguanosine (DNA oxidative damage marker)")
+    malondialdehyde = PermissibleValue(
+        text="malondialdehyde",
+        description="Malondialdehyde (MDA) level - lipid peroxidation marker",
+        meaning=CHEBI["16213"])
+    four_hydroxynonenal = PermissibleValue(
+        text="four_hydroxynonenal",
+        description="4-Hydroxynonenal (4-HNE) level - lipid peroxidation marker",
+        meaning=CHEBI["58968"])
+    eight_isoprostane = PermissibleValue(
+        text="eight_isoprostane",
+        description="8-Isoprostane level - lipid peroxidation marker")
+    protein_carbonyl = PermissibleValue(
+        text="protein_carbonyl",
+        description="Protein carbonyl content - protein oxidation marker")
+    nitrotyrosine = PermissibleValue(
+        text="nitrotyrosine",
+        description="Nitrotyrosine level - protein nitration marker")
+    eight_ohdg = PermissibleValue(
+        text="eight_ohdg",
+        description="8-OHdG level - DNA oxidation marker")
     glutathione_ratio = PermissibleValue(
         text="glutathione_ratio",
-        description="GSH/GSSG ratio (antioxidant capacity)")
+        description="GSH/GSSG ratio - antioxidant capacity")
     superoxide_dismutase_activity = PermissibleValue(
         text="superoxide_dismutase_activity",
         description="Superoxide dismutase (SOD) enzyme activity")
@@ -3779,110 +1901,144 @@ class MeasurementTypeEnum(EnumDefinitionImpl):
         description="Catalase enzyme activity")
     glutathione_peroxidase_activity = PermissibleValue(
         text="glutathione_peroxidase_activity",
-        description="Glutathione peroxidase (GPx) activity")
+        description="Glutathione peroxidase (GPx) enzyme activity")
     total_antioxidant_capacity = PermissibleValue(
         text="total_antioxidant_capacity",
         description="Total antioxidant capacity of sample")
-    TEER = PermissibleValue(
-        text="TEER",
-        description="Transepithelial electrical resistance")
-    paracellular_permeability = PermissibleValue(
-        text="paracellular_permeability",
-        description="Paracellular permeability coefficient")
-    IL6_level = PermissibleValue(
-        text="IL6_level",
-        description="Interleukin-6 concentration",
-        meaning=NCIT["C20487"])
-    IL8_level = PermissibleValue(
-        text="IL8_level",
-        description="Interleukin-8 (CXCL8) concentration",
-        meaning=NCIT["C20506"])
-    IL13_level = PermissibleValue(
-        text="IL13_level",
-        description="Interleukin-13 concentration",
-        meaning=NCIT["C20497"])
-    TNF_alpha_level = PermissibleValue(
-        text="TNF_alpha_level",
-        description="Tumor necrosis factor alpha concentration",
-        meaning=NCIT["C20535"])
+    nrf2_activation = PermissibleValue(
+        text="nrf2_activation",
+        description="NRF2 pathway activation level")
+
+    _defn = EnumDefinition(
+        name="OxidativeStressObservationTypeEnum",
+        description="Observation types for oxidative stress measurements.",
+    )
+
+class CFTRObservationTypeEnum(EnumDefinitionImpl):
+    """
+    Observation types for CFTR function measurements.
+    """
+    cftr_chloride_secretion = PermissibleValue(
+        text="cftr_chloride_secretion",
+        description="CFTR-mediated chloride secretory current (μA/cm²)")
+    cftr_forskolin_response = PermissibleValue(
+        text="cftr_forskolin_response",
+        description="CFTR response to forskolin stimulation")
+    cftr_inhibitor_sensitive_current = PermissibleValue(
+        text="cftr_inhibitor_sensitive_current",
+        description="CFTRinh-172 sensitive current")
+    sweat_chloride_concentration = PermissibleValue(
+        text="sweat_chloride_concentration",
+        description="Sweat chloride concentration (mEq/L) - CF diagnostic")
+    nasal_potential_difference = PermissibleValue(
+        text="nasal_potential_difference",
+        description="Nasal potential difference measurement")
+
+    _defn = EnumDefinition(
+        name="CFTRObservationTypeEnum",
+        description="Observation types for CFTR function measurements.",
+    )
+
+class EGFRObservationTypeEnum(EnumDefinitionImpl):
+    """
+    Observation types for EGFR signaling measurements.
+    """
+    egfr_phosphorylation = PermissibleValue(
+        text="egfr_phosphorylation",
+        description="EGFR phosphorylation level (specify site, e.g., Y1068, Y1173)")
+    egfr_total_protein = PermissibleValue(
+        text="egfr_total_protein",
+        description="Total EGFR protein expression")
+    erk_phosphorylation = PermissibleValue(
+        text="erk_phosphorylation",
+        description="ERK1/2 phosphorylation (downstream kinase)")
+    akt_phosphorylation = PermissibleValue(
+        text="akt_phosphorylation",
+        description="AKT phosphorylation (downstream kinase)")
+    egfr_ligand_expression = PermissibleValue(
+        text="egfr_ligand_expression",
+        description="EGFR ligand expression (EGF, TGF-α, amphiregulin)")
+    egfr_membrane_localization = PermissibleValue(
+        text="egfr_membrane_localization",
+        description="EGFR membrane localization")
+
+    _defn = EnumDefinition(
+        name="EGFRObservationTypeEnum",
+        description="Observation types for EGFR signaling measurements.",
+    )
+
+class GobletCellMucinObservationTypeEnum(EnumDefinitionImpl):
+    """
+    Observation types for goblet cell and mucin measurements.
+    """
+    goblet_cell_count = PermissibleValue(
+        text="goblet_cell_count",
+        description="Number or percentage of goblet cells",
+        meaning=CL["0000160"])
+    goblet_to_ciliated_ratio = PermissibleValue(
+        text="goblet_to_ciliated_ratio",
+        description="Ratio of goblet cells to ciliated cells")
+    muc5ac_expression = PermissibleValue(
+        text="muc5ac_expression",
+        description="MUC5AC gene or protein expression")
+    muc5b_expression = PermissibleValue(
+        text="muc5b_expression",
+        description="MUC5B gene or protein expression")
+    muc5ac_muc5b_ratio = PermissibleValue(
+        text="muc5ac_muc5b_ratio",
+        description="Ratio of MUC5AC to MUC5B expression")
+    mucin_protein_concentration = PermissibleValue(
+        text="mucin_protein_concentration",
+        description="Total mucin protein concentration")
+    mucin_secretion_rate = PermissibleValue(
+        text="mucin_secretion_rate",
+        description="Rate of mucin secretion")
+    mucus_viscosity = PermissibleValue(
+        text="mucus_viscosity",
+        description="Viscosity of airway mucus")
+    percent_solids = PermissibleValue(
+        text="percent_solids",
+        description="Percent solids in mucus/secretions")
+
+    _defn = EnumDefinition(
+        name="GobletCellMucinObservationTypeEnum",
+        description="Observation types for goblet cell and mucin measurements.",
+    )
+
+class BALFSputumObservationTypeEnum(EnumDefinitionImpl):
+    """
+    Observation types for BALF and sputum measurements.
+    """
     neutrophil_percentage = PermissibleValue(
         text="neutrophil_percentage",
-        description="Percentage of neutrophils in BALF or sputum")
+        description="Percentage of neutrophils in differential cell count")
     eosinophil_percentage = PermissibleValue(
         text="eosinophil_percentage",
-        description="Percentage of eosinophils in BALF or sputum")
+        description="Percentage of eosinophils in differential cell count")
     macrophage_percentage = PermissibleValue(
         text="macrophage_percentage",
-        description="Percentage of macrophages in BALF or sputum")
-    total_inflammatory_cell = PermissibleValue(
-        text="total_inflammatory_cell",
-        description="Total inflammatory cell count")
-    LDH_release = PermissibleValue(
-        text="LDH_release",
-        description="Lactate dehydrogenase release (cell damage marker)")
-    cell_viability = PermissibleValue(
-        text="cell_viability",
-        description="Cell viability percentage")
-    mtt_reduction = PermissibleValue(
-        text="mtt_reduction",
-        description="MTT assay result (metabolic activity)")
-    apoptosis_rate = PermissibleValue(
-        text="apoptosis_rate",
-        description="Rate of apoptotic cell death")
-    gene_expression = PermissibleValue(
-        text="gene_expression",
-        description="""Gene expression level (mRNA). Use with GeneExpressionMeasurement class to specify target_gene, tissue_context, and assay_method.""")
-    protein_expression = PermissibleValue(
-        text="protein_expression",
-        description="""Protein expression level. Use with ProteinExpressionMeasurement class to specify target_protein, tissue_context, and assay_method.""")
-    protein_phosphorylation = PermissibleValue(
-        text="protein_phosphorylation",
-        description="""Protein phosphorylation level. Use with ProteinExpressionMeasurement class and specify phosphorylation_site (e.g., Y1068 for EGFR).""")
-    protein_localization = PermissibleValue(
-        text="protein_localization",
-        description="""Protein subcellular localization (membrane, cytoplasm, nucleus). Use with ProteinExpressionMeasurement class.""")
-    expression_ratio = PermissibleValue(
-        text="expression_ratio",
-        description="""Ratio of expression between two genes or proteins (e.g., MUC5AC/MUC5B ratio). Specify both targets in description.""")
-    percentage_positive_cells = PermissibleValue(
-        text="percentage_positive_cells",
-        description="Percentage of cells positive for a marker (IHC, flow cytometry)")
-    urinary_arsenic_level = PermissibleValue(
-        text="urinary_arsenic_level",
-        description="Urinary arsenic concentration")
-    urinary_cotinine_level = PermissibleValue(
-        text="urinary_cotinine_level",
-        description="Urinary cotinine (tobacco exposure biomarker)")
-    urinary_bpa_level = PermissibleValue(
-        text="urinary_bpa_level",
-        description="Urinary bisphenol A concentration")
-    urinary_phthalate_metabolites = PermissibleValue(
-        text="urinary_phthalate_metabolites",
-        description="Urinary phthalate metabolite concentrations")
-    pm2_5_exposure = PermissibleValue(
-        text="pm2_5_exposure",
-        description="Fine particulate matter (PM2.5) exposure level")
-    ozone_exposure = PermissibleValue(
-        text="ozone_exposure",
-        description="Ozone exposure concentration")
-    NO2_exposure = PermissibleValue(
-        text="NO2_exposure",
-        description="Nitrogen dioxide exposure concentration")
-    polycyclic_aromatic_hydrocarbons = PermissibleValue(
-        text="polycyclic_aromatic_hydrocarbons",
-        description="PAH metabolite levels")
-    body_mass_index = PermissibleValue(
-        text="body_mass_index",
-        description="Body mass index (BMI)",
-        meaning=NCIT["C16358"])
-    body_weight = PermissibleValue(
-        text="body_weight",
-        description="Body weight measurement",
-        meaning=NCIT["C81328"])
-    height = PermissibleValue(
-        text="height",
-        description="Height measurement",
-        meaning=NCIT["C25347"])
+        description="Percentage of macrophages in differential cell count")
+    lymphocyte_percentage = PermissibleValue(
+        text="lymphocyte_percentage",
+        description="Percentage of lymphocytes in differential cell count")
+    total_cell_count = PermissibleValue(
+        text="total_cell_count",
+        description="Total cell count in sample")
+    il6_concentration = PermissibleValue(
+        text="il6_concentration",
+        description="IL-6 cytokine concentration")
+    il8_concentration = PermissibleValue(
+        text="il8_concentration",
+        description="IL-8 (CXCL8) cytokine concentration")
+    tnf_alpha_concentration = PermissibleValue(
+        text="tnf_alpha_concentration",
+        description="TNF-α cytokine concentration")
+    il1_beta_concentration = PermissibleValue(
+        text="il1_beta_concentration",
+        description="IL-1β cytokine concentration")
+    total_protein_concentration = PermissibleValue(
+        text="total_protein_concentration",
+        description="Total protein concentration")
     alpha_diversity = PermissibleValue(
         text="alpha_diversity",
         description="Microbiome alpha diversity metric")
@@ -3891,1600 +2047,306 @@ class MeasurementTypeEnum(EnumDefinitionImpl):
         description="Microbiome beta diversity metric")
     bacterial_load = PermissibleValue(
         text="bacterial_load",
-        description="Total bacterial load (CFU or 16S copies)")
-    co2_percentage = PermissibleValue(
-        text="co2_percentage",
-        description="Carbon dioxide percentage in incubator atmosphere")
-    o2_percentage = PermissibleValue(
-        text="o2_percentage",
-        description="Oxygen percentage in incubator (for hypoxic cultures)")
-    temperature = PermissibleValue(
-        text="temperature",
-        description="Incubator or culture temperature",
-        meaning=PATO["0000146"])
-    humidity = PermissibleValue(
-        text="humidity",
-        description="Relative humidity in incubator",
-        meaning=PATO["0015009"])
-    nitrogen_balance = PermissibleValue(
-        text="nitrogen_balance",
-        description="Nitrogen percentage in atmosphere")
-    ph = PermissibleValue(
-        text="ph",
-        description="pH of culture medium",
-        meaning=PATO["0001842"])
-    stretch_frequency = PermissibleValue(
-        text="stretch_frequency",
-        description="Frequency of cyclic mechanical stretch (Hz)")
-    stretch_amplitude = PermissibleValue(
-        text="stretch_amplitude",
-        description="Amplitude of mechanical stretch as percentage")
-    shear_stress = PermissibleValue(
-        text="shear_stress",
-        description="Fluid shear stress applied to cells (dyn/cm2 or Pa)")
-    flow_rate = PermissibleValue(
-        text="flow_rate",
-        description="Fluid flow rate in microfluidic or perfusion systems")
-    perfusion_rate = PermissibleValue(
-        text="perfusion_rate",
-        description="Media perfusion rate for continuous culture systems")
-    pressure = PermissibleValue(
-        text="pressure",
-        description="Hydrostatic or pneumatic pressure",
-        meaning=PATO["0001025"])
-    pore_size = PermissibleValue(
-        text="pore_size",
-        description="Diameter of membrane pores (typically in micrometers)")
-    pore_density = PermissibleValue(
-        text="pore_density",
-        description="Number of pores per unit area")
-    thickness = PermissibleValue(
-        text="thickness",
-        description="Membrane thickness",
-        meaning=PATO["0000915"])
-    surface_area = PermissibleValue(
-        text="surface_area",
-        description="Total membrane surface area")
-    teer = PermissibleValue(
-        text="teer",
-        description="Transepithelial electrical resistance (membrane property)")
-    other = PermissibleValue(
-        text="other",
-        description="Other measurement type not listed")
+        description="Total bacterial load (16S copies or CFU)")
 
     _defn = EnumDefinition(
-        name="MeasurementTypeEnum",
-        description="""Types of measurements and observations for outcomes research, with emphasis on respiratory health and environmental toxicant effects.""",
+        name="BALFSputumObservationTypeEnum",
+        description="Observation types for BALF and sputum measurements.",
     )
 
-class RelationshipToHouseholdHeadEnum(EnumDefinitionImpl):
+class LungFunctionObservationTypeEnum(EnumDefinitionImpl):
     """
-    Relationship of a person to the household head (householder) in census data. Based on PUMS RELP variable coding.
+    Observation types for lung function measurements.
     """
-    householder = PermissibleValue(
-        text="householder",
-        description="Reference person (head of household)")
-    spouse = PermissibleValue(
-        text="spouse",
-        description="Husband or wife of the householder")
-    child = PermissibleValue(
-        text="child",
-        description="Biological, adopted, or stepchild of the householder")
-    other_relative = PermissibleValue(
-        text="other_relative",
-        description="Other relative of the householder (parent, sibling, grandchild, etc.)")
-    nonrelative = PermissibleValue(
-        text="nonrelative",
-        description="Non-relative of the householder (roommate, boarder, etc.)")
-    foster_child = PermissibleValue(
-        text="foster_child",
-        description="Foster child")
-    foster_parent = PermissibleValue(
-        text="foster_parent",
-        description="Foster parent")
-    other_nonrelative = PermissibleValue(
-        text="other_nonrelative",
-        description="Other non-relative")
+    fev1 = PermissibleValue(
+        text="fev1",
+        description="Forced expiratory volume in 1 second (L or % predicted)",
+        meaning=HP["0002088"])
+    fvc = PermissibleValue(
+        text="fvc",
+        description="Forced vital capacity (L or % predicted)")
+    fev1_fvc_ratio = PermissibleValue(
+        text="fev1_fvc_ratio",
+        description="Ratio of FEV1 to FVC")
+    fef25_75 = PermissibleValue(
+        text="fef25_75",
+        description="Forced expiratory flow at 25-75% of FVC")
+    pef = PermissibleValue(
+        text="pef",
+        description="Peak expiratory flow")
+    dlco = PermissibleValue(
+        text="dlco",
+        description="Diffusing capacity for carbon monoxide")
+    feno = PermissibleValue(
+        text="feno",
+        description="Fractional exhaled nitric oxide (ppb)")
+    bronchodilator_response = PermissibleValue(
+        text="bronchodilator_response",
+        description="Change in FEV1 after bronchodilator administration")
+    lung_function_decline_rate = PermissibleValue(
+        text="lung_function_decline_rate",
+        description="Rate of FEV1 decline over time (mL/year)")
 
     _defn = EnumDefinition(
-        name="RelationshipToHouseholdHeadEnum",
-        description="""Relationship of a person to the household head (householder) in census data. Based on PUMS RELP variable coding.""",
+        name="LungFunctionObservationTypeEnum",
+        description="Observation types for lung function measurements.",
     )
 
-class CellCultureGrowthModeEnum(EnumDefinitionImpl):
+class FoxJObservationTypeEnum(EnumDefinitionImpl):
     """
-    Cell culture growth modes including traditional and advanced systems. Based on CLO cell culture growth mode terms.
+    Observation types for FoxJ1 and ciliogenesis measurements.
     """
-    adherent = PermissibleValue(
-        text="adherent",
-        description="Cells grow attached to a surface",
-        meaning=CLO["0000028"])
-    suspension = PermissibleValue(
-        text="suspension",
-        description="Cells grow suspended in culture medium",
-        meaning=CLO["0000029"])
-    air_liquid_interface = PermissibleValue(
-        text="air_liquid_interface",
-        description="Cells cultured at interface between air and liquid medium (ALI)",
-        meaning=OBI["0600047"])
-    three_dimensional = PermissibleValue(
-        text="three_dimensional",
-        description="Cells grown in 3D matrix or scaffold")
-    organoid = PermissibleValue(
-        text="organoid",
-        description="Self-organizing 3D tissue culture from stem cells")
-    spheroid = PermissibleValue(
-        text="spheroid",
-        description="Spherical cellular aggregates formed by self-aggregation")
+    foxj1_mrna_expression = PermissibleValue(
+        text="foxj1_mrna_expression",
+        description="FoxJ1 mRNA expression level")
+    foxj1_protein_expression = PermissibleValue(
+        text="foxj1_protein_expression",
+        description="FoxJ1 protein expression level")
+    foxj1_positive_cell_percentage = PermissibleValue(
+        text="foxj1_positive_cell_percentage",
+        description="Percentage of FoxJ1-positive cells")
+    foxj1_nuclear_localization = PermissibleValue(
+        text="foxj1_nuclear_localization",
+        description="FoxJ1 nuclear localization")
 
     _defn = EnumDefinition(
-        name="CellCultureGrowthModeEnum",
-        description="""Cell culture growth modes including traditional and advanced systems. Based on CLO cell culture growth mode terms.""",
+        name="FoxJObservationTypeEnum",
+        description="Observation types for FoxJ1 and ciliogenesis measurements.",
     )
 
-class SubstrateTypeEnum(EnumDefinitionImpl):
+class ExposureBiomarkerObservationTypeEnum(EnumDefinitionImpl):
     """
-    Types of cell culture substrates and surfaces. Includes traditional and advanced substrate materials.
+    Observation types for exposure biomarker measurements.
     """
-    plastic = PermissibleValue(
-        text="plastic",
-        description="Standard tissue culture-treated plastic")
-    collagen_coated = PermissibleValue(
-        text="collagen_coated",
-        description="Collagen-coated surface for enhanced cell attachment")
-    matrigel = PermissibleValue(
-        text="matrigel",
-        description="Basement membrane matrix (Matrigel/Geltrex)")
-    fibronectin_coated = PermissibleValue(
-        text="fibronectin_coated",
-        description="Fibronectin-coated surface")
-    laminin_coated = PermissibleValue(
-        text="laminin_coated",
-        description="Laminin-coated surface")
-    transwell_insert = PermissibleValue(
-        text="transwell_insert",
-        description="Permeable support for air-liquid interface culture")
-    hydrogel = PermissibleValue(
-        text="hydrogel",
-        description="Three-dimensional hydrogel matrix")
-    glass = PermissibleValue(
-        text="glass",
-        description="Glass surface or coverslip")
-    pdms = PermissibleValue(
-        text="pdms",
-        description="Polydimethylsiloxane (for microfluidics/organ-on-chip)")
+    urinary_cotinine = PermissibleValue(
+        text="urinary_cotinine",
+        description="Urinary cotinine level (tobacco smoke biomarker)",
+        meaning=CHEBI["68641"])
+    serum_cotinine = PermissibleValue(
+        text="serum_cotinine",
+        description="Serum cotinine level")
+    urinary_1_hydroxypyrene = PermissibleValue(
+        text="urinary_1_hydroxypyrene",
+        description="Urinary 1-hydroxypyrene (PAH biomarker)")
+    blood_lead = PermissibleValue(
+        text="blood_lead",
+        description="Blood lead concentration")
+    urinary_arsenic = PermissibleValue(
+        text="urinary_arsenic",
+        description="Urinary arsenic species")
+    urinary_cadmium = PermissibleValue(
+        text="urinary_cadmium",
+        description="Urinary cadmium concentration")
+    exhaled_co = PermissibleValue(
+        text="exhaled_co",
+        description="Exhaled carbon monoxide (smoking biomarker)")
 
     _defn = EnumDefinition(
-        name="SubstrateTypeEnum",
-        description="""Types of cell culture substrates and surfaces. Includes traditional and advanced substrate materials.""",
-    )
-
-class SupplementTypeEnum(EnumDefinitionImpl):
-    """
-    Categories of cell culture medium supplements and additives.
-    """
-    growth_factor = PermissibleValue(
-        text="growth_factor",
-        description="Proteins that stimulate cell growth, proliferation, and differentiation",
-        meaning=CHEBI["23924"])
-    antibiotic = PermissibleValue(
-        text="antibiotic",
-        description="Antimicrobial substances used to prevent bacterial contamination",
-        meaning=CHEBI["33281"])
-    antifungal = PermissibleValue(
-        text="antifungal",
-        description="Antifungal agents to prevent fungal contamination",
-        meaning=CHEBI["35718"])
-    hormone = PermissibleValue(
-        text="hormone",
-        description="Signaling molecules that regulate cell physiology",
-        meaning=CHEBI["24621"])
-    vitamin = PermissibleValue(
-        text="vitamin",
-        description="Organic compounds essential for normal growth and nutrition",
-        meaning=CHEBI["33229"])
-    amino_acid = PermissibleValue(
-        text="amino_acid",
-        description="Amino acid supplements for protein synthesis",
-        meaning=CHEBI["33709"])
-    cytokine = PermissibleValue(
-        text="cytokine",
-        description="Small proteins important in cell signaling",
-        meaning=CHEBI["63895"])
-    buffer = PermissibleValue(
-        text="buffer",
-        description="pH buffering agents (HEPES, bicarbonate)",
-        meaning=CHEBI["35225"])
-    serum = PermissibleValue(
-        text="serum",
-        description="Serum supplements (FBS, human serum)")
-    differentiation_factor = PermissibleValue(
-        text="differentiation_factor",
-        description="Factors that induce or maintain cell differentiation")
-
-    _defn = EnumDefinition(
-        name="SupplementTypeEnum",
-        description="Categories of cell culture medium supplements and additives.",
-    )
-
-class CellLineModificationEnum(EnumDefinitionImpl):
-    """
-    Types of genetic or other modifications applied to cell lines.
-    """
-    none = PermissibleValue(
-        text="none",
-        description="Unmodified cell line")
-    transfection = PermissibleValue(
-        text="transfection",
-        description="Transient or stable DNA/RNA transfection")
-    viral_transduction = PermissibleValue(
-        text="viral_transduction",
-        description="Viral vector-mediated gene transfer (lentiviral, adenoviral, AAV)")
-    crispr_knockout = PermissibleValue(
-        text="crispr_knockout",
-        description="CRISPR/Cas9-mediated gene knockout")
-    crispr_knockin = PermissibleValue(
-        text="crispr_knockin",
-        description="CRISPR/Cas9-mediated gene knockin or base editing")
-    rnai = PermissibleValue(
-        text="rnai",
-        description="RNA interference-mediated gene knockdown (siRNA, shRNA)")
-    overexpression = PermissibleValue(
-        text="overexpression",
-        description="Stable or transient gene overexpression")
-    reporter = PermissibleValue(
-        text="reporter",
-        description="Reporter gene insertion (GFP, luciferase, fluorescent proteins)")
-    immortalization = PermissibleValue(
-        text="immortalization",
-        description="Immortalization of primary cells (hTERT, SV40, etc.)")
-
-    _defn = EnumDefinition(
-        name="CellLineModificationEnum",
-        description="Types of genetic or other modifications applied to cell lines.",
-    )
-
-class ThreeDArchitectureEnum(EnumDefinitionImpl):
-    """
-    Types of three-dimensional cell culture architectures.
-    """
-    spheroid = PermissibleValue(
-        text="spheroid",
-        description="Spherical cellular aggregates formed by self-aggregation")
-    organoid = PermissibleValue(
-        text="organoid",
-        description="Self-organizing 3D tissue derived from stem cells")
-    scaffold_based = PermissibleValue(
-        text="scaffold_based",
-        description="Cells grown on/in synthetic or natural scaffolds")
-    hydrogel_encapsulated = PermissibleValue(
-        text="hydrogel_encapsulated",
-        description="Cells encapsulated within hydrogel matrix")
-    bioprinted = PermissibleValue(
-        text="bioprinted",
-        description="3D bioprinted tissue constructs")
-    microcarrier = PermissibleValue(
-        text="microcarrier",
-        description="Cells grown on microcarrier beads in suspension")
-    hanging_drop = PermissibleValue(
-        text="hanging_drop",
-        description="Spheroids formed using hanging drop method")
-
-    _defn = EnumDefinition(
-        name="ThreeDArchitectureEnum",
-        description="Types of three-dimensional cell culture architectures.",
-    )
-
-class CoCultureConfigurationEnum(EnumDefinitionImpl):
-    """
-    Physical configurations for co-culture systems combining multiple cell types.
-    """
-    direct_contact = PermissibleValue(
-        text="direct_contact",
-        description="Cell types in direct physical contact on same surface")
-    transwell = PermissibleValue(
-        text="transwell",
-        description="Cell types separated by permeable membrane insert")
-    conditioned_medium = PermissibleValue(
-        text="conditioned_medium",
-        description="One cell type exposed to conditioned medium from another")
-    microfluidic = PermissibleValue(
-        text="microfluidic",
-        description="Cell types in separate microfluidic compartments with shared media")
-    spheroid_core_shell = PermissibleValue(
-        text="spheroid_core_shell",
-        description="One cell type forms core, another forms surrounding shell")
-    patterned = PermissibleValue(
-        text="patterned",
-        description="Cell types arranged in defined spatial patterns")
-
-    _defn = EnumDefinition(
-        name="CoCultureConfigurationEnum",
-        description="Physical configurations for co-culture systems combining multiple cell types.",
-    )
-
-class ChemicalFormEnum(EnumDefinitionImpl):
-    """
-    Physical form of a test substance or chemical in an exposure experiment.
-    """
-    solid = PermissibleValue(
-        text="solid",
-        description="Solid form (powder, crystite, etc.)",
-        meaning=PATO["0001546"])
-    solution = PermissibleValue(
-        text="solution",
-        description="Dissolved in liquid vehicle")
-    suspension = PermissibleValue(
-        text="suspension",
-        description="Particles suspended in liquid")
-    aerosol = PermissibleValue(
-        text="aerosol",
-        description="Fine particles or droplets suspended in air",
-        meaning=ENVO["01000415"])
-    vapor = PermissibleValue(
-        text="vapor",
-        description="Gaseous form of normally liquid or solid substance")
-    gas = PermissibleValue(
-        text="gas",
-        description="Gaseous chemical substance",
-        meaning=PATO["0001547"])
-    nanoparticle = PermissibleValue(
-        text="nanoparticle",
-        description="Nanoparticulate form (1-100 nm)")
-    microparticle = PermissibleValue(
-        text="microparticle",
-        description="Microparticulate form (0.1-100 um)")
-    emulsion = PermissibleValue(
-        text="emulsion",
-        description="Mixture of immiscible liquids")
-    gel = PermissibleValue(
-        text="gel",
-        description="Semi-solid gel form")
-
-    _defn = EnumDefinition(
-        name="ChemicalFormEnum",
-        description="Physical form of a test substance or chemical in an exposure experiment.",
-    )
-
-class ExposureRegimentEnum(EnumDefinitionImpl):
-    """
-    Pattern or schedule of exposure events in an in vitro experiment.
-    """
-    single = PermissibleValue(
-        text="single",
-        description="Single exposure event")
-    continuous = PermissibleValue(
-        text="continuous",
-        description="Continuous exposure throughout experiment duration")
-    repeated = PermissibleValue(
-        text="repeated",
-        description="Multiple discrete exposure events")
-    intermittent = PermissibleValue(
-        text="intermittent",
-        description="Alternating periods of exposure and recovery")
-    continuous_perfusion = PermissibleValue(
-        text="continuous_perfusion",
-        description="Continuous exposure via perfusion system")
-    acute = PermissibleValue(
-        text="acute",
-        description="Short-term exposure (minutes to hours)")
-    subchronic = PermissibleValue(
-        text="subchronic",
-        description="Medium-term exposure (days)")
-    chronic = PermissibleValue(
-        text="chronic",
-        description="Long-term exposure (weeks or longer)")
-
-    _defn = EnumDefinition(
-        name="ExposureRegimentEnum",
-        description="Pattern or schedule of exposure events in an in vitro experiment.",
-    )
-
-class ControlTypeEnum(EnumDefinitionImpl):
-    """
-    Types of experimental controls used in in vitro exposure studies.
-    """
-    untreated = PermissibleValue(
-        text="untreated",
-        description="No treatment applied (negative control)")
-    vehicle = PermissibleValue(
-        text="vehicle",
-        description="Vehicle/solvent only control")
-    positive = PermissibleValue(
-        text="positive",
-        description="Known positive control compound")
-    historical = PermissibleValue(
-        text="historical",
-        description="Comparison to historical control data")
-    air = PermissibleValue(
-        text="air",
-        description="Clean air exposure (for aerosol studies)")
-    media_only = PermissibleValue(
-        text="media_only",
-        description="Culture medium only control")
-    sham = PermissibleValue(
-        text="sham",
-        description="Sham exposure procedure")
-
-    _defn = EnumDefinition(
-        name="ControlTypeEnum",
-        description="Types of experimental controls used in in vitro exposure studies.",
-    )
-
-class DoseNormalizationMethodEnum(EnumDefinitionImpl):
-    """
-    Methods for normalizing dose in exposure experiments.
-    """
-    per_surface_area = PermissibleValue(
-        text="per_surface_area",
-        description="Dose normalized to surface area (ug/cm2)")
-    per_cell_count = PermissibleValue(
-        text="per_cell_count",
-        description="Dose normalized to cell number")
-    per_protein = PermissibleValue(
-        text="per_protein",
-        description="Dose normalized to total protein content")
-    per_well = PermissibleValue(
-        text="per_well",
-        description="Dose per well (absolute)")
-    per_insert = PermissibleValue(
-        text="per_insert",
-        description="Dose per transwell insert")
-    per_volume = PermissibleValue(
-        text="per_volume",
-        description="Concentration in volume (ug/mL)")
-    deposited_fraction = PermissibleValue(
-        text="deposited_fraction",
-        description="Based on measured deposited fraction")
-    isdd_modeled = PermissibleValue(
-        text="isdd_modeled",
-        description="Calculated using In Vitro Sedimentation, Diffusion, and Dosimetry model")
-
-    _defn = EnumDefinition(
-        name="DoseNormalizationMethodEnum",
-        description="Methods for normalizing dose in exposure experiments.",
-    )
-
-class AerosolGenerationMethodEnum(EnumDefinitionImpl):
-    """
-    Methods for generating aerosols in inhalation toxicology studies.
-    """
-    nebulization = PermissibleValue(
-        text="nebulization",
-        description="Liquid nebulization (jet, ultrasonic, vibrating mesh)")
-    dry_powder_dispersion = PermissibleValue(
-        text="dry_powder_dispersion",
-        description="Aerosolization of dry powder")
-    condensation = PermissibleValue(
-        text="condensation",
-        description="Condensation aerosol generation")
-    electrospray = PermissibleValue(
-        text="electrospray",
-        description="Electrospray atomization")
-    spark_discharge = PermissibleValue(
-        text="spark_discharge",
-        description="Spark discharge for nanoparticle generation")
-    combustion = PermissibleValue(
-        text="combustion",
-        description="Combustion-generated aerosols")
-    evaporation_condensation = PermissibleValue(
-        text="evaporation_condensation",
-        description="Evaporation-condensation method")
-    atomization = PermissibleValue(
-        text="atomization",
-        description="Mechanical atomization")
-    cloud_system = PermissibleValue(
-        text="cloud_system",
-        description="Cloud-based deposition system (e.g., Vitrocell Cloud)")
-    alice = PermissibleValue(
-        text="alice",
-        description="Air-Liquid Interface Cell Exposure system")
-
-    _defn = EnumDefinition(
-        name="AerosolGenerationMethodEnum",
-        description="Methods for generating aerosols in inhalation toxicology studies.",
-    )
-
-class DataNormalizationMethodEnum(EnumDefinitionImpl):
-    """
-    Methods for normalizing measurement data in analysis.
-    """
-    per_area = PermissibleValue(
-        text="per_area",
-        description="Normalized to surface area")
-    per_cell_count = PermissibleValue(
-        text="per_cell_count",
-        description="Normalized to cell number")
-    per_baseline = PermissibleValue(
-        text="per_baseline",
-        description="Normalized to baseline/pre-exposure value")
-    to_internal_control = PermissibleValue(
-        text="to_internal_control",
-        description="Normalized to internal control on same plate/experiment")
-    to_vehicle_control = PermissibleValue(
-        text="to_vehicle_control",
-        description="Normalized to vehicle control")
-    to_positive_control = PermissibleValue(
-        text="to_positive_control",
-        description="Normalized to positive control")
-    to_historical_control = PermissibleValue(
-        text="to_historical_control",
-        description="Normalized to historical control values")
-    per_protein = PermissibleValue(
-        text="per_protein",
-        description="Normalized to total protein")
-    z_score = PermissibleValue(
-        text="z_score",
-        description="Z-score normalization")
-    percent_of_control = PermissibleValue(
-        text="percent_of_control",
-        description="Expressed as percentage of control")
-    fold_change = PermissibleValue(
-        text="fold_change",
-        description="Expressed as fold change from baseline")
-
-    _defn = EnumDefinition(
-        name="DataNormalizationMethodEnum",
-        description="Methods for normalizing measurement data in analysis.",
-    )
-
-class RawDataTypeEnum(EnumDefinitionImpl):
-    """
-    Types of raw data collected from measurements.
-    """
-    image_stack = PermissibleValue(
-        text="image_stack",
-        description="Z-stack of images")
-    single_image = PermissibleValue(
-        text="single_image",
-        description="Single 2D image")
-    video = PermissibleValue(
-        text="video",
-        description="Time-lapse video recording")
-    fluorescence_intensity = PermissibleValue(
-        text="fluorescence_intensity",
-        description="Fluorescence intensity readings")
-    absorbance = PermissibleValue(
-        text="absorbance",
-        description="Absorbance/optical density readings")
-    luminescence = PermissibleValue(
-        text="luminescence",
-        description="Luminescence readings")
-    electrical = PermissibleValue(
-        text="electrical",
-        description="Electrical measurements (TEER, patch clamp)")
-    flow_cytometry = PermissibleValue(
-        text="flow_cytometry",
-        description="Flow cytometry data files")
-    spectral = PermissibleValue(
-        text="spectral",
-        description="Spectral data (Raman, FTIR)")
-    mass_spec = PermissibleValue(
-        text="mass_spec",
-        description="Mass spectrometry data")
-    sequencing = PermissibleValue(
-        text="sequencing",
-        description="Sequencing reads")
-    tabular = PermissibleValue(
-        text="tabular",
-        description="Tabular/numeric data")
-
-    _defn = EnumDefinition(
-        name="RawDataTypeEnum",
-        description="Types of raw data collected from measurements.",
-    )
-
-class AutomationLevelEnum(EnumDefinitionImpl):
-    """
-    Level of automation in data processing and analysis.
-    """
-    manual = PermissibleValue(
-        text="manual",
-        description="Fully manual analysis")
-    semi_automated = PermissibleValue(
-        text="semi_automated",
-        description="Partially automated with manual verification")
-    fully_automated = PermissibleValue(
-        text="fully_automated",
-        description="Fully automated pipeline")
-    ai_assisted = PermissibleValue(
-        text="ai_assisted",
-        description="AI/ML-assisted analysis with human oversight")
-
-    _defn = EnumDefinition(
-        name="AutomationLevelEnum",
-        description="Level of automation in data processing and analysis.",
-    )
-
-class DataTransformationEnum(EnumDefinitionImpl):
-    """
-    Mathematical transformations applied to data.
-    """
-    none = PermissibleValue(
-        text="none",
-        description="No transformation applied")
-    log10 = PermissibleValue(
-        text="log10",
-        description="Log base 10 transformation")
-    log2 = PermissibleValue(
-        text="log2",
-        description="Log base 2 transformation")
-    natural_log = PermissibleValue(
-        text="natural_log",
-        description="Natural logarithm transformation")
-    square_root = PermissibleValue(
-        text="square_root",
-        description="Square root transformation")
-    arcsine = PermissibleValue(
-        text="arcsine",
-        description="Arcsine transformation (for proportions)")
-    box_cox = PermissibleValue(
-        text="box_cox",
-        description="Box-Cox transformation")
-    inverse = PermissibleValue(
-        text="inverse",
-        description="Inverse transformation")
-    z_transform = PermissibleValue(
-        text="z_transform",
-        description="Z-score transformation")
-
-    _defn = EnumDefinition(
-        name="DataTransformationEnum",
-        description="Mathematical transformations applied to data.",
-    )
-
-class ReplicateCombinationMethodEnum(EnumDefinitionImpl):
-    """
-    Methods for combining replicate measurements.
-    """
-    mean = PermissibleValue(
-        text="mean",
-        description="Arithmetic mean of replicates")
-    median = PermissibleValue(
-        text="median",
-        description="Median of replicates")
-    weighted_mean = PermissibleValue(
-        text="weighted_mean",
-        description="Weighted mean based on quality scores")
-    geometric_mean = PermissibleValue(
-        text="geometric_mean",
-        description="Geometric mean of replicates")
-    fitted_model = PermissibleValue(
-        text="fitted_model",
-        description="Value from fitted statistical model")
-    surface_fit = PermissibleValue(
-        text="surface_fit",
-        description="Fitted surface model for spatial data")
-    best_replicate = PermissibleValue(
-        text="best_replicate",
-        description="Best quality replicate selected")
-    sum = PermissibleValue(
-        text="sum",
-        description="Sum of replicate values")
-
-    _defn = EnumDefinition(
-        name="ReplicateCombinationMethodEnum",
-        description="Methods for combining replicate measurements.",
+        name="ExposureBiomarkerObservationTypeEnum",
+        description="Observation types for exposure biomarker measurements.",
     )
 
 # Slots
 class slots:
     pass
 
-slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier'),
-                   model_uri=OWG.id, domain=None, range=URIRef)
+slots.ciliary_measurements = Slot(uri=OUTCOMES_WORKING_GROUP.ciliary_measurements, name="ciliary_measurements", curie=OUTCOMES_WORKING_GROUP.curie('ciliary_measurements'),
+                   model_uri=OUTCOMES_WORKING_GROUP.ciliary_measurements, domain=None, range=Optional[Union[dict[Union[str, CiliaryFunctionMeasurementId], Union[dict, CiliaryFunctionMeasurement]], list[Union[dict, CiliaryFunctionMeasurement]]]])
+
+slots.asl_measurements = Slot(uri=OUTCOMES_WORKING_GROUP.asl_measurements, name="asl_measurements", curie=OUTCOMES_WORKING_GROUP.curie('asl_measurements'),
+                   model_uri=OUTCOMES_WORKING_GROUP.asl_measurements, domain=None, range=Optional[Union[dict[Union[str, ASLMeasurementId], Union[dict, ASLMeasurement]], list[Union[dict, ASLMeasurement]]]])
+
+slots.mcc_measurements = Slot(uri=OUTCOMES_WORKING_GROUP.mcc_measurements, name="mcc_measurements", curie=OUTCOMES_WORKING_GROUP.curie('mcc_measurements'),
+                   model_uri=OUTCOMES_WORKING_GROUP.mcc_measurements, domain=None, range=Optional[Union[dict[Union[str, MCCMeasurementId], Union[dict, MCCMeasurement]], list[Union[dict, MCCMeasurement]]]])
+
+slots.oxidative_stress_measurements = Slot(uri=OUTCOMES_WORKING_GROUP.oxidative_stress_measurements, name="oxidative_stress_measurements", curie=OUTCOMES_WORKING_GROUP.curie('oxidative_stress_measurements'),
+                   model_uri=OUTCOMES_WORKING_GROUP.oxidative_stress_measurements, domain=None, range=Optional[Union[dict[Union[str, OxidativeStressMeasurementId], Union[dict, OxidativeStressMeasurement]], list[Union[dict, OxidativeStressMeasurement]]]])
+
+slots.cftr_measurements = Slot(uri=OUTCOMES_WORKING_GROUP.cftr_measurements, name="cftr_measurements", curie=OUTCOMES_WORKING_GROUP.curie('cftr_measurements'),
+                   model_uri=OUTCOMES_WORKING_GROUP.cftr_measurements, domain=None, range=Optional[Union[dict[Union[str, CFTRMeasurementId], Union[dict, CFTRMeasurement]], list[Union[dict, CFTRMeasurement]]]])
+
+slots.egfr_measurements = Slot(uri=OUTCOMES_WORKING_GROUP.egfr_measurements, name="egfr_measurements", curie=OUTCOMES_WORKING_GROUP.curie('egfr_measurements'),
+                   model_uri=OUTCOMES_WORKING_GROUP.egfr_measurements, domain=None, range=Optional[Union[dict[Union[str, EGFRMeasurementId], Union[dict, EGFRMeasurement]], list[Union[dict, EGFRMeasurement]]]])
+
+slots.goblet_cell_mucin_measurements = Slot(uri=OUTCOMES_WORKING_GROUP.goblet_cell_mucin_measurements, name="goblet_cell_mucin_measurements", curie=OUTCOMES_WORKING_GROUP.curie('goblet_cell_mucin_measurements'),
+                   model_uri=OUTCOMES_WORKING_GROUP.goblet_cell_mucin_measurements, domain=None, range=Optional[Union[dict[Union[str, GobletCellMucinMeasurementId], Union[dict, GobletCellMucinMeasurement]], list[Union[dict, GobletCellMucinMeasurement]]]])
+
+slots.balf_sputum_measurements = Slot(uri=OUTCOMES_WORKING_GROUP.balf_sputum_measurements, name="balf_sputum_measurements", curie=OUTCOMES_WORKING_GROUP.curie('balf_sputum_measurements'),
+                   model_uri=OUTCOMES_WORKING_GROUP.balf_sputum_measurements, domain=None, range=Optional[Union[dict[Union[str, BALFSputumMeasurementId], Union[dict, BALFSputumMeasurement]], list[Union[dict, BALFSputumMeasurement]]]])
+
+slots.lung_function_measurements = Slot(uri=OUTCOMES_WORKING_GROUP.lung_function_measurements, name="lung_function_measurements", curie=OUTCOMES_WORKING_GROUP.curie('lung_function_measurements'),
+                   model_uri=OUTCOMES_WORKING_GROUP.lung_function_measurements, domain=None, range=Optional[Union[dict[Union[str, LungFunctionMeasurementId], Union[dict, LungFunctionMeasurement]], list[Union[dict, LungFunctionMeasurement]]]])
+
+slots.foxj_measurements = Slot(uri=OUTCOMES_WORKING_GROUP.foxj_measurements, name="foxj_measurements", curie=OUTCOMES_WORKING_GROUP.curie('foxj_measurements'),
+                   model_uri=OUTCOMES_WORKING_GROUP.foxj_measurements, domain=None, range=Optional[Union[dict[Union[str, FoxJMeasurementId], Union[dict, FoxJMeasurement]], list[Union[dict, FoxJMeasurement]]]])
+
+slots.exposure_biomarker_measurements = Slot(uri=OUTCOMES_WORKING_GROUP.exposure_biomarker_measurements, name="exposure_biomarker_measurements", curie=OUTCOMES_WORKING_GROUP.curie('exposure_biomarker_measurements'),
+                   model_uri=OUTCOMES_WORKING_GROUP.exposure_biomarker_measurements, domain=None, range=Optional[Union[dict[Union[str, ExposureBiomarkerMeasurementId], Union[dict, ExposureBiomarkerMeasurement]], list[Union[dict, ExposureBiomarkerMeasurement]]]])
+
+slots.protocols = Slot(uri=OUTCOMES_WORKING_GROUP.protocols, name="protocols", curie=OUTCOMES_WORKING_GROUP.curie('protocols'),
+                   model_uri=OUTCOMES_WORKING_GROUP.protocols, domain=None, range=Optional[Union[dict[Union[str, ProtocolId], Union[dict, Protocol]], list[Union[dict, Protocol]]]])
+
+slots.methods = Slot(uri=OUTCOMES_WORKING_GROUP.methods, name="methods", curie=OUTCOMES_WORKING_GROUP.curie('methods'),
+                   model_uri=OUTCOMES_WORKING_GROUP.methods, domain=None, range=Optional[Union[dict[Union[str, MethodId], Union[dict, Method]], list[Union[dict, Method]]]])
+
+slots.assays = Slot(uri=OUTCOMES_WORKING_GROUP.assays, name="assays", curie=OUTCOMES_WORKING_GROUP.curie('assays'),
+                   model_uri=OUTCOMES_WORKING_GROUP.assays, domain=None, range=Optional[Union[dict[Union[str, AssayId], Union[dict, Assay]], list[Union[dict, Assay]]]])
+
+slots.id = Slot(uri=MEASUREMENT_BASE.id, name="id", curie=MEASUREMENT_BASE.curie('id'),
+                   model_uri=OUTCOMES_WORKING_GROUP.id, domain=None, range=URIRef)
 
 slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
-                   model_uri=OWG.name, domain=None, range=Optional[str])
+                   model_uri=OUTCOMES_WORKING_GROUP.name, domain=None, range=Optional[str])
 
 slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEMA.curie('description'),
-                   model_uri=OWG.description, domain=None, range=Optional[str])
+                   model_uri=OUTCOMES_WORKING_GROUP.description, domain=None, range=Optional[str])
 
-slots.category = Slot(uri=OWG.category, name="category", curie=OWG.curie('category'),
-                   model_uri=OWG.category, domain=None, range=Optional[Union[str, list[str]]])
+slots.observation_type = Slot(uri=MEASUREMENT_BASE.observation_type, name="observation_type", curie=MEASUREMENT_BASE.curie('observation_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.observation_type, domain=None, range=Optional[str])
 
-slots.xref = Slot(uri=OWG.xref, name="xref", curie=OWG.curie('xref'),
-                   model_uri=OWG.xref, domain=None, range=Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]])
+slots.quantity_measured = Slot(uri=MEASUREMENT_BASE.quantity_measured, name="quantity_measured", curie=MEASUREMENT_BASE.curie('quantity_measured'),
+                   model_uri=OUTCOMES_WORKING_GROUP.quantity_measured, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.unit_label = Slot(uri=OWG.unit_label, name="unit_label", curie=OWG.curie('unit_label'),
-                   model_uri=OWG.unit_label, domain=None, range=Optional[str])
+slots.range_low = Slot(uri=MEASUREMENT_BASE.range_low, name="range_low", curie=MEASUREMENT_BASE.curie('range_low'),
+                   model_uri=OUTCOMES_WORKING_GROUP.range_low, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.chebi_id = Slot(uri=OWG.chebi_id, name="chebi_id", curie=OWG.curie('chebi_id'),
-                   model_uri=OWG.chebi_id, domain=None, range=Optional[Union[str, URIorCURIE]],
-                   pattern=re.compile(r'^CHEBI:\d+$'))
+slots.range_high = Slot(uri=MEASUREMENT_BASE.range_high, name="range_high", curie=MEASUREMENT_BASE.curie('range_high'),
+                   model_uri=OUTCOMES_WORKING_GROUP.range_high, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.dtxsid = Slot(uri=OWG.dtxsid, name="dtxsid", curie=OWG.curie('dtxsid'),
-                   model_uri=OWG.dtxsid, domain=None, range=Optional[str],
-                   pattern=re.compile(r'^DTXSID\d{7,9}$'))
+slots.measured_entity = Slot(uri=MEASUREMENT_BASE.measured_entity, name="measured_entity", curie=MEASUREMENT_BASE.curie('measured_entity'),
+                   model_uri=OUTCOMES_WORKING_GROUP.measured_entity, domain=None, range=Optional[Union[dict, NamedEntity]])
 
-slots.chembl_id = Slot(uri=OWG.chembl_id, name="chembl_id", curie=OWG.curie('chembl_id'),
-                   model_uri=OWG.chembl_id, domain=None, range=Optional[str],
-                   pattern=re.compile(r'^CHEMBL\d+$'))
+slots.measurement_method = Slot(uri=MEASUREMENT_BASE.measurement_method, name="measurement_method", curie=MEASUREMENT_BASE.curie('measurement_method'),
+                   model_uri=OUTCOMES_WORKING_GROUP.measurement_method, domain=None, range=Optional[str])
 
-slots.pubchem_cid = Slot(uri=OWG.pubchem_cid, name="pubchem_cid", curie=OWG.curie('pubchem_cid'),
-                   model_uri=OWG.pubchem_cid, domain=None, range=Optional[int])
+slots.measurement_date = Slot(uri=MEASUREMENT_BASE.measurement_date, name="measurement_date", curie=MEASUREMENT_BASE.curie('measurement_date'),
+                   model_uri=OUTCOMES_WORKING_GROUP.measurement_date, domain=None, range=Optional[Union[str, XSDDate]])
 
-slots.cas_number = Slot(uri=OWG.cas_number, name="cas_number", curie=OWG.curie('cas_number'),
-                   model_uri=OWG.cas_number, domain=None, range=Optional[str])
+slots.uses = Slot(uri=MEASUREMENT_BASE.uses, name="uses", curie=MEASUREMENT_BASE.curie('uses'),
+                   model_uri=OUTCOMES_WORKING_GROUP.uses, domain=None, range=Optional[Union[dict, Assay]])
 
-slots.inchi = Slot(uri=OWG.inchi, name="inchi", curie=OWG.curie('inchi'),
-                   model_uri=OWG.inchi, domain=None, range=Optional[str])
+slots.implements = Slot(uri=MEASUREMENT_BASE.implements, name="implements", curie=MEASUREMENT_BASE.curie('implements'),
+                   model_uri=OUTCOMES_WORKING_GROUP.implements, domain=None, range=Optional[Union[dict, Assay]])
 
-slots.smiles = Slot(uri=OWG.smiles, name="smiles", curie=OWG.curie('smiles'),
-                   model_uri=OWG.smiles, domain=None, range=Optional[str])
+slots.specified_by = Slot(uri=MEASUREMENT_BASE.specified_by, name="specified_by", curie=MEASUREMENT_BASE.curie('specified_by'),
+                   model_uri=OUTCOMES_WORKING_GROUP.specified_by, domain=None, range=Optional[Union[dict, Method]])
 
-slots.molecular_formula = Slot(uri=OWG.molecular_formula, name="molecular_formula", curie=OWG.curie('molecular_formula'),
-                   model_uri=OWG.molecular_formula, domain=None, range=Optional[str])
+slots.follows = Slot(uri=MEASUREMENT_BASE.follows, name="follows", curie=MEASUREMENT_BASE.curie('follows'),
+                   model_uri=OUTCOMES_WORKING_GROUP.follows, domain=None, range=Optional[Union[dict, Assay]])
 
-slots.exposed_subject = Slot(uri=OWG.exposed_subject, name="exposed_subject", curie=OWG.curie('exposed_subject'),
-                   model_uri=OWG.exposed_subject, domain=None, range=Optional[Union[dict, ExposableSubject]])
+slots.study_context = Slot(uri=MEASUREMENT_BASE.study_context, name="study_context", curie=MEASUREMENT_BASE.curie('study_context'),
+                   model_uri=OUTCOMES_WORKING_GROUP.study_context, domain=None, range=Optional[Union[str, "StudyContextEnum"]])
 
-slots.exposed_to_chemical = Slot(uri=CHEBI['24431'], name="exposed_to_chemical", curie=CHEBI.curie('24431'),
-                   model_uri=OWG.exposed_to_chemical, domain=None, range=Optional[Union[dict, ChemicalEntity]])
+slots.imaging_frame_rate = Slot(uri=MEASUREMENT_BASE.imaging_frame_rate, name="imaging_frame_rate", curie=MEASUREMENT_BASE.curie('imaging_frame_rate'),
+                   model_uri=OUTCOMES_WORKING_GROUP.imaging_frame_rate, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.exposure_route = Slot(uri=OWG.exposure_route, name="exposure_route", curie=OWG.curie('exposure_route'),
-                   model_uri=OWG.exposure_route, domain=None, range=Optional[Union[str, "ExposureRouteEnum"]])
+slots.imaging_duration = Slot(uri=MEASUREMENT_BASE.imaging_duration, name="imaging_duration", curie=MEASUREMENT_BASE.curie('imaging_duration'),
+                   model_uri=OUTCOMES_WORKING_GROUP.imaging_duration, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.exposure_duration = Slot(uri=OWG.exposure_duration, name="exposure_duration", curie=OWG.curie('exposure_duration'),
-                   model_uri=OWG.exposure_duration, domain=None, range=Optional[str])
+slots.spatial_resolution = Slot(uri=MEASUREMENT_BASE.spatial_resolution, name="spatial_resolution", curie=MEASUREMENT_BASE.curie('spatial_resolution'),
+                   model_uri=OUTCOMES_WORKING_GROUP.spatial_resolution, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.exposure_concentration = Slot(uri=OWG.exposure_concentration, name="exposure_concentration", curie=OWG.curie('exposure_concentration'),
-                   model_uri=OWG.exposure_concentration, domain=None, range=Optional[float])
+slots.temperature_control = Slot(uri=MEASUREMENT_BASE.temperature_control, name="temperature_control", curie=MEASUREMENT_BASE.curie('temperature_control'),
+                   model_uri=OUTCOMES_WORKING_GROUP.temperature_control, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.exposure_medium = Slot(uri=OWG.exposure_medium, name="exposure_medium", curie=OWG.curie('exposure_medium'),
-                   model_uri=OWG.exposure_medium, domain=None, range=Optional[Union[str, "ExposureMediumEnum"]])
+slots.humidity_control = Slot(uri=MEASUREMENT_BASE.humidity_control, name="humidity_control", curie=MEASUREMENT_BASE.curie('humidity_control'),
+                   model_uri=OUTCOMES_WORKING_GROUP.humidity_control, domain=None, range=Optional[Union[dict, QuantityValue]])
 
-slots.food_item = Slot(uri=OWG.food_item, name="food_item", curie=OWG.curie('food_item'),
-                   model_uri=OWG.food_item, domain=None, range=Optional[str])
+slots.evaporation_control = Slot(uri=MEASUREMENT_BASE.evaporation_control, name="evaporation_control", curie=MEASUREMENT_BASE.curie('evaporation_control'),
+                   model_uri=OUTCOMES_WORKING_GROUP.evaporation_control, domain=None, range=Optional[str])
 
-slots.serving_size = Slot(uri=OWG.serving_size, name="serving_size", curie=OWG.curie('serving_size'),
-                   model_uri=OWG.serving_size, domain=None, range=Optional[str])
+slots.detection_method = Slot(uri=MEASUREMENT_BASE.detection_method, name="detection_method", curie=MEASUREMENT_BASE.curie('detection_method'),
+                   model_uri=OUTCOMES_WORKING_GROUP.detection_method, domain=None, range=Optional[str])
 
-slots.environmental_context = Slot(uri=OWG.environmental_context, name="environmental_context", curie=OWG.curie('environmental_context'),
-                   model_uri=OWG.environmental_context, domain=None, range=Optional[str])
+slots.staining_type = Slot(uri=MEASUREMENT_BASE.staining_type, name="staining_type", curie=MEASUREMENT_BASE.curie('staining_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.staining_type, domain=None, range=Optional[str])
 
-slots.occupation = Slot(uri=OWG.occupation, name="occupation", curie=OWG.curie('occupation'),
-                   model_uri=OWG.occupation, domain=None, range=Optional[str])
+slots.antibody_used = Slot(uri=MEASUREMENT_BASE.antibody_used, name="antibody_used", curie=MEASUREMENT_BASE.curie('antibody_used'),
+                   model_uri=OUTCOMES_WORKING_GROUP.antibody_used, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.workplace = Slot(uri=OWG.workplace, name="workplace", curie=OWG.curie('workplace'),
-                   model_uri=OWG.workplace, domain=None, range=Optional[str])
+slots.probe_type = Slot(uri=MEASUREMENT_BASE.probe_type, name="probe_type", curie=MEASUREMENT_BASE.curie('probe_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.probe_type, domain=None, range=Optional[str])
 
-slots.severity = Slot(uri=OWG.severity, name="severity", curie=OWG.curie('severity'),
-                   model_uri=OWG.severity, domain=None, range=Optional[str])
+slots.normalization_method = Slot(uri=MEASUREMENT_BASE.normalization_method, name="normalization_method", curie=MEASUREMENT_BASE.curie('normalization_method'),
+                   model_uri=OUTCOMES_WORKING_GROUP.normalization_method, domain=None, range=Optional[str])
 
-slots.onset_age = Slot(uri=OWG.onset_age, name="onset_age", curie=OWG.curie('onset_age'),
-                   model_uri=OWG.onset_age, domain=None, range=Optional[str])
+slots.replicate_count = Slot(uri=MEASUREMENT_BASE.replicate_count, name="replicate_count", curie=MEASUREMENT_BASE.curie('replicate_count'),
+                   model_uri=OUTCOMES_WORKING_GROUP.replicate_count, domain=None, range=Optional[int])
 
-slots.disease_category = Slot(uri=OWG.disease_category, name="disease_category", curie=OWG.curie('disease_category'),
-                   model_uri=OWG.disease_category, domain=None, range=Optional[str])
+slots.quality_control_criteria = Slot(uri=MEASUREMENT_BASE.quality_control_criteria, name="quality_control_criteria", curie=MEASUREMENT_BASE.curie('quality_control_criteria'),
+                   model_uri=OUTCOMES_WORKING_GROUP.quality_control_criteria, domain=None, range=Optional[str])
 
-slots.affected_anatomy = Slot(uri=OWG.affected_anatomy, name="affected_anatomy", curie=OWG.curie('affected_anatomy'),
-                   model_uri=OWG.affected_anatomy, domain=None, range=Optional[Union[dict, AnatomicalEntity]])
+slots.cell_culture_system = Slot(uri=MEASUREMENT_BASE.cell_culture_system, name="cell_culture_system", curie=MEASUREMENT_BASE.curie('cell_culture_system'),
+                   model_uri=OUTCOMES_WORKING_GROUP.cell_culture_system, domain=None, range=Optional[str])
 
-slots.outcome_level = Slot(uri=OWG.outcome_level, name="outcome_level", curie=OWG.curie('outcome_level'),
-                   model_uri=OWG.outcome_level, domain=None, range=Optional[Union[str, "BiologicalOrganizationLevelEnum"]])
+slots.days_at_differentiation = Slot(uri=MEASUREMENT_BASE.days_at_differentiation, name="days_at_differentiation", curie=MEASUREMENT_BASE.curie('days_at_differentiation'),
+                   model_uri=OUTCOMES_WORKING_GROUP.days_at_differentiation, domain=None, range=Optional[int])
 
-slots.aopwiki_id = Slot(uri=OWG.aopwiki_id, name="aopwiki_id", curie=OWG.curie('aopwiki_id'),
-                   model_uri=OWG.aopwiki_id, domain=None, range=Optional[str])
+slots.passage_number = Slot(uri=MEASUREMENT_BASE.passage_number, name="passage_number", curie=MEASUREMENT_BASE.curie('passage_number'),
+                   model_uri=OUTCOMES_WORKING_GROUP.passage_number, domain=None, range=Optional[int])
 
-slots.molecular_initiating_event = Slot(uri=OWG.molecular_initiating_event, name="molecular_initiating_event", curie=OWG.curie('molecular_initiating_event'),
-                   model_uri=OWG.molecular_initiating_event, domain=None, range=Optional[Union[str, MolecularInitiatingEventId]])
+slots.substrate_type = Slot(uri=MEASUREMENT_BASE.substrate_type, name="substrate_type", curie=MEASUREMENT_BASE.curie('substrate_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.substrate_type, domain=None, range=Optional[str])
 
-slots.key_events = Slot(uri=OWG.key_events, name="key_events", curie=OWG.curie('key_events'),
-                   model_uri=OWG.key_events, domain=None, range=Optional[Union[Union[str, KeyEventId], list[Union[str, KeyEventId]]]])
+slots.donor_info = Slot(uri=MEASUREMENT_BASE.donor_info, name="donor_info", curie=MEASUREMENT_BASE.curie('donor_info'),
+                   model_uri=OUTCOMES_WORKING_GROUP.donor_info, domain=None, range=Optional[str])
 
-slots.key_event_relationships = Slot(uri=OWG.key_event_relationships, name="key_event_relationships", curie=OWG.curie('key_event_relationships'),
-                   model_uri=OWG.key_event_relationships, domain=None, range=Optional[Union[Union[str, KeyEventRelationshipId], list[Union[str, KeyEventRelationshipId]]]])
+slots.replicates_per_donor = Slot(uri=MEASUREMENT_BASE.replicates_per_donor, name="replicates_per_donor", curie=MEASUREMENT_BASE.curie('replicates_per_donor'),
+                   model_uri=OUTCOMES_WORKING_GROUP.replicates_per_donor, domain=None, range=Optional[int])
 
-slots.adverse_outcome = Slot(uri=OWG.adverse_outcome, name="adverse_outcome", curie=OWG.curie('adverse_outcome'),
-                   model_uri=OWG.adverse_outcome, domain=None, range=Optional[Union[str, AdverseOutcomeId]])
+slots.culture_medium = Slot(uri=MEASUREMENT_BASE.culture_medium, name="culture_medium", curie=MEASUREMENT_BASE.curie('culture_medium'),
+                   model_uri=OUTCOMES_WORKING_GROUP.culture_medium, domain=None, range=Optional[str])
 
-slots.stressors = Slot(uri=OWG.stressors, name="stressors", curie=OWG.curie('stressors'),
-                   model_uri=OWG.stressors, domain=None, range=Optional[Union[Union[str, ChemicalEntityId], list[Union[str, ChemicalEntityId]]]])
+slots.participant = Slot(uri=MEASUREMENT_BASE.participant, name="participant", curie=MEASUREMENT_BASE.curie('participant'),
+                   model_uri=OUTCOMES_WORKING_GROUP.participant, domain=None, range=Optional[Union[dict, NamedEntity]])
 
-slots.biological_process = Slot(uri=OWG.biological_process, name="biological_process", curie=OWG.curie('biological_process'),
-                   model_uri=OWG.biological_process, domain=None, range=Optional[str])
+slots.sample_type = Slot(uri=MEASUREMENT_BASE.sample_type, name="sample_type", curie=MEASUREMENT_BASE.curie('sample_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.sample_type, domain=None, range=Optional[Union[str, "SampleTypeEnum"]])
 
-slots.biological_object = Slot(uri=OWG.biological_object, name="biological_object", curie=OWG.curie('biological_object'),
-                   model_uri=OWG.biological_object, domain=None, range=Optional[str])
+slots.collection_site = Slot(uri=MEASUREMENT_BASE.collection_site, name="collection_site", curie=MEASUREMENT_BASE.curie('collection_site'),
+                   model_uri=OUTCOMES_WORKING_GROUP.collection_site, domain=None, range=Optional[str])
 
-slots.biological_action = Slot(uri=OWG.biological_action, name="biological_action", curie=OWG.curie('biological_action'),
-                   model_uri=OWG.biological_action, domain=None, range=Optional[str])
+slots.collection_date = Slot(uri=MEASUREMENT_BASE.collection_date, name="collection_date", curie=MEASUREMENT_BASE.curie('collection_date'),
+                   model_uri=OUTCOMES_WORKING_GROUP.collection_date, domain=None, range=Optional[Union[str, XSDDate]])
 
-slots.occurs_in_cell_type = Slot(uri=CL['0000000'], name="occurs_in_cell_type", curie=CL.curie('0000000'),
-                   model_uri=OWG.occurs_in_cell_type, domain=None, range=Optional[Union[str, CellTypeId]])
+slots.subject_characteristics = Slot(uri=MEASUREMENT_BASE.subject_characteristics, name="subject_characteristics", curie=MEASUREMENT_BASE.curie('subject_characteristics'),
+                   model_uri=OUTCOMES_WORKING_GROUP.subject_characteristics, domain=None, range=Optional[str])
 
-slots.occurs_in_anatomy = Slot(uri=UBERON['0001062'], name="occurs_in_anatomy", curie=UBERON.curie('0001062'),
-                   model_uri=OWG.occurs_in_anatomy, domain=None, range=Optional[Union[str, AnatomicalEntityId]])
+slots.value = Slot(uri=MEASUREMENT_BASE.value, name="value", curie=MEASUREMENT_BASE.curie('value'),
+                   model_uri=OUTCOMES_WORKING_GROUP.value, domain=None, range=Optional[str])
 
-slots.level_of_biological_organization = Slot(uri=OWG.level_of_biological_organization, name="level_of_biological_organization", curie=OWG.curie('level_of_biological_organization'),
-                   model_uri=OWG.level_of_biological_organization, domain=None, range=Optional[Union[str, "BiologicalOrganizationLevelEnum"]])
+slots.unit = Slot(uri=MEASUREMENT_BASE.unit, name="unit", curie=MEASUREMENT_BASE.curie('unit'),
+                   model_uri=OUTCOMES_WORKING_GROUP.unit, domain=None, range=Optional[Union[dict, Unit]])
 
-slots.upstream_event = Slot(uri=OWG.upstream_event, name="upstream_event", curie=OWG.curie('upstream_event'),
-                   model_uri=OWG.upstream_event, domain=None, range=Optional[Union[str, KeyEventId]])
+slots.CiliaryFunctionMeasurement_observation_type = Slot(uri=MEASUREMENT_BASE.observation_type, name="CiliaryFunctionMeasurement_observation_type", curie=MEASUREMENT_BASE.curie('observation_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.CiliaryFunctionMeasurement_observation_type, domain=CiliaryFunctionMeasurement, range=Optional[Union[str, "CiliaryFunctionObservationTypeEnum"]])
 
-slots.downstream_event = Slot(uri=OWG.downstream_event, name="downstream_event", curie=OWG.curie('downstream_event'),
-                   model_uri=OWG.downstream_event, domain=None, range=Optional[Union[str, KeyEventId]])
+slots.ASLMeasurement_observation_type = Slot(uri=MEASUREMENT_BASE.observation_type, name="ASLMeasurement_observation_type", curie=MEASUREMENT_BASE.curie('observation_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.ASLMeasurement_observation_type, domain=ASLMeasurement, range=Optional[Union[str, "ASLObservationTypeEnum"]])
 
-slots.relationship_type = Slot(uri=OWG.relationship_type, name="relationship_type", curie=OWG.curie('relationship_type'),
-                   model_uri=OWG.relationship_type, domain=None, range=Optional[str])
+slots.MCCMeasurement_observation_type = Slot(uri=MEASUREMENT_BASE.observation_type, name="MCCMeasurement_observation_type", curie=MEASUREMENT_BASE.curie('observation_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.MCCMeasurement_observation_type, domain=MCCMeasurement, range=Optional[Union[str, "MCCObservationTypeEnum"]])
 
-slots.evidence_support = Slot(uri=OWG.evidence_support, name="evidence_support", curie=OWG.curie('evidence_support'),
-                   model_uri=OWG.evidence_support, domain=None, range=Optional[str])
+slots.OxidativeStressMeasurement_observation_type = Slot(uri=MEASUREMENT_BASE.observation_type, name="OxidativeStressMeasurement_observation_type", curie=MEASUREMENT_BASE.curie('observation_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.OxidativeStressMeasurement_observation_type, domain=OxidativeStressMeasurement, range=Optional[Union[str, "OxidativeStressObservationTypeEnum"]])
 
-slots.study_type = Slot(uri=OWG.study_type, name="study_type", curie=OWG.curie('study_type'),
-                   model_uri=OWG.study_type, domain=None, range=Optional[Union[str, "StudyTypeEnum"]])
+slots.CFTRMeasurement_observation_type = Slot(uri=MEASUREMENT_BASE.observation_type, name="CFTRMeasurement_observation_type", curie=MEASUREMENT_BASE.curie('observation_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.CFTRMeasurement_observation_type, domain=CFTRMeasurement, range=Optional[Union[str, "CFTRObservationTypeEnum"]])
 
-slots.population = Slot(uri=OWG.population, name="population", curie=OWG.curie('population'),
-                   model_uri=OWG.population, domain=None, range=Optional[str])
+slots.EGFRMeasurement_observation_type = Slot(uri=MEASUREMENT_BASE.observation_type, name="EGFRMeasurement_observation_type", curie=MEASUREMENT_BASE.curie('observation_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.EGFRMeasurement_observation_type, domain=EGFRMeasurement, range=Optional[Union[str, "EGFRObservationTypeEnum"]])
 
-slots.enrollment_period = Slot(uri=OWG.enrollment_period, name="enrollment_period", curie=OWG.curie('enrollment_period'),
-                   model_uri=OWG.enrollment_period, domain=None, range=Optional[str])
+slots.GobletCellMucinMeasurement_observation_type = Slot(uri=MEASUREMENT_BASE.observation_type, name="GobletCellMucinMeasurement_observation_type", curie=MEASUREMENT_BASE.curie('observation_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.GobletCellMucinMeasurement_observation_type, domain=GobletCellMucinMeasurement, range=Optional[Union[str, "GobletCellMucinObservationTypeEnum"]])
 
-slots.geographic_location = Slot(uri=OWG.geographic_location, name="geographic_location", curie=OWG.curie('geographic_location'),
-                   model_uri=OWG.geographic_location, domain=None, range=Optional[str])
+slots.BALFSputumMeasurement_observation_type = Slot(uri=MEASUREMENT_BASE.observation_type, name="BALFSputumMeasurement_observation_type", curie=MEASUREMENT_BASE.curie('observation_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.BALFSputumMeasurement_observation_type, domain=BALFSputumMeasurement, range=Optional[Union[str, "BALFSputumObservationTypeEnum"]])
 
-slots.principal_investigator = Slot(uri=OWG.principal_investigator, name="principal_investigator", curie=OWG.curie('principal_investigator'),
-                   model_uri=OWG.principal_investigator, domain=None, range=Optional[str])
+slots.LungFunctionMeasurement_observation_type = Slot(uri=MEASUREMENT_BASE.observation_type, name="LungFunctionMeasurement_observation_type", curie=MEASUREMENT_BASE.curie('observation_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.LungFunctionMeasurement_observation_type, domain=LungFunctionMeasurement, range=Optional[Union[str, "LungFunctionObservationTypeEnum"]])
 
-slots.publications = Slot(uri=OWG.publications, name="publications", curie=OWG.curie('publications'),
-                   model_uri=OWG.publications, domain=None, range=Optional[Union[str, list[str]]])
+slots.FoxJMeasurement_observation_type = Slot(uri=MEASUREMENT_BASE.observation_type, name="FoxJMeasurement_observation_type", curie=MEASUREMENT_BASE.curie('observation_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.FoxJMeasurement_observation_type, domain=FoxJMeasurement, range=Optional[Union[str, "FoxJObservationTypeEnum"]])
 
-slots.part_of_study = Slot(uri=OWG.part_of_study, name="part_of_study", curie=OWG.curie('part_of_study'),
-                   model_uri=OWG.part_of_study, domain=None, range=Optional[Union[dict, Study]])
-
-slots.cohort_size = Slot(uri=OWG.cohort_size, name="cohort_size", curie=OWG.curie('cohort_size'),
-                   model_uri=OWG.cohort_size, domain=None, range=Optional[int])
-
-slots.inclusion_criteria = Slot(uri=OWG.inclusion_criteria, name="inclusion_criteria", curie=OWG.curie('inclusion_criteria'),
-                   model_uri=OWG.inclusion_criteria, domain=None, range=Optional[str])
-
-slots.part_of_cohort = Slot(uri=BIOLINK.member_of, name="part_of_cohort", curie=BIOLINK.curie('member_of'),
-                   model_uri=OWG.part_of_cohort, domain=None, range=Optional[Union[dict, Cohort]])
-
-slots.participant_id = Slot(uri=OWG.participant_id, name="participant_id", curie=OWG.curie('participant_id'),
-                   model_uri=OWG.participant_id, domain=None, range=Optional[str])
-
-slots.person = Slot(uri=OWG.person, name="person", curie=OWG.curie('person'),
-                   model_uri=OWG.person, domain=None, range=Optional[Union[str, PersonId]])
-
-slots.enrollment_date = Slot(uri=OWG.enrollment_date, name="enrollment_date", curie=OWG.curie('enrollment_date'),
-                   model_uri=OWG.enrollment_date, domain=None, range=Optional[Union[str, XSDDate]])
-
-slots.withdrawal_date = Slot(uri=OWG.withdrawal_date, name="withdrawal_date", curie=OWG.curie('withdrawal_date'),
-                   model_uri=OWG.withdrawal_date, domain=None, range=Optional[Union[str, XSDDate]])
-
-slots.study_arm = Slot(uri=OWG.study_arm, name="study_arm", curie=OWG.curie('study_arm'),
-                   model_uri=OWG.study_arm, domain=None, range=Optional[str])
-
-slots.age = Slot(uri=OWG.age, name="age", curie=OWG.curie('age'),
-                   model_uri=OWG.age, domain=None, range=Optional[int])
-
-slots.sex = Slot(uri=OWG.sex, name="sex", curie=OWG.curie('sex'),
-                   model_uri=OWG.sex, domain=None, range=Optional[Union[str, "SexEnum"]])
-
-slots.species = Slot(uri=OWG.species, name="species", curie=OWG.curie('species'),
-                   model_uri=OWG.species, domain=None, range=Optional[str])
-
-slots.observation_type = Slot(uri=OWG.observation_type, name="observation_type", curie=OWG.curie('observation_type'),
-                   model_uri=OWG.observation_type, domain=None, range=Optional[Union[str, "MeasurementTypeEnum"]])
-
-slots.quantity_measured = Slot(uri=OWG.quantity_measured, name="quantity_measured", curie=OWG.curie('quantity_measured'),
-                   model_uri=OWG.quantity_measured, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.range_low = Slot(uri=OWG.range_low, name="range_low", curie=OWG.curie('range_low'),
-                   model_uri=OWG.range_low, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.range_high = Slot(uri=OWG.range_high, name="range_high", curie=OWG.curie('range_high'),
-                   model_uri=OWG.range_high, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.measured_entity = Slot(uri=OWG.measured_entity, name="measured_entity", curie=OWG.curie('measured_entity'),
-                   model_uri=OWG.measured_entity, domain=None, range=Optional[Union[dict, OntologyTerm]])
-
-slots.participant = Slot(uri=OWG.participant, name="participant", curie=OWG.curie('participant'),
-                   model_uri=OWG.participant, domain=None, range=Optional[Union[dict, Participant]])
-
-slots.measurement_method = Slot(uri=OWG.measurement_method, name="measurement_method", curie=OWG.curie('measurement_method'),
-                   model_uri=OWG.measurement_method, domain=None, range=Optional[str])
-
-slots.measurement_date = Slot(uri=OWG.measurement_date, name="measurement_date", curie=OWG.curie('measurement_date'),
-                   model_uri=OWG.measurement_date, domain=None, range=Optional[Union[str, XSDDate]])
-
-slots.sample_type = Slot(uri=OWG.sample_type, name="sample_type", curie=OWG.curie('sample_type'),
-                   model_uri=OWG.sample_type, domain=None, range=Optional[Union[str, "SampleTypeEnum"]])
-
-slots.biomarker_type = Slot(uri=OWG.biomarker_type, name="biomarker_type", curie=OWG.curie('biomarker_type'),
-                   model_uri=OWG.biomarker_type, domain=None, range=Optional[str])
-
-slots.phenotype = Slot(uri=OWG.phenotype, name="phenotype", curie=OWG.curie('phenotype'),
-                   model_uri=OWG.phenotype, domain=None, range=Optional[Union[dict, OntologyTerm]])
-
-slots.cohort = Slot(uri=OWG.cohort, name="cohort", curie=OWG.curie('cohort'),
-                   model_uri=OWG.cohort, domain=None, range=Optional[Union[dict, Cohort]])
-
-slots.summary_statistic = Slot(uri=OWG.summary_statistic, name="summary_statistic", curie=OWG.curie('summary_statistic'),
-                   model_uri=OWG.summary_statistic, domain=None, range=Optional[Union[str, "SummaryStatisticEnum"]])
-
-slots.sample_size = Slot(uri=OWG.sample_size, name="sample_size", curie=OWG.curie('sample_size'),
-                   model_uri=OWG.sample_size, domain=None, range=Optional[int])
-
-slots.stratification = Slot(uri=OWG.stratification, name="stratification", curie=OWG.curie('stratification'),
-                   model_uri=OWG.stratification, domain=None, range=Optional[str])
-
-slots.target_gene = Slot(uri=OWG.target_gene, name="target_gene", curie=OWG.curie('target_gene'),
-                   model_uri=OWG.target_gene, domain=None, range=Optional[Union[dict, Gene]])
-
-slots.target_protein = Slot(uri=OWG.target_protein, name="target_protein", curie=OWG.curie('target_protein'),
-                   model_uri=OWG.target_protein, domain=None, range=Optional[Union[dict, Protein]])
-
-slots.tissue_context = Slot(uri=OWG.tissue_context, name="tissue_context", curie=OWG.curie('tissue_context'),
-                   model_uri=OWG.tissue_context, domain=None, range=Optional[Union[dict, Tissue]])
-
-slots.cell_type_context = Slot(uri=OWG.cell_type_context, name="cell_type_context", curie=OWG.curie('cell_type_context'),
-                   model_uri=OWG.cell_type_context, domain=None, range=Optional[Union[dict, CellType]])
-
-slots.assay_method = Slot(uri=OWG.assay_method, name="assay_method", curie=OWG.curie('assay_method'),
-                   model_uri=OWG.assay_method, domain=None, range=Optional[Union[str, "ExpressionAssayMethodEnum"]])
-
-slots.phosphorylation_site = Slot(uri=OWG.phosphorylation_site, name="phosphorylation_site", curie=OWG.curie('phosphorylation_site'),
-                   model_uri=OWG.phosphorylation_site, domain=None, range=Optional[str])
-
-slots.normalization_reference = Slot(uri=OWG.normalization_reference, name="normalization_reference", curie=OWG.curie('normalization_reference'),
-                   model_uri=OWG.normalization_reference, domain=None, range=Optional[str])
-
-slots.ncbigene_id = Slot(uri=OWG.ncbigene_id, name="ncbigene_id", curie=OWG.curie('ncbigene_id'),
-                   model_uri=OWG.ncbigene_id, domain=None, range=Optional[str],
-                   pattern=re.compile(r'^\d+$'))
-
-slots.symbol = Slot(uri=OWG.symbol, name="symbol", curie=OWG.curie('symbol'),
-                   model_uri=OWG.symbol, domain=None, range=Optional[str])
-
-slots.in_taxon = Slot(uri=OWG.in_taxon, name="in_taxon", curie=OWG.curie('in_taxon'),
-                   model_uri=OWG.in_taxon, domain=None, range=Optional[str])
-
-slots.encoded_by_gene = Slot(uri=OWG.encoded_by_gene, name="encoded_by_gene", curie=OWG.curie('encoded_by_gene'),
-                   model_uri=OWG.encoded_by_gene, domain=None, range=Optional[Union[dict, Gene]])
-
-slots.cl_id = Slot(uri=OWG.cl_id, name="cl_id", curie=OWG.curie('cl_id'),
-                   model_uri=OWG.cl_id, domain=None, range=Optional[Union[str, URIorCURIE]],
-                   pattern=re.compile(r'^CL:\d{7}$'))
-
-slots.uberon_id = Slot(uri=OWG.uberon_id, name="uberon_id", curie=OWG.curie('uberon_id'),
-                   model_uri=OWG.uberon_id, domain=None, range=Optional[Union[str, URIorCURIE]],
-                   pattern=re.compile(r'^UBERON:\d{7}$'))
-
-slots.taxon_id = Slot(uri=OWG.taxon_id, name="taxon_id", curie=OWG.curie('taxon_id'),
-                   model_uri=OWG.taxon_id, domain=None, range=Optional[str])
-
-slots.exposure = Slot(uri=OWG.exposure, name="exposure", curie=OWG.curie('exposure'),
-                   model_uri=OWG.exposure, domain=None, range=Optional[Union[dict, ExposureEvent]])
-
-slots.chemical = Slot(uri=OWG.chemical, name="chemical", curie=OWG.curie('chemical'),
-                   model_uri=OWG.chemical, domain=None, range=Optional[Union[dict, ChemicalEntity]])
-
-slots.gene = Slot(uri=OWG.gene, name="gene", curie=OWG.curie('gene'),
-                   model_uri=OWG.gene, domain=None, range=Optional[Union[dict, Gene]])
-
-slots.disease = Slot(uri=OWG.disease, name="disease", curie=OWG.curie('disease'),
-                   model_uri=OWG.disease, domain=None, range=Optional[Union[dict, Disease]])
-
-slots.association_type = Slot(uri=OWG.association_type, name="association_type", curie=OWG.curie('association_type'),
-                   model_uri=OWG.association_type, domain=None, range=Optional[str])
-
-slots.evidence = Slot(uri=OWG.evidence, name="evidence", curie=OWG.curie('evidence'),
-                   model_uri=OWG.evidence, domain=None, range=Optional[str])
-
-slots.interaction_type = Slot(uri=OWG.interaction_type, name="interaction_type", curie=OWG.curie('interaction_type'),
-                   model_uri=OWG.interaction_type, domain=None, range=Optional[str])
-
-slots.genetic_variant = Slot(uri=OWG.genetic_variant, name="genetic_variant", curie=OWG.curie('genetic_variant'),
-                   model_uri=OWG.genetic_variant, domain=None, range=Optional[str])
-
-slots.p_value = Slot(uri=OWG.p_value, name="p_value", curie=OWG.curie('p_value'),
-                   model_uri=OWG.p_value, domain=None, range=Optional[float])
-
-slots.effect_size = Slot(uri=OWG.effect_size, name="effect_size", curie=OWG.curie('effect_size'),
-                   model_uri=OWG.effect_size, domain=None, range=Optional[float])
-
-slots.exposure_measurements = Slot(uri=OWG.exposure_measurements, name="exposure_measurements", curie=OWG.curie('exposure_measurements'),
-                   model_uri=OWG.exposure_measurements, domain=None, range=Optional[Union[dict[Union[str, ExposureMeasurementId], Union[dict, ExposureMeasurement]], list[Union[dict, ExposureMeasurement]]]])
-
-slots.biomarker_measurements = Slot(uri=OWG.biomarker_measurements, name="biomarker_measurements", curie=OWG.curie('biomarker_measurements'),
-                   model_uri=OWG.biomarker_measurements, domain=None, range=Optional[Union[dict[Union[str, BiomarkerMeasurementId], Union[dict, BiomarkerMeasurement]], list[Union[dict, BiomarkerMeasurement]]]])
-
-slots.phenotype_measurements = Slot(uri=OWG.phenotype_measurements, name="phenotype_measurements", curie=OWG.curie('phenotype_measurements'),
-                   model_uri=OWG.phenotype_measurements, domain=None, range=Optional[Union[dict[Union[str, PhenotypeMeasurementId], Union[dict, PhenotypeMeasurement]], list[Union[dict, PhenotypeMeasurement]]]])
-
-slots.gene_expression_measurements = Slot(uri=OWG.gene_expression_measurements, name="gene_expression_measurements", curie=OWG.curie('gene_expression_measurements'),
-                   model_uri=OWG.gene_expression_measurements, domain=None, range=Optional[Union[dict[Union[str, GeneExpressionMeasurementId], Union[dict, GeneExpressionMeasurement]], list[Union[dict, GeneExpressionMeasurement]]]])
-
-slots.protein_expression_measurements = Slot(uri=OWG.protein_expression_measurements, name="protein_expression_measurements", curie=OWG.curie('protein_expression_measurements'),
-                   model_uri=OWG.protein_expression_measurements, domain=None, range=Optional[Union[dict[Union[str, ProteinExpressionMeasurementId], Union[dict, ProteinExpressionMeasurement]], list[Union[dict, ProteinExpressionMeasurement]]]])
-
-slots.aggregated_measurements = Slot(uri=OWG.aggregated_measurements, name="aggregated_measurements", curie=OWG.curie('aggregated_measurements'),
-                   model_uri=OWG.aggregated_measurements, domain=None, range=Optional[Union[dict[Union[str, AggregatedMeasurementId], Union[dict, AggregatedMeasurement]], list[Union[dict, AggregatedMeasurement]]]])
-
-slots.studies = Slot(uri=OWG.studies, name="studies", curie=OWG.curie('studies'),
-                   model_uri=OWG.studies, domain=None, range=Optional[Union[dict[Union[str, StudyId], Union[dict, Study]], list[Union[dict, Study]]]])
-
-slots.cohorts = Slot(uri=OWG.cohorts, name="cohorts", curie=OWG.curie('cohorts'),
-                   model_uri=OWG.cohorts, domain=None, range=Optional[Union[dict[Union[str, CohortId], Union[dict, Cohort]], list[Union[dict, Cohort]]]])
-
-slots.participants = Slot(uri=OWG.participants, name="participants", curie=OWG.curie('participants'),
-                   model_uri=OWG.participants, domain=None, range=Optional[Union[dict[Union[str, ParticipantId], Union[dict, Participant]], list[Union[dict, Participant]]]])
-
-slots.chemicals = Slot(uri=OWG.chemicals, name="chemicals", curie=OWG.curie('chemicals'),
-                   model_uri=OWG.chemicals, domain=None, range=Optional[Union[dict[Union[str, ChemicalEntityId], Union[dict, ChemicalEntity]], list[Union[dict, ChemicalEntity]]]])
-
-slots.genes = Slot(uri=OWG.genes, name="genes", curie=OWG.curie('genes'),
-                   model_uri=OWG.genes, domain=None, range=Optional[Union[dict[Union[str, GeneId], Union[dict, Gene]], list[Union[dict, Gene]]]])
-
-slots.proteins = Slot(uri=OWG.proteins, name="proteins", curie=OWG.curie('proteins'),
-                   model_uri=OWG.proteins, domain=None, range=Optional[Union[dict[Union[str, ProteinId], Union[dict, Protein]], list[Union[dict, Protein]]]])
-
-slots.ciliary_measurements = Slot(uri=OWG.ciliary_measurements, name="ciliary_measurements", curie=OWG.curie('ciliary_measurements'),
-                   model_uri=OWG.ciliary_measurements, domain=None, range=Optional[Union[dict[Union[str, PhenotypeMeasurementId], Union[dict, PhenotypeMeasurement]], list[Union[dict, PhenotypeMeasurement]]]])
-
-slots.asl_measurements = Slot(uri=OWG.asl_measurements, name="asl_measurements", curie=OWG.curie('asl_measurements'),
-                   model_uri=OWG.asl_measurements, domain=None, range=Optional[Union[dict[Union[str, PhenotypeMeasurementId], Union[dict, PhenotypeMeasurement]], list[Union[dict, PhenotypeMeasurement]]]])
-
-slots.mcc_measurements = Slot(uri=OWG.mcc_measurements, name="mcc_measurements", curie=OWG.curie('mcc_measurements'),
-                   model_uri=OWG.mcc_measurements, domain=None, range=Optional[Union[dict[Union[str, PhenotypeMeasurementId], Union[dict, PhenotypeMeasurement]], list[Union[dict, PhenotypeMeasurement]]]])
-
-slots.goblet_cell_measurements = Slot(uri=OWG.goblet_cell_measurements, name="goblet_cell_measurements", curie=OWG.curie('goblet_cell_measurements'),
-                   model_uri=OWG.goblet_cell_measurements, domain=None, range=Optional[Union[dict[Union[str, PhenotypeMeasurementId], Union[dict, PhenotypeMeasurement]], list[Union[dict, PhenotypeMeasurement]]]])
-
-slots.oxidative_stress_measurements = Slot(uri=OWG.oxidative_stress_measurements, name="oxidative_stress_measurements", curie=OWG.curie('oxidative_stress_measurements'),
-                   model_uri=OWG.oxidative_stress_measurements, domain=None, range=Optional[Union[dict[Union[str, BiomarkerMeasurementId], Union[dict, BiomarkerMeasurement]], list[Union[dict, BiomarkerMeasurement]]]])
-
-slots.barrier_measurements = Slot(uri=OWG.barrier_measurements, name="barrier_measurements", curie=OWG.curie('barrier_measurements'),
-                   model_uri=OWG.barrier_measurements, domain=None, range=Optional[Union[dict[Union[str, BiomarkerMeasurementId], Union[dict, BiomarkerMeasurement]], list[Union[dict, BiomarkerMeasurement]]]])
-
-slots.cytotoxicity_measurements = Slot(uri=OWG.cytotoxicity_measurements, name="cytotoxicity_measurements", curie=OWG.curie('cytotoxicity_measurements'),
-                   model_uri=OWG.cytotoxicity_measurements, domain=None, range=Optional[Union[dict[Union[str, BiomarkerMeasurementId], Union[dict, BiomarkerMeasurement]], list[Union[dict, BiomarkerMeasurement]]]])
-
-slots.chemical_exposures = Slot(uri=OWG.chemical_exposures, name="chemical_exposures", curie=OWG.curie('chemical_exposures'),
-                   model_uri=OWG.chemical_exposures, domain=None, range=Optional[Union[dict[Union[str, ChemicalExposureId], Union[dict, ChemicalExposure]], list[Union[dict, ChemicalExposure]]]])
-
-slots.dietary_exposures = Slot(uri=OWG.dietary_exposures, name="dietary_exposures", curie=OWG.curie('dietary_exposures'),
-                   model_uri=OWG.dietary_exposures, domain=None, range=Optional[Union[dict[Union[str, DietaryExposureId], Union[dict, DietaryExposure]], list[Union[dict, DietaryExposure]]]])
-
-slots.environmental_exposures = Slot(uri=OWG.environmental_exposures, name="environmental_exposures", curie=OWG.curie('environmental_exposures'),
-                   model_uri=OWG.environmental_exposures, domain=None, range=Optional[Union[dict[Union[str, EnvironmentalExposureId], Union[dict, EnvironmentalExposure]], list[Union[dict, EnvironmentalExposure]]]])
-
-slots.occupational_exposures = Slot(uri=OWG.occupational_exposures, name="occupational_exposures", curie=OWG.curie('occupational_exposures'),
-                   model_uri=OWG.occupational_exposures, domain=None, range=Optional[Union[dict[Union[str, OccupationalExposureId], Union[dict, OccupationalExposure]], list[Union[dict, OccupationalExposure]]]])
-
-slots.phenotypes = Slot(uri=OWG.phenotypes, name="phenotypes", curie=OWG.curie('phenotypes'),
-                   model_uri=OWG.phenotypes, domain=None, range=Optional[Union[dict[Union[str, PhenotypeId], Union[dict, Phenotype]], list[Union[dict, Phenotype]]]])
-
-slots.diseases = Slot(uri=OWG.diseases, name="diseases", curie=OWG.curie('diseases'),
-                   model_uri=OWG.diseases, domain=None, range=Optional[Union[dict[Union[str, DiseaseId], Union[dict, Disease]], list[Union[dict, Disease]]]])
-
-slots.adverse_outcomes = Slot(uri=OWG.adverse_outcomes, name="adverse_outcomes", curie=OWG.curie('adverse_outcomes'),
-                   model_uri=OWG.adverse_outcomes, domain=None, range=Optional[Union[dict[Union[str, AdverseOutcomeId], Union[dict, AdverseOutcome]], list[Union[dict, AdverseOutcome]]]])
-
-slots.adverse_outcome_pathways = Slot(uri=OWG.adverse_outcome_pathways, name="adverse_outcome_pathways", curie=OWG.curie('adverse_outcome_pathways'),
-                   model_uri=OWG.adverse_outcome_pathways, domain=None, range=Optional[Union[dict[Union[str, AdverseOutcomePathwayId], Union[dict, AdverseOutcomePathway]], list[Union[dict, AdverseOutcomePathway]]]])
-
-slots.cell_types = Slot(uri=OWG.cell_types, name="cell_types", curie=OWG.curie('cell_types'),
-                   model_uri=OWG.cell_types, domain=None, range=Optional[Union[dict[Union[str, CellTypeId], Union[dict, CellType]], list[Union[dict, CellType]]]])
-
-slots.anatomical_entities = Slot(uri=OWG.anatomical_entities, name="anatomical_entities", curie=OWG.curie('anatomical_entities'),
-                   model_uri=OWG.anatomical_entities, domain=None, range=Optional[Union[dict[Union[str, AnatomicalEntityId], Union[dict, AnatomicalEntity]], list[Union[dict, AnatomicalEntity]]]])
-
-slots.organisms = Slot(uri=OWG.organisms, name="organisms", curie=OWG.curie('organisms'),
-                   model_uri=OWG.organisms, domain=None, range=Optional[Union[dict[Union[str, OrganismId], Union[dict, Organism]], list[Union[dict, Organism]]]])
-
-slots.exposure_to_phenotype_associations = Slot(uri=OWG.exposure_to_phenotype_associations, name="exposure_to_phenotype_associations", curie=OWG.curie('exposure_to_phenotype_associations'),
-                   model_uri=OWG.exposure_to_phenotype_associations, domain=None, range=Optional[Union[dict[Union[str, ExposureToPhenotypeAssociationId], Union[dict, ExposureToPhenotypeAssociation]], list[Union[dict, ExposureToPhenotypeAssociation]]]])
-
-slots.federal_information_processing_standard_code = Slot(uri=OWG.federal_information_processing_standard_code, name="federal_information_processing_standard_code", curie=OWG.curie('federal_information_processing_standard_code'),
-                   model_uri=OWG.federal_information_processing_standard_code, domain=None, range=Optional[str])
-
-slots.state_federal_information_processing_standard_code = Slot(uri=OWG.state_federal_information_processing_standard_code, name="state_federal_information_processing_standard_code", curie=OWG.curie('state_federal_information_processing_standard_code'),
-                   model_uri=OWG.state_federal_information_processing_standard_code, domain=None, range=Optional[str])
-
-slots.county_federal_information_processing_standard_code = Slot(uri=OWG.county_federal_information_processing_standard_code, name="county_federal_information_processing_standard_code", curie=OWG.curie('county_federal_information_processing_standard_code'),
-                   model_uri=OWG.county_federal_information_processing_standard_code, domain=None, range=Optional[str])
-
-slots.census_tract_federal_information_processing_standard_code = Slot(uri=OWG.census_tract_federal_information_processing_standard_code, name="census_tract_federal_information_processing_standard_code", curie=OWG.curie('census_tract_federal_information_processing_standard_code'),
-                   model_uri=OWG.census_tract_federal_information_processing_standard_code, domain=None, range=Optional[str])
-
-slots.block_group_federal_information_processing_standard_code = Slot(uri=OWG.block_group_federal_information_processing_standard_code, name="block_group_federal_information_processing_standard_code", curie=OWG.curie('block_group_federal_information_processing_standard_code'),
-                   model_uri=OWG.block_group_federal_information_processing_standard_code, domain=None, range=Optional[str])
-
-slots.abbreviation = Slot(uri=OWG.abbreviation, name="abbreviation", curie=OWG.curie('abbreviation'),
-                   model_uri=OWG.abbreviation, domain=None, range=Optional[str])
-
-slots.counties = Slot(uri=OWG.counties, name="counties", curie=OWG.curie('counties'),
-                   model_uri=OWG.counties, domain=None, range=Optional[Union[dict[Union[str, CountyId], Union[dict, County]], list[Union[dict, County]]]])
-
-slots.public_use_microdata_areas = Slot(uri=OWG.public_use_microdata_areas, name="public_use_microdata_areas", curie=OWG.curie('public_use_microdata_areas'),
-                   model_uri=OWG.public_use_microdata_areas, domain=None, range=Optional[Union[dict[Union[str, PublicUseMicrodataAreaId], Union[dict, PublicUseMicrodataArea]], list[Union[dict, PublicUseMicrodataArea]]]])
-
-slots.census_tracts = Slot(uri=OWG.census_tracts, name="census_tracts", curie=OWG.curie('census_tracts'),
-                   model_uri=OWG.census_tracts, domain=None, range=Optional[Union[dict[Union[str, CensusTractId], Union[dict, CensusTract]], list[Union[dict, CensusTract]]]])
-
-slots.block_groups = Slot(uri=OWG.block_groups, name="block_groups", curie=OWG.curie('block_groups'),
-                   model_uri=OWG.block_groups, domain=None, range=Optional[Union[dict[Union[str, BlockGroupId], Union[dict, BlockGroup]], list[Union[dict, BlockGroup]]]])
-
-slots.households = Slot(uri=OWG.households, name="households", curie=OWG.curie('households'),
-                   model_uri=OWG.households, domain=None, range=Optional[Union[dict[Union[str, HouseholdId], Union[dict, Household]], list[Union[dict, Household]]]])
-
-slots.persons = Slot(uri=OWG.persons, name="persons", curie=OWG.curie('persons'),
-                   model_uri=OWG.persons, domain=None, range=Optional[Union[dict[Union[str, PersonId], Union[dict, Person]], list[Union[dict, Person]]]])
-
-slots.states = Slot(uri=OWG.states, name="states", curie=OWG.curie('states'),
-                   model_uri=OWG.states, domain=None, range=Optional[Union[dict[Union[str, StateId], Union[dict, State]], list[Union[dict, State]]]])
-
-slots.schools = Slot(uri=OWG.schools, name="schools", curie=OWG.curie('schools'),
-                   model_uri=OWG.schools, domain=None, range=Optional[Union[dict[Union[str, SchoolId], Union[dict, School]], list[Union[dict, School]]]])
-
-slots.serial_number = Slot(uri=OWG.serial_number, name="serial_number", curie=OWG.curie('serial_number'),
-                   model_uri=OWG.serial_number, domain=None, range=Optional[str])
-
-slots.household_identifier = Slot(uri=OWG.household_identifier, name="household_identifier", curie=OWG.curie('household_identifier'),
-                   model_uri=OWG.household_identifier, domain=None, range=Optional[str])
-
-slots.household_head_age = Slot(uri=OWG.household_head_age, name="household_head_age", curie=OWG.curie('household_head_age'),
-                   model_uri=OWG.household_head_age, domain=None, range=Optional[int])
-
-slots.household_income = Slot(uri=OWG.household_income, name="household_income", curie=OWG.curie('household_income'),
-                   model_uri=OWG.household_income, domain=None, range=Optional[float])
-
-slots.household_head_race = Slot(uri=OWG.household_head_race, name="household_head_race", curie=OWG.curie('household_head_race'),
-                   model_uri=OWG.household_head_race, domain=None, range=Optional[str])
-
-slots.household_size = Slot(uri=OWG.household_size, name="household_size", curie=OWG.curie('household_size'),
-                   model_uri=OWG.household_size, domain=None, range=Optional[int])
-
-slots.household_persons = Slot(uri=OWG.household_persons, name="household_persons", curie=OWG.curie('household_persons'),
-                   model_uri=OWG.household_persons, domain=None, range=Optional[Union[dict[Union[str, PersonId], Union[dict, Person]], list[Union[dict, Person]]]])
-
-slots.assigned_school = Slot(uri=OWG.assigned_school, name="assigned_school", curie=OWG.curie('assigned_school'),
-                   model_uri=OWG.assigned_school, domain=None, range=Optional[Union[str, SchoolId]])
-
-slots.person_order = Slot(uri=OWG.person_order, name="person_order", curie=OWG.curie('person_order'),
-                   model_uri=OWG.person_order, domain=None, range=Optional[int])
-
-slots.relationship_to_household_head = Slot(uri=OWG.relationship_to_household_head, name="relationship_to_household_head", curie=OWG.curie('relationship_to_household_head'),
-                   model_uri=OWG.relationship_to_household_head, domain=None, range=Optional[Union[str, "RelationshipToHouseholdHeadEnum"]])
-
-slots.race = Slot(uri=OWG.race, name="race", curie=OWG.curie('race'),
-                   model_uri=OWG.race, domain=None, range=Optional[str])
-
-slots.cell_line = Slot(uri=CLO['0000031'], name="cell_line", curie=CLO.curie('0000031'),
-                   model_uri=OWG.cell_line, domain=None, range=Optional[Union[dict, CellLine]])
-
-slots.cell_line_lineage = Slot(uri=OWG.cell_line_lineage, name="cell_line_lineage", curie=OWG.curie('cell_line_lineage'),
-                   model_uri=OWG.cell_line_lineage, domain=None, range=Optional[str])
-
-slots.cell_line_modification = Slot(uri=OWG.cell_line_modification, name="cell_line_modification", curie=OWG.curie('cell_line_modification'),
-                   model_uri=OWG.cell_line_modification, domain=None, range=Optional[Union[str, "CellLineModificationEnum"]])
-
-slots.induced_pluripotent_stem_cell_line = Slot(uri=OWG.induced_pluripotent_stem_cell_line, name="induced_pluripotent_stem_cell_line", curie=OWG.curie('induced_pluripotent_stem_cell_line'),
-                   model_uri=OWG.induced_pluripotent_stem_cell_line, domain=None, range=Optional[Union[bool, Bool]])
-
-slots.primary_cultured_cell = Slot(uri=OWG.primary_cultured_cell, name="primary_cultured_cell", curie=OWG.curie('primary_cultured_cell'),
-                   model_uri=OWG.primary_cultured_cell, domain=None, range=Optional[Union[dict, CellType]])
-
-slots.cell_culture_type = Slot(uri=EFO['0000324'], name="cell_culture_type", curie=EFO.curie('0000324'),
-                   model_uri=OWG.cell_culture_type, domain=None, range=Optional[Union[dict, CellType]])
-
-slots.anatomical_origin = Slot(uri=UBERON['0001062'], name="anatomical_origin", curie=UBERON.curie('0001062'),
-                   model_uri=OWG.anatomical_origin, domain=None, range=Optional[Union[dict, AnatomicalEntity]])
-
-slots.model_species = Slot(uri=OWG.model_species, name="model_species", curie=OWG.curie('model_species'),
-                   model_uri=OWG.model_species, domain=None, range=Optional[Union[dict, Organism]])
-
-slots.cell_culture_growth_mode = Slot(uri=OWG.cell_culture_growth_mode, name="cell_culture_growth_mode", curie=OWG.curie('cell_culture_growth_mode'),
-                   model_uri=OWG.cell_culture_growth_mode, domain=None, range=Optional[Union[str, "CellCultureGrowthModeEnum"]])
-
-slots.substrate_type = Slot(uri=OWG.substrate_type, name="substrate_type", curie=OWG.curie('substrate_type'),
-                   model_uri=OWG.substrate_type, domain=None, range=Optional[Union[str, "SubstrateTypeEnum"]])
-
-slots.culture_conditions = Slot(uri=OWG.culture_conditions, name="culture_conditions", curie=OWG.curie('culture_conditions'),
-                   model_uri=OWG.culture_conditions, domain=None, range=Optional[Union[dict, CellCultureConditions]])
-
-slots.culture_media = Slot(uri=OWG.culture_media, name="culture_media", curie=OWG.curie('culture_media'),
-                   model_uri=OWG.culture_media, domain=None, range=Optional[Union[dict, CellCultureMedium]])
-
-slots.environmental_measurements = Slot(uri=OWG.environmental_measurements, name="environmental_measurements", curie=OWG.curie('environmental_measurements'),
-                   model_uri=OWG.environmental_measurements, domain=None, range=Optional[Union[dict[Union[str, EnvironmentalMeasurementId], Union[dict, EnvironmentalMeasurement]], list[Union[dict, EnvironmentalMeasurement]]]])
-
-slots.mechanical_measurements = Slot(uri=OWG.mechanical_measurements, name="mechanical_measurements", curie=OWG.curie('mechanical_measurements'),
-                   model_uri=OWG.mechanical_measurements, domain=None, range=Optional[Union[dict[Union[str, MechanicalMeasurementId], Union[dict, MechanicalMeasurement]], list[Union[dict, MechanicalMeasurement]]]])
-
-slots.membrane_properties = Slot(uri=OWG.membrane_properties, name="membrane_properties", curie=OWG.curie('membrane_properties'),
-                   model_uri=OWG.membrane_properties, domain=None, range=Optional[Union[dict[Union[str, MembranePropertyMeasurementId], Union[dict, MembranePropertyMeasurement]], list[Union[dict, MembranePropertyMeasurement]]]])
-
-slots.three_d_architecture = Slot(uri=OWG.three_d_architecture, name="three_d_architecture", curie=OWG.curie('three_d_architecture'),
-                   model_uri=OWG.three_d_architecture, domain=None, range=Optional[Union[str, "ThreeDArchitectureEnum"]])
-
-slots.matrix_composition = Slot(uri=OWG.matrix_composition, name="matrix_composition", curie=OWG.curie('matrix_composition'),
-                   model_uri=OWG.matrix_composition, domain=None, range=Optional[str])
-
-slots.size_range = Slot(uri=OWG.size_range, name="size_range", curie=OWG.curie('size_range'),
-                   model_uri=OWG.size_range, domain=None, range=Optional[Union[dict, QuantityRange]])
-
-slots.organoid_type = Slot(uri=OWG.organoid_type, name="organoid_type", curie=OWG.curie('organoid_type'),
-                   model_uri=OWG.organoid_type, domain=None, range=Optional[str])
-
-slots.coculture_configuration = Slot(uri=OWG.coculture_configuration, name="coculture_configuration", curie=OWG.curie('coculture_configuration'),
-                   model_uri=OWG.coculture_configuration, domain=None, range=Optional[Union[str, "CoCultureConfigurationEnum"]])
-
-slots.cell_type_ratios = Slot(uri=OWG.cell_type_ratios, name="cell_type_ratios", curie=OWG.curie('cell_type_ratios'),
-                   model_uri=OWG.cell_type_ratios, domain=None, range=Optional[Union[str, list[str]]])
-
-slots.membrane_material = Slot(uri=OWG.membrane_material, name="membrane_material", curie=OWG.curie('membrane_material'),
-                   model_uri=OWG.membrane_material, domain=None, range=Optional[str])
-
-slots.coating = Slot(uri=OWG.coating, name="coating", curie=OWG.curie('coating'),
-                   model_uri=OWG.coating, domain=None, range=Optional[str])
-
-slots.confluence_level = Slot(uri=OWG.confluence_level, name="confluence_level", curie=OWG.curie('confluence_level'),
-                   model_uri=OWG.confluence_level, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.seeding_density = Slot(uri=OWG.seeding_density, name="seeding_density", curie=OWG.curie('seeding_density'),
-                   model_uri=OWG.seeding_density, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.passage_number = Slot(uri=OWG.passage_number, name="passage_number", curie=OWG.curie('passage_number'),
-                   model_uri=OWG.passage_number, domain=None, range=Optional[int])
-
-slots.days_at_air_liquid_interface = Slot(uri=OWG.days_at_air_liquid_interface, name="days_at_air_liquid_interface", curie=OWG.curie('days_at_air_liquid_interface'),
-                   model_uri=OWG.days_at_air_liquid_interface, domain=None, range=Optional[int])
-
-slots.donor_count = Slot(uri=OWG.donor_count, name="donor_count", curie=OWG.curie('donor_count'),
-                   model_uri=OWG.donor_count, domain=None, range=Optional[int])
-
-slots.replicates_per_donor = Slot(uri=OWG.replicates_per_donor, name="replicates_per_donor", curie=OWG.curie('replicates_per_donor'),
-                   model_uri=OWG.replicates_per_donor, domain=None, range=Optional[int])
-
-slots.base_medium = Slot(uri=OWG.base_medium, name="base_medium", curie=OWG.curie('base_medium'),
-                   model_uri=OWG.base_medium, domain=None, range=Optional[str])
-
-slots.serum_type = Slot(uri=OWG.serum_type, name="serum_type", curie=OWG.curie('serum_type'),
-                   model_uri=OWG.serum_type, domain=None, range=Optional[str])
-
-slots.serum_concentration = Slot(uri=OWG.serum_concentration, name="serum_concentration", curie=OWG.curie('serum_concentration'),
-                   model_uri=OWG.serum_concentration, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.supplements = Slot(uri=OWG.supplements, name="supplements", curie=OWG.curie('supplements'),
-                   model_uri=OWG.supplements, domain=None, range=Optional[Union[dict[Union[str, MediumSupplementId], Union[dict, MediumSupplement]], list[Union[dict, MediumSupplement]]]])
-
-slots.osmolality = Slot(uri=OWG.osmolality, name="osmolality", curie=OWG.curie('osmolality'),
-                   model_uri=OWG.osmolality, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.manufacturer = Slot(uri=OWG.manufacturer, name="manufacturer", curie=OWG.curie('manufacturer'),
-                   model_uri=OWG.manufacturer, domain=None, range=Optional[str])
-
-slots.catalog_number = Slot(uri=OWG.catalog_number, name="catalog_number", curie=OWG.curie('catalog_number'),
-                   model_uri=OWG.catalog_number, domain=None, range=Optional[str])
-
-slots.lot_number = Slot(uri=OWG.lot_number, name="lot_number", curie=OWG.curie('lot_number'),
-                   model_uri=OWG.lot_number, domain=None, range=Optional[str])
-
-slots.preparation_date = Slot(uri=OWG.preparation_date, name="preparation_date", curie=OWG.curie('preparation_date'),
-                   model_uri=OWG.preparation_date, domain=None, range=Optional[Union[str, XSDDate]])
-
-slots.supplement_type = Slot(uri=OWG.supplement_type, name="supplement_type", curie=OWG.curie('supplement_type'),
-                   model_uri=OWG.supplement_type, domain=None, range=Optional[Union[str, "SupplementTypeEnum"]])
-
-slots.supplement_entity = Slot(uri=OWG.supplement_entity, name="supplement_entity", curie=OWG.curie('supplement_entity'),
-                   model_uri=OWG.supplement_entity, domain=None, range=Optional[Union[dict, ChemicalEntity]])
-
-slots.concentration = Slot(uri=OWG.concentration, name="concentration", curie=OWG.curie('concentration'),
-                   model_uri=OWG.concentration, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.tissue_origin = Slot(uri=OWG.tissue_origin, name="tissue_origin", curie=OWG.curie('tissue_origin'),
-                   model_uri=OWG.tissue_origin, domain=None, range=Optional[Union[dict, AnatomicalEntity]])
-
-slots.disease_state = Slot(uri=OWG.disease_state, name="disease_state", curie=OWG.curie('disease_state'),
-                   model_uri=OWG.disease_state, domain=None, range=Optional[Union[dict, Disease]])
-
-slots.supplier = Slot(uri=OWG.supplier, name="supplier", curie=OWG.curie('supplier'),
-                   model_uri=OWG.supplier, domain=None, range=Optional[str])
-
-slots.authentication_method = Slot(uri=OWG.authentication_method, name="authentication_method", curie=OWG.curie('authentication_method'),
-                   model_uri=OWG.authentication_method, domain=None, range=Optional[str])
-
-slots.mycoplasma_status = Slot(uri=OWG.mycoplasma_status, name="mycoplasma_status", curie=OWG.curie('mycoplasma_status'),
-                   model_uri=OWG.mycoplasma_status, domain=None, range=Optional[str])
-
-slots.cellular_systems = Slot(uri=OWG.cellular_systems, name="cellular_systems", curie=OWG.curie('cellular_systems'),
-                   model_uri=OWG.cellular_systems, domain=None, range=Optional[Union[dict[Union[str, CellularSystemId], Union[dict, CellularSystem]], list[Union[dict, CellularSystem]]]])
-
-slots.two_d_cell_cultures = Slot(uri=OWG.two_d_cell_cultures, name="two_d_cell_cultures", curie=OWG.curie('two_d_cell_cultures'),
-                   model_uri=OWG.two_d_cell_cultures, domain=None, range=Optional[Union[dict[Union[str, TwoDCellCultureId], Union[dict, TwoDCellCulture]], list[Union[dict, TwoDCellCulture]]]])
-
-slots.three_d_cell_cultures = Slot(uri=OWG.three_d_cell_cultures, name="three_d_cell_cultures", curie=OWG.curie('three_d_cell_cultures'),
-                   model_uri=OWG.three_d_cell_cultures, domain=None, range=Optional[Union[dict[Union[str, ThreeDCellCultureId], Union[dict, ThreeDCellCulture]], list[Union[dict, ThreeDCellCulture]]]])
-
-slots.co_cultures = Slot(uri=OWG.co_cultures, name="co_cultures", curie=OWG.curie('co_cultures'),
-                   model_uri=OWG.co_cultures, domain=None, range=Optional[Union[dict[Union[str, CoCultureId], Union[dict, CoCulture]], list[Union[dict, CoCulture]]]])
-
-slots.cell_lines = Slot(uri=OWG.cell_lines, name="cell_lines", curie=OWG.curie('cell_lines'),
-                   model_uri=OWG.cell_lines, domain=None, range=Optional[Union[dict[Union[str, CellLineId], Union[dict, CellLine]], list[Union[dict, CellLine]]]])
-
-slots.test_substance = Slot(uri=OWG.test_substance, name="test_substance", curie=OWG.curie('test_substance'),
-                   model_uri=OWG.test_substance, domain=None, range=Optional[Union[dict, ChemicalEntity]])
-
-slots.chemical_form = Slot(uri=OWG.chemical_form, name="chemical_form", curie=OWG.curie('chemical_form'),
-                   model_uri=OWG.chemical_form, domain=None, range=Optional[Union[str, "ChemicalFormEnum"]])
-
-slots.nominal_concentration = Slot(uri=OWG.nominal_concentration, name="nominal_concentration", curie=OWG.curie('nominal_concentration'),
-                   model_uri=OWG.nominal_concentration, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.applied_dose = Slot(uri=OWG.applied_dose, name="applied_dose", curie=OWG.curie('applied_dose'),
-                   model_uri=OWG.applied_dose, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.purity = Slot(uri=OWG.purity, name="purity", curie=OWG.curie('purity'),
-                   model_uri=OWG.purity, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.composition = Slot(uri=OWG.composition, name="composition", curie=OWG.curie('composition'),
-                   model_uri=OWG.composition, domain=None, range=Optional[str])
-
-slots.vehicle_solvent = Slot(uri=OWG.vehicle_solvent, name="vehicle_solvent", curie=OWG.curie('vehicle_solvent'),
-                   model_uri=OWG.vehicle_solvent, domain=None, range=Optional[str])
-
-slots.particle_properties = Slot(uri=OWG.particle_properties, name="particle_properties", curie=OWG.curie('particle_properties'),
-                   model_uri=OWG.particle_properties, domain=None, range=Optional[Union[dict, ParticleProperties]])
-
-slots.source_lot_number = Slot(uri=OWG.source_lot_number, name="source_lot_number", curie=OWG.curie('source_lot_number'),
-                   model_uri=OWG.source_lot_number, domain=None, range=Optional[str])
-
-slots.particle_size = Slot(uri=OWG.particle_size, name="particle_size", curie=OWG.curie('particle_size'),
-                   model_uri=OWG.particle_size, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.particle_size_distribution = Slot(uri=OWG.particle_size_distribution, name="particle_size_distribution", curie=OWG.curie('particle_size_distribution'),
-                   model_uri=OWG.particle_size_distribution, domain=None, range=Optional[str])
-
-slots.surface_area = Slot(uri=OWG.surface_area, name="surface_area", curie=OWG.curie('surface_area'),
-                   model_uri=OWG.surface_area, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.zeta_potential = Slot(uri=OWG.zeta_potential, name="zeta_potential", curie=OWG.curie('zeta_potential'),
-                   model_uri=OWG.zeta_potential, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.hydrodynamic_diameter = Slot(uri=OWG.hydrodynamic_diameter, name="hydrodynamic_diameter", curie=OWG.curie('hydrodynamic_diameter'),
-                   model_uri=OWG.hydrodynamic_diameter, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.polydispersity_index = Slot(uri=OWG.polydispersity_index, name="polydispersity_index", curie=OWG.curie('polydispersity_index'),
-                   model_uri=OWG.polydispersity_index, domain=None, range=Optional[float])
-
-slots.particle_morphology = Slot(uri=OWG.particle_morphology, name="particle_morphology", curie=OWG.curie('particle_morphology'),
-                   model_uri=OWG.particle_morphology, domain=None, range=Optional[str])
-
-slots.particle_composition = Slot(uri=OWG.particle_composition, name="particle_composition", curie=OWG.curie('particle_composition'),
-                   model_uri=OWG.particle_composition, domain=None, range=Optional[str])
-
-slots.agglomeration_state = Slot(uri=OWG.agglomeration_state, name="agglomeration_state", curie=OWG.curie('agglomeration_state'),
-                   model_uri=OWG.agglomeration_state, domain=None, range=Optional[str])
-
-slots.exposed_system = Slot(uri=OWG.exposed_system, name="exposed_system", curie=OWG.curie('exposed_system'),
-                   model_uri=OWG.exposed_system, domain=None, range=Optional[Union[dict, CellularSystem]])
-
-slots.exposure_material = Slot(uri=OWG.exposure_material, name="exposure_material", curie=OWG.curie('exposure_material'),
-                   model_uri=OWG.exposure_material, domain=None, range=Optional[Union[dict, ExposureMaterial]])
-
-slots.exposure_frequency = Slot(uri=OWG.exposure_frequency, name="exposure_frequency", curie=OWG.curie('exposure_frequency'),
-                   model_uri=OWG.exposure_frequency, domain=None, range=Optional[str])
-
-slots.exposure_regiment = Slot(uri=OWG.exposure_regiment, name="exposure_regiment", curie=OWG.curie('exposure_regiment'),
-                   model_uri=OWG.exposure_regiment, domain=None, range=Optional[Union[str, "ExposureRegimentEnum"]])
-
-slots.time_post_exposure = Slot(uri=OWG.time_post_exposure, name="time_post_exposure", curie=OWG.curie('time_post_exposure'),
-                   model_uri=OWG.time_post_exposure, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.exposure_temperature = Slot(uri=OWG.exposure_temperature, name="exposure_temperature", curie=OWG.curie('exposure_temperature'),
-                   model_uri=OWG.exposure_temperature, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.control_description = Slot(uri=OWG.control_description, name="control_description", curie=OWG.curie('control_description'),
-                   model_uri=OWG.control_description, domain=None, range=Optional[str])
-
-slots.control_type = Slot(uri=OWG.control_type, name="control_type", curie=OWG.curie('control_type'),
-                   model_uri=OWG.control_type, domain=None, range=Optional[Union[str, "ControlTypeEnum"]])
-
-slots.number_of_replicates = Slot(uri=OWG.number_of_replicates, name="number_of_replicates", curie=OWG.curie('number_of_replicates'),
-                   model_uri=OWG.number_of_replicates, domain=None, range=Optional[int])
-
-slots.effective_deposition = Slot(uri=OWG.effective_deposition, name="effective_deposition", curie=OWG.curie('effective_deposition'),
-                   model_uri=OWG.effective_deposition, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.deposited_dose = Slot(uri=OWG.deposited_dose, name="deposited_dose", curie=OWG.curie('deposited_dose'),
-                   model_uri=OWG.deposited_dose, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.baseline_teer = Slot(uri=OWG.baseline_teer, name="baseline_teer", curie=OWG.curie('baseline_teer'),
-                   model_uri=OWG.baseline_teer, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.aerosol_generation = Slot(uri=OWG.aerosol_generation, name="aerosol_generation", curie=OWG.curie('aerosol_generation'),
-                   model_uri=OWG.aerosol_generation, domain=None, range=Optional[Union[dict, AerosolGeneration]])
-
-slots.sample_preparation = Slot(uri=OWG.sample_preparation, name="sample_preparation", curie=OWG.curie('sample_preparation'),
-                   model_uri=OWG.sample_preparation, domain=None, range=Optional[Union[dict, SamplePreparation]])
-
-slots.dose_normalization_method = Slot(uri=OWG.dose_normalization_method, name="dose_normalization_method", curie=OWG.curie('dose_normalization_method'),
-                   model_uri=OWG.dose_normalization_method, domain=None, range=Optional[Union[str, "DoseNormalizationMethodEnum"]])
-
-slots.aerosol_generation_method = Slot(uri=OWG.aerosol_generation_method, name="aerosol_generation_method", curie=OWG.curie('aerosol_generation_method'),
-                   model_uri=OWG.aerosol_generation_method, domain=None, range=Optional[Union[str, "AerosolGenerationMethodEnum"]])
-
-slots.aerosol_generation_equipment = Slot(uri=OWG.aerosol_generation_equipment, name="aerosol_generation_equipment", curie=OWG.curie('aerosol_generation_equipment'),
-                   model_uri=OWG.aerosol_generation_equipment, domain=None, range=Optional[str])
-
-slots.aerosol_concentration = Slot(uri=OWG.aerosol_concentration, name="aerosol_concentration", curie=OWG.curie('aerosol_concentration'),
-                   model_uri=OWG.aerosol_concentration, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.aerosol_flow_rate = Slot(uri=OWG.aerosol_flow_rate, name="aerosol_flow_rate", curie=OWG.curie('aerosol_flow_rate'),
-                   model_uri=OWG.aerosol_flow_rate, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.aerosol_exposure_duration = Slot(uri=OWG.aerosol_exposure_duration, name="aerosol_exposure_duration", curie=OWG.curie('aerosol_exposure_duration'),
-                   model_uri=OWG.aerosol_exposure_duration, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.mass_median_aerodynamic_diameter = Slot(uri=OWG.mass_median_aerodynamic_diameter, name="mass_median_aerodynamic_diameter", curie=OWG.curie('mass_median_aerodynamic_diameter'),
-                   model_uri=OWG.mass_median_aerodynamic_diameter, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.geometric_standard_deviation = Slot(uri=OWG.geometric_standard_deviation, name="geometric_standard_deviation", curie=OWG.curie('geometric_standard_deviation'),
-                   model_uri=OWG.geometric_standard_deviation, domain=None, range=Optional[float])
-
-slots.aerosol_characterization_method = Slot(uri=OWG.aerosol_characterization_method, name="aerosol_characterization_method", curie=OWG.curie('aerosol_characterization_method'),
-                   model_uri=OWG.aerosol_characterization_method, domain=None, range=Optional[str])
-
-slots.mucus_removal_performed = Slot(uri=OWG.mucus_removal_performed, name="mucus_removal_performed", curie=OWG.curie('mucus_removal_performed'),
-                   model_uri=OWG.mucus_removal_performed, domain=None, range=Optional[Union[bool, Bool]])
-
-slots.mucus_removal_method = Slot(uri=OWG.mucus_removal_method, name="mucus_removal_method", curie=OWG.curie('mucus_removal_method'),
-                   model_uri=OWG.mucus_removal_method, domain=None, range=Optional[str])
-
-slots.debris_removal_performed = Slot(uri=OWG.debris_removal_performed, name="debris_removal_performed", curie=OWG.curie('debris_removal_performed'),
-                   model_uri=OWG.debris_removal_performed, domain=None, range=Optional[Union[bool, Bool]])
-
-slots.debris_removal_method = Slot(uri=OWG.debris_removal_method, name="debris_removal_method", curie=OWG.curie('debris_removal_method'),
-                   model_uri=OWG.debris_removal_method, domain=None, range=Optional[str])
-
-slots.wash_steps = Slot(uri=OWG.wash_steps, name="wash_steps", curie=OWG.curie('wash_steps'),
-                   model_uri=OWG.wash_steps, domain=None, range=Optional[str])
-
-slots.equilibration_time = Slot(uri=OWG.equilibration_time, name="equilibration_time", curie=OWG.curie('equilibration_time'),
-                   model_uri=OWG.equilibration_time, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.pre_exposure_treatment = Slot(uri=OWG.pre_exposure_treatment, name="pre_exposure_treatment", curie=OWG.curie('pre_exposure_treatment'),
-                   model_uri=OWG.pre_exposure_treatment, domain=None, range=Optional[str])
-
-slots.surface_preparation = Slot(uri=OWG.surface_preparation, name="surface_preparation", curie=OWG.curie('surface_preparation'),
-                   model_uri=OWG.surface_preparation, domain=None, range=Optional[str])
-
-slots.normalization_performed = Slot(uri=OWG.normalization_performed, name="normalization_performed", curie=OWG.curie('normalization_performed'),
-                   model_uri=OWG.normalization_performed, domain=None, range=Optional[Union[bool, Bool]])
-
-slots.data_normalization_method = Slot(uri=OWG.data_normalization_method, name="data_normalization_method", curie=OWG.curie('data_normalization_method'),
-                   model_uri=OWG.data_normalization_method, domain=None, range=Optional[Union[str, "DataNormalizationMethodEnum"]])
-
-slots.viability_normalized = Slot(uri=OWG.viability_normalized, name="viability_normalized", curie=OWG.curie('viability_normalized'),
-                   model_uri=OWG.viability_normalized, domain=None, range=Optional[Union[bool, Bool]])
-
-slots.baseline_definition = Slot(uri=OWG.baseline_definition, name="baseline_definition", curie=OWG.curie('baseline_definition'),
-                   model_uri=OWG.baseline_definition, domain=None, range=Optional[str])
-
-slots.raw_data_type = Slot(uri=OWG.raw_data_type, name="raw_data_type", curie=OWG.curie('raw_data_type'),
-                   model_uri=OWG.raw_data_type, domain=None, range=Optional[Union[str, "RawDataTypeEnum"]])
-
-slots.analysis_software = Slot(uri=OWG.analysis_software, name="analysis_software", curie=OWG.curie('analysis_software'),
-                   model_uri=OWG.analysis_software, domain=None, range=Optional[str])
-
-slots.analysis_software_version = Slot(uri=OWG.analysis_software_version, name="analysis_software_version", curie=OWG.curie('analysis_software_version'),
-                   model_uri=OWG.analysis_software_version, domain=None, range=Optional[str])
-
-slots.automation_level = Slot(uri=OWG.automation_level, name="automation_level", curie=OWG.curie('automation_level'),
-                   model_uri=OWG.automation_level, domain=None, range=Optional[Union[str, "AutomationLevelEnum"]])
-
-slots.algorithm_type = Slot(uri=OWG.algorithm_type, name="algorithm_type", curie=OWG.curie('algorithm_type'),
-                   model_uri=OWG.algorithm_type, domain=None, range=Optional[str])
-
-slots.pipeline_reference = Slot(uri=OWG.pipeline_reference, name="pipeline_reference", curie=OWG.curie('pipeline_reference'),
-                   model_uri=OWG.pipeline_reference, domain=None, range=Optional[str])
-
-slots.data_transformation = Slot(uri=OWG.data_transformation, name="data_transformation", curie=OWG.curie('data_transformation'),
-                   model_uri=OWG.data_transformation, domain=None, range=Optional[Union[str, "DataTransformationEnum"]])
-
-slots.replicate_combination_method = Slot(uri=OWG.replicate_combination_method, name="replicate_combination_method", curie=OWG.curie('replicate_combination_method'),
-                   model_uri=OWG.replicate_combination_method, domain=None, range=Optional[Union[str, "ReplicateCombinationMethodEnum"]])
-
-slots.outlier_detection_method = Slot(uri=OWG.outlier_detection_method, name="outlier_detection_method", curie=OWG.curie('outlier_detection_method'),
-                   model_uri=OWG.outlier_detection_method, domain=None, range=Optional[str])
-
-slots.outlier_removal_performed = Slot(uri=OWG.outlier_removal_performed, name="outlier_removal_performed", curie=OWG.curie('outlier_removal_performed'),
-                   model_uri=OWG.outlier_removal_performed, domain=None, range=Optional[Union[bool, Bool]])
-
-slots.imaging_magnification = Slot(uri=OWG.imaging_magnification, name="imaging_magnification", curie=OWG.curie('imaging_magnification'),
-                   model_uri=OWG.imaging_magnification, domain=None, range=Optional[str])
-
-slots.pixel_size = Slot(uri=OWG.pixel_size, name="pixel_size", curie=OWG.curie('pixel_size'),
-                   model_uri=OWG.pixel_size, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.voxel_depth = Slot(uri=OWG.voxel_depth, name="voxel_depth", curie=OWG.curie('voxel_depth'),
-                   model_uri=OWG.voxel_depth, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.z_step_size = Slot(uri=OWG.z_step_size, name="z_step_size", curie=OWG.curie('z_step_size'),
-                   model_uri=OWG.z_step_size, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.number_of_z_slices = Slot(uri=OWG.number_of_z_slices, name="number_of_z_slices", curie=OWG.curie('number_of_z_slices'),
-                   model_uri=OWG.number_of_z_slices, domain=None, range=Optional[int])
-
-slots.temporal_resolution = Slot(uri=OWG.temporal_resolution, name="temporal_resolution", curie=OWG.curie('temporal_resolution'),
-                   model_uri=OWG.temporal_resolution, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.acquisition_duration = Slot(uri=OWG.acquisition_duration, name="acquisition_duration", curie=OWG.curie('acquisition_duration'),
-                   model_uri=OWG.acquisition_duration, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.motion_stabilization_applied = Slot(uri=OWG.motion_stabilization_applied, name="motion_stabilization_applied", curie=OWG.curie('motion_stabilization_applied'),
-                   model_uri=OWG.motion_stabilization_applied, domain=None, range=Optional[Union[bool, Bool]])
-
-slots.frame_rate = Slot(uri=OWG.frame_rate, name="frame_rate", curie=OWG.curie('frame_rate'),
-                   model_uri=OWG.frame_rate, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.flow_profile_during_imaging = Slot(uri=OWG.flow_profile_during_imaging, name="flow_profile_during_imaging", curie=OWG.curie('flow_profile_during_imaging'),
-                   model_uri=OWG.flow_profile_during_imaging, domain=None, range=Optional[str])
-
-slots.measurements_per_replicate = Slot(uri=OWG.measurements_per_replicate, name="measurements_per_replicate", curie=OWG.curie('measurements_per_replicate'),
-                   model_uri=OWG.measurements_per_replicate, domain=None, range=Optional[int])
-
-slots.qc_acceptance_criteria = Slot(uri=OWG.qc_acceptance_criteria, name="qc_acceptance_criteria", curie=OWG.curie('qc_acceptance_criteria'),
-                   model_uri=OWG.qc_acceptance_criteria, domain=None, range=Optional[str])
-
-slots.qc_passed = Slot(uri=OWG.qc_passed, name="qc_passed", curie=OWG.curie('qc_passed'),
-                   model_uri=OWG.qc_passed, domain=None, range=Optional[Union[bool, Bool]])
-
-slots.comparison_to_historical_controls = Slot(uri=OWG.comparison_to_historical_controls, name="comparison_to_historical_controls", curie=OWG.curie('comparison_to_historical_controls'),
-                   model_uri=OWG.comparison_to_historical_controls, domain=None, range=Optional[str])
-
-slots.final_metric = Slot(uri=OWG.final_metric, name="final_metric", curie=OWG.curie('final_metric'),
-                   model_uri=OWG.final_metric, domain=None, range=Optional[str])
-
-slots.final_metric_unit = Slot(uri=OWG.final_metric_unit, name="final_metric_unit", curie=OWG.curie('final_metric_unit'),
-                   model_uri=OWG.final_metric_unit, domain=None, range=Optional[Union[dict, Unit]])
-
-slots.in_vitro_exposures = Slot(uri=OWG.in_vitro_exposures, name="in_vitro_exposures", curie=OWG.curie('in_vitro_exposures'),
-                   model_uri=OWG.in_vitro_exposures, domain=None, range=Optional[Union[dict[Union[str, InVitroExposureId], Union[dict, InVitroExposure]], list[Union[dict, InVitroExposure]]]])
-
-slots.exposure_materials = Slot(uri=OWG.exposure_materials, name="exposure_materials", curie=OWG.curie('exposure_materials'),
-                   model_uri=OWG.exposure_materials, domain=None, range=Optional[Union[dict[Union[str, ExposureMaterialId], Union[dict, ExposureMaterial]], list[Union[dict, ExposureMaterial]]]])
-
-slots.aerosol_generations = Slot(uri=OWG.aerosol_generations, name="aerosol_generations", curie=OWG.curie('aerosol_generations'),
-                   model_uri=OWG.aerosol_generations, domain=None, range=Optional[Union[dict[Union[str, AerosolGenerationId], Union[dict, AerosolGeneration]], list[Union[dict, AerosolGeneration]]]])
-
-slots.analyses = Slot(uri=OWG.analyses, name="analyses", curie=OWG.curie('analyses'),
-                   model_uri=OWG.analyses, domain=None, range=Optional[Union[dict[Union[str, AnalysisId], Union[dict, Analysis]], list[Union[dict, Analysis]]]])
-
-slots.sample_preparations = Slot(uri=OWG.sample_preparations, name="sample_preparations", curie=OWG.curie('sample_preparations'),
-                   model_uri=OWG.sample_preparations, domain=None, range=Optional[Union[dict[Union[str, SamplePreparationId], Union[dict, SamplePreparation]], list[Union[dict, SamplePreparation]]]])
-
-slots.particle_properties_collection = Slot(uri=OWG.particle_properties_collection, name="particle_properties_collection", curie=OWG.curie('particle_properties_collection'),
-                   model_uri=OWG.particle_properties_collection, domain=None, range=Optional[Union[dict[Union[str, ParticlePropertiesId], Union[dict, ParticleProperties]], list[Union[dict, ParticleProperties]]]])
-
-slots.analysis = Slot(uri=OWG.analysis, name="analysis", curie=OWG.curie('analysis'),
-                   model_uri=OWG.analysis, domain=None, range=Optional[Union[dict, Analysis]])
-
-slots.quantityValue__unit = Slot(uri=OWG.unit, name="quantityValue__unit", curie=OWG.curie('unit'),
-                   model_uri=OWG.quantityValue__unit, domain=None, range=Optional[Union[dict, Unit]])
-
-slots.quantityValue__value = Slot(uri=OWG.value, name="quantityValue__value", curie=OWG.curie('value'),
-                   model_uri=OWG.quantityValue__value, domain=None, range=Optional[str])
-
-slots.quantityRange__lower_bound = Slot(uri=OWG.lower_bound, name="quantityRange__lower_bound", curie=OWG.curie('lower_bound'),
-                   model_uri=OWG.quantityRange__lower_bound, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.quantityRange__upper_bound = Slot(uri=OWG.upper_bound, name="quantityRange__upper_bound", curie=OWG.curie('upper_bound'),
-                   model_uri=OWG.quantityRange__upper_bound, domain=None, range=Optional[Union[dict, QuantityValue]])
-
-slots.Participant_age = Slot(uri=OWG.age, name="Participant_age", curie=OWG.curie('age'),
-                   model_uri=OWG.Participant_age, domain=Participant, range=Optional[int])
-
-slots.Participant_sex = Slot(uri=OWG.sex, name="Participant_sex", curie=OWG.curie('sex'),
-                   model_uri=OWG.Participant_sex, domain=Participant, range=Optional[Union[str, "SexEnum"]])
-
-slots.Person_age = Slot(uri=OWG.age, name="Person_age", curie=OWG.curie('age'),
-                   model_uri=OWG.Person_age, domain=Person, range=Optional[int])
-
-slots.Person_sex = Slot(uri=OWG.sex, name="Person_sex", curie=OWG.curie('sex'),
-                   model_uri=OWG.Person_sex, domain=Person, range=Optional[Union[str, "SexEnum"]])
+slots.ExposureBiomarkerMeasurement_observation_type = Slot(uri=MEASUREMENT_BASE.observation_type, name="ExposureBiomarkerMeasurement_observation_type", curie=MEASUREMENT_BASE.curie('observation_type'),
+                   model_uri=OUTCOMES_WORKING_GROUP.ExposureBiomarkerMeasurement_observation_type, domain=ExposureBiomarkerMeasurement, range=Optional[Union[str, "ExposureBiomarkerObservationTypeEnum"]])
