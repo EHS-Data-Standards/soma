@@ -1,0 +1,522 @@
+name: measurement_microschemas
+description: >-
+  Domain-specific measurement microschemas that implement the Measurement
+  interface from measurement_base.yaml. Each microschema constrains
+  observation_type to a domain-specific enum and mixes in appropriate
+  context (InVitroContext, InVivoContext).
+title: Measurement Microschemas
+id: https://w3id.org/EHS-Data-Standards/measurement_microschemas
+
+prefixes:
+  measurement_microschemas: https://w3id.org/EHS-Data-Standards/measurement_microschemas/
+  measurement_base: https://w3id.org/EHS-Data-Standards/measurement_base/
+  linkml: https://w3id.org/linkml/
+  OBI: http://purl.obolibrary.org/obo/OBI_
+  GO: http://purl.obolibrary.org/obo/GO_
+  CL: http://purl.obolibrary.org/obo/CL_
+  CHEBI: http://purl.obolibrary.org/obo/CHEBI_
+  HP: http://purl.obolibrary.org/obo/HP_
+
+default_prefix: measurement_microschemas
+default_range: string
+
+imports:
+  - linkml:types
+  - measurement_base
+
+# =============================================================================
+# CLASSES - Domain-Specific Measurement Microschemas
+# =============================================================================
+
+classes:
+
+  # ---------------------------------------------------------------------------
+  # Ciliary Function Measurements
+  # ---------------------------------------------------------------------------
+
+  CiliaryFunctionMeasurement:
+    implements:
+      - measurement_base:Measurement
+    mixins:
+      - Measurement
+      - InVitroContext
+      - InVivoContext
+    description: >-
+      Measurement of ciliary function including beat frequency, active area,
+      cilia morphology, and ciliated cell populations. Can be performed in vitro
+      on ALI cultures or in vivo via intranasal imaging (e.g., μOCT).
+    slot_usage:
+      observation_type:
+        range: CiliaryFunctionObservationTypeEnum
+
+  # ---------------------------------------------------------------------------
+  # Airway Surface Liquid (ASL) Measurements
+  # ---------------------------------------------------------------------------
+
+  ASLMeasurement:
+    implements:
+      - measurement_base:Measurement
+    mixins:
+      - Measurement
+      - InVitroContext
+      - InVivoContext
+    description: >-
+      Measurement of airway surface liquid properties including ASL height,
+      periciliary layer depth, and ion composition. Critical for assessing
+      airway hydration status in CF and other mucociliary disorders.
+    slot_usage:
+      observation_type:
+        range: ASLObservationTypeEnum
+
+  # ---------------------------------------------------------------------------
+  # Mucociliary Clearance (MCC) Measurements
+  # ---------------------------------------------------------------------------
+
+  MCCMeasurement:
+    implements:
+      - measurement_base:Measurement
+    mixins:
+      - Measurement
+      - InVitroContext
+      - InVivoContext
+    description: >-
+      Measurement of mucociliary clearance and transport including mucus
+      transport rate, directionality, and clearance efficiency. Assesses
+      the coordinated function of cilia and mucus for pathogen clearance.
+    slot_usage:
+      observation_type:
+        range: MCCObservationTypeEnum
+
+  # ---------------------------------------------------------------------------
+  # Oxidative Stress Measurements
+  # ---------------------------------------------------------------------------
+
+  OxidativeStressMeasurement:
+    implements:
+      - measurement_base:Measurement
+    mixins:
+      - Measurement
+      - InVitroContext
+      - InVivoContext
+    description: >-
+      Measurement of oxidative stress markers including reactive oxygen species,
+      lipid peroxidation products, protein oxidation, DNA damage, and antioxidant
+      capacity. Key molecular initiating event in respiratory toxicology AOPs.
+    slot_usage:
+      observation_type:
+        range: OxidativeStressObservationTypeEnum
+
+  # ---------------------------------------------------------------------------
+  # CFTR Function Measurements
+  # ---------------------------------------------------------------------------
+
+  CFTRMeasurement:
+    implements:
+      - measurement_base:Measurement
+    mixins:
+      - Measurement
+      - InVitroContext
+      - InVivoContext
+    description: >-
+      Measurement of CFTR (cystic fibrosis transmembrane conductance regulator)
+      function including chloride secretion, CFTR-mediated current, and
+      clinical indicators like sweat chloride concentration.
+    slot_usage:
+      observation_type:
+        range: CFTRObservationTypeEnum
+
+  # ---------------------------------------------------------------------------
+  # EGFR Signaling Measurements
+  # ---------------------------------------------------------------------------
+
+  EGFRMeasurement:
+    implements:
+      - measurement_base:Measurement
+    mixins:
+      - Measurement
+      - InVitroContext
+    description: >-
+      Measurement of EGFR (epidermal growth factor receptor) pathway activation
+      including receptor phosphorylation, downstream kinase activation, and
+      ligand expression. Key signaling pathway in airway inflammation and
+      mucin regulation.
+    slot_usage:
+      observation_type:
+        range: EGFRObservationTypeEnum
+
+  # ---------------------------------------------------------------------------
+  # Goblet Cell and Mucin Measurements
+  # ---------------------------------------------------------------------------
+
+  GobletCellMucinMeasurement:
+    implements:
+      - measurement_base:Measurement
+    mixins:
+      - Measurement
+      - InVitroContext
+      - InVivoContext
+    description: >-
+      Measurement of goblet cell populations and mucin production including
+      goblet cell counts, mucin gene/protein expression, and mucus properties.
+      Assesses goblet cell hyperplasia and mucus hypersecretion phenotypes.
+    slot_usage:
+      observation_type:
+        range: GobletCellMucinObservationTypeEnum
+
+  # ---------------------------------------------------------------------------
+  # BALF and Sputum Measurements
+  # ---------------------------------------------------------------------------
+
+  BALFSputumMeasurement:
+    implements:
+      - measurement_base:Measurement
+    mixins:
+      - Measurement
+      - InVivoContext
+    description: >-
+      Measurement of bronchoalveolar lavage fluid (BALF) or sputum components
+      including inflammatory cell profiles, cytokine levels, microbiome
+      composition, and protein concentrations. Clinical assessment of
+      airway inflammation.
+    slot_usage:
+      observation_type:
+        range: BALFSputumObservationTypeEnum
+
+  # ---------------------------------------------------------------------------
+  # Lung Function Measurements
+  # ---------------------------------------------------------------------------
+
+  LungFunctionMeasurement:
+    implements:
+      - measurement_base:Measurement
+    mixins:
+      - Measurement
+      - InVivoContext
+    description: >-
+      Measurement of lung function parameters via spirometry and other
+      pulmonary function tests including FEV1, FVC, FEV1/FVC ratio, and
+      diffusing capacity. Clinical outcomes for respiratory health assessment.
+    slot_usage:
+      observation_type:
+        range: LungFunctionObservationTypeEnum
+
+  # ---------------------------------------------------------------------------
+  # FoxJ1 / Ciliogenesis Measurements
+  # ---------------------------------------------------------------------------
+
+  FoxJMeasurement:
+    implements:
+      - measurement_base:Measurement
+    mixins:
+      - Measurement
+      - InVitroContext
+    description: >-
+      Measurement of FoxJ1 expression and related ciliogenesis markers.
+      FoxJ1 is a master regulator of multiciliogenesis, and its expression
+      indicates ciliated cell differentiation status.
+    slot_usage:
+      observation_type:
+        range: FoxJObservationTypeEnum
+
+  # ---------------------------------------------------------------------------
+  # Exposure Biomarker Measurements
+  # ---------------------------------------------------------------------------
+
+  ExposureBiomarkerMeasurement:
+    implements:
+      - measurement_base:Measurement
+    mixins:
+      - Measurement
+      - InVivoContext
+    description: >-
+      Measurement of biomarkers indicating exposure to environmental agents
+      including urinary metabolites (e.g., cotinine for tobacco smoke),
+      blood levels, and other exposure indicators.
+    slot_usage:
+      observation_type:
+        range: ExposureBiomarkerObservationTypeEnum
+
+# =============================================================================
+# ENUMS - Domain-Specific Observation Types
+# =============================================================================
+
+enums:
+
+  # ---------------------------------------------------------------------------
+  # Ciliary Observation Types
+  # ---------------------------------------------------------------------------
+
+  CiliaryFunctionObservationTypeEnum:
+    description: >-
+      Observation types for ciliary function measurements.
+    permissible_values:
+      ciliary_beat_frequency:
+        description: Ciliary beat frequency (Hz)
+        meaning: GO:0003341
+      ciliary_active_area_percentage:
+        description: Percentage of epithelial surface with actively beating cilia
+      cilia_length:
+        description: Length of cilia (μm)
+      cilia_per_cell:
+        description: Number of cilia per cell
+      percentage_ciliated_cells:
+        description: Percentage of cells that are ciliated
+      ciliary_motion_pattern:
+        description: Pattern of ciliary motion (coordinated, dyskinetic, immotile)
+      ciliary_beat_amplitude:
+        description: Amplitude of ciliary beat stroke
+
+  # ---------------------------------------------------------------------------
+  # ASL Observation Types
+  # ---------------------------------------------------------------------------
+
+  ASLObservationTypeEnum:
+    description: >-
+      Observation types for airway surface liquid measurements.
+    permissible_values:
+      asl_height:
+        description: Airway surface liquid height/depth (μm)
+      periciliary_layer_depth:
+        description: Periciliary layer (PCL) depth (μm)
+      mucus_layer_thickness:
+        description: Thickness of the mucus gel layer (μm)
+      asl_chloride_concentration:
+        description: Chloride ion concentration in ASL
+      asl_sodium_concentration:
+        description: Sodium ion concentration in ASL
+      asl_potassium_concentration:
+        description: Potassium ion concentration in ASL
+      asl_ph:
+        description: pH of airway surface liquid
+
+  # ---------------------------------------------------------------------------
+  # MCC Observation Types
+  # ---------------------------------------------------------------------------
+
+  MCCObservationTypeEnum:
+    description: >-
+      Observation types for mucociliary clearance measurements.
+    permissible_values:
+      mucociliary_transport_rate:
+        description: Rate of mucus/particle transport (mm/min or μm/s)
+        meaning: GO:0120197
+      transport_directionality:
+        description: Directionality of mucociliary transport
+      percentage_active_transport:
+        description: Percentage of surface with active mucociliary transport
+      particle_clearance_time:
+        description: Time to clear particles from a defined region
+      biofilm_clearance_rate:
+        description: Rate of bacterial biofilm clearance
+      bacterial_load:
+        description: Bacterial load remaining after clearance (CFU)
+
+  # ---------------------------------------------------------------------------
+  # Oxidative Stress Observation Types
+  # ---------------------------------------------------------------------------
+
+  OxidativeStressObservationTypeEnum:
+    description: >-
+      Observation types for oxidative stress measurements.
+    permissible_values:
+      reactive_oxygen_species:
+        description: Reactive oxygen species level (fluorescence intensity or fold change)
+        meaning: CHEBI:26523
+      malondialdehyde:
+        description: Malondialdehyde (MDA) level - lipid peroxidation marker
+        meaning: CHEBI:16213
+      four_hydroxynonenal:
+        description: 4-Hydroxynonenal (4-HNE) level - lipid peroxidation marker
+        meaning: CHEBI:58968
+      eight_isoprostane:
+        description: 8-Isoprostane level - lipid peroxidation marker
+      protein_carbonyl:
+        description: Protein carbonyl content - protein oxidation marker
+      nitrotyrosine:
+        description: Nitrotyrosine level - protein nitration marker
+      eight_ohdg:
+        description: 8-OHdG level - DNA oxidation marker
+      glutathione_ratio:
+        description: GSH/GSSG ratio - antioxidant capacity
+      superoxide_dismutase_activity:
+        description: Superoxide dismutase (SOD) enzyme activity
+      catalase_activity:
+        description: Catalase enzyme activity
+      glutathione_peroxidase_activity:
+        description: Glutathione peroxidase (GPx) enzyme activity
+      total_antioxidant_capacity:
+        description: Total antioxidant capacity of sample
+      nrf2_activation:
+        description: NRF2 pathway activation level
+
+  # ---------------------------------------------------------------------------
+  # CFTR Observation Types
+  # ---------------------------------------------------------------------------
+
+  CFTRObservationTypeEnum:
+    description: >-
+      Observation types for CFTR function measurements.
+    permissible_values:
+      cftr_chloride_secretion:
+        description: CFTR-mediated chloride secretory current (μA/cm²)
+      cftr_forskolin_response:
+        description: CFTR response to forskolin stimulation
+      cftr_inhibitor_sensitive_current:
+        description: CFTRinh-172 sensitive current
+      sweat_chloride_concentration:
+        description: Sweat chloride concentration (mEq/L) - CF diagnostic
+      nasal_potential_difference:
+        description: Nasal potential difference measurement
+
+  # ---------------------------------------------------------------------------
+  # EGFR Observation Types
+  # ---------------------------------------------------------------------------
+
+  EGFRObservationTypeEnum:
+    description: >-
+      Observation types for EGFR signaling measurements.
+    permissible_values:
+      egfr_phosphorylation:
+        description: EGFR phosphorylation level (specify site, e.g., Y1068, Y1173)
+      egfr_total_protein:
+        description: Total EGFR protein expression
+      erk_phosphorylation:
+        description: ERK1/2 phosphorylation (downstream kinase)
+      akt_phosphorylation:
+        description: AKT phosphorylation (downstream kinase)
+      egfr_ligand_expression:
+        description: EGFR ligand expression (EGF, TGF-α, amphiregulin)
+      egfr_membrane_localization:
+        description: EGFR membrane localization
+
+  # ---------------------------------------------------------------------------
+  # Goblet Cell / Mucin Observation Types
+  # ---------------------------------------------------------------------------
+
+  GobletCellMucinObservationTypeEnum:
+    description: >-
+      Observation types for goblet cell and mucin measurements.
+    permissible_values:
+      goblet_cell_count:
+        description: Number or percentage of goblet cells
+        meaning: CL:0000160
+      goblet_to_ciliated_ratio:
+        description: Ratio of goblet cells to ciliated cells
+      muc5ac_expression:
+        description: MUC5AC gene or protein expression
+      muc5b_expression:
+        description: MUC5B gene or protein expression
+      muc5ac_muc5b_ratio:
+        description: Ratio of MUC5AC to MUC5B expression
+      mucin_protein_concentration:
+        description: Total mucin protein concentration
+      mucin_secretion_rate:
+        description: Rate of mucin secretion
+      mucus_viscosity:
+        description: Viscosity of airway mucus
+      percent_solids:
+        description: Percent solids in mucus/secretions
+
+  # ---------------------------------------------------------------------------
+  # BALF/Sputum Observation Types
+  # ---------------------------------------------------------------------------
+
+  BALFSputumObservationTypeEnum:
+    description: >-
+      Observation types for BALF and sputum measurements.
+    permissible_values:
+      neutrophil_percentage:
+        description: Percentage of neutrophils in differential cell count
+      eosinophil_percentage:
+        description: Percentage of eosinophils in differential cell count
+      macrophage_percentage:
+        description: Percentage of macrophages in differential cell count
+      lymphocyte_percentage:
+        description: Percentage of lymphocytes in differential cell count
+      total_cell_count:
+        description: Total cell count in sample
+      il6_concentration:
+        description: IL-6 cytokine concentration
+      il8_concentration:
+        description: IL-8 (CXCL8) cytokine concentration
+      tnf_alpha_concentration:
+        description: TNF-α cytokine concentration
+      il1_beta_concentration:
+        description: IL-1β cytokine concentration
+      total_protein_concentration:
+        description: Total protein concentration
+      alpha_diversity:
+        description: Microbiome alpha diversity metric
+      beta_diversity:
+        description: Microbiome beta diversity metric
+      bacterial_load:
+        description: Total bacterial load (16S copies or CFU)
+
+  # ---------------------------------------------------------------------------
+  # Lung Function Observation Types
+  # ---------------------------------------------------------------------------
+
+  LungFunctionObservationTypeEnum:
+    description: >-
+      Observation types for lung function measurements.
+    permissible_values:
+      fev1:
+        description: Forced expiratory volume in 1 second (L or % predicted)
+        meaning: HP:0002088
+      fvc:
+        description: Forced vital capacity (L or % predicted)
+      fev1_fvc_ratio:
+        description: Ratio of FEV1 to FVC
+      fef25_75:
+        description: Forced expiratory flow at 25-75% of FVC
+      pef:
+        description: Peak expiratory flow
+      dlco:
+        description: Diffusing capacity for carbon monoxide
+      feno:
+        description: Fractional exhaled nitric oxide (ppb)
+      bronchodilator_response:
+        description: Change in FEV1 after bronchodilator administration
+      lung_function_decline_rate:
+        description: Rate of FEV1 decline over time (mL/year)
+
+  # ---------------------------------------------------------------------------
+  # FoxJ1 Observation Types
+  # ---------------------------------------------------------------------------
+
+  FoxJObservationTypeEnum:
+    description: >-
+      Observation types for FoxJ1 and ciliogenesis measurements.
+    permissible_values:
+      foxj1_mrna_expression:
+        description: FoxJ1 mRNA expression level
+      foxj1_protein_expression:
+        description: FoxJ1 protein expression level
+      foxj1_positive_cell_percentage:
+        description: Percentage of FoxJ1-positive cells
+      foxj1_nuclear_localization:
+        description: FoxJ1 nuclear localization
+
+  # ---------------------------------------------------------------------------
+  # Exposure Biomarker Observation Types
+  # ---------------------------------------------------------------------------
+
+  ExposureBiomarkerObservationTypeEnum:
+    description: >-
+      Observation types for exposure biomarker measurements.
+    permissible_values:
+      urinary_cotinine:
+        description: Urinary cotinine level (tobacco smoke biomarker)
+        meaning: CHEBI:68641
+      serum_cotinine:
+        description: Serum cotinine level
+      urinary_1_hydroxypyrene:
+        description: Urinary 1-hydroxypyrene (PAH biomarker)
+      blood_lead:
+        description: Blood lead concentration
+      urinary_arsenic:
+        description: Urinary arsenic species
+      urinary_cadmium:
+        description: Urinary cadmium concentration
+      exhaled_co:
+        description: Exhaled carbon monoxide (smoking biomarker)

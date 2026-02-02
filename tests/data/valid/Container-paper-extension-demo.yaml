@@ -1,0 +1,374 @@
+# Container-paper-extension-demo.yaml
+# Demonstrates new schema classes from the S&T Framework paper extension:
+# - Protocol, Assay, Observation
+# - Evidence, KEREvidence
+# - OutcomeContribution, ContributingElement
+# - Enhanced KeyEventRelationship with structured evidence
+
+protocols:
+  - id: owg:protocol-teer-measurement
+    name: TEER Measurement Protocol v2.1
+    description: >-
+      Transepithelial electrical resistance measurement protocol for
+      air-liquid interface cultures.
+    protocol_type: assay_execution
+    protocol_version: "2.1"
+    sop_reference: "SOP-TEER-001"
+    methodology: >-
+      Transepithelial electrical resistance measured using EVOM2 with STX2
+      electrodes. Cultures equilibrated to room temperature for 30 minutes
+      before measurement. Three readings per insert, median reported.
+    validation_status: validated
+    last_updated: "2024-01-15"
+
+  - id: owg:protocol-cbf-imaging
+    name: Ciliary Beat Frequency Imaging Protocol
+    description: >-
+      High-speed video microscopy protocol for measuring ciliary beat frequency.
+    protocol_type: imaging
+    protocol_version: "1.3"
+    sop_reference: "SOP-CBF-002"
+    methodology: >-
+      High-speed video microscopy at 200 fps using 40x objective.
+      Temperature maintained at 37C. Videos analyzed using automated
+      CBF detection algorithm.
+    validation_status: validated
+
+assays:
+  - id: owg:assay-teer-ali
+    name: ALI Culture TEER Assay
+    description: >-
+      Transepithelial electrical resistance assay for air-liquid interface
+      epithelial cultures.
+    assay_type: electrophysiology_assay
+    assay_protocol:
+      id: owg:protocol-teer-measurement
+      name: TEER Measurement Protocol v2.1
+    assay_instrumentation:
+      - EVOM2 Voltohmmeter
+      - STX2 Chopstick Electrodes
+    target_entity:
+      id: GO:0016020
+      name: membrane
+    measurement_outputs:
+      - TEER
+    detection_method: electrical_resistance
+    throughput: medium
+
+  - id: owg:assay-cbf-video
+    name: Ciliary Beat Frequency Video Assay
+    description: >-
+      High-speed video microscopy assay for measuring ciliary beat frequency.
+    assay_type: imaging_assay
+    assay_protocol:
+      id: owg:protocol-cbf-imaging
+      name: Ciliary Beat Frequency Imaging Protocol
+    assay_instrumentation:
+      - High-speed camera (200+ fps)
+      - Inverted microscope with 40x objective
+      - Environmental chamber (37C)
+    target_entity:
+      id: GO:0005929
+      name: cilium
+    measurement_outputs:
+      - ciliary_beat_frequency
+      - ciliary_active_area_percentage
+    detection_method: video_microscopy
+
+observations:
+  - id: owg:obs-teer-001-raw
+    name: TEER reading well A1 - Control
+    description: Raw TEER observation from control well A1
+    observation_timestamp: "2024-03-15T10:30:00Z"
+    observer: "Lab Tech 1"
+    observation_context: Room temperature equilibrated for 30 minutes
+    raw_value: "485"
+    raw_unit:
+      id: UO:0000169
+      name: ohm
+    observation_method: EVOM2 voltohmmeter with STX2 electrodes
+    observation_notes: Third reading of three, median value
+    quality_flags:
+      - passed
+    performed_by_assay:
+      id: owg:assay-teer-ali
+      name: ALI Culture TEER Assay
+
+  - id: owg:obs-cbf-001-raw
+    name: CBF video observation well B2 - Control
+    description: High-speed video observation for CBF measurement
+    observation_timestamp: "2024-03-15T11:15:00Z"
+    observer: "Lab Tech 2"
+    observation_context: 37C environmental chamber, 5% CO2
+    raw_value: "12.8"
+    raw_unit:
+      id: UO:0000106
+      name: hertz
+    observation_method: High-speed video microscopy at 200 fps
+    quality_flags:
+      - passed
+    performed_by_assay:
+      id: owg:assay-cbf-video
+      name: Ciliary Beat Frequency Video Assay
+
+evidence_collection:
+  - id: owg:evidence-oxidative-barrier-001
+    name: In vitro evidence for oxidative stress-barrier dysfunction relationship
+    description: >-
+      Compiled evidence from in vitro ALI studies demonstrating the
+      relationship between oxidative stress and epithelial barrier dysfunction.
+    evidence_type: experimental
+    evidence_strength: strong
+    confidence_level: high
+    source_references:
+      - "PMID:12345678"
+      - "PMID:23456789"
+      - "PMID:34567890"
+    biological_plausibility: >-
+      Oxidative stress damages tight junction proteins (ZO-1, occludin) and
+      disrupts epithelial barrier function through well-characterized
+      mechanisms involving ROS-mediated protein modification.
+    empirical_support: >-
+      Multiple studies in primary HBEC ALI cultures demonstrate dose-dependent
+      reduction in TEER following oxidative stress exposure. Effect is
+      reproducible across different oxidative stressors (H2O2, ozone, PM2.5).
+    uncertainties:
+      - Time course of recovery varies between cell donors
+      - Species differences in barrier sensitivity not fully characterized
+    quantitative_understanding: >-
+      Dose-response relationships established for H2O2 and ozone exposures.
+      IC50 for TEER reduction approximately 100 uM H2O2 in ALI cultures.
+
+  - id: owg:evidence-cilia-mcc-001
+    name: Evidence for ciliary dysfunction reducing mucociliary clearance
+    description: >-
+      Evidence linking impaired ciliary function to decreased mucociliary
+      clearance from both in vitro and clinical studies.
+    evidence_type: mechanistic
+    evidence_strength: strong
+    confidence_level: high
+    source_references:
+      - "PMID:45678901"
+      - "PMID:56789012"
+    biological_plausibility: >-
+      Ciliary beating provides the mechanical force for mucus transport.
+      Reduced beat frequency or coordination directly impairs clearance.
+    empirical_support: >-
+      Strong correlation between CBF and particle clearance rates in ALI
+      models. Clinical studies confirm reduced CBF in patients with impaired
+      mucociliary clearance.
+    quantitative_understanding: >-
+      Mathematical models predict clearance rates based on CBF and mucus
+      properties with good accuracy.
+
+adverse_outcomes:
+  - id: owg:ao-decreased-lung-function
+    name: Decreased Lung Function
+    description: >-
+      Complex, composite adverse outcome representing impairment of
+      respiratory function. Encompasses multiple dimensions including
+      airway obstruction, impaired gas exchange, and reduced lung compliance.
+    outcome_level: organ
+
+  - id: owg:ao-asthma-exacerbation
+    name: Asthma Exacerbation
+    description: >-
+      Acute worsening of asthma symptoms including increased inflammation,
+      airway hyperresponsiveness, and mucus hypersecretion.
+    outcome_level: organ
+
+outcome_contributions:
+  - id: owg:oc-barrier-to-lung-function
+    name: Epithelial barrier dysfunction contributes to decreased lung function
+    description: >-
+      Contribution of epithelial barrier dysfunction to the complex outcome
+      of decreased lung function.
+    outcome:
+      id: owg:ao-decreased-lung-function
+      name: Decreased Lung Function
+    contributing_element:
+      id: owg:ce-barrier-dysfunction
+      name: Epithelial Barrier Dysfunction
+      element_type: key_event
+      mechanistic_role: >-
+        Barrier dysfunction allows increased penetration of allergens,
+        pathogens, and irritants into subepithelial tissue, triggering
+        inflammatory responses that impair lung function.
+    contribution_type: causal
+    necessity: conditionally_necessary
+    sufficiency: not_sufficient
+    contribution_weight: 0.3
+    ker_evidence:
+      - id: owg:evidence-oxidative-barrier-001
+        name: In vitro evidence for oxidative stress-barrier dysfunction relationship
+
+  - id: owg:oc-mcc-to-lung-function
+    name: Impaired mucociliary clearance contributes to decreased lung function
+    description: >-
+      Contribution of impaired mucociliary clearance to decreased lung function
+      through mucus accumulation and increased infection susceptibility.
+    outcome:
+      id: owg:ao-decreased-lung-function
+      name: Decreased Lung Function
+    contributing_element:
+      id: owg:ce-mcc-impairment
+      name: Impaired Mucociliary Clearance
+      element_type: key_event
+      mechanistic_role: >-
+        Reduced clearance leads to mucus accumulation, airway obstruction,
+        and increased susceptibility to respiratory infections, all of
+        which contribute to decreased lung function.
+    contribution_type: causal
+    necessity: conditionally_necessary
+    sufficiency: not_sufficient
+    contribution_weight: 0.4
+    ker_evidence:
+      - id: owg:evidence-cilia-mcc-001
+        name: Evidence for ciliary dysfunction reducing mucociliary clearance
+
+adverse_outcome_pathways:
+  - id: owg:aop-asthma-oxidative
+    name: Oxidative Stress to Asthma via Barrier Dysfunction
+    description: >-
+      AOP describing how oxidative stress leads to asthma exacerbation
+      through epithelial barrier dysfunction and downstream effects.
+    aopwiki_id: "411"
+    molecular_initiating_event:
+      id: owg:mie-oxidative-stress
+      name: Oxidative stress in airway epithelium
+      description: >-
+        Exposure to oxidants (ozone, PM2.5, cigarette smoke) causes
+        oxidative stress in airway epithelial cells.
+      biological_process: oxidative stress
+      biological_action: increased
+    key_events:
+      - id: owg:ke-tight-junction-disruption
+        name: Tight junction protein disruption
+        description: >-
+          ROS-mediated damage to tight junction proteins including
+          ZO-1, occludin, and claudins.
+        biological_process: tight junction assembly
+        biological_action: decreased
+        level_of_biological_organization: cellular
+      - id: owg:ke-barrier-dysfunction
+        name: Epithelial barrier dysfunction
+        description: >-
+          Loss of epithelial barrier integrity leading to increased
+          permeability.
+        biological_process: regulation of epithelial cell permeability
+        biological_action: increased
+        level_of_biological_organization: tissue
+    key_event_relationships:
+      - id: owg:ker-oxidative-to-tj
+        name: Oxidative stress leads to tight junction disruption
+        upstream_event:
+          id: owg:mie-oxidative-stress
+          name: Oxidative stress in airway epithelium
+        downstream_event:
+          id: owg:ke-tight-junction-disruption
+          name: Tight junction protein disruption
+        relationship_type: leads_to
+        evidence_support: Strong empirical support from in vitro studies
+        ker_evidence:
+          - id: owg:evidence-oxidative-barrier-001
+            name: In vitro evidence for oxidative stress-barrier dysfunction relationship
+            evidence_type: experimental
+            evidence_strength: strong
+            confidence_level: high
+            biological_plausibility: >-
+              ROS directly modify cysteine residues in tight junction proteins.
+            empirical_support: >-
+              Dose-dependent reduction in ZO-1 and occludin expression following
+              oxidative stress exposure in ALI cultures.
+        assessments:
+          - id: owg:assessment-oxidative-stress
+            name: Oxidative Stress Assessment
+            description: >-
+              Measurement panel for assessing oxidative stress status.
+            measurement_types:
+              - reactive_oxygen_species
+              - lipid_peroxidation
+              - glutathione_ratio
+      - id: owg:ker-tj-to-barrier
+        name: Tight junction disruption leads to barrier dysfunction
+        upstream_event:
+          id: owg:ke-tight-junction-disruption
+          name: Tight junction protein disruption
+        downstream_event:
+          id: owg:ke-barrier-dysfunction
+          name: Epithelial barrier dysfunction
+        relationship_type: leads_to
+        evidence_support: Strong mechanistic support
+        assessments:
+          - id: owg:assessment-barrier-integrity
+            name: Epithelial Barrier Integrity Assessment
+            measurement_types:
+              - TEER
+              - paracellular_permeability
+    adverse_outcome:
+      id: owg:ao-asthma-exacerbation
+      name: Asthma Exacerbation
+
+# Example measurements linked to observations and assays
+phenotype_measurements:
+  - id: owg:meas-teer-001
+    name: TEER measurement - Control ALI culture
+    observation_type: TEER
+    quantity_measured:
+      value: "485"
+      unit:
+        id: UO:0000504
+        name: ohm square centimeter
+    range_low:
+      value: "300"
+      unit:
+        id: UO:0000504
+        name: ohm square centimeter
+    range_high:
+      value: "600"
+      unit:
+        id: UO:0000504
+        name: ohm square centimeter
+    source_observation:
+      id: owg:obs-teer-001-raw
+      name: TEER reading well A1 - Control
+    performed_by_assay:
+      id: owg:assay-teer-ali
+      name: ALI Culture TEER Assay
+    measurement_quality: high
+    measured_entity:
+      id: GO:0016020
+      name: membrane
+    measurement_method: EVOM2 voltohmmeter
+    measurement_date: "2024-03-15"
+
+  - id: owg:meas-cbf-001
+    name: CBF measurement - Control ALI culture
+    observation_type: ciliary_beat_frequency
+    quantity_measured:
+      value: "12.8"
+      unit:
+        id: UO:0000106
+        name: hertz
+    range_low:
+      value: "9.0"
+      unit:
+        id: UO:0000106
+        name: hertz
+    range_high:
+      value: "15.0"
+      unit:
+        id: UO:0000106
+        name: hertz
+    source_observation:
+      id: owg:obs-cbf-001-raw
+      name: CBF video observation well B2 - Control
+    performed_by_assay:
+      id: owg:assay-cbf-video
+      name: Ciliary Beat Frequency Video Assay
+    measurement_quality: high
+    measured_entity:
+      id: GO:0005929
+      name: cilium
+    measurement_method: High-speed video microscopy
+    measurement_date: "2024-03-15"

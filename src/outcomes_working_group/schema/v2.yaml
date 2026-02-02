@@ -1,0 +1,4669 @@
+name: outcomes_working_group
+description: >-
+  A LinkML data model for representing biological measurements, assays,
+  and experimental protocols in the context of outcomes research.
+title: Outcome Measurement Data Model
+see_also:
+- https://EHS-Data-Standards.github.io/outcomes-working-group
+id: https://w3id.org/EHS-Data-Standards/outcomes_working_group
+imports:
+- linkml:types
+license: MIT
+
+prefixes:
+  owg: https://w3id.org/EHS-Data-Standards/outcomes-working-group/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/vocab/
+  schema: http://schema.org/
+  wikidata: http://www.wikidata.org/entity/
+  OMRSE: http://purl.obolibrary.org/obo/OMRSE_
+
+  # 14 Required Ontologies
+  CHEBI: http://purl.obolibrary.org/obo/CHEBI_
+  FOODON: http://purl.obolibrary.org/obo/FOODON_
+  CL: http://purl.obolibrary.org/obo/CL_
+  HP: http://purl.obolibrary.org/obo/HP_
+  UPHENO: http://purl.obolibrary.org/obo/UPHENO_
+  UBERON: http://purl.obolibrary.org/obo/UBERON_
+  MONDO: http://purl.obolibrary.org/obo/MONDO_
+  MP: http://purl.obolibrary.org/obo/MP_
+  ZP: http://purl.obolibrary.org/obo/ZP_
+  ENVO: http://purl.obolibrary.org/obo/ENVO_
+  ECTO: http://purl.obolibrary.org/obo/ECTO_
+  EFO: http://identifiers.org/efo/
+  chear: http://hadatac.org/ont/chear#
+  HHEAR: http://hadatac.org/ont/hhear#
+
+  # Supporting OBO ontologies
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  RO: http://purl.obolibrary.org/obo/RO_
+  UO: http://purl.obolibrary.org/obo/UO_
+  NCIT: http://purl.obolibrary.org/obo/NCIT_
+  OBI: http://purl.obolibrary.org/obo/OBI_
+  GO: http://purl.obolibrary.org/obo/GO_
+  PR: http://purl.obolibrary.org/obo/PR_
+  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
+  CLO: http://purl.obolibrary.org/obo/CLO_
+
+  # New Approach Methodologies Ontology
+  NAMO: http://purl.obolibrary.org/obo/NAMO_
+
+  fhir: http://hl7.org/fhir/
+  qudt: http://qudt.org/vocab/unit/
+  UCUM: http://unitsofmeasure.org/
+
+  # 12 Data Repository Prefixes
+  DTXSID: https://comptox.epa.gov/dashboard/dsstoxdb/results?search=
+  CHEMBL.COMPOUND: http://identifiers.org/chembl.compound/
+  CTD.CHEMICAL: http://ctdbase.org/detail.go?type=chem&acc=
+  CTD.GENE: http://ctdbase.org/detail.go?type=gene&acc=
+  AOPWIKI: https://aopwiki.org/aops/
+  GWAS: https://www.ebi.ac.uk/gwas/studies/
+  NCBIGENE: https://www.ncbi.nlm.nih.gov/gene/
+  GXA: https://www.ebi.ac.uk/gxa/experiments/
+  NHANES: https://wwwn.cdc.gov/Nchs/Nhanes/
+  USDA.PESTICIDE: https://www.ams.usda.gov/datasets/pdp/
+  PUBCHEM.COMPOUND: http://identifiers.org/pubchem.compound/
+
+default_prefix: owg
+default_range: string
+
+
+classes:
+  Container:
+    tree_root: true
+    description: >-
+      A container for collections of measurements and related entities.
+      Used as the root class for data validation.
+    slots:
+        - studies
+        - cohorts
+        - participants
+        - exposure_measurements
+        - biomarker_measurements
+        - phenotype_measurements
+        - aggregated_measurements
+        - gene_expression_measurements
+        - protein_expression_measurements
+        - chemical_exposures
+        - dietary_exposures
+        - environmental_exposures
+        - occupational_exposures
+        - phenotypes
+        - diseases
+        - adverse_outcomes
+        - adverse_outcome_pathways
+        - assessments
+        - genes
+        - proteins
+        - cell_types
+        - anatomical_entities
+        - organisms
+        - exposure_to_phenotype_associations
+        # Synthetic population entities
+        - states
+        - public_use_microdata_areas
+        - counties
+        - census_tracts
+        - block_groups
+        - households
+        - persons
+        - schools
+        # Cell culture and model system entities
+        - cellular_systems
+        - two_d_cell_cultures
+        - three_d_cell_cultures
+        - co_cultures
+        - cell_lines
+        - environmental_measurements
+        - mechanical_measurements
+        # In vitro exposure entities
+        - in_vitro_exposures
+        - exposure_materials
+        - particle_properties_collection
+        - aerosol_generations
+        - sample_preparations
+        - analyses
+        # Paper extension entities (S&T Framework)
+        - protocols
+        - assays
+        - observations
+        - outcome_contributions
+        - evidence_collection
+
+
+  NamedThing:
+    description: >-
+      A generic grouping for any identifiable entity in the exposome
+    slots:
+      - id
+      - name
+      - description
+      - category
+      - xref
+
+  Unit:
+    is_a: NamedThing
+    description: >-
+      A unit of measurement from a standard ontology (UO, UCUM, QUDT)
+    slots:
+      - unit_label
+    id_prefixes:
+      - UO
+      - UCUM
+      - qudt
+
+  QuantityValue:
+    description: >-
+      A quantity with a numeric value and unit of measurement
+    class_uri: fhir:Quantity
+    attributes:
+      unit:
+        range: Unit
+        description: The unit of measurement
+        inlined: true
+      value:
+        range: string
+        description: The numeric value of the quantity
+
+  QuantityRange:
+    description: >-
+      A range of quantities with lower and upper bounds
+    class_uri: fhir:Range
+    attributes:
+      lower_bound:
+        range: QuantityValue
+        description: The lower bound of the range
+      upper_bound:
+        range: QuantityValue
+        description: The upper bound of the range
+
+  OntologyTerm:
+    is_a: NamedThing
+    description: >-
+      A reference to an ontology term with both identifier and human-readable name.
+      Used for measured entities, phenotypes, and other ontology-backed concepts.
+
+  Tissue:
+    is_a: NamedThing
+    description: >-
+      A reference to an anatomical tissue or structure with identifier and name.
+      Used for tissue_context in expression measurements.
+
+  BiologicalEntity:
+    abstract: true
+    is_a: NamedThing
+    description: >-
+      Biological entities including genes, proteins, cells, and anatomical structures
+
+  ChemicalEntity:
+    is_a: NamedThing
+    class_uri: CHEBI:24431
+    description: >-
+      A chemical entity including compounds, drugs, and metabolites
+    slots:
+      - chebi_id
+      - dtxsid
+      - chembl_id
+      - pubchem_cid
+      - cas_number
+      - inchi
+      - smiles
+      - molecular_formula
+
+  ExposureEvent:
+    abstract: true
+    is_a: NamedThing
+    description: >-
+      An event in which an organism is exposed to a chemical or environmental factor
+    slots:
+      - exposed_subject
+      - exposed_to_chemical
+      - exposure_route
+      - exposure_duration
+      - exposure_concentration
+      - exposure_medium
+
+  BiologicalResponse:
+    abstract: true
+    is_a: NamedThing
+    slots:
+        - response_context
+        - temporal_properties
+    description: >-
+      A biological response at the molecular, cellular, or tissue level.
+      Extends Response with biology-specific attributes.
+
+  HealthOutcome:
+    abstract: true
+    is_a: NamedThing
+    description: >-
+      A health-related outcome including phenotypes and diseases
+
+  ExposableSubject:
+    abstract: true
+    is_a: NamedThing
+    description: >-
+      An entity that can be exposed to a substance or environmental factor.
+      This abstract class provides a common parent for both biological model
+      systems (cell cultures, organoids) and study participants, enabling
+      polymorphic linking from ExposureEvent to any exposable subject.
+
+  StudyEntity:
+    abstract: true
+    is_a: NamedThing
+    description: >-
+      Entities related to studies, cohorts, and participants
+
+  Measurement:
+    abstract: true
+    is_a: NamedThing
+    description: >-
+      A measurement observation with a typed quantity value and optional reference ranges.
+      Can be linked to source Observation and the Assay that generated it.
+    slots:
+      - observation_type
+      - quantity_measured
+      - range_low
+      - range_high
+      - source_observation
+      - performed_by_assay
+      - measurement_interpretation
+      - measurement_quality
+
+  Association:
+    abstract: true
+    is_a: NamedThing
+    description: >-
+      A relationship between two entities
+
+  ChemicalExposure:
+    is_a: ExposureEvent
+    class_uri: ECTO:0000006
+    description: >-
+      Exposure to a chemical substance
+
+  DietaryExposure:
+    is_a: ExposureEvent
+    class_uri: FOODON:00002403
+    description: >-
+      Exposure through dietary consumption
+    slots:
+      - food_item
+      - serving_size
+
+  EnvironmentalExposure:
+    is_a: ExposureEvent
+    class_uri: ExO:0000002
+    description: >-
+      Exposure to environmental factors
+    slots:
+      - environmental_context
+
+  OccupationalExposure:
+    is_a: ExposureEvent
+    description: >-
+      Exposure in an occupational setting
+    slots:
+      - occupation
+      - workplace
+
+  Phenotype:
+    is_a: HealthOutcome
+    class_uri: UPHENO:0001001
+    description: >-
+      An observable characteristic or trait
+    slots:
+      - severity
+      - onset_age
+    id_prefixes:
+      - HP
+      - UPHENO
+      - MP
+      - ZP
+
+  Disease:
+    is_a: HealthOutcome
+    class_uri: MONDO:0000001
+    description: >-
+      A disease or medical condition
+    slots:
+      - disease_category
+      - affected_anatomy
+
+  AdverseOutcome:
+    is_a: HealthOutcome
+    description: >-
+      An adverse health outcome in the context of an Adverse Outcome Pathway
+    slots:
+      - outcome_level
+
+
+  AdverseOutcomePathway:
+    is_a: NamedThing
+    description: >-
+      A sequence of causally linked events at different levels of biological
+      organization that lead from exposure to adverse health outcomes
+    slots:
+      - aopwiki_id
+      - molecular_initiating_event
+      - key_events
+      - key_event_relationships
+      - adverse_outcome
+      - stressors
+
+  MolecularInitiatingEvent:
+    is_a: BiologicalResponse
+    description: >-
+      The initial molecular-level perturbation that starts an Adverse Outcome Pathway
+    slots:
+      - biological_process
+      - biological_object
+      - biological_action
+      - occurs_in_cell_type
+      - occurs_in_anatomy
+
+  KeyEvent:
+    is_a: BiologicalResponse
+    class_uri: ECTO:1000000
+    description: >-
+      A measurable change in biological state that is a step in an Adverse Outcome Pathway
+    slots:
+      - biological_process
+      - biological_object
+      - biological_action
+      - level_of_biological_organization
+      - occurs_in_cell_type
+      - occurs_in_anatomy
+
+  KeyEventRelationship:
+    is_a: Association
+    description: >-
+      A directional relationship between two key events in an AOP.
+      Updated to support structured Evidence objects while maintaining
+      backward compatibility with string-based evidence_support.
+    slots:
+      - upstream_event
+      - downstream_event
+      - relationship_type
+      - evidence_support
+      - ker_evidence
+      - assessments
+
+  Assessment:
+    is_a: NamedThing
+    description: >-
+      A domain-specific grouping of measurement types that together provide
+      evidence for assessing whether a key event relationship is supported.
+      Captures expert-curated measurement protocols for specific AOP contexts
+      such as asthma adverse outcome pathways.
+    slots:
+      - assessed_key_event_relationship
+      - measurement_types
+
+  Study:
+    is_a: StudyEntity
+    class_uri: EFO:0001444
+    description: >-
+      A research study or survey
+    slots:
+      - study_type
+      - population
+      - enrollment_period
+      - geographic_location
+      - principal_investigator
+      - publications
+
+  Cohort:
+    is_a: StudyEntity
+    description: >-
+      A group of individuals in a study
+    slots:
+      - part_of_study
+      - cohort_size
+      - inclusion_criteria
+
+  Participant:
+    is_a: StudyEntity
+    mixins:
+      - ExposableSubject
+    description: >-
+      A role representing an individual's participation in a study. Links a Person
+      to a specific study cohort and captures study-specific identifiers and attributes.
+      Age and sex are recorded at enrollment and may differ from the Person's current
+      values or values in other study registrations.
+    slots:
+      - person
+      - part_of_cohort
+      - participant_id
+      - age
+      - sex
+      - enrollment_date
+      - withdrawal_date
+      - study_arm
+    slot_usage:
+      age:
+        description: >-
+          Age of the participant in years at the time of study enrollment.
+          This is a study-specific value that may differ from other study registrations
+          or the person's current age.
+      sex:
+        description: >-
+          Biological sex of the participant as recorded at study enrollment.
+          This is the value captured during study registration and may be used
+          for stratification or eligibility criteria.
+
+  ExposureMeasurement:
+    is_a: Measurement
+    description: >-
+      A measurement of exposure to a chemical or environmental factor
+    slots:
+      - measured_entity
+      - participant
+      - measurement_method
+      - measurement_date
+      - sample_type
+
+  BiomarkerMeasurement:
+    is_a: Measurement
+    description: >-
+      A measurement of a biological marker
+    slots:
+      - biomarker_type
+      - measured_entity
+      - participant
+      - sample_type
+      - measurement_method
+      - measurement_date
+
+  PhenotypeMeasurement:
+    is_a: Measurement
+    description: >-
+      A measurement of a phenotypic trait or functional assay
+    slots:
+      - phenotype
+      - measured_entity
+      - participant
+      - measurement_method
+      - measurement_date
+
+  AggregatedMeasurement:
+    is_a: Measurement
+    description: >-
+      An aggregated or summary measurement across a cohort or population
+    slots:
+      - measured_entity
+      - cohort
+      - summary_statistic
+      - sample_size
+      - stratification
+
+  GeneExpressionMeasurement:
+    is_a: Measurement
+    description: >-
+      A measurement of gene expression (mRNA level) in a specific biological context.
+      Captures the target gene, tissue/cell type context, and assay methodology.
+    slots:
+      - target_gene
+      - tissue_context
+      - cell_type_context
+      - assay_method
+      - normalization_reference
+      - participant
+      - measurement_date
+
+  ProteinExpressionMeasurement:
+    is_a: Measurement
+    description: >-
+      A measurement of protein expression or post-translational modification
+      (e.g., phosphorylation) in a specific biological context.
+    slots:
+      - target_protein
+      - phosphorylation_site
+      - tissue_context
+      - cell_type_context
+      - assay_method
+      - normalization_reference
+      - participant
+      - measurement_date
+
+  # ==========================================================================
+  # Cell Culture Environment and Mechanical Measurements
+  # ==========================================================================
+
+  EnvironmentalMeasurement:
+    is_a: Measurement
+    description: >-
+      A measurement of environmental conditions for cell culture systems
+      including temperature, CO2, O2 percentage, humidity, and pH.
+      Used to document incubator and culture conditions.
+      Valid observation_type values include: co2_percentage, o2_percentage,
+      temperature, humidity, nitrogen_balance, ph.
+
+  MechanicalMeasurement:
+    is_a: Measurement
+    description: >-
+      A measurement of mechanical stimulation parameters for advanced culture
+      systems like organ-on-chip and microphysiological systems. Includes
+      stretch frequency/amplitude, shear stress, flow rate, and pressure.
+      Valid observation_type values include: stretch_frequency, stretch_amplitude,
+      shear_stress, flow_rate, perfusion_rate, pressure.
+
+  MembranePropertyMeasurement:
+    is_a: Measurement
+    description: >-
+      A measurement of membrane properties for transwell, ALI, and
+      organ-on-chip culture systems. Includes pore size, pore density,
+      thickness, surface area, and TEER.
+      Valid observation_type values include: pore_size, pore_density,
+      thickness, surface_area, teer.
+    slots:
+      - membrane_material
+
+  # ==========================================================================
+  # Cell Culture Supporting Classes
+  # ==========================================================================
+
+  CellLine:
+    is_a: NamedThing
+    class_uri: CLO:0000031
+    description: >-
+      A cell line - a genetically stable cultured cell population that
+      contains individual cell line cells. Reference to a specific cell line
+      with identifiers from cell line repositories.
+    slots:
+      - cell_culture_type
+      - model_species
+      - tissue_origin
+      - disease_state
+      - supplier
+      - catalog_number
+      - authentication_method
+      - mycoplasma_status
+    id_prefixes:
+      - CLO
+
+  CellCultureConditions:
+    is_a: NamedThing
+    exact_mappings:
+      - CLO:0037334  # Cell culture condition
+    description: >-
+      Detailed cell culture parameters including medium, environment, and timing.
+    slots:
+      - culture_media
+      - days_at_air_liquid_interface
+      - passage_number
+      - substrate_type
+      - cell_culture_growth_mode
+      - environmental_measurements
+      - donor_count
+      - replicates_per_donor
+
+  CellCultureMedium:
+    is_a: NamedThing
+    description: >-
+      Detailed formulation of cell culture medium including base medium
+      and supplements.
+    slots:
+      - base_medium
+      - serum_type
+      - serum_concentration
+      - supplements
+      - osmolality
+      - manufacturer
+      - catalog_number
+      - lot_number
+      - preparation_date
+
+  MediumSupplement:
+    is_a: NamedThing
+    description: >-
+      Supplement or additive to cell culture medium.
+    slots:
+      - supplement_type
+      - supplement_entity
+      - concentration
+      - manufacturer
+      - catalog_number
+
+  # ==========================================================================
+  # Model System Class Hierarchy
+  # ==========================================================================
+
+  ModelSystem:
+    abstract: true
+    is_a: ExposableSubject
+    class_uri: NAMO:0000000
+    description: >-
+      Abstract base class for model systems used in biomedical research.
+      Encompasses cellular systems, microphysiological systems, and in silico models.
+    slots:
+      - model_species
+
+  CellularSystem:
+    abstract: true
+    is_a: ModelSystem
+    class_uri: NAMO:0000001
+    description: >-
+      Cell-based model systems that use living cells to model biological processes.
+      Includes 2D cultures, 3D systems, and co-cultures. Abstract base class for
+      specific culture types.
+    slots:
+      # Cell identity
+      - cell_line
+      - cell_line_lineage
+      - primary_cultured_cell
+      - cell_culture_type
+      - anatomical_origin
+      # Culture properties
+      - cell_culture_growth_mode
+      - cell_line_modification
+      - induced_pluripotent_stem_cell_line
+      - culture_conditions
+      - culture_media
+      # Measurements
+      - environmental_measurements
+      - mechanical_measurements
+      - membrane_properties
+
+  TwoDCellCulture:
+    is_a: CellularSystem
+    class_uri: NAMO:0000002
+    description: >-
+      Conventional monolayer cell cultures grown on flat surfaces.
+      Includes adherent and suspension cultures in standard tissue culture vessels.
+    slots:
+      - substrate_type
+      - confluence_level
+      - passage_number
+      - seeding_density
+      - coating
+    id_prefixes:
+      - owg
+
+  ThreeDCellCulture:
+    is_a: CellularSystem
+    class_uri: NAMO:0000003
+    description: >-
+      Three-dimensional cell culture systems including spheroids, organoids,
+      and scaffold-based cultures. Provides enhanced physiological relevance
+      with 3D architecture.
+    slots:
+      - three_d_architecture
+      - matrix_composition
+      - size_range
+      - organoid_type
+      - substrate_type
+    id_prefixes:
+      - owg
+
+  CoCulture:
+    is_a: CellularSystem
+    class_uri: NAMO:0000004
+    description: >-
+      Co-culture systems combining multiple cell types to simulate tissue
+      microenvironments and cell-cell interactions.
+    slots:
+      - coculture_configuration
+      - cell_type_ratios
+      - substrate_type
+    id_prefixes:
+      - owg
+
+  # ==========================================================================
+  # In Vitro Exposure and Test Material Classes
+  # ==========================================================================
+
+  ExposureMaterial:
+    is_a: NamedThing
+    description: >-
+      Detailed specification of the test article or substance used in an exposure
+      experiment. Extends chemical entity information with physical form, purity,
+      and particle properties relevant for toxicology studies.
+    slots:
+      - test_substance
+      - chemical_form
+      - nominal_concentration
+      - applied_dose
+      - purity
+      - composition
+      - vehicle_solvent
+      - particle_properties
+      - source_lot_number
+      - manufacturer
+      - catalog_number
+
+  ParticleProperties:
+    is_a: NamedThing
+    description: >-
+      Physical and chemical properties of particulate test materials including
+      nanoparticles, aerosols, and other particle-based exposures. Essential for
+      characterizing inhaled toxicants and nanomaterials.
+    slots:
+      - particle_size
+      - particle_size_distribution
+      - surface_area
+      - zeta_potential
+      - hydrodynamic_diameter
+      - polydispersity_index
+      - particle_morphology
+      - particle_composition
+      - agglomeration_state
+
+  InVitroExposure:
+    is_a: ExposureEvent
+    description: >-
+      An in vitro exposure event describing how cells or tissues were exposed
+      to a test substance. Captures exposure timing, frequency, aerosol generation
+      parameters, and other in vitro-specific details.
+    slots:
+      - exposure_material
+      - exposure_frequency
+      - exposure_regiment
+      - time_post_exposure
+      - exposure_temperature
+      - control_description
+      - control_type
+      - number_of_replicates
+      - effective_deposition
+      - deposited_dose
+      - baseline_teer
+      - aerosol_generation
+      - sample_preparation
+      - dose_normalization_method
+
+  AerosolGeneration:
+    is_a: NamedThing
+    description: >-
+      Parameters describing aerosol generation for inhalation toxicology studies.
+      Includes generation method, equipment, and characterization of the generated
+      aerosol for air-liquid interface and other exposure systems.
+    slots:
+      - aerosol_generation_method
+      - aerosol_generation_equipment
+      - aerosol_concentration
+      - aerosol_flow_rate
+      - aerosol_exposure_duration
+      - mass_median_aerodynamic_diameter
+      - geometric_standard_deviation
+      - aerosol_characterization_method
+
+  SamplePreparation:
+    is_a: NamedThing
+    description: >-
+      Pre-exposure sample preparation procedures for in vitro systems.
+      Includes ASL-specific preparations like mucus removal and other
+      treatments applied before exposure.
+    slots:
+      - mucus_removal_performed
+      - mucus_removal_method
+      - debris_removal_performed
+      - debris_removal_method
+      - wash_steps
+      - equilibration_time
+      - pre_exposure_treatment
+      - surface_preparation
+
+  # ==========================================================================
+  # Data Analysis and Processing Classes
+  # ==========================================================================
+
+  Analysis:
+    is_a: NamedThing
+    description: >-
+      Data analysis and processing parameters describing how measurement data
+      was acquired, processed, normalized, and quality controlled. Links to
+      measurements to provide complete provenance of derived values.
+    slots:
+      # Normalization
+      - normalization_performed
+      - data_normalization_method
+      - viability_normalized
+      - baseline_definition
+      - dose_normalization_method
+      # Data acquisition
+      - raw_data_type
+      - analysis_software
+      - analysis_software_version
+      - automation_level
+      - algorithm_type
+      - pipeline_reference
+      # Data transformation
+      - data_transformation
+      - replicate_combination_method
+      - outlier_detection_method
+      - outlier_removal_performed
+      # Imaging parameters
+      - imaging_magnification
+      - pixel_size
+      - voxel_depth
+      - z_step_size
+      - number_of_z_slices
+      # Video/temporal parameters
+      - temporal_resolution
+      - acquisition_duration
+      - motion_stabilization_applied
+      - frame_rate
+      # Context-specific
+      - flow_profile_during_imaging
+      - measurements_per_replicate
+      # QC
+      - qc_acceptance_criteria
+      - qc_passed
+      - comparison_to_historical_controls
+      # Output
+      - final_metric
+      - final_metric_unit
+
+  # ==========================================================================
+  # Paper Extension Classes: Response Hierarchy
+  # ==========================================================================
+
+
+  TemporalProperties:
+    description: >-
+      Temporal characteristics of a biological response or event.
+    attributes:
+      onset_time:
+        range: string
+        description: Time after exposure when response begins
+      duration:
+        range: string
+        description: Duration of the response
+      reversibility:
+        range: ReversibilityEnum
+        description: Whether the response is reversible
+
+  # ==========================================================================
+  # Paper Extension Classes: Evidence Hierarchy
+  # ==========================================================================
+
+  Evidence:
+    abstract: true
+    is_a: NamedThing
+    description: >-
+      Abstract base class for evidence supporting a scientific claim.
+      Provides common attributes for evidence type, strength, and provenance.
+    slots:
+      - evidence_type
+      - evidence_strength
+      - source_references
+      - confidence_level
+
+  KEREvidence:
+    is_a: Evidence
+    description: >-
+      Evidence specific to Key Event Relationships in Adverse Outcome Pathways.
+      Extends base Evidence with KER-specific attributes following AOP-Wiki
+      weight of evidence considerations.
+    slots:
+      - biological_plausibility
+      - empirical_support
+      - uncertainties
+      - quantitative_understanding
+
+  ExperimentalEvidence:
+    is_a: Evidence
+    description: >-
+      Evidence derived from experimental studies including in vitro,
+      in vivo, and clinical observations.
+    slots:
+      - study_type
+      - sample_size
+
+  # ==========================================================================
+  # Paper Extension Classes: Protocol and Assay
+  # ==========================================================================
+
+  ProtocolEquipment:
+    description: >-
+      Equipment specification for a protocol.
+    attributes:
+      equipment_name:
+        range: string
+        description: Name of the equipment
+      equipment_type:
+        range: string
+        description: Type/category of equipment
+      manufacturer:
+        range: string
+        description: Equipment manufacturer
+      model:
+        range: string
+        description: Equipment model
+      calibration_requirements:
+        range: string
+        description: Calibration requirements
+
+  ProtocolParameter:
+    description: >-
+      A configurable parameter within a protocol.
+    attributes:
+      parameter_name:
+        range: string
+        description: Name of the parameter
+      parameter_value:
+        range: string
+        description: Value of the parameter
+      parameter_unit:
+        range: Unit
+        inlined: true
+        description: Unit for the parameter value
+
+  Protocol:
+    is_a: NamedThing
+    description: >-
+      A standardized procedure or method for conducting an experiment or assay.
+      Captures methodology, equipment, and parameters for reproducibility.
+    slots:
+      - protocol_type
+      - protocol_version
+      - sop_reference
+      - methodology
+      - protocol_equipment
+      - protocol_parameters
+      - validation_status
+      - last_updated
+
+  Assay:
+    is_a: NamedThing
+    class_uri: OBI:0000070
+    description: >-
+      A planned process with the objective to produce information about
+      the material entity that is the evaluant. Links protocols to measurements
+      and captures assay-specific details.
+    slots:
+      - assay_type
+      - assay_protocol
+      - assay_instrumentation
+      - target_entity
+      - measurement_outputs
+      - detection_method
+      - assay_sensitivity
+      - assay_specificity
+      - dynamic_range
+      - throughput
+
+  # ==========================================================================
+  # Paper Extension Classes: Observation
+  # ==========================================================================
+
+  Observation:
+    is_a: NamedThing
+    description: >-
+      A raw observation from an assay or measurement procedure. Captures
+      the original observation with context before quantification or
+      interpretation. Provides provenance for measurements.
+    slots:
+      - observation_timestamp
+      - observer
+      - observation_context
+      - raw_value
+      - raw_unit
+      - observation_method
+      - observation_notes
+      - quality_flags
+      - instrument_readings
+      - performed_by_assay
+
+  # ==========================================================================
+  # Paper Extension Classes: Outcome Contribution
+  # ==========================================================================
+
+  ContributingElement:
+    is_a: NamedThing
+    description: >-
+      An element that contributes to an adverse outcome. Can be a KeyEvent,
+      BiologicalProcess, Measurement, or other relevant entity.
+    slots:
+      - element_type
+      - element_reference
+      - mechanistic_role
+
+  OutcomeContribution:
+    is_a: Association
+    description: >-
+      A relationship linking an AdverseOutcome to elements that contribute
+      to it. Follows the KeyEventRelationship pattern to enable decomposition
+      of complex outcomes into their contributing components.
+    slots:
+      - outcome
+      - contributing_element
+      - contribution_type
+      - ker_evidence
+      - assessments
+      - contribution_weight
+      - necessity
+      - sufficiency
+
+  Gene:
+    is_a: BiologicalEntity
+    description: >-
+      A gene or genetic element
+    slots:
+      - ncbigene_id
+      - symbol
+      - in_taxon
+
+  Protein:
+    is_a: BiologicalEntity
+    description: >-
+      A protein or polypeptide
+    slots:
+      - encoded_by_gene
+      - symbol
+      - in_taxon
+
+  CellType:
+    is_a: BiologicalEntity
+    class_uri: CL:0000000
+    description: >-
+      A type of cell
+    id_prefixes:
+      - CL
+
+  AnatomicalEntity:
+    is_a: BiologicalEntity
+    class_uri: UBERON:0001062
+    description: >-
+      An anatomical structure or system
+    id_prefixes:
+      - UBERON
+
+  Organism:
+    is_a: BiologicalEntity
+    description: >-
+      An individual organism
+    slots:
+      - species
+      - taxon_id
+
+  ExposureToPhenotypeAssociation:
+    is_a: Association
+    description: >-
+      An association between an exposure and a phenotype
+    slots:
+      - exposure
+      - phenotype
+      - association_type
+      - evidence
+
+  ChemicalToGeneAssociation:
+    is_a: Association
+    description: >-
+      An association between a chemical and a gene
+    slots:
+      - chemical
+      - gene
+      - interaction_type
+
+  GeneToDiseaseAssociation:
+    is_a: Association
+    description: >-
+      An association between a gene and a disease
+    slots:
+      - gene
+      - disease
+      - association_type
+
+
+  # =============================================================================
+  # Synthetic Population Classes
+  # Geographic hierarchy and population entities for synthetic population data
+  # =============================================================================
+
+  GeographicEntity:
+    abstract: true
+    is_a: NamedThing
+    description: >-
+      Abstract base class for geographic entities used in synthetic population modeling.
+      Provides common geographic identifier infrastructure.
+    slots:
+      - federal_information_processing_standard_code
+
+  State:
+    is_a: GeographicEntity
+    description: >-
+      A U.S. state or equivalent territory with associated geographic properties.
+      Contains counties and public use microdata areas.
+    slots:
+      - abbreviation
+      - counties
+      - public_use_microdata_areas
+    exact_mappings:
+      - wikidata:Q7275
+
+  PublicUseMicrodataArea:
+    aliases:
+      - PUMA
+    is_a: GeographicEntity
+    description: >-
+      Public Use Microdata Areas (PUMAs) are non-overlapping, statistical geographic
+      areas that partition each state or equivalent entity into geographic areas
+      containing no fewer than 100,000 people each. They cover the entirety of the
+      United States, Puerto Rico, and Guam.
+    slots:
+      - state_federal_information_processing_standard_code
+    exact_mappings:
+      - wikidata:Q7257651
+
+  County:
+    is_a: GeographicEntity
+    description: >-
+      A county or equivalent administrative subdivision with associated properties.
+      Contains census tracts.
+    slots:
+      - state_federal_information_processing_standard_code
+      - census_tracts
+    exact_mappings:
+      - wikidata:Q28575
+      - NCIT:C49292
+
+  CensusTract:
+    aliases:
+      - Tract
+    is_a: GeographicEntity
+    description: >-
+      A census tract is a small, relatively permanent geographic area within a county,
+      used to collect and present demographic data from the census, usually containing
+      between 2,500 and 8,000 residents and designed to be as homogeneous as possible
+      in terms of population characteristics and living conditions.
+    slots:
+      - state_federal_information_processing_standard_code
+      - county_federal_information_processing_standard_code
+      - block_groups
+    exact_mappings:
+      - wikidata:Q107738887
+      - NCIT:C67490
+
+  BlockGroup:
+    is_a: GeographicEntity
+    description: >-
+      A statistical division within a census tract, typically containing between
+      600 and 3,000 people, which is used by the Census Bureau to present demographic
+      data at a smaller, more localized level than the entire census tract.
+    slots:
+      - census_tract_federal_information_processing_standard_code
+      - state_federal_information_processing_standard_code
+      - county_federal_information_processing_standard_code
+      - households
+    exact_mappings:
+      - wikidata:Q5058963
+
+  School:
+    is_a: NamedThing
+    description: >-
+      A school entity representing an educational institution where synthetic
+      population persons may be assigned for modeling purposes.
+    slots:
+      - federal_information_processing_standard_code
+      - state_federal_information_processing_standard_code
+      - county_federal_information_processing_standard_code
+      - census_tract_federal_information_processing_standard_code
+      - block_group_federal_information_processing_standard_code
+
+  Household:
+    is_a: NamedThing
+    description: >-
+      A household entity representing a group of people living together in a
+      single dwelling unit. Used in synthetic population modeling.
+    slots:
+      - serial_number
+      - household_identifier
+      - household_head_age
+      - household_income
+      - household_head_race
+      - household_size
+      - household_persons
+    exact_mappings:
+      - wikidata:Q259059
+      - OMRSE:00000076
+
+  Person:
+    is_a: NamedThing
+    description: >-
+      A person (individual human being) with demographic and geographic attributes.
+      Persons can participate in studies through the Participant role, which links
+      a Person to a specific study cohort. In synthetic population contexts, persons
+      are members of households within geographic hierarchies. Age and sex on Person
+      represent current or snapshot values from the source data (e.g., census),
+      distinct from study-specific values captured on Participant at enrollment.
+    slots:
+      - age
+      - sex
+      - race
+      - species
+      - state_federal_information_processing_standard_code
+      - county_federal_information_processing_standard_code
+      - census_tract_federal_information_processing_standard_code
+      - block_group_federal_information_processing_standard_code
+      - serial_number
+      - household_identifier
+      - household_head_age
+      - household_income
+      - household_head_race
+      - household_size
+      - assigned_school
+      - person_order
+      - relationship_to_household_head
+    slot_usage:
+      age:
+        description: >-
+          Age of the person in years as recorded in the source data (e.g., census
+          or synthetic population). This represents a snapshot value at the time
+          of data collection, distinct from study-specific age at enrollment.
+      sex:
+        description: >-
+          Biological sex of the person as recorded in the source data (e.g., census
+          or synthetic population). This represents the value from the original
+          data source, distinct from study-specific sex recorded at enrollment.
+    exact_mappings:
+      - schema:Person
+      - NCIT:C25190
+
+
+slots:
+
+  id:
+    identifier: true
+    slot_uri: schema:identifier
+    range: uriorcurie
+    description: A unique identifier for a thing
+
+  name:
+    slot_uri: schema:name
+    range: string
+    description: A human-readable name for a thing
+
+  description:
+    slot_uri: schema:description
+    description: A human-readable description for a thing
+
+  category:
+    description: A category or type for a thing
+    multivalued: true
+
+  xref:
+    range: uriorcurie
+    multivalued: true
+    description: External database cross-references
+
+  unit_label:
+    range: string
+    description: A human-readable label for the unit
+
+  # Chemical entity slots
+  chebi_id:
+    range: uriorcurie
+    pattern: "^CHEBI:\\d+$"
+    description: ChEBI identifier
+
+  dtxsid:
+    range: string
+    pattern: "^DTXSID\\d{7,9}$"
+    description: EPA CompTox Dashboard identifier
+
+  chembl_id:
+    range: string
+    pattern: "^CHEMBL\\d+$"
+    description: ChEMBL compound identifier
+
+  pubchem_cid:
+    range: integer
+    description: PubChem Compound identifier
+
+  cas_number:
+    range: string
+    description: CAS Registry Number
+
+  inchi:
+    range: string
+    description: InChI chemical identifier
+
+  smiles:
+    range: string
+    description: SMILES chemical structure
+
+  molecular_formula:
+    range: string
+    description: Molecular formula
+
+  # Exposure slots
+  exposed_subject:
+    range: ExposableSubject
+    description: >-
+      The subject being exposed to a substance or environmental factor.
+      Can be either a model system (cell culture, organoid) or a study participant.
+      This polymorphic slot enables unified exposure tracking across in vitro
+      and population-based studies.
+    inlined: true
+
+  exposed_to_chemical:
+    range: ChemicalEntity
+    slot_uri: CHEBI:24431
+    description: The chemical entity involved in the exposure
+    inlined: true
+
+  exposure_route:
+    range: ExposureRouteEnum
+    description: Route of exposure
+
+  exposure_duration:
+    range: string
+    description: Duration of exposure
+
+  exposure_concentration:
+    range: float
+    description: Concentration of exposure
+
+  exposure_medium:
+    range: ExposureMediumEnum
+    description: Medium through which exposure occurs
+
+  food_item:
+    range: string
+    description: Food item consumed
+
+  serving_size:
+    range: string
+    description: Serving size
+
+  environmental_context:
+    range: string
+    description: Environmental context of exposure
+
+  occupation:
+    range: string
+    description: Occupation related to exposure
+
+  workplace:
+    range: string
+    description: Workplace where exposure occurs
+
+  severity:
+    range: string
+    description: Severity of phenotype or disease
+
+  onset_age:
+    range: string
+    description: Age of onset
+
+  disease_category:
+    range: string
+    description: Category of disease
+
+  affected_anatomy:
+    range: AnatomicalEntity
+    description: Anatomical location affected
+    inlined: true
+
+  outcome_level:
+    range: BiologicalOrganizationLevelEnum
+    description: Level of biological organization
+
+  # AOP slots
+  aopwiki_id:
+    range: string
+    description: AOP Wiki identifier
+
+  molecular_initiating_event:
+    range: MolecularInitiatingEvent
+    inlined: true
+    description: The molecular initiating event of an AOP
+
+  key_events:
+    range: KeyEvent
+    multivalued: true
+    inlined_as_list: true
+    description: Key events in an AOP
+
+  key_event_relationships:
+    range: KeyEventRelationship
+    multivalued: true
+    inlined_as_list: true
+    description: Relationships between key events
+
+  adverse_outcome:
+    range: AdverseOutcome
+    inlined: true
+    description: The adverse outcome of an AOP
+
+  stressors:
+    range: ChemicalEntity
+    multivalued: true
+    description: Chemical stressors that trigger the AOP
+
+  biological_process:
+    range: string
+    description: Biological process involved
+
+  biological_object:
+    range: string
+    description: Biological object involved
+
+  biological_action:
+    range: string
+    description: Biological action or change
+
+  occurs_in_cell_type:
+    range: CellType
+    slot_uri: CL:0000000
+    description: Cell type where event occurs
+
+  occurs_in_anatomy:
+    range: AnatomicalEntity
+    slot_uri: UBERON:0001062
+    description: Anatomical location where event occurs
+
+  level_of_biological_organization:
+    range: BiologicalOrganizationLevelEnum
+    description: Level of biological organization
+
+  upstream_event:
+    range: KeyEvent
+    inlined: true
+    description: Upstream key event
+
+  downstream_event:
+    range: KeyEvent
+    inlined: true
+    description: Downstream key event
+
+  relationship_type:
+    range: string
+    description: Type of relationship
+
+  evidence_support:
+    range: string
+    description: >-
+      Evidence supporting the relationship. DEPRECATED: Use 'ker_evidence' slot
+      with structured KEREvidence objects instead for new data. This slot is
+      retained for backward compatibility with existing data.
+    deprecated: >-
+      Use the 'ker_evidence' slot with structured Evidence objects for new data.
+
+  assessments:
+    range: Assessment
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    description: >-
+      Domain-specific assessments that group measurement types for evaluating
+      key events in adverse outcome pathways. Each assessment defines expert-curated
+      measurement protocols for specific biological endpoints.
+
+  # Assessment slots
+  assessed_key_event_relationship:
+    range: KeyEventRelationship
+    description: >-
+      The key event relationship that this assessment provides evidence for.
+
+  measurement_types:
+    range: MeasurementTypeEnum
+    multivalued: true
+    description: >-
+      The measurement types that are part of this assessment.
+      These are the specific observation types that together provide
+      evidence for the assessed key event relationship.
+
+  # Study slots
+  study_type:
+    range: StudyTypeEnum
+    description: Type of study
+
+  population:
+    range: string
+    description: Study population description
+
+  enrollment_period:
+    range: string
+    description: Time period of enrollment
+
+  geographic_location:
+    range: string
+    description: Geographic location of study
+
+  principal_investigator:
+    range: string
+    description: Principal investigator name
+
+  publications:
+    range: string
+    multivalued: true
+    description: Related publications
+
+  part_of_study:
+    range: Study
+    description: Study that this cohort is part of.
+    inlined: true
+
+  cohort_size:
+    range: integer
+    description: Number of participants in cohort
+
+  inclusion_criteria:
+    range: string
+    description: Criteria for cohort inclusion
+
+  part_of_cohort:
+    range: Cohort
+    slot_uri: biolink:member_of
+    description: Cohort that this participant is part of.
+    inlined: true
+
+  participant_id:
+    range: string
+    description: Participant identifier
+
+  person:
+    range: Person
+    description: >-
+      The person (individual) who is participating in this study.
+      Links the study participation role to the actual individual.
+
+  enrollment_date:
+    range: date
+    description: >-
+      Date when the person enrolled in the study as a participant.
+
+  withdrawal_date:
+    range: date
+    description: >-
+      Date when the participant withdrew from or completed the study.
+      Null if participant is still active.
+
+  study_arm:
+    range: string
+    description: >-
+      Study arm or group to which the participant was assigned
+      (e.g., treatment, control, placebo).
+
+  age:
+    range: integer
+    description: Age in years
+
+  sex:
+    range: SexEnum
+    description: Biological sex
+
+  species:
+    range: string
+    description: Species name
+
+  # Measurement slots
+  observation_type:
+    range: MeasurementTypeEnum
+    description: >-
+      The type of observation being represented.
+      This field holds the key in the core key-value pair.
+
+  quantity_measured:
+    range: QuantityValue
+    inlined: true
+    description: >-
+      The measured quantity value with its unit
+
+  range_low:
+    range: QuantityValue
+    inlined: true
+    description: >-
+      Lower bound of reference range (e.g., from a laboratory).
+
+  range_high:
+    range: QuantityValue
+    inlined: true
+    description: >-
+      Upper bound of reference range (e.g., from a laboratory).
+
+  measured_entity:
+    range: OntologyTerm
+    inlined: true
+    description: >-
+      The entity being measured, with both identifier and human-readable name.
+      Examples: chemical compounds (CHEBI), cell types (CL), biological processes (GO).
+
+  participant:
+    range: Participant
+    description: The participant being measured.
+    inlined: true
+
+  measurement_method:
+    range: string
+    description: Method used for measurement
+
+  measurement_date:
+    range: date
+    description: Date of measurement
+
+  sample_type:
+    range: SampleTypeEnum
+    description: Type of biological sample
+
+  biomarker_type:
+    range: string
+    description: Type of biomarker
+
+  phenotype:
+    range: OntologyTerm
+    inlined: true
+    description: The phenotype being measured, with identifier and name.
+
+  cohort:
+    range: Cohort
+    description: The cohort for aggregated measurements.
+    inlined: true
+
+  summary_statistic:
+    range: SummaryStatisticEnum
+    description: Type of summary statistic
+
+  sample_size:
+    range: integer
+    description: Number of samples
+
+  stratification:
+    range: string
+    description: Stratification variables
+
+  # Expression measurement slots
+  target_gene:
+    range: Gene
+    inlined: true
+    description: >-
+      The gene whose expression is being measured, with identifier, name, and symbol.
+      Use this to specify the exact gene target (e.g., MUC5AC, EGFR, IL8).
+
+  target_protein:
+    range: Protein
+    inlined: true
+    description: >-
+      The protein whose expression or modification is being measured,
+      with identifier, name, and optionally the encoding gene.
+
+  tissue_context:
+    range: Tissue
+    inlined: true
+    description: >-
+      The anatomical tissue or structure where expression was measured,
+      with identifier and name (e.g., bronchial epithelium, lung, nasal mucosa).
+
+  cell_type_context:
+    range: CellType
+    inlined: true
+    description: >-
+      The specific cell type where expression was measured,
+      with identifier and name (e.g., goblet cell, ciliated cell, basal cell).
+
+  assay_method:
+    range: ExpressionAssayMethodEnum
+    description: >-
+      The experimental method used to measure expression.
+      Captures whether this was qRT-PCR, RNA-seq, Western blot, IHC, etc.
+
+  phosphorylation_site:
+    range: string
+    description: >-
+      For protein phosphorylation measurements, the specific amino acid
+      residue that is phosphorylated (e.g., Y1068, S473, T308).
+
+  normalization_reference:
+    range: string
+    description: >-
+      The reference gene or protein used for normalization
+      (e.g., GAPDH, beta-actin, 18S rRNA, total protein).
+
+  # Biological entity slots
+  ncbigene_id:
+    range: string
+    pattern: "^\\d+$"
+    description: NCBI Gene identifier
+
+  symbol:
+    range: string
+    description: Gene symbol
+
+  in_taxon:
+    range: string
+    description: Taxonomic group
+
+  encoded_by_gene:
+    range: Gene
+    description: Gene that encodes this protein
+    inlined: true
+
+  cl_id:
+    range: uriorcurie
+    pattern: "^CL:\\d{7}$"
+    description: Cell Ontology identifier
+
+  uberon_id:
+    range: uriorcurie
+    pattern: "^UBERON:\\d{7}$"
+    description: UBERON anatomical identifier
+
+  taxon_id:
+    range: string
+    description: NCBI Taxonomy identifier
+
+  # Association slots
+  exposure:
+    range: ExposureEvent
+    description: Exposure in association
+    inlined: true
+
+  chemical:
+    range: ChemicalEntity
+    description: Chemical in association
+    inlined: true
+
+  gene:
+    range: Gene
+    description: Gene in association
+    inlined: true
+
+  disease:
+    range: Disease
+    description: Disease in association
+    inlined: true
+
+  association_type:
+    range: string
+    description: Type of association
+
+  evidence:
+    range: string
+    description: Evidence for association
+
+  interaction_type:
+    range: string
+    description: Type of interaction
+
+  genetic_variant:
+    range: string
+    description: Genetic variant identifier
+
+  p_value:
+    range: float
+    description: Statistical p-value
+
+  effect_size:
+    range: float
+    description: Effect size of association
+
+  exposure_measurements:
+    range: ExposureMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of exposure measurements in the container.
+
+  biomarker_measurements:
+    range: BiomarkerMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of biomarker measurements in the container.
+
+  phenotype_measurements:
+    range: PhenotypeMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of phenotype measurements in the container.
+
+  gene_expression_measurements:
+    range: GeneExpressionMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of gene expression measurements in the container.
+
+  protein_expression_measurements:
+    range: ProteinExpressionMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of protein expression measurements in the container.
+
+  aggregated_measurements:
+    range: AggregatedMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of aggregated or summary measurements in the container.
+
+  studies:
+    range: Study
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of research studies in the container.
+
+  cohorts:
+    range: Cohort
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of study cohorts in the container.
+
+  participants:
+    range: Participant
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of study participants in the container.
+
+  chemicals:
+    range: ChemicalEntity
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of chemical entities in the container.
+
+  genes:
+    range: Gene
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of genes in the container.
+
+  proteins:
+    range: Protein
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of proteins in the container.
+
+  ciliary_measurements:
+    range: PhenotypeMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of ciliary function measurements in the container.
+
+  asl_measurements:
+    range: PhenotypeMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of airway surface liquid measurements in the container.
+
+  mcc_measurements:
+    range: PhenotypeMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of mucociliary clearance measurements in the container.
+
+  goblet_cell_measurements:
+    range: PhenotypeMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of goblet cell measurements in the container.
+
+  oxidative_stress_measurements:
+    range: BiomarkerMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of oxidative stress biomarker measurements in the container.
+
+  barrier_measurements:
+    range: BiomarkerMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of epithelial barrier function measurements in the container.
+
+  cytotoxicity_measurements:
+    range: BiomarkerMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of cytotoxicity measurements in the container.
+
+  chemical_exposures:
+    range: ChemicalExposure
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of chemical exposure events in the container.
+
+  dietary_exposures:
+    range: DietaryExposure
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of dietary exposure events in the container.
+
+  environmental_exposures:
+    range: EnvironmentalExposure
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of environmental exposure events in the container.
+
+  occupational_exposures:
+    range: OccupationalExposure
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of occupational exposure events in the container.
+
+  phenotypes:
+    range: Phenotype
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of phenotypes in the container.
+
+  diseases:
+    range: Disease
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of diseases in the container.
+
+  adverse_outcomes:
+    range: AdverseOutcome
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of adverse outcomes in the container.
+
+  adverse_outcome_pathways:
+    range: AdverseOutcomePathway
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of adverse outcome pathways in the container.
+
+  cell_types:
+    range: CellType
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of cell types in the container.
+
+  anatomical_entities:
+    range: AnatomicalEntity
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of anatomical entities in the container.
+
+  organisms:
+    range: Organism
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of organisms in the container.
+
+  exposure_to_phenotype_associations:
+    range: ExposureToPhenotypeAssociation
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of exposure-to-phenotype associations in the container.
+
+  # =============================================================================
+  # Synthetic Population Slots
+  # Geographic identifiers and population-related attributes
+  # =============================================================================
+
+  # Geographic identifier slots
+  federal_information_processing_standard_code:
+    aliases:
+      - fips_code
+    description: >-
+      Federal Information Processing Standard (FIPS) code, a unique numeric identifier
+      assigned to geographic areas like states and counties within the United States,
+      used primarily by the Census Bureau to identify locations when analyzing population data.
+    range: string
+    exact_mappings:
+      - wikidata:Q917824
+
+  state_federal_information_processing_standard_code:
+    aliases:
+      - state_fips_code
+    is_a: federal_information_processing_standard_code
+    description: >-
+      State-level Federal Information Processing Standard (FIPS) code.
+      A two-digit code uniquely identifying each U.S. state and territory.
+    range: string
+    exact_mappings:
+      - wikidata:Q5440257
+
+  county_federal_information_processing_standard_code:
+    aliases:
+      - county_fips_code
+    is_a: federal_information_processing_standard_code
+    description: >-
+      County-level Federal Information Processing Standard (FIPS) code.
+      A three-digit code uniquely identifying a county within a state.
+    range: string
+    exact_mappings:
+      - wikidata:P882
+
+  census_tract_federal_information_processing_standard_code:
+    aliases:
+      - tract_fips_code
+    is_a: federal_information_processing_standard_code
+    description: >-
+      Census tract-level Federal Information Processing Standard (FIPS) code.
+      Identifies a specific census tract within a county.
+    range: string
+
+  block_group_federal_information_processing_standard_code:
+    aliases:
+      - block_group_fips_code
+    is_a: federal_information_processing_standard_code
+    description: >-
+      Block group-level Federal Information Processing Standard (FIPS) code.
+      Identifies a specific block group within a census tract.
+    range: string
+
+  # State slots
+  abbreviation:
+    description: >-
+      Standard two-letter abbreviation for a U.S. state or territory.
+    range: string
+
+  # Geographic hierarchy collection slots
+  counties:
+    range: County
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Counties within a state or geographic region.
+
+  public_use_microdata_areas:
+    aliases:
+      - pumas
+    range: PublicUseMicrodataArea
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Public Use Microdata Areas (PUMAs) within a state.
+      PUMAs are non-overlapping statistical geographic areas containing
+      no fewer than 100,000 people each.
+
+  census_tracts:
+    aliases:
+      - tracts
+    range: CensusTract
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Census tracts within a county.
+
+  block_groups:
+    range: BlockGroup
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Block groups within a census tract.
+
+  households:
+    range: Household
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Households within a block group or geographic area.
+
+  persons:
+    range: Person
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Persons (individuals) in the container. Can be used for top-level person
+      collections or for linking persons to study participants.
+
+  states:
+    range: State
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      U.S. states or territories with their geographic hierarchies.
+
+  schools:
+    range: School
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Schools where synthetic population persons may be assigned.
+
+  # Household slots
+  serial_number:
+    aliases:
+      - serialno
+    description: >-
+      Serial number linking to the original PUMS (Public Use Microdata Sample) record.
+      Used to connect synthetic population records to source census microdata.
+    range: string
+
+  household_identifier:
+    aliases:
+      - hh_id
+    description: >-
+      Unique identifier for a household within the synthetic population.
+    range: string
+
+  household_head_age:
+    aliases:
+      - hh_age
+    description: >-
+      Age of the household head (householder) in years.
+      Used as one of the four matching variables in synthetic population generation.
+    range: integer
+
+  household_income:
+    aliases:
+      - hh_income
+    description: >-
+      Annual household income in dollars.
+      Used as one of the four matching variables in synthetic population generation.
+    range: float
+
+  household_head_race:
+    aliases:
+      - hh_race
+    description: >-
+      Race category of the household head.
+      Used as one of the four matching variables in synthetic population generation.
+    range: string
+
+  household_size:
+    aliases:
+      - size
+    description: >-
+      Number of persons in the household.
+      Used as one of the four matching variables in synthetic population generation.
+    range: integer
+
+  household_persons:
+    aliases:
+      - persons
+    range: Person
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Persons (individuals) within the household.
+
+  # Person slots
+  assigned_school:
+    aliases:
+      - school
+    range: School
+    description: >-
+      School assigned to a person for modeling purposes.
+      Assignment is based on school/grade capacity and proximity.
+
+  person_order:
+    aliases:
+      - sporder
+    description: >-
+      Person's order within the household, starting from 1.
+      The householder is typically person 1.
+    range: integer
+
+  relationship_to_household_head:
+    aliases:
+      - relp
+    description: >-
+      Relationship of the person to the household head (householder).
+      Values: 1=Householder, 2=Spouse, 3=Child, 4=Other relative,
+      5=Nonrelative, 6=Foster child, 7=Foster parent, 8=Other nonrelative.
+    range: RelationshipToHouseholdHeadEnum
+
+  race:
+    aliases:
+      - rac1p
+    description: >-
+      Race of the person. Derived from census race categories.
+    range: string
+
+  # ============================================================================
+  # Cell Culture and Model System Slots
+  # ============================================================================
+
+  # Cell identity slots
+  cell_line:
+    range: CellLine
+    slot_uri: CLO:0000031
+    description: >-
+      The cell line used in the culture system. References a genetically stable
+      cultured cell population.
+    inlined: true
+
+  cell_line_lineage:
+    range: string
+    description: >-
+      The lineage or derivation history of the cell line, including original
+      tissue source and passage history.
+
+  cell_line_modification:
+    range: CellLineModificationEnum
+    description: >-
+      Genetic or other modifications applied to the cell line
+      (e.g., transfection, CRISPR editing, viral transduction).
+
+  induced_pluripotent_stem_cell_line:
+    range: boolean
+    description: >-
+      Whether this is an induced pluripotent stem cell (iPSC) line.
+    exact_mappings:
+      - CLO:0037307  # induced pluripotent stem cell line cell
+
+  primary_cultured_cell:
+    range: CellType
+    description: >-
+      Primary cells directly isolated from tissue, not from an established cell line.
+      Reference to Cell Ontology term.
+    inlined: true
+
+  cell_culture_type:
+    range: CellType
+    slot_uri: EFO:0000324
+    description: >-
+      The cell type being cultured, with ontology reference.
+    inlined: true
+
+  anatomical_origin:
+    range: AnatomicalEntity
+    slot_uri: UBERON:0001062
+    description: >-
+      The anatomical location from which cells were derived (e.g., lung, intestine).
+    inlined: true
+
+  model_species:
+    range: Organism
+    description: >-
+      The species of origin for the cells in the model system.
+    inlined: true
+
+  # Culture property slots
+  cell_culture_growth_mode:
+    range: CellCultureGrowthModeEnum
+    exact_mappings:
+      - CLO:0000030
+    description: >-
+      Mode of cell culture growth (adherent, suspension, ALI, 3D, etc.)
+
+  substrate_type:
+    range: SubstrateTypeEnum
+    description: >-
+      Type of culture substrate or surface material.
+
+  culture_conditions:
+    range: CellCultureConditions
+    description: >-
+      Detailed cell culture conditions including medium, environment, and timing.
+    inlined: true
+
+  culture_media:
+    range: CellCultureMedium
+    description: >-
+      Cell culture medium formulation with supplements.
+    inlined: true
+
+  # Measurement collection slots
+  environmental_measurements:
+    range: EnvironmentalMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Collection of environmental condition measurements (CO2, O2, temperature,
+      humidity, pH) for the culture system.
+
+  mechanical_measurements:
+    range: MechanicalMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Collection of mechanical stimulation measurements (stretch, shear, flow)
+      for advanced culture systems like organ-on-chip.
+
+  membrane_properties:
+    range: MembranePropertyMeasurement
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Collection of membrane property measurements (pore size, TEER) for
+      transwell and organ-on-chip systems.
+
+  # 3D culture slots
+  three_d_architecture:
+    range: ThreeDArchitectureEnum
+    description: >-
+      Type of 3D culture architecture (spheroid, organoid, scaffold-based, etc.)
+
+  matrix_composition:
+    range: string
+    description: >-
+      Composition of the 3D matrix or scaffold material (e.g., Matrigel,
+      collagen, alginate, synthetic hydrogel).
+
+  size_range:
+    range: QuantityRange
+    description: >-
+      Size range of 3D structures (diameter for spheroids/organoids).
+    inlined: true
+
+  organoid_type:
+    range: string
+    description: >-
+      Specific type of organoid (e.g., intestinal, cerebral, lung, liver).
+
+  # Co-culture slots
+  coculture_configuration:
+    range: CoCultureConfigurationEnum
+    description: >-
+      Physical configuration of co-culture (direct contact, transwell, microfluidic).
+
+  cell_type_ratios:
+    range: string
+    multivalued: true
+    description: >-
+      Ratios between different cell types in co-culture (e.g., "epithelial:stromal = 3:1").
+
+  # Membrane and mechanical slots
+  membrane_material:
+    range: string
+    description: >-
+      Material of the porous membrane (e.g., PET, polycarbonate, PDMS).
+
+  coating:
+    range: string
+    description: >-
+      Surface coating applied to membrane or substrate.
+
+  # Additional culture parameter slots
+  confluence_level:
+    range: QuantityValue
+    description: >-
+      Confluence level of adherent culture as percentage.
+    inlined: true
+
+  seeding_density:
+    range: QuantityValue
+    description: >-
+      Cell seeding density (cells per cm2 or per mL).
+    inlined: true
+
+  passage_number:
+    range: integer
+    description: >-
+      Cell passage number.
+    exact_mappings:
+      - CLO:0000170  # cell passage capability
+
+  days_at_air_liquid_interface:
+    range: integer
+    description: >-
+      Number of days cells have been cultured at air-liquid interface (ALI).
+
+  donor_count:
+    range: integer
+    description: >-
+      Number of unique cell donors used in the experiment.
+
+  replicates_per_donor:
+    range: integer
+    description: >-
+      Number of biological replicates per donor.
+
+  # Supporting class slots for CellCultureMedium
+  base_medium:
+    range: string
+    description: >-
+      Base medium type (e.g., DMEM, RPMI 1640, Ham's F-12, BEGM).
+
+  serum_type:
+    range: string
+    description: >-
+      Type of serum used (e.g., FBS, human serum, serum-free).
+
+  serum_concentration:
+    range: QuantityValue
+    description: >-
+      Serum concentration as percentage.
+    inlined: true
+
+  supplements:
+    range: MediumSupplement
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      List of medium supplements with concentrations.
+
+  osmolality:
+    range: QuantityValue
+    description: >-
+      Osmolality of the medium in mOsm/kg.
+    inlined: true
+
+  manufacturer:
+    range: string
+    description: >-
+      Manufacturer of the product.
+
+  catalog_number:
+    range: string
+    description: >-
+      Catalog number from manufacturer.
+
+  lot_number:
+    range: string
+    description: >-
+      Lot or batch number.
+
+  preparation_date:
+    range: date
+    description: >-
+      Date when medium was prepared.
+
+  # Supplement slots
+  supplement_type:
+    range: SupplementTypeEnum
+    description: >-
+      Category of supplement (growth factor, antibiotic, hormone, vitamin, etc.)
+
+  supplement_entity:
+    range: ChemicalEntity
+    description: >-
+      The chemical entity representing the supplement.
+    inlined: true
+
+  concentration:
+    range: QuantityValue
+    description: >-
+      Concentration of supplement or reagent.
+    inlined: true
+
+  # CellLine reference slots
+  tissue_origin:
+    range: AnatomicalEntity
+    description: >-
+      Tissue from which the cell line was derived.
+    inlined: true
+
+  disease_state:
+    range: Disease
+    description: >-
+      Disease state of the cell line donor (if applicable).
+    inlined: true
+
+  supplier:
+    range: string
+    description: >-
+      Supplier or repository of the cell line (e.g., ATCC, Coriell).
+
+  authentication_method:
+    range: string
+    description: >-
+      Method used to authenticate the cell line (e.g., STR profiling).
+
+  mycoplasma_status:
+    range: string
+    description: >-
+      Mycoplasma testing status (positive, negative, not tested).
+
+  # Collection slots for Container
+  cellular_systems:
+    range: CellularSystem
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of cellular systems.
+
+  two_d_cell_cultures:
+    range: TwoDCellCulture
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of 2D cell cultures.
+
+  three_d_cell_cultures:
+    range: ThreeDCellCulture
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of 3D cell cultures.
+
+  co_cultures:
+    range: CoCulture
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of co-cultures.
+
+  cell_lines:
+    range: CellLine
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of cell lines.
+
+  # ============================================================================
+  # In Vitro Exposure and Test Material Slots
+  # ============================================================================
+
+  # ExposureMaterial slots
+  test_substance:
+    range: ChemicalEntity
+    description: >-
+      The chemical entity being tested, with full identifier information.
+    inlined: true
+
+  chemical_form:
+    range: ChemicalFormEnum
+    description: >-
+      Physical form of the test substance (solid, aerosol, solution, vapor, etc.)
+
+  nominal_concentration:
+    range: QuantityValue
+    description: >-
+      Nominal or intended concentration of the test substance as prepared.
+    inlined: true
+
+  applied_dose:
+    range: QuantityValue
+    description: >-
+      The dose applied to cells or tissue (may differ from nominal concentration).
+    inlined: true
+
+  purity:
+    range: QuantityValue
+    description: >-
+      Purity of the test substance as percentage.
+    inlined: true
+
+  composition:
+    range: string
+    description: >-
+      Detailed composition of the test material, especially for complex mixtures.
+
+  vehicle_solvent:
+    range: string
+    description: >-
+      Vehicle or solvent used to deliver the test substance (e.g., DMSO, PBS, culture medium).
+
+  particle_properties:
+    range: ParticleProperties
+    description: >-
+      Physical properties of particulate test materials.
+    inlined: true
+
+  source_lot_number:
+    range: string
+    description: >-
+      Lot number from the source/manufacturer of the test article.
+
+  # ParticleProperties slots
+  particle_size:
+    range: QuantityValue
+    description: >-
+      Primary particle size (e.g., diameter) in nanometers or micrometers.
+    inlined: true
+
+  particle_size_distribution:
+    range: string
+    description: >-
+      Description of particle size distribution (e.g., monodisperse, polydisperse, D10/D50/D90 values).
+
+  surface_area:
+    range: QuantityValue
+    description: >-
+      Specific surface area of particles (e.g., m2/g by BET method).
+    inlined: true
+
+  zeta_potential:
+    range: QuantityValue
+    description: >-
+      Zeta potential in mV, indicating surface charge in the vehicle/medium.
+    inlined: true
+
+  hydrodynamic_diameter:
+    range: QuantityValue
+    description: >-
+      Hydrodynamic diameter measured by dynamic light scattering (DLS).
+    inlined: true
+
+  polydispersity_index:
+    range: float
+    description: >-
+      Polydispersity index (PDI) from DLS, indicating size distribution width.
+
+  particle_morphology:
+    range: string
+    description: >-
+      Particle shape and morphology (e.g., spherical, rod, fiber, agglomerate).
+
+  particle_composition:
+    range: string
+    description: >-
+      Chemical composition of particles if different from bulk material.
+
+  agglomeration_state:
+    range: string
+    description: >-
+      State of agglomeration/aggregation in the exposure medium.
+
+  # InVitroExposure slots
+  exposed_system:
+    range: CellularSystem
+    description: >-
+      The cell culture system (2D, 3D, or co-culture) that was exposed to the
+      test substance. Links the exposure event to the biological model.
+    inlined: true
+
+  exposure_material:
+    range: ExposureMaterial
+    description: >-
+      The test material used for the exposure.
+    inlined: true
+
+  exposure_frequency:
+    range: string
+    description: >-
+      Frequency of exposure (e.g., single, daily, twice daily).
+
+  exposure_regiment:
+    range: ExposureRegimentEnum
+    description: >-
+      Type of exposure regiment (continuous, repeated, intermittent, etc.)
+
+  time_post_exposure:
+    range: QuantityValue
+    description: >-
+      Time elapsed between end of exposure and measurement (recovery period).
+    inlined: true
+
+  exposure_temperature:
+    range: QuantityValue
+    description: >-
+      Temperature during exposure in degrees Celsius.
+    inlined: true
+
+  control_description:
+    range: string
+    description: >-
+      Description of control conditions used in the experiment.
+
+  control_type:
+    range: ControlTypeEnum
+    description: >-
+      Type of control used (vehicle, untreated, positive, etc.)
+
+  number_of_replicates:
+    range: integer
+    description: >-
+      Number of replicate wells/inserts/samples per condition.
+
+  effective_deposition:
+    range: QuantityValue
+    description: >-
+      Actual amount of material deposited on cells (measured or calculated).
+    inlined: true
+
+  deposited_dose:
+    range: QuantityValue
+    description: >-
+      Dose that reached the cell surface (may be calculated from ISDD or measured).
+    inlined: true
+
+  baseline_teer:
+    range: QuantityValue
+    description: >-
+      Baseline TEER measurement before exposure, used to assess barrier integrity.
+    inlined: true
+
+  aerosol_generation:
+    range: AerosolGeneration
+    description: >-
+      Parameters for aerosol generation (for inhalation studies).
+    inlined: true
+
+  sample_preparation:
+    range: SamplePreparation
+    description: >-
+      Pre-exposure sample preparation procedures.
+    inlined: true
+
+  dose_normalization_method:
+    range: DoseNormalizationMethodEnum
+    description: >-
+      Method used to normalize dose (per area, per cell count, per protein, etc.)
+
+  # AerosolGeneration slots
+  aerosol_generation_method:
+    range: AerosolGenerationMethodEnum
+    description: >-
+      Method used to generate the aerosol (nebulization, condensation, etc.)
+
+  aerosol_generation_equipment:
+    range: string
+    description: >-
+      Equipment used for aerosol generation (e.g., Vitrocell Cloud, ALICE, nebulizer type).
+
+  aerosol_concentration:
+    range: QuantityValue
+    description: >-
+      Concentration of aerosol in the exposure chamber or at the ALI.
+    inlined: true
+
+  aerosol_flow_rate:
+    range: QuantityValue
+    description: >-
+      Flow rate of aerosol delivery system.
+    inlined: true
+
+  aerosol_exposure_duration:
+    range: QuantityValue
+    description: >-
+      Duration of aerosol exposure.
+    inlined: true
+
+  mass_median_aerodynamic_diameter:
+    aliases:
+      - MMAD
+    range: QuantityValue
+    description: >-
+      Mass median aerodynamic diameter of generated aerosol particles.
+    inlined: true
+
+  geometric_standard_deviation:
+    aliases:
+      - GSD
+    range: float
+    description: >-
+      Geometric standard deviation of aerosol particle size distribution.
+
+  aerosol_characterization_method:
+    range: string
+    description: >-
+      Methods used to characterize aerosol (e.g., APS, SMPS, impactor, gravimetric).
+
+  # SamplePreparation slots (ASL-specific)
+  mucus_removal_performed:
+    range: boolean
+    description: >-
+      Whether mucus was removed from the apical surface before exposure.
+
+  mucus_removal_method:
+    range: string
+    description: >-
+      Method used to remove mucus (e.g., PBS wash, mucolytic agent, aspiration).
+
+  debris_removal_performed:
+    range: boolean
+    description: >-
+      Whether debris was removed from the sample before exposure.
+
+  debris_removal_method:
+    range: string
+    description: >-
+      Method used to remove debris from samples.
+
+  wash_steps:
+    range: string
+    description: >-
+      Description of wash steps performed before exposure (buffer, number, duration).
+
+  equilibration_time:
+    range: QuantityValue
+    description: >-
+      Time allowed for sample equilibration before exposure.
+    inlined: true
+
+  pre_exposure_treatment:
+    range: string
+    description: >-
+      Any pre-treatment applied before exposure (e.g., cytokine priming).
+
+  surface_preparation:
+    range: string
+    description: >-
+      Surface preparation procedures (e.g., coating, conditioning).
+
+  # ============================================================================
+  # Data Analysis and Processing Slots
+  # ============================================================================
+
+  # Normalization slots
+  normalization_performed:
+    range: boolean
+    description: >-
+      Whether data normalization was performed.
+
+  data_normalization_method:
+    range: DataNormalizationMethodEnum
+    description: >-
+      Method used for data normalization (per area, per cell count, baseline, control).
+
+  viability_normalized:
+    range: boolean
+    description: >-
+      Whether data were normalized to account for cell viability/cytotoxicity.
+
+  baseline_definition:
+    range: string
+    description: >-
+      How baseline is defined (e.g., response of solvent control, pre-exposure value).
+
+  # Data acquisition slots
+  raw_data_type:
+    range: RawDataTypeEnum
+    description: >-
+      Type of raw data collected (image stack, video, fluorescence intensity, etc.)
+
+  analysis_software:
+    range: string
+    description: >-
+      Software used for data analysis (e.g., CellProfiler, ImageJ, R, MATLAB).
+
+  analysis_software_version:
+    range: string
+    description: >-
+      Version of the analysis software used.
+
+  automation_level:
+    range: AutomationLevelEnum
+    description: >-
+      Level of automation in data processing (manual, semi-automated, fully automated).
+
+  algorithm_type:
+    range: string
+    description: >-
+      Type of algorithm used for analysis (e.g., thresholding, segmentation, machine learning).
+
+  pipeline_reference:
+    range: string
+    description: >-
+      Reference to analysis pipeline (workflow name/version, GitHub URL, DOI).
+
+  # Data transformation slots
+  data_transformation:
+    range: DataTransformationEnum
+    description: >-
+      Mathematical transformation applied to data (log, square root, etc.)
+
+  replicate_combination_method:
+    range: ReplicateCombinationMethodEnum
+    description: >-
+      Method for combining replicate measurements (mean, median, fitted model).
+
+  outlier_detection_method:
+    range: string
+    description: >-
+      Method used for outlier detection (e.g., IQR, Grubbs test, ROUT).
+
+  outlier_removal_performed:
+    range: boolean
+    description: >-
+      Whether outliers were removed from the dataset.
+
+  # Imaging parameters
+  imaging_magnification:
+    range: string
+    description: >-
+      Microscope magnification used (e.g., 10x, 20x, 40x).
+
+  pixel_size:
+    range: QuantityValue
+    description: >-
+      Size of image pixels in micrometers or nanometers.
+    inlined: true
+
+  voxel_depth:
+    range: QuantityValue
+    description: >-
+      Depth of voxels for 3D imaging in micrometers.
+    inlined: true
+
+  z_step_size:
+    range: QuantityValue
+    description: >-
+      Z-step size for optical stacks (usually in micrometers).
+    inlined: true
+
+  number_of_z_slices:
+    range: integer
+    description: >-
+      Number of Z-slices in an optical stack.
+
+  # Video/temporal parameters
+  temporal_resolution:
+    range: QuantityValue
+    description: >-
+      Temporal resolution for video acquisition (fps or acquisition rate).
+    inlined: true
+
+  acquisition_duration:
+    range: QuantityValue
+    description: >-
+      Total duration of video or time-series acquisition.
+    inlined: true
+
+  motion_stabilization_applied:
+    range: boolean
+    description: >-
+      Whether motion stabilization/drift correction was applied to images or video.
+
+  frame_rate:
+    range: QuantityValue
+    description: >-
+      Frame rate of video acquisition in frames per second.
+    inlined: true
+
+  # Context-specific slots
+  flow_profile_during_imaging:
+    range: string
+    description: >-
+      Flow conditions during imaging (for lung-on-chip or perfusion systems).
+
+  measurements_per_replicate:
+    range: integer
+    description: >-
+      Number of images or individual measurements per replicate.
+
+  # QC slots
+  qc_acceptance_criteria:
+    range: string
+    description: >-
+      Criteria used to determine data validity (e.g., CV threshold, comparison to historical controls).
+
+  qc_passed:
+    range: boolean
+    description: >-
+      Whether the data passed quality control criteria.
+
+  comparison_to_historical_controls:
+    range: string
+    description: >-
+      How data were compared to historical control values.
+
+  # Output slots
+  final_metric:
+    range: string
+    description: >-
+      The final output metric reported (e.g., CBF in Hz, MCC rate in mm/min).
+
+  final_metric_unit:
+    range: Unit
+    description: >-
+      Unit of the final metric.
+    inlined: true
+
+  # ============================================================================
+  # Collection slots for new classes in Container
+  # ============================================================================
+
+  in_vitro_exposures:
+    range: InVitroExposure
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of in vitro exposure events.
+
+  exposure_materials:
+    range: ExposureMaterial
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of exposure materials/test articles.
+
+  aerosol_generations:
+    range: AerosolGeneration
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of aerosol generation specifications.
+
+  analyses:
+    range: Analysis
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of data analysis specifications.
+
+  sample_preparations:
+    range: SamplePreparation
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of sample preparation protocols.
+
+  particle_properties_collection:
+    range: ParticleProperties
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of particle property characterizations.
+
+  # Slot to link measurements to their analysis
+  analysis:
+    range: Analysis
+    description: >-
+      Reference to the analysis method and parameters used for this measurement.
+    inlined: true
+
+  # ==========================================================================
+  # Response and Temporal Properties Slots (Paper Extension)
+  # ==========================================================================
+
+  response_context:
+    range: string
+    description: >-
+      The context or conditions under which the response was observed.
+
+  temporal_properties:
+    range: TemporalProperties
+    inlined: true
+    description: >-
+      Temporal characteristics of the response including onset, duration,
+      and reversibility.
+
+  onset_time:
+    range: string
+    description: >-
+      Time after exposure when response begins.
+
+  duration:
+    range: string
+    description: >-
+      Duration of the response.
+
+  reversibility:
+    range: ReversibilityEnum
+    description: >-
+      Whether the response is reversible.
+
+  # ==========================================================================
+  # Evidence Slots (Paper Extension)
+  # ==========================================================================
+
+  evidence_type:
+    range: EvidenceTypeEnum
+    description: >-
+      The type of evidence (e.g., experimental, computational, observational).
+
+  evidence_strength:
+    range: EvidenceStrengthEnum
+    description: >-
+      Qualitative assessment of evidence strength (strong, moderate, weak).
+
+  source_references:
+    range: string
+    multivalued: true
+    description: >-
+      References to source publications, databases, or datasets supporting this evidence.
+
+  confidence_level:
+    range: ConfidenceLevelEnum
+    description: >-
+      Overall confidence level in the evidence.
+
+  biological_plausibility:
+    range: string
+    description: >-
+      Assessment of the biological plausibility of the relationship.
+
+  empirical_support:
+    range: string
+    description: >-
+      Summary of empirical evidence supporting the relationship.
+
+  uncertainties:
+    range: string
+    multivalued: true
+    description: >-
+      Known uncertainties or limitations in the evidence.
+
+  quantitative_understanding:
+    range: string
+    description: >-
+      Description of quantitative understanding of the relationship.
+
+  ker_evidence:
+    range: KEREvidence
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Structured evidence objects supporting a key event relationship.
+      Replaces the deprecated string-based evidence_support slot.
+
+  # ==========================================================================
+  # Protocol Slots (Paper Extension)
+  # ==========================================================================
+
+  protocol_type:
+    range: ProtocolTypeEnum
+    description: >-
+      The type of protocol (e.g., sample_preparation, assay_execution, analysis).
+
+  protocol_version:
+    range: string
+    description: >-
+      Version identifier for the protocol.
+
+  sop_reference:
+    range: string
+    description: >-
+      Reference to a standard operating procedure document (URL, DOI, or document ID).
+
+  methodology:
+    range: string
+    description: >-
+      Description of the methodology.
+
+  protocol_equipment:
+    range: ProtocolEquipment
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Equipment required for this protocol.
+
+  protocol_parameters:
+    range: ProtocolParameter
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Configurable parameters for this protocol.
+
+  validation_status:
+    range: ValidationStatusEnum
+    description: >-
+      Current validation status of the protocol.
+
+  last_updated:
+    range: date
+    description: >-
+      Date when the protocol was last updated.
+
+  # ==========================================================================
+  # Assay Slots (Paper Extension)
+  # ==========================================================================
+
+  assay_type:
+    range: AssayTypeEnum
+    description: >-
+      The type of assay from OBI ontology.
+
+  assay_protocol:
+    range: Protocol
+    inlined: true
+    description: >-
+      The protocol used for this assay.
+
+  assay_instrumentation:
+    range: string
+    multivalued: true
+    description: >-
+      Instruments used in the assay.
+
+  target_entity:
+    range: NamedThing
+    inlined: true
+    description: >-
+      The entity being measured or assessed by this assay.
+
+  measurement_outputs:
+    range: MeasurementTypeEnum
+    multivalued: true
+    description: >-
+      Types of measurements produced by this assay.
+
+  detection_method:
+    range: string
+    description: >-
+      Method used for detection (e.g., fluorescence, absorbance).
+
+  assay_sensitivity:
+    range: QuantityValue
+    inlined: true
+    description: >-
+      Lower limit of detection for the assay.
+
+  assay_specificity:
+    range: string
+    description: >-
+      Specificity characteristics of the assay.
+
+  dynamic_range:
+    range: QuantityRange
+    inlined: true
+    description: >-
+      Dynamic range of the assay.
+
+  throughput:
+    range: string
+    description: >-
+      Throughput capacity of the assay.
+
+  # ==========================================================================
+  # Observation Slots (Paper Extension)
+  # ==========================================================================
+
+  observation_timestamp:
+    range: datetime
+    description: >-
+      The timestamp when the observation was made.
+
+  observer:
+    range: string
+    description: >-
+      The person or system that made the observation.
+
+  observation_context:
+    range: string
+    description: >-
+      The context or conditions under which the observation was made.
+
+  raw_value:
+    range: string
+    description: >-
+      The raw, unprocessed value from the observation.
+
+  raw_unit:
+    range: Unit
+    inlined: true
+    description: >-
+      The unit of the raw value.
+
+  observation_method:
+    range: string
+    description: >-
+      The method used to make the observation.
+
+  observation_notes:
+    range: string
+    description: >-
+      Free-text notes about the observation.
+
+  quality_flags:
+    range: QualityFlagEnum
+    multivalued: true
+    description: >-
+      Quality control flags for this observation.
+
+  instrument_readings:
+    range: string
+    multivalued: true
+    description: >-
+      Raw instrument readings associated with this observation.
+
+  performed_by_assay:
+    range: Assay
+    inlined: true
+    description: >-
+      The assay that generated this observation.
+
+  source_observation:
+    range: Observation
+    inlined: true
+    description: >-
+      The source observation from which this measurement was derived.
+
+  measurement_interpretation:
+    range: string
+    description: >-
+      Interpretation or clinical significance of the measurement.
+
+  measurement_quality:
+    range: MeasurementQualityEnum
+    description: >-
+      Quality assessment of the measurement.
+
+  # ==========================================================================
+  # OutcomeContribution Slots (Paper Extension)
+  # ==========================================================================
+
+  outcome:
+    range: AdverseOutcome
+    required: true
+    inlined: true
+    description: >-
+      The adverse outcome to which this contribution applies.
+
+  contributing_element:
+    range: ContributingElement
+    required: true
+    inlined: true
+    description: >-
+      The element contributing to the adverse outcome.
+
+  contribution_type:
+    range: ContributionTypeEnum
+    description: >-
+      The type of contribution (e.g., causal, modulatory, correlative).
+
+  contribution_weight:
+    range: float
+    description: >-
+      Relative weight or importance of this contribution (0.0-1.0).
+
+  necessity:
+    range: NecessityEnum
+    description: >-
+      Whether this element is necessary for the outcome.
+
+  sufficiency:
+    range: SufficiencyEnum
+    description: >-
+      Whether this element is sufficient to cause the outcome.
+
+  element_type:
+    range: ContributingElementTypeEnum
+    description: >-
+      The type of contributing element.
+
+  element_reference:
+    range: NamedThing
+    inlined: true
+    description: >-
+      Reference to the actual element (KeyEvent, Measurement, etc.).
+
+  mechanistic_role:
+    range: string
+    description: >-
+      Description of the mechanistic role this element plays.
+
+  # ==========================================================================
+  # Container Collection Slots for New Classes (Paper Extension)
+  # ==========================================================================
+
+  protocols:
+    range: Protocol
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of protocols in the container.
+
+  assays:
+    range: Assay
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of assays in the container.
+
+  observations:
+    range: Observation
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of raw observations in the container.
+
+  outcome_contributions:
+    range: OutcomeContribution
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of outcome contribution relationships in the container.
+
+  evidence_collection:
+    range: Evidence
+    multivalued: true
+    inlined_as_list: true
+    description: Collection of evidence objects in the container.
+
+  # ==========================================================================
+  # Protocol Supporting Class Slots
+  # ==========================================================================
+
+  equipment_name:
+    range: string
+    description: Name of the equipment.
+
+  equipment_type:
+    range: string
+    description: Type/category of equipment.
+
+  equipment_manufacturer:
+    range: string
+    description: Equipment manufacturer.
+
+  equipment_model:
+    range: string
+    description: Equipment model.
+
+  calibration_requirements:
+    range: string
+    description: Calibration requirements for the equipment.
+
+  parameter_name:
+    range: string
+    description: Name of the parameter.
+
+  parameter_value:
+    range: string
+    description: Value of the parameter.
+
+  parameter_unit:
+    range: Unit
+    inlined: true
+    description: Unit for the parameter value.
+
+  acceptable_range:
+    range: QuantityRange
+    inlined: true
+    description: Acceptable range for this parameter.
+
+enums:
+
+  ExposureRouteEnum:
+    description: Routes of exposure to chemicals or environmental factors
+    permissible_values:
+      oral:
+        description: Oral ingestion
+        meaning: ECTO:0000895
+      dermal:
+        description: Dermal contact
+        meaning: ECTO:0000896
+      inhalation:
+        description: Inhalation
+        meaning: ECTO:0000897
+      injection:
+        description: Injection
+      unknown:
+        description: Unknown route
+
+  ExposureMediumEnum:
+    description: Medium through which exposure occurs
+    permissible_values:
+      air:
+        description: Air
+        meaning: ENVO:00002005
+      water:
+        description: Water
+        meaning: ENVO:00002006
+      food:
+        description: Food
+        meaning: FOODON:00002403
+      soil:
+        description: Soil
+        meaning: ENVO:00001998
+      dust:
+        description: Dust
+      consumer_product:
+        description: Consumer product
+      unknown:
+        description: Unknown medium
+
+  ExpressionAssayMethodEnum:
+    description: >-
+      Methods used to measure gene or protein expression.
+      Includes transcriptomic, proteomic, and imaging-based approaches.
+    permissible_values:
+      # Transcriptomic methods
+      qrt_pcr:
+        description: Quantitative real-time polymerase chain reaction
+        meaning: OBI:0000893
+      rna_seq:
+        description: RNA sequencing (bulk)
+        meaning: OBI:0001271
+      single_cell_rna_seq:
+        description: Single-cell RNA sequencing
+        meaning: OBI:0002631
+      microarray:
+        description: Gene expression microarray
+        meaning: OBI:0000424
+      nanostring:
+        description: NanoString nCounter gene expression assay
+        meaning: OBI:0002142
+      northern_blot:
+        description: Northern blot for RNA detection
+        meaning: OBI:0000822
+      in_situ_hybridization:
+        description: In situ hybridization (ISH, FISH, RNAscope)
+        meaning: OBI:0001686
+      # Proteomic methods
+      western_blot:
+        description: Western blot (immunoblot) for protein detection
+        meaning: OBI:0000714
+      elisa:
+        description: Enzyme-linked immunosorbent assay
+        meaning: OBI:0000661
+      immunohistochemistry:
+        description: Immunohistochemistry on tissue sections
+        meaning: OBI:0001986
+      immunofluorescence:
+        description: Immunofluorescence staining
+        meaning: OBI:0001501
+      flow_cytometry:
+        description: Flow cytometry for protein expression
+        meaning: OBI:0000916
+      mass_spectrometry:
+        description: Mass spectrometry-based proteomics
+        meaning: OBI:0000470
+      immunoprecipitation:
+        description: Immunoprecipitation followed by detection
+        meaning: OBI:0000928
+      # Other methods
+      luminex:
+        description: Luminex multiplex bead-based assay
+        meaning: OBI:0001632
+      other:
+        description: Other assay method not listed
+
+  BiologicalOrganizationLevelEnum:
+    description: Levels of biological organization
+    permissible_values:
+      molecular:
+        description: Molecular level
+        meaning: EFO:0001432
+      cellular:
+        description: Cellular level
+        meaning: CL:0000000
+      tissue:
+        description: Tissue level
+        meaning: UBERON:0000479
+      organ:
+        description: Organ level
+        meaning: UBERON:0000062
+      organism:
+        description: Organism level
+        meaning: UBERON:0000468
+      population:
+        description: Population level
+
+  StudyTypeEnum:
+    description: Types of research studies
+    permissible_values:
+      cohort:
+        description: Cohort study
+        meaning: EFO:0001444
+      cross_sectional:
+        description: Cross-sectional study
+        meaning: EFO:0001745
+      case_control:
+        description: Case-control study
+        meaning: EFO:0001427
+      randomized_controlled_trial:
+        description: Randomized controlled trial
+        meaning: EFO:0001427
+      survey:
+        description: Survey
+      gwas:
+        description: Genome-wide association study
+        meaning: EFO:0000508
+      other:
+        description: Other study type
+
+  SexEnum:
+    description: Biological sex
+    permissible_values:
+      male:
+        description: Male
+        meaning: PATO:0000384
+      female:
+        description: Female
+        meaning: PATO:0000383
+      unknown:
+        description: Unknown
+
+  SampleTypeEnum:
+    description: Types of biological and environmental samples
+    permissible_values:
+      blood:
+        description: Blood sample
+      urine:
+        description: Urine sample
+      serum:
+        description: Serum sample
+      plasma:
+        description: Plasma sample
+      tissue:
+        description: Tissue sample
+      saliva:
+        description: Saliva sample
+      hair:
+        description: Hair sample
+      nail:
+        description: Nail sample
+      air:
+        description: Air sample (environmental)
+      water:
+        description: Water sample (environmental)
+      soil:
+        description: Soil sample (environmental)
+      other:
+        description: Other sample type
+
+  SummaryStatisticEnum:
+    description: Types of summary statistics
+    permissible_values:
+      mean:
+        description: Arithmetic mean
+      median:
+        description: Median
+      mode:
+        description: Mode
+      percentile:
+        description: Percentile
+      standard_deviation:
+        description: Standard deviation
+      variance:
+        description: Variance
+      range:
+        description: Range
+      interquartile_range:
+        description: Interquartile range
+
+  MeasurementTypeEnum:
+    description: >-
+      Types of measurements and observations for outcomes research,
+      with emphasis on respiratory health and environmental toxicant effects.
+    permissible_values:
+      FEV1:
+        description: Forced expiratory volume in 1 second
+        meaning: NCIT:C38083
+      FVC:
+        description: Forced vital capacity
+        meaning: NCIT:C38082
+      FEV1_FEC_ratio:
+        description: Ratio of FEV1 to FVC (Tiffeneau-Pinelli index)
+        meaning: NCIT:C120835
+      FEF25_75:
+        description: Forced expiratory flow at 25-75% of FVC
+        meaning: NCIT:C38085
+      peak_expiratory_flow:
+        description: Peak expiratory flow rate
+        meaning: NCIT:C38086
+      DLCO:
+        description: Diffusing capacity of the lung for carbon monoxide
+        meaning: NCIT:C38087
+      FeNO:
+        description: Fractional exhaled nitric oxide (airway inflammation marker)
+        meaning: NCIT:C124353
+      bronchodilator_response:
+        description: Change in lung function after bronchodilator administration
+      lung_function_decline_rate:
+        description: Rate of decline in lung function over time
+      ciliary_beat_frequency:
+        description: Frequency of ciliary beating in Hz
+        meaning: GO:0003341
+      ciliary_active_area_percentage:
+        description: Percentage of epithelial surface with active cilia
+      cilia_per_cell:
+        description: Number of cilia per epithelial cell
+      cilia_length:
+        description: Length of cilia in micrometers
+      percentage_ciliated_cells:
+        description: Percentage of cells that are ciliated
+      asl_height:
+        description: Airway surface liquid height in micrometers
+      periciliary_layer_depth:
+        description: Depth of periciliary liquid layer (reduced in disease)
+      mucus_layer_thickness:
+        description: Thickness of the mucus gel layer
+      mucociliary_transport_rate:
+        description: Rate of mucociliary transport (mm/min)
+        meaning: GO:0120197
+      mucociliary_directionality:
+        description: Directionality and coordination of mucociliary transport
+      particle_clearance_rate:
+        description: Rate of particle clearance from airways
+      goblet_cell_count:
+        description: Number or percentage of goblet cells
+        meaning: CL:0000160
+      goblet_to_ciliated_ratio:
+        description: Ratio of goblet cells to ciliated cells
+      mucin_protein_concentration:
+        description: Concentration of secreted mucin protein
+      mucus_viscosity:
+        description: Viscosity of airway mucus
+      CFTR_chloride_secretion:
+        description: CFTR-mediated chloride secretory current
+      inhibitor_sensitive_current:
+        description: Current sensitive to CFTR inhibitors (e.g., CFTRinh-172)
+      sweat_chloride_concentration:
+        description: Chloride concentration in sweat (CF diagnostic)
+      reactive_oxygen_species:
+        description: Reactive oxygen species (ROS) level
+        meaning: CHEBI:26523
+      lipid_peroxidation:
+        description: Lipid peroxidation markers (MDA, 8-isoprostane)
+      protein_carbonyls:
+        description: Protein carbonyl content (protein oxidation marker)
+      DNA_8ohdg:
+        description: 8-hydroxydeoxyguanosine (DNA oxidative damage marker)
+      glutathione_ratio:
+        description: GSH/GSSG ratio (antioxidant capacity)
+      superoxide_dismutase_activity:
+        description: Superoxide dismutase (SOD) enzyme activity
+      catalase_activity:
+        description: Catalase enzyme activity
+      glutathione_peroxidase_activity:
+        description: Glutathione peroxidase (GPx) activity
+      total_antioxidant_capacity:
+        description: Total antioxidant capacity of sample
+      TEER:
+        description: Transepithelial electrical resistance
+      paracellular_permeability:
+        description: Paracellular permeability coefficient
+      IL6_level:
+        description: Interleukin-6 concentration
+        meaning: NCIT:C20487
+      IL8_level:
+        description: Interleukin-8 (CXCL8) concentration
+        meaning: NCIT:C20506
+      IL13_level:
+        description: Interleukin-13 concentration
+        meaning: NCIT:C20497
+      TNF_alpha_level:
+        description: Tumor necrosis factor alpha concentration
+        meaning: NCIT:C20535
+      neutrophil_percentage:
+        description: Percentage of neutrophils in BALF or sputum
+      eosinophil_percentage:
+        description: Percentage of eosinophils in BALF or sputum
+      macrophage_percentage:
+        description: Percentage of macrophages in BALF or sputum
+      total_inflammatory_cell:
+        description: Total inflammatory cell count
+      LDH_release:
+        description: Lactate dehydrogenase release (cell damage marker)
+      cell_viability:
+        description: Cell viability percentage
+      mtt_reduction:
+        description: MTT assay result (metabolic activity)
+      apoptosis_rate:
+        description: Rate of apoptotic cell death
+      gene_expression:
+        description: >-
+          Gene expression level (mRNA). Use with GeneExpressionMeasurement class
+          to specify target_gene, tissue_context, and assay_method.
+      protein_expression:
+        description: >-
+          Protein expression level. Use with ProteinExpressionMeasurement class
+          to specify target_protein, tissue_context, and assay_method.
+      protein_phosphorylation:
+        description: >-
+          Protein phosphorylation level. Use with ProteinExpressionMeasurement class
+          and specify phosphorylation_site (e.g., Y1068 for EGFR).
+      protein_localization:
+        description: >-
+          Protein subcellular localization (membrane, cytoplasm, nucleus).
+          Use with ProteinExpressionMeasurement class.
+      expression_ratio:
+        description: >-
+          Ratio of expression between two genes or proteins
+          (e.g., MUC5AC/MUC5B ratio). Specify both targets in description.
+      percentage_positive_cells:
+        description: Percentage of cells positive for a marker (IHC, flow cytometry)
+      urinary_arsenic_level:
+        description: Urinary arsenic concentration
+      urinary_cotinine_level:
+        description: Urinary cotinine (tobacco exposure biomarker)
+      urinary_bpa_level:
+        description: Urinary bisphenol A concentration
+      urinary_phthalate_metabolites:
+        description: Urinary phthalate metabolite concentrations
+      pm2_5_exposure:
+        description: Fine particulate matter (PM2.5) exposure level
+      ozone_exposure:
+        description: Ozone exposure concentration
+      NO2_exposure:
+        description: Nitrogen dioxide exposure concentration
+      polycyclic_aromatic_hydrocarbons:
+        description: PAH metabolite levels
+      body_mass_index:
+        description: Body mass index (BMI)
+        meaning: NCIT:C16358
+      body_weight:
+        description: Body weight measurement
+        meaning: NCIT:C81328
+      height:
+        description: Height measurement
+        meaning: NCIT:C25347
+      alpha_diversity:
+        description: Microbiome alpha diversity metric
+      beta_diversity:
+        description: Microbiome beta diversity metric
+      bacterial_load:
+        description: Total bacterial load (CFU or 16S copies)
+      # Environmental measurement types (for cell culture conditions)
+      co2_percentage:
+        description: Carbon dioxide percentage in incubator atmosphere
+      o2_percentage:
+        description: Oxygen percentage in incubator (for hypoxic cultures)
+      temperature:
+        description: Incubator or culture temperature
+        meaning: PATO:0000146
+      humidity:
+        description: Relative humidity in incubator
+        meaning: PATO:0015009
+      nitrogen_balance:
+        description: Nitrogen percentage in atmosphere
+      ph:
+        description: pH of culture medium
+        meaning: PATO:0001842
+      # Mechanical measurement types (for organ-on-chip systems)
+      stretch_frequency:
+        description: Frequency of cyclic mechanical stretch (Hz)
+      stretch_amplitude:
+        description: Amplitude of mechanical stretch as percentage
+      shear_stress:
+        description: Fluid shear stress applied to cells (dyn/cm2 or Pa)
+      flow_rate:
+        description: Fluid flow rate in microfluidic or perfusion systems
+      perfusion_rate:
+        description: Media perfusion rate for continuous culture systems
+      pressure:
+        description: Hydrostatic or pneumatic pressure
+        meaning: PATO:0001025
+      # Membrane property types (for transwell/ALI systems)
+      pore_size:
+        description: Diameter of membrane pores (typically in micrometers)
+      pore_density:
+        description: Number of pores per unit area
+      thickness:
+        description: Membrane thickness
+        meaning: PATO:0000915
+      surface_area:
+        description: Total membrane surface area
+      teer:
+        description: Transepithelial electrical resistance (membrane property)
+      other:
+        description: Other measurement type not listed
+
+  # ============================================================================
+  # Domain-specific Assessment Measurement Type Enums
+  # These group MeasurementTypeEnum values by assessment domain for AOPs
+  # ============================================================================
+
+  ASLAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for airway surface liquid (ASL) assessment.
+      Used to assess hydration status of airway epithelium.
+    permissible_values:
+      asl_height:
+        description: Airway surface liquid height in micrometers
+      periciliary_layer_depth:
+        description: Depth of periciliary liquid layer (reduced in disease)
+      mucus_layer_thickness:
+        description: Thickness of the mucus gel layer
+
+  CiliaryFunctionAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for ciliary function assessment.
+      Used to assess ciliary beating and motility in airway epithelium.
+    permissible_values:
+      ciliary_beat_frequency:
+        description: Frequency of ciliary beating in Hz
+      ciliary_active_area_percentage:
+        description: Percentage of epithelial surface with active cilia
+      cilia_per_cell:
+        description: Number of cilia per epithelial cell
+      cilia_length:
+        description: Length of cilia in micrometers
+      percentage_ciliated_cells:
+        description: Percentage of cells that are ciliated
+
+  MucociliaryClearanceAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for mucociliary clearance (MCC) assessment.
+      Used to assess the coordinated transport of mucus by cilia.
+    permissible_values:
+      mucociliary_transport_rate:
+        description: Rate of mucociliary transport (mm/min)
+      mucociliary_directionality:
+        description: Directionality and coordination of mucociliary transport
+      particle_clearance_rate:
+        description: Rate of particle clearance from airways
+      mucus_layer_thickness:
+        description: Thickness of the mucus gel layer
+      bacterial_load:
+        description: Bacterial load (CFU or similar)
+
+  GobletCellAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for goblet cell and mucin assessment.
+      Used to assess goblet cell hyperplasia and mucus hypersecretion.
+    permissible_values:
+      goblet_cell_count:
+        description: Number or percentage of goblet cells
+      goblet_to_ciliated_ratio:
+        description: Ratio of goblet cells to ciliated cells
+      mucin_protein_concentration:
+        description: Concentration of secreted mucin protein
+      mucus_viscosity:
+        description: Viscosity of airway mucus
+
+  MucinProductionAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for mucin production assessment.
+      Used to assess mucin gene/protein expression and secretion.
+    permissible_values:
+      mucin_protein_concentration:
+        description: Concentration of secreted mucin protein
+      gene_expression:
+        description: Mucin gene expression (MUC5AC, MUC5B)
+      protein_expression:
+        description: Mucin protein expression level
+
+  LungFunctionAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for lung function assessment.
+      Used to assess respiratory function in human subjects.
+    permissible_values:
+      FEV1:
+        description: Forced expiratory volume in 1 second
+      FVC:
+        description: Forced vital capacity
+      FEV1_FEC_ratio:
+        description: Ratio of FEV1 to FVC (Tiffeneau-Pinelli index)
+      FEF25_75:
+        description: Forced expiratory flow at 25-75% of FVC
+      peak_expiratory_flow:
+        description: Peak expiratory flow rate
+      DLCO:
+        description: Diffusing capacity of the lung for carbon monoxide
+      FeNO:
+        description: Fractional exhaled nitric oxide (airway inflammation marker)
+      bronchodilator_response:
+        description: Change in lung function after bronchodilator administration
+      lung_function_decline_rate:
+        description: Rate of decline in lung function over time
+
+  CFTRFunctionAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for CFTR function assessment.
+      Used to assess cystic fibrosis transmembrane conductance regulator activity.
+    permissible_values:
+      CFTR_chloride_secretion:
+        description: CFTR-mediated chloride secretory current
+      inhibitor_sensitive_current:
+        description: Current sensitive to CFTR inhibitors (e.g., CFTRinh-172)
+      sweat_chloride_concentration:
+        description: Chloride concentration in sweat (CF diagnostic)
+
+  OxidativeStressAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for oxidative stress assessment.
+      Used to assess reactive oxygen species and antioxidant status.
+    permissible_values:
+      reactive_oxygen_species:
+        description: Reactive oxygen species (ROS) level
+      lipid_peroxidation:
+        description: Lipid peroxidation markers (MDA, 8-isoprostane)
+      protein_carbonyls:
+        description: Protein carbonyl content (protein oxidation marker)
+      DNA_8ohdg:
+        description: 8-hydroxydeoxyguanosine (DNA oxidative damage marker)
+      glutathione_ratio:
+        description: GSH/GSSG ratio (antioxidant capacity)
+      superoxide_dismutase_activity:
+        description: Superoxide dismutase (SOD) enzyme activity
+      catalase_activity:
+        description: Catalase enzyme activity
+      glutathione_peroxidase_activity:
+        description: Glutathione peroxidase (GPx) activity
+      total_antioxidant_capacity:
+        description: Total antioxidant capacity of sample
+
+  BALFSputumAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for BALF and sputum assessment.
+      Used to assess airway inflammation via bronchoalveolar lavage or induced sputum.
+    permissible_values:
+      neutrophil_percentage:
+        description: Percentage of neutrophils in BALF or sputum
+      eosinophil_percentage:
+        description: Percentage of eosinophils in BALF or sputum
+      macrophage_percentage:
+        description: Percentage of macrophages in BALF or sputum
+      total_inflammatory_cell:
+        description: Total inflammatory cell count
+      IL6_level:
+        description: Interleukin-6 concentration
+      IL8_level:
+        description: Interleukin-8 (CXCL8) concentration
+      IL13_level:
+        description: Interleukin-13 concentration
+      TNF_alpha_level:
+        description: Tumor necrosis factor alpha concentration
+
+  EGFRSignalingAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for EGFR signaling pathway assessment.
+      Used to assess epidermal growth factor receptor activation and downstream signaling.
+    permissible_values:
+      protein_phosphorylation:
+        description: EGFR phosphorylation levels (Y1068, Y1173 sites)
+      protein_expression:
+        description: EGFR and ligand expression levels
+      gene_expression:
+        description: EGFR pathway gene expression
+
+  GeneExpressionAssessmentMeasurementTypeEnum:
+    description: >-
+      Measurement types for gene expression assessment.
+      Used to assess mRNA levels and transcriptional responses.
+    permissible_values:
+      gene_expression:
+        description: Gene expression level (mRNA)
+      expression_ratio:
+        description: Ratio of expression between genes
+      percentage_positive_cells:
+        description: Percentage of cells positive for a marker
+
+  RelationshipToHouseholdHeadEnum:
+    description: >-
+      Relationship of a person to the household head (householder) in census data.
+      Based on PUMS RELP variable coding.
+    permissible_values:
+      householder:
+        description: Reference person (head of household)
+      spouse:
+        description: Husband or wife of the householder
+      child:
+        description: Biological, adopted, or stepchild of the householder
+      other_relative:
+        description: Other relative of the householder (parent, sibling, grandchild, etc.)
+      nonrelative:
+        description: Non-relative of the householder (roommate, boarder, etc.)
+      foster_child:
+        description: Foster child
+      foster_parent:
+        description: Foster parent
+      other_nonrelative:
+        description: Other non-relative
+
+  # ============================================================================
+  # Cell Culture and Model System Enums
+  # ============================================================================
+
+  CellCultureGrowthModeEnum:
+    description: >-
+      Cell culture growth modes including traditional and advanced systems.
+      Based on CLO cell culture growth mode terms.
+    permissible_values:
+      adherent:
+        description: Cells grow attached to a surface
+        meaning: CLO:0000028
+      suspension:
+        description: Cells grow suspended in culture medium
+        meaning: CLO:0000029
+      air_liquid_interface:
+        description: Cells cultured at interface between air and liquid medium (ALI)
+        meaning: OBI:0600047
+      three_dimensional:
+        description: Cells grown in 3D matrix or scaffold
+      organoid:
+        description: Self-organizing 3D tissue culture from stem cells
+      spheroid:
+        description: Spherical cellular aggregates formed by self-aggregation
+
+  SubstrateTypeEnum:
+    description: >-
+      Types of cell culture substrates and surfaces.
+      Includes traditional and advanced substrate materials.
+    permissible_values:
+      plastic:
+        description: Standard tissue culture-treated plastic
+        broad_mappings:
+          - OBI:0000953  # processed material
+      collagen_coated:
+        description: Collagen-coated surface for enhanced cell attachment
+        related_mappings:
+          - CHEBI:3815  # collagen
+        broad_mappings:
+          - OBI:0100031  # biomaterial
+      matrigel:
+        description: Basement membrane matrix (Matrigel/Geltrex)
+        narrow_mappings:
+          - OBI:0100031  # biomaterial
+        related_mappings:
+          - GO:0005604  # basement membrane
+      fibronectin_coated:
+        description: Fibronectin-coated surface
+        related_mappings:
+          - PR:000007245  # fibronectin
+        broad_mappings:
+          - OBI:0100031  # biomaterial
+      laminin_coated:
+        description: Laminin-coated surface
+        related_mappings:
+          - GO:0043256  # laminin complex
+        broad_mappings:
+          - OBI:0100031  # biomaterial
+      transwell_insert:
+        description: Permeable support for air-liquid interface culture
+        exact_mappings:
+          - OBI:0001950  # cell culture insert
+      hydrogel:
+        description: Three-dimensional hydrogel matrix
+        exact_mappings:
+          - CHEBI:17790  # hydrogel
+      glass:
+        description: Glass surface or coverslip
+        exact_mappings:
+          - CHEBI:131189  # glass
+      pdms:
+        description: Polydimethylsiloxane (for microfluidics/organ-on-chip)
+        broad_mappings:
+          - CHEBI:46669  # polysiloxane
+
+  SupplementTypeEnum:
+    description: >-
+      Categories of cell culture medium supplements and additives.
+    permissible_values:
+      growth_factor:
+        description: Proteins that stimulate cell growth, proliferation, and differentiation
+        meaning: CHEBI:23924
+      antibiotic:
+        description: Antimicrobial substances used to prevent bacterial contamination
+        meaning: CHEBI:33281
+      antifungal:
+        description: Antifungal agents to prevent fungal contamination
+        meaning: CHEBI:35718
+      hormone:
+        description: Signaling molecules that regulate cell physiology
+        meaning: CHEBI:24621
+      vitamin:
+        description: Organic compounds essential for normal growth and nutrition
+        meaning: CHEBI:33229
+      amino_acid:
+        description: Amino acid supplements for protein synthesis
+        meaning: CHEBI:33709
+      cytokine:
+        description: Small proteins important in cell signaling
+        meaning: CHEBI:63895
+      buffer:
+        description: pH buffering agents (HEPES, bicarbonate)
+        meaning: CHEBI:35225
+      serum:
+        description: Serum supplements (FBS, human serum)
+        broad_mappings:
+          - UBERON:0001977  # blood serum
+      differentiation_factor:
+        description: Factors that induce or maintain cell differentiation
+        broad_mappings:
+          - CHEBI:23924  # growth factor
+
+  CellLineModificationEnum:
+    description: >-
+      Types of genetic or other modifications applied to cell lines.
+    permissible_values:
+      none:
+        description: Unmodified cell line
+      transfection:
+        description: Transient or stable DNA/RNA transfection
+        related_mappings:
+          - OBI:0600034  # transfection
+      viral_transduction:
+        description: Viral vector-mediated gene transfer (lentiviral, adenoviral, AAV)
+        related_mappings:
+          - OBI:0600040  # transduction
+      crispr_knockout:
+        description: CRISPR/Cas9-mediated gene knockout
+      crispr_knockin:
+        description: CRISPR/Cas9-mediated gene knockin or base editing
+      rnai:
+        description: RNA interference-mediated gene knockdown (siRNA, shRNA)
+      overexpression:
+        description: Stable or transient gene overexpression
+      reporter:
+        description: Reporter gene insertion (GFP, luciferase, fluorescent proteins)
+      immortalization:
+        description: Immortalization of primary cells (hTERT, SV40, etc.)
+
+  ThreeDArchitectureEnum:
+    description: >-
+      Types of three-dimensional cell culture architectures.
+    permissible_values:
+      spheroid:
+        description: Spherical cellular aggregates formed by self-aggregation
+      organoid:
+        description: Self-organizing 3D tissue derived from stem cells
+      scaffold_based:
+        description: Cells grown on/in synthetic or natural scaffolds
+        related_mappings:
+          - OBI:0100031  # biomaterial
+      hydrogel_encapsulated:
+        description: Cells encapsulated within hydrogel matrix
+        related_mappings:
+          - CHEBI:17790  # hydrogel
+      bioprinted:
+        description: 3D bioprinted tissue constructs
+      microcarrier:
+        description: Cells grown on microcarrier beads in suspension
+      hanging_drop:
+        description: Spheroids formed using hanging drop method
+
+  CoCultureConfigurationEnum:
+    description: >-
+      Physical configurations for co-culture systems combining multiple cell types.
+    permissible_values:
+      direct_contact:
+        description: Cell types in direct physical contact on same surface
+      transwell:
+        description: Cell types separated by permeable membrane insert
+        exact_mappings:
+          - OBI:0001950  # cell culture insert
+      conditioned_medium:
+        description: One cell type exposed to conditioned medium from another
+      microfluidic:
+        description: Cell types in separate microfluidic compartments with shared media
+      spheroid_core_shell:
+        description: One cell type forms core, another forms surrounding shell
+      patterned:
+        description: Cell types arranged in defined spatial patterns
+
+  # ============================================================================
+  # In Vitro Exposure Enums
+  # ============================================================================
+
+  ChemicalFormEnum:
+    description: >-
+      Physical form of a test substance or chemical in an exposure experiment.
+    permissible_values:
+      solid:
+        description: Solid form (powder, crystite, etc.)
+        meaning: PATO:0001546
+      solution:
+        description: Dissolved in liquid vehicle
+      suspension:
+        description: Particles suspended in liquid
+      aerosol:
+        description: Fine particles or droplets suspended in air
+        meaning: ENVO:01000415
+      vapor:
+        description: Gaseous form of normally liquid or solid substance
+      gas:
+        description: Gaseous chemical substance
+        meaning: PATO:0001547
+      nanoparticle:
+        description: Nanoparticulate form (1-100 nm)
+      microparticle:
+        description: Microparticulate form (0.1-100 um)
+      emulsion:
+        description: Mixture of immiscible liquids
+      gel:
+        description: Semi-solid gel form
+
+  ExposureRegimentEnum:
+    description: >-
+      Pattern or schedule of exposure events in an in vitro experiment.
+    permissible_values:
+      single:
+        description: Single exposure event
+      continuous:
+        description: Continuous exposure throughout experiment duration
+      repeated:
+        description: Multiple discrete exposure events
+      intermittent:
+        description: Alternating periods of exposure and recovery
+      continuous_perfusion:
+        description: Continuous exposure via perfusion system
+      acute:
+        description: Short-term exposure (minutes to hours)
+      subchronic:
+        description: Medium-term exposure (days)
+      chronic:
+        description: Long-term exposure (weeks or longer)
+
+  ControlTypeEnum:
+    description: >-
+      Types of experimental controls used in in vitro exposure studies.
+    permissible_values:
+      untreated:
+        description: No treatment applied (negative control)
+      vehicle:
+        description: Vehicle/solvent only control
+      positive:
+        description: Known positive control compound
+      historical:
+        description: Comparison to historical control data
+      air:
+        description: Clean air exposure (for aerosol studies)
+      media_only:
+        description: Culture medium only control
+      sham:
+        description: Sham exposure procedure
+
+  DoseNormalizationMethodEnum:
+    description: >-
+      Methods for normalizing dose in exposure experiments.
+    permissible_values:
+      per_surface_area:
+        description: Dose normalized to surface area (ug/cm2)
+      per_cell_count:
+        description: Dose normalized to cell number
+      per_protein:
+        description: Dose normalized to total protein content
+      per_well:
+        description: Dose per well (absolute)
+      per_insert:
+        description: Dose per transwell insert
+      per_volume:
+        description: Concentration in volume (ug/mL)
+      deposited_fraction:
+        description: Based on measured deposited fraction
+      isdd_modeled:
+        description: Calculated using In Vitro Sedimentation, Diffusion, and Dosimetry model
+
+  AerosolGenerationMethodEnum:
+    description: >-
+      Methods for generating aerosols in inhalation toxicology studies.
+    permissible_values:
+      nebulization:
+        description: Liquid nebulization (jet, ultrasonic, vibrating mesh)
+      dry_powder_dispersion:
+        description: Aerosolization of dry powder
+      condensation:
+        description: Condensation aerosol generation
+      electrospray:
+        description: Electrospray atomization
+      spark_discharge:
+        description: Spark discharge for nanoparticle generation
+      combustion:
+        description: Combustion-generated aerosols
+      evaporation_condensation:
+        description: Evaporation-condensation method
+      atomization:
+        description: Mechanical atomization
+      cloud_system:
+        description: Cloud-based deposition system (e.g., Vitrocell Cloud)
+      alice:
+        description: Air-Liquid Interface Cell Exposure system
+
+  # ============================================================================
+  # Data Analysis Enums
+  # ============================================================================
+
+  DataNormalizationMethodEnum:
+    description: >-
+      Methods for normalizing measurement data in analysis.
+    permissible_values:
+      per_area:
+        description: Normalized to surface area
+      per_cell_count:
+        description: Normalized to cell number
+      per_baseline:
+        description: Normalized to baseline/pre-exposure value
+      to_internal_control:
+        description: Normalized to internal control on same plate/experiment
+      to_vehicle_control:
+        description: Normalized to vehicle control
+      to_positive_control:
+        description: Normalized to positive control
+      to_historical_control:
+        description: Normalized to historical control values
+      per_protein:
+        description: Normalized to total protein
+      z_score:
+        description: Z-score normalization
+      percent_of_control:
+        description: Expressed as percentage of control
+      fold_change:
+        description: Expressed as fold change from baseline
+
+  RawDataTypeEnum:
+    description: >-
+      Types of raw data collected from measurements.
+    permissible_values:
+      image_stack:
+        description: Z-stack of images
+      single_image:
+        description: Single 2D image
+      video:
+        description: Time-lapse video recording
+      fluorescence_intensity:
+        description: Fluorescence intensity readings
+      absorbance:
+        description: Absorbance/optical density readings
+      luminescence:
+        description: Luminescence readings
+      electrical:
+        description: Electrical measurements (TEER, patch clamp)
+      flow_cytometry:
+        description: Flow cytometry data files
+      spectral:
+        description: Spectral data (Raman, FTIR)
+      mass_spec:
+        description: Mass spectrometry data
+      sequencing:
+        description: Sequencing reads
+      tabular:
+        description: Tabular/numeric data
+
+  AutomationLevelEnum:
+    description: >-
+      Level of automation in data processing and analysis.
+    permissible_values:
+      manual:
+        description: Fully manual analysis
+      semi_automated:
+        description: Partially automated with manual verification
+      fully_automated:
+        description: Fully automated pipeline
+      ai_assisted:
+        description: AI/ML-assisted analysis with human oversight
+
+  DataTransformationEnum:
+    description: >-
+      Mathematical transformations applied to data.
+    permissible_values:
+      none:
+        description: No transformation applied
+      log10:
+        description: Log base 10 transformation
+      log2:
+        description: Log base 2 transformation
+      natural_log:
+        description: Natural logarithm transformation
+      square_root:
+        description: Square root transformation
+      arcsine:
+        description: Arcsine transformation (for proportions)
+      box_cox:
+        description: Box-Cox transformation
+      inverse:
+        description: Inverse transformation
+      z_transform:
+        description: Z-score transformation
+
+  ReplicateCombinationMethodEnum:
+    description: >-
+      Methods for combining replicate measurements.
+    permissible_values:
+      mean:
+        description: Arithmetic mean of replicates
+      median:
+        description: Median of replicates
+      weighted_mean:
+        description: Weighted mean based on quality scores
+      geometric_mean:
+        description: Geometric mean of replicates
+      fitted_model:
+        description: Value from fitted statistical model
+      surface_fit:
+        description: Fitted surface model for spatial data
+      best_replicate:
+        description: Best quality replicate selected
+      sum:
+        description: Sum of replicate values
+
+  # ==========================================================================
+  # Paper Extension Enums: Response, Evidence, Protocol, Observation, Outcome
+  # ==========================================================================
+
+  ReversibilityEnum:
+    description: >-
+      Whether a biological response is reversible.
+    permissible_values:
+      reversible:
+        description: Response is fully reversible
+      partially_reversible:
+        description: Response is partially reversible
+      irreversible:
+        description: Response is not reversible
+      unknown:
+        description: Reversibility is not known
+
+  EvidenceTypeEnum:
+    description: >-
+      Types of evidence supporting a scientific claim.
+    permissible_values:
+      experimental:
+        description: Evidence from controlled experiments
+      observational:
+        description: Evidence from observational studies
+      computational:
+        description: Evidence from computational/in silico studies
+      clinical:
+        description: Evidence from clinical studies
+      epidemiological:
+        description: Evidence from epidemiological studies
+      mechanistic:
+        description: Evidence from mechanistic studies
+      expert_opinion:
+        description: Evidence based on expert opinion or consensus
+      literature_review:
+        description: Evidence from systematic literature review
+
+  EvidenceStrengthEnum:
+    description: >-
+      Qualitative assessment of evidence strength.
+    permissible_values:
+      strong:
+        description: Strong empirical support with consistent findings
+      moderate:
+        description: Moderate support with some inconsistencies
+      weak:
+        description: Weak or limited support
+      not_specified:
+        description: Evidence strength not specified
+
+  ConfidenceLevelEnum:
+    description: >-
+      Overall confidence level in evidence or assessment.
+    permissible_values:
+      high:
+        description: High confidence in the evidence
+      medium:
+        description: Medium confidence in the evidence
+      low:
+        description: Low confidence in the evidence
+      very_low:
+        description: Very low confidence in the evidence
+
+  ProtocolTypeEnum:
+    description: >-
+      Types of experimental protocols.
+    permissible_values:
+      sample_preparation:
+        description: Protocol for preparing samples
+      assay_execution:
+        description: Protocol for executing an assay
+      data_analysis:
+        description: Protocol for data analysis
+      quality_control:
+        description: Protocol for quality control
+      cell_culture:
+        description: Protocol for cell culture procedures
+      exposure:
+        description: Protocol for exposure procedures
+      imaging:
+        description: Protocol for imaging procedures
+      staining:
+        description: Protocol for staining procedures
+
+  ValidationStatusEnum:
+    description: >-
+      Validation status of a protocol.
+    permissible_values:
+      validated:
+        description: Protocol has been validated
+      under_validation:
+        description: Protocol is currently being validated
+      not_validated:
+        description: Protocol has not been validated
+      deprecated:
+        description: Protocol is deprecated
+
+  AssayTypeEnum:
+    description: >-
+      Types of assays from the Ontology for Biomedical Investigations (OBI).
+    permissible_values:
+      gene_expression_assay:
+        description: Assay measuring gene expression
+        meaning: OBI:0001225
+      protein_assay:
+        description: Assay measuring proteins
+        meaning: OBI:0000185
+      cell_viability_assay:
+        description: Assay measuring cell viability
+        meaning: OBI:0000925
+      cytotoxicity_assay:
+        description: Assay measuring cytotoxicity
+        meaning: OBI:0002041
+      imaging_assay:
+        description: Assay using imaging
+        meaning: OBI:0000185
+      electrophysiology_assay:
+        description: Electrophysiology measurement
+        meaning: OBI:0001917
+      biochemical_assay:
+        description: Biochemical measurement assay
+      functional_assay:
+        description: Functional outcome assay
+      high_throughput_screening:
+        description: High-throughput screening assay
+        meaning: OBI:0000919
+
+  QualityFlagEnum:
+    description: >-
+      Quality control flags for observations.
+    permissible_values:
+      passed:
+        description: Observation passed quality control
+      below_detection_limit:
+        description: Value below detection limit
+      above_detection_limit:
+        description: Value above detection limit
+      outlier:
+        description: Identified as statistical outlier
+      contamination_suspected:
+        description: Possible contamination
+      instrument_error:
+        description: Instrument error noted
+      replicate_disagreement:
+        description: Replicates do not agree
+      incomplete_data:
+        description: Data collection was incomplete
+
+  MeasurementQualityEnum:
+    description: >-
+      Quality assessment of a measurement.
+    permissible_values:
+      high:
+        description: High quality measurement
+      acceptable:
+        description: Acceptable quality
+      low:
+        description: Low quality - use with caution
+      failed:
+        description: Failed quality control
+
+  ContributionTypeEnum:
+    description: >-
+      Types of contribution to an adverse outcome.
+    permissible_values:
+      causal:
+        description: Direct causal contribution
+      modulatory:
+        description: Modulates the outcome without direct causation
+      correlative:
+        description: Correlated with outcome
+      protective:
+        description: Protective against the outcome
+      exacerbating:
+        description: Exacerbates the outcome
+      prerequisite:
+        description: Required before outcome can occur
+
+  NecessityEnum:
+    description: >-
+      Whether an element is necessary for an outcome.
+    permissible_values:
+      necessary:
+        description: Element is necessary for the outcome
+      not_necessary:
+        description: Element is not necessary
+      conditionally_necessary:
+        description: Necessary under certain conditions
+      unknown:
+        description: Necessity is unknown
+
+  SufficiencyEnum:
+    description: >-
+      Whether an element is sufficient to cause an outcome.
+    permissible_values:
+      sufficient:
+        description: Element is sufficient to cause outcome
+      not_sufficient:
+        description: Element is not sufficient alone
+      conditionally_sufficient:
+        description: Sufficient under certain conditions
+      unknown:
+        description: Sufficiency is unknown
+
+  ContributingElementTypeEnum:
+    description: >-
+      Types of elements that can contribute to an adverse outcome.
+    permissible_values:
+      key_event:
+        description: A key event in an AOP
+      biological_process:
+        description: A biological process
+      measurement:
+        description: A measured value
+      exposure:
+        description: An exposure event
+      genetic_factor:
+        description: A genetic factor or variant
+      environmental_factor:
+        description: An environmental factor
+      molecular_initiating_event:
+        description: A molecular initiating event
+

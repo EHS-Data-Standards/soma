@@ -176,7 +176,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'owg',
                   'wikidata': {'prefix_prefix': 'wikidata',
                                'prefix_reference': 'http://www.wikidata.org/entity/'}},
      'see_also': ['https://EHS-Data-Standards.github.io/outcomes-working-group'],
-     'source_file': 'src/outcomes_working_group/schema/outcomes_working_group.yaml',
+     'source_file': 'src/outcomes_working_group/schema/v2.yaml',
      'title': 'Outcome Measurement Data Model'} )
 
 class ExposureRouteEnum(str, Enum):

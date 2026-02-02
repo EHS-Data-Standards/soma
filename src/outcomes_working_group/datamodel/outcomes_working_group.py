@@ -1,4 +1,4 @@
-# Auto generated from outcomes_working_group.yaml by pythongen.py version: 0.0.1
+# Auto generated from v2.yaml by pythongen.py version: 0.0.1
 # Generation date: 2026-01-10T20:00:37
 # Schema: outcomes_working_group
 #

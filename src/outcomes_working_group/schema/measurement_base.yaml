@@ -1,0 +1,471 @@
+name: measurement_base
+description: >-
+  Base schema defining the Measurement interface and supporting classes
+  (Protocol, Method, Assay) for outcomes research. Microschemas implement
+  this base to define domain-specific measurement observations.
+title: Measurement Base Schema
+id: https://w3id.org/EHS-Data-Standards/measurement_base
+
+imports:
+  - linkml:types
+
+prefixes:
+  measurement_base: https://w3id.org/EHS-Data-Standards/measurement_base/
+  linkml: https://w3id.org/linkml/
+  OBI: http://purl.obolibrary.org/obo/OBI_
+  UO: http://purl.obolibrary.org/obo/UO_
+  IAO: http://purl.obolibrary.org/obo/IAO_
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  schema: http://schema.org/
+
+default_prefix: measurement_base
+default_range: string
+
+# =============================================================================
+# CLASSES
+# =============================================================================
+
+classes:
+
+  # ---------------------------------------------------------------------------
+  # Core Measurement Interface
+  # ---------------------------------------------------------------------------
+
+  Measurement:
+    mixin: true
+    description: >-
+      The result of applying an assay to a specific sample at a specific time,
+      producing a value (or values). This is the interface that domain-specific
+      measurement microschemas implement.
+    slots:
+      - id
+      - name
+      - description
+      - observation_type
+      - quantity_measured
+      - range_low
+      - range_high
+      - measured_entity
+      - measurement_method
+      - measurement_date
+      - uses
+
+  # ---------------------------------------------------------------------------
+  # Protocol / Method / Assay Hierarchy
+  # ---------------------------------------------------------------------------
+
+  Assay:
+    description: >-
+      A test or experiment used to measure a specific biological or chemical
+      activity; assays generate data on how a substance affects cells, tissues,
+      or systems.
+    class_uri: OBI:0000070
+    slots:
+      - id
+      - name
+      - description
+
+  Method:
+    description: >-
+      A general approach or technique used to collect, measure, or analyze data
+      (e.g., qPCR, RNA-Seq, high-speed video microscopy, ELISA).
+    slots:
+      - id
+      - name
+      - description
+      - implements
+
+  Protocol:
+    description: >-
+      A detailed set of steps for how to perform a test or collect data;
+      protocols ensure consistency across laboratories or studies when
+      generating exposure or biological data.
+    class_uri: OBI:0000272
+    slots:
+      - id
+      - name
+      - description
+      - specified_by
+      - follows
+      - study_context
+      # Procedural detail slots (generic)
+      - imaging_frame_rate
+      - imaging_duration
+      - spatial_resolution
+      - temperature_control
+      - humidity_control
+      - evaporation_control
+      - detection_method
+      - staining_type
+      - antibody_used
+      - probe_type
+      - normalization_method
+      - replicate_count
+      - quality_control_criteria
+
+  # ---------------------------------------------------------------------------
+  # Context Mixins (In Vitro / In Vivo)
+  # ---------------------------------------------------------------------------
+
+  InVitroContext:
+    mixin: true
+    description: >-
+      Context slots for in vitro measurements using cell culture systems.
+      Mix this into microschemas that can be performed on cultured cells.
+    slots:
+      - cell_culture_system
+      - days_at_differentiation
+      - passage_number
+      - substrate_type
+      - donor_info
+      - replicates_per_donor
+      - culture_medium
+
+  InVivoContext:
+    mixin: true
+    description: >-
+      Context slots for in vivo measurements from human or animal subjects.
+      Mix this into microschemas that can be performed on living subjects.
+    slots:
+      - participant
+      - sample_type
+      - collection_site
+      - collection_date
+      - subject_characteristics
+
+  # ---------------------------------------------------------------------------
+  # Supporting Classes
+  # ---------------------------------------------------------------------------
+
+  QuantityValue:
+    description: >-
+      A quantity with a numeric value and unit of measurement.
+    slots:
+      - value
+      - unit
+
+  Unit:
+    description: >-
+      A unit of measurement from a standard ontology (UO, UCUM, QUDT).
+    slots:
+      - id
+      - name
+    id_prefixes:
+      - UO
+      - UCUM
+      - QUDT
+
+  NamedEntity:
+    description: >-
+      A reference to an entity with an identifier and name.
+      Used for measured_entity, participant, etc.
+    slots:
+      - id
+      - name
+
+# =============================================================================
+# SLOTS
+# =============================================================================
+
+slots:
+
+  # ---------------------------------------------------------------------------
+  # Identifier and Metadata Slots
+  # ---------------------------------------------------------------------------
+
+  id:
+    description: A unique identifier for the entity.
+    identifier: true
+    range: uriorcurie
+    required: true
+
+  name:
+    description: A human-readable name for the entity.
+    range: string
+    slot_uri: schema:name
+
+  description:
+    description: A detailed description of the entity.
+    range: string
+    slot_uri: schema:description
+
+  # ---------------------------------------------------------------------------
+  # Measurement Core Slots
+  # ---------------------------------------------------------------------------
+
+  observation_type:
+    description: >-
+      The type of observation being measured. Constrained by domain-specific
+      enums in microschemas (e.g., CiliaryObservationTypeEnum).
+    range: string
+
+  quantity_measured:
+    description: >-
+      The measured quantity value with its unit.
+    range: QuantityValue
+    inlined: true
+
+  range_low:
+    description: >-
+      Lower bound of the reference range for this measurement type.
+    range: QuantityValue
+    inlined: true
+
+  range_high:
+    description: >-
+      Upper bound of the reference range for this measurement type.
+    range: QuantityValue
+    inlined: true
+
+  measured_entity:
+    description: >-
+      The biological or chemical entity being measured (e.g., Cilium, CFTR,
+      ROS). Reference to an ontology term.
+    range: NamedEntity
+    inlined: true
+
+  measurement_method:
+    description: >-
+      Brief description of the method used to obtain the measurement.
+    range: string
+
+  measurement_date:
+    description: >-
+      Date when the measurement was performed.
+    range: date
+
+  uses:
+    description: >-
+      The Assay used to produce this measurement.
+    range: Assay
+    inlined: true
+
+  # ---------------------------------------------------------------------------
+  # Protocol / Method / Assay Relationship Slots
+  # ---------------------------------------------------------------------------
+
+  implements:
+    description: >-
+      The Assay that this Method implements or realizes.
+    range: Assay
+    inlined: true
+
+  specified_by:
+    description: >-
+      The Method that this Protocol specifies in detail.
+    range: Method
+    inlined: true
+
+  follows:
+    description: >-
+      The Assay that this Protocol provides detailed steps for.
+    range: Assay
+    inlined: true
+
+  study_context:
+    description: >-
+      The experimental context for this protocol.
+    range: StudyContextEnum
+
+  # ---------------------------------------------------------------------------
+  # Protocol Procedural Detail Slots
+  # ---------------------------------------------------------------------------
+
+  imaging_frame_rate:
+    description: >-
+      Frame rate for video/imaging acquisition (e.g., 200 fps).
+    range: QuantityValue
+    inlined: true
+
+  imaging_duration:
+    description: >-
+      Duration of imaging session.
+    range: QuantityValue
+    inlined: true
+
+  spatial_resolution:
+    description: >-
+      Spatial resolution of imaging (e.g., 1-2 μm axial resolution).
+    range: QuantityValue
+    inlined: true
+
+  temperature_control:
+    description: >-
+      Temperature conditions during the procedure (e.g., 37°C).
+    range: QuantityValue
+    inlined: true
+
+  humidity_control:
+    description: >-
+      Humidity conditions during the procedure.
+    range: QuantityValue
+    inlined: true
+
+  evaporation_control:
+    description: >-
+      Method used to prevent evaporation (e.g., perfluorocarbon overlay, oil).
+    range: string
+
+  detection_method:
+    description: >-
+      Detection method used (e.g., flow cytometry, plate reader, microscopy).
+    range: string
+
+  staining_type:
+    description: >-
+      Type of staining used (e.g., immunofluorescence, histological, AB-PAS).
+    range: string
+
+  antibody_used:
+    description: >-
+      Antibodies used in staining or detection.
+    range: string
+    multivalued: true
+
+  probe_type:
+    description: >-
+      Type of probe used (e.g., DCFDA for ROS, Texas Red-dextran for ASL).
+    range: string
+
+  normalization_method:
+    description: >-
+      Method used for data normalization.
+    range: string
+
+  replicate_count:
+    description: >-
+      Number of technical replicates.
+    range: integer
+
+  quality_control_criteria:
+    description: >-
+      Quality control acceptance criteria for the measurement.
+    range: string
+
+  # ---------------------------------------------------------------------------
+  # In Vitro Context Slots
+  # ---------------------------------------------------------------------------
+
+  cell_culture_system:
+    description: >-
+      Type of cell culture system (e.g., ALI, organoid, 2D monolayer,
+      MucilAir, EpiAirway).
+    range: string
+
+  days_at_differentiation:
+    description: >-
+      Days at air-liquid interface or differentiation stage.
+    range: integer
+
+  passage_number:
+    description: >-
+      Cell passage number.
+    range: integer
+
+  substrate_type:
+    description: >-
+      Type of culture substrate (e.g., transwell, collagen-coated, Matrigel).
+    range: string
+
+  donor_info:
+    description: >-
+      Information about cell donor (e.g., healthy non-smoker, CF patient,
+      age, anatomical region).
+    range: string
+
+  replicates_per_donor:
+    description: >-
+      Number of replicate cultures per donor.
+    range: integer
+
+  culture_medium:
+    description: >-
+      Culture medium formulation.
+    range: string
+
+  # ---------------------------------------------------------------------------
+  # In Vivo Context Slots
+  # ---------------------------------------------------------------------------
+
+  participant:
+    description: >-
+      The study participant from whom the measurement was taken.
+    range: NamedEntity
+    inlined: true
+
+  sample_type:
+    description: >-
+      Type of biological sample (e.g., urine, blood, sputum, nasal epithelium,
+      exhaled breath condensate).
+    range: SampleTypeEnum
+
+  collection_site:
+    description: >-
+      Anatomical site of sample collection (e.g., inferior turbinate, bronchus).
+    range: string
+
+  collection_date:
+    description: >-
+      Date when the sample was collected.
+    range: date
+
+  subject_characteristics:
+    description: >-
+      Relevant subject characteristics (e.g., age, sex, disease state,
+      medication use, smoking status).
+    range: string
+
+  # ---------------------------------------------------------------------------
+  # QuantityValue Slots
+  # ---------------------------------------------------------------------------
+
+  value:
+    description: >-
+      The numeric value of the quantity.
+    range: string
+
+  unit:
+    description: >-
+      The unit of measurement.
+    range: Unit
+    inlined: true
+
+# =============================================================================
+# ENUMS
+# =============================================================================
+
+enums:
+
+  StudyContextEnum:
+    description: >-
+      The experimental context for a protocol or measurement.
+    permissible_values:
+      in_vitro:
+        description: Performed on cultured cells or tissues
+      in_vivo:
+        description: Performed on living human or animal subjects
+      ex_vivo:
+        description: Performed on tissue removed from an organism
+
+  SampleTypeEnum:
+    description: >-
+      Types of biological samples for in vivo measurements.
+    permissible_values:
+      urine:
+        description: Urine sample
+      blood:
+        description: Blood sample (whole blood, serum, or plasma)
+      sputum:
+        description: Induced or spontaneous sputum
+      balf:
+        description: Bronchoalveolar lavage fluid
+      nasal_epithelium:
+        description: Nasal epithelial sample
+      bronchial_epithelium:
+        description: Bronchial epithelial sample
+      exhaled_breath_condensate:
+        description: Exhaled breath condensate (EBC)
+      biopsy:
+        description: Tissue biopsy
+      sweat:
+        description: Sweat sample (e.g., for sweat chloride test)
