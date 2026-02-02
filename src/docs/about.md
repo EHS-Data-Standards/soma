@@ -36,15 +36,11 @@ The model is built using:
 
 ### Core Domains
 
-| Domain | Description |
-|--------|-------------|
-| Study Entities | Studies, cohorts, and participant enrollment |
-| Exposures | Chemical, dietary, environmental, and occupational exposures |
-| Measurements | Biomarkers, phenotypes, gene/protein expression |
-| Health Outcomes | Phenotypes, diseases, and adverse outcomes |
-| AOPs | Adverse Outcome Pathways linking exposure to outcome |
-| Model Systems | Cell cultures and in vitro exposure systems |
-| Populations | Synthetic population geographic hierarchies |
+| Domain | Description                                                     |
+|--------|-----------------------------------------------------------------|
+| Measurements | Biomarkers, phenotypes, gene/protein expression                 |
+| Model Systems | Cell cultures and in vitro exposure systems                     |
+ | Value Set Defintions | Controlled vocabularies for key entities with ontology mappings |
 
 ## Contributing
 
