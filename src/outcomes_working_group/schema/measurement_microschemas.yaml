@@ -129,9 +129,7 @@ classes:
   # EGFR Phosphorylation Measurements
   # ---------------------------------------------------------------------------
 
-
   GeneExpressionMeasurement:
-    is_a: Measurement
     description: >-
       A measurement of gene expression (mRNA level) in a specific biological context.
       Captures the target gene, tissue/cell type context, and assay methodology.
@@ -146,7 +144,6 @@ classes:
         range: GeneExpressionObservationTypeEnum
 
   ProteinExpressionMeasurement:
-    is_a: Measurement
     description: >-
       A measurement of protein expression or post-translational modification
       (e.g., phosphorylation) in a specific biological context.
@@ -160,7 +157,6 @@ classes:
       - measurement_date
 
   EGFRPhosphorylationMeasurement:
-    is_a: Measurement
     slots:
       - anatomical_context
       - phosphorylation_site
