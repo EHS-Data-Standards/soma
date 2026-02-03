@@ -1,0 +1,18 @@
+# Simple test file for ASLMeasurement
+asl_measurements:
+  - id: "ASL:001"
+    name: "Airway surface liquid height"
+    observation_type: asl_height
+    quantity_measured:
+      value: "7.2"
+      unit:
+        id: "UO:0000017"
+        name: "micrometer"
+    measurement_date: "2024-02-10"
+    cell_culture_system:
+      id: "owg:culture-002"
+      name: "Primary HBE ALI culture"
+      cell_culture_growth_mode: air_liquid_interface
+      substrate_type: transwell_insert
+      passage_number: 2
+    days_at_differentiation: 28

@@ -278,7 +278,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about.md" class="md-nav__link">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
         
   
   
@@ -406,8 +433,8 @@
 
 
 <h1 id="enum-cocultureconfigurationenum">Enum: CoCultureConfigurationEnum</h1>
-<p><em>Physical configurations for co-culture systems combining multiple cell types.</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-working-group/CoCultureConfigurationEnum">owg:CoCultureConfigurationEnum</a></p>
+<p><em>Physical configurations for co-culture systems.</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/CoCultureConfigurationEnum">outcomes_working_group:CoCultureConfigurationEnum</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
 <table>
 <thead>
@@ -421,32 +448,27 @@
 <tr>
 <td>direct_contact</td>
 <td>None</td>
-<td>Cell types in direct physical contact on same surface</td>
+<td>Cell types in direct physical contact</td>
 </tr>
 <tr>
 <td>transwell</td>
 <td>None</td>
-<td>Cell types separated by permeable membrane insert</td>
-</tr>
-<tr>
-<td>conditioned_medium</td>
-<td>None</td>
-<td>One cell type exposed to conditioned medium from another</td>
+<td>Cell types separated by transwell insert membrane</td>
 </tr>
 <tr>
 <td>microfluidic</td>
 <td>None</td>
-<td>Cell types in separate microfluidic compartments with shared media</td>
+<td>Cell types connected via microfluidic channels</td>
 </tr>
 <tr>
-<td>spheroid_core_shell</td>
+<td>conditioned_medium</td>
 <td>None</td>
-<td>One cell type forms core, another forms surrounding shell</td>
+<td>Cells grown in medium conditioned by another cell type</td>
 </tr>
 <tr>
-<td>patterned</td>
+<td>mixed</td>
 <td>None</td>
-<td>Cell types arranged in defined spatial patterns</td>
+<td>Multiple cell types mixed together in culture</td>
 </tr>
 </tbody>
 </table>
@@ -473,31 +495,25 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CoCultureConfigurationEnum</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Physical configurations for co-culture systems combining multiple cell</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">types.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Physical configurations for co-culture systems.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">direct_contact</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">direct_contact</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cell types in direct physical contact on same surface</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cell types in direct physical contact</span>
 <span class="w">  </span><span class="nt">transwell</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cell types separated by permeable membrane insert</span>
-<span class="w">    </span><span class="nt">exact_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0001950</span>
-<span class="w">  </span><span class="nt">conditioned_medium</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conditioned_medium</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">One cell type exposed to conditioned medium from another</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cell types separated by transwell insert membrane</span>
 <span class="w">  </span><span class="nt">microfluidic</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">microfluidic</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cell types in separate microfluidic compartments with shared media</span>
-<span class="w">  </span><span class="nt">spheroid_core_shell</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spheroid_core_shell</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">One cell type forms core, another forms surrounding shell</span>
-<span class="w">  </span><span class="nt">patterned</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">patterned</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cell types arranged in defined spatial patterns</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cell types connected via microfluidic channels</span>
+<span class="w">  </span><span class="nt">conditioned_medium</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conditioned_medium</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cells grown in medium conditioned by another cell type</span>
+<span class="w">  </span><span class="nt">mixed</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mixed</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Multiple cell types mixed together in culture</span>
 </code></pre></div>
 </details>
 

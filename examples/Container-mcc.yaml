@@ -1,0 +1,18 @@
+# Simple test file for MCCMeasurement
+mcc_measurements:
+  - id: "MCC:001"
+    name: "Mucociliary transport rate"
+    observation_type: mucociliary_transport_rate
+    quantity_measured:
+      value: "45.3"
+      unit:
+        id: "UO:0000103"
+        name: "micrometer per second"
+    measurement_date: "2024-03-05"
+    cell_culture_system:
+      id: "owg:culture-007"
+      name: "Primary HBE ALI culture"
+      cell_culture_growth_mode: air_liquid_interface
+      substrate_type: transwell_insert
+      passage_number: 2
+    days_at_differentiation: 21

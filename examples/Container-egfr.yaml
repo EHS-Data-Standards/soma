@@ -1,0 +1,18 @@
+# Simple test file for EGFRPhosphorylationMeasurement
+egfr_phosphorylation_measurements:
+  - id: "EGFR:001"
+    name: "EGFR phosphorylation after smoke exposure"
+    observation_type: egfr_phosphorylation
+    quantity_measured:
+      value: "3.2"
+      unit:
+        id: "UO:0000193"
+        name: "fold change"
+    measurement_date: "2024-05-08"
+    cell_culture_system:
+      id: "owg:culture-005"
+      name: "Primary HBE ALI culture"
+      cell_culture_growth_mode: air_liquid_interface
+      substrate_type: transwell_insert
+      passage_number: 2
+    days_at_differentiation: 21

@@ -1,0 +1,18 @@
+# Simple test file for GobletCellMucinMeasurement
+goblet_cell_mucin_measurements:
+  - id: "GCM:001"
+    name: "MUC5AC expression"
+    observation_type: muc5ac_expression
+    quantity_measured:
+      value: "4.8"
+      unit:
+        id: "UO:0000193"
+        name: "fold change"
+    measurement_date: "2024-06-15"
+    cell_culture_system:
+      id: "owg:culture-004"
+      name: "Primary HBE ALI culture"
+      cell_culture_growth_mode: air_liquid_interface
+      substrate_type: transwell_insert
+      passage_number: 2
+    days_at_differentiation: 28

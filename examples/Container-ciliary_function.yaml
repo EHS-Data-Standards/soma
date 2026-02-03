@@ -1,0 +1,18 @@
+# Simple test file for CiliaryFunctionMeasurement
+ciliary_measurements:
+  - id: "CILIARY:001"
+    name: "CBF measurement after ozone exposure"
+    observation_type: ciliary_beat_frequency
+    quantity_measured:
+      value: "8.5"
+      unit:
+        id: "UO:0000106"
+        name: "hertz"
+    measurement_date: "2024-01-15"
+    cell_culture_system:
+      id: "owg:culture-001"
+      name: "Primary HBE ALI culture"
+      cell_culture_growth_mode: air_liquid_interface
+      substrate_type: transwell_insert
+      passage_number: 2
+    days_at_differentiation: 21

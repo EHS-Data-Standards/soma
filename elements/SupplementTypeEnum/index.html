@@ -278,7 +278,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about.md" class="md-nav__link">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
         
   
   
@@ -407,7 +434,7 @@
 
 <h1 id="enum-supplementtypeenum">Enum: SupplementTypeEnum</h1>
 <p><em>Categories of cell culture medium supplements and additives.</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-working-group/SupplementTypeEnum">owg:SupplementTypeEnum</a></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/SupplementTypeEnum">outcomes_working_group:SupplementTypeEnum</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
 <table>
 <thead>
@@ -446,27 +473,27 @@
 <tr>
 <td>amino_acid</td>
 <td>CHEBI:33709</td>
-<td>Amino acid supplements for protein synthesis</td>
+<td>Amino acid supplements</td>
 </tr>
 <tr>
-<td>cytokine</td>
-<td>CHEBI:63895</td>
-<td>Small proteins important in cell signaling</td>
+<td>lipid</td>
+<td>CHEBI:18059</td>
+<td>Lipid supplements for cell membrane synthesis</td>
 </tr>
 <tr>
-<td>buffer</td>
-<td>CHEBI:35225</td>
-<td>pH buffering agents (HEPES, bicarbonate)</td>
-</tr>
-<tr>
-<td>serum</td>
+<td>trace_element</td>
 <td>None</td>
-<td>Serum supplements (FBS, human serum)</td>
+<td>Essential trace elements and minerals</td>
+</tr>
+<tr>
+<td>attachment_factor</td>
+<td>None</td>
+<td>Factors that promote cell attachment to substrate</td>
 </tr>
 <tr>
 <td>differentiation_factor</td>
 <td>None</td>
-<td>Factors that induce or maintain cell differentiation</td>
+<td>Factors that promote cell differentiation</td>
 </tr>
 </tbody>
 </table>
@@ -481,7 +508,7 @@
 <tbody>
 <tr>
 <td><a href="../supplement_type/">supplement_type</a></td>
-<td>Category of supplement (growth factor, antibiotic, hormone, vitamin, etc</td>
+<td>Category of supplement (growth factor, antibiotic, hormone, etc</td>
 </tr>
 </tbody>
 </table>
@@ -519,26 +546,21 @@
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:33229</span>
 <span class="w">  </span><span class="nt">amino_acid</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amino_acid</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amino acid supplements for protein synthesis</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amino acid supplements</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:33709</span>
-<span class="w">  </span><span class="nt">cytokine</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cytokine</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Small proteins important in cell signaling</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:63895</span>
-<span class="w">  </span><span class="nt">buffer</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">buffer</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pH buffering agents (HEPES, bicarbonate)</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:35225</span>
-<span class="w">  </span><span class="nt">serum</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">serum</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Serum supplements (FBS, human serum)</span>
-<span class="w">    </span><span class="nt">broad_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UBERON:0001977</span>
+<span class="w">  </span><span class="nt">lipid</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lipid</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lipid supplements for cell membrane synthesis</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:18059</span>
+<span class="w">  </span><span class="nt">trace_element</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trace_element</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Essential trace elements and minerals</span>
+<span class="w">  </span><span class="nt">attachment_factor</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attachment_factor</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Factors that promote cell attachment to substrate</span>
 <span class="w">  </span><span class="nt">differentiation_factor</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">differentiation_factor</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Factors that induce or maintain cell differentiation</span>
-<span class="w">    </span><span class="nt">broad_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:23924</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Factors that promote cell differentiation</span>
 </code></pre></div>
 </details>
 

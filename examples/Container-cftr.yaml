@@ -1,0 +1,18 @@
+# Simple test file for CFTRMeasurement
+cftr_measurements:
+  - id: "CFTR:001"
+    name: "CFTR chloride secretion"
+    observation_type: cftr_chloride_secretion
+    quantity_measured:
+      value: "15.2"
+      unit:
+        id: "UO:0000274"
+        name: "microampere per square centimeter"
+    measurement_date: "2024-04-12"
+    cell_culture_system:
+      id: "owg:culture-006"
+      name: "Primary HBE ALI culture"
+      cell_culture_growth_mode: air_liquid_interface
+      substrate_type: transwell_insert
+      passage_number: 2
+    days_at_differentiation: 28

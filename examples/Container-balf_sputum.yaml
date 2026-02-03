@@ -1,0 +1,15 @@
+# Simple test file for BALFSputumMeasurement
+balf_sputum_measurements:
+  - id: "BALF:001"
+    name: "Neutrophil percentage in induced sputum"
+    observation_type: neutrophil_percentage
+    quantity_measured:
+      value: "45.0"
+      unit:
+        id: "UO:0000187"
+        name: "percent"
+    measurement_date: "2024-07-22"
+    sample_type: sputum
+    participant:
+      id: "PARTICIPANT:001"
+      name: "Subject A"

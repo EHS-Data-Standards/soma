@@ -278,7 +278,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about.md" class="md-nav__link">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
         
   
   
@@ -406,8 +433,8 @@
 
 
 <h1 id="enum-sampletypeenum">Enum: SampleTypeEnum</h1>
-<p><em>Types of biological and environmental samples</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-working-group/SampleTypeEnum">owg:SampleTypeEnum</a></p>
+<p><em>Types of biological samples for in vivo measurements.</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/SampleTypeEnum">outcomes_working_group:SampleTypeEnum</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
 <table>
 <thead>
@@ -419,64 +446,49 @@
 </thead>
 <tbody>
 <tr>
-<td>blood</td>
-<td>None</td>
-<td>Blood sample</td>
-</tr>
-<tr>
 <td>urine</td>
 <td>None</td>
 <td>Urine sample</td>
 </tr>
 <tr>
-<td>serum</td>
+<td>blood</td>
 <td>None</td>
-<td>Serum sample</td>
+<td>Blood sample (whole blood, serum, or plasma)</td>
 </tr>
 <tr>
-<td>plasma</td>
+<td>sputum</td>
 <td>None</td>
-<td>Plasma sample</td>
+<td>Induced or spontaneous sputum</td>
 </tr>
 <tr>
-<td>tissue</td>
+<td>balf</td>
 <td>None</td>
-<td>Tissue sample</td>
+<td>Bronchoalveolar lavage fluid</td>
 </tr>
 <tr>
-<td>saliva</td>
+<td>nasal_epithelium</td>
 <td>None</td>
-<td>Saliva sample</td>
+<td>Nasal epithelial sample</td>
 </tr>
 <tr>
-<td>hair</td>
+<td>bronchial_epithelium</td>
 <td>None</td>
-<td>Hair sample</td>
+<td>Bronchial epithelial sample</td>
 </tr>
 <tr>
-<td>nail</td>
+<td>exhaled_breath_condensate</td>
 <td>None</td>
-<td>Nail sample</td>
+<td>Exhaled breath condensate (EBC)</td>
 </tr>
 <tr>
-<td>air</td>
+<td>biopsy</td>
 <td>None</td>
-<td>Air sample (environmental)</td>
+<td>Tissue biopsy</td>
 </tr>
 <tr>
-<td>water</td>
+<td>sweat</td>
 <td>None</td>
-<td>Water sample (environmental)</td>
-</tr>
-<tr>
-<td>soil</td>
-<td>None</td>
-<td>Soil sample (environmental)</td>
-</tr>
-<tr>
-<td>other</td>
-<td>None</td>
-<td>Other sample type</td>
+<td>Sweat sample (e</td>
 </tr>
 </tbody>
 </table>
@@ -491,7 +503,7 @@
 <tbody>
 <tr>
 <td><a href="../sample_type/">sample_type</a></td>
-<td>Type of biological sample</td>
+<td>Type of biological sample (e</td>
 </tr>
 </tbody>
 </table>
@@ -503,46 +515,37 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SampleTypeEnum</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Types of biological and environmental samples</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Types of biological samples for in vivo measurements.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">blood</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">blood</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Blood sample</span>
 <span class="w">  </span><span class="nt">urine</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">urine</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Urine sample</span>
-<span class="w">  </span><span class="nt">serum</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">serum</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Serum sample</span>
-<span class="w">  </span><span class="nt">plasma</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">plasma</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Plasma sample</span>
-<span class="w">  </span><span class="nt">tissue</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tissue</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tissue sample</span>
-<span class="w">  </span><span class="nt">saliva</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">saliva</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Saliva sample</span>
-<span class="w">  </span><span class="nt">hair</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hair</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hair sample</span>
-<span class="w">  </span><span class="nt">nail</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nail</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nail sample</span>
-<span class="w">  </span><span class="nt">air</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Air sample (environmental)</span>
-<span class="w">  </span><span class="nt">water</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">water</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Water sample (environmental)</span>
-<span class="w">  </span><span class="nt">soil</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">soil</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Soil sample (environmental)</span>
-<span class="w">  </span><span class="nt">other</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Other sample type</span>
+<span class="w">  </span><span class="nt">blood</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">blood</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Blood sample (whole blood, serum, or plasma)</span>
+<span class="w">  </span><span class="nt">sputum</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sputum</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Induced or spontaneous sputum</span>
+<span class="w">  </span><span class="nt">balf</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">balf</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bronchoalveolar lavage fluid</span>
+<span class="w">  </span><span class="nt">nasal_epithelium</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nasal_epithelium</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nasal epithelial sample</span>
+<span class="w">  </span><span class="nt">bronchial_epithelium</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bronchial_epithelium</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bronchial epithelial sample</span>
+<span class="w">  </span><span class="nt">exhaled_breath_condensate</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exhaled_breath_condensate</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Exhaled breath condensate (EBC)</span>
+<span class="w">  </span><span class="nt">biopsy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">biopsy</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tissue biopsy</span>
+<span class="w">  </span><span class="nt">sweat</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sweat</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sweat sample (e.g., for sweat chloride test)</span>
 </code></pre></div>
 </details>
 

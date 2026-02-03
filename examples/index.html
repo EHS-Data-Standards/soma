@@ -1,0 +1,1988 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://EHS-Data-Standards.github.io/outcomes-working-group/examples/">
+      
+      
+        <link rel="prev" href="../elements/">
+      
+      
+        <link rel="next" href="../about/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Examples - outcomes-working-group</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#examples" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="outcomes-working-group" class="md-header__button md-logo" aria-label="outcomes-working-group" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            outcomes-working-group
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Examples
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/EHS-Data-Standards/outcomes-working-group" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="outcomes-working-group" class="md-nav__button md-logo" aria-label="outcomes-working-group" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    outcomes-working-group
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/EHS-Data-Standards/outcomes-working-group" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../elements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-vitro-measurements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Vitro Measurements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="In Vitro Measurements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ciliary-function-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ciliary Function Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airway-surface-liquid-asl-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Airway Surface Liquid (ASL) Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mucociliary-clearance-mcc-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mucociliary Clearance (MCC) Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oxidative-stress-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Oxidative Stress Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cftr-function-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CFTR Function Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#egfr-phosphorylation-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EGFR Phosphorylation Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goblet-cell-mucin-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goblet Cell / Mucin Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#foxj-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FoxJ Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-vivo-measurements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Vivo Measurements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="In Vivo Measurements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lung-function-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lung Function Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balfsputum-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BALF/Sputum Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocols-methods-and-assays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocols, Methods, and Assays
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Protocols, Methods, and Assays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assay-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assay Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protocol-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linking-measurements-to-protocols-and-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linking Measurements to Protocols and Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comprehensive-aop-example-pm25-exposure-impaired-lung-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprehensive AOP Example: PM2.5 Exposure → Impaired Lung Function
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-vitro-measurements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Vitro Measurements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="In Vitro Measurements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ciliary-function-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ciliary Function Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airway-surface-liquid-asl-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Airway Surface Liquid (ASL) Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mucociliary-clearance-mcc-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mucociliary Clearance (MCC) Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oxidative-stress-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Oxidative Stress Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cftr-function-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CFTR Function Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#egfr-phosphorylation-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EGFR Phosphorylation Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goblet-cell-mucin-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goblet Cell / Mucin Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#foxj-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FoxJ Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-vivo-measurements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Vivo Measurements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="In Vivo Measurements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lung-function-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lung Function Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balfsputum-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BALF/Sputum Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocols-methods-and-assays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocols, Methods, and Assays
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Protocols, Methods, and Assays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assay-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assay Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protocol-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linking-measurements-to-protocols-and-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linking Measurements to Protocols and Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comprehensive-aop-example-pm25-exposure-impaired-lung-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprehensive AOP Example: PM2.5 Exposure → Impaired Lung Function
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="examples">Examples</h1>
+<p>This page provides comprehensive examples of using the Outcomes Working Group Data Model.
+All examples use the <code>Container</code> class as the root element and demonstrate real-world
+use cases for environmental health research data.</p>
+<h2 id="quick-start">Quick Start</h2>
+<p>The simplest way to get started is to pick an example that matches your measurement type
+and adapt it to your data. Each example shows:</p>
+<ul>
+<li>Required fields for the measurement type</li>
+<li>Proper use of ontology-backed units</li>
+<li>Context for in vitro (cell culture) or in vivo (human/animal) settings</li>
+</ul>
+<hr />
+<h2 id="in-vitro-measurements">In Vitro Measurements</h2>
+<p>These examples demonstrate measurements performed on cell culture systems, using the
+<code>InVitroContext</code> mixin which provides the <code>cell_culture_system</code> slot for detailed
+culture system specification.</p>
+<h3 id="ciliary-function-measurement">Ciliary Function Measurement</h3>
+<p>Measuring ciliary beat frequency (CBF) in primary human bronchial epithelial cells
+cultured at air-liquid interface:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">ciliary_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">ozone</span><span class="nv"> </span><span class="s">exposure&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_beat_frequency</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8.5&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000106&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-15&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+</code></pre></div>
+<p><strong>Key points:</strong></p>
+<ul>
+<li><code>observation_type</code> uses the <code>CiliaryObservationTypeEnum</code> (e.g., <code>ciliary_beat_frequency</code>, <code>ciliary_beat_pattern</code>, <code>percent_motile_cilia</code>)</li>
+<li><code>cell_culture_system</code> is a structured object with culture details</li>
+<li><code>days_at_differentiation</code> indicates maturation time at ALI</li>
+</ul>
+<hr />
+<h3 id="airway-surface-liquid-asl-measurement">Airway Surface Liquid (ASL) Measurement</h3>
+<p>Measuring ASL height using micro-optical coherence tomography:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">asl_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASL:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Airway</span><span class="nv"> </span><span class="s">surface</span><span class="nv"> </span><span class="s">liquid</span><span class="nv"> </span><span class="s">height&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_height</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.2&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000017&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;micrometer&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-02-10&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-002&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">28</span>
+</code></pre></div>
+<hr />
+<h3 id="mucociliary-clearance-mcc-measurement">Mucociliary Clearance (MCC) Measurement</h3>
+<p>Tracking fluorescent microsphere transport rate:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">mcc_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MCC:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Mucociliary</span><span class="nv"> </span><span class="s">transport</span><span class="nv"> </span><span class="s">rate&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mucociliary_transport_rate</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;45.3&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000103&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;micrometer</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">second&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-03-05&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-007&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+</code></pre></div>
+<hr />
+<h3 id="oxidative-stress-measurement">Oxidative Stress Measurement</h3>
+<p>Measuring reactive oxygen species (ROS) after PM2.5 exposure:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">oxidative_stress_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;OX:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ROS</span><span class="nv"> </span><span class="s">level</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactive_oxygen_species</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.5&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-20&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-003&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+</code></pre></div>
+<hr />
+<h3 id="cftr-function-measurement">CFTR Function Measurement</h3>
+<p>Measuring CFTR-mediated chloride secretion using Ussing chambers:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">cftr_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CFTR:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CFTR</span><span class="nv"> </span><span class="s">chloride</span><span class="nv"> </span><span class="s">secretion&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cftr_chloride_secretion</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;15.2&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000274&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;microampere</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">square</span><span class="nv"> </span><span class="s">centimeter&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-04-12&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-006&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">28</span>
+</code></pre></div>
+<hr />
+<h3 id="egfr-phosphorylation-measurement">EGFR Phosphorylation Measurement</h3>
+<p>Measuring EGFR phosphorylation after smoke exposure:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">egfr_phosphorylation_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EGFR:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EGFR</span><span class="nv"> </span><span class="s">phosphorylation</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">smoke</span><span class="nv"> </span><span class="s">exposure&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">egfr_phosphorylation</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.2&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-05-08&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-005&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+</code></pre></div>
+<hr />
+<h3 id="goblet-cell-mucin-measurement">Goblet Cell / Mucin Measurement</h3>
+<p>Measuring MUC5AC expression in goblet cells:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">goblet_cell_mucin_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GCM:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MUC5AC</span><span class="nv"> </span><span class="s">expression&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">muc5ac_expression</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4.8&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-06-15&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-004&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">28</span>
+</code></pre></div>
+<hr />
+<h3 id="foxj-measurement">FoxJ Measurement</h3>
+<p>Measuring FoxJ1 transcription factor expression (master regulator of ciliogenesis):</p>
+<div class="highlight"><pre><span></span><code><span class="nt">foxj_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FOXJ:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FoxJ1</span><span class="nv"> </span><span class="s">mRNA</span><span class="nv"> </span><span class="s">expression&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">foxj1_mrna_expression</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.65&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-09-05&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-008&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14</span>
+</code></pre></div>
+<hr />
+<h2 id="in-vivo-measurements">In Vivo Measurements</h2>
+<p>These examples demonstrate measurements from human or animal subjects, using the
+<code>InVivoContext</code> mixin which provides participant and sample information.</p>
+<h3 id="lung-function-measurement">Lung Function Measurement</h3>
+<p>Spirometry measurement from a human subject:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">lung_function_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;LF:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FEV1</span><span class="nv"> </span><span class="s">measurement&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fev1</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;82.5&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent</span><span class="nv"> </span><span class="s">predicted&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-08-10&quot;</span>
+<span class="w">    </span><span class="nt">participant</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PARTICIPANT:002&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Subject</span><span class="nv"> </span><span class="s">B&quot;</span>
+</code></pre></div>
+<p><strong>Key points:</strong></p>
+<ul>
+<li><code>participant</code> replaces <code>cell_culture_system</code> for in vivo context</li>
+<li>No <code>days_at_differentiation</code> since this is a human measurement</li>
+</ul>
+<hr />
+<h3 id="balfsputum-measurement">BALF/Sputum Measurement</h3>
+<p>Inflammatory cell differential from induced sputum:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">balf_sputum_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;BALF:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Neutrophil</span><span class="nv"> </span><span class="s">percentage</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">induced</span><span class="nv"> </span><span class="s">sputum&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">neutrophil_percentage</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;45.0&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-07-22&quot;</span>
+<span class="w">    </span><span class="nt">sample_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sputum</span>
+<span class="w">    </span><span class="nt">participant</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PARTICIPANT:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Subject</span><span class="nv"> </span><span class="s">A&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="protocols-methods-and-assays">Protocols, Methods, and Assays</h2>
+<p>The schema supports detailed documentation of experimental procedures through a
+three-level hierarchy: Assays (what is measured), Methods (how it's measured),
+and Protocols (specific procedures).</p>
+<h3 id="assay-definition">Assay Definition</h3>
+<p>An assay type reference:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">assays</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ciliary</span><span class="nv"> </span><span class="s">beat</span><span class="nv"> </span><span class="s">frequency</span><span class="nv"> </span><span class="s">assay&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">frequency</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">beating</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">airway</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cells&quot;</span>
+</code></pre></div>
+<hr />
+<h3 id="method-definition">Method Definition</h3>
+<p>A general measurement method that implements an assay:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">methods</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Video</span><span class="nv"> </span><span class="s">microscopy</span><span class="nv"> </span><span class="s">technique</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">dynamics</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">frame</span><span class="nv"> </span><span class="s">rates</span><span class="nv"> </span><span class="s">above</span><span class="nv"> </span><span class="s">100</span><span class="nv"> </span><span class="s">Hz&quot;</span>
+<span class="w">    </span><span class="nt">implements_assay</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ciliary</span><span class="nv"> </span><span class="s">beat</span><span class="nv"> </span><span class="s">frequency</span><span class="nv"> </span><span class="s">assay&quot;</span>
+</code></pre></div>
+<hr />
+<h3 id="protocol-definition">Protocol Definition</h3>
+<p>A detailed protocol that specifies a method:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">protocols</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">CBF&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Protocol</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">beat</span><span class="nv"> </span><span class="s">frequency</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">high-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+<span class="w">    </span><span class="nt">specified_by_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+</code></pre></div>
+<hr />
+<h3 id="linking-measurements-to-protocols-and-methods">Linking Measurements to Protocols and Methods</h3>
+<p>Measurements can reference the protocol and method used:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">ciliary_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Control</span><span class="nv"> </span><span class="s">baseline&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_beat_frequency</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;12.5&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000106&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-15&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">high-speed</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+</code></pre></div>
+<hr />
+<h2 id="comprehensive-aop-example-pm25-exposure-impaired-lung-function">Comprehensive AOP Example: PM2.5 Exposure → Impaired Lung Function</h2>
+<p>This comprehensive example demonstrates an Adverse Outcome Pathway (AOP) for particulate
+matter (PM2.5) exposure leading to impaired lung function. The pathway includes:</p>
+<ul>
+<li><strong>MIE (Molecular Initiating Event)</strong>: Oxidative stress</li>
+<li><strong>KE1 (Key Event 1)</strong>: EGFR activation/phosphorylation</li>
+<li><strong>KE2 (Key Event 2)</strong>: Goblet cell hyperplasia and mucin hypersecretion</li>
+<li><strong>KE3 (Key Event 3)</strong>: Impaired mucociliary clearance</li>
+<li><strong>AO (Adverse Outcome)</strong>: Reduced lung function</li>
+</ul>
+<p><strong>Study Design:</strong></p>
+<ul>
+<li>In vitro: Primary human bronchial epithelial (HBE) cells at ALI</li>
+<li>In vivo: Clinical cohort with spirometry</li>
+<li>Exposure: PM2.5 (10 μg/cm²) vs. clean air control</li>
+<li>Timepoints: 4h (early), 24h (intermediate), 7d (late)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># =============================================================================</span>
+<span class="c1"># ASSAYS - The tests being performed</span>
+<span class="c1"># =============================================================================</span>
+
+<span class="nt">assays</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Reactive</span><span class="nv"> </span><span class="s">oxygen</span><span class="nv"> </span><span class="s">species</span><span class="nv"> </span><span class="s">assay&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">intracellular</span><span class="nv"> </span><span class="s">ROS</span><span class="nv"> </span><span class="s">levels</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">fluorescent</span><span class="nv"> </span><span class="s">probes&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:002&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Protein</span><span class="nv"> </span><span class="s">phosphorylation</span><span class="nv"> </span><span class="s">assay&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">detecting</span><span class="nv"> </span><span class="s">phosphorylation</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">target</span><span class="nv"> </span><span class="s">proteins&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:003&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Gene</span><span class="nv"> </span><span class="s">expression</span><span class="nv"> </span><span class="s">assay&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">mRNA</span><span class="nv"> </span><span class="s">expression</span><span class="nv"> </span><span class="s">levels&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:004&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ciliary</span><span class="nv"> </span><span class="s">beat</span><span class="nv"> </span><span class="s">frequency</span><span class="nv"> </span><span class="s">assay&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">frequency</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">beating</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">airway</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cells&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:005&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Mucociliary</span><span class="nv"> </span><span class="s">transport</span><span class="nv"> </span><span class="s">assay&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">efficiency</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">mucus/particle</span><span class="nv"> </span><span class="s">transport&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:006&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pulmonary</span><span class="nv"> </span><span class="s">function</span><span class="nv"> </span><span class="s">test&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Clinical</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">lung</span><span class="nv"> </span><span class="s">volumes</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">airflow&quot;</span>
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># METHODS - General techniques implementing the assays</span>
+<span class="c1"># =============================================================================</span>
+
+<span class="nt">methods</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DCFDA</span><span class="nv"> </span><span class="s">fluorescence</span><span class="nv"> </span><span class="s">assay&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Measurement</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">intracellular</span><span class="nv"> </span><span class="s">ROS</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">2&#39;,7&#39;-dichlorofluorescein</span><span class="nv"> </span><span class="s">diacetate</span><span class="nv"> </span><span class="s">(DCFDA)</span><span class="nv"> </span><span class="s">probe</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">plate</span><span class="nv"> </span><span class="s">reader</span><span class="nv"> </span><span class="s">detection&quot;</span>
+<span class="w">    </span><span class="nt">implements_assay</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Reactive</span><span class="nv"> </span><span class="s">oxygen</span><span class="nv"> </span><span class="s">species</span><span class="nv"> </span><span class="s">assay&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:002&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Western</span><span class="nv"> </span><span class="s">blot&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Protein</span><span class="nv"> </span><span class="s">detection</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">semi-quantification</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">SDS-PAGE</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">immunoblotting&quot;</span>
+<span class="w">    </span><span class="nt">implements_assay</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:002&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Protein</span><span class="nv"> </span><span class="s">phosphorylation</span><span class="nv"> </span><span class="s">assay&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:003&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Quantitative</span><span class="nv"> </span><span class="s">RT-PCR&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Reverse</span><span class="nv"> </span><span class="s">transcription</span><span class="nv"> </span><span class="s">followed</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">quantitative</span><span class="nv"> </span><span class="s">PCR</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">mRNA</span><span class="nv"> </span><span class="s">quantification&quot;</span>
+<span class="w">    </span><span class="nt">implements_assay</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:003&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Gene</span><span class="nv"> </span><span class="s">expression</span><span class="nv"> </span><span class="s">assay&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:004&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Video</span><span class="nv"> </span><span class="s">microscopy</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">frame</span><span class="nv"> </span><span class="s">rates</span><span class="nv"> </span><span class="s">&gt;100</span><span class="nv"> </span><span class="s">Hz</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">motion</span><span class="nv"> </span><span class="s">analysis&quot;</span>
+<span class="w">    </span><span class="nt">implements_assay</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:004&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ciliary</span><span class="nv"> </span><span class="s">beat</span><span class="nv"> </span><span class="s">frequency</span><span class="nv"> </span><span class="s">assay&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:005&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Fluorescent</span><span class="nv"> </span><span class="s">microsphere</span><span class="nv"> </span><span class="s">tracking&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Tracking</span><span class="nv"> </span><span class="s">fluorescent</span><span class="nv"> </span><span class="s">particles</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">measure</span><span class="nv"> </span><span class="s">mucociliary</span><span class="nv"> </span><span class="s">transport</span><span class="nv"> </span><span class="s">rate&quot;</span>
+<span class="w">    </span><span class="nt">implements_assay</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:005&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Mucociliary</span><span class="nv"> </span><span class="s">transport</span><span class="nv"> </span><span class="s">assay&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:006&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Spirometry&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Standardized</span><span class="nv"> </span><span class="s">spirometry</span><span class="nv"> </span><span class="s">following</span><span class="nv"> </span><span class="s">ATS/ERS</span><span class="nv"> </span><span class="s">guidelines&quot;</span>
+<span class="w">    </span><span class="nt">implements_assay</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ASSAY:006&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pulmonary</span><span class="nv"> </span><span class="s">function</span><span class="nv"> </span><span class="s">test&quot;</span>
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># PROTOCOLS - Detailed procedures for each method</span>
+<span class="c1"># =============================================================================</span>
+
+<span class="nt">protocols</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DCFDA</span><span class="nv"> </span><span class="s">ROS</span><span class="nv"> </span><span class="s">detection</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">cultures&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Protocol</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">intracellular</span><span class="nv"> </span><span class="s">ROS</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">differentiated</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">cells</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">DCFDA&quot;</span>
+<span class="w">    </span><span class="nt">specified_by_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DCFDA</span><span class="nv"> </span><span class="s">fluorescence</span><span class="nv"> </span><span class="s">assay&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:002&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Western</span><span class="nv"> </span><span class="s">blot</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">phospho-EGFR&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Protocol</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">detecting</span><span class="nv"> </span><span class="s">EGFR</span><span class="nv"> </span><span class="s">phosphorylation</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">Y1068</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">Western</span><span class="nv"> </span><span class="s">blot&quot;</span>
+<span class="w">    </span><span class="nt">specified_by_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:002&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Western</span><span class="nv"> </span><span class="s">blot&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:003&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;qRT-PCR</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">MUC5AC&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Protocol</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">MUC5AC</span><span class="nv"> </span><span class="s">mRNA</span><span class="nv"> </span><span class="s">expression</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">qRT-PCR</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">GAPDH</span><span class="nv"> </span><span class="s">normalization&quot;</span>
+<span class="w">    </span><span class="nt">specified_by_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:003&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Quantitative</span><span class="nv"> </span><span class="s">RT-PCR&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:004&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">high-speed</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Protocol</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">beat</span><span class="nv"> </span><span class="s">frequency</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">high-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">200</span><span class="nv"> </span><span class="s">fps&quot;</span>
+<span class="w">    </span><span class="nt">specified_by_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:004&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:005&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MCT</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">microsphere</span><span class="nv"> </span><span class="s">tracking&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Protocol</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">mucociliary</span><span class="nv"> </span><span class="s">transport</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">1-μm</span><span class="nv"> </span><span class="s">fluorescent</span><span class="nv"> </span><span class="s">microspheres&quot;</span>
+<span class="w">    </span><span class="nt">specified_by_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:005&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Fluorescent</span><span class="nv"> </span><span class="s">microsphere</span><span class="nv"> </span><span class="s">tracking&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:006&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pre-</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">post-bronchodilator</span><span class="nv"> </span><span class="s">spirometry&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Clinical</span><span class="nv"> </span><span class="s">spirometry</span><span class="nv"> </span><span class="s">protocol</span><span class="nv"> </span><span class="s">following</span><span class="nv"> </span><span class="s">ATS/ERS</span><span class="nv"> </span><span class="s">2019</span><span class="nv"> </span><span class="s">guidelines</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">bronchodilator</span><span class="nv"> </span><span class="s">reversibility</span><span class="nv"> </span><span class="s">testing&quot;</span>
+<span class="w">    </span><span class="nt">specified_by_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:006&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Spirometry&quot;</span>
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># OXIDATIVE STRESS MEASUREMENTS (MIE)</span>
+<span class="c1"># =============================================================================</span>
+
+<span class="nt">oxidative_stress_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Control - 4h</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;OX:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ROS</span><span class="nv"> </span><span class="s">level</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Control</span><span class="nv"> </span><span class="s">4h&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Intracellular</span><span class="nv"> </span><span class="s">ROS</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">control</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">cells</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">4</span><span class="nv"> </span><span class="s">hours&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactive_oxygen_species</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-15&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DCFDA</span><span class="nv"> </span><span class="s">fluorescence</span><span class="nv"> </span><span class="s">assay&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DCFDA</span><span class="nv"> </span><span class="s">ROS</span><span class="nv"> </span><span class="s">detection</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">cultures&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">      </span><span class="nt">cell_type</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
+<span class="w">      </span><span class="nt">anatomical_origin</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UBERON:0002031&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchus&quot;</span>
+<span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+<span class="w">    </span><span class="nt">donor_info</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Healthy</span><span class="nv"> </span><span class="s">non-smoker,</span><span class="nv"> </span><span class="s">35y</span><span class="nv"> </span><span class="s">female&quot;</span>
+<span class="w">    </span><span class="nt">replicates_per_donor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+
+<span class="w">  </span><span class="c1"># PM2.5 exposed - 4h</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;OX:002&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ROS</span><span class="nv"> </span><span class="s">level</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">4h&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Intracellular</span><span class="nv"> </span><span class="s">ROS</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">PM2.5-exposed</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">cells</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">4</span><span class="nv"> </span><span class="s">hours&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactive_oxygen_species</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.8&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-15&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DCFDA</span><span class="nv"> </span><span class="s">fluorescence</span><span class="nv"> </span><span class="s">assay&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DCFDA</span><span class="nv"> </span><span class="s">ROS</span><span class="nv"> </span><span class="s">detection</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">cultures&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+<span class="w">    </span><span class="nt">donor_info</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Healthy</span><span class="nv"> </span><span class="s">non-smoker,</span><span class="nv"> </span><span class="s">35y</span><span class="nv"> </span><span class="s">female&quot;</span>
+<span class="w">    </span><span class="nt">replicates_per_donor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+
+<span class="w">  </span><span class="c1"># Lipid peroxidation marker - PM2.5 24h</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;OX:003&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MDA</span><span class="nv"> </span><span class="s">level</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">24h&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Malondialdehyde</span><span class="nv"> </span><span class="s">(lipid</span><span class="nv"> </span><span class="s">peroxidation</span><span class="nv"> </span><span class="s">marker)</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">malondialdehyde</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.9&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-16&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DCFDA</span><span class="nv"> </span><span class="s">fluorescence</span><span class="nv"> </span><span class="s">assay&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># EGFR PHOSPHORYLATION MEASUREMENTS (KE1)</span>
+<span class="c1"># =============================================================================</span>
+
+<span class="nt">egfr_phosphorylation_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Control - 4h</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EGFR:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;pEGFR</span><span class="nv"> </span><span class="s">Y1068</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Control</span><span class="nv"> </span><span class="s">4h&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EGFR</span><span class="nv"> </span><span class="s">phosphorylation</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">Y1068</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">control</span><span class="nv"> </span><span class="s">cells</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">4</span><span class="nv"> </span><span class="s">hours&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">egfr_phosphorylation</span>
+<span class="w">    </span><span class="nt">phosphorylation_site</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Y1068&quot;</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-15&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:002&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Western</span><span class="nv"> </span><span class="s">blot&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:002&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Western</span><span class="nv"> </span><span class="s">blot</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">phospho-EGFR&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+
+<span class="w">  </span><span class="c1"># PM2.5 exposed - 4h</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EGFR:002&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;pEGFR</span><span class="nv"> </span><span class="s">Y1068</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">4h&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EGFR</span><span class="nv"> </span><span class="s">phosphorylation</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">Y1068</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">4</span><span class="nv"> </span><span class="s">hours&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">egfr_phosphorylation</span>
+<span class="w">    </span><span class="nt">phosphorylation_site</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Y1068&quot;</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.5&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-15&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:002&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Western</span><span class="nv"> </span><span class="s">blot&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:002&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Western</span><span class="nv"> </span><span class="s">blot</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">phospho-EGFR&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+
+<span class="w">  </span><span class="c1"># Total EGFR protein (normalization control)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EGFR:003&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Total</span><span class="nv"> </span><span class="s">EGFR</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">4h&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Total</span><span class="nv"> </span><span class="s">EGFR</span><span class="nv"> </span><span class="s">protein</span><span class="nv"> </span><span class="s">expression</span><span class="nv"> </span><span class="s">(loading</span><span class="nv"> </span><span class="s">control)&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">egfr_total_protein</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.05&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-15&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:002&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Western</span><span class="nv"> </span><span class="s">blot&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># GOBLET CELL / MUCIN MEASUREMENTS (KE2)</span>
+<span class="c1"># =============================================================================</span>
+
+<span class="nt">goblet_cell_mucin_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># MUC5AC mRNA - Control 24h</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GCM:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MUC5AC</span><span class="nv"> </span><span class="s">mRNA</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Control</span><span class="nv"> </span><span class="s">24h&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MUC5AC</span><span class="nv"> </span><span class="s">mRNA</span><span class="nv"> </span><span class="s">expression</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">control</span><span class="nv"> </span><span class="s">cells</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">24</span><span class="nv"> </span><span class="s">hours&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">muc5ac_expression</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-16&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:003&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Quantitative</span><span class="nv"> </span><span class="s">RT-PCR&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:003&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;qRT-PCR</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">MUC5AC&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+
+<span class="w">  </span><span class="c1"># MUC5AC mRNA - PM2.5 24h</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GCM:002&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MUC5AC</span><span class="nv"> </span><span class="s">mRNA</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">24h&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MUC5AC</span><span class="nv"> </span><span class="s">mRNA</span><span class="nv"> </span><span class="s">expression</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">24</span><span class="nv"> </span><span class="s">hours&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">muc5ac_expression</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4.2&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-16&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:003&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Quantitative</span><span class="nv"> </span><span class="s">RT-PCR&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:003&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;qRT-PCR</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">MUC5AC&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+
+<span class="w">  </span><span class="c1"># Goblet cell percentage - PM2.5 7d</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GCM:003&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Goblet</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">percentage</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">7d&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Percentage</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">goblet</span><span class="nv"> </span><span class="s">cells</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">7-day</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">goblet_cell_count</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;32&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">    </span><span class="nt">range_low</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">    </span><span class="nt">range_high</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;20&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-22&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">28</span>
+
+<span class="w">  </span><span class="c1"># Mucus viscosity - PM2.5 7d</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GCM:004&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Mucus</span><span class="nv"> </span><span class="s">viscosity</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">7d&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Mucus</span><span class="nv"> </span><span class="s">viscosity</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">7-day</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">showing</span><span class="nv"> </span><span class="s">hypersecretion</span><span class="nv"> </span><span class="s">phenotype&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mucus_viscosity</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;185&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000019&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;centipoise&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-22&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">28</span>
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># CILIARY FUNCTION MEASUREMENTS (KE3 - part 1)</span>
+<span class="c1"># =============================================================================</span>
+
+<span class="nt">ciliary_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># CBF - Control baseline</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Control</span><span class="nv"> </span><span class="s">baseline&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ciliary</span><span class="nv"> </span><span class="s">beat</span><span class="nv"> </span><span class="s">frequency</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">control</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">cells</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">baseline&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_beat_frequency</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;12.5&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000106&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
+<span class="w">    </span><span class="nt">range_low</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000106&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
+<span class="w">    </span><span class="nt">range_high</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;15&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000106&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-15&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:004&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:004&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">high-speed</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+
+<span class="w">  </span><span class="c1"># CBF - PM2.5 24h</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:002&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">24h&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ciliary</span><span class="nv"> </span><span class="s">beat</span><span class="nv"> </span><span class="s">frequency</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">24</span><span class="nv"> </span><span class="s">hours&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_beat_frequency</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;9.8&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000106&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-16&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:004&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:004&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">high-speed</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+
+<span class="w">  </span><span class="c1"># CBF - PM2.5 7d</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:003&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">7d&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ciliary</span><span class="nv"> </span><span class="s">beat</span><span class="nv"> </span><span class="s">frequency</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">7-day</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">showing</span><span class="nv"> </span><span class="s">sustained</span><span class="nv"> </span><span class="s">impairment&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_beat_frequency</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.2&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000106&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-22&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:004&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:004&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">high-speed</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">28</span>
+
+<span class="w">  </span><span class="c1"># Ciliated cell percentage - PM2.5 7d</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:004&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ciliated</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">percentage</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">7d&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Percentage</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">ciliated</span><span class="nv"> </span><span class="s">cells</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">7-day</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">percentage_ciliated_cells</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;45&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">    </span><span class="nt">range_low</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;60&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">    </span><span class="nt">range_high</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;80&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-22&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">28</span>
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># MUCOCILIARY CLEARANCE MEASUREMENTS (KE3 - part 2)</span>
+<span class="c1"># =============================================================================</span>
+
+<span class="nt">mcc_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># MCT rate - Control baseline</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MCC:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MCT</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Control</span><span class="nv"> </span><span class="s">baseline&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Mucociliary</span><span class="nv"> </span><span class="s">transport</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">control</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">cells</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">baseline&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mucociliary_transport_rate</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;52&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000103&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;micrometer</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">second&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-15&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:005&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Fluorescent</span><span class="nv"> </span><span class="s">microsphere</span><span class="nv"> </span><span class="s">tracking&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:005&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MCT</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">microsphere</span><span class="nv"> </span><span class="s">tracking&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+
+<span class="w">  </span><span class="c1"># MCT rate - PM2.5 24h</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MCC:002&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MCT</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">24h&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Mucociliary</span><span class="nv"> </span><span class="s">transport</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">24</span><span class="nv"> </span><span class="s">hours&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mucociliary_transport_rate</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;38&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000103&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;micrometer</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">second&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-16&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:005&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Fluorescent</span><span class="nv"> </span><span class="s">microsphere</span><span class="nv"> </span><span class="s">tracking&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:005&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MCT</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">microsphere</span><span class="nv"> </span><span class="s">tracking&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+
+<span class="w">  </span><span class="c1"># MCT rate - PM2.5 7d (severely impaired)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MCC:003&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MCT</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">7d&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Mucociliary</span><span class="nv"> </span><span class="s">transport</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">7-day</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">showing</span><span class="nv"> </span><span class="s">severe</span><span class="nv"> </span><span class="s">impairment&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mucociliary_transport_rate</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;18&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000103&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;micrometer</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">second&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-22&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:005&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Fluorescent</span><span class="nv"> </span><span class="s">microsphere</span><span class="nv"> </span><span class="s">tracking&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:005&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MCT</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">microsphere</span><span class="nv"> </span><span class="s">tracking&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">28</span>
+
+<span class="w">  </span><span class="c1"># Percentage active transport - PM2.5 7d</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MCC:004&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Active</span><span class="nv"> </span><span class="s">transport</span><span class="nv"> </span><span class="s">percentage</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">7d&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Percentage</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">surface</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">active</span><span class="nv"> </span><span class="s">mucociliary</span><span class="nv"> </span><span class="s">transport</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">7-day</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">percentage_active_transport</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;35&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-22&quot;</span>
+<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-aop-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Donor</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
+<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
+<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">28</span>
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># LUNG FUNCTION MEASUREMENTS (Adverse Outcome - Clinical)</span>
+<span class="c1"># =============================================================================</span>
+
+<span class="nt">lung_function_measurements</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># FEV1 - Subject 1 (PM2.5 exposed community)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;LF:001&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FEV1</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Subject</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">baseline&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FEV1</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">subject</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">high</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">area</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">baseline&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fev1</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;78&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent</span><span class="nv"> </span><span class="s">predicted&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-02-01&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:006&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Spirometry&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:006&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pre-</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">post-bronchodilator</span><span class="nv"> </span><span class="s">spirometry&quot;</span>
+<span class="w">    </span><span class="nt">participant</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PARTICIPANT:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Subject</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">    </span><span class="nt">sample_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exhaled_breath_condensate</span>
+<span class="w">    </span><span class="nt">collection_site</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;pulmonary</span><span class="nv"> </span><span class="s">function</span><span class="nv"> </span><span class="s">laboratory&quot;</span>
+<span class="w">    </span><span class="nt">subject_characteristics</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;52y</span><span class="nv"> </span><span class="s">male,</span><span class="nv"> </span><span class="s">non-smoker,</span><span class="nv"> </span><span class="s">high</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">area</span><span class="nv"> </span><span class="s">resident,</span><span class="nv"> </span><span class="s">15</span><span class="nv"> </span><span class="s">years&quot;</span>
+
+<span class="w">  </span><span class="c1"># FEV1 - Subject 1 follow-up</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;LF:002&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FEV1</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Subject</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">1-year</span><span class="nv"> </span><span class="s">follow-up&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FEV1</span><span class="nv"> </span><span class="s">decline</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">year</span><span class="nv"> </span><span class="s">continued</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fev1</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;74&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent</span><span class="nv"> </span><span class="s">predicted&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-02-01&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:006&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Spirometry&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:006&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pre-</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">post-bronchodilator</span><span class="nv"> </span><span class="s">spirometry&quot;</span>
+<span class="w">    </span><span class="nt">participant</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PARTICIPANT:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Subject</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">    </span><span class="nt">sample_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exhaled_breath_condensate</span>
+<span class="w">    </span><span class="nt">subject_characteristics</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;53y</span><span class="nv"> </span><span class="s">male,</span><span class="nv"> </span><span class="s">non-smoker,</span><span class="nv"> </span><span class="s">high</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">area</span><span class="nv"> </span><span class="s">resident,</span><span class="nv"> </span><span class="s">16</span><span class="nv"> </span><span class="s">years&quot;</span>
+
+<span class="w">  </span><span class="c1"># FEV1/FVC ratio - Subject 1</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;LF:003&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FEV1/FVC</span><span class="nv"> </span><span class="s">ratio</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Subject</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FEV1/FVC</span><span class="nv"> </span><span class="s">ratio</span><span class="nv"> </span><span class="s">indicating</span><span class="nv"> </span><span class="s">obstructive</span><span class="nv"> </span><span class="s">pattern&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fev1_fvc_ratio</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.68&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000196&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ratio&quot;</span>
+<span class="w">    </span><span class="nt">range_low</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.70&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000196&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ratio&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-02-01&quot;</span>
+<span class="w">    </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:006&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Spirometry&quot;</span>
+<span class="w">    </span><span class="nt">participant</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PARTICIPANT:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Subject</span><span class="nv"> </span><span class="s">1&quot;</span>
+
+<span class="w">  </span><span class="c1"># FEV1 decline rate - Subject 1</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;LF:004&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FEV1</span><span class="nv"> </span><span class="s">decline</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Subject</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Rate</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">FEV1</span><span class="nv"> </span><span class="s">decline</span><span class="nv"> </span><span class="s">over</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">year</span><span class="nv"> </span><span class="s">(accelerated</span><span class="nv"> </span><span class="s">compared</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">normal</span><span class="nv"> </span><span class="s">aging)&quot;</span>
+<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lung_function_decline_rate</span>
+<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;65&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000098&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;milliliter</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">year&quot;</span>
+<span class="w">    </span><span class="nt">range_high</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;30&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000098&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;milliliter</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">year&quot;</span>
+<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-02-01&quot;</span>
+<span class="w">    </span><span class="nt">participant</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PARTICIPANT:001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Subject</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">    </span><span class="nt">subject_characteristics</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Accelerated</span><span class="nv"> </span><span class="s">decline</span><span class="nv"> </span><span class="s">&gt;2x</span><span class="nv"> </span><span class="s">normal</span><span class="nv"> </span><span class="s">(25-30</span><span class="nv"> </span><span class="s">mL/year)&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Browse the complete <a href="../elements/">Schema Documentation</a> for all available classes and slots</li>
+<li>Read <a href="../about/">About</a> to learn more about the project goals</li>
+<li>Visit the <a href="https://github.com/EHS-Data-Standards/outcomes-working-group">GitHub Repository</a> to contribute</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

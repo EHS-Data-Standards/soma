@@ -278,7 +278,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about.md" class="md-nav__link">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
         
   
   
@@ -417,8 +444,8 @@
 
 
 <h1 id="slot-sample_type">Slot: sample_type</h1>
-<p><em>Type of biological sample</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-working-group/sample_type">owg:sample_type</a>
+<p><em>Type of biological sample (e.g., urine, blood, sputum, nasal epithelium, exhaled breath condensate).</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/sample_type">outcomes_working_group:sample_type</a>
 Alias: sample_type</p>
 <!-- no inheritance hierarchy -->
 
@@ -433,13 +460,48 @@ Alias: sample_type</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../ExposureMeasurement/">ExposureMeasurement</a></td>
-<td>A measurement of exposure to a chemical or environmental factor</td>
+<td><a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
+<td>Measurement of oxidative stress markers including reactive oxygen species, li...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../BiomarkerMeasurement/">BiomarkerMeasurement</a></td>
-<td>A measurement of a biological marker</td>
+<td><a href="../MCCMeasurement/">MCCMeasurement</a></td>
+<td>Measurement of mucociliary clearance and transport including mucus transport ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../InVivoContext/">InVivoContext</a></td>
+<td>Context slots for in vivo measurements from human or animal subjects</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../BALFSputumMeasurement/">BALFSputumMeasurement</a></td>
+<td>Measurement of bronchoalveolar lavage fluid (BALF) or sputum components inclu...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../GobletCellMucinMeasurement/">GobletCellMucinMeasurement</a></td>
+<td>Measurement of goblet cell populations and mucin production including goblet ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CFTRMeasurement/">CFTRMeasurement</a></td>
+<td>Measurement of CFTR (cystic fibrosis transmembrane conductance regulator) fun...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
+<td>Measurement of lung function parameters via spirometry and other pulmonary fu...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ASLMeasurement/">ASLMeasurement</a></td>
+<td>Measurement of airway surface liquid properties including ASL height, pericil...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CiliaryFunctionMeasurement/">CiliaryFunctionMeasurement</a></td>
+<td>Measurement of ciliary function including beat frequency, active area, cilia ...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -464,24 +526,24 @@ Alias: sample_type</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>owg:sample_type</td>
+<td>outcomes_working_group:sample_type</td>
 </tr>
 <tr>
 <td>native</td>
-<td>owg:sample_type</td>
+<td>outcomes_working_group:sample_type</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_type</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type of biological sample</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type of biological sample (e.g., urine, blood, sputum, nasal epithelium,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">exhaled breath condensate).</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_type</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExposureMeasurement</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BiomarkerMeasurement</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoContext</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SampleTypeEnum</span>
 </code></pre></div>
 </details>

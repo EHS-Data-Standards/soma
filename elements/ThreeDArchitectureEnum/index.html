@@ -278,7 +278,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about.md" class="md-nav__link">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
         
   
   
@@ -406,8 +433,8 @@
 
 
 <h1 id="enum-threedarchitectureenum">Enum: ThreeDArchitectureEnum</h1>
-<p><em>Types of three-dimensional cell culture architectures.</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-working-group/ThreeDArchitectureEnum">owg:ThreeDArchitectureEnum</a></p>
+<p><em>Types of 3D cell culture architecture.</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/ThreeDArchitectureEnum">outcomes_working_group:ThreeDArchitectureEnum</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
 <table>
 <thead>
@@ -426,32 +453,22 @@
 <tr>
 <td>organoid</td>
 <td>None</td>
-<td>Self-organizing 3D tissue derived from stem cells</td>
+<td>Self-organizing 3D tissue culture from stem cells</td>
 </tr>
 <tr>
 <td>scaffold_based</td>
 <td>None</td>
-<td>Cells grown on/in synthetic or natural scaffolds</td>
+<td>Cells grown on a 3D scaffold structure</td>
 </tr>
 <tr>
-<td>hydrogel_encapsulated</td>
+<td>hydrogel_embedded</td>
 <td>None</td>
-<td>Cells encapsulated within hydrogel matrix</td>
-</tr>
-<tr>
-<td>bioprinted</td>
-<td>None</td>
-<td>3D bioprinted tissue constructs</td>
-</tr>
-<tr>
-<td>microcarrier</td>
-<td>None</td>
-<td>Cells grown on microcarrier beads in suspension</td>
+<td>Cells embedded within a hydrogel matrix</td>
 </tr>
 <tr>
 <td>hanging_drop</td>
 <td>None</td>
-<td>Spheroids formed using hanging drop method</td>
+<td>3D cultures formed by hanging drop method</td>
 </tr>
 </tbody>
 </table>
@@ -478,7 +495,7 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ThreeDArchitectureEnum</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Types of three-dimensional cell culture architectures.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Types of 3D cell culture architecture.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
@@ -487,26 +504,16 @@
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Spherical cellular aggregates formed by self-aggregation</span>
 <span class="w">  </span><span class="nt">organoid</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">organoid</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Self-organizing 3D tissue derived from stem cells</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Self-organizing 3D tissue culture from stem cells</span>
 <span class="w">  </span><span class="nt">scaffold_based</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scaffold_based</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cells grown on/in synthetic or natural scaffolds</span>
-<span class="w">    </span><span class="nt">related_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0100031</span>
-<span class="w">  </span><span class="nt">hydrogel_encapsulated</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hydrogel_encapsulated</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cells encapsulated within hydrogel matrix</span>
-<span class="w">    </span><span class="nt">related_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:17790</span>
-<span class="w">  </span><span class="nt">bioprinted</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioprinted</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3D bioprinted tissue constructs</span>
-<span class="w">  </span><span class="nt">microcarrier</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">microcarrier</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cells grown on microcarrier beads in suspension</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cells grown on a 3D scaffold structure</span>
+<span class="w">  </span><span class="nt">hydrogel_embedded</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hydrogel_embedded</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cells embedded within a hydrogel matrix</span>
 <span class="w">  </span><span class="nt">hanging_drop</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hanging_drop</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Spheroids formed using hanging drop method</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3D cultures formed by hanging drop method</span>
 </code></pre></div>
 </details>
 

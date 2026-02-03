@@ -1,0 +1,5 @@
+# Simple test file for Method
+methods:
+  - id: "METHOD:001"
+    name: "High-speed video microscopy"
+    description: "Video microscopy technique for measuring ciliary dynamics at frame rates above 100 Hz"

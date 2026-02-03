@@ -1,0 +1,18 @@
+# Simple test file for FoxJMeasurement
+foxj_measurements:
+  - id: "FOXJ:001"
+    name: "FoxJ1 mRNA expression"
+    observation_type: foxj1_mrna_expression
+    quantity_measured:
+      value: "0.65"
+      unit:
+        id: "UO:0000193"
+        name: "fold change"
+    measurement_date: "2024-09-05"
+    cell_culture_system:
+      id: "owg:culture-008"
+      name: "Primary HBE ALI culture"
+      cell_culture_growth_mode: air_liquid_interface
+      substrate_type: transwell_insert
+      passage_number: 2
+    days_at_differentiation: 14

@@ -278,7 +278,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about.md" class="md-nav__link">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
         
   
   
@@ -417,8 +444,8 @@
 
 
 <h1 id="slot-observation_type">Slot: observation_type</h1>
-<p><em>The type of observation being represented. This field holds the key in the core key-value pair.</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-working-group/observation_type">owg:observation_type</a>
+<p><em>The type of observation being measured. Constrained by domain-specific enums in microschemas (e.g., CiliaryObservationTypeEnum).</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/observation_type">outcomes_working_group:observation_type</a>
 Alias: observation_type</p>
 <!-- no inheritance hierarchy -->
 
@@ -433,34 +460,44 @@ Alias: observation_type</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../MembranePropertyMeasurement/">MembranePropertyMeasurement</a></td>
-<td>A measurement of membrane properties for transwell, ALI, and organ-on-chip cu...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../EnvironmentalMeasurement/">EnvironmentalMeasurement</a></td>
-<td>A measurement of environmental conditions for cell culture systems including ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../PhenotypeMeasurement/">PhenotypeMeasurement</a></td>
-<td>A measurement of a phenotypic trait or functional assay</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ExposureMeasurement/">ExposureMeasurement</a></td>
-<td>A measurement of exposure to a chemical or environmental factor</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../Measurement/">Measurement</a></td>
-<td>A measurement observation with a typed quantity value and optional reference ...</td>
+<td>The result of applying an assay to a specific sample at a specific time, prod...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../AggregatedMeasurement/">AggregatedMeasurement</a></td>
-<td>An aggregated or summary measurement across a cohort or population</td>
-<td>no</td>
+<td><a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
+<td>Measurement of oxidative stress markers including reactive oxygen species, li...</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../MCCMeasurement/">MCCMeasurement</a></td>
+<td>Measurement of mucociliary clearance and transport including mucus transport ...</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../EGFRPhosphorylationMeasurement/">EGFRPhosphorylationMeasurement</a></td>
+<td>Measurement of EGFR (epidermal growth factor receptor) phosphorylation</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../BALFSputumMeasurement/">BALFSputumMeasurement</a></td>
+<td>Measurement of bronchoalveolar lavage fluid (BALF) or sputum components inclu...</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../GobletCellMucinMeasurement/">GobletCellMucinMeasurement</a></td>
+<td>Measurement of goblet cell populations and mucin production including goblet ...</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
+<td>A measurement of gene expression (mRNA level) in a specific biological contex...</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../CFTRMeasurement/">CFTRMeasurement</a></td>
+<td>Measurement of CFTR (cystic fibrosis transmembrane conductance regulator) fun...</td>
+<td>yes</td>
 </tr>
 <tr>
 <td><a href="../ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
@@ -468,25 +505,30 @@ Alias: observation_type</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../MechanicalMeasurement/">MechanicalMeasurement</a></td>
-<td>A measurement of mechanical stimulation parameters for advanced culture syste...</td>
-<td>no</td>
+<td><a href="../FoxJMeasurement/">FoxJMeasurement</a></td>
+<td>Measurement of FoxJ1 expression and related ciliogenesis markers</td>
+<td>yes</td>
 </tr>
 <tr>
-<td><a href="../BiomarkerMeasurement/">BiomarkerMeasurement</a></td>
-<td>A measurement of a biological marker</td>
-<td>no</td>
+<td><a href="../LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
+<td>Measurement of lung function parameters via spirometry and other pulmonary fu...</td>
+<td>yes</td>
 </tr>
 <tr>
-<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
-<td>A measurement of gene expression (mRNA level) in a specific biological contex...</td>
-<td>no</td>
+<td><a href="../ASLMeasurement/">ASLMeasurement</a></td>
+<td>Measurement of airway surface liquid properties including ASL height, pericil...</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../CiliaryFunctionMeasurement/">CiliaryFunctionMeasurement</a></td>
+<td>Measurement of ciliary function including beat frequency, active area, cilia ...</td>
+<td>yes</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../MeasurementTypeEnum/">MeasurementTypeEnum</a></li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -504,25 +546,25 @@ Alias: observation_type</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>owg:observation_type</td>
+<td>outcomes_working_group:observation_type</td>
 </tr>
 <tr>
 <td>native</td>
-<td>owg:observation_type</td>
+<td>outcomes_working_group:observation_type</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">observation_type</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The type of observation being represented. This field holds the key in</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">the core key-value pair.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The type of observation being measured. Constrained by domain-specific</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">enums in microschemas (e.g., CiliaryObservationTypeEnum).</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">observation_type</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasurementTypeEnum</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>
 

@@ -145,7 +145,19 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../about.md">
+<a class="md-nav__link" href="../../examples/">
+<span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../about/">
 <span class="md-ellipsis">
     
   
@@ -258,8 +270,8 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-quantityvalue">Class: QuantityValue</h1>
-<p><em>A quantity with a numeric value and unit of measurement</em></p>
-<p>URI: <a href="http://hl7.org/fhir/Quantity">fhir:Quantity</a></p>
+<p><em>A quantity with a numeric value and unit of measurement.</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/QuantityValue">outcomes_working_group:QuantityValue</a></p>
 <pre class="mermaid"><code> classDiagram
     class QuantityValue
     click QuantityValue href "../QuantityValue/"
@@ -291,15 +303,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../unit/">unit</a></td>
-<td>0..1 <br/> <a href="../Unit/">Unit</a></td>
-<td>The unit of measurement</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../value/">value</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The numeric value of the quantity</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../unit/">unit</a></td>
+<td>0..1 <br/> <a href="../Unit/">Unit</a></td>
+<td>The unit of measurement</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -316,18 +328,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../QuantityRange/">QuantityRange</a></td>
-<td><a href="../lower_bound/">lower_bound</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../QuantityRange/">QuantityRange</a></td>
-<td><a href="../upper_bound/">upper_bound</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
 <td><a href="../Measurement/">Measurement</a></td>
 <td><a href="../quantity_measured/">quantity_measured</a></td>
 <td>range</td>
@@ -341,168 +341,6 @@
 </tr>
 <tr>
 <td><a href="../Measurement/">Measurement</a></td>
-<td><a href="../range_high/">range_high</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../ExposureMeasurement/">ExposureMeasurement</a></td>
-<td><a href="../quantity_measured/">quantity_measured</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../ExposureMeasurement/">ExposureMeasurement</a></td>
-<td><a href="../range_low/">range_low</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../ExposureMeasurement/">ExposureMeasurement</a></td>
-<td><a href="../range_high/">range_high</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../BiomarkerMeasurement/">BiomarkerMeasurement</a></td>
-<td><a href="../quantity_measured/">quantity_measured</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../BiomarkerMeasurement/">BiomarkerMeasurement</a></td>
-<td><a href="../range_low/">range_low</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../BiomarkerMeasurement/">BiomarkerMeasurement</a></td>
-<td><a href="../range_high/">range_high</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../PhenotypeMeasurement/">PhenotypeMeasurement</a></td>
-<td><a href="../quantity_measured/">quantity_measured</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../PhenotypeMeasurement/">PhenotypeMeasurement</a></td>
-<td><a href="../range_low/">range_low</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../PhenotypeMeasurement/">PhenotypeMeasurement</a></td>
-<td><a href="../range_high/">range_high</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../AggregatedMeasurement/">AggregatedMeasurement</a></td>
-<td><a href="../quantity_measured/">quantity_measured</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../AggregatedMeasurement/">AggregatedMeasurement</a></td>
-<td><a href="../range_low/">range_low</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../AggregatedMeasurement/">AggregatedMeasurement</a></td>
-<td><a href="../range_high/">range_high</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
-<td><a href="../quantity_measured/">quantity_measured</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
-<td><a href="../range_low/">range_low</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
-<td><a href="../range_high/">range_high</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
-<td><a href="../quantity_measured/">quantity_measured</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
-<td><a href="../range_low/">range_low</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
-<td><a href="../range_high/">range_high</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../EnvironmentalMeasurement/">EnvironmentalMeasurement</a></td>
-<td><a href="../quantity_measured/">quantity_measured</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../EnvironmentalMeasurement/">EnvironmentalMeasurement</a></td>
-<td><a href="../range_low/">range_low</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../EnvironmentalMeasurement/">EnvironmentalMeasurement</a></td>
-<td><a href="../range_high/">range_high</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../MechanicalMeasurement/">MechanicalMeasurement</a></td>
-<td><a href="../quantity_measured/">quantity_measured</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../MechanicalMeasurement/">MechanicalMeasurement</a></td>
-<td><a href="../range_low/">range_low</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../MechanicalMeasurement/">MechanicalMeasurement</a></td>
-<td><a href="../range_high/">range_high</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../MembranePropertyMeasurement/">MembranePropertyMeasurement</a></td>
-<td><a href="../quantity_measured/">quantity_measured</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../MembranePropertyMeasurement/">MembranePropertyMeasurement</a></td>
-<td><a href="../range_low/">range_low</a></td>
-<td>range</td>
-<td><a href="./">QuantityValue</a></td>
-</tr>
-<tr>
-<td><a href="../MembranePropertyMeasurement/">MembranePropertyMeasurement</a></td>
 <td><a href="../range_high/">range_high</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
@@ -538,140 +376,230 @@
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../ExposureMaterial/">ExposureMaterial</a></td>
-<td><a href="../nominal_concentration/">nominal_concentration</a></td>
+<td><a href="../QuantityRange/">QuantityRange</a></td>
+<td><a href="../min_value/">min_value</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../ExposureMaterial/">ExposureMaterial</a></td>
-<td><a href="../applied_dose/">applied_dose</a></td>
+<td><a href="../QuantityRange/">QuantityRange</a></td>
+<td><a href="../max_value/">max_value</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../ExposureMaterial/">ExposureMaterial</a></td>
-<td><a href="../purity/">purity</a></td>
+<td><a href="../CiliaryFunctionMeasurement/">CiliaryFunctionMeasurement</a></td>
+<td><a href="../quantity_measured/">quantity_measured</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../ParticleProperties/">ParticleProperties</a></td>
-<td><a href="../particle_size/">particle_size</a></td>
+<td><a href="../CiliaryFunctionMeasurement/">CiliaryFunctionMeasurement</a></td>
+<td><a href="../range_low/">range_low</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../ParticleProperties/">ParticleProperties</a></td>
-<td><a href="../surface_area/">surface_area</a></td>
+<td><a href="../CiliaryFunctionMeasurement/">CiliaryFunctionMeasurement</a></td>
+<td><a href="../range_high/">range_high</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../ParticleProperties/">ParticleProperties</a></td>
-<td><a href="../zeta_potential/">zeta_potential</a></td>
+<td><a href="../ASLMeasurement/">ASLMeasurement</a></td>
+<td><a href="../quantity_measured/">quantity_measured</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../ParticleProperties/">ParticleProperties</a></td>
-<td><a href="../hydrodynamic_diameter/">hydrodynamic_diameter</a></td>
+<td><a href="../ASLMeasurement/">ASLMeasurement</a></td>
+<td><a href="../range_low/">range_low</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../InVitroExposure/">InVitroExposure</a></td>
-<td><a href="../time_post_exposure/">time_post_exposure</a></td>
+<td><a href="../ASLMeasurement/">ASLMeasurement</a></td>
+<td><a href="../range_high/">range_high</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../InVitroExposure/">InVitroExposure</a></td>
-<td><a href="../exposure_temperature/">exposure_temperature</a></td>
+<td><a href="../MCCMeasurement/">MCCMeasurement</a></td>
+<td><a href="../quantity_measured/">quantity_measured</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../InVitroExposure/">InVitroExposure</a></td>
-<td><a href="../effective_deposition/">effective_deposition</a></td>
+<td><a href="../MCCMeasurement/">MCCMeasurement</a></td>
+<td><a href="../range_low/">range_low</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../InVitroExposure/">InVitroExposure</a></td>
-<td><a href="../deposited_dose/">deposited_dose</a></td>
+<td><a href="../MCCMeasurement/">MCCMeasurement</a></td>
+<td><a href="../range_high/">range_high</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../InVitroExposure/">InVitroExposure</a></td>
-<td><a href="../baseline_teer/">baseline_teer</a></td>
+<td><a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
+<td><a href="../quantity_measured/">quantity_measured</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../AerosolGeneration/">AerosolGeneration</a></td>
-<td><a href="../aerosol_concentration/">aerosol_concentration</a></td>
+<td><a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
+<td><a href="../range_low/">range_low</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../AerosolGeneration/">AerosolGeneration</a></td>
-<td><a href="../aerosol_flow_rate/">aerosol_flow_rate</a></td>
+<td><a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
+<td><a href="../range_high/">range_high</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../AerosolGeneration/">AerosolGeneration</a></td>
-<td><a href="../aerosol_exposure_duration/">aerosol_exposure_duration</a></td>
+<td><a href="../CFTRMeasurement/">CFTRMeasurement</a></td>
+<td><a href="../quantity_measured/">quantity_measured</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../AerosolGeneration/">AerosolGeneration</a></td>
-<td><a href="../mass_median_aerodynamic_diameter/">mass_median_aerodynamic_diameter</a></td>
+<td><a href="../CFTRMeasurement/">CFTRMeasurement</a></td>
+<td><a href="../range_low/">range_low</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../SamplePreparation/">SamplePreparation</a></td>
-<td><a href="../equilibration_time/">equilibration_time</a></td>
+<td><a href="../CFTRMeasurement/">CFTRMeasurement</a></td>
+<td><a href="../range_high/">range_high</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../Analysis/">Analysis</a></td>
-<td><a href="../pixel_size/">pixel_size</a></td>
+<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
+<td><a href="../quantity_measured/">quantity_measured</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../Analysis/">Analysis</a></td>
-<td><a href="../voxel_depth/">voxel_depth</a></td>
+<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
+<td><a href="../range_low/">range_low</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../Analysis/">Analysis</a></td>
-<td><a href="../z_step_size/">z_step_size</a></td>
+<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
+<td><a href="../range_high/">range_high</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../Analysis/">Analysis</a></td>
-<td><a href="../temporal_resolution/">temporal_resolution</a></td>
+<td><a href="../ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
+<td><a href="../quantity_measured/">quantity_measured</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../Analysis/">Analysis</a></td>
-<td><a href="../acquisition_duration/">acquisition_duration</a></td>
+<td><a href="../ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
+<td><a href="../range_low/">range_low</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
 <tr>
-<td><a href="../Analysis/">Analysis</a></td>
-<td><a href="../frame_rate/">frame_rate</a></td>
+<td><a href="../ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
+<td><a href="../range_high/">range_high</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../EGFRPhosphorylationMeasurement/">EGFRPhosphorylationMeasurement</a></td>
+<td><a href="../quantity_measured/">quantity_measured</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../EGFRPhosphorylationMeasurement/">EGFRPhosphorylationMeasurement</a></td>
+<td><a href="../range_low/">range_low</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../EGFRPhosphorylationMeasurement/">EGFRPhosphorylationMeasurement</a></td>
+<td><a href="../range_high/">range_high</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../GobletCellMucinMeasurement/">GobletCellMucinMeasurement</a></td>
+<td><a href="../quantity_measured/">quantity_measured</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../GobletCellMucinMeasurement/">GobletCellMucinMeasurement</a></td>
+<td><a href="../range_low/">range_low</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../GobletCellMucinMeasurement/">GobletCellMucinMeasurement</a></td>
+<td><a href="../range_high/">range_high</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../BALFSputumMeasurement/">BALFSputumMeasurement</a></td>
+<td><a href="../quantity_measured/">quantity_measured</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../BALFSputumMeasurement/">BALFSputumMeasurement</a></td>
+<td><a href="../range_low/">range_low</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../BALFSputumMeasurement/">BALFSputumMeasurement</a></td>
+<td><a href="../range_high/">range_high</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
+<td><a href="../quantity_measured/">quantity_measured</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
+<td><a href="../range_low/">range_low</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
+<td><a href="../range_high/">range_high</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../FoxJMeasurement/">FoxJMeasurement</a></td>
+<td><a href="../quantity_measured/">quantity_measured</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../FoxJMeasurement/">FoxJMeasurement</a></td>
+<td><a href="../range_low/">range_low</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../FoxJMeasurement/">FoxJMeasurement</a></td>
+<td><a href="../range_high/">range_high</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
@@ -693,11 +621,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>fhir:Quantity</td>
+<td>outcomes_working_group:QuantityValue</td>
 </tr>
 <tr>
 <td>native</td>
-<td>owg:QuantityValue</td>
+<td>outcomes_working_group:QuantityValue</td>
 </tr>
 </tbody>
 </table>
@@ -706,49 +634,22 @@
 <h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A quantity with a numeric value and unit of measurement</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A quantity with a numeric value and unit of measurement.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">unit</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The unit of measurement</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">value</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The numeric value of the quantity</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fhir:Quantity</span>
+<span class="nt">slots</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A quantity with a numeric value and unit of measurement</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A quantity with a numeric value and unit of measurement.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">unit</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The unit of measurement</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">value</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The numeric value of the quantity</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The numeric value of the quantity.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value</span>
@@ -756,7 +657,18 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fhir:Quantity</span>
+<span class="w">  </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The unit of measurement.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityRange</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
 </article>

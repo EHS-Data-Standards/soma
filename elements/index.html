@@ -14,6 +14,8 @@
         <link rel="prev" href="..">
       
       
+        <link rel="next" href="../examples/">
+      
       
         
       
@@ -70,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#outcome-measurement-data-model" class="md-skip">
+        <a href="#outcomes-working-group-schema" class="md-skip">
           Skip to content
         </a>
       
@@ -382,7 +384,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../about.md" class="md-nav__link">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
         
   
   
@@ -503,8 +532,8 @@
   
 
 
-<h1 id="outcome-measurement-data-model">Outcome Measurement Data Model</h1>
-<p>A LinkML data model for representing biological measurements, assays, and experimental protocols in the context of outcomes research.</p>
+<h1 id="outcomes-working-group-schema">Outcomes Working Group Schema</h1>
+<p>A LinkML data model for representing biological measurements, assays, and experimental protocols in the context of outcomes research. This is the main entry point that imports the measurement base schema and domain-specific microschemas.</p>
 <p>URI: https://w3id.org/EHS-Data-Standards/outcomes_working_group</p>
 <p>Name: outcomes_working_group</p>
 <h2 id="classes">Classes</h2>
@@ -517,80 +546,76 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="ASLMeasurement/">ASLMeasurement</a></td>
+<td>Measurement of airway surface liquid properties including ASL height, pericil...</td>
+</tr>
+<tr>
+<td><a href="Assay/">Assay</a></td>
+<td>A test or experiment used to measure a specific biological or chemical activi...</td>
+</tr>
+<tr>
+<td><a href="BALFSputumMeasurement/">BALFSputumMeasurement</a></td>
+<td>Measurement of bronchoalveolar lavage fluid (BALF) or sputum components inclu...</td>
+</tr>
+<tr>
+<td><a href="CFTRMeasurement/">CFTRMeasurement</a></td>
+<td>Measurement of CFTR (cystic fibrosis transmembrane conductance regulator) fun...</td>
+</tr>
+<tr>
+<td><a href="CiliaryFunctionMeasurement/">CiliaryFunctionMeasurement</a></td>
+<td>Measurement of ciliary function including beat frequency, active area, cilia ...</td>
+</tr>
+<tr>
 <td><a href="Container/">Container</a></td>
 <td>A container for collections of measurements and related entities</td>
 </tr>
 <tr>
-<td><a href="NamedThing/">NamedThing</a></td>
-<td>A generic grouping for any identifiable entity in the exposome</td>
+<td><a href="FoxJMeasurement/">FoxJMeasurement</a></td>
+<td>Measurement of FoxJ1 expression and related ciliogenesis markers</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AdverseOutcomePathway/">AdverseOutcomePathway</a></td>
-<td>A sequence of causally linked events at different levels of biological organi...</td>
+<td><a href="GobletCellMucinMeasurement/">GobletCellMucinMeasurement</a></td>
+<td>Measurement of goblet cell populations and mucin production including goblet ...</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AerosolGeneration/">AerosolGeneration</a></td>
-<td>Parameters describing aerosol generation for inhalation toxicology studies</td>
+<td><a href="InVitroContext/">InVitroContext</a></td>
+<td>Context slots for in vitro measurements using cell culture systems</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Analysis/">Analysis</a></td>
-<td>Data analysis and processing parameters describing how measurement data was a...</td>
+<td><a href="InVivoContext/">InVivoContext</a></td>
+<td>Context slots for in vivo measurements from human or animal subjects</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Association/">Association</a></td>
-<td>A relationship between two entities</td>
+<td><a href="LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
+<td>Measurement of lung function parameters via spirometry and other pulmonary fu...</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ChemicalToGeneAssociation/">ChemicalToGeneAssociation</a></td>
-<td>An association between a chemical and a gene</td>
+<td><a href="MCCMeasurement/">MCCMeasurement</a></td>
+<td>Measurement of mucociliary clearance and transport including mucus transport ...</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposureToPhenotypeAssociation/">ExposureToPhenotypeAssociation</a></td>
-<td>An association between an exposure and a phenotype</td>
+<td><a href="Measurement/">Measurement</a></td>
+<td>The result of applying an assay to a specific sample at a specific time, prod...</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GeneToDiseaseAssociation/">GeneToDiseaseAssociation</a></td>
-<td>An association between a gene and a disease</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="EGFRPhosphorylationMeasurement/">EGFRPhosphorylationMeasurement</a></td>
+<td>Measurement of EGFR (epidermal growth factor receptor) phosphorylation</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="KeyEventRelationship/">KeyEventRelationship</a></td>
-<td>A directional relationship between two key events in an AOP</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
+<td>A measurement of gene expression (mRNA level) in a specific biological contex...</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="BiologicalEntity/">BiologicalEntity</a></td>
-<td>Biological entities including genes, proteins, cells, and anatomical structur...</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
+<td>A measurement of protein expression or post-translational modification (e</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AnatomicalEntity/">AnatomicalEntity</a></td>
-<td>An anatomical structure or system</td>
+<td><a href="Method/">Method</a></td>
+<td>A general approach or technique used to collect, measure, or analyze data (e</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CellType/">CellType</a></td>
-<td>A type of cell</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Gene/">Gene</a></td>
-<td>A gene or genetic element</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Organism/">Organism</a></td>
-<td>An individual organism</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Protein/">Protein</a></td>
-<td>A protein or polypeptide</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="BiologicalResponse/">BiologicalResponse</a></td>
-<td>A biological response at the molecular, cellular, or tissue level</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="KeyEvent/">KeyEvent</a></td>
-<td>A measurable change in biological state that is a step in an Adverse Outcome ...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MolecularInitiatingEvent/">MolecularInitiatingEvent</a></td>
-<td>The initial molecular-level perturbation that starts an Adverse Outcome Pathw...</td>
+<td><a href="NamedEntity/">NamedEntity</a></td>
+<td>A reference to an entity with an identifier and name</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CellCultureConditions/">CellCultureConditions</a></td>
@@ -605,200 +630,44 @@
 <td>A cell line - a genetically stable cultured cell population that contains ind...</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ChemicalEntity/">ChemicalEntity</a></td>
-<td>A chemical entity including compounds, drugs, and metabolites</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposableSubject/">ExposableSubject</a></td>
-<td>An entity that can be exposed to a substance or environmental factor</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ModelSystem/">ModelSystem</a></td>
-<td>Abstract base class for model systems used in biomedical research</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CellularSystem/">CellularSystem</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CellularSystem/">CellularSystem</a></td>
 <td>Cell-based model systems that use living cells to model biological processes</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CoCulture/">CoCulture</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CoCulture/">CoCulture</a></td>
 <td>Co-culture systems combining multiple cell types to simulate tissue microenvi...</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ThreeDCellCulture/">ThreeDCellCulture</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ThreeDCellCulture/">ThreeDCellCulture</a></td>
 <td>Three-dimensional cell culture systems including spheroids, organoids, and sc...</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TwoDCellCulture/">TwoDCellCulture</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TwoDCellCulture/">TwoDCellCulture</a></td>
 <td>Conventional monolayer cell cultures grown on flat surfaces</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposureEvent/">ExposureEvent</a></td>
-<td>An event in which an organism is exposed to a chemical or environmental facto...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ChemicalExposure/">ChemicalExposure</a></td>
-<td>Exposure to a chemical substance</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DietaryExposure/">DietaryExposure</a></td>
-<td>Exposure through dietary consumption</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="EnvironmentalExposure/">EnvironmentalExposure</a></td>
-<td>Exposure to environmental factors</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="InVitroExposure/">InVitroExposure</a></td>
-<td>An in vitro exposure event describing how cells or tissues were exposed to a ...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="OccupationalExposure/">OccupationalExposure</a></td>
-<td>Exposure in an occupational setting</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposureMaterial/">ExposureMaterial</a></td>
-<td>Detailed specification of the test article or substance used in an exposure e...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GeographicEntity/">GeographicEntity</a></td>
-<td>Abstract base class for geographic entities used in synthetic population mode...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="BlockGroup/">BlockGroup</a></td>
-<td>A statistical division within a census tract, typically containing between 60...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CensusTract/">CensusTract</a></td>
-<td>A census tract is a small, relatively permanent geographic area within a coun...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="County/">County</a></td>
-<td>A county or equivalent administrative subdivision with associated properties</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PublicUseMicrodataArea/">PublicUseMicrodataArea</a></td>
-<td>Public Use Microdata Areas (PUMAs) are non-overlapping, statistical geographi...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="State/">State</a></td>
-<td>A U</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="HealthOutcome/">HealthOutcome</a></td>
-<td>A health-related outcome including phenotypes and diseases</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AdverseOutcome/">AdverseOutcome</a></td>
-<td>An adverse health outcome in the context of an Adverse Outcome Pathway</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Disease/">Disease</a></td>
-<td>A disease or medical condition</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Phenotype/">Phenotype</a></td>
-<td>An observable characteristic or trait</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Household/">Household</a></td>
-<td>A household entity representing a group of people living together in a single...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Measurement/">Measurement</a></td>
-<td>A measurement observation with a typed quantity value and optional reference ...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AggregatedMeasurement/">AggregatedMeasurement</a></td>
-<td>An aggregated or summary measurement across a cohort or population</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="BiomarkerMeasurement/">BiomarkerMeasurement</a></td>
-<td>A measurement of a biological marker</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="EnvironmentalMeasurement/">EnvironmentalMeasurement</a></td>
-<td>A measurement of environmental conditions for cell culture systems including ...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposureMeasurement/">ExposureMeasurement</a></td>
-<td>A measurement of exposure to a chemical or environmental factor</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
-<td>A measurement of gene expression (mRNA level) in a specific biological contex...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MechanicalMeasurement/">MechanicalMeasurement</a></td>
-<td>A measurement of mechanical stimulation parameters for advanced culture syste...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MembranePropertyMeasurement/">MembranePropertyMeasurement</a></td>
-<td>A measurement of membrane properties for transwell, ALI, and organ-on-chip cu...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PhenotypeMeasurement/">PhenotypeMeasurement</a></td>
-<td>A measurement of a phenotypic trait or functional assay</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
-<td>A measurement of protein expression or post-translational modification (e</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MediumSupplement/">MediumSupplement</a></td>
 <td>Supplement or additive to cell culture medium</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="OntologyTerm/">OntologyTerm</a></td>
-<td>A reference to an ontology term with both identifier and human-readable name</td>
+<td><a href="OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
+<td>Measurement of oxidative stress markers including reactive oxygen species, li...</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ParticleProperties/">ParticleProperties</a></td>
-<td>Physical and chemical properties of particulate test materials including nano...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Person/">Person</a></td>
-<td>A person (individual human being) with demographic and geographic attributes</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SamplePreparation/">SamplePreparation</a></td>
-<td>Pre-exposure sample preparation procedures for in vitro systems</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="School/">School</a></td>
-<td>A school entity representing an educational institution where synthetic popul...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="StudyEntity/">StudyEntity</a></td>
-<td>Entities related to studies, cohorts, and participants</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Cohort/">Cohort</a></td>
-<td>A group of individuals in a study</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Participant/">Participant</a></td>
-<td>A role representing an individual's participation in a study</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Study/">Study</a></td>
-<td>A research study or survey</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tissue/">Tissue</a></td>
-<td>A reference to an anatomical tissue or structure with identifier and name</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Unit/">Unit</a></td>
-<td>A unit of measurement from a standard ontology (UO, UCUM, QUDT)</td>
+<td><a href="Protocol/">Protocol</a></td>
+<td>A detailed set of steps for how to perform a test or collect data; protocols ...</td>
 </tr>
 <tr>
 <td><a href="QuantityRange/">QuantityRange</a></td>
-<td>A range of quantities with lower and upper bounds</td>
+<td>A range of quantity values with minimum and maximum bounds</td>
 </tr>
 <tr>
 <td><a href="QuantityValue/">QuantityValue</a></td>
 <td>A quantity with a numeric value and unit of measurement</td>
+</tr>
+<tr>
+<td><a href="Unit/">Unit</a></td>
+<td>A unit of measurement from a standard ontology (UO, UCUM, QUDT)</td>
 </tr>
 </tbody>
 </table>
@@ -812,212 +681,60 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="abbreviation/">abbreviation</a></td>
-<td>Standard two-letter abbreviation for a U</td>
-</tr>
-<tr>
-<td><a href="acquisition_duration/">acquisition_duration</a></td>
-<td>Total duration of video or time-series acquisition</td>
-</tr>
-<tr>
-<td><a href="adverse_outcome/">adverse_outcome</a></td>
-<td>The adverse outcome of an AOP</td>
-</tr>
-<tr>
-<td><a href="adverse_outcome_pathways/">adverse_outcome_pathways</a></td>
-<td>Collection of adverse outcome pathways in the container</td>
-</tr>
-<tr>
-<td><a href="adverse_outcomes/">adverse_outcomes</a></td>
-<td>Collection of adverse outcomes in the container</td>
-</tr>
-<tr>
-<td><a href="aerosol_characterization_method/">aerosol_characterization_method</a></td>
-<td>Methods used to characterize aerosol (e</td>
-</tr>
-<tr>
-<td><a href="aerosol_concentration/">aerosol_concentration</a></td>
-<td>Concentration of aerosol in the exposure chamber or at the ALI</td>
-</tr>
-<tr>
-<td><a href="aerosol_exposure_duration/">aerosol_exposure_duration</a></td>
-<td>Duration of aerosol exposure</td>
-</tr>
-<tr>
-<td><a href="aerosol_flow_rate/">aerosol_flow_rate</a></td>
-<td>Flow rate of aerosol delivery system</td>
-</tr>
-<tr>
-<td><a href="aerosol_generation/">aerosol_generation</a></td>
-<td>Parameters for aerosol generation (for inhalation studies)</td>
-</tr>
-<tr>
-<td><a href="aerosol_generation_equipment/">aerosol_generation_equipment</a></td>
-<td>Equipment used for aerosol generation (e</td>
-</tr>
-<tr>
-<td><a href="aerosol_generation_method/">aerosol_generation_method</a></td>
-<td>Method used to generate the aerosol (nebulization, condensation, etc</td>
-</tr>
-<tr>
-<td><a href="aerosol_generations/">aerosol_generations</a></td>
-<td>Collection of aerosol generation specifications</td>
-</tr>
-<tr>
-<td><a href="affected_anatomy/">affected_anatomy</a></td>
-<td>Anatomical location affected</td>
-</tr>
-<tr>
-<td><a href="age/">age</a></td>
-<td>Age in years</td>
-</tr>
-<tr>
-<td><a href="agglomeration_state/">agglomeration_state</a></td>
-<td>State of agglomeration/aggregation in the exposure medium</td>
-</tr>
-<tr>
-<td><a href="aggregated_measurements/">aggregated_measurements</a></td>
-<td>Collection of aggregated or summary measurements in the container</td>
-</tr>
-<tr>
-<td><a href="algorithm_type/">algorithm_type</a></td>
-<td>Type of algorithm used for analysis (e</td>
-</tr>
-<tr>
-<td><a href="analyses/">analyses</a></td>
-<td>Collection of data analysis specifications</td>
-</tr>
-<tr>
-<td><a href="analysis/">analysis</a></td>
-<td>Reference to the analysis method and parameters used for this measurement</td>
-</tr>
-<tr>
-<td><a href="analysis_software/">analysis_software</a></td>
-<td>Software used for data analysis (e</td>
-</tr>
-<tr>
-<td><a href="analysis_software_version/">analysis_software_version</a></td>
-<td>Version of the analysis software used</td>
-</tr>
-<tr>
-<td><a href="anatomical_entities/">anatomical_entities</a></td>
-<td>Collection of anatomical entities in the container</td>
+<td><a href="anatomical_context/">anatomical_context</a></td>
+<td>The anatomical location or tissue from which the measurement was taken</td>
 </tr>
 <tr>
 <td><a href="anatomical_origin/">anatomical_origin</a></td>
 <td>The anatomical location from which cells were derived (e</td>
 </tr>
 <tr>
-<td><a href="aopwiki_id/">aopwiki_id</a></td>
-<td>AOP Wiki identifier</td>
-</tr>
-<tr>
-<td><a href="applied_dose/">applied_dose</a></td>
-<td>The dose applied to cells or tissue (may differ from nominal concentration)</td>
+<td><a href="antibody_used/">antibody_used</a></td>
+<td>Antibodies used in staining or detection</td>
 </tr>
 <tr>
 <td><a href="asl_measurements/">asl_measurements</a></td>
-<td>Collection of airway surface liquid measurements in the container</td>
+<td>Collection of airway surface liquid measurements</td>
 </tr>
 <tr>
-<td><a href="assay_method/">assay_method</a></td>
-<td>The experimental method used to measure expression</td>
+<td><a href="assay/">assay</a></td>
+<td>The Assay used to produce this measurement</td>
 </tr>
 <tr>
-<td><a href="assigned_school/">assigned_school</a></td>
-<td>School assigned to a person for modeling purposes</td>
-</tr>
-<tr>
-<td><a href="association_type/">association_type</a></td>
-<td>Type of association</td>
+<td><a href="assays/">assays</a></td>
+<td>Collection of assays</td>
 </tr>
 <tr>
 <td><a href="authentication_method/">authentication_method</a></td>
 <td>Method used to authenticate the cell line (e</td>
 </tr>
 <tr>
-<td><a href="automation_level/">automation_level</a></td>
-<td>Level of automation in data processing (manual, semi-automated, fully automat...</td>
-</tr>
-<tr>
-<td><a href="barrier_measurements/">barrier_measurements</a></td>
-<td>Collection of epithelial barrier function measurements in the container</td>
+<td><a href="balf_sputum_measurements/">balf_sputum_measurements</a></td>
+<td>Collection of BALF and sputum measurements</td>
 </tr>
 <tr>
 <td><a href="base_medium/">base_medium</a></td>
 <td>Base medium type (e</td>
 </tr>
 <tr>
-<td><a href="baseline_definition/">baseline_definition</a></td>
-<td>How baseline is defined (e</td>
-</tr>
-<tr>
-<td><a href="baseline_teer/">baseline_teer</a></td>
-<td>Baseline TEER measurement before exposure, used to assess barrier integrity</td>
-</tr>
-<tr>
-<td><a href="biological_action/">biological_action</a></td>
-<td>Biological action or change</td>
-</tr>
-<tr>
-<td><a href="biological_object/">biological_object</a></td>
-<td>Biological object involved</td>
-</tr>
-<tr>
-<td><a href="biological_process/">biological_process</a></td>
-<td>Biological process involved</td>
-</tr>
-<tr>
-<td><a href="biomarker_measurements/">biomarker_measurements</a></td>
-<td>Collection of biomarker measurements in the container</td>
-</tr>
-<tr>
-<td><a href="biomarker_type/">biomarker_type</a></td>
-<td>Type of biomarker</td>
-</tr>
-<tr>
-<td><a href="block_group_federal_information_processing_standard_code/">block_group_federal_information_processing_standard_code</a></td>
-<td>Block group-level Federal Information Processing Standard (FIPS) code</td>
-</tr>
-<tr>
-<td><a href="block_groups/">block_groups</a></td>
-<td>Block groups within a census tract</td>
-</tr>
-<tr>
-<td><a href="cas_number/">cas_number</a></td>
-<td>CAS Registry Number</td>
-</tr>
-<tr>
 <td><a href="catalog_number/">catalog_number</a></td>
-<td>Catalog number from manufacturer</td>
-</tr>
-<tr>
-<td><a href="category/">category</a></td>
-<td>A category or type for a thing</td>
+<td>Catalog or product number from the supplier</td>
 </tr>
 <tr>
 <td><a href="cell_culture_growth_mode/">cell_culture_growth_mode</a></td>
 <td>Mode of cell culture growth (adherent, suspension, ALI, 3D, etc</td>
 </tr>
 <tr>
-<td><a href="cell_culture_type/">cell_culture_type</a></td>
-<td>The cell type being cultured, with ontology reference</td>
+<td><a href="cell_culture_system/">cell_culture_system</a></td>
+<td>The cell culture system used for this measurement</td>
 </tr>
 <tr>
 <td><a href="cell_line/">cell_line</a></td>
-<td>The cell line used in the culture system</td>
+<td>Reference to the cell line used in this culture system</td>
 </tr>
 <tr>
-<td><a href="cell_line_lineage/">cell_line_lineage</a></td>
-<td>The lineage or derivation history of the cell line, including original tissue...</td>
-</tr>
-<tr>
-<td><a href="cell_line_modification/">cell_line_modification</a></td>
-<td>Genetic or other modifications applied to the cell line (e</td>
-</tr>
-<tr>
-<td><a href="cell_lines/">cell_lines</a></td>
-<td>Collection of cell lines</td>
+<td><a href="cell_type/">cell_type</a></td>
+<td>The cell type being cultured, with ontology reference</td>
 </tr>
 <tr>
 <td><a href="cell_type_context/">cell_type_context</a></td>
@@ -1028,56 +745,12 @@
 <td>Ratios between different cell types in co-culture (e</td>
 </tr>
 <tr>
-<td><a href="cell_types/">cell_types</a></td>
-<td>Collection of cell types in the container</td>
-</tr>
-<tr>
-<td><a href="cellular_systems/">cellular_systems</a></td>
-<td>Collection of cellular systems</td>
-</tr>
-<tr>
-<td><a href="census_tract_federal_information_processing_standard_code/">census_tract_federal_information_processing_standard_code</a></td>
-<td>Census tract-level Federal Information Processing Standard (FIPS) code</td>
-</tr>
-<tr>
-<td><a href="census_tracts/">census_tracts</a></td>
-<td>Census tracts within a county</td>
-</tr>
-<tr>
-<td><a href="chebi_id/">chebi_id</a></td>
-<td>ChEBI identifier</td>
-</tr>
-<tr>
-<td><a href="chembl_id/">chembl_id</a></td>
-<td>ChEMBL compound identifier</td>
-</tr>
-<tr>
-<td><a href="chemical/">chemical</a></td>
-<td>Chemical in association</td>
-</tr>
-<tr>
-<td><a href="chemical_exposures/">chemical_exposures</a></td>
-<td>Collection of chemical exposure events in the container</td>
-</tr>
-<tr>
-<td><a href="chemical_form/">chemical_form</a></td>
-<td>Physical form of the test substance (solid, aerosol, solution, vapor, etc</td>
-</tr>
-<tr>
-<td><a href="chemicals/">chemicals</a></td>
-<td>Collection of chemical entities in the container</td>
+<td><a href="cftr_measurements/">cftr_measurements</a></td>
+<td>Collection of CFTR function measurements</td>
 </tr>
 <tr>
 <td><a href="ciliary_measurements/">ciliary_measurements</a></td>
-<td>Collection of ciliary function measurements in the container</td>
-</tr>
-<tr>
-<td><a href="cl_id/">cl_id</a></td>
-<td>Cell Ontology identifier</td>
-</tr>
-<tr>
-<td><a href="co_cultures/">co_cultures</a></td>
-<td>Collection of co-cultures</td>
+<td>Collection of ciliary function measurements</td>
 </tr>
 <tr>
 <td><a href="coating/">coating</a></td>
@@ -1088,48 +761,20 @@
 <td>Physical configuration of co-culture (direct contact, transwell, microfluidic...</td>
 </tr>
 <tr>
-<td><a href="cohort/">cohort</a></td>
-<td>The cohort for aggregated measurements</td>
+<td><a href="collection_date/">collection_date</a></td>
+<td>Date when the sample was collected</td>
 </tr>
 <tr>
-<td><a href="cohort_size/">cohort_size</a></td>
-<td>Number of participants in cohort</td>
-</tr>
-<tr>
-<td><a href="cohorts/">cohorts</a></td>
-<td>Collection of study cohorts in the container</td>
-</tr>
-<tr>
-<td><a href="comparison_to_historical_controls/">comparison_to_historical_controls</a></td>
-<td>How data were compared to historical control values</td>
-</tr>
-<tr>
-<td><a href="composition/">composition</a></td>
-<td>Detailed composition of the test material, especially for complex mixtures</td>
+<td><a href="collection_site/">collection_site</a></td>
+<td>Anatomical site of sample collection (e</td>
 </tr>
 <tr>
 <td><a href="concentration/">concentration</a></td>
-<td>Concentration of supplement or reagent</td>
+<td>Concentration of the supplement or reagent</td>
 </tr>
 <tr>
 <td><a href="confluence_level/">confluence_level</a></td>
 <td>Confluence level of adherent culture as percentage</td>
-</tr>
-<tr>
-<td><a href="control_description/">control_description</a></td>
-<td>Description of control conditions used in the experiment</td>
-</tr>
-<tr>
-<td><a href="control_type/">control_type</a></td>
-<td>Type of control used (vehicle, untreated, positive, etc</td>
-</tr>
-<tr>
-<td><a href="counties/">counties</a></td>
-<td>Counties within a state or geographic region</td>
-</tr>
-<tr>
-<td><a href="county_federal_information_processing_standard_code/">county_federal_information_processing_standard_code</a></td>
-<td>County-level Federal Information Processing Standard (FIPS) code</td>
 </tr>
 <tr>
 <td><a href="culture_conditions/">culture_conditions</a></td>
@@ -1140,440 +785,136 @@
 <td>Cell culture medium formulation with supplements</td>
 </tr>
 <tr>
-<td><a href="cytotoxicity_measurements/">cytotoxicity_measurements</a></td>
-<td>Collection of cytotoxicity measurements in the container</td>
-</tr>
-<tr>
-<td><a href="data_normalization_method/">data_normalization_method</a></td>
-<td>Method used for data normalization (per area, per cell count, baseline, contr...</td>
-</tr>
-<tr>
-<td><a href="data_transformation/">data_transformation</a></td>
-<td>Mathematical transformation applied to data (log, square root, etc</td>
-</tr>
-<tr>
 <td><a href="days_at_air_liquid_interface/">days_at_air_liquid_interface</a></td>
 <td>Number of days cells have been cultured at air-liquid interface (ALI)</td>
 </tr>
 <tr>
-<td><a href="debris_removal_method/">debris_removal_method</a></td>
-<td>Method used to remove debris from samples</td>
-</tr>
-<tr>
-<td><a href="debris_removal_performed/">debris_removal_performed</a></td>
-<td>Whether debris was removed from the sample before exposure</td>
-</tr>
-<tr>
-<td><a href="deposited_dose/">deposited_dose</a></td>
-<td>Dose that reached the cell surface (may be calculated from ISDD or measured)</td>
+<td><a href="days_at_differentiation/">days_at_differentiation</a></td>
+<td>Days at air-liquid interface or differentiation stage</td>
 </tr>
 <tr>
 <td><a href="description/">description</a></td>
-<td>A human-readable description for a thing</td>
+<td>A detailed description of the entity</td>
 </tr>
 <tr>
-<td><a href="dietary_exposures/">dietary_exposures</a></td>
-<td>Collection of dietary exposure events in the container</td>
-</tr>
-<tr>
-<td><a href="disease/">disease</a></td>
-<td>Disease in association</td>
-</tr>
-<tr>
-<td><a href="disease_category/">disease_category</a></td>
-<td>Category of disease</td>
+<td><a href="detection_method/">detection_method</a></td>
+<td>Detection method used (e</td>
 </tr>
 <tr>
 <td><a href="disease_state/">disease_state</a></td>
-<td>Disease state of the cell line donor (if applicable)</td>
-</tr>
-<tr>
-<td><a href="diseases/">diseases</a></td>
-<td>Collection of diseases in the container</td>
+<td>Disease state of the cell line (e</td>
 </tr>
 <tr>
 <td><a href="donor_count/">donor_count</a></td>
 <td>Number of unique cell donors used in the experiment</td>
 </tr>
 <tr>
-<td><a href="dose_normalization_method/">dose_normalization_method</a></td>
-<td>Method used to normalize dose (per area, per cell count, per protein, etc</td>
+<td><a href="donor_info/">donor_info</a></td>
+<td>Information about cell donor (e</td>
 </tr>
 <tr>
-<td><a href="downstream_event/">downstream_event</a></td>
-<td>Downstream key event</td>
+<td><a href="egfr_phosphorylation_measurements/">egfr_phosphorylation_measurements</a></td>
+<td>Collection of EGFR signaling measurements</td>
 </tr>
 <tr>
-<td><a href="dtxsid/">dtxsid</a></td>
-<td>EPA CompTox Dashboard identifier</td>
+<td><a href="evaporation_control/">evaporation_control</a></td>
+<td>Method used to prevent evaporation (e</td>
 </tr>
 <tr>
-<td><a href="effect_size/">effect_size</a></td>
-<td>Effect size of association</td>
+<td><a href="follows_protocol/">follows_protocol</a></td>
+<td>The Protocol that this Measurement follows</td>
 </tr>
 <tr>
-<td><a href="effective_deposition/">effective_deposition</a></td>
-<td>Actual amount of material deposited on cells (measured or calculated)</td>
+<td><a href="foxj_measurements/">foxj_measurements</a></td>
+<td>Collection of FoxJ1/ciliogenesis measurements</td>
 </tr>
 <tr>
-<td><a href="encoded_by_gene/">encoded_by_gene</a></td>
-<td>Gene that encodes this protein</td>
+<td><a href="goblet_cell_mucin_measurements/">goblet_cell_mucin_measurements</a></td>
+<td>Collection of goblet cell and mucin measurements</td>
 </tr>
 <tr>
-<td><a href="enrollment_date/">enrollment_date</a></td>
-<td>Date when the person enrolled in the study as a participant</td>
-</tr>
-<tr>
-<td><a href="enrollment_period/">enrollment_period</a></td>
-<td>Time period of enrollment</td>
-</tr>
-<tr>
-<td><a href="environmental_context/">environmental_context</a></td>
-<td>Environmental context of exposure</td>
-</tr>
-<tr>
-<td><a href="environmental_exposures/">environmental_exposures</a></td>
-<td>Collection of environmental exposure events in the container</td>
-</tr>
-<tr>
-<td><a href="environmental_measurements/">environmental_measurements</a></td>
-<td>Collection of environmental condition measurements (CO2, O2, temperature, hum...</td>
-</tr>
-<tr>
-<td><a href="equilibration_time/">equilibration_time</a></td>
-<td>Time allowed for sample equilibration before exposure</td>
-</tr>
-<tr>
-<td><a href="evidence/">evidence</a></td>
-<td>Evidence for association</td>
-</tr>
-<tr>
-<td><a href="evidence_support/">evidence_support</a></td>
-<td>Evidence supporting the relationship</td>
-</tr>
-<tr>
-<td><a href="exposed_subject/">exposed_subject</a></td>
-<td>The subject being exposed to a substance or environmental factor</td>
-</tr>
-<tr>
-<td><a href="exposed_system/">exposed_system</a></td>
-<td>The cell culture system (2D, 3D, or co-culture) that was exposed to the test ...</td>
-</tr>
-<tr>
-<td><a href="exposed_to_chemical/">exposed_to_chemical</a></td>
-<td>The chemical entity involved in the exposure</td>
-</tr>
-<tr>
-<td><a href="exposure/">exposure</a></td>
-<td>Exposure in association</td>
-</tr>
-<tr>
-<td><a href="exposure_concentration/">exposure_concentration</a></td>
-<td>Concentration of exposure</td>
-</tr>
-<tr>
-<td><a href="exposure_duration/">exposure_duration</a></td>
-<td>Duration of exposure</td>
-</tr>
-<tr>
-<td><a href="exposure_frequency/">exposure_frequency</a></td>
-<td>Frequency of exposure (e</td>
-</tr>
-<tr>
-<td><a href="exposure_material/">exposure_material</a></td>
-<td>The test material used for the exposure</td>
-</tr>
-<tr>
-<td><a href="exposure_materials/">exposure_materials</a></td>
-<td>Collection of exposure materials/test articles</td>
-</tr>
-<tr>
-<td><a href="exposure_measurements/">exposure_measurements</a></td>
-<td>Collection of exposure measurements in the container</td>
-</tr>
-<tr>
-<td><a href="exposure_medium/">exposure_medium</a></td>
-<td>Medium through which exposure occurs</td>
-</tr>
-<tr>
-<td><a href="exposure_regiment/">exposure_regiment</a></td>
-<td>Type of exposure regiment (continuous, repeated, intermittent, etc</td>
-</tr>
-<tr>
-<td><a href="exposure_route/">exposure_route</a></td>
-<td>Route of exposure</td>
-</tr>
-<tr>
-<td><a href="exposure_temperature/">exposure_temperature</a></td>
-<td>Temperature during exposure in degrees Celsius</td>
-</tr>
-<tr>
-<td><a href="exposure_to_phenotype_associations/">exposure_to_phenotype_associations</a></td>
-<td>Collection of exposure-to-phenotype associations in the container</td>
-</tr>
-<tr>
-<td><a href="federal_information_processing_standard_code/">federal_information_processing_standard_code</a></td>
-<td>Federal Information Processing Standard (FIPS) code, a unique numeric identif...</td>
-</tr>
-<tr>
-<td><a href="final_metric/">final_metric</a></td>
-<td>The final output metric reported (e</td>
-</tr>
-<tr>
-<td><a href="final_metric_unit/">final_metric_unit</a></td>
-<td>Unit of the final metric</td>
-</tr>
-<tr>
-<td><a href="flow_profile_during_imaging/">flow_profile_during_imaging</a></td>
-<td>Flow conditions during imaging (for lung-on-chip or perfusion systems)</td>
-</tr>
-<tr>
-<td><a href="food_item/">food_item</a></td>
-<td>Food item consumed</td>
-</tr>
-<tr>
-<td><a href="frame_rate/">frame_rate</a></td>
-<td>Frame rate of video acquisition in frames per second</td>
-</tr>
-<tr>
-<td><a href="gene/">gene</a></td>
-<td>Gene in association</td>
-</tr>
-<tr>
-<td><a href="gene_expression_measurements/">gene_expression_measurements</a></td>
-<td>Collection of gene expression measurements in the container</td>
-</tr>
-<tr>
-<td><a href="genes/">genes</a></td>
-<td>Collection of genes in the container</td>
-</tr>
-<tr>
-<td><a href="genetic_variant/">genetic_variant</a></td>
-<td>Genetic variant identifier</td>
-</tr>
-<tr>
-<td><a href="geographic_location/">geographic_location</a></td>
-<td>Geographic location of study</td>
-</tr>
-<tr>
-<td><a href="geometric_standard_deviation/">geometric_standard_deviation</a></td>
-<td>Geometric standard deviation of aerosol particle size distribution</td>
-</tr>
-<tr>
-<td><a href="goblet_cell_measurements/">goblet_cell_measurements</a></td>
-<td>Collection of goblet cell measurements in the container</td>
-</tr>
-<tr>
-<td><a href="household_head_age/">household_head_age</a></td>
-<td>Age of the household head (householder) in years</td>
-</tr>
-<tr>
-<td><a href="household_head_race/">household_head_race</a></td>
-<td>Race category of the household head</td>
-</tr>
-<tr>
-<td><a href="household_identifier/">household_identifier</a></td>
-<td>Unique identifier for a household within the synthetic population</td>
-</tr>
-<tr>
-<td><a href="household_income/">household_income</a></td>
-<td>Annual household income in dollars</td>
-</tr>
-<tr>
-<td><a href="household_persons/">household_persons</a></td>
-<td>Persons (individuals) within the household</td>
-</tr>
-<tr>
-<td><a href="household_size/">household_size</a></td>
-<td>Number of persons in the household</td>
-</tr>
-<tr>
-<td><a href="households/">households</a></td>
-<td>Households within a block group or geographic area</td>
-</tr>
-<tr>
-<td><a href="hydrodynamic_diameter/">hydrodynamic_diameter</a></td>
-<td>Hydrodynamic diameter measured by dynamic light scattering (DLS)</td>
+<td><a href="humidity_control/">humidity_control</a></td>
+<td>Humidity conditions during the procedure</td>
 </tr>
 <tr>
 <td><a href="id/">id</a></td>
-<td>A unique identifier for a thing</td>
+<td>A unique identifier for the entity</td>
 </tr>
 <tr>
-<td><a href="imaging_magnification/">imaging_magnification</a></td>
-<td>Microscope magnification used (e</td>
+<td><a href="imaging_duration/">imaging_duration</a></td>
+<td>Duration of imaging session</td>
 </tr>
 <tr>
-<td><a href="in_taxon/">in_taxon</a></td>
-<td>Taxonomic group</td>
+<td><a href="imaging_frame_rate/">imaging_frame_rate</a></td>
+<td>Frame rate for video/imaging acquisition (e</td>
 </tr>
 <tr>
-<td><a href="in_vitro_exposures/">in_vitro_exposures</a></td>
-<td>Collection of in vitro exposure events</td>
-</tr>
-<tr>
-<td><a href="inchi/">inchi</a></td>
-<td>InChI chemical identifier</td>
-</tr>
-<tr>
-<td><a href="inclusion_criteria/">inclusion_criteria</a></td>
-<td>Criteria for cohort inclusion</td>
-</tr>
-<tr>
-<td><a href="induced_pluripotent_stem_cell_line/">induced_pluripotent_stem_cell_line</a></td>
-<td>Whether this is an induced pluripotent stem cell (iPSC) line</td>
-</tr>
-<tr>
-<td><a href="interaction_type/">interaction_type</a></td>
-<td>Type of interaction</td>
-</tr>
-<tr>
-<td><a href="key_event_relationships/">key_event_relationships</a></td>
-<td>Relationships between key events</td>
-</tr>
-<tr>
-<td><a href="key_events/">key_events</a></td>
-<td>Key events in an AOP</td>
-</tr>
-<tr>
-<td><a href="level_of_biological_organization/">level_of_biological_organization</a></td>
-<td>Level of biological organization</td>
+<td><a href="implements_assay/">implements_assay</a></td>
+<td>The Assay that this Method implements or realizes</td>
 </tr>
 <tr>
 <td><a href="lot_number/">lot_number</a></td>
-<td>Lot or batch number</td>
+<td>Lot or batch number of the product</td>
 </tr>
 <tr>
-<td><a href="lower_bound/">lower_bound</a></td>
-<td>The lower bound of the range</td>
+<td><a href="lung_function_measurements/">lung_function_measurements</a></td>
+<td>Collection of lung function measurements</td>
 </tr>
 <tr>
 <td><a href="manufacturer/">manufacturer</a></td>
-<td>Manufacturer of the product</td>
-</tr>
-<tr>
-<td><a href="mass_median_aerodynamic_diameter/">mass_median_aerodynamic_diameter</a></td>
-<td>Mass median aerodynamic diameter of generated aerosol particles</td>
+<td>Manufacturer of the product or reagent</td>
 </tr>
 <tr>
 <td><a href="matrix_composition/">matrix_composition</a></td>
 <td>Composition of the 3D matrix or scaffold material (e</td>
 </tr>
 <tr>
+<td><a href="max_value/">max_value</a></td>
+<td>Maximum value in the range</td>
+</tr>
+<tr>
 <td><a href="mcc_measurements/">mcc_measurements</a></td>
-<td>Collection of mucociliary clearance measurements in the container</td>
+<td>Collection of mucociliary clearance measurements</td>
 </tr>
 <tr>
 <td><a href="measured_entity/">measured_entity</a></td>
-<td>The entity being measured, with both identifier and human-readable name</td>
+<td>The biological or chemical entity being measured (e</td>
 </tr>
 <tr>
 <td><a href="measurement_date/">measurement_date</a></td>
-<td>Date of measurement</td>
+<td>Date when the measurement was performed</td>
 </tr>
 <tr>
-<td><a href="measurement_method/">measurement_method</a></td>
-<td>Method used for measurement</td>
+<td><a href="methods/">methods</a></td>
+<td>Collection of methods</td>
 </tr>
 <tr>
-<td><a href="measurements_per_replicate/">measurements_per_replicate</a></td>
-<td>Number of images or individual measurements per replicate</td>
-</tr>
-<tr>
-<td><a href="mechanical_measurements/">mechanical_measurements</a></td>
-<td>Collection of mechanical stimulation measurements (stretch, shear, flow) for ...</td>
-</tr>
-<tr>
-<td><a href="membrane_material/">membrane_material</a></td>
-<td>Material of the porous membrane (e</td>
-</tr>
-<tr>
-<td><a href="membrane_properties/">membrane_properties</a></td>
-<td>Collection of membrane property measurements (pore size, TEER) for transwell ...</td>
+<td><a href="min_value/">min_value</a></td>
+<td>Minimum value in the range</td>
 </tr>
 <tr>
 <td><a href="model_species/">model_species</a></td>
 <td>The species of origin for the cells in the model system</td>
 </tr>
 <tr>
-<td><a href="molecular_formula/">molecular_formula</a></td>
-<td>Molecular formula</td>
-</tr>
-<tr>
-<td><a href="molecular_initiating_event/">molecular_initiating_event</a></td>
-<td>The molecular initiating event of an AOP</td>
-</tr>
-<tr>
-<td><a href="motion_stabilization_applied/">motion_stabilization_applied</a></td>
-<td>Whether motion stabilization/drift correction was applied to images or video</td>
-</tr>
-<tr>
-<td><a href="mucus_removal_method/">mucus_removal_method</a></td>
-<td>Method used to remove mucus (e</td>
-</tr>
-<tr>
-<td><a href="mucus_removal_performed/">mucus_removal_performed</a></td>
-<td>Whether mucus was removed from the apical surface before exposure</td>
-</tr>
-<tr>
 <td><a href="mycoplasma_status/">mycoplasma_status</a></td>
-<td>Mycoplasma testing status (positive, negative, not tested)</td>
+<td>Mycoplasma contamination testing status (e</td>
 </tr>
 <tr>
 <td><a href="name/">name</a></td>
-<td>A human-readable name for a thing</td>
+<td>A human-readable name for the entity</td>
 </tr>
 <tr>
-<td><a href="ncbigene_id/">ncbigene_id</a></td>
-<td>NCBI Gene identifier</td>
-</tr>
-<tr>
-<td><a href="nominal_concentration/">nominal_concentration</a></td>
-<td>Nominal or intended concentration of the test substance as prepared</td>
-</tr>
-<tr>
-<td><a href="normalization_performed/">normalization_performed</a></td>
-<td>Whether data normalization was performed</td>
+<td><a href="normalization_method/">normalization_method</a></td>
+<td>Method used for data normalization</td>
 </tr>
 <tr>
 <td><a href="normalization_reference/">normalization_reference</a></td>
 <td>The reference gene or protein used for normalization (e</td>
 </tr>
 <tr>
-<td><a href="number_of_replicates/">number_of_replicates</a></td>
-<td>Number of replicate wells/inserts/samples per condition</td>
-</tr>
-<tr>
-<td><a href="number_of_z_slices/">number_of_z_slices</a></td>
-<td>Number of Z-slices in an optical stack</td>
-</tr>
-<tr>
 <td><a href="observation_type/">observation_type</a></td>
-<td>The type of observation being represented</td>
-</tr>
-<tr>
-<td><a href="occupation/">occupation</a></td>
-<td>Occupation related to exposure</td>
-</tr>
-<tr>
-<td><a href="occupational_exposures/">occupational_exposures</a></td>
-<td>Collection of occupational exposure events in the container</td>
-</tr>
-<tr>
-<td><a href="occurs_in_anatomy/">occurs_in_anatomy</a></td>
-<td>Anatomical location where event occurs</td>
-</tr>
-<tr>
-<td><a href="occurs_in_cell_type/">occurs_in_cell_type</a></td>
-<td>Cell type where event occurs</td>
-</tr>
-<tr>
-<td><a href="onset_age/">onset_age</a></td>
-<td>Age of onset</td>
-</tr>
-<tr>
-<td><a href="organisms/">organisms</a></td>
-<td>Collection of organisms in the container</td>
+<td>The type of observation being measured</td>
 </tr>
 <tr>
 <td><a href="organoid_type/">organoid_type</a></td>
@@ -1581,331 +922,115 @@
 </tr>
 <tr>
 <td><a href="osmolality/">osmolality</a></td>
-<td>Osmolality of the medium in mOsm/kg</td>
-</tr>
-<tr>
-<td><a href="outcome_level/">outcome_level</a></td>
-<td>Level of biological organization</td>
-</tr>
-<tr>
-<td><a href="outlier_detection_method/">outlier_detection_method</a></td>
-<td>Method used for outlier detection (e</td>
-</tr>
-<tr>
-<td><a href="outlier_removal_performed/">outlier_removal_performed</a></td>
-<td>Whether outliers were removed from the dataset</td>
+<td>Osmolality of the culture medium</td>
 </tr>
 <tr>
 <td><a href="oxidative_stress_measurements/">oxidative_stress_measurements</a></td>
-<td>Collection of oxidative stress biomarker measurements in the container</td>
-</tr>
-<tr>
-<td><a href="p_value/">p_value</a></td>
-<td>Statistical p-value</td>
-</tr>
-<tr>
-<td><a href="part_of_cohort/">part_of_cohort</a></td>
-<td>Cohort that this participant is part of</td>
-</tr>
-<tr>
-<td><a href="part_of_study/">part_of_study</a></td>
-<td>Study that this cohort is part of</td>
+<td>Collection of oxidative stress measurements</td>
 </tr>
 <tr>
 <td><a href="participant/">participant</a></td>
-<td>The participant being measured</td>
-</tr>
-<tr>
-<td><a href="participant_id/">participant_id</a></td>
-<td>Participant identifier</td>
-</tr>
-<tr>
-<td><a href="participants/">participants</a></td>
-<td>Collection of study participants in the container</td>
-</tr>
-<tr>
-<td><a href="particle_composition/">particle_composition</a></td>
-<td>Chemical composition of particles if different from bulk material</td>
-</tr>
-<tr>
-<td><a href="particle_morphology/">particle_morphology</a></td>
-<td>Particle shape and morphology (e</td>
-</tr>
-<tr>
-<td><a href="particle_properties/">particle_properties</a></td>
-<td>Physical properties of particulate test materials</td>
-</tr>
-<tr>
-<td><a href="particle_properties_collection/">particle_properties_collection</a></td>
-<td>Collection of particle property characterizations</td>
-</tr>
-<tr>
-<td><a href="particle_size/">particle_size</a></td>
-<td>Primary particle size (e</td>
-</tr>
-<tr>
-<td><a href="particle_size_distribution/">particle_size_distribution</a></td>
-<td>Description of particle size distribution (e</td>
+<td>The study participant from whom the measurement was taken</td>
 </tr>
 <tr>
 <td><a href="passage_number/">passage_number</a></td>
 <td>Cell passage number</td>
 </tr>
 <tr>
-<td><a href="person/">person</a></td>
-<td>The person (individual) who is participating in this study</td>
-</tr>
-<tr>
-<td><a href="person_order/">person_order</a></td>
-<td>Person's order within the household, starting from 1</td>
-</tr>
-<tr>
-<td><a href="persons/">persons</a></td>
-<td>Persons (individuals) in the container</td>
-</tr>
-<tr>
-<td><a href="phenotype/">phenotype</a></td>
-<td>The phenotype being measured, with identifier and name</td>
-</tr>
-<tr>
-<td><a href="phenotype_measurements/">phenotype_measurements</a></td>
-<td>Collection of phenotype measurements in the container</td>
-</tr>
-<tr>
-<td><a href="phenotypes/">phenotypes</a></td>
-<td>Collection of phenotypes in the container</td>
-</tr>
-<tr>
 <td><a href="phosphorylation_site/">phosphorylation_site</a></td>
 <td>For protein phosphorylation measurements, the specific amino acid residue tha...</td>
 </tr>
 <tr>
-<td><a href="pipeline_reference/">pipeline_reference</a></td>
-<td>Reference to analysis pipeline (workflow name/version, GitHub URL, DOI)</td>
-</tr>
-<tr>
-<td><a href="pixel_size/">pixel_size</a></td>
-<td>Size of image pixels in micrometers or nanometers</td>
-</tr>
-<tr>
-<td><a href="polydispersity_index/">polydispersity_index</a></td>
-<td>Polydispersity index (PDI) from DLS, indicating size distribution width</td>
-</tr>
-<tr>
-<td><a href="population/">population</a></td>
-<td>Study population description</td>
-</tr>
-<tr>
-<td><a href="pre_exposure_treatment/">pre_exposure_treatment</a></td>
-<td>Any pre-treatment applied before exposure (e</td>
-</tr>
-<tr>
 <td><a href="preparation_date/">preparation_date</a></td>
-<td>Date when medium was prepared</td>
+<td>Date when the medium or reagent was prepared</td>
 </tr>
 <tr>
-<td><a href="primary_cultured_cell/">primary_cultured_cell</a></td>
+<td><a href="primary_cell/">primary_cell</a></td>
 <td>Primary cells directly isolated from tissue, not from an established cell lin...</td>
 </tr>
 <tr>
-<td><a href="principal_investigator/">principal_investigator</a></td>
-<td>Principal investigator name</td>
+<td><a href="probe_type/">probe_type</a></td>
+<td>Type of probe used (e</td>
 </tr>
 <tr>
-<td><a href="protein_expression_measurements/">protein_expression_measurements</a></td>
-<td>Collection of protein expression measurements in the container</td>
+<td><a href="protocols/">protocols</a></td>
+<td>Collection of protocols</td>
 </tr>
 <tr>
-<td><a href="proteins/">proteins</a></td>
-<td>Collection of proteins in the container</td>
-</tr>
-<tr>
-<td><a href="pubchem_cid/">pubchem_cid</a></td>
-<td>PubChem Compound identifier</td>
-</tr>
-<tr>
-<td><a href="public_use_microdata_areas/">public_use_microdata_areas</a></td>
-<td>Public Use Microdata Areas (PUMAs) within a state</td>
-</tr>
-<tr>
-<td><a href="publications/">publications</a></td>
-<td>Related publications</td>
-</tr>
-<tr>
-<td><a href="purity/">purity</a></td>
-<td>Purity of the test substance as percentage</td>
-</tr>
-<tr>
-<td><a href="qc_acceptance_criteria/">qc_acceptance_criteria</a></td>
-<td>Criteria used to determine data validity (e</td>
-</tr>
-<tr>
-<td><a href="qc_passed/">qc_passed</a></td>
-<td>Whether the data passed quality control criteria</td>
+<td><a href="quality_control_criteria/">quality_control_criteria</a></td>
+<td>Quality control acceptance criteria for the measurement</td>
 </tr>
 <tr>
 <td><a href="quantity_measured/">quantity_measured</a></td>
 <td>The measured quantity value with its unit</td>
 </tr>
 <tr>
-<td><a href="race/">race</a></td>
-<td>Race of the person</td>
-</tr>
-<tr>
 <td><a href="range_high/">range_high</a></td>
-<td>Upper bound of reference range (e</td>
+<td>Upper bound of the reference range for this measurement type</td>
 </tr>
 <tr>
 <td><a href="range_low/">range_low</a></td>
-<td>Lower bound of reference range (e</td>
+<td>Lower bound of the reference range for this measurement type</td>
 </tr>
 <tr>
-<td><a href="raw_data_type/">raw_data_type</a></td>
-<td>Type of raw data collected (image stack, video, fluorescence intensity, etc</td>
-</tr>
-<tr>
-<td><a href="relationship_to_household_head/">relationship_to_household_head</a></td>
-<td>Relationship of the person to the household head (householder)</td>
-</tr>
-<tr>
-<td><a href="relationship_type/">relationship_type</a></td>
-<td>Type of relationship</td>
-</tr>
-<tr>
-<td><a href="replicate_combination_method/">replicate_combination_method</a></td>
-<td>Method for combining replicate measurements (mean, median, fitted model)</td>
+<td><a href="replicate_count/">replicate_count</a></td>
+<td>Number of technical replicates</td>
 </tr>
 <tr>
 <td><a href="replicates_per_donor/">replicates_per_donor</a></td>
 <td>Number of biological replicates per donor</td>
 </tr>
 <tr>
-<td><a href="sample_preparation/">sample_preparation</a></td>
-<td>Pre-exposure sample preparation procedures</td>
-</tr>
-<tr>
-<td><a href="sample_preparations/">sample_preparations</a></td>
-<td>Collection of sample preparation protocols</td>
-</tr>
-<tr>
-<td><a href="sample_size/">sample_size</a></td>
-<td>Number of samples</td>
-</tr>
-<tr>
 <td><a href="sample_type/">sample_type</a></td>
-<td>Type of biological sample</td>
-</tr>
-<tr>
-<td><a href="schools/">schools</a></td>
-<td>Schools where synthetic population persons may be assigned</td>
+<td>Type of biological sample (e</td>
 </tr>
 <tr>
 <td><a href="seeding_density/">seeding_density</a></td>
 <td>Cell seeding density (cells per cm2 or per mL)</td>
 </tr>
 <tr>
-<td><a href="serial_number/">serial_number</a></td>
-<td>Serial number linking to the original PUMS (Public Use Microdata Sample) reco...</td>
-</tr>
-<tr>
 <td><a href="serum_concentration/">serum_concentration</a></td>
-<td>Serum concentration as percentage</td>
+<td>Concentration of serum in the medium</td>
 </tr>
 <tr>
 <td><a href="serum_type/">serum_type</a></td>
 <td>Type of serum used (e</td>
 </tr>
 <tr>
-<td><a href="serving_size/">serving_size</a></td>
-<td>Serving size</td>
-</tr>
-<tr>
-<td><a href="severity/">severity</a></td>
-<td>Severity of phenotype or disease</td>
-</tr>
-<tr>
-<td><a href="sex/">sex</a></td>
-<td>Biological sex</td>
-</tr>
-<tr>
 <td><a href="size_range/">size_range</a></td>
 <td>Size range of 3D structures (diameter for spheroids/organoids)</td>
 </tr>
 <tr>
-<td><a href="smiles/">smiles</a></td>
-<td>SMILES chemical structure</td>
+<td><a href="spatial_resolution/">spatial_resolution</a></td>
+<td>Spatial resolution of imaging (e</td>
 </tr>
 <tr>
-<td><a href="source_lot_number/">source_lot_number</a></td>
-<td>Lot number from the source/manufacturer of the test article</td>
+<td><a href="specified_by_method/">specified_by_method</a></td>
+<td>The Method that this Protocol specifies in detail</td>
 </tr>
 <tr>
-<td><a href="species/">species</a></td>
-<td>Species name</td>
+<td><a href="staining_type/">staining_type</a></td>
+<td>Type of staining used (e</td>
 </tr>
 <tr>
-<td><a href="state_federal_information_processing_standard_code/">state_federal_information_processing_standard_code</a></td>
-<td>State-level Federal Information Processing Standard (FIPS) code</td>
-</tr>
-<tr>
-<td><a href="states/">states</a></td>
-<td>U</td>
-</tr>
-<tr>
-<td><a href="stratification/">stratification</a></td>
-<td>Stratification variables</td>
-</tr>
-<tr>
-<td><a href="stressors/">stressors</a></td>
-<td>Chemical stressors that trigger the AOP</td>
-</tr>
-<tr>
-<td><a href="studies/">studies</a></td>
-<td>Collection of research studies in the container</td>
-</tr>
-<tr>
-<td><a href="study_arm/">study_arm</a></td>
-<td>Study arm or group to which the participant was assigned (e</td>
-</tr>
-<tr>
-<td><a href="study_type/">study_type</a></td>
-<td>Type of study</td>
+<td><a href="subject_characteristics/">subject_characteristics</a></td>
+<td>Relevant subject characteristics (e</td>
 </tr>
 <tr>
 <td><a href="substrate_type/">substrate_type</a></td>
 <td>Type of culture substrate or surface material</td>
 </tr>
 <tr>
-<td><a href="summary_statistic/">summary_statistic</a></td>
-<td>Type of summary statistic</td>
-</tr>
-<tr>
-<td><a href="supplement_entity/">supplement_entity</a></td>
-<td>The chemical entity representing the supplement</td>
-</tr>
-<tr>
 <td><a href="supplement_type/">supplement_type</a></td>
-<td>Category of supplement (growth factor, antibiotic, hormone, vitamin, etc</td>
+<td>Category of supplement (growth factor, antibiotic, hormone, etc</td>
 </tr>
 <tr>
 <td><a href="supplements/">supplements</a></td>
-<td>List of medium supplements with concentrations</td>
+<td>List of supplements added to the culture medium</td>
 </tr>
 <tr>
 <td><a href="supplier/">supplier</a></td>
-<td>Supplier or repository of the cell line (e</td>
-</tr>
-<tr>
-<td><a href="surface_area/">surface_area</a></td>
-<td>Specific surface area of particles (e</td>
-</tr>
-<tr>
-<td><a href="surface_preparation/">surface_preparation</a></td>
-<td>Surface preparation procedures (e</td>
-</tr>
-<tr>
-<td><a href="symbol/">symbol</a></td>
-<td>Gene symbol</td>
+<td>Supplier or source of the cell line or reagent</td>
 </tr>
 <tr>
 <td><a href="target_gene/">target_gene</a></td>
@@ -1916,28 +1041,12 @@
 <td>The protein whose expression or modification is being measured, with identifi...</td>
 </tr>
 <tr>
-<td><a href="taxon_id/">taxon_id</a></td>
-<td>NCBI Taxonomy identifier</td>
-</tr>
-<tr>
-<td><a href="temporal_resolution/">temporal_resolution</a></td>
-<td>Temporal resolution for video acquisition (fps or acquisition rate)</td>
-</tr>
-<tr>
-<td><a href="test_substance/">test_substance</a></td>
-<td>The chemical entity being tested, with full identifier information</td>
+<td><a href="temperature_control/">temperature_control</a></td>
+<td>Temperature conditions during the procedure (e</td>
 </tr>
 <tr>
 <td><a href="three_d_architecture/">three_d_architecture</a></td>
 <td>Type of 3D culture architecture (spheroid, organoid, scaffold-based, etc</td>
-</tr>
-<tr>
-<td><a href="three_d_cell_cultures/">three_d_cell_cultures</a></td>
-<td>Collection of 3D cell cultures</td>
-</tr>
-<tr>
-<td><a href="time_post_exposure/">time_post_exposure</a></td>
-<td>Time elapsed between end of exposure and measurement (recovery period)</td>
 </tr>
 <tr>
 <td><a href="tissue_context/">tissue_context</a></td>
@@ -1948,68 +1057,16 @@
 <td>Tissue from which the cell line was derived</td>
 </tr>
 <tr>
-<td><a href="two_d_cell_cultures/">two_d_cell_cultures</a></td>
-<td>Collection of 2D cell cultures</td>
-</tr>
-<tr>
-<td><a href="uberon_id/">uberon_id</a></td>
-<td>UBERON anatomical identifier</td>
-</tr>
-<tr>
 <td><a href="unit/">unit</a></td>
 <td>The unit of measurement</td>
 </tr>
 <tr>
-<td><a href="unit_label/">unit_label</a></td>
-<td>A human-readable label for the unit</td>
-</tr>
-<tr>
-<td><a href="upper_bound/">upper_bound</a></td>
-<td>The upper bound of the range</td>
-</tr>
-<tr>
-<td><a href="upstream_event/">upstream_event</a></td>
-<td>Upstream key event</td>
+<td><a href="uses_method/">uses_method</a></td>
+<td>The Method used to perform this measurement</td>
 </tr>
 <tr>
 <td><a href="value/">value</a></td>
 <td>The numeric value of the quantity</td>
-</tr>
-<tr>
-<td><a href="vehicle_solvent/">vehicle_solvent</a></td>
-<td>Vehicle or solvent used to deliver the test substance (e</td>
-</tr>
-<tr>
-<td><a href="viability_normalized/">viability_normalized</a></td>
-<td>Whether data were normalized to account for cell viability/cytotoxicity</td>
-</tr>
-<tr>
-<td><a href="voxel_depth/">voxel_depth</a></td>
-<td>Depth of voxels for 3D imaging in micrometers</td>
-</tr>
-<tr>
-<td><a href="wash_steps/">wash_steps</a></td>
-<td>Description of wash steps performed before exposure (buffer, number, duration...</td>
-</tr>
-<tr>
-<td><a href="withdrawal_date/">withdrawal_date</a></td>
-<td>Date when the participant withdrew from or completed the study</td>
-</tr>
-<tr>
-<td><a href="workplace/">workplace</a></td>
-<td>Workplace where exposure occurs</td>
-</tr>
-<tr>
-<td><a href="xref/">xref</a></td>
-<td>External database cross-references</td>
-</tr>
-<tr>
-<td><a href="z_step_size/">z_step_size</a></td>
-<td>Z-step size for optical stacks (usually in micrometers)</td>
-</tr>
-<tr>
-<td><a href="zeta_potential/">zeta_potential</a></td>
-<td>Zeta potential in mV, indicating surface charge in the vehicle/medium</td>
 </tr>
 </tbody>
 </table>
@@ -2023,100 +1080,68 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="AerosolGenerationMethodEnum/">AerosolGenerationMethodEnum</a></td>
-<td>Methods for generating aerosols in inhalation toxicology studies</td>
+<td><a href="ASLObservationTypeEnum/">ASLObservationTypeEnum</a></td>
+<td>Observation types for airway surface liquid measurements</td>
 </tr>
 <tr>
-<td><a href="AutomationLevelEnum/">AutomationLevelEnum</a></td>
-<td>Level of automation in data processing and analysis</td>
-</tr>
-<tr>
-<td><a href="BiologicalOrganizationLevelEnum/">BiologicalOrganizationLevelEnum</a></td>
-<td>Levels of biological organization</td>
+<td><a href="BALFSputumObservationTypeEnum/">BALFSputumObservationTypeEnum</a></td>
+<td>Observation types for BALF and sputum measurements</td>
 </tr>
 <tr>
 <td><a href="CellCultureGrowthModeEnum/">CellCultureGrowthModeEnum</a></td>
 <td>Cell culture growth modes including traditional and advanced systems</td>
 </tr>
 <tr>
-<td><a href="CellLineModificationEnum/">CellLineModificationEnum</a></td>
-<td>Types of genetic or other modifications applied to cell lines</td>
+<td><a href="CFTRObservationTypeEnum/">CFTRObservationTypeEnum</a></td>
+<td>Observation types for CFTR function measurements</td>
 </tr>
 <tr>
-<td><a href="ChemicalFormEnum/">ChemicalFormEnum</a></td>
-<td>Physical form of a test substance or chemical in an exposure experiment</td>
+<td><a href="CiliaryFunctionObservationTypeEnum/">CiliaryFunctionObservationTypeEnum</a></td>
+<td>Observation types for ciliary function measurements</td>
 </tr>
 <tr>
 <td><a href="CoCultureConfigurationEnum/">CoCultureConfigurationEnum</a></td>
-<td>Physical configurations for co-culture systems combining multiple cell types</td>
+<td>Physical configurations for co-culture systems</td>
 </tr>
 <tr>
-<td><a href="ControlTypeEnum/">ControlTypeEnum</a></td>
-<td>Types of experimental controls used in in vitro exposure studies</td>
+<td><a href="EGFRObservationTypeEnum/">EGFRObservationTypeEnum</a></td>
+<td>Observation types for EGFR signaling measurements</td>
 </tr>
 <tr>
-<td><a href="DataNormalizationMethodEnum/">DataNormalizationMethodEnum</a></td>
-<td>Methods for normalizing measurement data in analysis</td>
+<td><a href="FoxJObservationTypeEnum/">FoxJObservationTypeEnum</a></td>
+<td>Observation types for FoxJ1 and ciliogenesis measurements</td>
 </tr>
 <tr>
-<td><a href="DataTransformationEnum/">DataTransformationEnum</a></td>
-<td>Mathematical transformations applied to data</td>
+<td><a href="GeneExpressionObservationTypeEnum/">GeneExpressionObservationTypeEnum</a></td>
+<td>Observation types for gene expression measurements</td>
 </tr>
 <tr>
-<td><a href="DoseNormalizationMethodEnum/">DoseNormalizationMethodEnum</a></td>
-<td>Methods for normalizing dose in exposure experiments</td>
+<td><a href="GobletCellMucinObservationTypeEnum/">GobletCellMucinObservationTypeEnum</a></td>
+<td>Observation types for goblet cell and mucin measurements</td>
 </tr>
 <tr>
-<td><a href="ExposureMediumEnum/">ExposureMediumEnum</a></td>
-<td>Medium through which exposure occurs</td>
+<td><a href="LungFunctionObservationTypeEnum/">LungFunctionObservationTypeEnum</a></td>
+<td>Observation types for lung function measurements</td>
 </tr>
 <tr>
-<td><a href="ExposureRegimentEnum/">ExposureRegimentEnum</a></td>
-<td>Pattern or schedule of exposure events in an in vitro experiment</td>
+<td><a href="MCCObservationTypeEnum/">MCCObservationTypeEnum</a></td>
+<td>Observation types for mucociliary clearance measurements</td>
 </tr>
 <tr>
-<td><a href="ExposureRouteEnum/">ExposureRouteEnum</a></td>
-<td>Routes of exposure to chemicals or environmental factors</td>
-</tr>
-<tr>
-<td><a href="ExpressionAssayMethodEnum/">ExpressionAssayMethodEnum</a></td>
-<td>Methods used to measure gene or protein expression</td>
-</tr>
-<tr>
-<td><a href="MeasurementTypeEnum/">MeasurementTypeEnum</a></td>
-<td>Types of measurements and observations for outcomes research, with emphasis o...</td>
-</tr>
-<tr>
-<td><a href="RawDataTypeEnum/">RawDataTypeEnum</a></td>
-<td>Types of raw data collected from measurements</td>
-</tr>
-<tr>
-<td><a href="RelationshipToHouseholdHeadEnum/">RelationshipToHouseholdHeadEnum</a></td>
-<td>Relationship of a person to the household head (householder) in census data</td>
-</tr>
-<tr>
-<td><a href="ReplicateCombinationMethodEnum/">ReplicateCombinationMethodEnum</a></td>
-<td>Methods for combining replicate measurements</td>
+<td><a href="OxidativeStressObservationTypeEnum/">OxidativeStressObservationTypeEnum</a></td>
+<td>Observation types for oxidative stress measurements</td>
 </tr>
 <tr>
 <td><a href="SampleTypeEnum/">SampleTypeEnum</a></td>
-<td>Types of biological and environmental samples</td>
+<td>Types of biological samples for in vivo measurements</td>
 </tr>
 <tr>
-<td><a href="SexEnum/">SexEnum</a></td>
-<td>Biological sex</td>
-</tr>
-<tr>
-<td><a href="StudyTypeEnum/">StudyTypeEnum</a></td>
-<td>Types of research studies</td>
+<td><a href="StudyContextEnum/">StudyContextEnum</a></td>
+<td>The experimental context for a protocol or measurement</td>
 </tr>
 <tr>
 <td><a href="SubstrateTypeEnum/">SubstrateTypeEnum</a></td>
 <td>Types of cell culture substrates and surfaces</td>
-</tr>
-<tr>
-<td><a href="SummaryStatisticEnum/">SummaryStatisticEnum</a></td>
-<td>Types of summary statistics</td>
 </tr>
 <tr>
 <td><a href="SupplementTypeEnum/">SupplementTypeEnum</a></td>
@@ -2124,7 +1149,7 @@
 </tr>
 <tr>
 <td><a href="ThreeDArchitectureEnum/">ThreeDArchitectureEnum</a></td>
-<td>Types of three-dimensional cell culture architectures</td>
+<td>Types of 3D cell culture architecture</td>
 </tr>
 </tbody>
 </table>

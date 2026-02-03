@@ -1,0 +1,5 @@
+# Simple test file for Protocol
+protocols:
+  - id: "PROTOCOL:001"
+    name: "High-speed video microscopy for CBF"
+    description: "Protocol for measuring ciliary beat frequency using high-speed video microscopy"

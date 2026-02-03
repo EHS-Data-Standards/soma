@@ -278,7 +278,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about.md" class="md-nav__link">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
         
   
   
@@ -418,7 +445,7 @@
 
 <h1 id="slot-model_species">Slot: model_species</h1>
 <p><em>The species of origin for the cells in the model system.</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes-working-group/model_species">owg:model_species</a>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/model_species">outcomes_working_group:model_species</a>
 Alias: model_species</p>
 <!-- no inheritance hierarchy -->
 
@@ -433,18 +460,18 @@ Alias: model_species</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></td>
+<td>Three-dimensional cell culture systems including spheroids, organoids, and sc...</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../CellLine/">CellLine</a></td>
 <td>A cell line - a genetically stable cultured cell population that contains ind...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ModelSystem/">ModelSystem</a></td>
-<td>Abstract base class for model systems used in biomedical research</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></td>
-<td>Three-dimensional cell culture systems including spheroids, organoids, and sc...</td>
+<td><a href="../CellularSystem/">CellularSystem</a></td>
+<td>Cell-based model systems that use living cells to model biological processes</td>
 <td>no</td>
 </tr>
 <tr>
@@ -457,16 +484,11 @@ Alias: model_species</p>
 <td>Co-culture systems combining multiple cell types to simulate tissue microenvi...</td>
 <td>no</td>
 </tr>
-<tr>
-<td><a href="../CellularSystem/">CellularSystem</a></td>
-<td>Cell-based model systems that use living cells to model biological processes</td>
-<td>no</td>
-</tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../Organism/">Organism</a></li>
+<li>Range: <a href="../NamedEntity/">NamedEntity</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -484,11 +506,11 @@ Alias: model_species</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>owg:model_species</td>
+<td>outcomes_working_group:model_species</td>
 </tr>
 <tr>
 <td>native</td>
-<td>owg:model_species</td>
+<td>outcomes_working_group:model_species</td>
 </tr>
 </tbody>
 </table>
@@ -501,8 +523,8 @@ Alias: model_species</p>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">model_species</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellLine</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelSystem</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Organism</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
