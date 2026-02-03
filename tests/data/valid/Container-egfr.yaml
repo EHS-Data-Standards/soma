@@ -1,7 +1,6 @@
-# Simple test file for EGFRMeasurement
-egfr_measurements:
-  EGFR:001:
-    id: "EGFR:001"
+# Simple test file for EGFRPhosphorylationMeasurement
+egfr_phosphorylation_measurements:
+  - id: "EGFR:001"
     name: "EGFR phosphorylation after smoke exposure"
     observation_type: egfr_phosphorylation
     quantity_measured:
@@ -9,7 +8,6 @@ egfr_measurements:
       unit:
         id: "UO:0000193"
         name: "fold change"
-    measurement_method: "Western blot"
     measurement_date: "2024-05-08"
     cell_culture_system:
       id: "owg:culture-005"

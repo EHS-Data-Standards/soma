@@ -1,7 +1,6 @@
 # Simple test file for LungFunctionMeasurement
 lung_function_measurements:
-  LF:001:
-    id: "LF:001"
+  - id: "LF:001"
     name: "FEV1 measurement"
     observation_type: fev1
     quantity_measured:
@@ -9,7 +8,6 @@ lung_function_measurements:
       unit:
         id: "UO:0000187"
         name: "percent predicted"
-    measurement_method: "Spirometry"
     measurement_date: "2024-08-10"
     participant:
       id: "PARTICIPANT:002"

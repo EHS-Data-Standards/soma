@@ -1,23 +1,5 @@
 # Simple test file for Protocol
 protocols:
-  PROTOCOL:001:
-    id: "PROTOCOL:001"
+  - id: "PROTOCOL:001"
     name: "High-speed video microscopy for CBF"
     description: "Protocol for measuring ciliary beat frequency using high-speed video microscopy"
-    study_context: in_vitro
-    imaging_frame_rate:
-      value: "200"
-      unit:
-        id: "UO:0000106"
-        name: "hertz"
-    imaging_duration:
-      value: "2"
-      unit:
-        id: "UO:0000010"
-        name: "second"
-    temperature_control:
-      value: "37"
-      unit:
-        id: "UO:0000027"
-        name: "degree Celsius"
-    replicate_count: 3

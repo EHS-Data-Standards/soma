@@ -1,7 +1,6 @@
 # Simple test file for MCCMeasurement
 mcc_measurements:
-  MCC:001:
-    id: "MCC:001"
+  - id: "MCC:001"
     name: "Mucociliary transport rate"
     observation_type: mucociliary_transport_rate
     quantity_measured:
@@ -9,7 +8,6 @@ mcc_measurements:
       unit:
         id: "UO:0000103"
         name: "micrometer per second"
-    measurement_method: "fluorescent microsphere tracking"
     measurement_date: "2024-03-05"
     cell_culture_system:
       id: "owg:culture-007"

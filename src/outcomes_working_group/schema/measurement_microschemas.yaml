@@ -139,9 +139,7 @@ classes:
       - target_gene
       - tissue_context
       - cell_type_context
-      - assay_method
       - normalization_reference
-      - participant
       - measurement_date
     slot_usage:
       observation_type:
@@ -157,7 +155,6 @@ classes:
       - phosphorylation_site
       - tissue_context
       - cell_type_context
-      - assay_method
       - normalization_reference
       - participant
       - measurement_date
@@ -549,45 +546,35 @@ slots:
 
   # Expression measurement slots
   target_gene:
-    range: Gene
+    range: uriorcurie
     inlined: true
     description: >-
       The gene whose expression is being measured, with identifier, name, and symbol.
       Use this to specify the exact gene target (e.g., MUC5AC, EGFR, IL8).
 
   target_protein:
-    range: Protein
-    inlined: true
+    range: uriorcurie
     description: >-
       The protein whose expression or modification is being measured,
       with identifier, name, and optionally the encoding gene.
 
   tissue_context:
-    range: Tissue
-    inlined: true
+    range: uriorcurie
     description: >-
       The anatomical tissue or structure where expression was measured,
       with identifier and name (e.g., bronchial epithelium, lung, nasal mucosa).
 
   cell_type_context:
-    range: CellType
-    inlined: true
+    range: uriorcurie
     description: >-
       The specific cell type where expression was measured,
       with identifier and name (e.g., goblet cell, ciliated cell, basal cell).
-
-  assay_method:
-    range: ExpressionAssayMethodEnum
-    description: >-
-      The experimental method used to measure expression.
-      Captures whether this was qRT-PCR, RNA-seq, Western blot, IHC, etc.
 
   normalization_reference:
     range: string
     description: >-
       The reference gene or protein used for normalization
       (e.g., GAPDH, beta-actin, 18S rRNA, total protein).
-
 
   phosphorylation_site:
     range: string

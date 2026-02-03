@@ -1,7 +1,6 @@
 # Simple test file for CFTRMeasurement
 cftr_measurements:
-  CFTR:001:
-    id: "CFTR:001"
+  - id: "CFTR:001"
     name: "CFTR chloride secretion"
     observation_type: cftr_chloride_secretion
     quantity_measured:
@@ -9,7 +8,6 @@ cftr_measurements:
       unit:
         id: "UO:0000274"
         name: "microampere per square centimeter"
-    measurement_method: "Ussing chamber"
     measurement_date: "2024-04-12"
     cell_culture_system:
       id: "owg:culture-006"

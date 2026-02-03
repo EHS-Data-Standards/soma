@@ -1,6 +1,5 @@
 # Simple test file for Assay
 assays:
-  ASSAY:001:
-    id: "ASSAY:001"
+  - id: "ASSAY:001"
     name: "Ciliary beat frequency assay"
     description: "Assay for measuring the frequency of ciliary beating in airway epithelial cells"
