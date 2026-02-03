@@ -631,9 +631,6 @@ enums:
       bacterial_load:
         text: bacterial_load
         description: Bacterial load remaining after clearance (CFU)
-      viral_spread_rate:
-        text: viral_spread_rate
-        description: Rate of viral spread across the epithelium
   OxidativeStressObservationTypeEnum:
     name: OxidativeStressObservationTypeEnum
     definition_uri: https://w3id.org/EHS-Data-Standards/measurement_microschemas/OxidativeStressObservationTypeEnum
@@ -2936,7 +2933,7 @@ classes:
     class_uri: measurement_microschemas:FoxJMeasurement
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2026-02-03T00:51:58'
+source_file_date: '2026-02-03T01:33:37'
 source_file_size: 4891
-generation_date: '2026-02-03T00:52:19'
+generation_date: '2026-02-03T01:33:57'
 
