@@ -2704,17 +2704,7 @@ classes:
     description: A measurement of gene expression (mRNA level) in a specific biological
       context. Captures the target gene, tissue/cell type context, and assay methodology.
     from_schema: https://w3id.org/EHS-Data-Standards/measurement_microschemas
-    is_a: Measurement
     slots:
-    - id
-    - name
-    - description
-    - quantity_measured
-    - range_low
-    - range_high
-    - measured_entity
-    - uses_method
-    - follows_protocol
     - target_gene
     - tissue_context
     - cell_type_context
@@ -2732,18 +2722,7 @@ classes:
     description: A measurement of protein expression or post-translational modification
       (e.g., phosphorylation) in a specific biological context.
     from_schema: https://w3id.org/EHS-Data-Standards/measurement_microschemas
-    is_a: Measurement
     slots:
-    - id
-    - name
-    - description
-    - observation_type
-    - quantity_measured
-    - range_low
-    - range_high
-    - measured_entity
-    - uses_method
-    - follows_protocol
     - target_protein
     - phosphorylation_site
     - tissue_context
@@ -2764,11 +2743,13 @@ classes:
       alone is insufficient without direct phosphorylation evidence or inhibitor reversal
       studies.
     from_schema: https://w3id.org/EHS-Data-Standards/measurement_microschemas
-    is_a: Measurement
     mixins:
     - Measurement
     - InVitroContext
     slots:
+    - anatomical_context
+    - phosphorylation_site
+    - EGFRPhosphorylationMeasurement_observation_type
     - id
     - name
     - description
@@ -2779,9 +2760,6 @@ classes:
     - measurement_date
     - uses_method
     - follows_protocol
-    - anatomical_context
-    - phosphorylation_site
-    - EGFRPhosphorylationMeasurement_observation_type
     - cell_culture_system
     - days_at_differentiation
     - donor_info
@@ -2933,7 +2911,7 @@ classes:
     class_uri: measurement_microschemas:FoxJMeasurement
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2026-02-03T01:34:20'
+source_file_date: '2026-02-03T01:41:20'
 source_file_size: 4891
-generation_date: '2026-02-03T01:34:40'
+generation_date: '2026-02-03T01:41:41'
 
