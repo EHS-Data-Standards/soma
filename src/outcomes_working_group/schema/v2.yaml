@@ -3555,8 +3555,6 @@ enums:
       female:
         description: Female
         meaning: PATO:0000383
-      unknown:
-        description: Unknown
 
   SampleTypeEnum:
     description: Types of biological and environmental samples

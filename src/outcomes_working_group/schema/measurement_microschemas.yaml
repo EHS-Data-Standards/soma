@@ -331,8 +331,6 @@ enums:
         description: Rate of bacterial biofilm clearance
       bacterial_load:
         description: Bacterial load remaining after clearance (CFU)
-      viral_spread_rate:
-        description: Rate of viral spread across the epithelium
 
   # ---------------------------------------------------------------------------
   # Oxidative Stress Observation Types

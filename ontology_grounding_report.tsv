@@ -1,0 +1,85 @@
+enum	pv	term	term_name	close_terms
+CiliaryFunctionObservationTypeEnum	ciliary_beat_frequency	GO:0003341	cilium movement	already grounded
+CiliaryFunctionObservationTypeEnum	ciliary_active_area_percentage		no exact term	custom term needed
+CiliaryFunctionObservationTypeEnum	cilia_length		no exact term	PATO:0000122 (length) + GO:0005929 (cilium)
+CiliaryFunctionObservationTypeEnum	cilia_per_cell		no exact term	custom term needed
+CiliaryFunctionObservationTypeEnum	percentage_ciliated_cells		no exact term	CL:0000064 (ciliated cell)
+CiliaryFunctionObservationTypeEnum	ciliary_motion_pattern		no exact term	GO:0003341 (cilium movement)
+CiliaryFunctionObservationTypeEnum	ciliary_beat_amplitude		no exact term	PATO:0000059 (amplitude) + GO:0003341
+CiliaryFunctionObservationTypeEnum	cell_type_ratios		no exact term	custom term needed
+ASLObservationTypeEnum	asl_height		no exact term	custom term needed
+ASLObservationTypeEnum	periciliary_layer_depth		no exact term	custom term needed
+ASLObservationTypeEnum	mucus_layer_thickness		no exact term	PATO:0000915 (thickness)
+ASLObservationTypeEnum	asl_chloride_concentration		no exact term	CHEBI:17996 (chloride)
+ASLObservationTypeEnum	asl_sodium_concentration		no exact term	CHEBI:29101 (sodium)
+ASLObservationTypeEnum	asl_potassium_concentration		no exact term	CHEBI:29103 (potassium)
+ASLObservationTypeEnum	asl_ph		no exact term	PATO:0001842 (acidity)
+MCCObservationTypeEnum	mucociliary_transport_rate	GO:0120197	mucociliary clearance	already grounded
+MCCObservationTypeEnum	transport_directionality		no exact term	PATO:0000039 (spatial pattern)
+MCCObservationTypeEnum	percentage_active_transport		no exact term	custom term needed
+MCCObservationTypeEnum	particle_clearance_time		no exact term	GO:0120197 (mucociliary clearance)
+MCCObservationTypeEnum	biofilm_clearance_rate		no exact term	GO:0120197 + pathogen context
+MCCObservationTypeEnum	bacterial_load	NCIT:C120710	Bacterial Load
+OxidativeStressObservationTypeEnum	reactive_oxygen_species	CHEBI:26523	reactive oxygen species	already grounded
+OxidativeStressObservationTypeEnum	malondialdehyde	CHEBI:16213	malondialdehyde	already grounded
+OxidativeStressObservationTypeEnum	four_hydroxynonenal	CHEBI:58968	4-hydroxynonenal	already grounded
+OxidativeStressObservationTypeEnum	eight_isoprostane	CHEBI:34505	8-epi-prostaglandin F2alpha	NCIT:C92599
+OxidativeStressObservationTypeEnum	protein_carbonyl	NCIT:C105825	Protein Carbonyl Content
+OxidativeStressObservationTypeEnum	nitrotyrosine	CHEBI:86269	3-nitrotyrosine	NCIT:C202383 (measurement)
+OxidativeStressObservationTypeEnum	eight_ohdg	CHEBI:40304	8-hydroxy-2'-deoxyguanosine	NCIT:C172492 (measurement)
+OxidativeStressObservationTypeEnum	glutathione_ratio		no exact term	CHEBI:16856 (GSH) + CHEBI:17858 (GSSG)
+OxidativeStressObservationTypeEnum	superoxide_dismutase_activity	GO:0004784	superoxide dismutase activity
+OxidativeStressObservationTypeEnum	catalase_activity	GO:0004096	catalase activity
+OxidativeStressObservationTypeEnum	glutathione_peroxidase_activity	GO:0004602	glutathione peroxidase activity
+OxidativeStressObservationTypeEnum	total_antioxidant_capacity	NCIT:C209621	Total Antioxidant Capacity Measurement
+OxidativeStressObservationTypeEnum	nrf2_activation	NCIT:C54255	Nuclear Factor Erythroid 2-Related Factor 2
+CFTRObservationTypeEnum	cftr_chloride_secretion		no exact term	NCIT:C111927 (CFTR) + GO:0005254 (chloride channel)
+CFTRObservationTypeEnum	cftr_forskolin_response		no exact term	custom term needed
+CFTRObservationTypeEnum	cftr_inhibitor_sensitive_current		no exact term	custom term needed
+CFTRObservationTypeEnum	sweat_chloride_concentration	HP:0012236	Elevated sweat chloride	phenotype rather than measurement
+CFTRObservationTypeEnum	nasal_potential_difference		no exact term	custom term needed
+EGFRObservationTypeEnum	egfr_phosphorylation		no exact term	GO:0038083 (EGFR signaling pathway)
+EGFRObservationTypeEnum	egfr_total_protein		no exact term	NCIT:C17068 (EGFR)
+EGFRObservationTypeEnum	erk_phosphorylation		no exact term	NCIT:C26166 (ERK1)
+EGFRObservationTypeEnum	akt_phosphorylation		no exact term	NCIT:C17998 (AKT1)
+EGFRObservationTypeEnum	egfr_ligand_expression		no exact term	GO:0048408 (EGFR ligand activity)
+EGFRObservationTypeEnum	egfr_membrane_localization		no exact term	GO:0005886 (plasma membrane)
+GobletCellMucinObservationTypeEnum	goblet_cell_count	CL:0000160	goblet cell	already grounded
+GobletCellMucinObservationTypeEnum	goblet_to_ciliated_ratio		no exact term	CL:0000160 + CL:0000064
+GobletCellMucinObservationTypeEnum	muc5ac_expression	NCIT:C90334	Mucin-5AC	PR:000031343
+GobletCellMucinObservationTypeEnum	muc5b_expression	NCIT:C158564	Mucin-5B	PR:000010769
+GobletCellMucinObservationTypeEnum	muc5ac_muc5b_ratio		no exact term	custom term needed
+GobletCellMucinObservationTypeEnum	mucin_protein_concentration		no exact term	CHEBI:17089 (glycoprotein)
+GobletCellMucinObservationTypeEnum	mucin_secretion_rate		no exact term	GO:0070254 (mucus secretion)
+GobletCellMucinObservationTypeEnum	mucus_viscosity		no exact term	PATO:0000020 (viscosity)
+GobletCellMucinObservationTypeEnum	percent_solids		no exact term	custom term needed
+BALFSputumObservationTypeEnum	neutrophil_percentage	CL:0000775	neutrophil	NCIT:C12533
+BALFSputumObservationTypeEnum	eosinophil_percentage	CL:0000771	eosinophil	NCIT:C12532
+BALFSputumObservationTypeEnum	macrophage_percentage	CL:0000235	macrophage
+BALFSputumObservationTypeEnum	lymphocyte_percentage	CL:0000542	lymphocyte
+BALFSputumObservationTypeEnum	total_cell_count		no exact term	custom term needed
+BALFSputumObservationTypeEnum	il6_concentration	NCIT:C20451	Interleukin-6	NCIT:C74834 (measurement)
+BALFSputumObservationTypeEnum	il8_concentration	NCIT:C20473	Interleukin-8	NCIT:C74836 (measurement)
+BALFSputumObservationTypeEnum	tnf_alpha_concentration	NCIT:C20535	Tumor Necrosis Factor	PR:000000134
+BALFSputumObservationTypeEnum	il1_beta_concentration	NCIT:C20513	Interleukin-1 Beta
+BALFSputumObservationTypeEnum	total_protein_concentration		no exact term	NCIT:C64849 (Total Protein Measurement)
+BALFSputumObservationTypeEnum	alpha_diversity		no exact term	custom microbiome term
+BALFSputumObservationTypeEnum	beta_diversity		no exact term	custom microbiome term
+BALFSputumObservationTypeEnum	bacterial_load	NCIT:C120710	Bacterial Load
+BALFSputumObservationTypeEnum	cell_free_dna	NCIT:C128274	Circulating Cell-Free DNA
+LungFunctionObservationTypeEnum	fev1	HP:0002088	Reduced forced expiratory volume in one second	already grounded; NCIT:C120933
+LungFunctionObservationTypeEnum	fvc	NCIT:C111361	Forced Vital Capacity
+LungFunctionObservationTypeEnum	fev1_fvc_ratio	NCIT:C120835	FEV1/FVC Ratio
+LungFunctionObservationTypeEnum	fef25_75		no exact term	NCIT:C139253 (FEF50)
+LungFunctionObservationTypeEnum	pef	NCIT:C38086	Peak Expiratory Flow Rate
+LungFunctionObservationTypeEnum	dlco	NCIT:C78229	Decreased Carbon Monoxide Diffusing Capacity	measurement variant needed
+LungFunctionObservationTypeEnum	feno	HP:6001236	Elevated fraction exhaled nitric oxide	NCIT:C116516 (NO breath test)
+LungFunctionObservationTypeEnum	bronchodilator_response		no exact term	HP:0032356; HP:0032357
+LungFunctionObservationTypeEnum	lung_function_decline_rate		no exact term	custom term needed
+FoxJObservationTypeEnum	foxj1_mrna_expression	PR:000007628	forkhead box protein J1	gene expression context
+FoxJObservationTypeEnum	foxj1_protein_expression	PR:000007628	forkhead box protein J1
+FoxJObservationTypeEnum	foxj1_positive_cell_percentage		no exact term	PR:000007628 + percentage
+FoxJObservationTypeEnum	foxj1_nuclear_localization		no exact term	GO:0005634 (nucleus)
+GeneExpressionObservationTypeEnum	mrna_level		no exact term	OBI:0001225 (gene expression assay)
+GeneExpressionObservationTypeEnum	protein_level		no exact term	OBI:0000185 (protein assay)
+GeneExpressionObservationTypeEnum	percentage_positive_cells		no exact term	custom term needed
