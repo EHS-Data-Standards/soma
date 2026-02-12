@@ -444,7 +444,6 @@
 
 
 <h1 id="slot-disease_state">Slot: disease_state</h1>
-<p><em>Disease state of the cell line (e.g., normal, cancerous, CF).</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/disease_state">outcomes_working_group:disease_state</a>
 Alias: disease_state</p>
 <!-- no inheritance hierarchy -->
@@ -461,7 +460,12 @@ Alias: disease_state</p>
 <tbody>
 <tr>
 <td><a href="../CellLine/">CellLine</a></td>
-<td>A cell line - a genetically stable cultured cell population that contains ind...</td>
+<td>A cell line - a genetically stable cultured cell population</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../InVivoSubject/">InVivoSubject</a></td>
+<td>A living human or animal subject from whom measurements are taken</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -497,11 +501,11 @@ Alias: disease_state</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">disease_state</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Disease state of the cell line (e.g., normal, cancerous, CF).</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">disease_state</span>
 <span class="nt">domain_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoSubject</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellLine</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>

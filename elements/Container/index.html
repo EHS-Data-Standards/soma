@@ -261,118 +261,141 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-container">Class: Container</h1>
-<p><em>A container for collections of measurements and related entities. Used as the root class for data validation.</em></p>
+<p><em>Root container for outcomes research data. Organized around ASSAYS that inform on Key Events in Adverse Outcome Pathways (AOPs).</em></p>
+<p><em>The schema is assay-centric: each assay class contains named slots for its specific measurements, with an explicit connection to the Key Event it informs via the informs_on_key_event slot.</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/Container">outcomes_working_group:Container</a></p>
 <pre class="mermaid"><code> classDiagram
     class Container
     click Container href "../Container/"
-      Container : asl_measurements
+      Container : adverse_outcome_pathways
 
 
 
 
 
-        Container --&gt; "*" ASLMeasurement : asl_measurements
-        click ASLMeasurement href "../ASLMeasurement/"
+        Container --&gt; "*" AdverseOutcomePathway : adverse_outcome_pathways
+        click AdverseOutcomePathway href "../AdverseOutcomePathway/"
 
 
 
-      Container : assays
+      Container : asl_assays
 
 
 
 
 
-        Container --&gt; "*" Assay : assays
-        click Assay href "../Assay/"
+        Container --&gt; "*" ASLAssay : asl_assays
+        click ASLAssay href "../ASLAssay/"
 
 
 
-      Container : balf_sputum_measurements
+      Container : balf_sputum_assays
 
 
 
 
 
-        Container --&gt; "*" BALFSputumMeasurement : balf_sputum_measurements
-        click BALFSputumMeasurement href "../BALFSputumMeasurement/"
+        Container --&gt; "*" BALFSputumAssay : balf_sputum_assays
+        click BALFSputumAssay href "../BALFSputumAssay/"
 
 
 
-      Container : cftr_measurements
+      Container : cftr_assays
 
 
 
 
 
-        Container --&gt; "*" CFTRMeasurement : cftr_measurements
-        click CFTRMeasurement href "../CFTRMeasurement/"
+        Container --&gt; "*" CFTRFunctionAssay : cftr_assays
+        click CFTRFunctionAssay href "../CFTRFunctionAssay/"
 
 
 
-      Container : ciliary_measurements
+      Container : ciliary_function_assays
 
 
 
 
 
-        Container --&gt; "*" CiliaryFunctionMeasurement : ciliary_measurements
-        click CiliaryFunctionMeasurement href "../CiliaryFunctionMeasurement/"
+        Container --&gt; "*" CiliaryFunctionAssay : ciliary_function_assays
+        click CiliaryFunctionAssay href "../CiliaryFunctionAssay/"
 
 
 
-      Container : egfr_phosphorylation_measurements
+      Container : egfr_signaling_assays
 
 
 
 
 
-        Container --&gt; "*" EGFRPhosphorylationMeasurement : egfr_phosphorylation_measurements
-        click EGFRPhosphorylationMeasurement href "../EGFRPhosphorylationMeasurement/"
+        Container --&gt; "*" EGFRSignalingAssay : egfr_signaling_assays
+        click EGFRSignalingAssay href "../EGFRSignalingAssay/"
 
 
 
-      Container : foxj_measurements
+      Container : foxj_assays
 
 
 
 
 
-        Container --&gt; "*" FoxJMeasurement : foxj_measurements
-        click FoxJMeasurement href "../FoxJMeasurement/"
+        Container --&gt; "*" FoxJExpressionAssay : foxj_assays
+        click FoxJExpressionAssay href "../FoxJExpressionAssay/"
 
 
 
-      Container : goblet_cell_mucin_measurements
+      Container : gene_expression_assays
 
 
 
 
 
-        Container --&gt; "*" GobletCellMucinMeasurement : goblet_cell_mucin_measurements
-        click GobletCellMucinMeasurement href "../GobletCellMucinMeasurement/"
+        Container --&gt; "*" GeneExpressionAssay : gene_expression_assays
+        click GeneExpressionAssay href "../GeneExpressionAssay/"
 
 
 
-      Container : lung_function_measurements
+      Container : goblet_cell_assays
 
 
 
 
 
-        Container --&gt; "*" LungFunctionMeasurement : lung_function_measurements
-        click LungFunctionMeasurement href "../LungFunctionMeasurement/"
+        Container --&gt; "*" GobletCellAssay : goblet_cell_assays
+        click GobletCellAssay href "../GobletCellAssay/"
 
 
 
-      Container : mcc_measurements
+      Container : key_events
 
 
 
 
 
-        Container --&gt; "*" MCCMeasurement : mcc_measurements
-        click MCCMeasurement href "../MCCMeasurement/"
+        Container --&gt; "*" KeyEvent : key_events
+        click KeyEvent href "../KeyEvent/"
+
+
+
+      Container : lung_function_assays
+
+
+
+
+
+        Container --&gt; "*" LungFunctionAssay : lung_function_assays
+        click LungFunctionAssay href "../LungFunctionAssay/"
+
+
+
+      Container : mcc_assays
+
+
+
+
+
+        Container --&gt; "*" MucociliaryClearanceAssay : mcc_assays
+        click MucociliaryClearanceAssay href "../MucociliaryClearanceAssay/"
 
 
 
@@ -387,14 +410,14 @@
 
 
 
-      Container : oxidative_stress_measurements
+      Container : oxidative_stress_assays
 
 
 
 
 
-        Container --&gt; "*" OxidativeStressMeasurement : oxidative_stress_measurements
-        click OxidativeStressMeasurement href "../OxidativeStressMeasurement/"
+        Container --&gt; "*" OxidativeStressAssay : oxidative_stress_assays
+        click OxidativeStressAssay href "../OxidativeStressAssay/"
 
 
 
@@ -424,63 +447,81 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../ciliary_measurements/">ciliary_measurements</a></td>
-<td>* <br/> <a href="../CiliaryFunctionMeasurement/">CiliaryFunctionMeasurement</a></td>
-<td>Collection of ciliary function measurements</td>
+<td><a href="../key_events/">key_events</a></td>
+<td>* <br/> <a href="../KeyEvent/">KeyEvent</a></td>
+<td>The key events in this AOP (intermediate events between MIE and AO)</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../asl_measurements/">asl_measurements</a></td>
-<td>* <br/> <a href="../ASLMeasurement/">ASLMeasurement</a></td>
-<td>Collection of airway surface liquid measurements</td>
+<td><a href="../adverse_outcome_pathways/">adverse_outcome_pathways</a></td>
+<td>* <br/> <a href="../AdverseOutcomePathway/">AdverseOutcomePathway</a></td>
+<td>Collection of Adverse Outcome Pathways</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../mcc_measurements/">mcc_measurements</a></td>
-<td>* <br/> <a href="../MCCMeasurement/">MCCMeasurement</a></td>
-<td>Collection of mucociliary clearance measurements</td>
+<td><a href="../ciliary_function_assays/">ciliary_function_assays</a></td>
+<td>* <br/> <a href="../CiliaryFunctionAssay/">CiliaryFunctionAssay</a></td>
+<td>Collection of ciliary function assays</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../oxidative_stress_measurements/">oxidative_stress_measurements</a></td>
-<td>* <br/> <a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
-<td>Collection of oxidative stress measurements</td>
+<td><a href="../asl_assays/">asl_assays</a></td>
+<td>* <br/> <a href="../ASLAssay/">ASLAssay</a></td>
+<td>Collection of airway surface liquid assays</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../cftr_measurements/">cftr_measurements</a></td>
-<td>* <br/> <a href="../CFTRMeasurement/">CFTRMeasurement</a></td>
-<td>Collection of CFTR function measurements</td>
+<td><a href="../mcc_assays/">mcc_assays</a></td>
+<td>* <br/> <a href="../MucociliaryClearanceAssay/">MucociliaryClearanceAssay</a></td>
+<td>Collection of mucociliary clearance assays</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../egfr_phosphorylation_measurements/">egfr_phosphorylation_measurements</a></td>
-<td>* <br/> <a href="../EGFRPhosphorylationMeasurement/">EGFRPhosphorylationMeasurement</a></td>
-<td>Collection of EGFR signaling measurements</td>
+<td><a href="../oxidative_stress_assays/">oxidative_stress_assays</a></td>
+<td>* <br/> <a href="../OxidativeStressAssay/">OxidativeStressAssay</a></td>
+<td>Collection of oxidative stress assays</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../goblet_cell_mucin_measurements/">goblet_cell_mucin_measurements</a></td>
-<td>* <br/> <a href="../GobletCellMucinMeasurement/">GobletCellMucinMeasurement</a></td>
-<td>Collection of goblet cell and mucin measurements</td>
+<td><a href="../cftr_assays/">cftr_assays</a></td>
+<td>* <br/> <a href="../CFTRFunctionAssay/">CFTRFunctionAssay</a></td>
+<td>Collection of CFTR function assays</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../balf_sputum_measurements/">balf_sputum_measurements</a></td>
-<td>* <br/> <a href="../BALFSputumMeasurement/">BALFSputumMeasurement</a></td>
-<td>Collection of BALF and sputum measurements</td>
+<td><a href="../egfr_signaling_assays/">egfr_signaling_assays</a></td>
+<td>* <br/> <a href="../EGFRSignalingAssay/">EGFRSignalingAssay</a></td>
+<td>Collection of EGFR signaling assays</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../lung_function_measurements/">lung_function_measurements</a></td>
-<td>* <br/> <a href="../LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
-<td>Collection of lung function measurements</td>
+<td><a href="../goblet_cell_assays/">goblet_cell_assays</a></td>
+<td>* <br/> <a href="../GobletCellAssay/">GobletCellAssay</a></td>
+<td>Collection of goblet cell and mucin assays</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../foxj_measurements/">foxj_measurements</a></td>
-<td>* <br/> <a href="../FoxJMeasurement/">FoxJMeasurement</a></td>
-<td>Collection of FoxJ1/ciliogenesis measurements</td>
+<td><a href="../balf_sputum_assays/">balf_sputum_assays</a></td>
+<td>* <br/> <a href="../BALFSputumAssay/">BALFSputumAssay</a></td>
+<td>Collection of BALF and sputum assays</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../lung_function_assays/">lung_function_assays</a></td>
+<td>* <br/> <a href="../LungFunctionAssay/">LungFunctionAssay</a></td>
+<td>Collection of lung function assays</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../foxj_assays/">foxj_assays</a></td>
+<td>* <br/> <a href="../FoxJExpressionAssay/">FoxJExpressionAssay</a></td>
+<td>Collection of FoxJ1/ciliogenesis assays</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../gene_expression_assays/">gene_expression_assays</a></td>
+<td>* <br/> <a href="../GeneExpressionAssay/">GeneExpressionAssay</a></td>
+<td>Collection of gene expression assays</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -493,12 +534,6 @@
 <td><a href="../methods/">methods</a></td>
 <td>* <br/> <a href="../Method/">Method</a></td>
 <td>Collection of methods</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../assays/">assays</a></td>
-<td>* <br/> <a href="../Assay/">Assay</a></td>
-<td>Collection of assays</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -532,156 +567,218 @@
 <h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A container for collections of measurements and related entities. Used</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">as the root class for data validation.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Root</span><span class="nv"> </span><span class="s">container</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">outcomes</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">data.</span><span class="nv"> </span><span class="s">Organized</span><span class="nv"> </span><span class="s">around</span><span class="nv"> </span><span class="s">ASSAYS</span><span class="nv"> </span><span class="s">that</span>
+<span class="w">  </span><span class="s">inform</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Events</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">Adverse</span><span class="nv"> </span><span class="s">Outcome</span><span class="nv"> </span><span class="s">Pathways</span><span class="nv"> </span><span class="s">(AOPs).</span>
+
+<span class="w">  </span><span class="s">The</span><span class="nv"> </span><span class="s">schema</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">assay-centric:</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">contains</span><span class="nv"> </span><span class="s">named</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">specific</span>
+<span class="w">  </span><span class="s">measurements,</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">explicit</span><span class="nv"> </span><span class="s">connection</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">informs</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">informs_on_key_event</span>
+<span class="w">  </span><span class="s">slot.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">slots</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_measurements</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_measurements</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mcc_measurements</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oxidative_stress_measurements</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cftr_measurements</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">egfr_phosphorylation_measurements</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">goblet_cell_mucin_measurements</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">balf_sputum_measurements</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lung_function_measurements</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">foxj_measurements</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">key_events</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">adverse_outcome_pathways</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_function_assays</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_assays</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mcc_assays</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oxidative_stress_assays</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cftr_assays</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">egfr_signaling_assays</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">goblet_cell_assays</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">balf_sputum_assays</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lung_function_assays</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">foxj_assays</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gene_expression_assays</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocols</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">methods</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assays</span>
 <span class="nt">tree_root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A container for collections of measurements and related entities. Used</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">as the root class for data validation.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Root</span><span class="nv"> </span><span class="s">container</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">outcomes</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">data.</span><span class="nv"> </span><span class="s">Organized</span><span class="nv"> </span><span class="s">around</span><span class="nv"> </span><span class="s">ASSAYS</span><span class="nv"> </span><span class="s">that</span>
+<span class="w">  </span><span class="s">inform</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Events</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">Adverse</span><span class="nv"> </span><span class="s">Outcome</span><span class="nv"> </span><span class="s">Pathways</span><span class="nv"> </span><span class="s">(AOPs).</span>
+
+<span class="w">  </span><span class="s">The</span><span class="nv"> </span><span class="s">schema</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">assay-centric:</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">contains</span><span class="nv"> </span><span class="s">named</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">specific</span>
+<span class="w">  </span><span class="s">measurements,</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">explicit</span><span class="nv"> </span><span class="s">connection</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">informs</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">informs_on_key_event</span>
+<span class="w">  </span><span class="s">slot.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ciliary_measurements</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_measurements</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of ciliary function measurements.</span>
+<span class="w">  </span><span class="nt">key_events</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">key_events</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The key events in this AOP (intermediate events between MIE and AO).</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_measurements</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">key_events</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionMeasurement</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AdverseOutcomePathway</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KeyEvent</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">asl_measurements</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_measurements</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of airway surface liquid measurements.</span>
+<span class="w">  </span><span class="nt">adverse_outcome_pathways</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">adverse_outcome_pathways</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of Adverse Outcome Pathways. AOPs describe sequences of</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">causally linked events from molecular initiating events to adverse outcomes.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_measurements</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">adverse_outcome_pathways</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLMeasurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AdverseOutcomePathway</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">mcc_measurements</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mcc_measurements</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of mucociliary clearance measurements.</span>
+<span class="w">  </span><span class="nt">ciliary_function_assays</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_function_assays</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function</span><span class="nv"> </span><span class="s">assays.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span><span class="nv"> </span><span class="s">"Decreased</span>
+<span class="w">      </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function".</span><span class="nv"> </span><span class="s">Contains</span><span class="nv"> </span><span class="s">named</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">beat</span><span class="nv"> </span><span class="s">frequency,</span><span class="nv"> </span><span class="s">active</span><span class="nv"> </span><span class="s">area,</span><span class="nv"> </span><span class="s">cilia</span>
+<span class="w">      </span><span class="s">length,</span><span class="nv"> </span><span class="s">etc.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mcc_measurements</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_function_assays</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MCCMeasurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">oxidative_stress_measurements</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oxidative_stress_measurements</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of oxidative stress measurements.</span>
+<span class="w">  </span><span class="nt">asl_assays</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_assays</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">airway</span><span class="nv"> </span><span class="s">surface</span><span class="nv"> </span><span class="s">liquid</span><span class="nv"> </span><span class="s">assays.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span>
+<span class="w">      </span><span class="s">"Decreased</span><span class="nv"> </span><span class="s">ASL</span><span class="nv"> </span><span class="s">height"</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">"Altered</span><span class="nv"> </span><span class="s">airway</span><span class="nv"> </span><span class="s">hydration".'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oxidative_stress_measurements</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_assays</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressMeasurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">cftr_measurements</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cftr_measurements</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of CFTR function measurements.</span>
+<span class="w">  </span><span class="nt">mcc_assays</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mcc_assays</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">mucociliary</span><span class="nv"> </span><span class="s">clearance</span><span class="nv"> </span><span class="s">assays.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span>
+<span class="w">      </span><span class="s">"Impaired</span><span class="nv"> </span><span class="s">mucociliary</span><span class="nv"> </span><span class="s">clearance".'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cftr_measurements</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mcc_assays</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CFTRMeasurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MucociliaryClearanceAssay</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">egfr_phosphorylation_measurements</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">egfr_phosphorylation_measurements</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of EGFR signaling measurements.</span>
+<span class="w">  </span><span class="nt">oxidative_stress_assays</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oxidative_stress_assays</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">oxidative</span><span class="nv"> </span><span class="s">stress</span><span class="nv"> </span><span class="s">assays.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span><span class="nv"> </span><span class="s">"Increased</span>
+<span class="w">      </span><span class="s">oxidative</span><span class="nv"> </span><span class="s">stress"</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">often</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Molecular</span><span class="nv"> </span><span class="s">Initiating</span><span class="nv"> </span><span class="s">Event.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">egfr_phosphorylation_measurements</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oxidative_stress_assays</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EGFRPhosphorylationMeasurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">goblet_cell_mucin_measurements</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">goblet_cell_mucin_measurements</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of goblet cell and mucin measurements.</span>
+<span class="w">  </span><span class="nt">cftr_assays</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cftr_assays</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">CFTR</span><span class="nv"> </span><span class="s">function</span><span class="nv"> </span><span class="s">assays.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span><span class="nv"> </span><span class="s">"Decreased</span>
+<span class="w">      </span><span class="s">CFTR</span><span class="nv"> </span><span class="s">function".'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">goblet_cell_mucin_measurements</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cftr_assays</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GobletCellMucinMeasurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CFTRFunctionAssay</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">balf_sputum_measurements</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">balf_sputum_measurements</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of BALF and sputum measurements.</span>
+<span class="w">  </span><span class="nt">egfr_signaling_assays</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">egfr_signaling_assays</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">EGFR</span><span class="nv"> </span><span class="s">signaling</span><span class="nv"> </span><span class="s">assays.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span><span class="nv"> </span><span class="s">"EGFR</span>
+<span class="w">      </span><span class="s">activation".</span><span class="nv"> </span><span class="s">Note:</span><span class="nv"> </span><span class="s">EGFR</span><span class="nv"> </span><span class="s">phosphorylation</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">most</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">evidence</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">activation.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">balf_sputum_measurements</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">egfr_signaling_assays</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BALFSputumMeasurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EGFRSignalingAssay</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">lung_function_measurements</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lung_function_measurements</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of lung function measurements.</span>
+<span class="w">  </span><span class="nt">goblet_cell_assays</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">goblet_cell_assays</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">goblet</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">mucin</span><span class="nv"> </span><span class="s">assays.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span>
+<span class="w">      </span><span class="s">"Goblet</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">hyperplasia"</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">"Mucin</span><span class="nv"> </span><span class="s">hypersecretion".</span><span class="nv"> </span><span class="s">Combined</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">previous</span>
+<span class="w">      </span><span class="s">GobletCellMeasurement</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">MucinProductionMeasurement.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lung_function_measurements</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">goblet_cell_assays</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LungFunctionMeasurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GobletCellAssay</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">foxj_measurements</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">foxj_measurements</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of FoxJ1/ciliogenesis measurements.</span>
+<span class="w">  </span><span class="nt">balf_sputum_assays</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">balf_sputum_assays</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">BALF</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">sputum</span><span class="nv"> </span><span class="s">assays.</span><span class="nv"> </span><span class="s">In</span><span class="nv"> </span><span class="s">vivo</span><span class="nv"> </span><span class="s">only.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span>
+<span class="w">      </span><span class="s">Event:</span><span class="nv"> </span><span class="s">"Airway</span><span class="nv"> </span><span class="s">inflammation".'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">foxj_measurements</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">balf_sputum_assays</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FoxJMeasurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BALFSputumAssay</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">lung_function_assays</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lung_function_assays</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">lung</span><span class="nv"> </span><span class="s">function</span><span class="nv"> </span><span class="s">assays.</span><span class="nv"> </span><span class="s">In</span><span class="nv"> </span><span class="s">vivo</span><span class="nv"> </span><span class="s">only.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Adverse</span>
+<span class="w">      </span><span class="s">Outcome:</span><span class="nv"> </span><span class="s">"Decreased</span><span class="nv"> </span><span class="s">lung</span><span class="nv"> </span><span class="s">function"</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">composite</span><span class="nv"> </span><span class="s">clinical</span><span class="nv"> </span><span class="s">outcome.'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lung_function_assays</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LungFunctionAssay</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">foxj_assays</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">foxj_assays</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">FoxJ1/ciliogenesis</span><span class="nv"> </span><span class="s">assays.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span><span class="nv"> </span><span class="s">"Altered</span>
+<span class="w">      </span><span class="s">ciliogenesis".'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">foxj_assays</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FoxJExpressionAssay</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">gene_expression_assays</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gene_expression_assays</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of gene expression assays. Generic assay for gene/protein</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">expression measurements.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gene_expression_assays</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeneExpressionAssay</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">protocols</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocols</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of protocols.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of protocols. Contains Tier 2/3 procedural details important</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">for reproducibility.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocols</span>
@@ -693,7 +790,8 @@
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">methods</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">methods</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of methods.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of methods. Methods describe general approaches or techniques</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">used to perform assays.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">methods</span>
@@ -701,18 +799,6 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">assays</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assays</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of assays.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assays</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">tree_root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>

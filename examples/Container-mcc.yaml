@@ -1,18 +1,35 @@
-# Simple test file for MCCMeasurement
-mcc_measurements:
+# Test file for MucociliaryClearanceAssay
+mcc_assays:
   - id: "MCC:001"
     name: "Mucociliary transport rate"
-    observation_type: mucociliary_transport_rate
-    quantity_measured:
+    transport_rate:
       value: "45.3"
       unit:
         id: "UO:0000103"
         name: "micrometer per second"
-    measurement_date: "2024-03-05"
-    cell_culture_system:
+    transport_directionality: normal
+    assay_date: "2024-03-05"
+    cell_type:
+      id: "CL:0002328"
+      name: "bronchial epithelial cell"
+    study_subject:
       id: "owg:culture-007"
       name: "Primary HBE ALI culture"
-      cell_culture_growth_mode: air_liquid_interface
-      substrate_type: transwell_insert
-      passage_number: 2
-    days_at_differentiation: 21
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+    imaging_protocol:
+      id: "PROTOCOL:mcc-001"
+      name: "Fluorescent microsphere tracking for MCC"
+      fluorescent_tracer: "1-um fluorescent microspheres"
+      particle_tracking_method: "automated particle tracking"
+      particle_size:
+        value: "1"
+        unit:
+          id: "UO:0000017"
+          name: "micrometer"
+      imaging_frame_rate:
+        value: "30"
+        unit:
+          id: "UO:0000105"
+          name: "hertz"

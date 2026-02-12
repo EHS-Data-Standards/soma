@@ -444,7 +444,7 @@
 
 
 <h1 id="slot-normalization_reference">Slot: normalization_reference</h1>
-<p><em>The reference gene or protein used for normalization (e.g., GAPDH, beta-actin, 18S rRNA, total protein).</em></p>
+<p><em>Normalization reference (beta-actin, GAPDH, total EGFR).</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/normalization_reference">outcomes_working_group:normalization_reference</a>
 Alias: normalization_reference</p>
 <!-- no inheritance hierarchy -->
@@ -460,13 +460,13 @@ Alias: normalization_reference</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
-<td>A measurement of gene expression (mRNA level) in a specific biological contex...</td>
+<td><a href="../GeneExpressionAssay/">GeneExpressionAssay</a></td>
+<td>General assay for gene expression measurements</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
-<td>A measurement of protein expression or post-translational modification (e</td>
+<td><a href="../EGFRSignalingAssay/">EGFRSignalingAssay</a></td>
+<td>Assay for measuring EGFR phosphorylation and downstream signaling</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -502,14 +502,13 @@ Alias: normalization_reference</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">normalization_reference</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The reference gene or protein used for normalization (e.g., GAPDH, beta-actin,</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">18S rRNA, total protein).</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Normalization reference (beta-actin, GAPDH, total EGFR).</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">normalization_reference</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeneExpressionMeasurement</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProteinExpressionMeasurement</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EGFRSignalingAssay</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeneExpressionAssay</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>

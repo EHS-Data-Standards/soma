@@ -1,5 +1,10 @@
-# Simple test file for Method
+# Test file for Method
 methods:
   - id: "METHOD:001"
     name: "High-speed video microscopy"
     description: "Video microscopy technique for measuring ciliary dynamics at frame rates above 100 Hz"
+    method_type: "microscopy"
+    equipment_required:
+      - "High-speed camera (>200 fps)"
+      - "Inverted microscope with 20x objective"
+    general_procedure: "Cells imaged at 200 fps for 5 seconds per field of view"

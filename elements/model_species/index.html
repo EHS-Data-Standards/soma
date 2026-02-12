@@ -444,7 +444,7 @@
 
 
 <h1 id="slot-model_species">Slot: model_species</h1>
-<p><em>The species of origin for the cells in the model system.</em></p>
+<p><em>The species of origin for the cells or organism being studied. Reference to NCBITaxon term.</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/model_species">outcomes_working_group:model_species</a>
 Alias: model_species</p>
 <!-- no inheritance hierarchy -->
@@ -460,6 +460,11 @@ Alias: model_species</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="../ModelSystem/">ModelSystem</a></td>
+<td>An in vitro or ex vivo model system used to study biological processes</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></td>
 <td>Three-dimensional cell culture systems including spheroids, organoids, and sc...</td>
 <td>no</td>
@@ -470,8 +475,23 @@ Alias: model_species</p>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../StudySubject/">StudySubject</a></td>
+<td>The subject of a study — what the assay is performed on</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../PopulationSubject/">PopulationSubject</a></td>
+<td>A population or cohort of subjects studied in aggregate</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../CellLine/">CellLine</a></td>
-<td>A cell line - a genetically stable cultured cell population that contains ind...</td>
+<td>A cell line - a genetically stable cultured cell population</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CellularSystem/">CellularSystem</a></td>
+<td>Cell-based model systems that use living cells to model biological processes</td>
 <td>no</td>
 </tr>
 <tr>
@@ -480,8 +500,8 @@ Alias: model_species</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../CellularSystem/">CellularSystem</a></td>
-<td>Cell-based model systems that use living cells to model biological processes</td>
+<td><a href="../InVivoSubject/">InVivoSubject</a></td>
+<td>A living human or animal subject from whom measurements are taken</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -517,13 +537,14 @@ Alias: model_species</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">model_species</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The species of origin for the cells in the model system.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The species of origin for the cells or organism being studied. Reference</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">to NCBITaxon term.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">model_species</span>
 <span class="nt">domain_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellLine</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>

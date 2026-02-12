@@ -183,19 +183,19 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#slots">
+<a class="md-nav__link" href="#inheritance">
 <span class="md-ellipsis">
       
-        Slots
+        Inheritance
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#usages">
+<a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
       
-        Usages
+        Slots
       
     </span>
 </a>
@@ -270,20 +270,150 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-assay">Class: Assay</h1>
-<p><em>A test or experiment used to measure a specific biological or chemical activity; assays generate data on how a substance affects cells, tissues, or systems.</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/Assay">outcomes_working_group:Assay</a></p>
+<p><em>A planned process with the objective to produce information about biological state relevant to a Key Event in an Adverse Outcome Pathway. Assays are organized by the functional domain they assess (e.g., ciliary function, oxidative stress), and each domain-specific assay class contains named slots for the specific measurements it can produce.</em></p>
+<p><em>This is the central organizing concept in the schema - assays inform on key events and contain the measurement data as named slots.</em></p>
+<ul>
+<li><strong>NOTE</strong>: this is an abstract class and should not be instantiated directly</li>
+</ul>
+<p>URI: <a href="http://purl.obolibrary.org/obo/OBI_0000070">OBI:0000070</a></p>
 <pre class="mermaid"><code> classDiagram
     class Assay
     click Assay href "../Assay/"
+      NamedThing &lt;|-- Assay
+        click NamedThing href "../NamedThing/"
+
+
+      Assay &lt;|-- CiliaryFunctionAssay
+        click CiliaryFunctionAssay href "../CiliaryFunctionAssay/"
+      Assay &lt;|-- ASLAssay
+        click ASLAssay href "../ASLAssay/"
+      Assay &lt;|-- MucociliaryClearanceAssay
+        click MucociliaryClearanceAssay href "../MucociliaryClearanceAssay/"
+      Assay &lt;|-- OxidativeStressAssay
+        click OxidativeStressAssay href "../OxidativeStressAssay/"
+      Assay &lt;|-- CFTRFunctionAssay
+        click CFTRFunctionAssay href "../CFTRFunctionAssay/"
+      Assay &lt;|-- EGFRSignalingAssay
+        click EGFRSignalingAssay href "../EGFRSignalingAssay/"
+      Assay &lt;|-- GobletCellAssay
+        click GobletCellAssay href "../GobletCellAssay/"
+      Assay &lt;|-- BALFSputumAssay
+        click BALFSputumAssay href "../BALFSputumAssay/"
+      Assay &lt;|-- LungFunctionAssay
+        click LungFunctionAssay href "../LungFunctionAssay/"
+      Assay &lt;|-- FoxJExpressionAssay
+        click FoxJExpressionAssay href "../FoxJExpressionAssay/"
+      Assay &lt;|-- GeneExpressionAssay
+        click GeneExpressionAssay href "../GeneExpressionAssay/"
+
+
+      Assay : assay_date
+
+      Assay : cell_type
+
+
+
+
+
+        Assay --&gt; "0..1" NamedEntity : cell_type
+        click NamedEntity href "../NamedEntity/"
+
+
+
       Assay : description
+
+      Assay : follows_protocol
+
+
+
+
+
+        Assay --&gt; "0..1" Protocol : follows_protocol
+        click Protocol href "../Protocol/"
+
+
 
       Assay : id
 
+      Assay : informs_on_key_event
+
+
+
+
+
+        Assay --&gt; "0..1" KeyEvent : informs_on_key_event
+        click KeyEvent href "../KeyEvent/"
+
+
+
+      Assay : input_sample
+
+
+
+
+
+        Assay --&gt; "0..1" InputSample : input_sample
+        click InputSample href "../InputSample/"
+
+
+
       Assay : name
+
+      Assay : study_subject
+
+
+
+
+
+        Assay --&gt; "0..1" StudySubject : study_subject
+        click StudySubject href "../StudySubject/"
+
+
+
+      Assay : tissue_context
+
+
+
+
+
+        Assay --&gt; "0..1" NamedEntity : tissue_context
+        click NamedEntity href "../NamedEntity/"
+
+
+
+      Assay : uses_method
+
+
+
+
+
+        Assay --&gt; "0..1" Method : uses_method
+        click Method href "../Method/"
+
+
 
 
 </code></pre>
-<!-- no inheritance hierarchy -->
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../NamedThing/">NamedThing</a><ul>
+<li><strong>Assay</strong><ul>
+<li><a href="../CiliaryFunctionAssay/">CiliaryFunctionAssay</a></li>
+<li><a href="../ASLAssay/">ASLAssay</a></li>
+<li><a href="../MucociliaryClearanceAssay/">MucociliaryClearanceAssay</a></li>
+<li><a href="../OxidativeStressAssay/">OxidativeStressAssay</a></li>
+<li><a href="../CFTRFunctionAssay/">CFTRFunctionAssay</a></li>
+<li><a href="../EGFRSignalingAssay/">EGFRSignalingAssay</a></li>
+<li><a href="../GobletCellAssay/">GobletCellAssay</a></li>
+<li><a href="../BALFSputumAssay/">BALFSputumAssay</a></li>
+<li><a href="../LungFunctionAssay/">LungFunctionAssay</a></li>
+<li><a href="../FoxJExpressionAssay/">FoxJExpressionAssay</a></li>
+<li><a href="../GeneExpressionAssay/">GeneExpressionAssay</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -296,47 +426,70 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../informs_on_key_event/">informs_on_key_event</a></td>
+<td>0..1 <br/> <a href="../KeyEvent/">KeyEvent</a></td>
+<td>The Key Event that this assay provides evidence for</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cell_type/">cell_type</a></td>
+<td>0..1 <br/> <a href="../NamedEntity/">NamedEntity</a></td>
+<td>The cell type being studied</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../tissue_context/">tissue_context</a></td>
+<td>0..1 <br/> <a href="../NamedEntity/">NamedEntity</a></td>
+<td>The anatomical/tissue context</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../study_subject/">study_subject</a></td>
+<td>0..1 <br/> <a href="../StudySubject/">StudySubject</a></td>
+<td>The subject of the study — what the assay is performed on</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../input_sample/">input_sample</a></td>
+<td>0..1 <br/> <a href="../InputSample/">InputSample</a></td>
+<td>Description of the input sample and manipulations</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../uses_method/">uses_method</a></td>
+<td>0..1 <br/> <a href="../Method/">Method</a></td>
+<td>The Method used to perform this assay</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../follows_protocol/">follows_protocol</a></td>
+<td>0..1 <br/> <a href="../Protocol/">Protocol</a></td>
+<td>The Protocol that this assay follows</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../assay_date/">assay_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the assay was performed</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../id/">id</a></td>
 <td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>A unique identifier for the entity</td>
-<td>direct</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
 <tr>
 <td><a href="../name/">name</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A human-readable name for the entity</td>
-<td>direct</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
 <tr>
 <td><a href="../description/">description</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A detailed description of the entity</td>
-<td>direct</td>
-</tr>
-</tbody>
-</table>
-<h2 id="usages">Usages</h2>
-<table>
-<thead>
-<tr>
-<th>used by</th>
-<th>used in</th>
-<th>type</th>
-<th>used</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../Container/">Container</a></td>
-<td><a href="../assays/">assays</a></td>
-<td>range</td>
-<td><a href="./">Assay</a></td>
-</tr>
-<tr>
-<td><a href="../Method/">Method</a></td>
-<td><a href="../implements_assay/">implements_assay</a></td>
-<td>range</td>
-<td><a href="./">Assay</a></td>
+<td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
 </tbody>
 </table>
@@ -356,7 +509,7 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>outcomes_working_group:Assay</td>
+<td>OBI:0000070</td>
 </tr>
 <tr>
 <td>native</td>
@@ -369,22 +522,142 @@
 <h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A test or experiment used to measure a specific biological or chemical</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">activity; assays generate data on how a substance affects cells, tissues, or systems.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">planned</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">objective</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">produce</span><span class="nv"> </span><span class="s">information</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">biological</span>
+<span class="w">  </span><span class="s">state</span><span class="nv"> </span><span class="s">relevant</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">Adverse</span><span class="nv"> </span><span class="s">Outcome</span><span class="nv"> </span><span class="s">Pathway.</span><span class="nv"> </span><span class="s">Assays</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">organized</span>
+<span class="w">  </span><span class="s">by</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">functional</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">they</span><span class="nv"> </span><span class="s">assess</span><span class="nv"> </span><span class="s">(e.g.,</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function,</span><span class="nv"> </span><span class="s">oxidative</span><span class="nv"> </span><span class="s">stress),</span>
+<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">domain-specific</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">contains</span><span class="nv"> </span><span class="s">named</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">measurements</span>
+<span class="w">  </span><span class="s">it</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">produce.</span>
+
+<span class="w">  </span><span class="s">This</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">central</span><span class="nv"> </span><span class="s">organizing</span><span class="nv"> </span><span class="s">concept</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">schema</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">assays</span><span class="nv"> </span><span class="s">inform</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">key</span><span class="nv"> </span><span class="s">events</span>
+<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">contain</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">named</span><span class="nv"> </span><span class="s">slots.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="nt">abstract</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">slots</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">informs_on_key_event</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_type</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tissue_context</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">study_subject</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_sample</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uses_method</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocol</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assay_date</span>
+<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0000070</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A test or experiment used to measure a specific biological or chemical</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">activity; assays generate data on how a substance affects cells, tissues, or systems.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">planned</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">objective</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">produce</span><span class="nv"> </span><span class="s">information</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">biological</span>
+<span class="w">  </span><span class="s">state</span><span class="nv"> </span><span class="s">relevant</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">Adverse</span><span class="nv"> </span><span class="s">Outcome</span><span class="nv"> </span><span class="s">Pathway.</span><span class="nv"> </span><span class="s">Assays</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">organized</span>
+<span class="w">  </span><span class="s">by</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">functional</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">they</span><span class="nv"> </span><span class="s">assess</span><span class="nv"> </span><span class="s">(e.g.,</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function,</span><span class="nv"> </span><span class="s">oxidative</span><span class="nv"> </span><span class="s">stress),</span>
+<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">domain-specific</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">contains</span><span class="nv"> </span><span class="s">named</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">measurements</span>
+<span class="w">  </span><span class="s">it</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">produce.</span>
+
+<span class="w">  </span><span class="s">This</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">central</span><span class="nv"> </span><span class="s">organizing</span><span class="nv"> </span><span class="s">concept</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">schema</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">assays</span><span class="nv"> </span><span class="s">inform</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">key</span><span class="nv"> </span><span class="s">events</span>
+<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">contain</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">named</span><span class="nv"> </span><span class="s">slots.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="nt">abstract</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">attributes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">informs_on_key_event</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Key Event that this assay provides evidence for. This establishes</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the mechanistic connection between the assay measurements and the Adverse Outcome</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Pathway framework. Multiple assays can inform on the same key event, providing</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">converging evidence.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">informs_on_key_event</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KeyEvent</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">cell_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The cell type being studied. Reference to a Cell Ontology (CL) term.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">This is a TIER 1 slot - critical for data discovery and comparison.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0000324</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_type</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellLine</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">tissue_context</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tissue_context</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The anatomical/tissue context. Reference to UBERON anatomy term.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Important for understanding where measurements were taken.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tissue_context</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">study_subject</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">study_subject</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The subject of the study — what the assay is performed on. Can be</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">a ModelSystem (e.g., CellularSystem), an InVivoSubject, or a PopulationSubject.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">The type of subject determines which context slots are available.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">study_subject</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">input_sample</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_sample</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Description of the input sample and manipulations. TIER 1 slot -</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">critical for understanding what was measured and under what conditions.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_sample</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InputSample</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">uses_method</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uses_method</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Method used to perform this assay.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uses_method</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">follows_protocol</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocol</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Protocol that this assay follows.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocol</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">assay_date</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assay_date</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Date when the assay was performed.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assay_date</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A unique identifier for the entity.</span>
@@ -394,14 +667,9 @@
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MediumSupplement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span>
@@ -413,14 +681,9 @@
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MediumSupplement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
@@ -431,13 +694,9 @@
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellLine</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0000070</span>
 </code></pre></div>
 </details>
 </article>

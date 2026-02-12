@@ -2,682 +2,1354 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/about/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/examples/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ASLMeasurement/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ASLAssay/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ASLObservationTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/AdverseOutcome/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/AdverseOutcomePathway/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Assay/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/BALFSputumMeasurement/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/BALFSputumAssay/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/BALFSputumObservationTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/BiologicalActionEnum/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/BiologicalOrganizationLevelEnum/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Boolean/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CFTRMeasurement/</loc>
-         <lastmod>2026-02-03</lastmod>
-    </url>
-    <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CFTRObservationTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CFTRFunctionAssay/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CellCultureConditions/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CellCultureGrowthModeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CellCultureMedium/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CellLine/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CellularSystem/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CiliaryFunctionMeasurement/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CiliaryFunctionAssay/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CiliaryFunctionObservationTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CiliaryMotionPatternEnum/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CoCulture/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/CoCultureConfigurationEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Container/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Curie/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Date/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/DateOrDatetime/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Datetime/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Decimal/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/DirectionalityEnum/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Double/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/EGFRObservationTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/EGFRSignalingAssay/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/EGFRPhosphorylationMeasurement/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/EvidenceSupportEnum/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Float/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/FoxJMeasurement/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/FoxJExpressionAssay/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/FoxJObservationTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/GeneExpressionAssay/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/GeneExpressionMeasurement/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/GobletCellAssay/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/GeneExpressionObservationTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ImagingProtocol/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/GobletCellMucinMeasurement/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/InVivoSubject/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/GobletCellMucinObservationTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
-    </url>
-    <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/InVitroContext/</loc>
-         <lastmod>2026-02-03</lastmod>
-    </url>
-    <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/InVivoContext/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/InputSample/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Integer/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Jsonpath/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Jsonpointer/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/LungFunctionMeasurement/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/KeyEvent/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/LungFunctionObservationTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/KeyEventRelationship/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/MCCMeasurement/</loc>
-         <lastmod>2026-02-03</lastmod>
-    </url>
-    <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/MCCObservationTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
-    </url>
-    <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Measurement/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/LungFunctionAssay/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/MediumSupplement/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Method/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ModelSystem/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/MolecularAssayProtocol/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/MolecularInitiatingEvent/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/MucociliaryClearanceAssay/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/NamedEntity/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/NamedThing/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Ncname/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Nodeidentifier/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Objectidentifier/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/OxidativeStressMeasurement/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/OutcomeLevelEnum/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/OxidativeStressObservationTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/OxidativeStressAssay/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ProteinExpressionMeasurement/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/PopulationSubject/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Protocol/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/QuantitativeUnderstandingEnum/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/QuantityRange/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/QuantityValue/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/SampleTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Sparqlpath/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/SpirometryProtocol/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/StainingProtocol/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/String/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/StudyContextEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/StudySubject/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/SubstrateTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/SupplementTypeEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ThreeDArchitectureEnum/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ThreeDCellCulture/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Time/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/TwoDCellCulture/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Unit/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Uri/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/Uriorcurie/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/anatomical_context/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/active_area_percentage/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/adverse_outcome/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/adverse_outcome_pathways/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/age/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/age_range/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/airway_region/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/akt_phosphorylation/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/alpha_diversity/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/analysis_software/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/anatomical_origin/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/antibody_used/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/antibodies_used/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/asl_measurements/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/antioxidant_capacity/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/assay/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/antioxidant_enzyme_activities/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/assays/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/aopwiki_id/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/asl_assays/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/asl_height_um/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/asl_ph/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/assay_date/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/authentication_method/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/balf_sputum_measurements/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/bacterial_load/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/balf_sputum_assays/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/base_medium/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/beat_frequency_hz/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/beta_diversity/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/biological_action/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/biological_object/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/biological_process/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/bronchodilator_agent/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/bronchodilator_dose/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/bronchodilator_response/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/catalase_activity/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/catalog_number/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cell_culture_growth_mode/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cell_culture_system/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cell_free_dna/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cell_line/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cell_type/</loc>
-         <lastmod>2026-02-03</lastmod>
-    </url>
-    <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cell_type_context/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cell_type_ratios/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cftr_measurements/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cftr_assays/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ciliary_measurements/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cftr_chloride_secretion/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cftr_forskolin_response/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cftr_specific_current/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cilia_length/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cilia_per_cell/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ciliary_beat_amplitude/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ciliary_function_assays/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ciliary_motion_patterns/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/coating/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/coculture_configuration/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cohort_size/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/collection_date/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/collection_site/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/concentration/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/confluence_level/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/counterstain/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/culture_conditions/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/culture_media/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/days_at_air_liquid_interface/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/days_at_differentiation/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/decline_rate/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/description/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/detection_method/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/detection_method_details/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/disease_state/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/dlco/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/dna_damage_markers/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/donor_count/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/donor_info/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/egfr_phosphorylation_measurements/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/downstream_event/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/evaporation_control/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/downstream_key_events/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/downstream_kinase_activation/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/egfr_ligand_expression/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/egfr_membrane_localization/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/egfr_phosphorylation_y1068/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/egfr_phosphorylation_y1173/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/egfr_signaling_assays/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/eight_isoprostane/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/eight_ohdg/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/eosinophil_percentage/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/equipment_required/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/erk_phosphorylation/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/evaporation_prevention/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/evidence_support/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/exposure_concentration/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/exposure_conditions/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/exposure_duration/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/fef25_75/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/feno/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/fev1/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/fev1_fvc_ratio/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/fixation_method/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/fluorescent_labeling/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/fluorescent_tracer/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/follows_protocol/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/foxj_measurements/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/four_hydroxynonenal/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/goblet_cell_mucin_measurements/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/foxj1_mrna_expression/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/foxj1_nuclear_localization/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/foxj1_positive_cell_percentage/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/foxj1_protein_expression/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/foxj_assays/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/functional_residual_capacity/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/fvc/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/gene_expression_assays/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/gene_expression_method/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/general_procedure/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/glutathione_peroxidase_activity/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/glutathione_ratio/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/goblet_cell_assays/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/goblet_cell_count/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/goblet_cell_percentage/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/goblet_to_ciliated_ratio/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/hemoglobin_level/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/humidity_control/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/id/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/il1_beta_concentration/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/il6_concentration/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/il8_concentration/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/imaging_duration/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/imaging_frame_rate/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/implements_assay/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/imaging_protocol/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/inclusion_criteria/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/informs_on_key_event/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/inhibitor_sensitive_current/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/inhibitor_used/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/input_sample/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/institution/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ion_composition/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/key_event_relationships/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/key_events/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/key_reagents/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/last_updated/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/level_of_biological_organization/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/lipid_peroxidation/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/lot_number/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/lung_function_measurements/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/lung_compliance/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/lung_elastance/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/lung_function_assays/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/lung_resistance/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/lymphocyte_percentage/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/lysis_buffer/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/macrophage_percentage/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/malondialdehyde/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/manufacturer/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/matrix_composition/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/max_value/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/mcc_measurements/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/mcc_assays/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/measured_entity/</loc>
-         <lastmod>2026-02-03</lastmod>
-    </url>
-    <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/measurement_date/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/method_type/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/methods/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/min_value/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/model_species/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/molecular_initiating_event/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/molecular_protocol/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/mrna_level/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/muc5ac_mrna_expression/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/muc5ac_muc5b_ratio/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/muc5ac_protein_expression/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/muc5b_mrna_expression/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/muc5b_protein_expression/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/mucin_protein_concentration/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/mucin_secretion_rate/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/mucus_composition/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/mucus_layer_thickness/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/mucus_viscosity/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/mycoplasma_status/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/name/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/nasal_potential_difference/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/neutrophil_percentage/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/nitrotyrosine/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/normalization_method/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/normalization_reference/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/observation_type/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/nrf2_activation/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/obi_mapping/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/occurs_in_anatomy/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/occurs_in_cell_type/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/organoid_type/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/osmolality/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/outcome_level/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/outcomes_working_group/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/oxidative_stress_measurements/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/oxidative_stress_assays/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/participant/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/particle_clearance_time/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/particle_size/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/particle_tracking_method/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/passage_number/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/pathway_biomarkers/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/peak_expiratory_flow/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/percent_solids/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/percentage_active_transport/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/percentage_ciliated_cells/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/percentage_positive_cells/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/periciliary_layer_depth/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/phosphorylation_site/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/platform/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/plethysmography_method/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/preparation_date/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/primary_cell/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/probe_type/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/primer_sequences/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/protein_carbonyl_content/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/protein_level/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/protein_oxidation_markers/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/protocol_author/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/protocol_version/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/protocols/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/publication_reference/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/quality_control_criteria/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/quantity_measured/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/quantitative_understanding/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/range_high/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/reactive_oxygen_species/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/range_low/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/recent_respiratory_illness/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/replicate_count/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/reference_dataset/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/reference_gene/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/relationship_type/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/replicate_requirements/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/replicates_per_donor/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/residual_volume/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/ros_probe_type/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/sample_preparation/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/sample_source/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/sample_type/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/seeding_density/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/serum_concentration/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/serum_type/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/sex/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/size_range/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/sop_reference/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/spatial_resolution/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/specified_by_method/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/spirometry_protocol/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/spirometry_standard/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/staining_protocol/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/staining_type/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/stimulation_agent/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/stressors/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/study_subject/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/subject_characteristics/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/subjects/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/substrate_type/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/superoxide_dismutase_activity/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/supplement_type/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/supplements/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/supplier/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/sweat_chloride_concentration/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/target_gene/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/target_protein/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/target_molecule/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/temperature_control/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/three_d_architecture/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/timing_post_exposure/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/tissue_context/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/tissue_origin/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/tnf_alpha_concentration/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/total_antioxidant_capacity/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/total_cell_count/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/total_egfr_protein/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/total_lung_capacity/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/total_protein_concentration/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/transport_directionality/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/transport_rate/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/unit/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/upstream_event/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/upstream_key_events/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/uses_method/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/validation_status/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/value/</loc>
-         <lastmod>2026-02-03</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
 </urlset>

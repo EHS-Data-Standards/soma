@@ -1,5 +1,13 @@
-# Simple test file for Protocol
+# Test file for Protocol (base class slots only)
 protocols:
   - id: "PROTOCOL:001"
     name: "High-speed video microscopy for CBF"
     description: "Protocol for measuring ciliary beat frequency using high-speed video microscopy"
+    protocol_version: "2.1"
+    temperature_control:
+      value: "37"
+      unit:
+        id: "UO:0000027"
+        name: "degree Celsius"
+    quality_control_criteria: "Minimum 5 fields per insert, discard if >50% debris"
+    replicate_requirements: 3

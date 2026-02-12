@@ -433,7 +433,7 @@
 
 
 <h1 id="enum-substratetypeenum">Enum: SubstrateTypeEnum</h1>
-<p><em>Types of cell culture substrates and surfaces. Includes traditional and advanced substrate materials.</em></p>
+<p><em>Types of cell culture substrates.</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/SubstrateTypeEnum">outcomes_working_group:SubstrateTypeEnum</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
 <table>
@@ -453,12 +453,12 @@
 <tr>
 <td>collagen_coated</td>
 <td>None</td>
-<td>Collagen-coated surface for enhanced cell attachment</td>
+<td>Collagen-coated surface</td>
 </tr>
 <tr>
 <td>matrigel</td>
 <td>None</td>
-<td>Basement membrane matrix (Matrigel/Geltrex)</td>
+<td>Basement membrane matrix</td>
 </tr>
 <tr>
 <td>fibronectin_coated</td>
@@ -473,7 +473,7 @@
 <tr>
 <td>transwell_insert</td>
 <td>None</td>
-<td>Permeable support for air-liquid interface culture</td>
+<td>Permeable support for ALI culture</td>
 </tr>
 <tr>
 <td>hydrogel</td>
@@ -488,7 +488,7 @@
 <tr>
 <td>pdms</td>
 <td>None</td>
-<td>Polydimethylsiloxane (for microfluidics/organ-on-chip)</td>
+<td>Polydimethylsiloxane (microfluidics)</td>
 </tr>
 </tbody>
 </table>
@@ -503,7 +503,7 @@
 <tbody>
 <tr>
 <td><a href="../substrate_type/">substrate_type</a></td>
-<td>Type of culture substrate or surface material</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -515,64 +515,37 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SubstrateTypeEnum</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Types of cell culture substrates and surfaces. Includes traditional and</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">advanced substrate materials.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Types of cell culture substrates.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">plastic</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">plastic</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Standard tissue culture-treated plastic</span>
-<span class="w">    </span><span class="nt">broad_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0000953</span>
 <span class="w">  </span><span class="nt">collagen_coated</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">collagen_coated</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collagen-coated surface for enhanced cell attachment</span>
-<span class="w">    </span><span class="nt">related_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:3815</span>
-<span class="w">    </span><span class="nt">broad_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0100031</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collagen-coated surface</span>
 <span class="w">  </span><span class="nt">matrigel</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matrigel</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Basement membrane matrix (Matrigel/Geltrex)</span>
-<span class="w">    </span><span class="nt">related_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GO:0005604</span>
-<span class="w">    </span><span class="nt">narrow_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0100031</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Basement membrane matrix</span>
 <span class="w">  </span><span class="nt">fibronectin_coated</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fibronectin_coated</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Fibronectin-coated surface</span>
-<span class="w">    </span><span class="nt">related_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PR:000007245</span>
-<span class="w">    </span><span class="nt">broad_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0100031</span>
 <span class="w">  </span><span class="nt">laminin_coated</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">laminin_coated</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Laminin-coated surface</span>
-<span class="w">    </span><span class="nt">related_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GO:0043256</span>
-<span class="w">    </span><span class="nt">broad_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0100031</span>
 <span class="w">  </span><span class="nt">transwell_insert</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Permeable support for air-liquid interface culture</span>
-<span class="w">    </span><span class="nt">exact_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0001950</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Permeable support for ALI culture</span>
 <span class="w">  </span><span class="nt">hydrogel</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hydrogel</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Three-dimensional hydrogel matrix</span>
-<span class="w">    </span><span class="nt">exact_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:17790</span>
 <span class="w">  </span><span class="nt">glass</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">glass</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Glass surface or coverslip</span>
-<span class="w">    </span><span class="nt">exact_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:131189</span>
 <span class="w">  </span><span class="nt">pdms</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pdms</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Polydimethylsiloxane (for microfluidics/organ-on-chip)</span>
-<span class="w">    </span><span class="nt">broad_mappings</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:46669</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Polydimethylsiloxane (microfluidics)</span>
 </code></pre></div>
 </details>
 

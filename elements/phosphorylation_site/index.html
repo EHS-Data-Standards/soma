@@ -444,7 +444,7 @@
 
 
 <h1 id="slot-phosphorylation_site">Slot: phosphorylation_site</h1>
-<p><em>For protein phosphorylation measurements, the specific amino acid residue that is phosphorylated (e.g., Y1068, S473, T308).</em></p>
+<p><em>Specific phosphorylation site being measured.</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/phosphorylation_site">outcomes_working_group:phosphorylation_site</a>
 Alias: phosphorylation_site</p>
 <!-- no inheritance hierarchy -->
@@ -460,13 +460,8 @@ Alias: phosphorylation_site</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../EGFRPhosphorylationMeasurement/">EGFRPhosphorylationMeasurement</a></td>
-<td>Measurement of EGFR (epidermal growth factor receptor) phosphorylation</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
-<td>A measurement of protein expression or post-translational modification (e</td>
+<td><a href="../EGFRSignalingAssay/">EGFRSignalingAssay</a></td>
+<td>Assay for measuring EGFR phosphorylation and downstream signaling</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -502,14 +497,12 @@ Alias: phosphorylation_site</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phosphorylation_site</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">For protein phosphorylation measurements, the specific amino acid residue</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">that is phosphorylated (e.g., Y1068, S473, T308).</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Specific phosphorylation site being measured.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phosphorylation_site</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProteinExpressionMeasurement</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EGFRPhosphorylationMeasurement</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EGFRSignalingAssay</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>

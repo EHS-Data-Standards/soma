@@ -770,7 +770,7 @@ initiative, focused on developing standardized data models for environmental hea
 <ul>
 <li><strong>Ontology-first</strong> - All entities are mapped to established biomedical ontologies</li>
 <li><strong>FAIR-compliant</strong> - Supports Findable, Accessible, Interoperable, and Reusable data</li>
-<li><strong>Extensible</strong> - New entity types can be added without breaking existing data</li>
+<li><strong>Extensible</strong> - New assay types can be added without breaking existing data</li>
 <li><strong>Multi-scale</strong> - Captures data from molecular to population levels</li>
 </ul>
 <h3 id="technology-stack">Technology Stack</h3>
@@ -791,16 +791,20 @@ initiative, focused on developing standardized data models for environmental hea
 </thead>
 <tbody>
 <tr>
-<td>Measurements</td>
-<td>Biomarkers, phenotypes, gene/protein expression</td>
+<td>Assays</td>
+<td>Domain-specific assay classes with named measurement slots (e.g., CiliaryFunctionAssay, LungFunctionAssay)</td>
 </tr>
 <tr>
-<td>Model Systems</td>
-<td>Cell cultures and in vitro exposure systems</td>
+<td>Study Subjects</td>
+<td>Biological systems under study: cell cultures (CellularSystem, TwoDCellCulture), human/animal subjects (InVivoSubject), populations (PopulationSubject)</td>
 </tr>
 <tr>
-<td>Value Set Definitions</td>
-<td>Controlled vocabularies for key entities with ontology mappings</td>
+<td>Protocols</td>
+<td>Typed experimental procedures: ImagingProtocol, MolecularAssayProtocol, StainingProtocol, SpirometryProtocol</td>
+</tr>
+<tr>
+<td>AOP Framework</td>
+<td>Adverse Outcome Pathways: KeyEvent, AdverseOutcomePathway, with assay linkage via <code>informs_on_key_event</code></td>
 </tr>
 </tbody>
 </table>

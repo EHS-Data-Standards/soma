@@ -533,7 +533,8 @@
 
 
 <h1 id="outcomes-working-group-schema">Outcomes Working Group Schema</h1>
-<p>A LinkML data model for representing biological measurements, assays, and experimental protocols in the context of outcomes research. This is the main entry point that imports the measurement base schema and domain-specific microschemas.</p>
+<p>A LinkML data model for representing biological assays, measurements, and experimental protocols in the context of outcomes research. The schema is centered around ASSAYS that inform on Key Events in Adverse Outcome Pathways (AOPs), with named slots for specific measurements.
+This is the main entry point that imports the AOP framework, assay base schema, and domain-specific assay microschemas.</p>
 <p>URI: https://w3id.org/EHS-Data-Standards/outcomes_working_group</p>
 <p>Name: outcomes_working_group</p>
 <h2 id="classes">Classes</h2>
@@ -546,68 +547,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="ASLMeasurement/">ASLMeasurement</a></td>
-<td>Measurement of airway surface liquid properties including ASL height, pericil...</td>
-</tr>
-<tr>
-<td><a href="Assay/">Assay</a></td>
-<td>A test or experiment used to measure a specific biological or chemical activi...</td>
-</tr>
-<tr>
-<td><a href="BALFSputumMeasurement/">BALFSputumMeasurement</a></td>
-<td>Measurement of bronchoalveolar lavage fluid (BALF) or sputum components inclu...</td>
-</tr>
-<tr>
-<td><a href="CFTRMeasurement/">CFTRMeasurement</a></td>
-<td>Measurement of CFTR (cystic fibrosis transmembrane conductance regulator) fun...</td>
-</tr>
-<tr>
-<td><a href="CiliaryFunctionMeasurement/">CiliaryFunctionMeasurement</a></td>
-<td>Measurement of ciliary function including beat frequency, active area, cilia ...</td>
-</tr>
-<tr>
 <td><a href="Container/">Container</a></td>
-<td>A container for collections of measurements and related entities</td>
-</tr>
-<tr>
-<td><a href="EGFRPhosphorylationMeasurement/">EGFRPhosphorylationMeasurement</a></td>
-<td>Measurement of EGFR (epidermal growth factor receptor) phosphorylation</td>
-</tr>
-<tr>
-<td><a href="FoxJMeasurement/">FoxJMeasurement</a></td>
-<td>Measurement of FoxJ1 expression and related ciliogenesis markers</td>
-</tr>
-<tr>
-<td><a href="GeneExpressionMeasurement/">GeneExpressionMeasurement</a></td>
-<td>A measurement of gene expression (mRNA level) in a specific biological contex...</td>
-</tr>
-<tr>
-<td><a href="GobletCellMucinMeasurement/">GobletCellMucinMeasurement</a></td>
-<td>Measurement of goblet cell populations and mucin production including goblet ...</td>
-</tr>
-<tr>
-<td><a href="InVitroContext/">InVitroContext</a></td>
-<td>Context slots for in vitro measurements using cell culture systems</td>
-</tr>
-<tr>
-<td><a href="InVivoContext/">InVivoContext</a></td>
-<td>Context slots for in vivo measurements from human or animal subjects</td>
-</tr>
-<tr>
-<td><a href="LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
-<td>Measurement of lung function parameters via spirometry and other pulmonary fu...</td>
-</tr>
-<tr>
-<td><a href="MCCMeasurement/">MCCMeasurement</a></td>
-<td>Measurement of mucociliary clearance and transport including mucus transport ...</td>
-</tr>
-<tr>
-<td><a href="Measurement/">Measurement</a></td>
-<td>The result of applying an assay to a specific sample at a specific time, prod...</td>
-</tr>
-<tr>
-<td><a href="Method/">Method</a></td>
-<td>A general approach or technique used to collect, measure, or analyze data (e</td>
+<td>Root container for outcomes research data</td>
 </tr>
 <tr>
 <td><a href="NamedEntity/">NamedEntity</a></td>
@@ -623,39 +564,143 @@
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CellLine/">CellLine</a></td>
-<td>A cell line - a genetically stable cultured cell population that contains ind...</td>
+<td>A cell line - a genetically stable cultured cell population</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CellularSystem/">CellularSystem</a></td>
-<td>Cell-based model systems that use living cells to model biological processes</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CoCulture/">CoCulture</a></td>
-<td>Co-culture systems combining multiple cell types to simulate tissue microenvi...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ThreeDCellCulture/">ThreeDCellCulture</a></td>
-<td>Three-dimensional cell culture systems including spheroids, organoids, and sc...</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TwoDCellCulture/">TwoDCellCulture</a></td>
-<td>Conventional monolayer cell cultures grown on flat surfaces</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="InputSample/">InputSample</a></td>
+<td>Description of the input sample and any manipulations performed</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MediumSupplement/">MediumSupplement</a></td>
 <td>Supplement or additive to cell culture medium</td>
 </tr>
 <tr>
-<td><a href="OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
-<td>Measurement of oxidative stress markers including reactive oxygen species, li...</td>
+<td><a href="NamedThing/">NamedThing</a></td>
+<td>A generic entity with an identifier and name</td>
 </tr>
 <tr>
-<td><a href="ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
-<td>A measurement of protein expression or post-translational modification (e</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AdverseOutcome/">AdverseOutcome</a></td>
+<td>An adverse health outcome at the organism or population level that represents...</td>
 </tr>
 <tr>
-<td><a href="Protocol/">Protocol</a></td>
-<td>A detailed set of steps for how to perform a test or collect data; protocols ...</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AdverseOutcomePathway/">AdverseOutcomePathway</a></td>
+<td>A sequence of causally linked events at different levels of biological organi...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Assay/">Assay</a></td>
+<td>A planned process with the objective to produce information about biological ...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ASLAssay/">ASLAssay</a></td>
+<td>Assay for measuring airway surface liquid properties including ASL height, pe...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="BALFSputumAssay/">BALFSputumAssay</a></td>
+<td>Assay for measuring bronchoalveolar lavage fluid (BALF) or sputum composition</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CFTRFunctionAssay/">CFTRFunctionAssay</a></td>
+<td>Assay for measuring CFTR (Cystic Fibrosis Transmembrane Conductance Regulator...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CiliaryFunctionAssay/">CiliaryFunctionAssay</a></td>
+<td>Assay for measuring ciliary function including beat frequency, active area, c...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="EGFRSignalingAssay/">EGFRSignalingAssay</a></td>
+<td>Assay for measuring EGFR phosphorylation and downstream signaling</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="FoxJExpressionAssay/">FoxJExpressionAssay</a></td>
+<td>Assay for measuring FoxJ1 expression related to ciliogenesis</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GeneExpressionAssay/">GeneExpressionAssay</a></td>
+<td>General assay for gene expression measurements</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GobletCellAssay/">GobletCellAssay</a></td>
+<td>Assay for measuring goblet cell populations and mucin production</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="LungFunctionAssay/">LungFunctionAssay</a></td>
+<td>Clinical assay for measuring lung function</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MucociliaryClearanceAssay/">MucociliaryClearanceAssay</a></td>
+<td>Assay for measuring mucociliary clearance and transport</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="OxidativeStressAssay/">OxidativeStressAssay</a></td>
+<td>Assay for measuring oxidative stress markers</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="KeyEvent/">KeyEvent</a></td>
+<td>A measurable change in biological state that is a step in an Adverse Outcome ...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MolecularInitiatingEvent/">MolecularInitiatingEvent</a></td>
+<td>The initial molecular-level perturbation that starts an Adverse Outcome Pathw...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="KeyEventRelationship/">KeyEventRelationship</a></td>
+<td>A directional relationship between two key events in an AOP</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Method/">Method</a></td>
+<td>A general approach or technique used to perform an assay</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Protocol/">Protocol</a></td>
+<td>A detailed set of steps for how to perform a specific assay using a specific ...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ImagingProtocol/">ImagingProtocol</a></td>
+<td>Protocol for imaging-based assays (CBF, ASL, MCC)</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MolecularAssayProtocol/">MolecularAssayProtocol</a></td>
+<td>Protocol for molecular biology assays (qRT-PCR, Western blot, ELISA)</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SpirometryProtocol/">SpirometryProtocol</a></td>
+<td>Protocol for lung function / spirometry assays</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="StainingProtocol/">StainingProtocol</a></td>
+<td>Protocol for staining-based assays (goblet cell, immunofluorescence)</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="StudySubject/">StudySubject</a></td>
+<td>The subject of a study — what the assay is performed on</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="InVivoSubject/">InVivoSubject</a></td>
+<td>A living human or animal subject from whom measurements are taken</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ModelSystem/">ModelSystem</a></td>
+<td>An in vitro or ex vivo model system used to study biological processes</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CellularSystem/">CellularSystem</a></td>
+<td>Cell-based model systems that use living cells to model biological processes</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CoCulture/">CoCulture</a></td>
+<td>Co-culture systems combining multiple cell types to simulate tissue microenvi...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ThreeDCellCulture/">ThreeDCellCulture</a></td>
+<td>Three-dimensional cell culture systems including spheroids, organoids, and sc...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TwoDCellCulture/">TwoDCellCulture</a></td>
+<td>Conventional monolayer cell cultures grown on flat surfaces</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PopulationSubject/">PopulationSubject</a></td>
+<td>A population or cohort of subjects studied in aggregate</td>
 </tr>
 <tr>
 <td><a href="QuantityRange/">QuantityRange</a></td>
@@ -681,84 +726,200 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="anatomical_context/">anatomical_context</a></td>
-<td>The anatomical location or tissue from which the measurement was taken</td>
+<td><a href="active_area_percentage/">active_area_percentage</a></td>
+<td>Percentage of epithelial surface with actively beating cilia</td>
+</tr>
+<tr>
+<td><a href="adverse_outcome/">adverse_outcome</a></td>
+<td>The adverse outcome that is the apical endpoint of this AOP</td>
+</tr>
+<tr>
+<td><a href="adverse_outcome_pathways/">adverse_outcome_pathways</a></td>
+<td>Collection of Adverse Outcome Pathways</td>
+</tr>
+<tr>
+<td><a href="age/">age</a></td>
+<td>Age of the subject</td>
+</tr>
+<tr>
+<td><a href="age_range/">age_range</a></td>
+<td>Age range of the study population</td>
+</tr>
+<tr>
+<td><a href="airway_region/">airway_region</a></td>
+<td>Region of airway from which cells originated</td>
+</tr>
+<tr>
+<td><a href="akt_phosphorylation/">akt_phosphorylation</a></td>
+<td>AKT phosphorylation level</td>
+</tr>
+<tr>
+<td><a href="alpha_diversity/">alpha_diversity</a></td>
+<td>Alpha diversity (microbiome)</td>
+</tr>
+<tr>
+<td><a href="analysis_software/">analysis_software</a></td>
+<td>Software used for analysis (e</td>
 </tr>
 <tr>
 <td><a href="anatomical_origin/">anatomical_origin</a></td>
-<td>The anatomical location from which cells were derived (e</td>
+<td></td>
 </tr>
 <tr>
-<td><a href="antibody_used/">antibody_used</a></td>
+<td><a href="antibodies_used/">antibodies_used</a></td>
 <td>Antibodies used in staining or detection</td>
 </tr>
 <tr>
-<td><a href="asl_measurements/">asl_measurements</a></td>
-<td>Collection of airway surface liquid measurements</td>
+<td><a href="antioxidant_capacity/">antioxidant_capacity</a></td>
+<td>Total antioxidant capacity or GSH/GSSG ratio</td>
 </tr>
 <tr>
-<td><a href="assay/">assay</a></td>
-<td>The Assay used to produce this measurement</td>
+<td><a href="antioxidant_enzyme_activities/">antioxidant_enzyme_activities</a></td>
+<td>Antioxidant enzyme activities (SOD, catalase, GPx)</td>
 </tr>
 <tr>
-<td><a href="assays/">assays</a></td>
-<td>Collection of assays</td>
+<td><a href="aopwiki_id/">aopwiki_id</a></td>
+<td>The AOP-Wiki identifier for this entity (e</td>
+</tr>
+<tr>
+<td><a href="asl_assays/">asl_assays</a></td>
+<td>Collection of airway surface liquid assays</td>
+</tr>
+<tr>
+<td><a href="asl_height_um/">asl_height_um</a></td>
+<td>Airway surface liquid height in micrometers</td>
+</tr>
+<tr>
+<td><a href="asl_ph/">asl_ph</a></td>
+<td>pH of airway surface liquid</td>
+</tr>
+<tr>
+<td><a href="assay_date/">assay_date</a></td>
+<td>Date when the assay was performed</td>
 </tr>
 <tr>
 <td><a href="authentication_method/">authentication_method</a></td>
-<td>Method used to authenticate the cell line (e</td>
+<td></td>
 </tr>
 <tr>
-<td><a href="balf_sputum_measurements/">balf_sputum_measurements</a></td>
-<td>Collection of BALF and sputum measurements</td>
+<td><a href="bacterial_load/">bacterial_load</a></td>
+<td>Bacterial load (16S copies or CFU)</td>
+</tr>
+<tr>
+<td><a href="balf_sputum_assays/">balf_sputum_assays</a></td>
+<td>Collection of BALF and sputum assays</td>
 </tr>
 <tr>
 <td><a href="base_medium/">base_medium</a></td>
-<td>Base medium type (e</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="beat_frequency_hz/">beat_frequency_hz</a></td>
+<td>Ciliary beat frequency measured in Hz</td>
+</tr>
+<tr>
+<td><a href="beta_diversity/">beta_diversity</a></td>
+<td>Beta diversity (microbiome)</td>
+</tr>
+<tr>
+<td><a href="biological_action/">biological_action</a></td>
+<td>The type of change (increased, decreased, altered, impaired)</td>
+</tr>
+<tr>
+<td><a href="biological_object/">biological_object</a></td>
+<td>The biological entity affected (protein, cell, tissue, organ)</td>
+</tr>
+<tr>
+<td><a href="biological_process/">biological_process</a></td>
+<td>The biological process affected by this key event</td>
+</tr>
+<tr>
+<td><a href="bronchodilator_agent/">bronchodilator_agent</a></td>
+<td>Bronchodilator agent used (e</td>
+</tr>
+<tr>
+<td><a href="bronchodilator_dose/">bronchodilator_dose</a></td>
+<td>Dose of bronchodilator administered</td>
+</tr>
+<tr>
+<td><a href="bronchodilator_response/">bronchodilator_response</a></td>
+<td>Response to bronchodilator (% change in FEV1)</td>
+</tr>
+<tr>
+<td><a href="catalase_activity/">catalase_activity</a></td>
+<td>Catalase activity</td>
 </tr>
 <tr>
 <td><a href="catalog_number/">catalog_number</a></td>
-<td>Catalog or product number from the supplier</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="cell_culture_growth_mode/">cell_culture_growth_mode</a></td>
-<td>Mode of cell culture growth (adherent, suspension, ALI, 3D, etc</td>
+<td></td>
 </tr>
 <tr>
-<td><a href="cell_culture_system/">cell_culture_system</a></td>
-<td>The cell culture system used for this measurement</td>
+<td><a href="cell_free_dna/">cell_free_dna</a></td>
+<td>Cell-free DNA concentration</td>
 </tr>
 <tr>
 <td><a href="cell_line/">cell_line</a></td>
-<td>Reference to the cell line used in this culture system</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="cell_type/">cell_type</a></td>
-<td>The cell type being cultured, with ontology reference</td>
-</tr>
-<tr>
-<td><a href="cell_type_context/">cell_type_context</a></td>
-<td>The specific cell type where expression was measured, with identifier and nam...</td>
+<td>The cell type being studied</td>
 </tr>
 <tr>
 <td><a href="cell_type_ratios/">cell_type_ratios</a></td>
-<td>Ratios between different cell types in co-culture (e</td>
+<td></td>
 </tr>
 <tr>
-<td><a href="cftr_measurements/">cftr_measurements</a></td>
-<td>Collection of CFTR function measurements</td>
+<td><a href="cftr_assays/">cftr_assays</a></td>
+<td>Collection of CFTR function assays</td>
 </tr>
 <tr>
-<td><a href="ciliary_measurements/">ciliary_measurements</a></td>
-<td>Collection of ciliary function measurements</td>
+<td><a href="cftr_chloride_secretion/">cftr_chloride_secretion</a></td>
+<td>CFTR-mediated chloride secretion in uA/cm2</td>
+</tr>
+<tr>
+<td><a href="cftr_forskolin_response/">cftr_forskolin_response</a></td>
+<td>Forskolin-stimulated CFTR response</td>
+</tr>
+<tr>
+<td><a href="cftr_specific_current/">cftr_specific_current</a></td>
+<td>CFTR-specific chloride secretory current</td>
+</tr>
+<tr>
+<td><a href="cilia_length/">cilia_length</a></td>
+<td>Length of cilia measured in micrometers</td>
+</tr>
+<tr>
+<td><a href="cilia_per_cell/">cilia_per_cell</a></td>
+<td>Number of cilia per ciliated cell</td>
+</tr>
+<tr>
+<td><a href="ciliary_beat_amplitude/">ciliary_beat_amplitude</a></td>
+<td>Amplitude of ciliary beat</td>
+</tr>
+<tr>
+<td><a href="ciliary_function_assays/">ciliary_function_assays</a></td>
+<td>Collection of ciliary function assays</td>
+</tr>
+<tr>
+<td><a href="ciliary_motion_patterns/">ciliary_motion_patterns</a></td>
+<td>Patterns of ciliary motion (coordinated, dyskinetic, immotile)</td>
 </tr>
 <tr>
 <td><a href="coating/">coating</a></td>
-<td>Surface coating applied to membrane or substrate</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="coculture_configuration/">coculture_configuration</a></td>
-<td>Physical configuration of co-culture (direct contact, transwell, microfluidic...</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="cohort_size/">cohort_size</a></td>
+<td>Number of subjects in the cohort or population</td>
 </tr>
 <tr>
 <td><a href="collection_date/">collection_date</a></td>
@@ -766,31 +927,39 @@
 </tr>
 <tr>
 <td><a href="collection_site/">collection_site</a></td>
-<td>Anatomical site of sample collection (e</td>
+<td>Anatomical site of sample collection</td>
 </tr>
 <tr>
 <td><a href="concentration/">concentration</a></td>
-<td>Concentration of the supplement or reagent</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="confluence_level/">confluence_level</a></td>
-<td>Confluence level of adherent culture as percentage</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="counterstain/">counterstain</a></td>
+<td>Counterstain used (e</td>
 </tr>
 <tr>
 <td><a href="culture_conditions/">culture_conditions</a></td>
-<td>Detailed cell culture conditions including medium, environment, and timing</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="culture_media/">culture_media</a></td>
-<td>Cell culture medium formulation with supplements</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="days_at_air_liquid_interface/">days_at_air_liquid_interface</a></td>
-<td>Number of days cells have been cultured at air-liquid interface (ALI)</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="days_at_differentiation/">days_at_differentiation</a></td>
 <td>Days at air-liquid interface or differentiation stage</td>
+</tr>
+<tr>
+<td><a href="decline_rate/">decline_rate</a></td>
+<td>Longitudinal decline rate in mL/year</td>
 </tr>
 <tr>
 <td><a href="description/">description</a></td>
@@ -801,36 +970,204 @@
 <td>Detection method used (e</td>
 </tr>
 <tr>
+<td><a href="detection_method_details/">detection_method_details</a></td>
+<td>Detection method details</td>
+</tr>
+<tr>
 <td><a href="disease_state/">disease_state</a></td>
-<td>Disease state of the cell line (e</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="dlco/">dlco</a></td>
+<td>Diffusing capacity for carbon monoxide</td>
+</tr>
+<tr>
+<td><a href="dna_damage_markers/">dna_damage_markers</a></td>
+<td>DNA damage markers (8-OHdG)</td>
 </tr>
 <tr>
 <td><a href="donor_count/">donor_count</a></td>
-<td>Number of unique cell donors used in the experiment</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="donor_info/">donor_info</a></td>
 <td>Information about cell donor (e</td>
 </tr>
 <tr>
-<td><a href="egfr_phosphorylation_measurements/">egfr_phosphorylation_measurements</a></td>
-<td>Collection of EGFR signaling measurements</td>
+<td><a href="downstream_event/">downstream_event</a></td>
+<td>The downstream key event in this relationship (effect)</td>
 </tr>
 <tr>
-<td><a href="evaporation_control/">evaporation_control</a></td>
+<td><a href="downstream_key_events/">downstream_key_events</a></td>
+<td>Key events that follow this key event (downstream in the pathway)</td>
+</tr>
+<tr>
+<td><a href="downstream_kinase_activation/">downstream_kinase_activation</a></td>
+<td>Activation levels of downstream kinases</td>
+</tr>
+<tr>
+<td><a href="egfr_ligand_expression/">egfr_ligand_expression</a></td>
+<td>Expression of EGFR ligands (EGF, TGF-alpha, amphiregulin)</td>
+</tr>
+<tr>
+<td><a href="egfr_membrane_localization/">egfr_membrane_localization</a></td>
+<td>EGFR membrane localization percentage</td>
+</tr>
+<tr>
+<td><a href="egfr_phosphorylation_y1068/">egfr_phosphorylation_y1068</a></td>
+<td>EGFR phosphorylation at Y1068 residue (fold change)</td>
+</tr>
+<tr>
+<td><a href="egfr_phosphorylation_y1173/">egfr_phosphorylation_y1173</a></td>
+<td>EGFR phosphorylation at Y1173 residue (fold change)</td>
+</tr>
+<tr>
+<td><a href="egfr_signaling_assays/">egfr_signaling_assays</a></td>
+<td>Collection of EGFR signaling assays</td>
+</tr>
+<tr>
+<td><a href="eight_isoprostane/">eight_isoprostane</a></td>
+<td>8-isoprostane level</td>
+</tr>
+<tr>
+<td><a href="eight_ohdg/">eight_ohdg</a></td>
+<td>8-OHdG level (DNA oxidation marker)</td>
+</tr>
+<tr>
+<td><a href="eosinophil_percentage/">eosinophil_percentage</a></td>
+<td>Eosinophil percentage in BALF/sputum</td>
+</tr>
+<tr>
+<td><a href="equipment_required/">equipment_required</a></td>
+<td>Equipment required for this method</td>
+</tr>
+<tr>
+<td><a href="erk_phosphorylation/">erk_phosphorylation</a></td>
+<td>ERK phosphorylation level</td>
+</tr>
+<tr>
+<td><a href="evaporation_prevention/">evaporation_prevention</a></td>
 <td>Method used to prevent evaporation (e</td>
 </tr>
 <tr>
+<td><a href="evidence_support/">evidence_support</a></td>
+<td>Level of evidence supporting this key event relationship</td>
+</tr>
+<tr>
+<td><a href="exposure_concentration/">exposure_concentration</a></td>
+<td>Concentration of exposure agent</td>
+</tr>
+<tr>
+<td><a href="exposure_conditions/">exposure_conditions</a></td>
+<td>Exposure conditions applied to the sample</td>
+</tr>
+<tr>
+<td><a href="exposure_duration/">exposure_duration</a></td>
+<td>Duration of exposure</td>
+</tr>
+<tr>
+<td><a href="fef25_75/">fef25_75</a></td>
+<td>Forced expiratory flow 25-75%</td>
+</tr>
+<tr>
+<td><a href="feno/">feno</a></td>
+<td>Fractional exhaled nitric oxide in ppb</td>
+</tr>
+<tr>
+<td><a href="fev1/">fev1</a></td>
+<td>Forced expiratory volume in 1 second</td>
+</tr>
+<tr>
+<td><a href="fev1_fvc_ratio/">fev1_fvc_ratio</a></td>
+<td>Ratio of FEV1 to FVC (Tiffeneau-Pinelli index)</td>
+</tr>
+<tr>
+<td><a href="fixation_method/">fixation_method</a></td>
+<td>Fixation method used for tissue/cell preparation</td>
+</tr>
+<tr>
+<td><a href="fluorescent_labeling/">fluorescent_labeling</a></td>
+<td>Fluorescent label or tracer used</td>
+</tr>
+<tr>
+<td><a href="fluorescent_tracer/">fluorescent_tracer</a></td>
+<td>Fluorescent tracer used for tracking (MCC assays)</td>
+</tr>
+<tr>
 <td><a href="follows_protocol/">follows_protocol</a></td>
-<td>The Protocol that this Measurement follows</td>
+<td>The Protocol that this assay follows</td>
 </tr>
 <tr>
-<td><a href="foxj_measurements/">foxj_measurements</a></td>
-<td>Collection of FoxJ1/ciliogenesis measurements</td>
+<td><a href="four_hydroxynonenal/">four_hydroxynonenal</a></td>
+<td>4-HNE level - lipid peroxidation marker</td>
 </tr>
 <tr>
-<td><a href="goblet_cell_mucin_measurements/">goblet_cell_mucin_measurements</a></td>
-<td>Collection of goblet cell and mucin measurements</td>
+<td><a href="foxj1_mrna_expression/">foxj1_mrna_expression</a></td>
+<td>FoxJ1 mRNA expression level</td>
+</tr>
+<tr>
+<td><a href="foxj1_nuclear_localization/">foxj1_nuclear_localization</a></td>
+<td>FoxJ1 nuclear localization</td>
+</tr>
+<tr>
+<td><a href="foxj1_positive_cell_percentage/">foxj1_positive_cell_percentage</a></td>
+<td>Percentage of FoxJ1-positive cells</td>
+</tr>
+<tr>
+<td><a href="foxj1_protein_expression/">foxj1_protein_expression</a></td>
+<td>FoxJ1 protein expression level</td>
+</tr>
+<tr>
+<td><a href="foxj_assays/">foxj_assays</a></td>
+<td>Collection of FoxJ1/ciliogenesis assays</td>
+</tr>
+<tr>
+<td><a href="functional_residual_capacity/">functional_residual_capacity</a></td>
+<td>Functional residual capacity</td>
+</tr>
+<tr>
+<td><a href="fvc/">fvc</a></td>
+<td>Forced vital capacity</td>
+</tr>
+<tr>
+<td><a href="gene_expression_assays/">gene_expression_assays</a></td>
+<td>Collection of gene expression assays</td>
+</tr>
+<tr>
+<td><a href="gene_expression_method/">gene_expression_method</a></td>
+<td>Method used for gene expression (qRT-PCR, RNA-seq, etc</td>
+</tr>
+<tr>
+<td><a href="general_procedure/">general_procedure</a></td>
+<td>High-level description of the procedure</td>
+</tr>
+<tr>
+<td><a href="glutathione_peroxidase_activity/">glutathione_peroxidase_activity</a></td>
+<td>GPx activity</td>
+</tr>
+<tr>
+<td><a href="glutathione_ratio/">glutathione_ratio</a></td>
+<td>GSH/GSSG ratio indicating antioxidant status</td>
+</tr>
+<tr>
+<td><a href="goblet_cell_assays/">goblet_cell_assays</a></td>
+<td>Collection of goblet cell and mucin assays</td>
+</tr>
+<tr>
+<td><a href="goblet_cell_count/">goblet_cell_count</a></td>
+<td>Number of goblet cells (raw count)</td>
+</tr>
+<tr>
+<td><a href="goblet_cell_percentage/">goblet_cell_percentage</a></td>
+<td>Percentage of goblet cells</td>
+</tr>
+<tr>
+<td><a href="goblet_to_ciliated_ratio/">goblet_to_ciliated_ratio</a></td>
+<td>Ratio of goblet cells to ciliated cells</td>
+</tr>
+<tr>
+<td><a href="hemoglobin_level/">hemoglobin_level</a></td>
+<td>Hemoglobin level</td>
 </tr>
 <tr>
 <td><a href="humidity_control/">humidity_control</a></td>
@@ -841,6 +1178,18 @@
 <td>A unique identifier for the entity</td>
 </tr>
 <tr>
+<td><a href="il1_beta_concentration/">il1_beta_concentration</a></td>
+<td>IL-1 beta concentration</td>
+</tr>
+<tr>
+<td><a href="il6_concentration/">il6_concentration</a></td>
+<td>IL-6 concentration</td>
+</tr>
+<tr>
+<td><a href="il8_concentration/">il8_concentration</a></td>
+<td>IL-8 concentration</td>
+</tr>
+<tr>
 <td><a href="imaging_duration/">imaging_duration</a></td>
 <td>Duration of imaging session</td>
 </tr>
@@ -849,40 +1198,116 @@
 <td>Frame rate for video/imaging acquisition (e</td>
 </tr>
 <tr>
-<td><a href="implements_assay/">implements_assay</a></td>
-<td>The Assay that this Method implements or realizes</td>
+<td><a href="imaging_protocol/">imaging_protocol</a></td>
+<td>Reference to the imaging protocol used</td>
+</tr>
+<tr>
+<td><a href="inclusion_criteria/">inclusion_criteria</a></td>
+<td>Criteria for inclusion in the study population</td>
+</tr>
+<tr>
+<td><a href="informs_on_key_event/">informs_on_key_event</a></td>
+<td>The Key Event that this assay provides evidence for</td>
+</tr>
+<tr>
+<td><a href="inhibitor_sensitive_current/">inhibitor_sensitive_current</a></td>
+<td>Inhibitor-sensitive current measurement</td>
+</tr>
+<tr>
+<td><a href="inhibitor_used/">inhibitor_used</a></td>
+<td>Inhibitor used (e</td>
+</tr>
+<tr>
+<td><a href="input_sample/">input_sample</a></td>
+<td>Description of the input sample and manipulations</td>
+</tr>
+<tr>
+<td><a href="institution/">institution</a></td>
+<td>Institution where protocol was developed</td>
+</tr>
+<tr>
+<td><a href="ion_composition/">ion_composition</a></td>
+<td>Ionic composition (Cl-, Na+, K+)</td>
+</tr>
+<tr>
+<td><a href="key_event_relationships/">key_event_relationships</a></td>
+<td>The key event relationships connecting events in this AOP</td>
+</tr>
+<tr>
+<td><a href="key_events/">key_events</a></td>
+<td>The key events in this AOP (intermediate events between MIE and AO)</td>
+</tr>
+<tr>
+<td><a href="key_reagents/">key_reagents</a></td>
+<td>Key reagents needed for this method</td>
+</tr>
+<tr>
+<td><a href="last_updated/">last_updated</a></td>
+<td>Date protocol was last updated</td>
+</tr>
+<tr>
+<td><a href="level_of_biological_organization/">level_of_biological_organization</a></td>
+<td>The level of biological organization at which this key event occurs</td>
+</tr>
+<tr>
+<td><a href="lipid_peroxidation/">lipid_peroxidation</a></td>
+<td>Lipid peroxidation level</td>
 </tr>
 <tr>
 <td><a href="lot_number/">lot_number</a></td>
-<td>Lot or batch number of the product</td>
+<td></td>
 </tr>
 <tr>
-<td><a href="lung_function_measurements/">lung_function_measurements</a></td>
-<td>Collection of lung function measurements</td>
+<td><a href="lung_compliance/">lung_compliance</a></td>
+<td>Lung compliance</td>
+</tr>
+<tr>
+<td><a href="lung_elastance/">lung_elastance</a></td>
+<td>Lung elastance</td>
+</tr>
+<tr>
+<td><a href="lung_function_assays/">lung_function_assays</a></td>
+<td>Collection of lung function assays</td>
+</tr>
+<tr>
+<td><a href="lung_resistance/">lung_resistance</a></td>
+<td>Lung resistance</td>
+</tr>
+<tr>
+<td><a href="lymphocyte_percentage/">lymphocyte_percentage</a></td>
+<td>Lymphocyte percentage in BALF/sputum</td>
+</tr>
+<tr>
+<td><a href="lysis_buffer/">lysis_buffer</a></td>
+<td>Lysis buffer used for sample preparation</td>
+</tr>
+<tr>
+<td><a href="macrophage_percentage/">macrophage_percentage</a></td>
+<td>Macrophage percentage in BALF/sputum</td>
+</tr>
+<tr>
+<td><a href="malondialdehyde/">malondialdehyde</a></td>
+<td>MDA level - lipid peroxidation marker</td>
 </tr>
 <tr>
 <td><a href="manufacturer/">manufacturer</a></td>
-<td>Manufacturer of the product or reagent</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="matrix_composition/">matrix_composition</a></td>
-<td>Composition of the 3D matrix or scaffold material (e</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="max_value/">max_value</a></td>
-<td>Maximum value in the range</td>
+<td></td>
 </tr>
 <tr>
-<td><a href="mcc_measurements/">mcc_measurements</a></td>
-<td>Collection of mucociliary clearance measurements</td>
+<td><a href="mcc_assays/">mcc_assays</a></td>
+<td>Collection of mucociliary clearance assays</td>
 </tr>
 <tr>
-<td><a href="measured_entity/">measured_entity</a></td>
-<td>The biological or chemical entity being measured (e</td>
-</tr>
-<tr>
-<td><a href="measurement_date/">measurement_date</a></td>
-<td>Date when the measurement was performed</td>
+<td><a href="method_type/">method_type</a></td>
+<td>Type of method (e</td>
 </tr>
 <tr>
 <td><a href="methods/">methods</a></td>
@@ -890,19 +1315,83 @@
 </tr>
 <tr>
 <td><a href="min_value/">min_value</a></td>
-<td>Minimum value in the range</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="model_species/">model_species</a></td>
-<td>The species of origin for the cells in the model system</td>
+<td>The species of origin for the cells or organism being studied</td>
+</tr>
+<tr>
+<td><a href="molecular_initiating_event/">molecular_initiating_event</a></td>
+<td>The molecular initiating event that starts this AOP</td>
+</tr>
+<tr>
+<td><a href="molecular_protocol/">molecular_protocol</a></td>
+<td>Reference to the molecular assay protocol used</td>
+</tr>
+<tr>
+<td><a href="mrna_level/">mrna_level</a></td>
+<td>mRNA expression level</td>
+</tr>
+<tr>
+<td><a href="muc5ac_mrna_expression/">muc5ac_mrna_expression</a></td>
+<td>MUC5AC mRNA expression level (fold change)</td>
+</tr>
+<tr>
+<td><a href="muc5ac_muc5b_ratio/">muc5ac_muc5b_ratio</a></td>
+<td>MUC5AC to MUC5B ratio</td>
+</tr>
+<tr>
+<td><a href="muc5ac_protein_expression/">muc5ac_protein_expression</a></td>
+<td>MUC5AC protein expression level</td>
+</tr>
+<tr>
+<td><a href="muc5b_mrna_expression/">muc5b_mrna_expression</a></td>
+<td>MUC5B mRNA expression level (fold change)</td>
+</tr>
+<tr>
+<td><a href="muc5b_protein_expression/">muc5b_protein_expression</a></td>
+<td>MUC5B protein expression level</td>
+</tr>
+<tr>
+<td><a href="mucin_protein_concentration/">mucin_protein_concentration</a></td>
+<td>Total mucin protein concentration</td>
+</tr>
+<tr>
+<td><a href="mucin_secretion_rate/">mucin_secretion_rate</a></td>
+<td>Mucin secretion rate</td>
+</tr>
+<tr>
+<td><a href="mucus_composition/">mucus_composition</a></td>
+<td>Composition of mucus</td>
+</tr>
+<tr>
+<td><a href="mucus_layer_thickness/">mucus_layer_thickness</a></td>
+<td>Thickness of the mucus gel layer in micrometers</td>
+</tr>
+<tr>
+<td><a href="mucus_viscosity/">mucus_viscosity</a></td>
+<td>Mucus viscosity in centipoise</td>
 </tr>
 <tr>
 <td><a href="mycoplasma_status/">mycoplasma_status</a></td>
-<td>Mycoplasma contamination testing status (e</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="name/">name</a></td>
 <td>A human-readable name for the entity</td>
+</tr>
+<tr>
+<td><a href="nasal_potential_difference/">nasal_potential_difference</a></td>
+<td>Nasal potential difference in mV</td>
+</tr>
+<tr>
+<td><a href="neutrophil_percentage/">neutrophil_percentage</a></td>
+<td>Neutrophil percentage in BALF/sputum</td>
+</tr>
+<tr>
+<td><a href="nitrotyrosine/">nitrotyrosine</a></td>
+<td>Nitrotyrosine level</td>
 </tr>
 <tr>
 <td><a href="normalization_method/">normalization_method</a></td>
@@ -910,75 +1399,187 @@
 </tr>
 <tr>
 <td><a href="normalization_reference/">normalization_reference</a></td>
-<td>The reference gene or protein used for normalization (e</td>
+<td>Normalization reference (beta-actin, GAPDH, total EGFR)</td>
 </tr>
 <tr>
-<td><a href="observation_type/">observation_type</a></td>
-<td>The type of observation being measured</td>
+<td><a href="nrf2_activation/">nrf2_activation</a></td>
+<td>Nrf2 activation level</td>
+</tr>
+<tr>
+<td><a href="obi_mapping/">obi_mapping</a></td>
+<td>OBI ontology term for this method</td>
+</tr>
+<tr>
+<td><a href="occurs_in_anatomy/">occurs_in_anatomy</a></td>
+<td>The anatomical location where this key event occurs</td>
+</tr>
+<tr>
+<td><a href="occurs_in_cell_type/">occurs_in_cell_type</a></td>
+<td>The cell type in which this key event occurs</td>
 </tr>
 <tr>
 <td><a href="organoid_type/">organoid_type</a></td>
-<td>Specific type of organoid (e</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="osmolality/">osmolality</a></td>
-<td>Osmolality of the culture medium</td>
+<td></td>
 </tr>
 <tr>
-<td><a href="oxidative_stress_measurements/">oxidative_stress_measurements</a></td>
-<td>Collection of oxidative stress measurements</td>
+<td><a href="outcome_level/">outcome_level</a></td>
+<td>The level at which the adverse outcome manifests (individual, population)</td>
 </tr>
 <tr>
-<td><a href="participant/">participant</a></td>
-<td>The study participant from whom the measurement was taken</td>
+<td><a href="oxidative_stress_assays/">oxidative_stress_assays</a></td>
+<td>Collection of oxidative stress assays</td>
+</tr>
+<tr>
+<td><a href="particle_clearance_time/">particle_clearance_time</a></td>
+<td>Time for particle clearance</td>
+</tr>
+<tr>
+<td><a href="particle_size/">particle_size</a></td>
+<td>Size of tracking particles</td>
+</tr>
+<tr>
+<td><a href="particle_tracking_method/">particle_tracking_method</a></td>
+<td>Method used for tracking particles or mucus</td>
 </tr>
 <tr>
 <td><a href="passage_number/">passage_number</a></td>
-<td>Cell passage number</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="pathway_biomarkers/">pathway_biomarkers</a></td>
+<td>Pathway-specific biomarker signatures</td>
+</tr>
+<tr>
+<td><a href="peak_expiratory_flow/">peak_expiratory_flow</a></td>
+<td>Peak expiratory flow</td>
+</tr>
+<tr>
+<td><a href="percent_solids/">percent_solids</a></td>
+<td>Percent solids in apical secretion (overall secretion)</td>
+</tr>
+<tr>
+<td><a href="percentage_active_transport/">percentage_active_transport</a></td>
+<td>Percentage of area showing active transport</td>
+</tr>
+<tr>
+<td><a href="percentage_ciliated_cells/">percentage_ciliated_cells</a></td>
+<td>Percentage of cells that are ciliated</td>
+</tr>
+<tr>
+<td><a href="percentage_positive_cells/">percentage_positive_cells</a></td>
+<td>Percentage of positive cells (IHC, flow cytometry)</td>
+</tr>
+<tr>
+<td><a href="periciliary_layer_depth/">periciliary_layer_depth</a></td>
+<td>Depth of the periciliary layer in micrometers</td>
 </tr>
 <tr>
 <td><a href="phosphorylation_site/">phosphorylation_site</a></td>
-<td>For protein phosphorylation measurements, the specific amino acid residue tha...</td>
+<td>Specific phosphorylation site being measured</td>
+</tr>
+<tr>
+<td><a href="platform/">platform</a></td>
+<td>Assay platform or instrument used (e</td>
+</tr>
+<tr>
+<td><a href="plethysmography_method/">plethysmography_method</a></td>
+<td>Method for plethysmography measurement</td>
 </tr>
 <tr>
 <td><a href="preparation_date/">preparation_date</a></td>
-<td>Date when the medium or reagent was prepared</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="primary_cell/">primary_cell</a></td>
-<td>Primary cells directly isolated from tissue, not from an established cell lin...</td>
+<td></td>
 </tr>
 <tr>
-<td><a href="probe_type/">probe_type</a></td>
-<td>Type of probe used (e</td>
+<td><a href="primer_sequences/">primer_sequences</a></td>
+<td>Primer sequences used for PCR-based methods</td>
+</tr>
+<tr>
+<td><a href="protein_carbonyl_content/">protein_carbonyl_content</a></td>
+<td>Protein carbonyl content</td>
+</tr>
+<tr>
+<td><a href="protein_level/">protein_level</a></td>
+<td>Protein expression level</td>
+</tr>
+<tr>
+<td><a href="protein_oxidation_markers/">protein_oxidation_markers</a></td>
+<td>Protein oxidation markers (carbonyls, nitrotyrosine)</td>
+</tr>
+<tr>
+<td><a href="protocol_author/">protocol_author</a></td>
+<td>Author of the protocol</td>
+</tr>
+<tr>
+<td><a href="protocol_version/">protocol_version</a></td>
+<td>Version of the protocol</td>
 </tr>
 <tr>
 <td><a href="protocols/">protocols</a></td>
 <td>Collection of protocols</td>
 </tr>
 <tr>
+<td><a href="publication_reference/">publication_reference</a></td>
+<td>Reference to protocol publication</td>
+</tr>
+<tr>
 <td><a href="quality_control_criteria/">quality_control_criteria</a></td>
-<td>Quality control acceptance criteria for the measurement</td>
+<td>Quality control acceptance criteria</td>
 </tr>
 <tr>
-<td><a href="quantity_measured/">quantity_measured</a></td>
-<td>The measured quantity value with its unit</td>
+<td><a href="quantitative_understanding/">quantitative_understanding</a></td>
+<td>Level of quantitative understanding of the relationship</td>
 </tr>
 <tr>
-<td><a href="range_high/">range_high</a></td>
-<td>Upper bound of the reference range for this measurement type</td>
+<td><a href="reactive_oxygen_species/">reactive_oxygen_species</a></td>
+<td>ROS level as fold change or fluorescence intensity</td>
 </tr>
 <tr>
-<td><a href="range_low/">range_low</a></td>
-<td>Lower bound of the reference range for this measurement type</td>
+<td><a href="recent_respiratory_illness/">recent_respiratory_illness</a></td>
+<td>Recent respiratory illness (affects spirometry)</td>
 </tr>
 <tr>
-<td><a href="replicate_count/">replicate_count</a></td>
-<td>Number of technical replicates</td>
+<td><a href="reference_dataset/">reference_dataset</a></td>
+<td>Reference dataset for interpretation (GLI-2012 for humans)</td>
+</tr>
+<tr>
+<td><a href="reference_gene/">reference_gene</a></td>
+<td>Reference/housekeeping gene used for normalization</td>
+</tr>
+<tr>
+<td><a href="relationship_type/">relationship_type</a></td>
+<td>The type of causal relationship (directly leads to, indirectly leads to)</td>
+</tr>
+<tr>
+<td><a href="replicate_requirements/">replicate_requirements</a></td>
+<td>Number of replicates required</td>
 </tr>
 <tr>
 <td><a href="replicates_per_donor/">replicates_per_donor</a></td>
 <td>Number of biological replicates per donor</td>
+</tr>
+<tr>
+<td><a href="residual_volume/">residual_volume</a></td>
+<td>Residual volume</td>
+</tr>
+<tr>
+<td><a href="ros_probe_type/">ros_probe_type</a></td>
+<td>Type of ROS probe used (DCFDA, DHE, MitoSOX, etc</td>
+</tr>
+<tr>
+<td><a href="sample_preparation/">sample_preparation</a></td>
+<td>Sample preparation steps</td>
+</tr>
+<tr>
+<td><a href="sample_source/">sample_source</a></td>
+<td>Source of the sample (cell line, primary cells, tissue)</td>
 </tr>
 <tr>
 <td><a href="sample_type/">sample_type</a></td>
@@ -986,19 +1587,27 @@
 </tr>
 <tr>
 <td><a href="seeding_density/">seeding_density</a></td>
-<td>Cell seeding density (cells per cm2 or per mL)</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="serum_concentration/">serum_concentration</a></td>
-<td>Concentration of serum in the medium</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="serum_type/">serum_type</a></td>
-<td>Type of serum used (e</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="sex/">sex</a></td>
+<td>Biological sex of the subject</td>
 </tr>
 <tr>
 <td><a href="size_range/">size_range</a></td>
-<td>Size range of 3D structures (diameter for spheroids/organoids)</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="sop_reference/">sop_reference</a></td>
+<td>Reference to standard operating procedure document</td>
 </tr>
 <tr>
 <td><a href="spatial_resolution/">spatial_resolution</a></td>
@@ -1009,36 +1618,72 @@
 <td>The Method that this Protocol specifies in detail</td>
 </tr>
 <tr>
+<td><a href="spirometry_protocol/">spirometry_protocol</a></td>
+<td>Reference to the spirometry protocol used</td>
+</tr>
+<tr>
+<td><a href="spirometry_standard/">spirometry_standard</a></td>
+<td>Spirometry standard followed (e</td>
+</tr>
+<tr>
+<td><a href="staining_protocol/">staining_protocol</a></td>
+<td>Reference to staining protocol (AB-PAS, immunochem)</td>
+</tr>
+<tr>
 <td><a href="staining_type/">staining_type</a></td>
 <td>Type of staining used (e</td>
 </tr>
 <tr>
+<td><a href="stimulation_agent/">stimulation_agent</a></td>
+<td>Stimulation agent used (e</td>
+</tr>
+<tr>
+<td><a href="stressors/">stressors</a></td>
+<td>Chemical or physical stressors that can trigger this AOP</td>
+</tr>
+<tr>
+<td><a href="study_subject/">study_subject</a></td>
+<td>The subject of the study — what the assay is performed on</td>
+</tr>
+<tr>
 <td><a href="subject_characteristics/">subject_characteristics</a></td>
-<td>Relevant subject characteristics (e</td>
+<td>Relevant subject characteristics (disease state, medications, etc</td>
+</tr>
+<tr>
+<td><a href="subjects/">subjects</a></td>
+<td>Individual subjects in the population or cohort</td>
 </tr>
 <tr>
 <td><a href="substrate_type/">substrate_type</a></td>
-<td>Type of culture substrate or surface material</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="superoxide_dismutase_activity/">superoxide_dismutase_activity</a></td>
+<td>SOD activity</td>
 </tr>
 <tr>
 <td><a href="supplement_type/">supplement_type</a></td>
-<td>Category of supplement (growth factor, antibiotic, hormone, etc</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="supplements/">supplements</a></td>
-<td>List of supplements added to the culture medium</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="supplier/">supplier</a></td>
-<td>Supplier or source of the cell line or reagent</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="sweat_chloride_concentration/">sweat_chloride_concentration</a></td>
+<td>Sweat chloride concentration in mEq/L (CF diagnostic)</td>
 </tr>
 <tr>
 <td><a href="target_gene/">target_gene</a></td>
-<td>The gene whose expression is being measured, with identifier, name, and symbo...</td>
+<td>Target gene being measured</td>
 </tr>
 <tr>
-<td><a href="target_protein/">target_protein</a></td>
-<td>The protein whose expression or modification is being measured, with identifi...</td>
+<td><a href="target_molecule/">target_molecule</a></td>
+<td>The molecular target of the stressor in the MIE (e</td>
 </tr>
 <tr>
 <td><a href="temperature_control/">temperature_control</a></td>
@@ -1046,23 +1691,71 @@
 </tr>
 <tr>
 <td><a href="three_d_architecture/">three_d_architecture</a></td>
-<td>Type of 3D culture architecture (spheroid, organoid, scaffold-based, etc</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="timing_post_exposure/">timing_post_exposure</a></td>
+<td>Time after exposure when measurement was taken</td>
 </tr>
 <tr>
 <td><a href="tissue_context/">tissue_context</a></td>
-<td>The anatomical tissue or structure where expression was measured, with identi...</td>
+<td>The anatomical/tissue context</td>
 </tr>
 <tr>
 <td><a href="tissue_origin/">tissue_origin</a></td>
-<td>Tissue from which the cell line was derived</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="tnf_alpha_concentration/">tnf_alpha_concentration</a></td>
+<td>TNF-alpha concentration</td>
+</tr>
+<tr>
+<td><a href="total_antioxidant_capacity/">total_antioxidant_capacity</a></td>
+<td>Total antioxidant capacity</td>
+</tr>
+<tr>
+<td><a href="total_cell_count/">total_cell_count</a></td>
+<td>Total cell count in BALF/sputum</td>
+</tr>
+<tr>
+<td><a href="total_egfr_protein/">total_egfr_protein</a></td>
+<td>Total EGFR protein level (loading control)</td>
+</tr>
+<tr>
+<td><a href="total_lung_capacity/">total_lung_capacity</a></td>
+<td>Total lung capacity</td>
+</tr>
+<tr>
+<td><a href="total_protein_concentration/">total_protein_concentration</a></td>
+<td>Total protein concentration</td>
+</tr>
+<tr>
+<td><a href="transport_directionality/">transport_directionality</a></td>
+<td>Directionality of mucociliary transport</td>
+</tr>
+<tr>
+<td><a href="transport_rate/">transport_rate</a></td>
+<td>Mucociliary transport rate</td>
 </tr>
 <tr>
 <td><a href="unit/">unit</a></td>
 <td>The unit of measurement</td>
 </tr>
 <tr>
+<td><a href="upstream_event/">upstream_event</a></td>
+<td>The upstream key event in this relationship (cause)</td>
+</tr>
+<tr>
+<td><a href="upstream_key_events/">upstream_key_events</a></td>
+<td>Key events that lead to this key event (upstream in the pathway)</td>
+</tr>
+<tr>
 <td><a href="uses_method/">uses_method</a></td>
-<td>The Method used to perform this measurement</td>
+<td>The Method used to perform this assay</td>
+</tr>
+<tr>
+<td><a href="validation_status/">validation_status</a></td>
+<td>Validation status of the protocol</td>
 </tr>
 <tr>
 <td><a href="value/">value</a></td>
@@ -1080,72 +1773,52 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="ASLObservationTypeEnum/">ASLObservationTypeEnum</a></td>
-<td>Observation types for airway surface liquid measurements</td>
+<td><a href="BiologicalActionEnum/">BiologicalActionEnum</a></td>
+<td>Types of biological changes or actions in key events</td>
 </tr>
 <tr>
-<td><a href="BALFSputumObservationTypeEnum/">BALFSputumObservationTypeEnum</a></td>
-<td>Observation types for BALF and sputum measurements</td>
+<td><a href="BiologicalOrganizationLevelEnum/">BiologicalOrganizationLevelEnum</a></td>
+<td>Levels of biological organization for key events</td>
 </tr>
 <tr>
 <td><a href="CellCultureGrowthModeEnum/">CellCultureGrowthModeEnum</a></td>
-<td>Cell culture growth modes including traditional and advanced systems</td>
+<td>Cell culture growth modes</td>
 </tr>
 <tr>
-<td><a href="CFTRObservationTypeEnum/">CFTRObservationTypeEnum</a></td>
-<td>Observation types for CFTR function measurements</td>
-</tr>
-<tr>
-<td><a href="CiliaryFunctionObservationTypeEnum/">CiliaryFunctionObservationTypeEnum</a></td>
-<td>Observation types for ciliary function measurements</td>
+<td><a href="CiliaryMotionPatternEnum/">CiliaryMotionPatternEnum</a></td>
+<td>Patterns of ciliary motion</td>
 </tr>
 <tr>
 <td><a href="CoCultureConfigurationEnum/">CoCultureConfigurationEnum</a></td>
 <td>Physical configurations for co-culture systems</td>
 </tr>
 <tr>
-<td><a href="EGFRObservationTypeEnum/">EGFRObservationTypeEnum</a></td>
-<td>Observation types for EGFR signaling measurements</td>
+<td><a href="DirectionalityEnum/">DirectionalityEnum</a></td>
+<td>Directionality of mucociliary transport</td>
 </tr>
 <tr>
-<td><a href="FoxJObservationTypeEnum/">FoxJObservationTypeEnum</a></td>
-<td>Observation types for FoxJ1 and ciliogenesis measurements</td>
+<td><a href="EvidenceSupportEnum/">EvidenceSupportEnum</a></td>
+<td>Levels of evidence support for key event relationships</td>
 </tr>
 <tr>
-<td><a href="GeneExpressionObservationTypeEnum/">GeneExpressionObservationTypeEnum</a></td>
-<td>Observation types for gene expression measurements</td>
+<td><a href="OutcomeLevelEnum/">OutcomeLevelEnum</a></td>
+<td>Levels at which adverse outcomes manifest</td>
 </tr>
 <tr>
-<td><a href="GobletCellMucinObservationTypeEnum/">GobletCellMucinObservationTypeEnum</a></td>
-<td>Observation types for goblet cell and mucin measurements</td>
-</tr>
-<tr>
-<td><a href="LungFunctionObservationTypeEnum/">LungFunctionObservationTypeEnum</a></td>
-<td>Observation types for lung function measurements</td>
-</tr>
-<tr>
-<td><a href="MCCObservationTypeEnum/">MCCObservationTypeEnum</a></td>
-<td>Observation types for mucociliary clearance measurements</td>
-</tr>
-<tr>
-<td><a href="OxidativeStressObservationTypeEnum/">OxidativeStressObservationTypeEnum</a></td>
-<td>Observation types for oxidative stress measurements</td>
+<td><a href="QuantitativeUnderstandingEnum/">QuantitativeUnderstandingEnum</a></td>
+<td>Levels of quantitative understanding for key event relationships</td>
 </tr>
 <tr>
 <td><a href="SampleTypeEnum/">SampleTypeEnum</a></td>
-<td>Types of biological samples for in vivo measurements</td>
-</tr>
-<tr>
-<td><a href="StudyContextEnum/">StudyContextEnum</a></td>
-<td>The experimental context for a protocol or measurement</td>
+<td>Types of biological samples for in vivo assays</td>
 </tr>
 <tr>
 <td><a href="SubstrateTypeEnum/">SubstrateTypeEnum</a></td>
-<td>Types of cell culture substrates and surfaces</td>
+<td>Types of cell culture substrates</td>
 </tr>
 <tr>
 <td><a href="SupplementTypeEnum/">SupplementTypeEnum</a></td>
-<td>Categories of cell culture medium supplements and additives</td>
+<td>Categories of cell culture medium supplements</td>
 </tr>
 <tr>
 <td><a href="ThreeDArchitectureEnum/">ThreeDArchitectureEnum</a></td>

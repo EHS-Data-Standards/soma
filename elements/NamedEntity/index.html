@@ -279,11 +279,13 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-namedentity">Class: NamedEntity</h1>
-<p><em>A reference to an entity with an identifier and name. Used for measured_entity, participant, etc.</em></p>
+<p><em>A reference to an entity with an identifier and name. Used for cell_type, tissue_context, participant references, etc.</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/NamedEntity">outcomes_working_group:NamedEntity</a></p>
 <pre class="mermaid"><code> classDiagram
     class NamedEntity
     click NamedEntity href "../NamedEntity/"
+      NamedEntity &lt;|-- InputSample
+        click InputSample href "../InputSample/"
       NamedEntity &lt;|-- CellLine
         click CellLine href "../CellLine/"
       NamedEntity &lt;|-- CellCultureConditions
@@ -292,8 +294,6 @@
         click CellCultureMedium href "../CellCultureMedium/"
       NamedEntity &lt;|-- MediumSupplement
         click MediumSupplement href "../MediumSupplement/"
-      NamedEntity &lt;|-- CellularSystem
-        click CellularSystem href "../CellularSystem/"
 
       NamedEntity : id
 
@@ -304,11 +304,11 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><strong>NamedEntity</strong><ul>
+<li><a href="../InputSample/">InputSample</a></li>
 <li><a href="../CellLine/">CellLine</a></li>
 <li><a href="../CellCultureConditions/">CellCultureConditions</a></li>
 <li><a href="../CellCultureMedium/">CellCultureMedium</a></li>
 <li><a href="../MediumSupplement/">MediumSupplement</a></li>
-<li><a href="../CellularSystem/">CellularSystem</a></li>
 </ul>
 </li>
 </ul>
@@ -349,14 +349,134 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Measurement/">Measurement</a></td>
-<td><a href="../measured_entity/">measured_entity</a></td>
+<td><a href="../Assay/">Assay</a></td>
+<td><a href="../cell_type/">cell_type</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../InVivoContext/">InVivoContext</a></td>
-<td><a href="../participant/">participant</a></td>
+<td><a href="../Assay/">Assay</a></td>
+<td><a href="../tissue_context/">tissue_context</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../StudySubject/">StudySubject</a></td>
+<td><a href="../model_species/">model_species</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../ModelSystem/">ModelSystem</a></td>
+<td><a href="../model_species/">model_species</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../InVivoSubject/">InVivoSubject</a></td>
+<td><a href="../model_species/">model_species</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../PopulationSubject/">PopulationSubject</a></td>
+<td><a href="../model_species/">model_species</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../CellularSystem/">CellularSystem</a></td>
+<td><a href="../primary_cell/">primary_cell</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../CellularSystem/">CellularSystem</a></td>
+<td><a href="../cell_type/">cell_type</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../CellularSystem/">CellularSystem</a></td>
+<td><a href="../anatomical_origin/">anatomical_origin</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../CellularSystem/">CellularSystem</a></td>
+<td><a href="../model_species/">model_species</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../TwoDCellCulture/">TwoDCellCulture</a></td>
+<td><a href="../primary_cell/">primary_cell</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../TwoDCellCulture/">TwoDCellCulture</a></td>
+<td><a href="../cell_type/">cell_type</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../TwoDCellCulture/">TwoDCellCulture</a></td>
+<td><a href="../anatomical_origin/">anatomical_origin</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../TwoDCellCulture/">TwoDCellCulture</a></td>
+<td><a href="../model_species/">model_species</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></td>
+<td><a href="../primary_cell/">primary_cell</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></td>
+<td><a href="../cell_type/">cell_type</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></td>
+<td><a href="../anatomical_origin/">anatomical_origin</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></td>
+<td><a href="../model_species/">model_species</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../CoCulture/">CoCulture</a></td>
+<td><a href="../primary_cell/">primary_cell</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../CoCulture/">CoCulture</a></td>
+<td><a href="../cell_type/">cell_type</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../CoCulture/">CoCulture</a></td>
+<td><a href="../anatomical_origin/">anatomical_origin</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../CoCulture/">CoCulture</a></td>
+<td><a href="../model_species/">model_species</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
@@ -373,212 +493,134 @@
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../CellularSystem/">CellularSystem</a></td>
-<td><a href="../primary_cell/">primary_cell</a></td>
-<td>range</td>
-<td><a href="./">NamedEntity</a></td>
-</tr>
-<tr>
-<td><a href="../CellularSystem/">CellularSystem</a></td>
+<td><a href="../CiliaryFunctionAssay/">CiliaryFunctionAssay</a></td>
 <td><a href="../cell_type/">cell_type</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../CellularSystem/">CellularSystem</a></td>
-<td><a href="../anatomical_origin/">anatomical_origin</a></td>
+<td><a href="../CiliaryFunctionAssay/">CiliaryFunctionAssay</a></td>
+<td><a href="../tissue_context/">tissue_context</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../CellularSystem/">CellularSystem</a></td>
-<td><a href="../model_species/">model_species</a></td>
-<td>range</td>
-<td><a href="./">NamedEntity</a></td>
-</tr>
-<tr>
-<td><a href="../TwoDCellCulture/">TwoDCellCulture</a></td>
-<td><a href="../primary_cell/">primary_cell</a></td>
-<td>range</td>
-<td><a href="./">NamedEntity</a></td>
-</tr>
-<tr>
-<td><a href="../TwoDCellCulture/">TwoDCellCulture</a></td>
+<td><a href="../ASLAssay/">ASLAssay</a></td>
 <td><a href="../cell_type/">cell_type</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../TwoDCellCulture/">TwoDCellCulture</a></td>
-<td><a href="../anatomical_origin/">anatomical_origin</a></td>
+<td><a href="../ASLAssay/">ASLAssay</a></td>
+<td><a href="../tissue_context/">tissue_context</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../TwoDCellCulture/">TwoDCellCulture</a></td>
-<td><a href="../model_species/">model_species</a></td>
-<td>range</td>
-<td><a href="./">NamedEntity</a></td>
-</tr>
-<tr>
-<td><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></td>
-<td><a href="../primary_cell/">primary_cell</a></td>
-<td>range</td>
-<td><a href="./">NamedEntity</a></td>
-</tr>
-<tr>
-<td><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></td>
+<td><a href="../MucociliaryClearanceAssay/">MucociliaryClearanceAssay</a></td>
 <td><a href="../cell_type/">cell_type</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></td>
-<td><a href="../anatomical_origin/">anatomical_origin</a></td>
+<td><a href="../MucociliaryClearanceAssay/">MucociliaryClearanceAssay</a></td>
+<td><a href="../tissue_context/">tissue_context</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></td>
-<td><a href="../model_species/">model_species</a></td>
-<td>range</td>
-<td><a href="./">NamedEntity</a></td>
-</tr>
-<tr>
-<td><a href="../CoCulture/">CoCulture</a></td>
-<td><a href="../primary_cell/">primary_cell</a></td>
-<td>range</td>
-<td><a href="./">NamedEntity</a></td>
-</tr>
-<tr>
-<td><a href="../CoCulture/">CoCulture</a></td>
+<td><a href="../OxidativeStressAssay/">OxidativeStressAssay</a></td>
 <td><a href="../cell_type/">cell_type</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../CoCulture/">CoCulture</a></td>
-<td><a href="../anatomical_origin/">anatomical_origin</a></td>
+<td><a href="../OxidativeStressAssay/">OxidativeStressAssay</a></td>
+<td><a href="../tissue_context/">tissue_context</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../CoCulture/">CoCulture</a></td>
-<td><a href="../model_species/">model_species</a></td>
+<td><a href="../CFTRFunctionAssay/">CFTRFunctionAssay</a></td>
+<td><a href="../cell_type/">cell_type</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../CiliaryFunctionMeasurement/">CiliaryFunctionMeasurement</a></td>
-<td><a href="../measured_entity/">measured_entity</a></td>
+<td><a href="../CFTRFunctionAssay/">CFTRFunctionAssay</a></td>
+<td><a href="../tissue_context/">tissue_context</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../CiliaryFunctionMeasurement/">CiliaryFunctionMeasurement</a></td>
-<td><a href="../participant/">participant</a></td>
+<td><a href="../EGFRSignalingAssay/">EGFRSignalingAssay</a></td>
+<td><a href="../cell_type/">cell_type</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../ASLMeasurement/">ASLMeasurement</a></td>
-<td><a href="../measured_entity/">measured_entity</a></td>
+<td><a href="../EGFRSignalingAssay/">EGFRSignalingAssay</a></td>
+<td><a href="../tissue_context/">tissue_context</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../ASLMeasurement/">ASLMeasurement</a></td>
-<td><a href="../participant/">participant</a></td>
+<td><a href="../GobletCellAssay/">GobletCellAssay</a></td>
+<td><a href="../cell_type/">cell_type</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../MCCMeasurement/">MCCMeasurement</a></td>
-<td><a href="../measured_entity/">measured_entity</a></td>
+<td><a href="../GobletCellAssay/">GobletCellAssay</a></td>
+<td><a href="../tissue_context/">tissue_context</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../MCCMeasurement/">MCCMeasurement</a></td>
-<td><a href="../participant/">participant</a></td>
+<td><a href="../BALFSputumAssay/">BALFSputumAssay</a></td>
+<td><a href="../cell_type/">cell_type</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
-<td><a href="../measured_entity/">measured_entity</a></td>
+<td><a href="../BALFSputumAssay/">BALFSputumAssay</a></td>
+<td><a href="../tissue_context/">tissue_context</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
-<td><a href="../participant/">participant</a></td>
+<td><a href="../LungFunctionAssay/">LungFunctionAssay</a></td>
+<td><a href="../cell_type/">cell_type</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../CFTRMeasurement/">CFTRMeasurement</a></td>
-<td><a href="../measured_entity/">measured_entity</a></td>
+<td><a href="../LungFunctionAssay/">LungFunctionAssay</a></td>
+<td><a href="../tissue_context/">tissue_context</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../CFTRMeasurement/">CFTRMeasurement</a></td>
-<td><a href="../participant/">participant</a></td>
+<td><a href="../FoxJExpressionAssay/">FoxJExpressionAssay</a></td>
+<td><a href="../cell_type/">cell_type</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../ProteinExpressionMeasurement/">ProteinExpressionMeasurement</a></td>
-<td><a href="../participant/">participant</a></td>
+<td><a href="../FoxJExpressionAssay/">FoxJExpressionAssay</a></td>
+<td><a href="../tissue_context/">tissue_context</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../EGFRPhosphorylationMeasurement/">EGFRPhosphorylationMeasurement</a></td>
-<td><a href="../measured_entity/">measured_entity</a></td>
+<td><a href="../GeneExpressionAssay/">GeneExpressionAssay</a></td>
+<td><a href="../cell_type/">cell_type</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
 <tr>
-<td><a href="../GobletCellMucinMeasurement/">GobletCellMucinMeasurement</a></td>
-<td><a href="../measured_entity/">measured_entity</a></td>
-<td>range</td>
-<td><a href="./">NamedEntity</a></td>
-</tr>
-<tr>
-<td><a href="../GobletCellMucinMeasurement/">GobletCellMucinMeasurement</a></td>
-<td><a href="../participant/">participant</a></td>
-<td>range</td>
-<td><a href="./">NamedEntity</a></td>
-</tr>
-<tr>
-<td><a href="../BALFSputumMeasurement/">BALFSputumMeasurement</a></td>
-<td><a href="../measured_entity/">measured_entity</a></td>
-<td>range</td>
-<td><a href="./">NamedEntity</a></td>
-</tr>
-<tr>
-<td><a href="../BALFSputumMeasurement/">BALFSputumMeasurement</a></td>
-<td><a href="../participant/">participant</a></td>
-<td>range</td>
-<td><a href="./">NamedEntity</a></td>
-</tr>
-<tr>
-<td><a href="../LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
-<td><a href="../measured_entity/">measured_entity</a></td>
-<td>range</td>
-<td><a href="./">NamedEntity</a></td>
-</tr>
-<tr>
-<td><a href="../LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
-<td><a href="../participant/">participant</a></td>
-<td>range</td>
-<td><a href="./">NamedEntity</a></td>
-</tr>
-<tr>
-<td><a href="../FoxJMeasurement/">FoxJMeasurement</a></td>
-<td><a href="../measured_entity/">measured_entity</a></td>
+<td><a href="../GeneExpressionAssay/">GeneExpressionAssay</a></td>
+<td><a href="../tissue_context/">tissue_context</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>
@@ -613,8 +655,8 @@
 <h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A reference to an entity with an identifier and name. Used for measured_entity,</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">participant, etc.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A reference to an entity with an identifier and name. Used for cell_type,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">tissue_context, participant references, etc.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
@@ -624,8 +666,8 @@
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A reference to an entity with an identifier and name. Used for measured_entity,</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">participant, etc.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A reference to an entity with an identifier and name. Used for cell_type,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">tissue_context, participant references, etc.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
@@ -637,14 +679,9 @@
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MediumSupplement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span>
@@ -656,14 +693,9 @@
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MediumSupplement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>

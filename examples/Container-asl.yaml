@@ -1,18 +1,38 @@
-# Simple test file for ASLMeasurement
-asl_measurements:
+# Test file for ASLAssay
+asl_assays:
   - id: "ASL:001"
     name: "Airway surface liquid height"
-    observation_type: asl_height
-    quantity_measured:
+    asl_height_um:
       value: "7.2"
       unit:
         id: "UO:0000017"
         name: "micrometer"
-    measurement_date: "2024-02-10"
-    cell_culture_system:
+    periciliary_layer_depth:
+      value: "5.1"
+      unit:
+        id: "UO:0000017"
+        name: "micrometer"
+    assay_date: "2024-02-10"
+    cell_type:
+      id: "CL:0002328"
+      name: "bronchial epithelial cell"
+    study_subject:
       id: "owg:culture-002"
       name: "Primary HBE ALI culture"
-      cell_culture_growth_mode: air_liquid_interface
-      substrate_type: transwell_insert
-      passage_number: 2
-    days_at_differentiation: 28
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+    imaging_protocol:
+      id: "PROTOCOL:asl-001"
+      name: "Confocal microscopy for ASL height"
+      spatial_resolution:
+        value: "1.5"
+        unit:
+          id: "UO:0000017"
+          name: "micrometer"
+      fluorescent_labeling: "Texas Red-dextran"
+      temperature_control:
+        value: "37"
+        unit:
+          id: "UO:0000027"
+          name: "degree Celsius"

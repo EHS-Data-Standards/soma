@@ -183,6 +183,15 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+<span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
       
@@ -270,31 +279,39 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-method">Class: Method</h1>
-<p><em>A general approach or technique used to collect, measure, or analyze data (e.g., qPCR, RNA-Seq, high-speed video microscopy, ELISA).</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/Method">outcomes_working_group:Method</a></p>
+<p><em>A general approach or technique used to perform an assay. Methods are implemented by specific assays and detailed by protocols. Examples include high-speed video microscopy, qRT-PCR, Western blot, spirometry.</em></p>
+<p>URI: <a href="http://purl.obolibrary.org/obo/OBI_0000011">OBI:0000011</a></p>
 <pre class="mermaid"><code> classDiagram
     class Method
     click Method href "../Method/"
+      NamedThing &lt;|-- Method
+        click NamedThing href "../NamedThing/"
+
       Method : description
+
+      Method : equipment_required
+
+      Method : general_procedure
 
       Method : id
 
-      Method : implements_assay
+      Method : key_reagents
 
-
-
-
-
-        Method --&gt; "0..1" Assay : implements_assay
-        click Assay href "../Assay/"
-
-
+      Method : method_type
 
       Method : name
 
+      Method : obi_mapping
+
 
 </code></pre>
-<!-- no inheritance hierarchy -->
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../NamedThing/">NamedThing</a><ul>
+<li><strong>Method</strong></li>
+</ul>
+</li>
+</ul>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -307,28 +324,52 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../method_type/">method_type</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Type of method (e</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../equipment_required/">equipment_required</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Equipment required for this method</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../key_reagents/">key_reagents</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Key reagents needed for this method</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../general_procedure/">general_procedure</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>High-level description of the procedure</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../obi_mapping/">obi_mapping</a></td>
+<td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>OBI ontology term for this method</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../id/">id</a></td>
 <td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>A unique identifier for the entity</td>
-<td>direct</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
 <tr>
 <td><a href="../name/">name</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A human-readable name for the entity</td>
-<td>direct</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
 <tr>
 <td><a href="../description/">description</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A detailed description of the entity</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../implements_assay/">implements_assay</a></td>
-<td>0..1 <br/> <a href="../Assay/">Assay</a></td>
-<td>The Assay that this Method implements or realizes</td>
-<td>direct</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
 </tbody>
 </table>
@@ -350,7 +391,7 @@
 <td><a href="./">Method</a></td>
 </tr>
 <tr>
-<td><a href="../Measurement/">Measurement</a></td>
+<td><a href="../Assay/">Assay</a></td>
 <td><a href="../uses_method/">uses_method</a></td>
 <td>range</td>
 <td><a href="./">Method</a></td>
@@ -362,61 +403,91 @@
 <td><a href="./">Method</a></td>
 </tr>
 <tr>
-<td><a href="../CiliaryFunctionMeasurement/">CiliaryFunctionMeasurement</a></td>
+<td><a href="../ImagingProtocol/">ImagingProtocol</a></td>
+<td><a href="../specified_by_method/">specified_by_method</a></td>
+<td>range</td>
+<td><a href="./">Method</a></td>
+</tr>
+<tr>
+<td><a href="../StainingProtocol/">StainingProtocol</a></td>
+<td><a href="../specified_by_method/">specified_by_method</a></td>
+<td>range</td>
+<td><a href="./">Method</a></td>
+</tr>
+<tr>
+<td><a href="../SpirometryProtocol/">SpirometryProtocol</a></td>
+<td><a href="../specified_by_method/">specified_by_method</a></td>
+<td>range</td>
+<td><a href="./">Method</a></td>
+</tr>
+<tr>
+<td><a href="../MolecularAssayProtocol/">MolecularAssayProtocol</a></td>
+<td><a href="../specified_by_method/">specified_by_method</a></td>
+<td>range</td>
+<td><a href="./">Method</a></td>
+</tr>
+<tr>
+<td><a href="../CiliaryFunctionAssay/">CiliaryFunctionAssay</a></td>
 <td><a href="../uses_method/">uses_method</a></td>
 <td>range</td>
 <td><a href="./">Method</a></td>
 </tr>
 <tr>
-<td><a href="../ASLMeasurement/">ASLMeasurement</a></td>
+<td><a href="../ASLAssay/">ASLAssay</a></td>
 <td><a href="../uses_method/">uses_method</a></td>
 <td>range</td>
 <td><a href="./">Method</a></td>
 </tr>
 <tr>
-<td><a href="../MCCMeasurement/">MCCMeasurement</a></td>
+<td><a href="../MucociliaryClearanceAssay/">MucociliaryClearanceAssay</a></td>
 <td><a href="../uses_method/">uses_method</a></td>
 <td>range</td>
 <td><a href="./">Method</a></td>
 </tr>
 <tr>
-<td><a href="../OxidativeStressMeasurement/">OxidativeStressMeasurement</a></td>
+<td><a href="../OxidativeStressAssay/">OxidativeStressAssay</a></td>
 <td><a href="../uses_method/">uses_method</a></td>
 <td>range</td>
 <td><a href="./">Method</a></td>
 </tr>
 <tr>
-<td><a href="../CFTRMeasurement/">CFTRMeasurement</a></td>
+<td><a href="../CFTRFunctionAssay/">CFTRFunctionAssay</a></td>
 <td><a href="../uses_method/">uses_method</a></td>
 <td>range</td>
 <td><a href="./">Method</a></td>
 </tr>
 <tr>
-<td><a href="../EGFRPhosphorylationMeasurement/">EGFRPhosphorylationMeasurement</a></td>
+<td><a href="../EGFRSignalingAssay/">EGFRSignalingAssay</a></td>
 <td><a href="../uses_method/">uses_method</a></td>
 <td>range</td>
 <td><a href="./">Method</a></td>
 </tr>
 <tr>
-<td><a href="../GobletCellMucinMeasurement/">GobletCellMucinMeasurement</a></td>
+<td><a href="../GobletCellAssay/">GobletCellAssay</a></td>
 <td><a href="../uses_method/">uses_method</a></td>
 <td>range</td>
 <td><a href="./">Method</a></td>
 </tr>
 <tr>
-<td><a href="../BALFSputumMeasurement/">BALFSputumMeasurement</a></td>
+<td><a href="../BALFSputumAssay/">BALFSputumAssay</a></td>
 <td><a href="../uses_method/">uses_method</a></td>
 <td>range</td>
 <td><a href="./">Method</a></td>
 </tr>
 <tr>
-<td><a href="../LungFunctionMeasurement/">LungFunctionMeasurement</a></td>
+<td><a href="../LungFunctionAssay/">LungFunctionAssay</a></td>
 <td><a href="../uses_method/">uses_method</a></td>
 <td>range</td>
 <td><a href="./">Method</a></td>
 </tr>
 <tr>
-<td><a href="../FoxJMeasurement/">FoxJMeasurement</a></td>
+<td><a href="../FoxJExpressionAssay/">FoxJExpressionAssay</a></td>
+<td><a href="../uses_method/">uses_method</a></td>
+<td>range</td>
+<td><a href="./">Method</a></td>
+</tr>
+<tr>
+<td><a href="../GeneExpressionAssay/">GeneExpressionAssay</a></td>
 <td><a href="../uses_method/">uses_method</a></td>
 <td>range</td>
 <td><a href="./">Method</a></td>
@@ -439,7 +510,7 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>outcomes_working_group:Method</td>
+<td>OBI:0000011</td>
 </tr>
 <tr>
 <td>native</td>
@@ -452,23 +523,81 @@
 <h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A general approach or technique used to collect, measure, or analyze</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">data (e.g., qPCR, RNA-Seq, high-speed video microscopy, ELISA).</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A general approach or technique used to perform an assay. Methods are</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">implemented by specific assays and detailed by protocols. Examples include high-speed</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">video microscopy, qRT-PCR, Western blot, spirometry.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="nt">slots</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">implements_assay</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">method_type</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">equipment_required</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">key_reagents</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">general_procedure</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">obi_mapping</span>
+<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0000011</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A general approach or technique used to collect, measure, or analyze</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">data (e.g., qPCR, RNA-Seq, high-speed video microscopy, ELISA).</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A general approach or technique used to perform an assay. Methods are</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">implemented by specific assays and detailed by protocols. Examples include high-speed</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">video microscopy, qRT-PCR, Western blot, spirometry.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="nt">attributes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">method_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">method_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type of method (e.g., microscopy, molecular, biochemical).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">method_type</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">equipment_required</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">equipment_required</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Equipment required for this method.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">equipment_required</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">key_reagents</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">key_reagents</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Key reagents needed for this method.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">key_reagents</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">general_procedure</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">general_procedure</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">High-level description of the procedure.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">general_procedure</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">obi_mapping</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">obi_mapping</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI ontology term for this method.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">obi_mapping</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A unique identifier for the entity.</span>
@@ -478,14 +607,9 @@
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MediumSupplement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span>
@@ -497,14 +621,9 @@
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MediumSupplement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
@@ -515,24 +634,9 @@
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellLine</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">implements_assay</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">implements_assay</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Assay that this Method implements or realizes.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">implements_assay</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0000011</span>
 </code></pre></div>
 </details>
 </article>

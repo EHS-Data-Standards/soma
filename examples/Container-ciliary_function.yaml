@@ -1,18 +1,50 @@
-# Simple test file for CiliaryFunctionMeasurement
-ciliary_measurements:
+# Test file for CiliaryFunctionAssay
+ciliary_function_assays:
   - id: "CILIARY:001"
     name: "CBF measurement after ozone exposure"
-    observation_type: ciliary_beat_frequency
-    quantity_measured:
+    beat_frequency_hz:
       value: "8.5"
       unit:
         id: "UO:0000106"
         name: "hertz"
-    measurement_date: "2024-01-15"
-    cell_culture_system:
+    active_area_percentage:
+      value: "72"
+      unit:
+        id: "UO:0000187"
+        name: "percent"
+    percentage_ciliated_cells:
+      value: "65"
+      unit:
+        id: "UO:0000187"
+        name: "percent"
+    assay_date: "2024-01-15"
+    cell_type:
+      id: "CL:0002328"
+      name: "bronchial epithelial cell"
+    tissue_context:
+      id: "UBERON:0002031"
+      name: "bronchus"
+    study_subject:
       id: "owg:culture-001"
       name: "Primary HBE ALI culture"
-      cell_culture_growth_mode: air_liquid_interface
-      substrate_type: transwell_insert
-      passage_number: 2
-    days_at_differentiation: 21
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+    imaging_protocol:
+      id: "PROTOCOL:cbf-001"
+      name: "High-speed video microscopy for CBF"
+      imaging_frame_rate:
+        value: "200"
+        unit:
+          id: "UO:0000105"
+          name: "hertz"
+      imaging_duration:
+        value: "5"
+        unit:
+          id: "UO:0000010"
+          name: "second"
+      temperature_control:
+        value: "37"
+        unit:
+          id: "UO:0000027"
+          name: "degree Celsius"

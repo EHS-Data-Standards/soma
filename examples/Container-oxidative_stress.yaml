@@ -1,18 +1,25 @@
-# Simple test file for OxidativeStressMeasurement
-oxidative_stress_measurements:
+# Test file for OxidativeStressAssay
+oxidative_stress_assays:
   - id: "OX:001"
     name: "ROS level after PM2.5 exposure"
-    observation_type: reactive_oxygen_species
-    quantity_measured:
+    reactive_oxygen_species:
       value: "2.5"
       unit:
         id: "UO:0000193"
         name: "fold change"
-    measurement_date: "2024-01-20"
-    cell_culture_system:
+    ros_probe_type: "DCFDA"
+    assay_date: "2024-01-20"
+    cell_type:
+      id: "CL:0002328"
+      name: "bronchial epithelial cell"
+    study_subject:
       id: "owg:culture-003"
       name: "Primary HBE ALI culture"
-      cell_culture_growth_mode: air_liquid_interface
-      substrate_type: transwell_insert
-      passage_number: 2
-    days_at_differentiation: 21
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+    molecular_protocol:
+      id: "PROTOCOL:ros-001"
+      name: "DCFDA ROS detection in ALI cultures"
+      detection_method: "fluorescence plate reader"
+      normalization_method: "cell count normalization"

@@ -1,15 +1,37 @@
-# Simple test file for BALFSputumMeasurement
-balf_sputum_measurements:
+# Test file for BALFSputumAssay (in vivo)
+balf_sputum_assays:
   - id: "BALF:001"
     name: "Neutrophil percentage in induced sputum"
-    observation_type: neutrophil_percentage
-    quantity_measured:
+    neutrophil_percentage:
       value: "45.0"
       unit:
         id: "UO:0000187"
         name: "percent"
-    measurement_date: "2024-07-22"
-    sample_type: sputum
-    participant:
-      id: "PARTICIPANT:001"
+    il8_concentration:
+      value: "250"
+      unit:
+        id: "UO:0000175"
+        name: "picogram per milliliter"
+    assay_date: "2024-07-22"
+    cell_type:
+      id: "CL:0000775"
+      name: "neutrophil"
+    study_subject:
+      id: "SUBJECT:001"
       name: "Subject A"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      age:
+        value: "45"
+        unit:
+          id: "UO:0000036"
+          name: "year"
+      sex: "female"
+      sample_type: sputum
+      collection_site: "pulmonary clinic"
+      subject_characteristics: "Non-smoker, mild asthma"
+    molecular_protocol:
+      id: "PROTOCOL:balf-001"
+      name: "Sputum cell differential protocol"
+      detection_method: "cytospin and Diff-Quik staining"

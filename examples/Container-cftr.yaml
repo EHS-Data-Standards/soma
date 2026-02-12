@@ -1,18 +1,24 @@
-# Simple test file for CFTRMeasurement
-cftr_measurements:
+# Test file for CFTRFunctionAssay
+cftr_assays:
   - id: "CFTR:001"
     name: "CFTR chloride secretion"
-    observation_type: cftr_chloride_secretion
-    quantity_measured:
+    cftr_chloride_secretion:
       value: "15.2"
       unit:
         id: "UO:0000274"
         name: "microampere per square centimeter"
-    measurement_date: "2024-04-12"
-    cell_culture_system:
+    stimulation_agent: "forskolin 10 uM"
+    inhibitor_used: "CFTRinh-172"
+    assay_date: "2024-04-12"
+    cell_type:
+      id: "CL:0002328"
+      name: "bronchial epithelial cell"
+    study_subject:
       id: "owg:culture-006"
       name: "Primary HBE ALI culture"
-      cell_culture_growth_mode: air_liquid_interface
-      substrate_type: transwell_insert
-      passage_number: 2
-    days_at_differentiation: 28
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+    follows_protocol:
+      id: "PROTOCOL:cftr-001"
+      name: "Ussing chamber short-circuit current protocol"

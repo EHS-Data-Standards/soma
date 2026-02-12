@@ -297,22 +297,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#microschema-architecture" class="md-nav__link">
+  <a href="#assay-centric-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Microschema Architecture
+        Assay-Centric Architecture
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Microschema Architecture">
+    <nav class="md-nav" aria-label="Assay-Centric Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#measurement-microschemas" class="md-nav__link">
+  <a href="#assay-microschemas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Measurement Microschemas
+        Assay Microschemas
       
     </span>
   </a>
@@ -320,10 +320,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#context-mixins" class="md-nav__link">
+  <a href="#study-subject-hierarchy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Context Mixins
+        Study Subject Hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protocol-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol Hierarchy
       
     </span>
   </a>
@@ -409,10 +420,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ciliary-function-measurement-in-vitro" class="md-nav__link">
+  <a href="#ciliary-function-assay-in-vitro" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ciliary Function Measurement (In Vitro)
+        Ciliary Function Assay (In Vitro)
       
     </span>
   </a>
@@ -420,10 +431,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#lung-function-measurement-in-vivo" class="md-nav__link">
+  <a href="#lung-function-assay-in-vivo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lung Function Measurement (In Vivo)
+        Lung Function Assay (In Vivo)
       
     </span>
   </a>
@@ -573,22 +584,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#microschema-architecture" class="md-nav__link">
+  <a href="#assay-centric-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Microschema Architecture
+        Assay-Centric Architecture
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Microschema Architecture">
+    <nav class="md-nav" aria-label="Assay-Centric Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#measurement-microschemas" class="md-nav__link">
+  <a href="#assay-microschemas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Measurement Microschemas
+        Assay Microschemas
       
     </span>
   </a>
@@ -596,10 +607,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#context-mixins" class="md-nav__link">
+  <a href="#study-subject-hierarchy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Context Mixins
+        Study Subject Hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protocol-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol Hierarchy
       
     </span>
   </a>
@@ -685,10 +707,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ciliary-function-measurement-in-vitro" class="md-nav__link">
+  <a href="#ciliary-function-assay-in-vitro" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ciliary Function Measurement (In Vitro)
+        Ciliary Function Assay (In Vitro)
       
     </span>
   </a>
@@ -696,10 +718,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#lung-function-measurement-in-vivo" class="md-nav__link">
+  <a href="#lung-function-assay-in-vivo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lung Function Measurement (In Vivo)
+        Lung Function Assay (In Vivo)
       
     </span>
   </a>
@@ -743,12 +765,12 @@
 
 
 <h1 id="outcomes-working-group-data-model">Outcomes Working Group Data Model</h1>
-<p>The Outcomes Working Group Data Model is a <a href="https://linkml.io/">LinkML</a> schema for representing 
-Key Event and Outcome measurements, assays, and experimental protocols in the context of environmental 
+<p>The Outcomes Working Group Data Model is a <a href="https://linkml.io/">LinkML</a> schema for representing
+Key Event and Outcome measurements, assays, and experimental protocols in the context of environmental
 health sciences (EHS) outcomes research.</p>
 <h2 id="purpose">Purpose</h2>
-<p>This data model provides a standardized way to capture and exchange data about airway biology 
-measurements relevant to respiratory health outcomes, including:</p>
+<p>This data model provides a standardized way to capture and exchange data about airway biology
+assays relevant to respiratory health outcomes, including:</p>
 <ul>
 <li><strong>Ciliary function</strong> - Beat frequency, active area, morphology</li>
 <li><strong>Airway surface liquid</strong> - ASL height, periciliary layer depth, ion composition</li>
@@ -759,93 +781,163 @@ measurements relevant to respiratory health outcomes, including:</p>
 <li><strong>Mucin biology</strong> - Goblet cells, MUC5AC/MUC5B expression</li>
 <li><strong>Inflammatory markers</strong> - BALF/sputum cell counts, cytokines</li>
 <li><strong>Lung function</strong> - Spirometry outcomes (FEV1, FVC)</li>
-<li><strong>Exposure biomarkers</strong> - Cotinine, metals, PAH metabolites</li>
+<li><strong>Gene expression</strong> - Target gene mRNA levels</li>
 </ul>
-<h2 id="microschema-architecture">Microschema Architecture</h2>
-<p>The schema uses a <strong>microschema architecture</strong> where domain-specific measurement types 
-inherit from a common base and can incorporate context mixins for in vitro or in vivo settings.</p>
-<h3 id="measurement-microschemas">Measurement Microschemas</h3>
+<h2 id="assay-centric-architecture">Assay-Centric Architecture</h2>
+<p>The schema uses an <strong>assay-centric architecture</strong> where domain-specific assay types
+inherit from a common <code>Assay</code> base class. Each assay class has <strong>named measurement slots</strong>
+(e.g., <code>beat_frequency_hz</code>, <code>asl_height_um</code>) instead of generic observation types.</p>
+<h3 id="assay-microschemas">Assay Microschemas</h3>
 <table>
 <thead>
 <tr>
-<th>Microschema</th>
+<th>Assay Class</th>
 <th>Container Slot</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>CiliaryFunctionMeasurement</td>
-<td><code>ciliary_measurements</code></td>
+<td>CiliaryFunctionAssay</td>
+<td><code>ciliary_function_assays</code></td>
 <td>Ciliary beat frequency, active area, morphology</td>
 </tr>
 <tr>
-<td>ASLMeasurement</td>
-<td><code>asl_measurements</code></td>
+<td>ASLAssay</td>
+<td><code>asl_assays</code></td>
 <td>Airway surface liquid height, PCL depth, ions</td>
 </tr>
 <tr>
-<td>MCCMeasurement</td>
-<td><code>mcc_measurements</code></td>
+<td>MucociliaryClearanceAssay</td>
+<td><code>mcc_assays</code></td>
 <td>Mucociliary transport and clearance</td>
 </tr>
 <tr>
-<td>OxidativeStressMeasurement</td>
-<td><code>oxidative_stress_measurements</code></td>
-<td>ROS, MDA, 4-HNE, antioxidant enzymes</td>
+<td>OxidativeStressAssay</td>
+<td><code>oxidative_stress_assays</code></td>
+<td>ROS, MDA, lipid peroxidation</td>
 </tr>
 <tr>
-<td>CFTRMeasurement</td>
-<td><code>cftr_measurements</code></td>
+<td>CFTRFunctionAssay</td>
+<td><code>cftr_assays</code></td>
 <td>CFTR chloride secretion, sweat chloride</td>
 </tr>
 <tr>
-<td>EGFRMeasurement</td>
-<td><code>egfr_measurements</code></td>
+<td>EGFRSignalingAssay</td>
+<td><code>egfr_signaling_assays</code></td>
 <td>EGFR/ERK/AKT phosphorylation</td>
 </tr>
 <tr>
-<td>GobletCellMucinMeasurement</td>
-<td><code>goblet_cell_mucin_measurements</code></td>
+<td>GobletCellAssay</td>
+<td><code>goblet_cell_assays</code></td>
 <td>Goblet cells, MUC5AC/5B expression</td>
 </tr>
 <tr>
-<td>BALFSputumMeasurement</td>
-<td><code>balf_sputum_measurements</code></td>
+<td>BALFSputumAssay</td>
+<td><code>balf_sputum_assays</code></td>
 <td>Cell differentials, cytokines</td>
 </tr>
 <tr>
-<td>LungFunctionMeasurement</td>
-<td><code>lung_function_measurements</code></td>
+<td>LungFunctionAssay</td>
+<td><code>lung_function_assays</code></td>
 <td>FEV1, FVC, FeNO</td>
 </tr>
 <tr>
-<td>FoxJMeasurement</td>
-<td><code>foxj_measurements</code></td>
+<td>FoxJExpressionAssay</td>
+<td><code>foxj_assays</code></td>
 <td>FoxJ1 expression, ciliogenesis</td>
+</tr>
+<tr>
+<td>GeneExpressionAssay</td>
+<td><code>gene_expression_assays</code></td>
+<td>Target gene mRNA expression</td>
 </tr>
 </tbody>
 </table>
-<h3 id="context-mixins">Context Mixins</h3>
-<p>Each measurement can include context about the experimental setting:</p>
+<h3 id="study-subject-hierarchy">Study Subject Hierarchy</h3>
+<p>Each assay records its biological system via the <code>study_subject</code> slot, which accepts
+any class in the StudySubject hierarchy:</p>
 <table>
 <thead>
 <tr>
-<th>Mixin</th>
+<th>Class</th>
 <th>Use Case</th>
 <th>Key Slots</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>InVitroContext</td>
-<td>Cell culture experiments</td>
-<td><code>cell_culture_system</code>, <code>days_at_differentiation</code>, <code>donor_info</code></td>
+<td>StudySubject</td>
+<td>Base class</td>
+<td><code>model_species</code></td>
 </tr>
 <tr>
-<td>InVivoContext</td>
+<td>ModelSystem</td>
+<td>Laboratory model systems</td>
+<td>(inherits from StudySubject)</td>
+</tr>
+<tr>
+<td>CellularSystem</td>
+<td>Cell-based experiments</td>
+<td><code>cell_type</code>, <code>cell_line</code>, <code>culture_conditions</code>, <code>days_at_differentiation</code></td>
+</tr>
+<tr>
+<td>TwoDCellCulture</td>
+<td>ALI / monolayer cultures</td>
+<td><code>substrate_type</code>, <code>passage_number</code>, <code>confluence_level</code></td>
+</tr>
+<tr>
+<td>ThreeDCellCulture</td>
+<td>Organoids, spheroids</td>
+<td><code>scaffold_type</code>, <code>organoid_type</code></td>
+</tr>
+<tr>
+<td>InVivoSubject</td>
 <td>Human/animal samples</td>
-<td><code>participant</code>, <code>sample_type</code>, <code>collection_site</code>, <code>collection_date</code></td>
+<td><code>age</code>, <code>sex</code>, <code>sample_type</code>, <code>collection_site</code>, <code>subject_characteristics</code></td>
+</tr>
+<tr>
+<td>PopulationSubject</td>
+<td>Epidemiological cohorts</td>
+<td><code>cohort_name</code>, <code>sample_size</code>, <code>demographics</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="protocol-hierarchy">Protocol Hierarchy</h3>
+<p>Assays reference typed protocols for domain-specific procedural details:</p>
+<table>
+<thead>
+<tr>
+<th>Protocol Class</th>
+<th>Slot Name</th>
+<th>Key Slots</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Protocol</td>
+<td><code>follows_protocol</code></td>
+<td><code>protocol_version</code>, <code>temperature_control</code>, <code>quality_control_criteria</code></td>
+</tr>
+<tr>
+<td>ImagingProtocol</td>
+<td><code>imaging_protocol</code></td>
+<td><code>imaging_frame_rate</code>, <code>imaging_duration</code>, <code>spatial_resolution</code></td>
+</tr>
+<tr>
+<td>MolecularAssayProtocol</td>
+<td><code>molecular_protocol</code></td>
+<td><code>detection_method</code>, <code>antibodies_used</code>, <code>reference_gene</code></td>
+</tr>
+<tr>
+<td>StainingProtocol</td>
+<td><code>staining_protocol</code></td>
+<td><code>staining_type</code>, <code>fixation_method</code>, <code>counterstain</code></td>
+</tr>
+<tr>
+<td>SpirometryProtocol</td>
+<td><code>spirometry_protocol</code></td>
+<td><code>spirometry_standard</code>, <code>bronchodilator_agent</code></td>
 </tr>
 </tbody>
 </table>
@@ -870,9 +962,14 @@ inherit from a common base and can incorporate context mixins for in vitro or in
 <td>General measurement techniques</td>
 </tr>
 <tr>
-<td>Assay</td>
-<td><code>assays</code></td>
-<td>Specific test definitions</td>
+<td>KeyEvent</td>
+<td><code>key_events</code></td>
+<td>AOP key events that assays inform on</td>
+</tr>
+<tr>
+<td>AdverseOutcomePathway</td>
+<td><code>adverse_outcome_pathways</code></td>
+<td>Complete AOP definitions</td>
 </tr>
 </tbody>
 </table>
@@ -929,48 +1026,72 @@ and enumerations defined in the model.</p>
 </ol>
 <h2 id="example-data">Example Data</h2>
 <p>All data uses the <code>Container</code> class as the root element. Here's a quick example:</p>
-<h3 id="ciliary-function-measurement-in-vitro">Ciliary Function Measurement (In Vitro)</h3>
-<div class="highlight"><pre><span></span><code><span class="nt">ciliary_measurements</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">CILIARY:001</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:001&quot;</span>
+<h3 id="ciliary-function-assay-in-vitro">Ciliary Function Assay (In Vitro)</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">ciliary_function_assays</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:001&quot;</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">ozone</span><span class="nv"> </span><span class="s">exposure&quot;</span>
-<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_beat_frequency</span>
-<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">beat_frequency_hz</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8.5&quot;</span>
 <span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000106&quot;</span>
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
-<span class="w">    </span><span class="nt">measurement_method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;high-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
-<span class="w">    </span><span class="nt">measurement_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-15&quot;</span>
-<span class="w">    </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">active_area_percentage</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;72&quot;</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-15&quot;</span>
+<span class="w">    </span><span class="nt">cell_type</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
+<span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-001&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
-<span class="w">      </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_liquid_interface</span>
-<span class="w">      </span><span class="nt">substrate_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transwell_insert</span>
-<span class="w">      </span><span class="nt">passage_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
-<span class="w">    </span><span class="nt">days_at_differentiation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+<span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
+<span class="w">    </span><span class="nt">imaging_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:cbf-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">CBF&quot;</span>
+<span class="w">      </span><span class="nt">imaging_frame_rate</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;200&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000105&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
 </code></pre></div>
-<h3 id="lung-function-measurement-in-vivo">Lung Function Measurement (In Vivo)</h3>
-<div class="highlight"><pre><span></span><code><span class="nt">lung_function_measurements</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">LF:001</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;LF:001&quot;</span>
+<h3 id="lung-function-assay-in-vivo">Lung Function Assay (In Vivo)</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">lung_function_assays</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;LF:001&quot;</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FEV1</span><span class="nv"> </span><span class="s">measurement&quot;</span>
-<span class="w">    </span><span class="nt">observation_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fev1</span>
-<span class="w">    </span><span class="nt">quantity_measured</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">fev1</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;82.5&quot;</span>
 <span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent</span><span class="nv"> </span><span class="s">predicted&quot;</span>
-<span class="w">    </span><span class="nt">measurement_method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Spirometry&quot;</span>
-<span class="w">    </span><span class="nt">participant</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PARTICIPANT:001&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Subject</span><span class="nv"> </span><span class="s">A&quot;</span>
+<span class="w">    </span><span class="nt">reference_dataset</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GLI-2012&quot;</span>
+<span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-08-10&quot;</span>
+<span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SUBJECT:002&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Subject</span><span class="nv"> </span><span class="s">B&quot;</span>
+<span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
+<span class="w">      </span><span class="nt">age</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;52&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000036&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;year&quot;</span>
+<span class="w">      </span><span class="nt">sex</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;male&quot;</span>
+<span class="w">    </span><span class="nt">spirometry_protocol</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:spiro-001&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pre-</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">post-bronchodilator</span><span class="nv"> </span><span class="s">spirometry&quot;</span>
+<span class="w">      </span><span class="nt">spirometry_standard</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ATS/ERS</span><span class="nv"> </span><span class="s">2019&quot;</span>
 </code></pre></div>
-<p><strong>See the <a href="examples/">Examples</a> page for comprehensive examples covering all measurement types,
-cell culture configurations, protocols, and more.</strong></p>
+<p><strong>See the <a href="examples/">Examples</a> page for comprehensive examples covering all assay types,
+protocols, and study configurations.</strong></p>
 <h2 id="resources">Resources</h2>
 <ul>
-<li><a href="examples/">Examples</a> - Comprehensive examples for all measurement types</li>
+<li><a href="examples/">Examples</a> - Comprehensive examples for all assay types</li>
 <li><a href="elements/">Schema Documentation</a> - Full schema reference</li>
 <li><a href="https://github.com/EHS-Data-Standards/outcomes-working-group">GitHub Repository</a></li>
 <li><a href="https://linkml.io/linkml/">LinkML Documentation</a></li>

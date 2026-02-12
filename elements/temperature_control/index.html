@@ -352,6 +352,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#applicable-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applicable Classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#properties" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -433,11 +444,48 @@
 
 
 <h1 id="slot-temperature_control">Slot: temperature_control</h1>
-<p><em>Temperature conditions during the procedure (e.g., 37°C).</em></p>
+<p><em>Temperature conditions during the procedure (e.g., 37C).</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/temperature_control">outcomes_working_group:temperature_control</a>
 Alias: temperature_control</p>
 <!-- no inheritance hierarchy -->
 
+<h2 id="applicable-classes">Applicable Classes</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Modifies Slot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Protocol/">Protocol</a></td>
+<td>A detailed set of steps for how to perform a specific assay using a specific ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SpirometryProtocol/">SpirometryProtocol</a></td>
+<td>Protocol for lung function / spirometry assays</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MolecularAssayProtocol/">MolecularAssayProtocol</a></td>
+<td>Protocol for molecular biology assays (qRT-PCR, Western blot, ELISA)</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../StainingProtocol/">StainingProtocol</a></td>
+<td>Protocol for staining-based assays (goblet cell, immunofluorescence)</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ImagingProtocol/">ImagingProtocol</a></td>
+<td>Protocol for imaging-based assays (CBF, ASL, MCC)</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
 <h2 id="properties">Properties</h2>
 <ul>
 <li>Range: <a href="../QuantityValue/">QuantityValue</a></li>
@@ -469,10 +517,12 @@ Alias: temperature_control</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">temperature_control</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature conditions during the procedure (e.g., 37°C).</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature conditions during the procedure (e.g., 37C).</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">temperature_control</span>
+<span class="nt">domain_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
 <span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>

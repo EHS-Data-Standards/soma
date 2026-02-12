@@ -1,14 +1,39 @@
-# Simple test file for LungFunctionMeasurement
-lung_function_measurements:
+# Test file for LungFunctionAssay (in vivo)
+lung_function_assays:
   - id: "LF:001"
     name: "FEV1 measurement"
-    observation_type: fev1
-    quantity_measured:
+    fev1:
       value: "82.5"
       unit:
         id: "UO:0000187"
         name: "percent predicted"
-    measurement_date: "2024-08-10"
-    participant:
-      id: "PARTICIPANT:002"
+    fvc:
+      value: "95.0"
+      unit:
+        id: "UO:0000187"
+        name: "percent predicted"
+    reference_dataset: "GLI-2012"
+    assay_date: "2024-08-10"
+    study_subject:
+      id: "SUBJECT:002"
       name: "Subject B"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      age:
+        value: "52"
+        unit:
+          id: "UO:0000036"
+          name: "year"
+      sex: "male"
+      subject_characteristics: "Non-smoker, no respiratory disease"
+    spirometry_protocol:
+      id: "PROTOCOL:spiro-001"
+      name: "Pre- and post-bronchodilator spirometry"
+      spirometry_standard: "ATS/ERS 2019"
+      bronchodilator_agent: "albuterol"
+      bronchodilator_dose:
+        value: "400"
+        unit:
+          id: "UO:0000022"
+          name: "microgram"
