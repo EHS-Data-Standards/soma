@@ -48,12 +48,61 @@ ciliary_function_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
+    tissue_context:
+      id: "UBERON:0002031"
+      name: "bronchus"
     study_subject:
       id: "owg:culture-001"
       name: "Primary HBE ALI culture"
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
+      primary_cell:
+        id: "CL:0002328"
+        name: "bronchial epithelial cell"
+      anatomical_origin:
+        id: "UBERON:0002031"
+        name: "bronchus"
+      cell_culture_growth_mode: air_liquid_interface
+      days_at_differentiation: 21
+      donor_info: "Healthy non-smoker, male, age 35, no respiratory disease"
+      replicates_per_donor: 3
+      substrate_type: transwell_insert
+      passage_number: 2
+      seeding_density:
+        value: "200000"
+        unit:
+          id: "UO:0000210"
+          name: "cells per square centimeter"
+      culture_conditions:
+        id: "owg:conditions-001"
+        name: "Standard ALI culture conditions"
+        days_at_air_liquid_interface: 21
+        substrate_type: transwell_insert
+        cell_culture_growth_mode: air_liquid_interface
+        replicates_per_donor: 3
+      culture_media:
+        id: "owg:media-001"
+        name: "PneumaCult-ALI medium"
+        base_medium: "PneumaCult-ALI"
+        manufacturer: "STEMCELL Technologies"
+        supplements:
+          - id: "owg:supp-001"
+            name: "Hydrocortisone"
+            supplement_type: hormone
+            concentration:
+              value: "0.48"
+              unit:
+                id: "UO:0000064"
+                name: "micrograms per milliliter"
+          - id: "owg:supp-002"
+            name: "Heparin"
+            supplement_type: growth_factor
+            concentration:
+              value: "4"
+              unit:
+                id: "UO:0000064"
+                name: "micrograms per milliliter"
     imaging_protocol:
       id: "PROTOCOL:cbf-001"
       name: "High-speed video microscopy for CBF"
@@ -77,7 +126,13 @@ ciliary_function_assays:
 **Key points:**
 
 - Named measurement slots: `beat_frequency_hz`, `active_area_percentage`, `percentage_ciliated_cells`
-- `study_subject` captures the biological model with `model_species`
+- `tissue_context` links the assay to the anatomical site (bronchus)
+- `study_subject` captures the full biological model including:
+  - `primary_cell` and `anatomical_origin` for cell provenance
+  - Culture details: `cell_culture_growth_mode`, `days_at_differentiation`, `passage_number`, `seeding_density`
+  - `donor_info` for subject demographics and health status
+  - `culture_conditions` with ALI-specific parameters
+  - `culture_media` with base medium, manufacturer, and detailed `supplements` (type, concentration)
 - `imaging_protocol` (ImagingProtocol) with frame rate, duration, and temperature
 
 ---
