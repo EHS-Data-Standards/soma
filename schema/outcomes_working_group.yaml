@@ -1775,9 +1775,6 @@ slots:
     description: Equipment required for this method.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:equipment_required
-    owner: Method
-    domain_of:
-    - Method
     range: string
     multivalued: true
   key_reagents:
@@ -1786,9 +1783,6 @@ slots:
     description: Key reagents needed for this method.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:key_reagents
-    owner: Method
-    domain_of:
-    - Method
     range: string
     multivalued: true
   general_procedure:
@@ -1797,9 +1791,6 @@ slots:
     description: High-level description of the procedure.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:general_procedure
-    owner: Method
-    domain_of:
-    - Method
     range: string
   obi_mapping:
     name: obi_mapping
@@ -1807,9 +1798,6 @@ slots:
     description: OBI ontology term for this method.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:obi_mapping
-    owner: Method
-    domain_of:
-    - Method
     range: uriorcurie
   sample_source:
     name: sample_source
@@ -4135,8 +4123,7 @@ classes:
     name: Method
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/Method
     description: A general approach or technique used to perform an assay. Methods
-      are implemented by specific assays and detailed by protocols. Examples include
-      high-speed video microscopy, qRT-PCR, Western blot, spirometry.
+      are implemented by specific assays and detailed by protocols.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     mappings:
     - OBI:0000011
@@ -4146,10 +4133,6 @@ classes:
     - name
     - description
     - method_type
-    - equipment_required
-    - key_reagents
-    - general_procedure
-    - obi_mapping
     class_uri: OBI:0000011
   Protocol:
     name: Protocol
@@ -4993,7 +4976,7 @@ classes:
     class_uri: assay_microschemas:GeneExpressionAssay
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2026-02-12T04:54:10'
+source_file_date: '2026-02-12T16:00:19'
 source_file_size: 7073
-generation_date: '2026-02-12T04:54:31'
+generation_date: '2026-02-12T16:00:34'
 
