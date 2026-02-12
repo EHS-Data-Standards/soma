@@ -3672,6 +3672,25 @@ slots:
     required: true
     inlined: true
     inlined_as_list: false
+  CiliaryFunctionAssay_study_subject:
+    name: CiliaryFunctionAssay_study_subject
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/study_subject
+    description: "The subject of the study \u2014 what the assay is performed on.\
+      \ Can be a ModelSystem (e.g., CellularSystem), an InVivoSubject, or a PopulationSubject.\
+      \ The type of subject determines which context slots are available."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    is_a: study_subject
+    domain: CiliaryFunctionAssay
+    slot_uri: assay_base:study_subject
+    alias: study_subject
+    owner: CiliaryFunctionAssay
+    domain_of:
+    - CiliaryFunctionAssay
+    is_usage_slot: true
+    usage_slot_name: study_subject
+    range: TwoDCellCulture
+    inlined: true
+    inlined_as_list: false
   ASLAssay_imaging_protocol:
     name: ASLAssay_imaging_protocol
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/imaging_protocol
@@ -4549,7 +4568,6 @@ classes:
     - informs_on_key_event
     - cell_type
     - tissue_context
-    - study_subject
     - input_sample
     - uses_method
     - follows_protocol
@@ -4565,11 +4583,15 @@ classes:
     - ciliary_beat_amplitude
     - analysis_software
     - airway_region
+    - CiliaryFunctionAssay_study_subject
     slot_usage:
       imaging_protocol:
         name: imaging_protocol
         range: ImagingProtocol
         required: true
+      study_subject:
+        name: study_subject
+        range: TwoDCellCulture
     class_uri: assay_microschemas:CiliaryFunctionAssay
   ASLAssay:
     name: ASLAssay
@@ -4971,7 +4993,7 @@ classes:
     class_uri: assay_microschemas:GeneExpressionAssay
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2026-02-12T03:47:58'
+source_file_date: '2026-02-12T04:48:19'
 source_file_size: 7073
-generation_date: '2026-02-12T03:48:19'
+generation_date: '2026-02-12T04:48:40'
 
