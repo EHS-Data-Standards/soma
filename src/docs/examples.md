@@ -549,36 +549,19 @@ balf_sputum_assays:
 
 ---
 
-## Protocols and Methods
+## Protocols
 
 The schema supports detailed documentation of experimental procedures through
-Methods (general techniques) and typed Protocols (specific procedures).
+typed Protocols (specific procedures).
 
 **Key protocol features:**
 
 - **`follows_protocols`** (on Assay): multivalued — an assay can reference multiple protocols
 - **`sub_protocols`** (on Protocol): protocols can compose other protocols to represent
   composite workflows (e.g., sample prep, wash steps, post-processing)
+- **`equipment_required`** (on Protocol): list of equipment needed for the protocol
 - Any Protocol subclass (ImagingProtocol, MolecularAssayProtocol, StainingProtocol,
   SpirometryProtocol) is valid wherever Protocol is expected
-
-### Method Definition
-
-A general measurement technique:
-
-```yaml
-methods:
-  - id: "METHOD:001"
-    name: "High-speed video microscopy"
-    description: "Video microscopy technique for measuring ciliary dynamics at frame rates above 100 Hz"
-    method_type: "microscopy"
-    equipment_required:
-      - "High-speed camera (>200 fps)"
-      - "Inverted microscope with 20x objective"
-    general_procedure: "Cells imaged at 200 fps for 5 seconds per field of view"
-```
-
----
 
 ### Protocol Definition (Base) with Sub-Protocols
 

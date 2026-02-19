@@ -63,7 +63,6 @@ classes:
       - tissue_context
       - study_subject
       - input_sample
-      - uses_method
       - follows_protocols
       - assay_date
 
@@ -116,24 +115,15 @@ classes:
       - subjects
 
   # ---------------------------------------------------------------------------
-  # Protocol and Method Classes
+  # Protocol Classes
   # ---------------------------------------------------------------------------
-
-  Method:
-    is_a: NamedThing
-    class_uri: OBI:0000011
-    description: >-
-      A general approach or technique used to perform an assay. Methods are
-      implemented by specific assays and detailed by protocols.
-    slots:
-      - method_type
 
   Protocol:
     is_a: NamedThing
     class_uri: OBI:0000272
     description: >-
-      A detailed set of steps for how to perform a specific assay using a
-      specific method. Protocols ensure reproducibility across laboratories.
+      A detailed set of steps for how to perform a specific assay.
+      Protocols ensure reproducibility across laboratories.
       Contains universal slots; domain-specific details are in protocol
       subclasses (ImagingProtocol, StainingProtocol, etc.).
 
@@ -144,7 +134,7 @@ classes:
       # Core identity
       - protocol_version
       - sop_reference
-      - specified_by_method
+      - equipment_required
 
       # Composite protocol support
       - sub_protocols
@@ -548,12 +538,6 @@ slots:
   # Methodology Slots
   # ---------------------------------------------------------------------------
 
-  uses_method:
-    description: >-
-      The Method used to perform this assay.
-    range: Method
-    inlined: true
-
   follows_protocols:
     description: >-
       The Protocol(s) that this assay follows. Any Protocol or Protocol
@@ -574,12 +558,6 @@ slots:
     range: Protocol
     multivalued: true
     inlined_as_list: true
-
-  specified_by_method:
-    description: >-
-      The Method that this Protocol specifies in detail.
-    range: Method
-    inlined: true
 
   # ---------------------------------------------------------------------------
   # Sample/Subject Info Slots (now on CellularSystem)
@@ -817,20 +795,16 @@ slots:
     range: string
 
   # ---------------------------------------------------------------------------
-  # Method Slots
+  # Protocol Equipment Slots
   # ---------------------------------------------------------------------------
 
-  method_type:
-    description: Type of method (e.g., microscopy, molecular, biochemical).
-    range: string
-
   equipment_required:
-    description: Equipment required for this method.
+    description: Equipment required for this protocol.
     range: string
     multivalued: true
 
   key_reagents:
-    description: Key reagents needed for this method.
+    description: Key reagents needed for this protocol.
     range: string
     multivalued: true
 

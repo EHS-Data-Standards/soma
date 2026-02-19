@@ -53,11 +53,10 @@ classes:
       - range_high
       - measured_entity
       - measurement_date
-      - uses_method
       - follows_protocol
 
   # ---------------------------------------------------------------------------
-  # Protocol / Method / Assay Hierarchy
+  # Protocol / Assay Hierarchy
   # ---------------------------------------------------------------------------
 
   Assay:
@@ -70,16 +69,6 @@ classes:
       - name
       - description
 
-  Method:
-    description: >-
-      A general approach or technique used to collect, measure, or analyze data
-      (e.g., qPCR, RNA-Seq, high-speed video microscopy, ELISA).
-    slots:
-      - id
-      - name
-      - description
-      - implements_assay
-
   Protocol:
     description: >-
       A detailed set of steps for how to perform a test or collect data;
@@ -90,7 +79,6 @@ classes:
       - id
       - name
       - description
-      - specified_by_method
 
   # ---------------------------------------------------------------------------
   # Context Mixins (In Vitro / In Vivo)
@@ -365,12 +353,6 @@ slots:
       Date when the measurement was performed.
     range: date
 
-  uses_method:
-    description: >-
-      The Method used to perform this measurement.
-    range: Method
-    inlined: true
-
   assay:
     description: >-
       The Assay used to produce this measurement.
@@ -378,21 +360,8 @@ slots:
     inlined: true
 
   # ---------------------------------------------------------------------------
-  # Protocol / Method / Assay Relationship Slots
+  # Protocol / Assay Relationship Slots
   # ---------------------------------------------------------------------------
-
-  implements_assay:
-    description: >-
-      The Assay that this Method implements or realizes.
-    range: Assay
-    inlined: true
-
-  specified_by_method:
-    description: >-
-      The Method that this Protocol specifies in detail.
-    range: Method
-    inlined: true
-
 
   follows_protocol:
     description: >-

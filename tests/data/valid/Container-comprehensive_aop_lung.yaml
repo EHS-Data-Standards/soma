@@ -21,53 +21,41 @@
 # =============================================================================
 
 # =============================================================================
-# METHODS - General techniques
+# PROTOCOLS - Detailed procedures with equipment
 # =============================================================================
 
-methods:
-  - id: "METHOD:001"
-    name: "DCFDA fluorescence assay"
-    description: "Measurement of intracellular ROS using DCFDA probe with plate reader detection"
-    method_type: "molecular"
+protocols:
+  - id: "PROTOCOL:007"
+    name: "DCFDA fluorescence protocol"
     equipment_required:
       - "Fluorescence plate reader"
       - "DCFDA reagent kit"
 
-  - id: "METHOD:002"
-    name: "Western blot"
-    description: "Protein detection and semi-quantification by SDS-PAGE and immunoblotting"
-    method_type: "molecular"
+  - id: "PROTOCOL:008"
+    name: "Western blot protocol"
     equipment_required:
       - "SDS-PAGE apparatus"
       - "Chemiluminescence imager"
 
-  - id: "METHOD:003"
-    name: "Quantitative RT-PCR"
-    description: "Reverse transcription followed by quantitative PCR for mRNA quantification"
-    method_type: "molecular"
+  - id: "PROTOCOL:009"
+    name: "qRT-PCR protocol"
     equipment_required:
       - "QuantStudio real-time PCR system"
 
-  - id: "METHOD:004"
-    name: "High-speed video microscopy"
-    description: "Video microscopy at frame rates >100 Hz for ciliary motion analysis"
-    method_type: "microscopy"
+  - id: "PROTOCOL:010"
+    name: "High-speed microscopy protocol"
     equipment_required:
       - "High-speed camera (>200 fps)"
       - "Inverted microscope with 20x objective"
 
-  - id: "METHOD:005"
-    name: "Fluorescent microsphere tracking"
-    description: "Tracking fluorescent particles to measure mucociliary transport rate"
-    method_type: "microscopy"
+  - id: "PROTOCOL:011"
+    name: "Microsphere tracking protocol"
     equipment_required:
       - "Fluorescence microscope"
       - "1-um fluorescent microspheres"
 
-  - id: "METHOD:006"
-    name: "Spirometry"
-    description: "Standardized spirometry following ATS/ERS guidelines"
-    method_type: "clinical"
+  - id: "PROTOCOL:012"
+    name: "Spirometry protocol"
     equipment_required:
       - "Spirometer (ATS/ERS compliant)"
 
@@ -98,9 +86,6 @@ oxidative_stress_assays:
     tissue_context:
       id: "UBERON:0002031"
       name: "bronchus"
-    uses_method:
-      id: "METHOD:001"
-      name: "DCFDA fluorescence assay"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -133,9 +118,6 @@ oxidative_stress_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    uses_method:
-      id: "METHOD:001"
-      name: "DCFDA fluorescence assay"
     input_sample:
       id: "SAMPLE:pm25-4h"
       name: "PM2.5 exposed cells - 4h"
@@ -176,9 +158,6 @@ oxidative_stress_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    uses_method:
-      id: "METHOD:001"
-      name: "DCFDA fluorescence assay"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -216,9 +195,6 @@ egfr_signaling_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    uses_method:
-      id: "METHOD:002"
-      name: "Western blot"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -255,9 +231,6 @@ egfr_signaling_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    uses_method:
-      id: "METHOD:002"
-      name: "Western blot"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -286,9 +259,6 @@ egfr_signaling_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    uses_method:
-      id: "METHOD:002"
-      name: "Western blot"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -324,9 +294,6 @@ goblet_cell_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    uses_method:
-      id: "METHOD:003"
-      name: "Quantitative RT-PCR"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -358,9 +325,6 @@ goblet_cell_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    uses_method:
-      id: "METHOD:003"
-      name: "Quantitative RT-PCR"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -446,9 +410,6 @@ ciliary_function_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    uses_method:
-      id: "METHOD:004"
-      name: "High-speed video microscopy"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -540,9 +501,6 @@ ciliary_function_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    uses_method:
-      id: "METHOD:004"
-      name: "High-speed video microscopy"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -578,9 +536,6 @@ ciliary_function_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    uses_method:
-      id: "METHOD:004"
-      name: "High-speed video microscopy"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -652,9 +607,6 @@ mcc_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    uses_method:
-      id: "METHOD:005"
-      name: "Fluorescent microsphere tracking"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -692,9 +644,6 @@ mcc_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    uses_method:
-      id: "METHOD:005"
-      name: "Fluorescent microsphere tracking"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -727,9 +676,6 @@ mcc_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    uses_method:
-      id: "METHOD:005"
-      name: "Fluorescent microsphere tracking"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -788,9 +734,6 @@ lung_function_assays:
       name: "Decreased lung function"
       biological_action: decreased
       level_of_biological_organization: organ
-    uses_method:
-      id: "METHOD:006"
-      name: "Spirometry"
     study_subject:
       subject_type: InVivoSubject
       id: "SUBJECT:aop-001"
@@ -829,9 +772,6 @@ lung_function_assays:
         name: "percent predicted"
     reference_dataset: "GLI-2012"
     assay_date: "2025-02-01"
-    uses_method:
-      id: "METHOD:006"
-      name: "Spirometry"
     study_subject:
       subject_type: InVivoSubject
       id: "SUBJECT:aop-001"
@@ -861,9 +801,6 @@ lung_function_assays:
         id: "UO:0000196"
         name: "ratio"
     assay_date: "2025-02-01"
-    uses_method:
-      id: "METHOD:006"
-      name: "Spirometry"
     study_subject:
       subject_type: InVivoSubject
       id: "SUBJECT:aop-001"

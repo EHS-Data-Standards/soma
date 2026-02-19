@@ -80,7 +80,6 @@ classes:
 
       # Supporting entities
       - protocols
-      - methods
 
 # =============================================================================
 # SLOTS
@@ -208,12 +207,4 @@ slots:
     description: >-
       Collection of protocols. Contains Tier 2/3 procedural details
       important for reproducibility.
-
-  methods:
-    range: Method
-    multivalued: true
-    inlined_as_list: true
-    description: >-
-      Collection of methods. Methods describe general approaches or
-      techniques used to perform assays.
 

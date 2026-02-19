@@ -78,7 +78,6 @@ Any Protocol subclass is valid in both slots.
 | Entity | Container Slot | Description |
 |--------|----------------|-------------|
 | Protocol | `protocols` | Detailed experimental procedures |
-| Method | `methods` | General measurement techniques |
 | KeyEvent | `key_events` | AOP key events that assays inform on |
 | AdverseOutcomePathway | `adverse_outcome_pathways` | Complete AOP definitions |
 
