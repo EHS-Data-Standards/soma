@@ -869,20 +869,6 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
-  methods:
-    name: methods
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/methods
-    description: Collection of methods. Methods describe general approaches or techniques
-      used to perform assays.
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:methods
-    owner: Container
-    domain_of:
-    - Container
-    range: Method
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
   id:
     name: id
     definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/id
@@ -1330,18 +1316,6 @@ slots:
     range: InputSample
     inlined: true
     inlined_as_list: false
-  uses_method:
-    name: uses_method
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/uses_method
-    description: The Method used to perform this assay.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:uses_method
-    owner: Assay
-    domain_of:
-    - Assay
-    range: Method
-    inlined: true
-    inlined_as_list: false
   follows_protocols:
     name: follows_protocols
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/follows_protocols
@@ -1373,18 +1347,6 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
-  specified_by_method:
-    name: specified_by_method
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/specified_by_method
-    description: The Method that this Protocol specifies in detail.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:specified_by_method
-    owner: Protocol
-    domain_of:
-    - Protocol
-    range: Method
-    inlined: true
-    inlined_as_list: false
   days_at_differentiation:
     name: days_at_differentiation
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/days_at_differentiation
@@ -1885,28 +1847,21 @@ slots:
     domain_of:
     - MolecularAssayProtocol
     range: string
-  method_type:
-    name: method_type
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/method_type
-    description: Type of method (e.g., microscopy, molecular, biochemical).
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:method_type
-    owner: Method
-    domain_of:
-    - Method
-    range: string
   equipment_required:
     name: equipment_required
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/equipment_required
-    description: Equipment required for this method.
+    description: Equipment required for this protocol.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:equipment_required
+    owner: Protocol
+    domain_of:
+    - Protocol
     range: string
     multivalued: true
   key_reagents:
     name: key_reagents
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/key_reagents
-    description: Key reagents needed for this method.
+    description: Key reagents needed for this protocol.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:key_reagents
     range: string
@@ -4030,7 +3985,6 @@ classes:
     - foxj_assays
     - gene_expression_assays
     - protocols
-    - methods
     class_uri: outcomes_working_group:Container
     tree_root: true
   NamedThing:
@@ -4173,7 +4127,6 @@ classes:
     - tissue_context
     - study_subject
     - input_sample
-    - uses_method
     - follows_protocols
     - assay_date
     class_uri: OBI:0000070
@@ -4248,28 +4201,12 @@ classes:
     - age_range
     - subjects
     class_uri: assay_base:PopulationSubject
-  Method:
-    name: Method
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/Method
-    description: A general approach or technique used to perform an assay. Methods
-      are implemented by specific assays and detailed by protocols.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    mappings:
-    - OBI:0000011
-    is_a: NamedThing
-    slots:
-    - id
-    - name
-    - description
-    - method_type
-    class_uri: OBI:0000011
   Protocol:
     name: Protocol
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/Protocol
-    description: 'A detailed set of steps for how to perform a specific assay using
-      a specific method. Protocols ensure reproducibility across laboratories. Contains
-      universal slots; domain-specific details are in protocol subclasses (ImagingProtocol,
-      StainingProtocol, etc.).
+    description: 'A detailed set of steps for how to perform a specific assay. Protocols
+      ensure reproducibility across laboratories. Contains universal slots; domain-specific
+      details are in protocol subclasses (ImagingProtocol, StainingProtocol, etc.).
 
       Protocols can reference other protocols via sub_protocols to represent composite
       workflows (e.g., sample preparation, wash steps, or post-processing protocols
@@ -4284,7 +4221,7 @@ classes:
     - description
     - protocol_version
     - sop_reference
-    - specified_by_method
+    - equipment_required
     - sub_protocols
     - temperature_control
     - humidity_control
@@ -4309,7 +4246,7 @@ classes:
     - description
     - protocol_version
     - sop_reference
-    - specified_by_method
+    - equipment_required
     - sub_protocols
     - temperature_control
     - humidity_control
@@ -4342,7 +4279,7 @@ classes:
     - description
     - protocol_version
     - sop_reference
-    - specified_by_method
+    - equipment_required
     - sub_protocols
     - temperature_control
     - humidity_control
@@ -4373,7 +4310,7 @@ classes:
     - description
     - protocol_version
     - sop_reference
-    - specified_by_method
+    - equipment_required
     - sub_protocols
     - temperature_control
     - humidity_control
@@ -4402,7 +4339,7 @@ classes:
     - description
     - protocol_version
     - sop_reference
-    - specified_by_method
+    - equipment_required
     - sub_protocols
     - temperature_control
     - humidity_control
@@ -4731,7 +4668,6 @@ classes:
     - cell_type
     - tissue_context
     - input_sample
-    - uses_method
     - follows_protocols
     - assay_date
     - beat_frequency_hz
@@ -4782,7 +4718,6 @@ classes:
     - tissue_context
     - study_subject
     - input_sample
-    - uses_method
     - follows_protocols
     - assay_date
     - asl_height_um
@@ -4814,7 +4749,6 @@ classes:
     - tissue_context
     - study_subject
     - input_sample
-    - uses_method
     - follows_protocols
     - assay_date
     - transport_rate
@@ -4850,7 +4784,6 @@ classes:
     - tissue_context
     - study_subject
     - input_sample
-    - uses_method
     - follows_protocols
     - assay_date
     - reactive_oxygen_species
@@ -4899,7 +4832,6 @@ classes:
     - tissue_context
     - study_subject
     - input_sample
-    - uses_method
     - follows_protocols
     - assay_date
     - cftr_chloride_secretion
@@ -4934,7 +4866,6 @@ classes:
     - tissue_context
     - study_subject
     - input_sample
-    - uses_method
     - follows_protocols
     - assay_date
     - egfr_phosphorylation_y1068
@@ -4978,7 +4909,6 @@ classes:
     - tissue_context
     - study_subject
     - input_sample
-    - uses_method
     - follows_protocols
     - assay_date
     - goblet_cell_count
@@ -5024,7 +4954,6 @@ classes:
     - cell_type
     - tissue_context
     - input_sample
-    - uses_method
     - follows_protocols
     - assay_date
     - neutrophil_percentage
@@ -5080,7 +5009,6 @@ classes:
     - cell_type
     - tissue_context
     - input_sample
-    - uses_method
     - follows_protocols
     - assay_date
     - fev1
@@ -5138,7 +5066,6 @@ classes:
     - tissue_context
     - study_subject
     - input_sample
-    - uses_method
     - follows_protocols
     - assay_date
     - foxj1_mrna_expression
@@ -5178,7 +5105,6 @@ classes:
     - tissue_context
     - study_subject
     - input_sample
-    - uses_method
     - follows_protocols
     - assay_date
     - target_gene
@@ -5199,7 +5125,7 @@ classes:
     class_uri: assay_microschemas:GeneExpressionAssay
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2026-02-19T00:18:13'
-source_file_size: 7211
-generation_date: '2026-02-19T00:18:29'
+source_file_date: '2026-02-19T00:38:14'
+source_file_size: 6988
+generation_date: '2026-02-19T00:38:32'
 

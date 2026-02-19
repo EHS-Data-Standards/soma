@@ -508,27 +508,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#protocols-and-methods" class="md-nav__link">
+  <a href="#protocols" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Protocols and Methods
+        Protocols
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Protocols and Methods">
+    <nav class="md-nav" aria-label="Protocols">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#method-definition" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Method Definition
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#protocol-definition-base-with-sub-protocols" class="md-nav__link">
@@ -807,27 +796,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#protocols-and-methods" class="md-nav__link">
+  <a href="#protocols" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Protocols and Methods
+        Protocols
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Protocols and Methods">
+    <nav class="md-nav" aria-label="Protocols">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#method-definition" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Method Definition
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#protocol-definition-base-with-sub-protocols" class="md-nav__link">
@@ -1386,30 +1364,18 @@ slot uses InVivoSubject-level properties including <code>age</code>, <code>sex</
 <span class="w">      </span><span class="nt">detection_method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cytospin</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Diff-Quik</span><span class="nv"> </span><span class="s">staining&quot;</span>
 </code></pre></div>
 <hr />
-<h2 id="protocols-and-methods">Protocols and Methods</h2>
+<h2 id="protocols">Protocols</h2>
 <p>The schema supports detailed documentation of experimental procedures through
-Methods (general techniques) and typed Protocols (specific procedures).</p>
+typed Protocols (specific procedures).</p>
 <p><strong>Key protocol features:</strong></p>
 <ul>
 <li><strong><code>follows_protocols</code></strong> (on Assay): multivalued — an assay can reference multiple protocols</li>
 <li><strong><code>sub_protocols</code></strong> (on Protocol): protocols can compose other protocols to represent
   composite workflows (e.g., sample prep, wash steps, post-processing)</li>
+<li><strong><code>equipment_required</code></strong> (on Protocol): list of equipment needed for the protocol</li>
 <li>Any Protocol subclass (ImagingProtocol, MolecularAssayProtocol, StainingProtocol,
   SpirometryProtocol) is valid wherever Protocol is expected</li>
 </ul>
-<h3 id="method-definition">Method Definition</h3>
-<p>A general measurement technique:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">methods</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;METHOD:001&quot;</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy&quot;</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Video</span><span class="nv"> </span><span class="s">microscopy</span><span class="nv"> </span><span class="s">technique</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">dynamics</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">frame</span><span class="nv"> </span><span class="s">rates</span><span class="nv"> </span><span class="s">above</span><span class="nv"> </span><span class="s">100</span><span class="nv"> </span><span class="s">Hz&quot;</span>
-<span class="w">    </span><span class="nt">method_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;microscopy&quot;</span>
-<span class="w">    </span><span class="nt">equipment_required</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;High-speed</span><span class="nv"> </span><span class="s">camera</span><span class="nv"> </span><span class="s">(&gt;200</span><span class="nv"> </span><span class="s">fps)&quot;</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;Inverted</span><span class="nv"> </span><span class="s">microscope</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">20x</span><span class="nv"> </span><span class="s">objective&quot;</span>
-<span class="w">    </span><span class="nt">general_procedure</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Cells</span><span class="nv"> </span><span class="s">imaged</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">200</span><span class="nv"> </span><span class="s">fps</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">5</span><span class="nv"> </span><span class="s">seconds</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">view&quot;</span>
-</code></pre></div>
-<hr />
 <h3 id="protocol-definition-base-with-sub-protocols">Protocol Definition (Base) with Sub-Protocols</h3>
 <p>A protocol using base Protocol slots, including <code>sub_protocols</code> to compose
 reusable workflow steps:</p>

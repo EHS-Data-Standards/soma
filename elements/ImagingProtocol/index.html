@@ -289,6 +289,8 @@
 
       ImagingProtocol : description
 
+      ImagingProtocol : equipment_required
+
       ImagingProtocol : evaporation_prevention
 
       ImagingProtocol : fluorescent_labeling
@@ -369,17 +371,6 @@
 
         ImagingProtocol --&gt; "0..1" QuantityValue : spatial_resolution
         click QuantityValue href "../QuantityValue/"
-
-
-
-      ImagingProtocol : specified_by_method
-
-
-
-
-
-        ImagingProtocol --&gt; "0..1" Method : specified_by_method
-        click Method href "../Method/"
 
 
 
@@ -491,9 +482,9 @@
 <td><a href="../Protocol/">Protocol</a></td>
 </tr>
 <tr>
-<td><a href="../specified_by_method/">specified_by_method</a></td>
-<td>0..1 <br/> <a href="../Method/">Method</a></td>
-<td>The Method that this Protocol specifies in detail</td>
+<td><a href="../equipment_required/">equipment_required</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Equipment required for this protocol</td>
 <td><a href="../Protocol/">Protocol</a></td>
 </tr>
 <tr>
@@ -769,17 +760,17 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">specified_by_method</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">specified_by_method</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Method that this Protocol specifies in detail.</span>
+<span class="w">  </span><span class="nt">equipment_required</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">equipment_required</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Equipment required for this protocol.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">specified_by_method</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">equipment_required</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImagingProtocol</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">sub_protocols</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub_protocols</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Other protocols that are part of this protocol's workflow. Use this</span>
