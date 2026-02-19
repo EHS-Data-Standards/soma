@@ -14,11 +14,15 @@ cftr_assays:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
     study_subject:
+      subject_type: TwoDCellCulture
       id: "owg:culture-006"
       name: "Primary HBE ALI culture"
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    follows_protocol:
-      id: "PROTOCOL:cftr-001"
-      name: "Ussing chamber short-circuit current protocol"
+    follows_protocols:
+      - id: "PROTOCOL:cftr-001"
+        name: "Ussing chamber short-circuit current protocol"
+      - id: "PROTOCOL:cftr-prep-001"
+        name: "Tissue mounting and equilibration protocol"
+        description: "Pre-assay protocol for mounting tissue in Ussing chamber and equilibrating"

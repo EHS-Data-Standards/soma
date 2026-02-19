@@ -402,6 +402,8 @@
 
 
 
+      ThreeDCellCulture : subject_type
+
       ThreeDCellCulture : substrate_type
 
 
@@ -542,6 +544,12 @@
 <td>0..1 <br/> <a href="../Integer/">Integer</a></td>
 <td>Number of biological replicates per donor</td>
 <td><a href="../CellularSystem/">CellularSystem</a></td>
+</tr>
+<tr>
+<td><a href="../subject_type/">subject_type</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The specific type of study subject</td>
+<td><a href="../StudySubject/">StudySubject</a></td>
 </tr>
 <tr>
 <td><a href="../model_species/">model_species</a></td>
@@ -785,6 +793,19 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellCultureConditions</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
+<span class="w">  </span><span class="nt">subject_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subject_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The specific type of study subject. Used to designate which concrete</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">class (e.g., TwoDCellCulture, InVivoSubject) is instantiated for polymorphic</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">study_subject slots.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">designates_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subject_type</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ThreeDCellCulture</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">model_species</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">model_species</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The species of origin for the cells or organism being studied. Reference</span>

@@ -280,6 +280,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-protocol">Class: Protocol</h1>
 <p><em>A detailed set of steps for how to perform a specific assay using a specific method. Protocols ensure reproducibility across laboratories. Contains universal slots; domain-specific details are in protocol subclasses (ImagingProtocol, StainingProtocol, etc.).</em></p>
+<p><em>Protocols can reference other protocols via sub_protocols to represent composite workflows (e.g., sample preparation, wash steps, or post-processing protocols that are shared across assays).</em></p>
 <p>URI: <a href="http://purl.obolibrary.org/obo/OBI_0000272">OBI:0000272</a></p>
 <pre class="mermaid"><code> classDiagram
     class Protocol
@@ -342,6 +343,17 @@
 
 
 
+      Protocol : sub_protocols
+
+
+
+
+
+        Protocol --&gt; "*" Protocol : sub_protocols
+        click Protocol href "../Protocol/"
+
+
+
       Protocol : temperature_control
 
 
@@ -397,6 +409,12 @@
 <td><a href="../specified_by_method/">specified_by_method</a></td>
 <td>0..1 <br/> <a href="../Method/">Method</a></td>
 <td>The Method that this Protocol specifies in detail</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../sub_protocols/">sub_protocols</a></td>
+<td>* <br/> <a href="./">Protocol</a></td>
+<td>Other protocols that are part of this protocol's workflow</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -492,73 +510,103 @@
 </tr>
 <tr>
 <td><a href="../Assay/">Assay</a></td>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
+<td>range</td>
+<td><a href="./">Protocol</a></td>
+</tr>
+<tr>
+<td><a href="./">Protocol</a></td>
+<td><a href="../sub_protocols/">sub_protocols</a></td>
+<td>range</td>
+<td><a href="./">Protocol</a></td>
+</tr>
+<tr>
+<td><a href="../ImagingProtocol/">ImagingProtocol</a></td>
+<td><a href="../sub_protocols/">sub_protocols</a></td>
+<td>range</td>
+<td><a href="./">Protocol</a></td>
+</tr>
+<tr>
+<td><a href="../StainingProtocol/">StainingProtocol</a></td>
+<td><a href="../sub_protocols/">sub_protocols</a></td>
+<td>range</td>
+<td><a href="./">Protocol</a></td>
+</tr>
+<tr>
+<td><a href="../SpirometryProtocol/">SpirometryProtocol</a></td>
+<td><a href="../sub_protocols/">sub_protocols</a></td>
+<td>range</td>
+<td><a href="./">Protocol</a></td>
+</tr>
+<tr>
+<td><a href="../MolecularAssayProtocol/">MolecularAssayProtocol</a></td>
+<td><a href="../sub_protocols/">sub_protocols</a></td>
 <td>range</td>
 <td><a href="./">Protocol</a></td>
 </tr>
 <tr>
 <td><a href="../CiliaryFunctionAssay/">CiliaryFunctionAssay</a></td>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
 <td>range</td>
 <td><a href="./">Protocol</a></td>
 </tr>
 <tr>
 <td><a href="../ASLAssay/">ASLAssay</a></td>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
 <td>range</td>
 <td><a href="./">Protocol</a></td>
 </tr>
 <tr>
 <td><a href="../MucociliaryClearanceAssay/">MucociliaryClearanceAssay</a></td>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
 <td>range</td>
 <td><a href="./">Protocol</a></td>
 </tr>
 <tr>
 <td><a href="../OxidativeStressAssay/">OxidativeStressAssay</a></td>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
 <td>range</td>
 <td><a href="./">Protocol</a></td>
 </tr>
 <tr>
 <td><a href="../CFTRFunctionAssay/">CFTRFunctionAssay</a></td>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
 <td>range</td>
 <td><a href="./">Protocol</a></td>
 </tr>
 <tr>
 <td><a href="../EGFRSignalingAssay/">EGFRSignalingAssay</a></td>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
 <td>range</td>
 <td><a href="./">Protocol</a></td>
 </tr>
 <tr>
 <td><a href="../GobletCellAssay/">GobletCellAssay</a></td>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
 <td>range</td>
 <td><a href="./">Protocol</a></td>
 </tr>
 <tr>
 <td><a href="../BALFSputumAssay/">BALFSputumAssay</a></td>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
 <td>range</td>
 <td><a href="./">Protocol</a></td>
 </tr>
 <tr>
 <td><a href="../LungFunctionAssay/">LungFunctionAssay</a></td>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
 <td>range</td>
 <td><a href="./">Protocol</a></td>
 </tr>
 <tr>
 <td><a href="../FoxJExpressionAssay/">FoxJExpressionAssay</a></td>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
 <td>range</td>
 <td><a href="./">Protocol</a></td>
 </tr>
 <tr>
 <td><a href="../GeneExpressionAssay/">GeneExpressionAssay</a></td>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
 <td>range</td>
 <td><a href="./">Protocol</a></td>
 </tr>
@@ -593,16 +641,21 @@
 <h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A detailed set of steps for how to perform a specific assay using a specific</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">method. Protocols ensure reproducibility across laboratories. Contains universal</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">slots; domain-specific details are in protocol subclasses (ImagingProtocol, StainingProtocol,</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">etc.).</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">detailed</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">steps</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">how</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">perform</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">a</span>
+<span class="w">  </span><span class="s">specific</span><span class="nv"> </span><span class="s">method.</span><span class="nv"> </span><span class="s">Protocols</span><span class="nv"> </span><span class="s">ensure</span><span class="nv"> </span><span class="s">reproducibility</span><span class="nv"> </span><span class="s">across</span><span class="nv"> </span><span class="s">laboratories.</span><span class="nv"> </span><span class="s">Contains</span>
+<span class="w">  </span><span class="s">universal</span><span class="nv"> </span><span class="s">slots;</span><span class="nv"> </span><span class="s">domain-specific</span><span class="nv"> </span><span class="s">details</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">protocol</span><span class="nv"> </span><span class="s">subclasses</span><span class="nv"> </span><span class="s">(ImagingProtocol,</span>
+<span class="w">  </span><span class="s">StainingProtocol,</span><span class="nv"> </span><span class="s">etc.).</span>
+
+<span class="w">  </span><span class="s">Protocols</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">reference</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">protocols</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">sub_protocols</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">represent</span><span class="nv"> </span><span class="s">composite</span>
+<span class="w">  </span><span class="s">workflows</span><span class="nv"> </span><span class="s">(e.g.,</span><span class="nv"> </span><span class="s">sample</span><span class="nv"> </span><span class="s">preparation,</span><span class="nv"> </span><span class="s">wash</span><span class="nv"> </span><span class="s">steps,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">post-processing</span><span class="nv"> </span><span class="s">protocols</span><span class="nv"> </span><span class="s">that</span>
+<span class="w">  </span><span class="s">are</span><span class="nv"> </span><span class="s">shared</span><span class="nv"> </span><span class="s">across</span><span class="nv"> </span><span class="s">assays).'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocol_version</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sop_reference</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">specified_by_method</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub_protocols</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">temperature_control</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">humidity_control</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">quality_control_criteria</span>
@@ -618,10 +671,14 @@
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A detailed set of steps for how to perform a specific assay using a specific</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">method. Protocols ensure reproducibility across laboratories. Contains universal</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">slots; domain-specific details are in protocol subclasses (ImagingProtocol, StainingProtocol,</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">etc.).</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">detailed</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">steps</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">how</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">perform</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">a</span>
+<span class="w">  </span><span class="s">specific</span><span class="nv"> </span><span class="s">method.</span><span class="nv"> </span><span class="s">Protocols</span><span class="nv"> </span><span class="s">ensure</span><span class="nv"> </span><span class="s">reproducibility</span><span class="nv"> </span><span class="s">across</span><span class="nv"> </span><span class="s">laboratories.</span><span class="nv"> </span><span class="s">Contains</span>
+<span class="w">  </span><span class="s">universal</span><span class="nv"> </span><span class="s">slots;</span><span class="nv"> </span><span class="s">domain-specific</span><span class="nv"> </span><span class="s">details</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">protocol</span><span class="nv"> </span><span class="s">subclasses</span><span class="nv"> </span><span class="s">(ImagingProtocol,</span>
+<span class="w">  </span><span class="s">StainingProtocol,</span><span class="nv"> </span><span class="s">etc.).</span>
+
+<span class="w">  </span><span class="s">Protocols</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">reference</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">protocols</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">sub_protocols</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">represent</span><span class="nv"> </span><span class="s">composite</span>
+<span class="w">  </span><span class="s">workflows</span><span class="nv"> </span><span class="s">(e.g.,</span><span class="nv"> </span><span class="s">sample</span><span class="nv"> </span><span class="s">preparation,</span><span class="nv"> </span><span class="s">wash</span><span class="nv"> </span><span class="s">steps,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">post-processing</span><span class="nv"> </span><span class="s">protocols</span><span class="nv"> </span><span class="s">that</span>
+<span class="w">  </span><span class="s">are</span><span class="nv"> </span><span class="s">shared</span><span class="nv"> </span><span class="s">across</span><span class="nv"> </span><span class="s">assays).'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="nt">attributes</span><span class="p">:</span>
@@ -656,6 +713,21 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">sub_protocols</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub_protocols</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Other protocols that are part of this protocol's workflow. Use this</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">to compose protocols from reusable steps (e.g., sample preparation, wash steps,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">fixation, post-processing). Any Protocol or Protocol subclass is valid.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub_protocols</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">temperature_control</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">temperature_control</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature conditions during the procedure (e.g., 37C).</span>

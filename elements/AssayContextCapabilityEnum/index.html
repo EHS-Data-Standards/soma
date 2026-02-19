@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://EHS-Data-Standards.github.io/outcomes-working-group/elements/follows_protocol/">
+        <link rel="canonical" href="https://EHS-Data-Standards.github.io/outcomes-working-group/elements/AssayContextCapabilityEnum/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: follows_protocol - outcomes-working-group</title>
+        <title>Enum: AssayContextCapabilityEnum - outcomes-working-group</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-follows_protocol" class="md-skip">
+        <a href="#enum-assaycontextcapabilityenum" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: follows_protocol
+              Enum: AssayContextCapabilityEnum
             
           </span>
         </div>
@@ -352,21 +352,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#applicable-classes" class="md-nav__link">
+  <a href="#permissible-values" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Applicable Classes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#properties" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Properties
+        Permissible Values
       
     </span>
   </a>
@@ -402,17 +391,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mappings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mappings
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#linkml-source" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -443,123 +421,61 @@
   
 
 
-<h1 id="slot-follows_protocol">Slot: follows_protocol</h1>
-<p><em>The Protocol that this assay follows.</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/follows_protocol">outcomes_working_group:follows_protocol</a>
-Alias: follows_protocol</p>
-<!-- no inheritance hierarchy -->
-
-<h2 id="applicable-classes">Applicable Classes</h2>
+<h1 id="enum-assaycontextcapabilityenum">Enum: AssayContextCapabilityEnum</h1>
+<p><em>Indicates what experimental contexts an assay class supports. Used to constrain valid study_subject types and enable context-appropriate slots.</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/AssayContextCapabilityEnum">outcomes_working_group:AssayContextCapabilityEnum</a></p>
+<h2 id="permissible-values">Permissible Values</h2>
 <table>
 <thead>
 <tr>
-<th>Name</th>
+<th>Value</th>
+<th>Meaning</th>
 <th>Description</th>
-<th>Modifies Slot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../ASLAssay/">ASLAssay</a></td>
-<td>Assay for measuring airway surface liquid properties including ASL height, pe...</td>
-<td>no</td>
+<td>in_vitro_only</td>
+<td>None</td>
+<td>Assay can only be performed in vitro (cell cultures, tissue slices, organoids...</td>
 </tr>
 <tr>
-<td><a href="../BALFSputumAssay/">BALFSputumAssay</a></td>
-<td>Assay for measuring bronchoalveolar lavage fluid (BALF) or sputum composition</td>
-<td>no</td>
+<td>in_vivo_only</td>
+<td>None</td>
+<td>Assay can only be performed in vivo (requires samples from or measurements on...</td>
 </tr>
 <tr>
-<td><a href="../FoxJExpressionAssay/">FoxJExpressionAssay</a></td>
-<td>Assay for measuring FoxJ1 expression related to ciliogenesis</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CiliaryFunctionAssay/">CiliaryFunctionAssay</a></td>
-<td>Assay for measuring ciliary function including beat frequency, active area, c...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CFTRFunctionAssay/">CFTRFunctionAssay</a></td>
-<td>Assay for measuring CFTR (Cystic Fibrosis Transmembrane Conductance Regulator...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../GobletCellAssay/">GobletCellAssay</a></td>
-<td>Assay for measuring goblet cell populations and mucin production</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../GeneExpressionAssay/">GeneExpressionAssay</a></td>
-<td>General assay for gene expression measurements</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../LungFunctionAssay/">LungFunctionAssay</a></td>
-<td>Clinical assay for measuring lung function</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../EGFRSignalingAssay/">EGFRSignalingAssay</a></td>
-<td>Assay for measuring EGFR phosphorylation and downstream signaling</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../OxidativeStressAssay/">OxidativeStressAssay</a></td>
-<td>Assay for measuring oxidative stress markers</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Assay/">Assay</a></td>
-<td>A planned process with the objective to produce information about biological ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../MucociliaryClearanceAssay/">MucociliaryClearanceAssay</a></td>
-<td>Assay for measuring mucociliary clearance and transport</td>
-<td>no</td>
+<td>in_vitro_or_in_vivo</td>
+<td>None</td>
+<td>Assay can be performed in either in vitro or in vivo contexts depending on th...</td>
 </tr>
 </tbody>
 </table>
-<h2 id="properties">Properties</h2>
-<ul>
-<li>Range: <a href="../Protocol/">Protocol</a></li>
-</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group</li>
 </ul>
-<h2 id="mappings">Mappings</h2>
-<table>
-<thead>
-<tr>
-<th>Mapping Type</th>
-<th>Mapped Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>self</td>
-<td>outcomes_working_group:follows_protocol</td>
-</tr>
-<tr>
-<td>native</td>
-<td>outcomes_working_group:follows_protocol</td>
-</tr>
-</tbody>
-</table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocol</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Protocol that this assay follows.</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AssayContextCapabilityEnum</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Indicates what experimental contexts an assay class supports. Used to</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">constrain valid study_subject types and enable context-appropriate slots.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocol</span>
-<span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">permissible_values</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">in_vitro_only</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">in_vitro_only</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay can only be performed in vitro (cell cultures, tissue slices,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">organoids, etc.)</span>
+<span class="w">  </span><span class="nt">in_vivo_only</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">in_vivo_only</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay can only be performed in vivo (requires samples from or measurements</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">on living human or animal subjects)</span>
+<span class="w">  </span><span class="nt">in_vitro_or_in_vivo</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">in_vitro_or_in_vivo</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay can be performed in either in vitro or in vivo contexts depending</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">on the experimental design</span>
 </code></pre></div>
 </details>
 

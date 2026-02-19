@@ -1,4 +1,6 @@
-# Test file for LungFunctionAssay (in vivo)
+# Test file for LungFunctionAssay (in vivo only)
+# This assay is IN VIVO ONLY (supported_contexts: in_vivo_only)
+# Requires a whole lung to assess function
 lung_function_assays:
   - id: "LF:001"
     name: "FEV1 measurement"
@@ -14,7 +16,10 @@ lung_function_assays:
         name: "percent predicted"
     reference_dataset: "GLI-2012"
     assay_date: "2024-08-10"
+    # InVivoAssayMixin slots
+    clinical_context: "Baseline spirometry, pre-bronchodilator"
     study_subject:
+      subject_type: InVivoSubject
       id: "SUBJECT:002"
       name: "Subject B"
       model_species:

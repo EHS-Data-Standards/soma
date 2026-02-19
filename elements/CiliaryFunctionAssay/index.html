@@ -220,6 +220,15 @@
 <nav aria-label="Identifier and Mapping Information" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#annotations">
+<span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#schema-source">
 <span class="md-ellipsis">
       
@@ -279,11 +288,17 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-ciliaryfunctionassay">Class: CiliaryFunctionAssay</h1>
-<p><em>Assay for measuring ciliary function including beat frequency, active area, cilia morphology, and ciliated cell populations. Informs on Key Event: "Decreased ciliary function" in respiratory AOPs. TIER 1 slots (critical): beat_frequency_hz, active_area_percentage, cilia_length, cilia_per_cell, percentage_ciliated_cells, cell_type_ratios, imaging_protocol.</em></p>
+<p><em>Assay for measuring ciliary function including beat frequency, active area, cilia morphology, and ciliated cell populations. Informs on Key Event: "Decreased ciliary function" in respiratory AOPs.</em></p>
+<p><em>CONTEXT: Can be performed in vitro (tissue slices, 2D cell culture, spheroids) or in vivo (often using optical coherence tomography).</em></p>
+<p><em>TIER 1 slots (critical): beat_frequency_hz, active_area_percentage, cilia_length, cilia_per_cell, percentage_ciliated_cells, cell_type_ratios, imaging_protocol.</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/CiliaryFunctionAssay">outcomes_working_group:CiliaryFunctionAssay</a></p>
 <pre class="mermaid"><code> classDiagram
     class CiliaryFunctionAssay
     click CiliaryFunctionAssay href "../CiliaryFunctionAssay/"
+      InVitroAssayMixin &lt;|-- CiliaryFunctionAssay
+        click InVitroAssayMixin href "../InVitroAssayMixin/"
+      InVivoAssayMixin &lt;|-- CiliaryFunctionAssay
+        click InVivoAssayMixin href "../InVivoAssayMixin/"
       Assay &lt;|-- CiliaryFunctionAssay
         click Assay href "../Assay/"
 
@@ -314,6 +329,8 @@
         click QuantityValue href "../QuantityValue/"
 
 
+
+      CiliaryFunctionAssay : cell_culture_system
 
       CiliaryFunctionAssay : cell_type
 
@@ -372,15 +389,21 @@
 
 
 
+      CiliaryFunctionAssay : clinical_context
+
+      CiliaryFunctionAssay : days_at_ali_or_differentiation
+
       CiliaryFunctionAssay : description
 
-      CiliaryFunctionAssay : follows_protocol
+      CiliaryFunctionAssay : donor_characteristics
+
+      CiliaryFunctionAssay : follows_protocols
 
 
 
 
 
-        CiliaryFunctionAssay --&gt; "0..1" Protocol : follows_protocol
+        CiliaryFunctionAssay --&gt; "*" Protocol : follows_protocols
         click Protocol href "../Protocol/"
 
 
@@ -422,6 +445,8 @@
 
       CiliaryFunctionAssay : name
 
+      CiliaryFunctionAssay : passage_number_at_assay
+
       CiliaryFunctionAssay : percentage_ciliated_cells
 
 
@@ -433,14 +458,16 @@
 
 
 
+      CiliaryFunctionAssay : sample_collection_method
+
       CiliaryFunctionAssay : study_subject
 
 
 
 
 
-        CiliaryFunctionAssay --&gt; "0..1" TwoDCellCulture : study_subject
-        click TwoDCellCulture href "../TwoDCellCulture/"
+        CiliaryFunctionAssay --&gt; "0..1" StudySubject : study_subject
+        click StudySubject href "../StudySubject/"
 
 
 
@@ -472,7 +499,7 @@
 <ul>
 <li><a href="../NamedThing/">NamedThing</a><ul>
 <li><a href="../Assay/">Assay</a><ul>
-<li><strong>CiliaryFunctionAssay</strong></li>
+<li><strong>CiliaryFunctionAssay</strong> [ <a href="../InVitroAssayMixin/">InVitroAssayMixin</a> <a href="../InVivoAssayMixin/">InVivoAssayMixin</a>]</li>
 </ul>
 </li>
 </ul>
@@ -556,6 +583,42 @@
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../cell_culture_system/">cell_culture_system</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Description of the cell culture system used for in vitro assays (e</td>
+<td><a href="../InVitroAssayMixin/">InVitroAssayMixin</a></td>
+</tr>
+<tr>
+<td><a href="../days_at_ali_or_differentiation/">days_at_ali_or_differentiation</a></td>
+<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>Number of days the cells were cultured at air-liquid interface or in differen...</td>
+<td><a href="../InVitroAssayMixin/">InVitroAssayMixin</a></td>
+</tr>
+<tr>
+<td><a href="../passage_number_at_assay/">passage_number_at_assay</a></td>
+<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>Passage number of the cells at the time of the assay</td>
+<td><a href="../InVitroAssayMixin/">InVitroAssayMixin</a></td>
+</tr>
+<tr>
+<td><a href="../donor_characteristics/">donor_characteristics</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Characteristics of the cell/tissue donor for in vitro systems (e</td>
+<td><a href="../InVitroAssayMixin/">InVitroAssayMixin</a></td>
+</tr>
+<tr>
+<td><a href="../sample_collection_method/">sample_collection_method</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Method used for sample collection in vivo (e</td>
+<td><a href="../InVivoAssayMixin/">InVivoAssayMixin</a></td>
+</tr>
+<tr>
+<td><a href="../clinical_context/">clinical_context</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Clinical context for in vivo measurements (e</td>
+<td><a href="../InVivoAssayMixin/">InVivoAssayMixin</a></td>
+</tr>
+<tr>
 <td><a href="../informs_on_key_event/">informs_on_key_event</a></td>
 <td>0..1 <br/> <a href="../KeyEvent/">KeyEvent</a></td>
 <td>The Key Event that this assay provides evidence for</td>
@@ -575,8 +638,8 @@
 </tr>
 <tr>
 <td><a href="../study_subject/">study_subject</a></td>
-<td>0..1 <br/> <a href="../TwoDCellCulture/">TwoDCellCulture</a></td>
-<td>The subject of the study — what the assay is performed on</td>
+<td>0..1 <br/> <a href="../StudySubject/">StudySubject</a></td>
+<td>Can be ModelSystem (in vitro - ALI cultures, tissue slices, spheroids) or InV...</td>
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
@@ -592,9 +655,9 @@
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
-<td>0..1 <br/> <a href="../Protocol/">Protocol</a></td>
-<td>The Protocol that this assay follows</td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
+<td>* <br/> <a href="../Protocol/">Protocol</a></td>
+<td>The Protocol(s) that this assay follows</td>
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
@@ -643,6 +706,21 @@
 </tbody>
 </table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>supported_contexts</td>
+<td>in_vitro_or_in_vivo</td>
+</tr>
+</tbody>
+</table>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group</li>
@@ -671,13 +749,24 @@
 <h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
+<span class="nt">annotations</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">supported_contexts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">supported_contexts</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">in_vitro_or_in_vivo</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function</span><span class="nv"> </span><span class="s">including</span><span class="nv"> </span><span class="s">beat</span><span class="nv"> </span><span class="s">frequency,</span><span class="nv"> </span><span class="s">active</span>
 <span class="w">  </span><span class="s">area,</span><span class="nv"> </span><span class="s">cilia</span><span class="nv"> </span><span class="s">morphology,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">ciliated</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">populations.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span><span class="nv"> </span><span class="s">"Decreased</span>
-<span class="w">  </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function"</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">respiratory</span><span class="nv"> </span><span class="s">AOPs.</span><span class="nv"> </span><span class="s">TIER</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">(critical):</span><span class="nv"> </span><span class="s">beat_frequency_hz,</span>
-<span class="w">  </span><span class="s">active_area_percentage,</span><span class="nv"> </span><span class="s">cilia_length,</span><span class="nv"> </span><span class="s">cilia_per_cell,</span><span class="nv"> </span><span class="s">percentage_ciliated_cells,</span>
-<span class="w">  </span><span class="s">cell_type_ratios,</span><span class="nv"> </span><span class="s">imaging_protocol.'</span>
+<span class="w">  </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function"</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">respiratory</span><span class="nv"> </span><span class="s">AOPs.</span>
+
+<span class="w">  </span><span class="s">CONTEXT:</span><span class="nv"> </span><span class="s">Can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">performed</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">vitro</span><span class="nv"> </span><span class="s">(tissue</span><span class="nv"> </span><span class="s">slices,</span><span class="nv"> </span><span class="s">2D</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">culture,</span><span class="nv"> </span><span class="s">spheroids)</span><span class="nv"> </span><span class="s">or</span>
+<span class="w">  </span><span class="s">in</span><span class="nv"> </span><span class="s">vivo</span><span class="nv"> </span><span class="s">(often</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">optical</span><span class="nv"> </span><span class="s">coherence</span><span class="nv"> </span><span class="s">tomography).</span>
+
+<span class="w">  </span><span class="s">TIER</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">(critical):</span><span class="nv"> </span><span class="s">beat_frequency_hz,</span><span class="nv"> </span><span class="s">active_area_percentage,</span><span class="nv"> </span><span class="s">cilia_length,</span>
+<span class="w">  </span><span class="s">cilia_per_cell,</span><span class="nv"> </span><span class="s">percentage_ciliated_cells,</span><span class="nv"> </span><span class="s">cell_type_ratios,</span><span class="nv"> </span><span class="s">imaging_protocol.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="nt">mixins</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">beat_frequency_hz</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">active_area_percentage</span>
@@ -697,19 +786,32 @@
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">study_subject</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Can be ModelSystem (in vitro - ALI cultures, tissue slices, spheroids)</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">or InVivoSubject (in vivo - OCT measurements)</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
+<span class="nt">annotations</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">supported_contexts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">supported_contexts</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">in_vitro_or_in_vivo</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function</span><span class="nv"> </span><span class="s">including</span><span class="nv"> </span><span class="s">beat</span><span class="nv"> </span><span class="s">frequency,</span><span class="nv"> </span><span class="s">active</span>
 <span class="w">  </span><span class="s">area,</span><span class="nv"> </span><span class="s">cilia</span><span class="nv"> </span><span class="s">morphology,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">ciliated</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">populations.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span><span class="nv"> </span><span class="s">"Decreased</span>
-<span class="w">  </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function"</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">respiratory</span><span class="nv"> </span><span class="s">AOPs.</span><span class="nv"> </span><span class="s">TIER</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">(critical):</span><span class="nv"> </span><span class="s">beat_frequency_hz,</span>
-<span class="w">  </span><span class="s">active_area_percentage,</span><span class="nv"> </span><span class="s">cilia_length,</span><span class="nv"> </span><span class="s">cilia_per_cell,</span><span class="nv"> </span><span class="s">percentage_ciliated_cells,</span>
-<span class="w">  </span><span class="s">cell_type_ratios,</span><span class="nv"> </span><span class="s">imaging_protocol.'</span>
+<span class="w">  </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function"</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">respiratory</span><span class="nv"> </span><span class="s">AOPs.</span>
+
+<span class="w">  </span><span class="s">CONTEXT:</span><span class="nv"> </span><span class="s">Can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">performed</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">vitro</span><span class="nv"> </span><span class="s">(tissue</span><span class="nv"> </span><span class="s">slices,</span><span class="nv"> </span><span class="s">2D</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">culture,</span><span class="nv"> </span><span class="s">spheroids)</span><span class="nv"> </span><span class="s">or</span>
+<span class="w">  </span><span class="s">in</span><span class="nv"> </span><span class="s">vivo</span><span class="nv"> </span><span class="s">(often</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">optical</span><span class="nv"> </span><span class="s">coherence</span><span class="nv"> </span><span class="s">tomography).</span>
+
+<span class="w">  </span><span class="s">TIER</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">(critical):</span><span class="nv"> </span><span class="s">beat_frequency_hz,</span><span class="nv"> </span><span class="s">active_area_percentage,</span><span class="nv"> </span><span class="s">cilia_length,</span>
+<span class="w">  </span><span class="s">cilia_per_cell,</span><span class="nv"> </span><span class="s">percentage_ciliated_cells,</span><span class="nv"> </span><span class="s">cell_type_ratios,</span><span class="nv"> </span><span class="s">imaging_protocol.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="nt">mixins</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">imaging_protocol</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imaging_protocol</span>
@@ -717,7 +819,9 @@
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">study_subject</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Can be ModelSystem (in vitro - ALI cultures, tissue slices, spheroids)</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">or InVivoSubject (in vivo - OCT measurements)</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">beat_frequency_hz</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">beat_frequency_hz</span>
@@ -846,6 +950,72 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">cell_culture_system</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_culture_system</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Description of the cell culture system used for in vitro assays (e.g.,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">"Air-liquid interface (ALI) culture on transwell inserts", "Primary HBE cells</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">at ALI", "3D spheroid culture").</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_culture_system</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">days_at_ali_or_differentiation</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">days_at_ali_or_differentiation</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of days the cells were cultured at air-liquid interface or</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">in differentiation conditions before the assay.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">days_at_ali_or_differentiation</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
+<span class="w">  </span><span class="nt">passage_number_at_assay</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">passage_number_at_assay</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Passage number of the cells at the time of the assay.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">passage_number_at_assay</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
+<span class="w">  </span><span class="nt">donor_characteristics</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">donor_characteristics</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Characteristics of the cell/tissue donor for in vitro systems (e.g.,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">"Healthy non-smoker, male, age 35").</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">donor_characteristics</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">sample_collection_method</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_collection_method</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method used for sample collection in vivo (e.g., bronchoscopy, induced</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">sputum, spirometry).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_collection_method</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">clinical_context</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clinical_context</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Clinical context for in vivo measurements (e.g., routine screening,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">post-exposure assessment, disease monitoring, baseline spirometry).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clinical_context</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">informs_on_key_event</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Key Event that this assay provides evidence for. This establishes</span>
@@ -889,16 +1059,15 @@
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">study_subject</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The subject of the study — what the assay is performed on. Can be</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">a ModelSystem (e.g., CellularSystem), an InVivoSubject, or a PopulationSubject.</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">The type of subject determines which context slots are available.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Can be ModelSystem (in vitro - ALI cultures, tissue slices, spheroids)</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">or InVivoSubject (in vivo - OCT measurements)</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">study_subject</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">input_sample</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_sample</span>
@@ -923,17 +1092,22 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">follows_protocol</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocol</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Protocol that this assay follows.</span>
+<span class="w">  </span><span class="nt">follows_protocols</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocols</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Protocol(s) that this assay follows. Any Protocol or Protocol</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol)</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is valid. Use this for general protocol references; assay subclasses also have</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">typed protocol slots for domain-specific protocols.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocol</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocols</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">assay_date</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assay_date</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Date when the assay was performed.</span>

@@ -1,7 +1,9 @@
 # Test file for CiliaryFunctionAssay
+# This assay supports both in_vitro and in_vivo contexts (supported_contexts: in_vitro_or_in_vivo)
 ciliary_function_assays:
+  # Example 1: In vitro context using ALI culture
   - id: "CILIARY:001"
-    name: "CBF measurement after ozone exposure"
+    name: "CBF measurement after ozone exposure (in vitro)"
     beat_frequency_hz:
       value: "8.5"
       unit:
@@ -24,7 +26,13 @@ ciliary_function_assays:
     tissue_context:
       id: "UBERON:0002031"
       name: "bronchus"
+    # InVitroAssayMixin slots
+    cell_culture_system: "Air-liquid interface (ALI) culture on transwell inserts"
+    days_at_ali_or_differentiation: 21
+    passage_number_at_assay: 2
+    donor_characteristics: "Healthy non-smoker, male, age 35"
     study_subject:
+      subject_type: TwoDCellCulture
       id: "owg:culture-001"
       name: "Primary HBE ALI culture"
       model_species:

@@ -916,8 +916,8 @@ any class in the StudySubject hierarchy:</p>
 <tbody>
 <tr>
 <td>Protocol</td>
-<td><code>follows_protocol</code></td>
-<td><code>protocol_version</code>, <code>temperature_control</code>, <code>quality_control_criteria</code></td>
+<td><code>follows_protocols</code></td>
+<td><code>protocol_version</code>, <code>temperature_control</code>, <code>quality_control_criteria</code>, <code>sub_protocols</code></td>
 </tr>
 <tr>
 <td>ImagingProtocol</td>
@@ -941,6 +941,9 @@ any class in the StudySubject hierarchy:</p>
 </tr>
 </tbody>
 </table>
+<p>Assays reference protocols via <code>follows_protocols</code> (multivalued — an assay can follow multiple protocols).
+Protocols can compose other protocols via <code>sub_protocols</code> (e.g., sample prep, wash steps, post-processing).
+Any Protocol subclass is valid in both slots.</p>
 <h3 id="supporting-entities">Supporting Entities</h3>
 <table>
 <thead>

@@ -1,4 +1,6 @@
-# Test file for BALFSputumAssay (in vivo)
+# Test file for BALFSputumAssay (in vivo only)
+# This assay is IN VIVO ONLY (supported_contexts: in_vivo_only)
+# Samples must come from a living organism
 balf_sputum_assays:
   - id: "BALF:001"
     name: "Neutrophil percentage in induced sputum"
@@ -16,7 +18,11 @@ balf_sputum_assays:
     cell_type:
       id: "CL:0000775"
       name: "neutrophil"
+    # InVivoAssayMixin slots
+    sample_collection_method: "Induced sputum with hypertonic saline nebulization"
+    clinical_context: "Routine monitoring, stable asthma"
     study_subject:
+      subject_type: InVivoSubject
       id: "SUBJECT:001"
       name: "Subject A"
       model_species:

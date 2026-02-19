@@ -1,4 +1,6 @@
-# Test file for GeneExpressionAssay (replaces Container-assay.yaml)
+# Test file for GeneExpressionAssay (in vitro only)
+# This assay is IN VITRO ONLY (supported_contexts: in_vitro_only)
+# Performed on cell culture systems
 gene_expression_assays:
   - id: "GE:001"
     name: "IL-8 gene expression after exposure"
@@ -14,7 +16,13 @@ gene_expression_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
+    # InVitroAssayMixin slots
+    cell_culture_system: "Primary HBE cells at ALI"
+    days_at_ali_or_differentiation: 21
+    passage_number_at_assay: 2
+    donor_characteristics: "Healthy donor, non-smoker, age 40"
     study_subject:
+      subject_type: TwoDCellCulture
       id: "owg:culture-009"
       name: "Primary HBE ALI culture"
       model_species:

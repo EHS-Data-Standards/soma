@@ -220,6 +220,15 @@
 <nav aria-label="Identifier and Mapping Information" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#annotations">
+<span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#schema-source">
 <span class="md-ellipsis">
       
@@ -285,6 +294,8 @@
 <pre class="mermaid"><code> classDiagram
     class BALFSputumAssay
     click BALFSputumAssay href "../BALFSputumAssay/"
+      InVivoAssayMixin &lt;|-- BALFSputumAssay
+        click InVivoAssayMixin href "../InVivoAssayMixin/"
       Assay &lt;|-- BALFSputumAssay
         click Assay href "../Assay/"
 
@@ -345,6 +356,8 @@
 
 
 
+      BALFSputumAssay : clinical_context
+
       BALFSputumAssay : description
 
       BALFSputumAssay : eosinophil_percentage
@@ -358,13 +371,13 @@
 
 
 
-      BALFSputumAssay : follows_protocol
+      BALFSputumAssay : follows_protocols
 
 
 
 
 
-        BALFSputumAssay --&gt; "0..1" Protocol : follows_protocol
+        BALFSputumAssay --&gt; "*" Protocol : follows_protocols
         click Protocol href "../Protocol/"
 
 
@@ -472,6 +485,8 @@
 
 
 
+      BALFSputumAssay : sample_collection_method
+
       BALFSputumAssay : study_subject
 
 
@@ -544,7 +559,7 @@
 <ul>
 <li><a href="../NamedThing/">NamedThing</a><ul>
 <li><a href="../Assay/">Assay</a><ul>
-<li><strong>BALFSputumAssay</strong></li>
+<li><strong>BALFSputumAssay</strong> [ <a href="../InVivoAssayMixin/">InVivoAssayMixin</a>]</li>
 </ul>
 </li>
 </ul>
@@ -652,6 +667,18 @@
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../sample_collection_method/">sample_collection_method</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Method used for sample collection in vivo (e</td>
+<td><a href="../InVivoAssayMixin/">InVivoAssayMixin</a></td>
+</tr>
+<tr>
+<td><a href="../clinical_context/">clinical_context</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Clinical context for in vivo measurements (e</td>
+<td><a href="../InVivoAssayMixin/">InVivoAssayMixin</a></td>
+</tr>
+<tr>
 <td><a href="../informs_on_key_event/">informs_on_key_event</a></td>
 <td>0..1 <br/> <a href="../KeyEvent/">KeyEvent</a></td>
 <td>The Key Event that this assay provides evidence for</td>
@@ -688,9 +715,9 @@
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
-<td><a href="../follows_protocol/">follows_protocol</a></td>
-<td>0..1 <br/> <a href="../Protocol/">Protocol</a></td>
-<td>The Protocol that this assay follows</td>
+<td><a href="../follows_protocols/">follows_protocols</a></td>
+<td>* <br/> <a href="../Protocol/">Protocol</a></td>
+<td>The Protocol(s) that this assay follows</td>
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
@@ -739,6 +766,21 @@
 </tbody>
 </table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>supported_contexts</td>
+<td>in_vivo_only</td>
+</tr>
+</tbody>
+</table>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group</li>
@@ -767,6 +809,10 @@
 <h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BALFSputumAssay</span>
+<span class="nt">annotations</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">supported_contexts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">supported_contexts</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">in_vivo_only</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">bronchoalveolar</span><span class="nv"> </span><span class="s">lavage</span><span class="nv"> </span><span class="s">fluid</span><span class="nv"> </span><span class="s">(BALF)</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">sputum</span><span class="nv"> </span><span class="s">composition.</span>
 <span class="w">  </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span><span class="nv"> </span><span class="s">"Airway</span><span class="nv"> </span><span class="s">inflammation"</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">provides</span><span class="nv"> </span><span class="s">evidence</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">inflammatory</span>
 <span class="w">  </span><span class="s">cell</span><span class="nv"> </span><span class="s">populations</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">cytokine</span><span class="nv"> </span><span class="s">levels.</span>
@@ -774,6 +820,8 @@
 <span class="w">  </span><span class="s">This</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">IN</span><span class="nv"> </span><span class="s">VIVO</span><span class="nv"> </span><span class="s">ONLY</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">requires</span><span class="nv"> </span><span class="s">samples</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">animal</span><span class="nv"> </span><span class="s">subjects.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="nt">mixins</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">neutrophil_percentage</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eosinophil_percentage</span>
@@ -802,6 +850,10 @@
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BALFSputumAssay</span>
+<span class="nt">annotations</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">supported_contexts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">supported_contexts</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">in_vivo_only</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">bronchoalveolar</span><span class="nv"> </span><span class="s">lavage</span><span class="nv"> </span><span class="s">fluid</span><span class="nv"> </span><span class="s">(BALF)</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">sputum</span><span class="nv"> </span><span class="s">composition.</span>
 <span class="w">  </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span><span class="nv"> </span><span class="s">"Airway</span><span class="nv"> </span><span class="s">inflammation"</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">provides</span><span class="nv"> </span><span class="s">evidence</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">inflammatory</span>
 <span class="w">  </span><span class="s">cell</span><span class="nv"> </span><span class="s">populations</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">cytokine</span><span class="nv"> </span><span class="s">levels.</span>
@@ -809,6 +861,8 @@
 <span class="w">  </span><span class="s">This</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">IN</span><span class="nv"> </span><span class="s">VIVO</span><span class="nv"> </span><span class="s">ONLY</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">requires</span><span class="nv"> </span><span class="s">samples</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">animal</span><span class="nv"> </span><span class="s">subjects.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="nt">mixins</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">study_subject</span>
@@ -987,6 +1041,28 @@
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MolecularAssayProtocol</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">sample_collection_method</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_collection_method</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method used for sample collection in vivo (e.g., bronchoscopy, induced</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">sputum, spirometry).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_collection_method</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BALFSputumAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">clinical_context</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clinical_context</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Clinical context for in vivo measurements (e.g., routine screening,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">post-exposure assessment, disease monitoring, baseline spirometry).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clinical_context</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BALFSputumAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">informs_on_key_event</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Key Event that this assay provides evidence for. This establishes</span>
@@ -1064,17 +1140,22 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">follows_protocol</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocol</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Protocol that this assay follows.</span>
+<span class="w">  </span><span class="nt">follows_protocols</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocols</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Protocol(s) that this assay follows. Any Protocol or Protocol</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol)</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is valid. Use this for general protocol references; assay subclasses also have</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">typed protocol slots for domain-specific protocols.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocol</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocols</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BALFSputumAssay</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">assay_date</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assay_date</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Date when the assay was performed.</span>

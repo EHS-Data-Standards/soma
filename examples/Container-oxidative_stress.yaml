@@ -13,6 +13,7 @@ oxidative_stress_assays:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
     study_subject:
+      subject_type: TwoDCellCulture
       id: "owg:culture-003"
       name: "Primary HBE ALI culture"
       model_species:

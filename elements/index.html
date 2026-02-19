@@ -551,6 +551,14 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Root container for outcomes research data</td>
 </tr>
 <tr>
+<td><a href="InVitroAssayMixin/">InVitroAssayMixin</a></td>
+<td>Mixin providing slots relevant for in vitro assay contexts</td>
+</tr>
+<tr>
+<td><a href="InVivoAssayMixin/">InVivoAssayMixin</a></td>
+<td>Mixin providing slots relevant for in vivo assay contexts</td>
+</tr>
+<tr>
 <td><a href="NamedEntity/">NamedEntity</a></td>
 <td>A reference to an entity with an identifier and name</td>
 </tr>
@@ -858,6 +866,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td></td>
 </tr>
 <tr>
+<td><a href="cell_culture_system/">cell_culture_system</a></td>
+<td>Description of the cell culture system used for in vitro assays (e</td>
+</tr>
+<tr>
 <td><a href="cell_free_dna/">cell_free_dna</a></td>
 <td>Cell-free DNA concentration</td>
 </tr>
@@ -910,6 +922,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Patterns of ciliary motion (coordinated, dyskinetic, immotile)</td>
 </tr>
 <tr>
+<td><a href="clinical_context/">clinical_context</a></td>
+<td>Clinical context for in vivo measurements (e</td>
+</tr>
+<tr>
 <td><a href="coating/">coating</a></td>
 <td></td>
 </tr>
@@ -954,6 +970,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td></td>
 </tr>
 <tr>
+<td><a href="days_at_ali_or_differentiation/">days_at_ali_or_differentiation</a></td>
+<td>Number of days the cells were cultured at air-liquid interface or in differen...</td>
+</tr>
+<tr>
 <td><a href="days_at_differentiation/">days_at_differentiation</a></td>
 <td>Days at air-liquid interface or differentiation stage</td>
 </tr>
@@ -984,6 +1004,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="dna_damage_markers/">dna_damage_markers</a></td>
 <td>DNA damage markers (8-OHdG)</td>
+</tr>
+<tr>
+<td><a href="donor_characteristics/">donor_characteristics</a></td>
+<td>Characteristics of the cell/tissue donor for in vitro systems (e</td>
 </tr>
 <tr>
 <td><a href="donor_count/">donor_count</a></td>
@@ -1094,8 +1118,8 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Fluorescent tracer used for tracking (MCC assays)</td>
 </tr>
 <tr>
-<td><a href="follows_protocol/">follows_protocol</a></td>
-<td>The Protocol that this assay follows</td>
+<td><a href="follows_protocols/">follows_protocols</a></td>
+<td>The Protocol(s) that this assay follows</td>
 </tr>
 <tr>
 <td><a href="four_hydroxynonenal/">four_hydroxynonenal</a></td>
@@ -1450,6 +1474,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td></td>
 </tr>
 <tr>
+<td><a href="passage_number_at_assay/">passage_number_at_assay</a></td>
+<td>Passage number of the cells at the time of the assay</td>
+</tr>
+<tr>
 <td><a href="pathway_biomarkers/">pathway_biomarkers</a></td>
 <td>Pathway-specific biomarker signatures</td>
 </tr>
@@ -1574,6 +1602,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Type of ROS probe used (DCFDA, DHE, MitoSOX, etc</td>
 </tr>
 <tr>
+<td><a href="sample_collection_method/">sample_collection_method</a></td>
+<td>Method used for sample collection in vivo (e</td>
+</tr>
+<tr>
 <td><a href="sample_preparation/">sample_preparation</a></td>
 <td>Sample preparation steps</td>
 </tr>
@@ -1646,8 +1678,16 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>The subject of the study — what the assay is performed on</td>
 </tr>
 <tr>
+<td><a href="sub_protocols/">sub_protocols</a></td>
+<td>Other protocols that are part of this protocol's workflow</td>
+</tr>
+<tr>
 <td><a href="subject_characteristics/">subject_characteristics</a></td>
 <td>Relevant subject characteristics (disease state, medications, etc</td>
+</tr>
+<tr>
+<td><a href="subject_type/">subject_type</a></td>
+<td>The specific type of study subject</td>
 </tr>
 <tr>
 <td><a href="subjects/">subjects</a></td>
@@ -1772,6 +1812,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="AssayContextCapabilityEnum/">AssayContextCapabilityEnum</a></td>
+<td>Indicates what experimental contexts an assay class supports</td>
+</tr>
 <tr>
 <td><a href="BiologicalActionEnum/">BiologicalActionEnum</a></td>
 <td>Types of biological changes or actions in key events</td>

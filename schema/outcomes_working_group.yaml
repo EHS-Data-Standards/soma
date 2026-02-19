@@ -68,6 +68,15 @@ prefixes:
   schema:
     prefix_prefix: schema
     prefix_reference: http://schema.org/
+  UCUM:
+    prefix_prefix: UCUM
+    prefix_reference: http://unitsofmeasure.org/
+  QUDT:
+    prefix_prefix: QUDT
+    prefix_reference: http://qudt.org/vocab/unit/
+  owg:
+    prefix_prefix: owg
+    prefix_reference: https://w3id.org/EHS-Data-Standards/outcomes-working-group/
 default_prefix: outcomes_working_group
 default_range: string
 types:
@@ -617,6 +626,25 @@ enums:
       differentiation_factor:
         text: differentiation_factor
         description: Factors promoting cell differentiation
+  AssayContextCapabilityEnum:
+    name: AssayContextCapabilityEnum
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/AssayContextCapabilityEnum
+    description: Indicates what experimental contexts an assay class supports. Used
+      to constrain valid study_subject types and enable context-appropriate slots.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    permissible_values:
+      in_vitro_only:
+        text: in_vitro_only
+        description: Assay can only be performed in vitro (cell cultures, tissue slices,
+          organoids, etc.)
+      in_vivo_only:
+        text: in_vivo_only
+        description: Assay can only be performed in vivo (requires samples from or
+          measurements on living human or animal subjects)
+      in_vitro_or_in_vivo:
+        text: in_vitro_or_in_vivo
+        description: Assay can be performed in either in vitro or in vivo contexts
+          depending on the experimental design
   CiliaryMotionPatternEnum:
     name: CiliaryMotionPatternEnum
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/CiliaryMotionPatternEnum
@@ -1196,6 +1224,19 @@ slots:
     range: NamedEntity
     inlined: true
     inlined_as_list: false
+  subject_type:
+    name: subject_type
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/subject_type
+    description: The specific type of study subject. Used to designate which concrete
+      class (e.g., TwoDCellCulture, InVivoSubject) is instantiated for polymorphic
+      study_subject slots.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:subject_type
+    designates_type: true
+    owner: StudySubject
+    domain_of:
+    - StudySubject
+    range: string
   study_subject:
     name: study_subject
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/study_subject
@@ -1210,6 +1251,72 @@ slots:
     range: StudySubject
     inlined: true
     inlined_as_list: false
+  cell_culture_system:
+    name: cell_culture_system
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/cell_culture_system
+    description: Description of the cell culture system used for in vitro assays (e.g.,
+      "Air-liquid interface (ALI) culture on transwell inserts", "Primary HBE cells
+      at ALI", "3D spheroid culture").
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:cell_culture_system
+    owner: InVitroAssayMixin
+    domain_of:
+    - InVitroAssayMixin
+    range: string
+  days_at_ali_or_differentiation:
+    name: days_at_ali_or_differentiation
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/days_at_ali_or_differentiation
+    description: Number of days the cells were cultured at air-liquid interface or
+      in differentiation conditions before the assay.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:days_at_ali_or_differentiation
+    owner: InVitroAssayMixin
+    domain_of:
+    - InVitroAssayMixin
+    range: integer
+  passage_number_at_assay:
+    name: passage_number_at_assay
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/passage_number_at_assay
+    description: Passage number of the cells at the time of the assay.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:passage_number_at_assay
+    owner: InVitroAssayMixin
+    domain_of:
+    - InVitroAssayMixin
+    range: integer
+  donor_characteristics:
+    name: donor_characteristics
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/donor_characteristics
+    description: Characteristics of the cell/tissue donor for in vitro systems (e.g.,
+      "Healthy non-smoker, male, age 35").
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:donor_characteristics
+    owner: InVitroAssayMixin
+    domain_of:
+    - InVitroAssayMixin
+    range: string
+  sample_collection_method:
+    name: sample_collection_method
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/sample_collection_method
+    description: Method used for sample collection in vivo (e.g., bronchoscopy, induced
+      sputum, spirometry).
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:sample_collection_method
+    owner: InVivoAssayMixin
+    domain_of:
+    - InVivoAssayMixin
+    range: string
+  clinical_context:
+    name: clinical_context
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/clinical_context
+    description: Clinical context for in vivo measurements (e.g., routine screening,
+      post-exposure assessment, disease monitoring, baseline spirometry).
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:clinical_context
+    owner: InVivoAssayMixin
+    domain_of:
+    - InVivoAssayMixin
+    range: string
   input_sample:
     name: input_sample
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/input_sample
@@ -1235,18 +1342,37 @@ slots:
     range: Method
     inlined: true
     inlined_as_list: false
-  follows_protocol:
-    name: follows_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/follows_protocol
-    description: The Protocol that this assay follows.
+  follows_protocols:
+    name: follows_protocols
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/follows_protocols
+    description: The Protocol(s) that this assay follows. Any Protocol or Protocol
+      subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol)
+      is valid. Use this for general protocol references; assay subclasses also have
+      typed protocol slots for domain-specific protocols.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:follows_protocol
+    slot_uri: assay_base:follows_protocols
     owner: Assay
     domain_of:
     - Assay
     range: Protocol
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
+  sub_protocols:
+    name: sub_protocols
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/sub_protocols
+    description: Other protocols that are part of this protocol's workflow. Use this
+      to compose protocols from reusable steps (e.g., sample preparation, wash steps,
+      fixation, post-processing). Any Protocol or Protocol subclass is valid.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:sub_protocols
+    owner: Protocol
+    domain_of:
+    - Protocol
+    range: Protocol
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   specified_by_method:
     name: specified_by_method
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/specified_by_method
@@ -3663,9 +3789,8 @@ slots:
   CiliaryFunctionAssay_study_subject:
     name: CiliaryFunctionAssay_study_subject
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/study_subject
-    description: "The subject of the study \u2014 what the assay is performed on.\
-      \ Can be a ModelSystem (e.g., CellularSystem), an InVivoSubject, or a PopulationSubject.\
-      \ The type of subject determines which context slots are available."
+    description: Can be ModelSystem (in vitro - ALI cultures, tissue slices, spheroids)
+      or InVivoSubject (in vivo - OCT measurements)
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     is_a: study_subject
     domain: CiliaryFunctionAssay
@@ -3676,7 +3801,7 @@ slots:
     - CiliaryFunctionAssay
     is_usage_slot: true
     usage_slot_name: study_subject
-    range: TwoDCellCulture
+    range: StudySubject
     inlined: true
     inlined_as_list: false
   ASLAssay_imaging_protocol:
@@ -4049,7 +4174,7 @@ classes:
     - study_subject
     - input_sample
     - uses_method
-    - follows_protocol
+    - follows_protocols
     - assay_date
     class_uri: OBI:0000070
   StudySubject:
@@ -4065,6 +4190,7 @@ classes:
     - id
     - name
     - description
+    - subject_type
     - model_species
     class_uri: assay_base:StudySubject
   ModelSystem:
@@ -4078,6 +4204,7 @@ classes:
     - id
     - name
     - description
+    - subject_type
     - model_species
     class_uri: assay_base:ModelSystem
   InVivoSubject:
@@ -4092,6 +4219,7 @@ classes:
     - id
     - name
     - description
+    - subject_type
     - model_species
     - age
     - sex
@@ -4113,6 +4241,7 @@ classes:
     - id
     - name
     - description
+    - subject_type
     - model_species
     - cohort_size
     - inclusion_criteria
@@ -4137,10 +4266,14 @@ classes:
   Protocol:
     name: Protocol
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/Protocol
-    description: A detailed set of steps for how to perform a specific assay using
+    description: 'A detailed set of steps for how to perform a specific assay using
       a specific method. Protocols ensure reproducibility across laboratories. Contains
       universal slots; domain-specific details are in protocol subclasses (ImagingProtocol,
       StainingProtocol, etc.).
+
+      Protocols can reference other protocols via sub_protocols to represent composite
+      workflows (e.g., sample preparation, wash steps, or post-processing protocols
+      that are shared across assays).'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     mappings:
     - OBI:0000272
@@ -4152,6 +4285,7 @@ classes:
     - protocol_version
     - sop_reference
     - specified_by_method
+    - sub_protocols
     - temperature_control
     - humidity_control
     - quality_control_criteria
@@ -4176,6 +4310,7 @@ classes:
     - protocol_version
     - sop_reference
     - specified_by_method
+    - sub_protocols
     - temperature_control
     - humidity_control
     - quality_control_criteria
@@ -4208,6 +4343,7 @@ classes:
     - protocol_version
     - sop_reference
     - specified_by_method
+    - sub_protocols
     - temperature_control
     - humidity_control
     - quality_control_criteria
@@ -4238,6 +4374,7 @@ classes:
     - protocol_version
     - sop_reference
     - specified_by_method
+    - sub_protocols
     - temperature_control
     - humidity_control
     - quality_control_criteria
@@ -4266,6 +4403,7 @@ classes:
     - protocol_version
     - sop_reference
     - specified_by_method
+    - sub_protocols
     - temperature_control
     - humidity_control
     - quality_control_criteria
@@ -4344,6 +4482,7 @@ classes:
     - id
     - name
     - description
+    - subject_type
     - model_species
     - cell_line
     - primary_cell
@@ -4371,6 +4510,7 @@ classes:
     - id
     - name
     - description
+    - subject_type
     - model_species
     - cell_line
     - primary_cell
@@ -4403,6 +4543,7 @@ classes:
     - id
     - name
     - description
+    - subject_type
     - model_species
     - cell_line
     - primary_cell
@@ -4435,6 +4576,7 @@ classes:
     - id
     - name
     - description
+    - subject_type
     - model_species
     - cell_line
     - primary_cell
@@ -4534,16 +4676,53 @@ classes:
     - max_value
     - unit
     class_uri: assay_base:QuantityRange
+  InVitroAssayMixin:
+    name: InVitroAssayMixin
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/InVitroAssayMixin
+    description: Mixin providing slots relevant for in vitro assay contexts. Apply
+      to assay classes that can be performed in vitro (cell cultures, tissue slices,
+      organoids, etc.).
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    mixin: true
+    slots:
+    - cell_culture_system
+    - days_at_ali_or_differentiation
+    - passage_number_at_assay
+    - donor_characteristics
+    class_uri: assay_base:InVitroAssayMixin
+  InVivoAssayMixin:
+    name: InVivoAssayMixin
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/InVivoAssayMixin
+    description: Mixin providing slots relevant for in vivo assay contexts. Apply
+      to assay classes that can be performed in vivo (measurements on living human
+      or animal subjects).
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    mixin: true
+    slots:
+    - sample_collection_method
+    - clinical_context
+    class_uri: assay_base:InVivoAssayMixin
   CiliaryFunctionAssay:
     name: CiliaryFunctionAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/CiliaryFunctionAssay
+    annotations:
+      supported_contexts:
+        tag: supported_contexts
+        value: in_vitro_or_in_vivo
     description: 'Assay for measuring ciliary function including beat frequency, active
       area, cilia morphology, and ciliated cell populations. Informs on Key Event:
-      "Decreased ciliary function" in respiratory AOPs. TIER 1 slots (critical): beat_frequency_hz,
-      active_area_percentage, cilia_length, cilia_per_cell, percentage_ciliated_cells,
-      cell_type_ratios, imaging_protocol.'
+      "Decreased ciliary function" in respiratory AOPs.
+
+      CONTEXT: Can be performed in vitro (tissue slices, 2D cell culture, spheroids)
+      or in vivo (often using optical coherence tomography).
+
+      TIER 1 slots (critical): beat_frequency_hz, active_area_percentage, cilia_length,
+      cilia_per_cell, percentage_ciliated_cells, cell_type_ratios, imaging_protocol.'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
+    mixins:
+    - InVitroAssayMixin
+    - InVivoAssayMixin
     slots:
     - id
     - name
@@ -4553,7 +4732,7 @@ classes:
     - tissue_context
     - input_sample
     - uses_method
-    - follows_protocol
+    - follows_protocols
     - assay_date
     - beat_frequency_hz
     - active_area_percentage
@@ -4567,6 +4746,12 @@ classes:
     - analysis_software
     - airway_region
     - CiliaryFunctionAssay_study_subject
+    - cell_culture_system
+    - days_at_ali_or_differentiation
+    - passage_number_at_assay
+    - donor_characteristics
+    - sample_collection_method
+    - clinical_context
     slot_usage:
       imaging_protocol:
         name: imaging_protocol
@@ -4574,7 +4759,9 @@ classes:
         required: true
       study_subject:
         name: study_subject
-        range: TwoDCellCulture
+        description: Can be ModelSystem (in vitro - ALI cultures, tissue slices, spheroids)
+          or InVivoSubject (in vivo - OCT measurements)
+        range: StudySubject
     class_uri: assay_microschemas:CiliaryFunctionAssay
   ASLAssay:
     name: ASLAssay
@@ -4596,7 +4783,7 @@ classes:
     - study_subject
     - input_sample
     - uses_method
-    - follows_protocol
+    - follows_protocols
     - assay_date
     - asl_height_um
     - periciliary_layer_depth
@@ -4628,7 +4815,7 @@ classes:
     - study_subject
     - input_sample
     - uses_method
-    - follows_protocol
+    - follows_protocols
     - assay_date
     - transport_rate
     - transport_directionality
@@ -4664,7 +4851,7 @@ classes:
     - study_subject
     - input_sample
     - uses_method
-    - follows_protocol
+    - follows_protocols
     - assay_date
     - reactive_oxygen_species
     - ros_probe_type
@@ -4713,7 +4900,7 @@ classes:
     - study_subject
     - input_sample
     - uses_method
-    - follows_protocol
+    - follows_protocols
     - assay_date
     - cftr_chloride_secretion
     - cftr_forskolin_response
@@ -4748,7 +4935,7 @@ classes:
     - study_subject
     - input_sample
     - uses_method
-    - follows_protocol
+    - follows_protocols
     - assay_date
     - egfr_phosphorylation_y1068
     - egfr_phosphorylation_y1173
@@ -4792,7 +4979,7 @@ classes:
     - study_subject
     - input_sample
     - uses_method
-    - follows_protocol
+    - follows_protocols
     - assay_date
     - goblet_cell_count
     - goblet_cell_percentage
@@ -4816,6 +5003,10 @@ classes:
   BALFSputumAssay:
     name: BALFSputumAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/BALFSputumAssay
+    annotations:
+      supported_contexts:
+        tag: supported_contexts
+        value: in_vivo_only
     description: 'Assay for measuring bronchoalveolar lavage fluid (BALF) or sputum
       composition. Informs on Key Event: "Airway inflammation" and provides evidence
       for inflammatory cell populations and cytokine levels.
@@ -4823,6 +5014,8 @@ classes:
       This assay is IN VIVO ONLY - requires samples from human or animal subjects.'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
+    mixins:
+    - InVivoAssayMixin
     slots:
     - id
     - name
@@ -4832,7 +5025,7 @@ classes:
     - tissue_context
     - input_sample
     - uses_method
-    - follows_protocol
+    - follows_protocols
     - assay_date
     - neutrophil_percentage
     - eosinophil_percentage
@@ -4850,6 +5043,8 @@ classes:
     - cell_free_dna
     - BALFSputumAssay_molecular_protocol
     - BALFSputumAssay_study_subject
+    - sample_collection_method
+    - clinical_context
     slot_usage:
       study_subject:
         name: study_subject
@@ -4861,6 +5056,10 @@ classes:
   LungFunctionAssay:
     name: LungFunctionAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/LungFunctionAssay
+    annotations:
+      supported_contexts:
+        tag: supported_contexts
+        value: in_vivo_only
     description: "Clinical assay for measuring lung function. Informs on Adverse Outcome:\
       \ \"Decreased lung function\" - the composite clinical outcome.\nIMPORTANT per\
       \ domain feedback: - Subject characteristics (sex, species, age, height) are\
@@ -4871,6 +5070,8 @@ classes:
       \ This assay is IN VIVO ONLY."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
+    mixins:
+    - InVivoAssayMixin
     slots:
     - id
     - name
@@ -4880,7 +5081,7 @@ classes:
     - tissue_context
     - input_sample
     - uses_method
-    - follows_protocol
+    - follows_protocols
     - assay_date
     - fev1
     - fvc
@@ -4902,6 +5103,8 @@ classes:
     - lung_resistance
     - LungFunctionAssay_spirometry_protocol
     - LungFunctionAssay_study_subject
+    - sample_collection_method
+    - clinical_context
     slot_usage:
       study_subject:
         name: study_subject
@@ -4913,6 +5116,10 @@ classes:
   FoxJExpressionAssay:
     name: FoxJExpressionAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/FoxJExpressionAssay
+    annotations:
+      supported_contexts:
+        tag: supported_contexts
+        value: in_vitro_only
     description: 'Assay for measuring FoxJ1 expression related to ciliogenesis. Informs
       on Key Event: "Altered ciliogenesis" in respiratory AOPs. FoxJ1 is a master
       transcription factor for motile cilia.
@@ -4920,6 +5127,8 @@ classes:
       This assay is primarily IN VITRO focused.'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
+    mixins:
+    - InVitroAssayMixin
     slots:
     - id
     - name
@@ -4930,7 +5139,7 @@ classes:
     - study_subject
     - input_sample
     - uses_method
-    - follows_protocol
+    - follows_protocols
     - assay_date
     - foxj1_mrna_expression
     - foxj1_protein_expression
@@ -4938,6 +5147,10 @@ classes:
     - foxj1_nuclear_localization
     - FoxJExpressionAssay_molecular_protocol
     - staining_protocol
+    - cell_culture_system
+    - days_at_ali_or_differentiation
+    - passage_number_at_assay
+    - donor_characteristics
     slot_usage:
       molecular_protocol:
         name: molecular_protocol
@@ -4946,10 +5159,16 @@ classes:
   GeneExpressionAssay:
     name: GeneExpressionAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/GeneExpressionAssay
+    annotations:
+      supported_contexts:
+        tag: supported_contexts
+        value: in_vitro_only
     description: General assay for gene expression measurements. Renamed from TranscriptionFactorExpressionMeasurement
       per domain feedback - gene expression is more commonly the primary output.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
+    mixins:
+    - InVitroAssayMixin
     slots:
     - id
     - name
@@ -4960,7 +5179,7 @@ classes:
     - study_subject
     - input_sample
     - uses_method
-    - follows_protocol
+    - follows_protocols
     - assay_date
     - target_gene
     - mrna_level
@@ -4969,6 +5188,10 @@ classes:
     - gene_expression_method
     - normalization_reference
     - GeneExpressionAssay_molecular_protocol
+    - cell_culture_system
+    - days_at_ali_or_differentiation
+    - passage_number_at_assay
+    - donor_characteristics
     slot_usage:
       molecular_protocol:
         name: molecular_protocol
@@ -4976,7 +5199,7 @@ classes:
     class_uri: assay_microschemas:GeneExpressionAssay
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2026-02-12T16:00:19'
-source_file_size: 7073
-generation_date: '2026-02-12T16:00:34'
+source_file_date: '2026-02-19T00:14:18'
+source_file_size: 7211
+generation_date: '2026-02-19T00:14:35'
 
