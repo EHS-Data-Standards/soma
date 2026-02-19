@@ -5199,7 +5199,7 @@ classes:
     class_uri: assay_microschemas:GeneExpressionAssay
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2026-02-19T00:14:18'
+source_file_date: '2026-02-19T00:18:13'
 source_file_size: 7211
-generation_date: '2026-02-19T00:14:35'
+generation_date: '2026-02-19T00:18:29'
 
