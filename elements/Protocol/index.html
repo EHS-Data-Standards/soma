@@ -279,8 +279,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-protocol">Class: Protocol</h1>
-<p><em>A detailed set of steps for how to perform a specific assay. Protocols ensure reproducibility across laboratories. Contains universal slots; domain-specific details are in protocol subclasses (ImagingProtocol, StainingProtocol, etc.).</em></p>
-<p><em>Protocols can reference other protocols via sub_protocols to represent composite workflows (e.g., sample preparation, wash steps, or post-processing protocols that are shared across assays).</em></p>
+<p><em>A detailed set of steps for how to perform a specific assay. Protocols ensure reproducibility across laboratories. Contains universal slots; domain-specific details are in protocol subclasses (ImagingProtocol, StainingProtocol, etc.). Protocols can reference other protocols via sub_protocols to represent composite workflows (e.g., sample preparation, wash steps, or post-processing protocols that are shared across assays).</em></p>
 <p>URI: <a href="http://purl.obolibrary.org/obo/OBI_0000272">OBI:0000272</a></p>
 <pre class="mermaid"><code> classDiagram
     class Protocol
@@ -303,17 +302,6 @@
 
       Protocol : equipment_required
 
-      Protocol : humidity_control
-
-
-
-
-
-        Protocol --&gt; "0..1" QuantityValue : humidity_control
-        click QuantityValue href "../QuantityValue/"
-
-
-
       Protocol : id
 
       Protocol : institution
@@ -324,6 +312,8 @@
 
       Protocol : protocol_author
 
+      Protocol : protocol_type
+
       Protocol : protocol_version
 
       Protocol : publication_reference
@@ -331,8 +321,6 @@
       Protocol : quality_control_criteria
 
       Protocol : replicate_requirements
-
-      Protocol : sop_reference
 
       Protocol : sub_protocols
 
@@ -342,17 +330,6 @@
 
         Protocol --&gt; "*" Protocol : sub_protocols
         click Protocol href "../Protocol/"
-
-
-
-      Protocol : temperature_control
-
-
-
-
-
-        Protocol --&gt; "0..1" QuantityValue : temperature_control
-        click QuantityValue href "../QuantityValue/"
 
 
 
@@ -385,15 +362,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../protocol_version/">protocol_version</a></td>
+<td><a href="../protocol_type/">protocol_type</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Version of the protocol</td>
+<td>The specific type of protocol</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../sop_reference/">sop_reference</a></td>
+<td><a href="../protocol_version/">protocol_version</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Reference to standard operating procedure document</td>
+<td>Version of the protocol</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -406,18 +383,6 @@
 <td><a href="../sub_protocols/">sub_protocols</a></td>
 <td>* <br/> <a href="./">Protocol</a></td>
 <td>Other protocols that are part of this protocol's workflow</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../temperature_control/">temperature_control</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Temperature conditions during the procedure (e</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../humidity_control/">humidity_control</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Humidity conditions during the procedure</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -632,22 +597,19 @@
 <h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">detailed</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">steps</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">how</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">perform</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">assay.</span><span class="nv"> </span><span class="s">Protocols</span>
-<span class="w">  </span><span class="s">ensure</span><span class="nv"> </span><span class="s">reproducibility</span><span class="nv"> </span><span class="s">across</span><span class="nv"> </span><span class="s">laboratories.</span><span class="nv"> </span><span class="s">Contains</span><span class="nv"> </span><span class="s">universal</span><span class="nv"> </span><span class="s">slots;</span><span class="nv"> </span><span class="s">domain-specific</span>
-<span class="w">  </span><span class="s">details</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">protocol</span><span class="nv"> </span><span class="s">subclasses</span><span class="nv"> </span><span class="s">(ImagingProtocol,</span><span class="nv"> </span><span class="s">StainingProtocol,</span><span class="nv"> </span><span class="s">etc.).</span>
-
-<span class="w">  </span><span class="s">Protocols</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">reference</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">protocols</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">sub_protocols</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">represent</span><span class="nv"> </span><span class="s">composite</span>
-<span class="w">  </span><span class="s">workflows</span><span class="nv"> </span><span class="s">(e.g.,</span><span class="nv"> </span><span class="s">sample</span><span class="nv"> </span><span class="s">preparation,</span><span class="nv"> </span><span class="s">wash</span><span class="nv"> </span><span class="s">steps,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">post-processing</span><span class="nv"> </span><span class="s">protocols</span><span class="nv"> </span><span class="s">that</span>
-<span class="w">  </span><span class="s">are</span><span class="nv"> </span><span class="s">shared</span><span class="nv"> </span><span class="s">across</span><span class="nv"> </span><span class="s">assays).'</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A detailed set of steps for how to perform a specific assay. Protocols</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ensure reproducibility across laboratories. Contains universal slots; domain-specific</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">details are in protocol subclasses (ImagingProtocol, StainingProtocol, etc.). Protocols</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">can reference other protocols via sub_protocols to represent composite workflows</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">(e.g., sample preparation, wash steps, or post-processing protocols that are shared</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">across assays).</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="nt">slots</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocol_type</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocol_version</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sop_reference</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">equipment_required</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub_protocols</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">temperature_control</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">humidity_control</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">quality_control_criteria</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replicate_requirements</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocol_author</span>
@@ -661,32 +623,34 @@
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">detailed</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">steps</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">how</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">perform</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">assay.</span><span class="nv"> </span><span class="s">Protocols</span>
-<span class="w">  </span><span class="s">ensure</span><span class="nv"> </span><span class="s">reproducibility</span><span class="nv"> </span><span class="s">across</span><span class="nv"> </span><span class="s">laboratories.</span><span class="nv"> </span><span class="s">Contains</span><span class="nv"> </span><span class="s">universal</span><span class="nv"> </span><span class="s">slots;</span><span class="nv"> </span><span class="s">domain-specific</span>
-<span class="w">  </span><span class="s">details</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">protocol</span><span class="nv"> </span><span class="s">subclasses</span><span class="nv"> </span><span class="s">(ImagingProtocol,</span><span class="nv"> </span><span class="s">StainingProtocol,</span><span class="nv"> </span><span class="s">etc.).</span>
-
-<span class="w">  </span><span class="s">Protocols</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">reference</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">protocols</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">sub_protocols</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">represent</span><span class="nv"> </span><span class="s">composite</span>
-<span class="w">  </span><span class="s">workflows</span><span class="nv"> </span><span class="s">(e.g.,</span><span class="nv"> </span><span class="s">sample</span><span class="nv"> </span><span class="s">preparation,</span><span class="nv"> </span><span class="s">wash</span><span class="nv"> </span><span class="s">steps,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">post-processing</span><span class="nv"> </span><span class="s">protocols</span><span class="nv"> </span><span class="s">that</span>
-<span class="w">  </span><span class="s">are</span><span class="nv"> </span><span class="s">shared</span><span class="nv"> </span><span class="s">across</span><span class="nv"> </span><span class="s">assays).'</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A detailed set of steps for how to perform a specific assay. Protocols</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ensure reproducibility across laboratories. Contains universal slots; domain-specific</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">details are in protocol subclasses (ImagingProtocol, StainingProtocol, etc.). Protocols</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">can reference other protocols via sub_protocols to represent composite workflows</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">(e.g., sample preparation, wash steps, or post-processing protocols that are shared</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">across assays).</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="nt">attributes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">protocol_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocol_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The specific type of protocol. Used to designate which concrete class</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">(e.g., ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol)</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is instantiated for polymorphic protocol slots.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">designates_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocol_type</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">protocol_version</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocol_version</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Version of the protocol.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocol_version</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">sop_reference</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sop_reference</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reference to standard operating procedure document.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sop_reference</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
@@ -717,28 +681,6 @@
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">temperature_control</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">temperature_control</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature conditions during the procedure (e.g., 37C).</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">temperature_control</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">humidity_control</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">humidity_control</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Humidity conditions during the procedure.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">humidity_control</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">quality_control_criteria</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">quality_control_criteria</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Quality control acceptance criteria.</span>

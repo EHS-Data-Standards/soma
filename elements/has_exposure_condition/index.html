@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://EHS-Data-Standards.github.io/outcomes-working-group/elements/nitrotyrosine/">
+        <link rel="canonical" href="https://EHS-Data-Standards.github.io/outcomes-working-group/elements/has_exposure_condition/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: nitrotyrosine - outcomes-working-group</title>
+        <title>Slot: has_exposure_condition - outcomes-working-group</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-nitrotyrosine" class="md-skip">
+        <a href="#slot-has_exposure_condition" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: nitrotyrosine
+              Slot: has_exposure_condition
             
           </span>
         </div>
@@ -443,10 +443,10 @@
   
 
 
-<h1 id="slot-nitrotyrosine">Slot: nitrotyrosine</h1>
-<p><em>Nitrotyrosine level. TIER 1.</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/nitrotyrosine">outcomes_working_group:nitrotyrosine</a>
-Alias: nitrotyrosine</p>
+<h1 id="slot-has_exposure_condition">Slot: has_exposure_condition</h1>
+<p><em>The exposure condition(s) applied to the study subject. Captures the agent, concentration, duration, and timing of exposure/treatment. Multivalued to support co-exposures or dose-response series.</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/has_exposure_condition">outcomes_working_group:has_exposure_condition</a>
+Alias: has_exposure_condition</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -460,6 +460,61 @@ Alias: nitrotyrosine</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="../BALFSputumAssay/">BALFSputumAssay</a></td>
+<td>Assay for measuring bronchoalveolar lavage fluid (BALF) or sputum composition</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CiliaryFunctionAssay/">CiliaryFunctionAssay</a></td>
+<td>Assay for measuring ciliary function including beat frequency, active area, c...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../GobletCellAssay/">GobletCellAssay</a></td>
+<td>Assay for measuring goblet cell populations and mucin production</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../FoxJExpressionAssay/">FoxJExpressionAssay</a></td>
+<td>Assay for measuring FoxJ1 expression related to ciliogenesis</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../LungFunctionAssay/">LungFunctionAssay</a></td>
+<td>Clinical assay for measuring lung function</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Assay/">Assay</a></td>
+<td>A planned process with the objective to produce information about biological ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MucociliaryClearanceAssay/">MucociliaryClearanceAssay</a></td>
+<td>Assay for measuring mucociliary clearance and transport</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../GeneExpressionAssay/">GeneExpressionAssay</a></td>
+<td>General assay for gene expression measurements</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ASLAssay/">ASLAssay</a></td>
+<td>Assay for measuring airway surface liquid properties including ASL height, pe...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CFTRFunctionAssay/">CFTRFunctionAssay</a></td>
+<td>Assay for measuring CFTR (Cystic Fibrosis Transmembrane Conductance Regulator...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../EGFRSignalingAssay/">EGFRSignalingAssay</a></td>
+<td>Assay for measuring EGFR phosphorylation and downstream signaling</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../OxidativeStressAssay/">OxidativeStressAssay</a></td>
 <td>Assay for measuring oxidative stress markers</td>
 <td>no</td>
@@ -468,7 +523,12 @@ Alias: nitrotyrosine</p>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../QuantityValue/">QuantityValue</a></li>
+<li>
+<p>Range: <a href="../ExposureCondition/">ExposureCondition</a></p>
+</li>
+<li>
+<p>Multivalued: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -486,25 +546,29 @@ Alias: nitrotyrosine</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>outcomes_working_group:nitrotyrosine</td>
+<td>outcomes_working_group:has_exposure_condition</td>
 </tr>
 <tr>
 <td>native</td>
-<td>outcomes_working_group:nitrotyrosine</td>
+<td>outcomes_working_group:has_exposure_condition</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nitrotyrosine</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nitrotyrosine level. TIER 1.</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_exposure_condition</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The exposure condition(s) applied to the study subject. Captures the</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">agent, concentration, duration, and timing of exposure/treatment. Multivalued to</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">support co-exposures or dose-response series.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nitrotyrosine</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_exposure_condition</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExposureCondition</span>
+<span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
 

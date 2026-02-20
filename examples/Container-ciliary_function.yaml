@@ -4,21 +4,40 @@ ciliary_function_assays:
   # Example 1: In vitro context using ALI culture
   - id: "CILIARY:001"
     name: "CBF measurement after ozone exposure (in vitro)"
-    beat_frequency_hz:
-      value: "8.5"
-      unit:
-        id: "UO:0000106"
-        name: "hertz"
-    active_area_percentage:
-      value: "72"
-      unit:
-        id: "UO:0000187"
-        name: "percent"
-    percentage_ciliated_cells:
-      value: "65"
-      unit:
-        id: "UO:0000187"
-        name: "percent"
+    has_specified_output:
+      id: "CILIARY:001-output"
+      name: "CILIARY:001 measurement results"
+      beat_frequency_hz:
+        value: "8.5"
+        unit:
+          id: "UO:0000106"
+          name: "hertz"
+      active_area_percentage:
+        value: "72"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+      percentage_ciliated_cells:
+        value: "65"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+      cilia_length:
+        value: "7.2"
+        unit:
+          id: "UO:0000017"
+          name: "micrometer"
+      cilia_per_cell:
+        value: "150"
+        unit:
+          id: "UO:0000189"
+          name: "count"
+      ciliary_motion_patterns: coordinated
+      ciliary_beat_amplitude:
+        value: "4.5"
+        unit:
+          id: "UO:0000017"
+          name: "micrometer"
     assay_date: "2024-01-15"
     cell_type:
       id: "CL:0002328"
@@ -84,21 +103,22 @@ ciliary_function_assays:
               unit:
                 id: "UO:0000064"
                 name: "micrograms per milliliter"
-    imaging_protocol:
-      id: "PROTOCOL:cbf-001"
-      name: "High-speed video microscopy for CBF"
-      imaging_frame_rate:
-        value: "200"
-        unit:
-          id: "UO:0000105"
-          name: "hertz"
-      imaging_duration:
-        value: "5"
-        unit:
-          id: "UO:0000010"
-          name: "second"
-      temperature_control:
-        value: "37"
-        unit:
-          id: "UO:0000027"
-          name: "degree Celsius"
+    follows_protocols:
+      - protocol_type: ImagingProtocol
+        id: "PROTOCOL:cbf-001"
+        name: "High-speed video microscopy for CBF"
+        imaging_frame_rate:
+          value: "200"
+          unit:
+            id: "UO:0000105"
+            name: "hertz"
+        imaging_duration:
+          value: "5"
+          unit:
+            id: "UO:0000010"
+            name: "second"
+        temperature_control:
+          value: "37"
+          unit:
+            id: "UO:0000027"
+            name: "degree Celsius"

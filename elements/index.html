@@ -575,8 +575,8 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>A cell line - a genetically stable cultured cell population</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="InputSample/">InputSample</a></td>
-<td>Description of the input sample and any manipulations performed</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposureCondition/">ExposureCondition</a></td>
+<td>A structured description of an exposure or treatment applied to a biological ...</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MediumSupplement/">MediumSupplement</a></td>
@@ -641,6 +641,54 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="OxidativeStressAssay/">OxidativeStressAssay</a></td>
 <td>Assay for measuring oxidative stress markers</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AssayOutputMeasurement/">AssayOutputMeasurement</a></td>
+<td>The measurement results produced by an assay</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ASLOutput/">ASLOutput</a></td>
+<td>Measurement results from an airway surface liquid assay</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="BALFSputumOutput/">BALFSputumOutput</a></td>
+<td>Measurement results from a BALF/sputum assay</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CFTRFunctionOutput/">CFTRFunctionOutput</a></td>
+<td>Measurement results from a CFTR function assay</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CiliaryFunctionOutput/">CiliaryFunctionOutput</a></td>
+<td>Measurement results from a ciliary function assay</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="EGFRSignalingOutput/">EGFRSignalingOutput</a></td>
+<td>Measurement results from an EGFR signaling assay</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="FoxJExpressionOutput/">FoxJExpressionOutput</a></td>
+<td>Measurement results from a FoxJ1 expression assay</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GeneExpressionOutput/">GeneExpressionOutput</a></td>
+<td>Measurement results from a gene expression assay</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GobletCellOutput/">GobletCellOutput</a></td>
+<td>Measurement results from a goblet cell assay</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="LungFunctionOutput/">LungFunctionOutput</a></td>
+<td>Measurement results from a lung function assay</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MucociliaryClearanceOutput/">MucociliaryClearanceOutput</a></td>
+<td>Measurement results from a mucociliary clearance assay</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="OxidativeStressOutput/">OxidativeStressOutput</a></td>
+<td>Measurement results from an oxidative stress assay</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="KeyEvent/">KeyEvent</a></td>
@@ -1046,11 +1094,11 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Collection of EGFR signaling assays</td>
 </tr>
 <tr>
-<td><a href="eight_isoprostane/">eight_isoprostane</a></td>
+<td><a href="eight_isoprostane_level/">eight_isoprostane_level</a></td>
 <td>8-isoprostane level</td>
 </tr>
 <tr>
-<td><a href="eight_ohdg/">eight_ohdg</a></td>
+<td><a href="eight_ohdg_level/">eight_ohdg_level</a></td>
 <td>8-OHdG level (DNA oxidation marker)</td>
 </tr>
 <tr>
@@ -1074,16 +1122,16 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Level of evidence supporting this key event relationship</td>
 </tr>
 <tr>
-<td><a href="exposure_concentration/">exposure_concentration</a></td>
-<td>Concentration of exposure agent</td>
+<td><a href="exposure_agent/">exposure_agent</a></td>
+<td>The chemical, biological, or environmental agent used for exposure or treatme...</td>
 </tr>
 <tr>
-<td><a href="exposure_conditions/">exposure_conditions</a></td>
-<td>Exposure conditions applied to the sample</td>
+<td><a href="exposure_concentration/">exposure_concentration</a></td>
+<td>Concentration of the exposure agent applied</td>
 </tr>
 <tr>
 <td><a href="exposure_duration/">exposure_duration</a></td>
-<td>Duration of exposure</td>
+<td>Duration of exposure or treatment</td>
 </tr>
 <tr>
 <td><a href="fef25_75/">fef25_75</a></td>
@@ -1118,7 +1166,7 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>The Protocol(s) that this assay follows</td>
 </tr>
 <tr>
-<td><a href="four_hydroxynonenal/">four_hydroxynonenal</a></td>
+<td><a href="four_hydroxynonenal_level/">four_hydroxynonenal_level</a></td>
 <td>4-HNE level - lipid peroxidation marker</td>
 </tr>
 <tr>
@@ -1186,6 +1234,14 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Ratio of goblet cells to ciliated cells</td>
 </tr>
 <tr>
+<td><a href="has_exposure_condition/">has_exposure_condition</a></td>
+<td>The exposure condition(s) applied to the study subject</td>
+</tr>
+<tr>
+<td><a href="has_specified_output/">has_specified_output</a></td>
+<td>The measurement results produced by this assay — the specified output of a pl...</td>
+</tr>
+<tr>
 <td><a href="hemoglobin_level/">hemoglobin_level</a></td>
 <td>Hemoglobin level</td>
 </tr>
@@ -1236,10 +1292,6 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="inhibitor_used/">inhibitor_used</a></td>
 <td>Inhibitor used (e</td>
-</tr>
-<tr>
-<td><a href="input_sample/">input_sample</a></td>
-<td>Description of the input sample and manipulations</td>
 </tr>
 <tr>
 <td><a href="institution/">institution</a></td>
@@ -1306,7 +1358,7 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Macrophage percentage in BALF/sputum</td>
 </tr>
 <tr>
-<td><a href="malondialdehyde/">malondialdehyde</a></td>
+<td><a href="malondialdehyde_level/">malondialdehyde_level</a></td>
 <td>MDA level - lipid peroxidation marker</td>
 </tr>
 <tr>
@@ -1402,7 +1454,7 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Neutrophil percentage in BALF/sputum</td>
 </tr>
 <tr>
-<td><a href="nitrotyrosine/">nitrotyrosine</a></td>
+<td><a href="nitrotyrosine_level/">nitrotyrosine_level</a></td>
 <td>Nitrotyrosine level</td>
 </tr>
 <tr>
@@ -1534,6 +1586,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Author of the protocol</td>
 </tr>
 <tr>
+<td><a href="protocol_type/">protocol_type</a></td>
+<td>The specific type of protocol</td>
+</tr>
+<tr>
 <td><a href="protocol_version/">protocol_version</a></td>
 <td>Version of the protocol</td>
 </tr>
@@ -1592,14 +1648,6 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="sample_collection_method/">sample_collection_method</a></td>
 <td>Method used for sample collection in vivo (e</td>
-</tr>
-<tr>
-<td><a href="sample_preparation/">sample_preparation</a></td>
-<td>Sample preparation steps</td>
-</tr>
-<tr>
-<td><a href="sample_source/">sample_source</a></td>
-<td>Source of the sample (cell line, primary cells, tissue)</td>
 </tr>
 <tr>
 <td><a href="sample_type/">sample_type</a></td>
@@ -1719,7 +1767,7 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 </tr>
 <tr>
 <td><a href="timing_post_exposure/">timing_post_exposure</a></td>
-<td>Time after exposure when measurement was taken</td>
+<td>Time after exposure when the measurement was taken</td>
 </tr>
 <tr>
 <td><a href="tissue_context/">tissue_context</a></td>

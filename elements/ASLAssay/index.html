@@ -280,35 +280,12 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-aslassay">Class: ASLAssay</h1>
 <p><em>Assay for measuring airway surface liquid properties including ASL height, periciliary layer depth, and ion composition. Informs on Key Event: "Decreased ASL height" or "Altered airway hydration" in CF-related AOPs.</em></p>
-<p><em>TIER 1 slots (critical): asl_height_um, periciliary_layer_depth, imaging_protocol.</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/ASLAssay">outcomes_working_group:ASLAssay</a></p>
 <pre class="mermaid"><code> classDiagram
     class ASLAssay
     click ASLAssay href "../ASLAssay/"
       Assay &lt;|-- ASLAssay
         click Assay href "../Assay/"
-
-      ASLAssay : asl_height_um
-
-
-
-
-
-        ASLAssay --&gt; "0..1" QuantityValue : asl_height_um
-        click QuantityValue href "../QuantityValue/"
-
-
-
-      ASLAssay : asl_ph
-
-
-
-
-
-        ASLAssay --&gt; "0..1" QuantityValue : asl_ph
-        click QuantityValue href "../QuantityValue/"
-
-
 
       ASLAssay : assay_date
 
@@ -336,18 +313,29 @@
 
 
 
+      ASLAssay : has_exposure_condition
+
+
+
+
+
+        ASLAssay --&gt; "*" ExposureCondition : has_exposure_condition
+        click ExposureCondition href "../ExposureCondition/"
+
+
+
+      ASLAssay : has_specified_output
+
+
+
+
+
+        ASLAssay --&gt; "0..1" ASLOutput : has_specified_output
+        click ASLOutput href "../ASLOutput/"
+
+
+
       ASLAssay : id
-
-      ASLAssay : imaging_protocol
-
-
-
-
-
-        ASLAssay --&gt; "1" ImagingProtocol : imaging_protocol
-        click ImagingProtocol href "../ImagingProtocol/"
-
-
 
       ASLAssay : informs_on_key_event
 
@@ -360,42 +348,7 @@
 
 
 
-      ASLAssay : input_sample
-
-
-
-
-
-        ASLAssay --&gt; "0..1" InputSample : input_sample
-        click InputSample href "../InputSample/"
-
-
-
-      ASLAssay : ion_composition
-
-      ASLAssay : mucus_layer_thickness
-
-
-
-
-
-        ASLAssay --&gt; "0..1" QuantityValue : mucus_layer_thickness
-        click QuantityValue href "../QuantityValue/"
-
-
-
       ASLAssay : name
-
-      ASLAssay : periciliary_layer_depth
-
-
-
-
-
-        ASLAssay --&gt; "0..1" QuantityValue : periciliary_layer_depth
-        click QuantityValue href "../QuantityValue/"
-
-
 
       ASLAssay : study_subject
 
@@ -443,42 +396,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../asl_height_um/">asl_height_um</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Airway surface liquid height in micrometers</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../periciliary_layer_depth/">periciliary_layer_depth</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Depth of the periciliary layer in micrometers</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../imaging_protocol/">imaging_protocol</a></td>
-<td>1 <br/> <a href="../ImagingProtocol/">ImagingProtocol</a></td>
-<td>Reference to the imaging protocol used</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../mucus_layer_thickness/">mucus_layer_thickness</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Thickness of the mucus gel layer in micrometers</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../ion_composition/">ion_composition</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Ionic composition (Cl-, Na+, K+)</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../asl_ph/">asl_ph</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>pH of airway surface liquid</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../informs_on_key_event/">informs_on_key_event</a></td>
 <td>0..1 <br/> <a href="../KeyEvent/">KeyEvent</a></td>
 <td>The Key Event that this assay provides evidence for</td>
@@ -503,9 +420,9 @@
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
-<td><a href="../input_sample/">input_sample</a></td>
-<td>0..1 <br/> <a href="../InputSample/">InputSample</a></td>
-<td>Description of the input sample and manipulations</td>
+<td><a href="../has_exposure_condition/">has_exposure_condition</a></td>
+<td>* <br/> <a href="../ExposureCondition/">ExposureCondition</a></td>
+<td>The exposure condition(s) applied to the study subject</td>
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
@@ -518,6 +435,12 @@
 <td><a href="../assay_date/">assay_date</a></td>
 <td>0..1 <br/> <a href="../Date/">Date</a></td>
 <td>Date when the assay was performed</td>
+<td><a href="../Assay/">Assay</a></td>
+</tr>
+<tr>
+<td><a href="../has_specified_output/">has_specified_output</a></td>
+<td>0..1 <br/> <a href="../ASLOutput/">ASLOutput</a></td>
+<td>The measurement results produced by this assay — the specified output of a pl...</td>
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
@@ -590,23 +513,13 @@
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">airway</span><span class="nv"> </span><span class="s">surface</span><span class="nv"> </span><span class="s">liquid</span><span class="nv"> </span><span class="s">properties</span><span class="nv"> </span><span class="s">including</span><span class="nv"> </span><span class="s">ASL</span><span class="nv"> </span><span class="s">height,</span>
 <span class="w">  </span><span class="s">periciliary</span><span class="nv"> </span><span class="s">layer</span><span class="nv"> </span><span class="s">depth,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">ion</span><span class="nv"> </span><span class="s">composition.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span><span class="nv"> </span><span class="s">"Decreased</span><span class="nv"> </span><span class="s">ASL</span>
-<span class="w">  </span><span class="s">height"</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">"Altered</span><span class="nv"> </span><span class="s">airway</span><span class="nv"> </span><span class="s">hydration"</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">CF-related</span><span class="nv"> </span><span class="s">AOPs.</span>
-
-<span class="w">  </span><span class="s">TIER</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">(critical):</span><span class="nv"> </span><span class="s">asl_height_um,</span><span class="nv"> </span><span class="s">periciliary_layer_depth,</span><span class="nv"> </span><span class="s">imaging_protocol.'</span>
+<span class="w">  </span><span class="s">height"</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">"Altered</span><span class="nv"> </span><span class="s">airway</span><span class="nv"> </span><span class="s">hydration"</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">CF-related</span><span class="nv"> </span><span class="s">AOPs.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="nt">slots</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_height_um</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">periciliary_layer_depth</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imaging_protocol</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mucus_layer_thickness</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ion_composition</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_ph</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">imaging_protocol</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imaging_protocol</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImagingProtocol</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">has_specified_output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLOutput</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
@@ -614,90 +527,14 @@
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">airway</span><span class="nv"> </span><span class="s">surface</span><span class="nv"> </span><span class="s">liquid</span><span class="nv"> </span><span class="s">properties</span><span class="nv"> </span><span class="s">including</span><span class="nv"> </span><span class="s">ASL</span><span class="nv"> </span><span class="s">height,</span>
 <span class="w">  </span><span class="s">periciliary</span><span class="nv"> </span><span class="s">layer</span><span class="nv"> </span><span class="s">depth,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">ion</span><span class="nv"> </span><span class="s">composition.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span><span class="nv"> </span><span class="s">"Decreased</span><span class="nv"> </span><span class="s">ASL</span>
-<span class="w">  </span><span class="s">height"</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">"Altered</span><span class="nv"> </span><span class="s">airway</span><span class="nv"> </span><span class="s">hydration"</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">CF-related</span><span class="nv"> </span><span class="s">AOPs.</span>
-
-<span class="w">  </span><span class="s">TIER</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">(critical):</span><span class="nv"> </span><span class="s">asl_height_um,</span><span class="nv"> </span><span class="s">periciliary_layer_depth,</span><span class="nv"> </span><span class="s">imaging_protocol.'</span>
+<span class="w">  </span><span class="s">height"</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">"Altered</span><span class="nv"> </span><span class="s">airway</span><span class="nv"> </span><span class="s">hydration"</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">CF-related</span><span class="nv"> </span><span class="s">AOPs.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">imaging_protocol</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imaging_protocol</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImagingProtocol</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">has_specified_output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLOutput</span>
 <span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">asl_height_um</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_height_um</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Airway surface liquid height in micrometers. TIER 1 - primary measurement</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">for ASL assays.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_height_um</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">periciliary_layer_depth</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">periciliary_layer_depth</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Depth of the periciliary layer in micrometers. TIER 1 - helps give</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">confidence to the outcome.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">periciliary_layer_depth</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">imaging_protocol</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imaging_protocol</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reference to the imaging protocol used. TIER 1 for CBF, ASL assays.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imaging_protocol</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MucociliaryClearanceAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GobletCellAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImagingProtocol</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">mucus_layer_thickness</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mucus_layer_thickness</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Thickness of the mucus gel layer in micrometers. TIER 2.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mucus_layer_thickness</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MucociliaryClearanceAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">ion_composition</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ion_composition</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ionic composition (Cl-, Na+, K+). TIER 3 - not critical for comparison</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">but relevant for mechanism.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ion_composition</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">asl_ph</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_ph</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pH of airway surface liquid. TIER 3.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_ph</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">informs_on_key_event</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Key Event that this assay provides evidence for. This establishes</span>
@@ -752,18 +589,21 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">input_sample</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_sample</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Description of the input sample and manipulations. TIER 1 slot -</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">critical for understanding what was measured and under what conditions.</span>
+<span class="w">  </span><span class="nt">has_exposure_condition</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_exposure_condition</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The exposure condition(s) applied to the study subject. Captures</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the agent, concentration, duration, and timing of exposure/treatment. Multivalued</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">to support co-exposures or dose-response series.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_sample</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_exposure_condition</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InputSample</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExposureCondition</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">follows_protocols</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocols</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Protocol(s) that this assay follows. Any Protocol or Protocol</span>
@@ -790,6 +630,21 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date</span>
+<span class="w">  </span><span class="nt">has_specified_output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The measurement results produced by this assay — the specified output</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">of a planned process (OBI). Contains the domain-specific measurement values</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">(e.g., beat frequency, cilia length for CiliaryFunctionAssay).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">exact_mappings</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0000299</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLOutput</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A unique identifier for the entity.</span>

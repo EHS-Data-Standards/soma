@@ -1166,6 +1166,22 @@ slots:
     range: KeyEvent
     inlined: true
     inlined_as_list: false
+  has_specified_output:
+    name: has_specified_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
+    description: "The measurement results produced by this assay \u2014 the specified\
+      \ output of a planned process (OBI). Contains the domain-specific measurement\
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    exact_mappings:
+    - OBI:0000299
+    slot_uri: assay_base:has_specified_output
+    owner: Assay
+    domain_of:
+    - Assay
+    range: AssayOutputMeasurement
+    inlined: true
+    inlined_as_list: false
   cell_type:
     name: cell_type
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/cell_type
@@ -1303,19 +1319,34 @@ slots:
     domain_of:
     - InVivoAssayMixin
     range: string
-  input_sample:
-    name: input_sample
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/input_sample
-    description: Description of the input sample and manipulations. TIER 1 slot -
-      critical for understanding what was measured and under what conditions.
+  has_exposure_condition:
+    name: has_exposure_condition
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_exposure_condition
+    description: The exposure condition(s) applied to the study subject. Captures
+      the agent, concentration, duration, and timing of exposure/treatment. Multivalued
+      to support co-exposures or dose-response series.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:input_sample
+    slot_uri: assay_base:has_exposure_condition
     owner: Assay
     domain_of:
     - Assay
-    range: InputSample
+    range: ExposureCondition
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
+  protocol_type:
+    name: protocol_type
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/protocol_type
+    description: The specific type of protocol. Used to designate which concrete class
+      (e.g., ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol)
+      is instantiated for polymorphic protocol slots.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:protocol_type
+    designates_type: true
+    owner: Protocol
+    domain_of:
+    - Protocol
+    range: string
   follows_protocols:
     name: follows_protocols
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/follows_protocols
@@ -1514,9 +1545,6 @@ slots:
     description: Reference to standard operating procedure document.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:sop_reference
-    owner: Protocol
-    domain_of:
-    - Protocol
     range: string
   imaging_frame_rate:
     name: imaging_frame_rate
@@ -1560,9 +1588,9 @@ slots:
     description: Temperature conditions during the procedure (e.g., 37C).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:temperature_control
-    owner: Protocol
+    owner: ImagingProtocol
     domain_of:
-    - Protocol
+    - ImagingProtocol
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -1572,9 +1600,9 @@ slots:
     description: Humidity conditions during the procedure.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:humidity_control
-    owner: Protocol
+    owner: ImagingProtocol
     domain_of:
-    - Protocol
+    - ImagingProtocol
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -1880,69 +1908,53 @@ slots:
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:obi_mapping
     range: uriorcurie
-  sample_source:
-    name: sample_source
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/sample_source
-    description: Source of the sample (cell line, primary cells, tissue).
+  exposure_agent:
+    name: exposure_agent
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/exposure_agent
+    description: The chemical, biological, or environmental agent used for exposure
+      or treatment. Reference to a CHEBI or ECTO ontology term.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:sample_source
-    owner: InputSample
+    slot_uri: assay_base:exposure_agent
+    owner: ExposureCondition
     domain_of:
-    - InputSample
-    range: string
-  exposure_conditions:
-    name: exposure_conditions
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/exposure_conditions
-    description: Exposure conditions applied to the sample.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:exposure_conditions
-    owner: InputSample
-    domain_of:
-    - InputSample
-    range: string
+    - ExposureCondition
+    range: NamedEntity
+    inlined: true
+    inlined_as_list: false
   exposure_duration:
     name: exposure_duration
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/exposure_duration
-    description: Duration of exposure.
+    description: Duration of exposure or treatment.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:exposure_duration
-    owner: InputSample
+    owner: ExposureCondition
     domain_of:
-    - InputSample
+    - ExposureCondition
     range: QuantityValue
     inlined: true
     inlined_as_list: true
   exposure_concentration:
     name: exposure_concentration
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/exposure_concentration
-    description: Concentration of exposure agent.
+    description: Concentration of the exposure agent applied.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:exposure_concentration
-    owner: InputSample
+    owner: ExposureCondition
     domain_of:
-    - InputSample
+    - ExposureCondition
     range: QuantityValue
     inlined: true
     inlined_as_list: true
-  sample_preparation:
-    name: sample_preparation
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/sample_preparation
-    description: Sample preparation steps.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:sample_preparation
-    owner: InputSample
-    domain_of:
-    - InputSample
-    range: string
   timing_post_exposure:
     name: timing_post_exposure
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/timing_post_exposure
-    description: Time after exposure when measurement was taken.
+    description: Time after exposure when the measurement was taken. Used to capture
+      the temporal relationship between exposure and assay readout.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:timing_post_exposure
-    owner: InputSample
+    owner: ExposureCondition
     domain_of:
-    - InputSample
+    - ExposureCondition
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2135,10 +2147,10 @@ slots:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/cell_type_ratios
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:cell_type_ratios
-    owner: CiliaryFunctionAssay
+    owner: CiliaryFunctionOutput
     domain_of:
     - CoCulture
-    - CiliaryFunctionAssay
+    - CiliaryFunctionOutput
     range: string
     multivalued: true
   tissue_origin:
@@ -2350,9 +2362,9 @@ slots:
       ciliary function.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:beat_frequency_hz
-    owner: CiliaryFunctionAssay
+    owner: CiliaryFunctionOutput
     domain_of:
-    - CiliaryFunctionAssay
+    - CiliaryFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2363,9 +2375,9 @@ slots:
       1 - critical for assessing ciliary coverage.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:active_area_percentage
-    owner: CiliaryFunctionAssay
+    owner: CiliaryFunctionOutput
     domain_of:
-    - CiliaryFunctionAssay
+    - CiliaryFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2376,9 +2388,9 @@ slots:
       of cilia.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:cilia_length
-    owner: CiliaryFunctionAssay
+    owner: CiliaryFunctionOutput
     domain_of:
-    - CiliaryFunctionAssay
+    - CiliaryFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2388,9 +2400,9 @@ slots:
     description: Number of cilia per ciliated cell. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:cilia_per_cell
-    owner: CiliaryFunctionAssay
+    owner: CiliaryFunctionOutput
     domain_of:
-    - CiliaryFunctionAssay
+    - CiliaryFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2401,27 +2413,12 @@ slots:
       ciliated cell populations.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:percentage_ciliated_cells
-    owner: CiliaryFunctionAssay
+    owner: CiliaryFunctionOutput
     domain_of:
-    - CiliaryFunctionAssay
+    - CiliaryFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
-  imaging_protocol:
-    name: imaging_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/imaging_protocol
-    description: Reference to the imaging protocol used. TIER 1 for CBF, ASL assays.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    slot_uri: assay_microschemas:imaging_protocol
-    owner: GobletCellAssay
-    domain_of:
-    - CiliaryFunctionAssay
-    - ASLAssay
-    - MucociliaryClearanceAssay
-    - GobletCellAssay
-    range: ImagingProtocol
-    inlined: true
-    inlined_as_list: false
   ciliary_motion_patterns:
     name: ciliary_motion_patterns
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/ciliary_motion_patterns
@@ -2429,9 +2426,9 @@ slots:
       2 - supporting information.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:ciliary_motion_patterns
-    owner: CiliaryFunctionAssay
+    owner: CiliaryFunctionOutput
     domain_of:
-    - CiliaryFunctionAssay
+    - CiliaryFunctionOutput
     range: CiliaryMotionPatternEnum
   ciliary_beat_amplitude:
     name: ciliary_beat_amplitude
@@ -2439,9 +2436,9 @@ slots:
     description: Amplitude of ciliary beat. TIER 2.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:ciliary_beat_amplitude
-    owner: CiliaryFunctionAssay
+    owner: CiliaryFunctionOutput
     domain_of:
-    - CiliaryFunctionAssay
+    - CiliaryFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2472,9 +2469,9 @@ slots:
       for ASL assays.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:asl_height_um
-    owner: ASLAssay
+    owner: ASLOutput
     domain_of:
-    - ASLAssay
+    - ASLOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2485,9 +2482,9 @@ slots:
       confidence to the outcome.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:periciliary_layer_depth
-    owner: ASLAssay
+    owner: ASLOutput
     domain_of:
-    - ASLAssay
+    - ASLOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2497,10 +2494,10 @@ slots:
     description: Thickness of the mucus gel layer in micrometers. TIER 2.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:mucus_layer_thickness
-    owner: MucociliaryClearanceAssay
+    owner: MucociliaryClearanceOutput
     domain_of:
-    - ASLAssay
-    - MucociliaryClearanceAssay
+    - ASLOutput
+    - MucociliaryClearanceOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2511,9 +2508,9 @@ slots:
       but relevant for mechanism.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:ion_composition
-    owner: ASLAssay
+    owner: ASLOutput
     domain_of:
-    - ASLAssay
+    - ASLOutput
     range: string
   asl_ph:
     name: asl_ph
@@ -2521,9 +2518,9 @@ slots:
     description: pH of airway surface liquid. TIER 3.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:asl_ph
-    owner: ASLAssay
+    owner: ASLOutput
     domain_of:
-    - ASLAssay
+    - ASLOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2534,9 +2531,9 @@ slots:
       MCC assays.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:transport_rate
-    owner: MucociliaryClearanceAssay
+    owner: MucociliaryClearanceOutput
     domain_of:
-    - MucociliaryClearanceAssay
+    - MucociliaryClearanceOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2546,9 +2543,9 @@ slots:
     description: Directionality of mucociliary transport. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:transport_directionality
-    owner: MucociliaryClearanceAssay
+    owner: MucociliaryClearanceOutput
     domain_of:
-    - MucociliaryClearanceAssay
+    - MucociliaryClearanceOutput
     range: DirectionalityEnum
   percentage_active_transport:
     name: percentage_active_transport
@@ -2556,9 +2553,9 @@ slots:
     description: Percentage of area showing active transport. TIER 2.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:percentage_active_transport
-    owner: MucociliaryClearanceAssay
+    owner: MucociliaryClearanceOutput
     domain_of:
-    - MucociliaryClearanceAssay
+    - MucociliaryClearanceOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2568,9 +2565,9 @@ slots:
     description: Time for particle clearance. TIER 2.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:particle_clearance_time
-    owner: MucociliaryClearanceAssay
+    owner: MucociliaryClearanceOutput
     domain_of:
-    - MucociliaryClearanceAssay
+    - MucociliaryClearanceOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2590,9 +2587,9 @@ slots:
     description: ROS level as fold change or fluorescence intensity. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:reactive_oxygen_species
-    owner: OxidativeStressAssay
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2613,45 +2610,45 @@ slots:
     description: Lipid peroxidation level. TIER 1 - surrogate marker for OS.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:lipid_peroxidation
-    owner: OxidativeStressAssay
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
-  malondialdehyde:
-    name: malondialdehyde
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/malondialdehyde
-    description: MDA level - lipid peroxidation marker. TIER 1.
+  malondialdehyde_level:
+    name: malondialdehyde_level
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/malondialdehyde_level
+    description: MDA level - lipid peroxidation marker.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    slot_uri: assay_microschemas:malondialdehyde
-    owner: OxidativeStressAssay
+    slot_uri: assay_microschemas:malondialdehyde_level
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
-  four_hydroxynonenal:
-    name: four_hydroxynonenal
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/four_hydroxynonenal
-    description: 4-HNE level - lipid peroxidation marker. TIER 1.
+  four_hydroxynonenal_level:
+    name: four_hydroxynonenal_level
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/four_hydroxynonenal_level
+    description: 4-HNE level - lipid peroxidation marker.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    slot_uri: assay_microschemas:four_hydroxynonenal
-    owner: OxidativeStressAssay
+    slot_uri: assay_microschemas:four_hydroxynonenal_level
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
-  eight_isoprostane:
-    name: eight_isoprostane
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/eight_isoprostane
-    description: 8-isoprostane level. TIER 1.
+  eight_isoprostane_level:
+    name: eight_isoprostane_level
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/eight_isoprostane_level
+    description: 8-isoprostane level.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    slot_uri: assay_microschemas:eight_isoprostane
-    owner: OxidativeStressAssay
+    slot_uri: assay_microschemas:eight_isoprostane_level
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2661,9 +2658,9 @@ slots:
     description: Protein oxidation markers (carbonyls, nitrotyrosine). TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:protein_oxidation_markers
-    owner: OxidativeStressAssay
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: string
     multivalued: true
   protein_carbonyl_content:
@@ -2672,21 +2669,21 @@ slots:
     description: Protein carbonyl content. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:protein_carbonyl_content
-    owner: OxidativeStressAssay
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
-  nitrotyrosine:
-    name: nitrotyrosine
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/nitrotyrosine
+  nitrotyrosine_level:
+    name: nitrotyrosine_level
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/nitrotyrosine_level
     description: Nitrotyrosine level. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    slot_uri: assay_microschemas:nitrotyrosine
-    owner: OxidativeStressAssay
+    slot_uri: assay_microschemas:nitrotyrosine_level
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2696,21 +2693,21 @@ slots:
     description: DNA damage markers (8-OHdG). TIER 1 - surrogate for OS.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:dna_damage_markers
-    owner: OxidativeStressAssay
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
-  eight_ohdg:
-    name: eight_ohdg
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/eight_ohdg
+  eight_ohdg_level:
+    name: eight_ohdg_level
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/eight_ohdg_level
     description: 8-OHdG level (DNA oxidation marker). TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    slot_uri: assay_microschemas:eight_ohdg
-    owner: OxidativeStressAssay
+    slot_uri: assay_microschemas:eight_ohdg_level
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2720,9 +2717,9 @@ slots:
     description: Total antioxidant capacity or GSH/GSSG ratio. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:antioxidant_capacity
-    owner: OxidativeStressAssay
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2732,9 +2729,9 @@ slots:
     description: GSH/GSSG ratio indicating antioxidant status. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:glutathione_ratio
-    owner: OxidativeStressAssay
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2744,9 +2741,9 @@ slots:
     description: Antioxidant enzyme activities (SOD, catalase, GPx). TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:antioxidant_enzyme_activities
-    owner: OxidativeStressAssay
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: string
   superoxide_dismutase_activity:
     name: superoxide_dismutase_activity
@@ -2754,9 +2751,9 @@ slots:
     description: SOD activity. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:superoxide_dismutase_activity
-    owner: OxidativeStressAssay
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2766,9 +2763,9 @@ slots:
     description: Catalase activity. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:catalase_activity
-    owner: OxidativeStressAssay
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2778,9 +2775,9 @@ slots:
     description: GPx activity. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:glutathione_peroxidase_activity
-    owner: OxidativeStressAssay
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2790,9 +2787,9 @@ slots:
     description: Total antioxidant capacity. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:total_antioxidant_capacity
-    owner: OxidativeStressAssay
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2802,9 +2799,9 @@ slots:
     description: Nrf2 activation level. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:nrf2_activation
-    owner: OxidativeStressAssay
+    owner: OxidativeStressOutput
     domain_of:
-    - OxidativeStressAssay
+    - OxidativeStressOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2815,9 +2812,6 @@ slots:
       multiple detection methods.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:detection_method_details
-    owner: OxidativeStressAssay
-    domain_of:
-    - OxidativeStressAssay
     range: string
     multivalued: true
   cftr_chloride_secretion:
@@ -2826,9 +2820,9 @@ slots:
     description: CFTR-mediated chloride secretion in uA/cm2.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:cftr_chloride_secretion
-    owner: CFTRFunctionAssay
+    owner: CFTRFunctionOutput
     domain_of:
-    - CFTRFunctionAssay
+    - CFTRFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2838,9 +2832,9 @@ slots:
     description: Forskolin-stimulated CFTR response.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:cftr_forskolin_response
-    owner: CFTRFunctionAssay
+    owner: CFTRFunctionOutput
     domain_of:
-    - CFTRFunctionAssay
+    - CFTRFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2850,9 +2844,9 @@ slots:
     description: Inhibitor-sensitive current measurement.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:inhibitor_sensitive_current
-    owner: CFTRFunctionAssay
+    owner: CFTRFunctionOutput
     domain_of:
-    - CFTRFunctionAssay
+    - CFTRFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2862,9 +2856,9 @@ slots:
     description: CFTR-specific chloride secretory current.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:cftr_specific_current
-    owner: CFTRFunctionAssay
+    owner: CFTRFunctionOutput
     domain_of:
-    - CFTRFunctionAssay
+    - CFTRFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2874,9 +2868,9 @@ slots:
     description: Sweat chloride concentration in mEq/L (CF diagnostic).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:sweat_chloride_concentration
-    owner: CFTRFunctionAssay
+    owner: CFTRFunctionOutput
     domain_of:
-    - CFTRFunctionAssay
+    - CFTRFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2886,9 +2880,9 @@ slots:
     description: Nasal potential difference in mV.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:nasal_potential_difference
-    owner: CFTRFunctionAssay
+    owner: CFTRFunctionOutput
     domain_of:
-    - CFTRFunctionAssay
+    - CFTRFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2919,9 +2913,9 @@ slots:
       SPECIFIC evidence for EGFR activation.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:egfr_phosphorylation_y1068
-    owner: EGFRSignalingAssay
+    owner: EGFRSignalingOutput
     domain_of:
-    - EGFRSignalingAssay
+    - EGFRSignalingOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2931,9 +2925,9 @@ slots:
     description: EGFR phosphorylation at Y1173 residue (fold change). TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:egfr_phosphorylation_y1173
-    owner: EGFRSignalingAssay
+    owner: EGFRSignalingOutput
     domain_of:
-    - EGFRSignalingAssay
+    - EGFRSignalingOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2943,9 +2937,9 @@ slots:
     description: Total EGFR protein level (loading control). TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:total_egfr_protein
-    owner: EGFRSignalingAssay
+    owner: EGFRSignalingOutput
     domain_of:
-    - EGFRSignalingAssay
+    - EGFRSignalingOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2956,9 +2950,9 @@ slots:
       EGFR alone without phosphorylation data.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:downstream_kinase_activation
-    owner: EGFRSignalingAssay
+    owner: EGFRSignalingOutput
     domain_of:
-    - EGFRSignalingAssay
+    - EGFRSignalingOutput
     range: string
   erk_phosphorylation:
     name: erk_phosphorylation
@@ -2966,9 +2960,9 @@ slots:
     description: ERK phosphorylation level. TIER 2.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:erk_phosphorylation
-    owner: EGFRSignalingAssay
+    owner: EGFRSignalingOutput
     domain_of:
-    - EGFRSignalingAssay
+    - EGFRSignalingOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2978,9 +2972,9 @@ slots:
     description: AKT phosphorylation level. TIER 2.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:akt_phosphorylation
-    owner: EGFRSignalingAssay
+    owner: EGFRSignalingOutput
     domain_of:
-    - EGFRSignalingAssay
+    - EGFRSignalingOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2991,9 +2985,9 @@ slots:
       needs further investigation.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:pathway_biomarkers
-    owner: EGFRSignalingAssay
+    owner: EGFRSignalingOutput
     domain_of:
-    - EGFRSignalingAssay
+    - EGFRSignalingOutput
     range: string
     multivalued: true
   egfr_ligand_expression:
@@ -3002,9 +2996,9 @@ slots:
     description: Expression of EGFR ligands (EGF, TGF-alpha, amphiregulin).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:egfr_ligand_expression
-    owner: EGFRSignalingAssay
+    owner: EGFRSignalingOutput
     domain_of:
-    - EGFRSignalingAssay
+    - EGFRSignalingOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3014,9 +3008,9 @@ slots:
     description: EGFR membrane localization percentage.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:egfr_membrane_localization
-    owner: EGFRSignalingAssay
+    owner: EGFRSignalingOutput
     domain_of:
-    - EGFRSignalingAssay
+    - EGFRSignalingOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3048,9 +3042,9 @@ slots:
       information.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:goblet_cell_count
-    owner: GobletCellAssay
+    owner: GobletCellOutput
     domain_of:
-    - GobletCellAssay
+    - GobletCellOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3060,36 +3054,21 @@ slots:
     description: Percentage of goblet cells. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:goblet_cell_percentage
-    owner: GobletCellAssay
+    owner: GobletCellOutput
     domain_of:
-    - GobletCellAssay
+    - GobletCellOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
-  staining_protocol:
-    name: staining_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/staining_protocol
-    description: Reference to staining protocol (AB-PAS, immunochem). TIER 1.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    slot_uri: assay_microschemas:staining_protocol
-    owner: FoxJExpressionAssay
-    domain_of:
-    - OxidativeStressAssay
-    - EGFRSignalingAssay
-    - GobletCellAssay
-    - FoxJExpressionAssay
-    range: StainingProtocol
-    inlined: true
-    inlined_as_list: false
   muc5ac_mrna_expression:
     name: muc5ac_mrna_expression
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/muc5ac_mrna_expression
     description: MUC5AC mRNA expression level (fold change). TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:muc5ac_mrna_expression
-    owner: GobletCellAssay
+    owner: GobletCellOutput
     domain_of:
-    - GobletCellAssay
+    - GobletCellOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3099,9 +3078,9 @@ slots:
     description: MUC5AC protein expression level. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:muc5ac_protein_expression
-    owner: GobletCellAssay
+    owner: GobletCellOutput
     domain_of:
-    - GobletCellAssay
+    - GobletCellOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3111,9 +3090,9 @@ slots:
     description: MUC5B mRNA expression level (fold change). TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:muc5b_mrna_expression
-    owner: GobletCellAssay
+    owner: GobletCellOutput
     domain_of:
-    - GobletCellAssay
+    - GobletCellOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3123,9 +3102,9 @@ slots:
     description: MUC5B protein expression level. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:muc5b_protein_expression
-    owner: GobletCellAssay
+    owner: GobletCellOutput
     domain_of:
-    - GobletCellAssay
+    - GobletCellOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3135,9 +3114,9 @@ slots:
     description: MUC5AC to MUC5B ratio. TIER 1 - important for disease state.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:muc5ac_muc5b_ratio
-    owner: GobletCellAssay
+    owner: GobletCellOutput
     domain_of:
-    - GobletCellAssay
+    - GobletCellOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3148,9 +3127,9 @@ slots:
       comparative measures.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:mucin_protein_concentration
-    owner: GobletCellAssay
+    owner: GobletCellOutput
     domain_of:
-    - GobletCellAssay
+    - GobletCellOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3160,9 +3139,9 @@ slots:
     description: Mucin secretion rate. TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:mucin_secretion_rate
-    owner: GobletCellAssay
+    owner: GobletCellOutput
     domain_of:
-    - GobletCellAssay
+    - GobletCellOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3172,9 +3151,9 @@ slots:
     description: Percent solids in apical secretion (overall secretion). TIER 1.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:percent_solids
-    owner: GobletCellAssay
+    owner: GobletCellOutput
     domain_of:
-    - GobletCellAssay
+    - GobletCellOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3185,9 +3164,9 @@ slots:
       but not critical for outcome.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:goblet_to_ciliated_ratio
-    owner: GobletCellAssay
+    owner: GobletCellOutput
     domain_of:
-    - GobletCellAssay
+    - GobletCellOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3197,21 +3176,57 @@ slots:
     description: Mucus viscosity in centipoise. TIER 2.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:mucus_viscosity
-    owner: GobletCellAssay
+    owner: GobletCellOutput
     domain_of:
-    - GobletCellAssay
+    - GobletCellOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
+  imaging_protocol:
+    name: imaging_protocol
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/imaging_protocol
+    description: Reference to the imaging protocol used. TIER 1 for CBF, ASL assays.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    slot_uri: assay_microschemas:imaging_protocol
+    range: ImagingProtocol
+    inlined: true
+    inlined_as_list: false
+  staining_protocol:
+    name: staining_protocol
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/staining_protocol
+    description: Reference to staining protocol (AB-PAS, immunochem). TIER 1.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    slot_uri: assay_microschemas:staining_protocol
+    range: StainingProtocol
+    inlined: true
+    inlined_as_list: false
+  molecular_protocol:
+    name: molecular_protocol
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/molecular_protocol
+    description: Reference to the molecular assay protocol used.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    slot_uri: assay_microschemas:molecular_protocol
+    range: MolecularAssayProtocol
+    inlined: true
+    inlined_as_list: false
+  spirometry_protocol:
+    name: spirometry_protocol
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/spirometry_protocol
+    description: Reference to the spirometry protocol used.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    slot_uri: assay_microschemas:spirometry_protocol
+    range: SpirometryProtocol
+    inlined: true
+    inlined_as_list: false
   neutrophil_percentage:
     name: neutrophil_percentage
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/neutrophil_percentage
     description: Neutrophil percentage in BALF/sputum.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:neutrophil_percentage
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3221,9 +3236,9 @@ slots:
     description: Eosinophil percentage in BALF/sputum.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:eosinophil_percentage
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3233,9 +3248,9 @@ slots:
     description: Macrophage percentage in BALF/sputum.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:macrophage_percentage
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3245,9 +3260,9 @@ slots:
     description: Lymphocyte percentage in BALF/sputum.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:lymphocyte_percentage
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3257,9 +3272,9 @@ slots:
     description: Total cell count in BALF/sputum.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:total_cell_count
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3269,9 +3284,9 @@ slots:
     description: IL-6 concentration.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:il6_concentration
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3281,9 +3296,9 @@ slots:
     description: IL-8 concentration.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:il8_concentration
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3293,9 +3308,9 @@ slots:
     description: TNF-alpha concentration.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:tnf_alpha_concentration
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3305,9 +3320,9 @@ slots:
     description: IL-1 beta concentration.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:il1_beta_concentration
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3317,9 +3332,9 @@ slots:
     description: Total protein concentration.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:total_protein_concentration
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3329,9 +3344,9 @@ slots:
     description: Alpha diversity (microbiome).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:alpha_diversity
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3341,9 +3356,9 @@ slots:
     description: Beta diversity (microbiome).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:beta_diversity
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3353,9 +3368,9 @@ slots:
     description: Bacterial load (16S copies or CFU).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:bacterial_load
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3365,9 +3380,9 @@ slots:
     description: Cell-free DNA concentration.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:cell_free_dna
-    owner: BALFSputumAssay
+    owner: BALFSputumOutput
     domain_of:
-    - BALFSputumAssay
+    - BALFSputumOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3378,9 +3393,9 @@ slots:
       measurement.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:fev1
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3390,9 +3405,9 @@ slots:
     description: Forced vital capacity. TIER 1 - primary spirometry measurement.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:fvc
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3414,9 +3429,9 @@ slots:
       from FEV1 and FVC.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:fev1_fvc_ratio
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3427,9 +3442,9 @@ slots:
       inflammation.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:feno
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3440,9 +3455,9 @@ slots:
       comparisons.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:decline_rate
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3452,9 +3467,9 @@ slots:
     description: Response to bronchodilator (% change in FEV1). TIER 2 - informs reversibility.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:bronchodilator_response
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3465,9 +3480,9 @@ slots:
       needs hemoglobin level.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:dlco
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3499,9 +3514,9 @@ slots:
     description: Peak expiratory flow. TIER 2.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:peak_expiratory_flow
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3512,9 +3527,9 @@ slots:
       FVC.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:fef25_75
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3524,9 +3539,9 @@ slots:
     description: Total lung capacity. TIER 3 - requires more equipment.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:total_lung_capacity
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3536,9 +3551,9 @@ slots:
     description: Functional residual capacity. TIER 3 - requires more equipment.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:functional_residual_capacity
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3548,9 +3563,9 @@ slots:
     description: Residual volume. TIER 3 - requires more equipment.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:residual_volume
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3561,9 +3576,9 @@ slots:
       to relate to human exposure.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:lung_compliance
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3573,9 +3588,9 @@ slots:
     description: Lung elastance. TIER 3 - most often reported for animals.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:lung_elastance
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3585,49 +3600,21 @@ slots:
     description: Lung resistance. TIER 3 - most often reported for animals.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:lung_resistance
-    owner: LungFunctionAssay
+    owner: LungFunctionOutput
     domain_of:
-    - LungFunctionAssay
+    - LungFunctionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
-  molecular_protocol:
-    name: molecular_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/molecular_protocol
-    description: Reference to the molecular assay protocol used.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    slot_uri: assay_microschemas:molecular_protocol
-    owner: GeneExpressionAssay
-    domain_of:
-    - OxidativeStressAssay
-    - EGFRSignalingAssay
-    - BALFSputumAssay
-    - FoxJExpressionAssay
-    - GeneExpressionAssay
-    range: MolecularAssayProtocol
-    inlined: true
-    inlined_as_list: false
-  spirometry_protocol:
-    name: spirometry_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/spirometry_protocol
-    description: Reference to the spirometry protocol used.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    slot_uri: assay_microschemas:spirometry_protocol
-    owner: LungFunctionAssay
-    domain_of:
-    - LungFunctionAssay
-    range: SpirometryProtocol
-    inlined: true
-    inlined_as_list: false
   foxj1_mrna_expression:
     name: foxj1_mrna_expression
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/foxj1_mrna_expression
     description: FoxJ1 mRNA expression level.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:foxj1_mrna_expression
-    owner: FoxJExpressionAssay
+    owner: FoxJExpressionOutput
     domain_of:
-    - FoxJExpressionAssay
+    - FoxJExpressionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3637,9 +3624,9 @@ slots:
     description: FoxJ1 protein expression level.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:foxj1_protein_expression
-    owner: FoxJExpressionAssay
+    owner: FoxJExpressionOutput
     domain_of:
-    - FoxJExpressionAssay
+    - FoxJExpressionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3649,9 +3636,9 @@ slots:
     description: Percentage of FoxJ1-positive cells.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:foxj1_positive_cell_percentage
-    owner: FoxJExpressionAssay
+    owner: FoxJExpressionOutput
     domain_of:
-    - FoxJExpressionAssay
+    - FoxJExpressionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3661,9 +3648,9 @@ slots:
     description: FoxJ1 nuclear localization.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:foxj1_nuclear_localization
-    owner: FoxJExpressionAssay
+    owner: FoxJExpressionOutput
     domain_of:
-    - FoxJExpressionAssay
+    - FoxJExpressionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3683,9 +3670,9 @@ slots:
     description: mRNA expression level.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:mrna_level
-    owner: GeneExpressionAssay
+    owner: GeneExpressionOutput
     domain_of:
-    - GeneExpressionAssay
+    - GeneExpressionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3695,9 +3682,9 @@ slots:
     description: Protein expression level.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:protein_level
-    owner: GeneExpressionAssay
+    owner: GeneExpressionOutput
     domain_of:
-    - GeneExpressionAssay
+    - GeneExpressionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3707,9 +3694,9 @@ slots:
     description: Percentage of positive cells (IHC, flow cytometry).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     slot_uri: assay_microschemas:percentage_positive_cells
-    owner: GeneExpressionAssay
+    owner: GeneExpressionOutput
     domain_of:
-    - GeneExpressionAssay
+    - GeneExpressionOutput
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -3723,24 +3710,6 @@ slots:
     domain_of:
     - GeneExpressionAssay
     range: string
-  CiliaryFunctionAssay_imaging_protocol:
-    name: CiliaryFunctionAssay_imaging_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/imaging_protocol
-    description: Reference to the imaging protocol used. TIER 1 for CBF, ASL assays.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    is_a: imaging_protocol
-    domain: CiliaryFunctionAssay
-    slot_uri: assay_microschemas:imaging_protocol
-    alias: imaging_protocol
-    owner: CiliaryFunctionAssay
-    domain_of:
-    - CiliaryFunctionAssay
-    is_usage_slot: true
-    usage_slot_name: imaging_protocol
-    range: ImagingProtocol
-    required: true
-    inlined: true
-    inlined_as_list: false
   CiliaryFunctionAssay_study_subject:
     name: CiliaryFunctionAssay_study_subject
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/study_subject
@@ -3759,94 +3728,151 @@ slots:
     range: StudySubject
     inlined: true
     inlined_as_list: false
-  ASLAssay_imaging_protocol:
-    name: ASLAssay_imaging_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/imaging_protocol
-    description: Reference to the imaging protocol used. TIER 1 for CBF, ASL assays.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    is_a: imaging_protocol
+  CiliaryFunctionAssay_has_specified_output:
+    name: CiliaryFunctionAssay_has_specified_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
+    description: "The measurement results produced by this assay \u2014 the specified\
+      \ output of a planned process (OBI). Contains the domain-specific measurement\
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    exact_mappings:
+    - OBI:0000299
+    is_a: has_specified_output
+    domain: CiliaryFunctionAssay
+    slot_uri: assay_base:has_specified_output
+    alias: has_specified_output
+    owner: CiliaryFunctionAssay
+    domain_of:
+    - CiliaryFunctionAssay
+    is_usage_slot: true
+    usage_slot_name: has_specified_output
+    range: CiliaryFunctionOutput
+    inlined: true
+    inlined_as_list: false
+  ASLAssay_has_specified_output:
+    name: ASLAssay_has_specified_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
+    description: "The measurement results produced by this assay \u2014 the specified\
+      \ output of a planned process (OBI). Contains the domain-specific measurement\
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    exact_mappings:
+    - OBI:0000299
+    is_a: has_specified_output
     domain: ASLAssay
-    slot_uri: assay_microschemas:imaging_protocol
-    alias: imaging_protocol
+    slot_uri: assay_base:has_specified_output
+    alias: has_specified_output
     owner: ASLAssay
     domain_of:
     - ASLAssay
     is_usage_slot: true
-    usage_slot_name: imaging_protocol
-    range: ImagingProtocol
-    required: true
+    usage_slot_name: has_specified_output
+    range: ASLOutput
     inlined: true
     inlined_as_list: false
-  MucociliaryClearanceAssay_imaging_protocol:
-    name: MucociliaryClearanceAssay_imaging_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/imaging_protocol
-    description: Reference to the imaging protocol used. TIER 1 for CBF, ASL assays.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    is_a: imaging_protocol
+  MucociliaryClearanceAssay_has_specified_output:
+    name: MucociliaryClearanceAssay_has_specified_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
+    description: "The measurement results produced by this assay \u2014 the specified\
+      \ output of a planned process (OBI). Contains the domain-specific measurement\
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    exact_mappings:
+    - OBI:0000299
+    is_a: has_specified_output
     domain: MucociliaryClearanceAssay
-    slot_uri: assay_microschemas:imaging_protocol
-    alias: imaging_protocol
+    slot_uri: assay_base:has_specified_output
+    alias: has_specified_output
     owner: MucociliaryClearanceAssay
     domain_of:
     - MucociliaryClearanceAssay
     is_usage_slot: true
-    usage_slot_name: imaging_protocol
-    range: ImagingProtocol
-    required: true
+    usage_slot_name: has_specified_output
+    range: MucociliaryClearanceOutput
     inlined: true
     inlined_as_list: false
-  OxidativeStressAssay_molecular_protocol:
-    name: OxidativeStressAssay_molecular_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/molecular_protocol
-    description: Reference to the molecular assay protocol used.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    is_a: molecular_protocol
+  OxidativeStressAssay_has_specified_output:
+    name: OxidativeStressAssay_has_specified_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
+    description: "The measurement results produced by this assay \u2014 the specified\
+      \ output of a planned process (OBI). Contains the domain-specific measurement\
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    exact_mappings:
+    - OBI:0000299
+    is_a: has_specified_output
     domain: OxidativeStressAssay
-    slot_uri: assay_microschemas:molecular_protocol
-    alias: molecular_protocol
+    slot_uri: assay_base:has_specified_output
+    alias: has_specified_output
     owner: OxidativeStressAssay
     domain_of:
     - OxidativeStressAssay
     is_usage_slot: true
-    usage_slot_name: molecular_protocol
-    range: MolecularAssayProtocol
-    required: true
+    usage_slot_name: has_specified_output
+    range: OxidativeStressOutput
     inlined: true
     inlined_as_list: false
-  EGFRSignalingAssay_molecular_protocol:
-    name: EGFRSignalingAssay_molecular_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/molecular_protocol
-    description: Reference to the molecular assay protocol used.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    is_a: molecular_protocol
+  CFTRFunctionAssay_has_specified_output:
+    name: CFTRFunctionAssay_has_specified_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
+    description: "The measurement results produced by this assay \u2014 the specified\
+      \ output of a planned process (OBI). Contains the domain-specific measurement\
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    exact_mappings:
+    - OBI:0000299
+    is_a: has_specified_output
+    domain: CFTRFunctionAssay
+    slot_uri: assay_base:has_specified_output
+    alias: has_specified_output
+    owner: CFTRFunctionAssay
+    domain_of:
+    - CFTRFunctionAssay
+    is_usage_slot: true
+    usage_slot_name: has_specified_output
+    range: CFTRFunctionOutput
+    inlined: true
+    inlined_as_list: false
+  EGFRSignalingAssay_has_specified_output:
+    name: EGFRSignalingAssay_has_specified_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
+    description: "The measurement results produced by this assay \u2014 the specified\
+      \ output of a planned process (OBI). Contains the domain-specific measurement\
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    exact_mappings:
+    - OBI:0000299
+    is_a: has_specified_output
     domain: EGFRSignalingAssay
-    slot_uri: assay_microschemas:molecular_protocol
-    alias: molecular_protocol
+    slot_uri: assay_base:has_specified_output
+    alias: has_specified_output
     owner: EGFRSignalingAssay
     domain_of:
     - EGFRSignalingAssay
     is_usage_slot: true
-    usage_slot_name: molecular_protocol
-    range: MolecularAssayProtocol
-    required: true
+    usage_slot_name: has_specified_output
+    range: EGFRSignalingOutput
     inlined: true
     inlined_as_list: false
-  GobletCellAssay_staining_protocol:
-    name: GobletCellAssay_staining_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/staining_protocol
-    description: Reference to staining protocol (AB-PAS, immunochem). TIER 1.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    is_a: staining_protocol
+  GobletCellAssay_has_specified_output:
+    name: GobletCellAssay_has_specified_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
+    description: "The measurement results produced by this assay \u2014 the specified\
+      \ output of a planned process (OBI). Contains the domain-specific measurement\
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    exact_mappings:
+    - OBI:0000299
+    is_a: has_specified_output
     domain: GobletCellAssay
-    slot_uri: assay_microschemas:staining_protocol
-    alias: staining_protocol
+    slot_uri: assay_base:has_specified_output
+    alias: has_specified_output
     owner: GobletCellAssay
     domain_of:
     - GobletCellAssay
     is_usage_slot: true
-    usage_slot_name: staining_protocol
-    range: StainingProtocol
-    required: true
+    usage_slot_name: has_specified_output
+    range: GobletCellOutput
     inlined: true
     inlined_as_list: false
   BALFSputumAssay_study_subject:
@@ -3868,22 +3894,25 @@ slots:
     range: InVivoSubject
     inlined: true
     inlined_as_list: false
-  BALFSputumAssay_molecular_protocol:
-    name: BALFSputumAssay_molecular_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/molecular_protocol
-    description: Reference to the molecular assay protocol used.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    is_a: molecular_protocol
+  BALFSputumAssay_has_specified_output:
+    name: BALFSputumAssay_has_specified_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
+    description: "The measurement results produced by this assay \u2014 the specified\
+      \ output of a planned process (OBI). Contains the domain-specific measurement\
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    exact_mappings:
+    - OBI:0000299
+    is_a: has_specified_output
     domain: BALFSputumAssay
-    slot_uri: assay_microschemas:molecular_protocol
-    alias: molecular_protocol
+    slot_uri: assay_base:has_specified_output
+    alias: has_specified_output
     owner: BALFSputumAssay
     domain_of:
     - BALFSputumAssay
     is_usage_slot: true
-    usage_slot_name: molecular_protocol
-    range: MolecularAssayProtocol
-    required: true
+    usage_slot_name: has_specified_output
+    range: BALFSputumOutput
     inlined: true
     inlined_as_list: false
   LungFunctionAssay_study_subject:
@@ -3905,58 +3934,67 @@ slots:
     range: InVivoSubject
     inlined: true
     inlined_as_list: false
-  LungFunctionAssay_spirometry_protocol:
-    name: LungFunctionAssay_spirometry_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/spirometry_protocol
-    description: Reference to the spirometry protocol used.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    is_a: spirometry_protocol
+  LungFunctionAssay_has_specified_output:
+    name: LungFunctionAssay_has_specified_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
+    description: "The measurement results produced by this assay \u2014 the specified\
+      \ output of a planned process (OBI). Contains the domain-specific measurement\
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    exact_mappings:
+    - OBI:0000299
+    is_a: has_specified_output
     domain: LungFunctionAssay
-    slot_uri: assay_microschemas:spirometry_protocol
-    alias: spirometry_protocol
+    slot_uri: assay_base:has_specified_output
+    alias: has_specified_output
     owner: LungFunctionAssay
     domain_of:
     - LungFunctionAssay
     is_usage_slot: true
-    usage_slot_name: spirometry_protocol
-    range: SpirometryProtocol
-    required: true
+    usage_slot_name: has_specified_output
+    range: LungFunctionOutput
     inlined: true
     inlined_as_list: false
-  FoxJExpressionAssay_molecular_protocol:
-    name: FoxJExpressionAssay_molecular_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/molecular_protocol
-    description: Reference to the molecular assay protocol used.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    is_a: molecular_protocol
+  FoxJExpressionAssay_has_specified_output:
+    name: FoxJExpressionAssay_has_specified_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
+    description: "The measurement results produced by this assay \u2014 the specified\
+      \ output of a planned process (OBI). Contains the domain-specific measurement\
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    exact_mappings:
+    - OBI:0000299
+    is_a: has_specified_output
     domain: FoxJExpressionAssay
-    slot_uri: assay_microschemas:molecular_protocol
-    alias: molecular_protocol
+    slot_uri: assay_base:has_specified_output
+    alias: has_specified_output
     owner: FoxJExpressionAssay
     domain_of:
     - FoxJExpressionAssay
     is_usage_slot: true
-    usage_slot_name: molecular_protocol
-    range: MolecularAssayProtocol
-    required: true
+    usage_slot_name: has_specified_output
+    range: FoxJExpressionOutput
     inlined: true
     inlined_as_list: false
-  GeneExpressionAssay_molecular_protocol:
-    name: GeneExpressionAssay_molecular_protocol
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/molecular_protocol
-    description: Reference to the molecular assay protocol used.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
-    is_a: molecular_protocol
+  GeneExpressionAssay_has_specified_output:
+    name: GeneExpressionAssay_has_specified_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
+    description: "The measurement results produced by this assay \u2014 the specified\
+      \ output of a planned process (OBI). Contains the domain-specific measurement\
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    exact_mappings:
+    - OBI:0000299
+    is_a: has_specified_output
     domain: GeneExpressionAssay
-    slot_uri: assay_microschemas:molecular_protocol
-    alias: molecular_protocol
+    slot_uri: assay_base:has_specified_output
+    alias: has_specified_output
     owner: GeneExpressionAssay
     domain_of:
     - GeneExpressionAssay
     is_usage_slot: true
-    usage_slot_name: molecular_protocol
-    range: MolecularAssayProtocol
-    required: true
+    usage_slot_name: has_specified_output
+    range: GeneExpressionOutput
     inlined: true
     inlined_as_list: false
 classes:
@@ -4105,14 +4143,12 @@ classes:
   Assay:
     name: Assay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/Assay
-    description: 'A planned process with the objective to produce information about
+    description: A planned process with the objective to produce information about
       biological state relevant to a Key Event in an Adverse Outcome Pathway. Assays
       are organized by the functional domain they assess (e.g., ciliary function,
       oxidative stress), and each domain-specific assay class contains named slots
-      for the specific measurements it can produce.
-
-      This is the central organizing concept in the schema - assays inform on key
-      events and contain the measurement data as named slots.'
+      for the specific measurements it can produce. Assays inform on key events and
+      contain the measurement data as named slots.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     mappings:
     - OBI:0000070
@@ -4126,10 +4162,29 @@ classes:
     - cell_type
     - tissue_context
     - study_subject
-    - input_sample
+    - has_exposure_condition
     - follows_protocols
     - assay_date
+    - has_specified_output
     class_uri: OBI:0000070
+  AssayOutputMeasurement:
+    name: AssayOutputMeasurement
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/AssayOutputMeasurement
+    description: 'The measurement results produced by an assay. The specified output
+      of a planned process. Each domain-specific assay class has a corresponding AssayOutputMeasurement
+      subclass containing the named measurement slots for that assay type. This class
+      represents the "output" in the Input/Process/Output model: what was measured
+      and what values were obtained.'
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    exact_mappings:
+    - IAO:0000109
+    is_a: NamedThing
+    abstract: true
+    slots:
+    - id
+    - name
+    - description
+    class_uri: assay_base:AssayOutputMeasurement
   StudySubject:
     name: StudySubject
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/StudySubject
@@ -4204,13 +4259,12 @@ classes:
   Protocol:
     name: Protocol
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/Protocol
-    description: 'A detailed set of steps for how to perform a specific assay. Protocols
+    description: A detailed set of steps for how to perform a specific assay. Protocols
       ensure reproducibility across laboratories. Contains universal slots; domain-specific
       details are in protocol subclasses (ImagingProtocol, StainingProtocol, etc.).
-
       Protocols can reference other protocols via sub_protocols to represent composite
       workflows (e.g., sample preparation, wash steps, or post-processing protocols
-      that are shared across assays).'
+      that are shared across assays).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     mappings:
     - OBI:0000272
@@ -4219,12 +4273,10 @@ classes:
     - id
     - name
     - description
+    - protocol_type
     - protocol_version
-    - sop_reference
     - equipment_required
     - sub_protocols
-    - temperature_control
-    - humidity_control
     - quality_control_criteria
     - replicate_requirements
     - protocol_author
@@ -4244,12 +4296,10 @@ classes:
     - id
     - name
     - description
+    - protocol_type
     - protocol_version
-    - sop_reference
     - equipment_required
     - sub_protocols
-    - temperature_control
-    - humidity_control
     - quality_control_criteria
     - replicate_requirements
     - protocol_author
@@ -4264,6 +4314,8 @@ classes:
     - fluorescent_tracer
     - evaporation_prevention
     - particle_tracking_method
+    - temperature_control
+    - humidity_control
     - particle_size
     class_uri: assay_base:ImagingProtocol
   StainingProtocol:
@@ -4277,12 +4329,10 @@ classes:
     - id
     - name
     - description
+    - protocol_type
     - protocol_version
-    - sop_reference
     - equipment_required
     - sub_protocols
-    - temperature_control
-    - humidity_control
     - quality_control_criteria
     - replicate_requirements
     - protocol_author
@@ -4308,12 +4358,10 @@ classes:
     - id
     - name
     - description
+    - protocol_type
     - protocol_version
-    - sop_reference
     - equipment_required
     - sub_protocols
-    - temperature_control
-    - humidity_control
     - quality_control_criteria
     - replicate_requirements
     - protocol_author
@@ -4337,12 +4385,10 @@ classes:
     - id
     - name
     - description
+    - protocol_type
     - protocol_version
-    - sop_reference
     - equipment_required
     - sub_protocols
-    - temperature_control
-    - humidity_control
     - quality_control_criteria
     - replicate_requirements
     - protocol_author
@@ -4391,23 +4437,22 @@ classes:
     - id
     - name
     class_uri: assay_base:NamedEntity
-  InputSample:
-    name: InputSample
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/InputSample
-    description: Description of the input sample and any manipulations performed.
-      Captures the test system, exposure conditions, and sample preparation.
+  ExposureCondition:
+    name: ExposureCondition
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/ExposureCondition
+    description: A structured description of an exposure or treatment applied to a
+      biological system. Captures what agent was applied, at what concentration, for
+      how long, and when the measurement was taken relative to exposure.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     is_a: NamedEntity
     slots:
     - id
     - name
-    - sample_source
-    - exposure_conditions
-    - exposure_duration
+    - exposure_agent
     - exposure_concentration
-    - sample_preparation
+    - exposure_duration
     - timing_post_exposure
-    class_uri: assay_base:InputSample
+    class_uri: assay_base:ExposureCondition
   CellularSystem:
     name: CellularSystem
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/CellularSystem
@@ -4654,7 +4699,7 @@ classes:
       or in vivo (often using optical coherence tomography).
 
       TIER 1 slots (critical): beat_frequency_hz, active_area_percentage, cilia_length,
-      cilia_per_cell, percentage_ciliated_cells, cell_type_ratios, imaging_protocol.'
+      cilia_per_cell, percentage_ciliated_cells, cell_type_ratios,'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
     mixins:
@@ -4667,21 +4712,13 @@ classes:
     - informs_on_key_event
     - cell_type
     - tissue_context
-    - input_sample
+    - has_exposure_condition
     - follows_protocols
     - assay_date
-    - beat_frequency_hz
-    - active_area_percentage
-    - cilia_length
-    - cilia_per_cell
-    - percentage_ciliated_cells
-    - cell_type_ratios
-    - CiliaryFunctionAssay_imaging_protocol
-    - ciliary_motion_patterns
-    - ciliary_beat_amplitude
     - analysis_software
     - airway_region
     - CiliaryFunctionAssay_study_subject
+    - CiliaryFunctionAssay_has_specified_output
     - cell_culture_system
     - days_at_ali_or_differentiation
     - passage_number_at_assay
@@ -4689,24 +4726,42 @@ classes:
     - sample_collection_method
     - clinical_context
     slot_usage:
-      imaging_protocol:
-        name: imaging_protocol
-        range: ImagingProtocol
-        required: true
       study_subject:
         name: study_subject
         description: Can be ModelSystem (in vitro - ALI cultures, tissue slices, spheroids)
           or InVivoSubject (in vivo - OCT measurements)
         range: StudySubject
+      has_specified_output:
+        name: has_specified_output
+        range: CiliaryFunctionOutput
     class_uri: assay_microschemas:CiliaryFunctionAssay
+  CiliaryFunctionOutput:
+    name: CiliaryFunctionOutput
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/CiliaryFunctionOutput
+    description: Measurement results from a ciliary function assay. Contains the measured
+      values for ciliary beat frequency, active area, cilia morphology, and ciliated
+      cell populations.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    is_a: AssayOutputMeasurement
+    slots:
+    - id
+    - name
+    - description
+    - beat_frequency_hz
+    - active_area_percentage
+    - cilia_length
+    - cilia_per_cell
+    - percentage_ciliated_cells
+    - cell_type_ratios
+    - ciliary_motion_patterns
+    - ciliary_beat_amplitude
+    class_uri: assay_microschemas:CiliaryFunctionOutput
   ASLAssay:
     name: ASLAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/ASLAssay
     description: 'Assay for measuring airway surface liquid properties including ASL
       height, periciliary layer depth, and ion composition. Informs on Key Event:
-      "Decreased ASL height" or "Altered airway hydration" in CF-related AOPs.
-
-      TIER 1 slots (critical): asl_height_um, periciliary_layer_depth, imaging_protocol.'
+      "Decreased ASL height" or "Altered airway hydration" in CF-related AOPs.'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
     slots:
@@ -4717,21 +4772,32 @@ classes:
     - cell_type
     - tissue_context
     - study_subject
-    - input_sample
+    - has_exposure_condition
     - follows_protocols
     - assay_date
+    - ASLAssay_has_specified_output
+    slot_usage:
+      has_specified_output:
+        name: has_specified_output
+        range: ASLOutput
+    class_uri: assay_microschemas:ASLAssay
+  ASLOutput:
+    name: ASLOutput
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/ASLOutput
+    description: Measurement results from an airway surface liquid assay. Contains
+      the measured values for ASL height, periciliary layer depth, and ion composition.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    is_a: AssayOutputMeasurement
+    slots:
+    - id
+    - name
+    - description
     - asl_height_um
     - periciliary_layer_depth
-    - ASLAssay_imaging_protocol
     - mucus_layer_thickness
     - ion_composition
     - asl_ph
-    slot_usage:
-      imaging_protocol:
-        name: imaging_protocol
-        range: ImagingProtocol
-        required: true
-    class_uri: assay_microschemas:ASLAssay
+    class_uri: assay_microschemas:ASLOutput
   MucociliaryClearanceAssay:
     name: MucociliaryClearanceAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/MucociliaryClearanceAssay
@@ -4748,31 +4814,40 @@ classes:
     - cell_type
     - tissue_context
     - study_subject
-    - input_sample
+    - has_exposure_condition
     - follows_protocols
     - assay_date
+    - mucus_composition
+    - MucociliaryClearanceAssay_has_specified_output
+    slot_usage:
+      has_specified_output:
+        name: has_specified_output
+        range: MucociliaryClearanceOutput
+    class_uri: assay_microschemas:MucociliaryClearanceAssay
+  MucociliaryClearanceOutput:
+    name: MucociliaryClearanceOutput
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/MucociliaryClearanceOutput
+    description: Measurement results from a mucociliary clearance assay. Contains
+      the measured values for transport rate, directionality, and clearance metrics.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    is_a: AssayOutputMeasurement
+    slots:
+    - id
+    - name
+    - description
     - transport_rate
     - transport_directionality
     - mucus_layer_thickness
-    - mucus_composition
     - percentage_active_transport
     - particle_clearance_time
-    - MucociliaryClearanceAssay_imaging_protocol
-    slot_usage:
-      imaging_protocol:
-        name: imaging_protocol
-        range: ImagingProtocol
-        required: true
-    class_uri: assay_microschemas:MucociliaryClearanceAssay
+    class_uri: assay_microschemas:MucociliaryClearanceOutput
   OxidativeStressAssay:
     name: OxidativeStressAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/OxidativeStressAssay
     description: 'Assay for measuring oxidative stress markers. Informs on Key Event:
       "Increased oxidative stress" - often a Molecular Initiating Event (MIE) in respiratory
-      toxicology AOPs.
-
-      TIER 1 slots (critical): All surrogate markers for oxidative stress. Multiple
-      detection methods expected - no single "best" for lung function.'
+      toxicology AOPs. TIER 1 slots (critical): All surrogate markers for oxidative
+      stress. Multiple detection methods expected - no single "best" for lung function.'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
     slots:
@@ -4783,20 +4858,38 @@ classes:
     - cell_type
     - tissue_context
     - study_subject
-    - input_sample
+    - has_exposure_condition
     - follows_protocols
     - assay_date
-    - reactive_oxygen_species
     - ros_probe_type
+    - OxidativeStressAssay_has_specified_output
+    slot_usage:
+      has_specified_output:
+        name: has_specified_output
+        range: OxidativeStressOutput
+    class_uri: assay_microschemas:OxidativeStressAssay
+  OxidativeStressOutput:
+    name: OxidativeStressOutput
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/OxidativeStressOutput
+    description: Measurement results from an oxidative stress assay. Contains all
+      surrogate markers for oxidative stress including ROS levels, lipid peroxidation,
+      protein oxidation, DNA damage, and antioxidant capacity.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    is_a: AssayOutputMeasurement
+    slots:
+    - id
+    - name
+    - description
+    - reactive_oxygen_species
     - lipid_peroxidation
-    - malondialdehyde
-    - four_hydroxynonenal
-    - eight_isoprostane
+    - malondialdehyde_level
+    - four_hydroxynonenal_level
+    - eight_isoprostane_level
     - protein_oxidation_markers
     - protein_carbonyl_content
-    - nitrotyrosine
+    - nitrotyrosine_level
     - dna_damage_markers
-    - eight_ohdg
+    - eight_ohdg_level
     - antioxidant_capacity
     - glutathione_ratio
     - antioxidant_enzyme_activities
@@ -4805,14 +4898,7 @@ classes:
     - glutathione_peroxidase_activity
     - total_antioxidant_capacity
     - nrf2_activation
-    - detection_method_details
-    - OxidativeStressAssay_molecular_protocol
-    - staining_protocol
-    slot_usage:
-      molecular_protocol:
-        name: molecular_protocol
-        required: true
-    class_uri: assay_microschemas:OxidativeStressAssay
+    class_uri: assay_microschemas:OxidativeStressOutput
   CFTRFunctionAssay:
     name: CFTRFunctionAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/CFTRFunctionAssay
@@ -4831,18 +4917,36 @@ classes:
     - cell_type
     - tissue_context
     - study_subject
-    - input_sample
+    - has_exposure_condition
     - follows_protocols
     - assay_date
+    - stimulation_agent
+    - inhibitor_used
+    - CFTRFunctionAssay_has_specified_output
+    slot_usage:
+      has_specified_output:
+        name: has_specified_output
+        range: CFTRFunctionOutput
+    class_uri: assay_microschemas:CFTRFunctionAssay
+  CFTRFunctionOutput:
+    name: CFTRFunctionOutput
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/CFTRFunctionOutput
+    description: Measurement results from a CFTR function assay. Contains the measured
+      values for CFTR-mediated chloride secretion, forskolin response, and related
+      electrophysiology measurements.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    is_a: AssayOutputMeasurement
+    slots:
+    - id
+    - name
+    - description
     - cftr_chloride_secretion
     - cftr_forskolin_response
     - inhibitor_sensitive_current
     - cftr_specific_current
     - sweat_chloride_concentration
     - nasal_potential_difference
-    - stimulation_agent
-    - inhibitor_used
-    class_uri: assay_microschemas:CFTRFunctionAssay
+    class_uri: assay_microschemas:CFTRFunctionOutput
   EGFRSignalingAssay:
     name: EGFRSignalingAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/EGFRSignalingAssay
@@ -4865,9 +4969,28 @@ classes:
     - cell_type
     - tissue_context
     - study_subject
-    - input_sample
+    - has_exposure_condition
     - follows_protocols
     - assay_date
+    - normalization_reference
+    - phosphorylation_site
+    - EGFRSignalingAssay_has_specified_output
+    slot_usage:
+      has_specified_output:
+        name: has_specified_output
+        range: EGFRSignalingOutput
+    class_uri: assay_microschemas:EGFRSignalingAssay
+  EGFRSignalingOutput:
+    name: EGFRSignalingOutput
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/EGFRSignalingOutput
+    description: Measurement results from an EGFR signaling assay. Contains the measured
+      values for EGFR phosphorylation, total protein, and downstream kinase activation.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    is_a: AssayOutputMeasurement
+    slots:
+    - id
+    - name
+    - description
     - egfr_phosphorylation_y1068
     - egfr_phosphorylation_y1173
     - total_egfr_protein
@@ -4877,15 +5000,7 @@ classes:
     - pathway_biomarkers
     - egfr_ligand_expression
     - egfr_membrane_localization
-    - normalization_reference
-    - phosphorylation_site
-    - EGFRSignalingAssay_molecular_protocol
-    - staining_protocol
-    slot_usage:
-      molecular_protocol:
-        name: molecular_protocol
-        required: true
-    class_uri: assay_microschemas:EGFRSignalingAssay
+    class_uri: assay_microschemas:EGFRSignalingOutput
   GobletCellAssay:
     name: GobletCellAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/GobletCellAssay
@@ -4894,10 +5009,7 @@ classes:
 
       IMPORTANT per domain feedback: Need BOTH cell counts AND mucin secretion measurements
       - cells may stay same but secretion changes. AB-PAS staining common for visualizing
-      goblet cells. Some secreted mucins not tethered to goblet cells.
-
-      TIER 1 slots (critical): goblet_cell_count, staining_protocol, mucin_expression_level,
-      mucin_protein_concentration.'
+      goblet cells. Some secreted mucins not tethered to goblet cells.'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
     slots:
@@ -4908,12 +5020,28 @@ classes:
     - cell_type
     - tissue_context
     - study_subject
-    - input_sample
+    - has_exposure_condition
     - follows_protocols
     - assay_date
+    - GobletCellAssay_has_specified_output
+    slot_usage:
+      has_specified_output:
+        name: has_specified_output
+        range: GobletCellOutput
+    class_uri: assay_microschemas:GobletCellAssay
+  GobletCellOutput:
+    name: GobletCellOutput
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/GobletCellOutput
+    description: Measurement results from a goblet cell assay. Contains the measured
+      values for goblet cell counts, mucin expression, and mucus properties.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    is_a: AssayOutputMeasurement
+    slots:
+    - id
+    - name
+    - description
     - goblet_cell_count
     - goblet_cell_percentage
-    - GobletCellAssay_staining_protocol
     - muc5ac_mrna_expression
     - muc5ac_protein_expression
     - muc5b_mrna_expression
@@ -4924,12 +5052,7 @@ classes:
     - percent_solids
     - goblet_to_ciliated_ratio
     - mucus_viscosity
-    - imaging_protocol
-    slot_usage:
-      staining_protocol:
-        name: staining_protocol
-        required: true
-    class_uri: assay_microschemas:GobletCellAssay
+    class_uri: assay_microschemas:GobletCellOutput
   BALFSputumAssay:
     name: BALFSputumAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/BALFSputumAssay
@@ -4953,9 +5076,32 @@ classes:
     - informs_on_key_event
     - cell_type
     - tissue_context
-    - input_sample
+    - has_exposure_condition
     - follows_protocols
     - assay_date
+    - BALFSputumAssay_study_subject
+    - BALFSputumAssay_has_specified_output
+    - sample_collection_method
+    - clinical_context
+    slot_usage:
+      study_subject:
+        name: study_subject
+        range: InVivoSubject
+      has_specified_output:
+        name: has_specified_output
+        range: BALFSputumOutput
+    class_uri: assay_microschemas:BALFSputumAssay
+  BALFSputumOutput:
+    name: BALFSputumOutput
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/BALFSputumOutput
+    description: Measurement results from a BALF/sputum assay. Contains inflammatory
+      cell differentials, cytokine concentrations, and microbiome metrics.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    is_a: AssayOutputMeasurement
+    slots:
+    - id
+    - name
+    - description
     - neutrophil_percentage
     - eosinophil_percentage
     - macrophage_percentage
@@ -4970,18 +5116,7 @@ classes:
     - beta_diversity
     - bacterial_load
     - cell_free_dna
-    - BALFSputumAssay_molecular_protocol
-    - BALFSputumAssay_study_subject
-    - sample_collection_method
-    - clinical_context
-    slot_usage:
-      study_subject:
-        name: study_subject
-        range: InVivoSubject
-      molecular_protocol:
-        name: molecular_protocol
-        required: true
-    class_uri: assay_microschemas:BALFSputumAssay
+    class_uri: assay_microschemas:BALFSputumOutput
   LungFunctionAssay:
     name: LungFunctionAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/LungFunctionAssay
@@ -5008,19 +5143,42 @@ classes:
     - informs_on_key_event
     - cell_type
     - tissue_context
-    - input_sample
+    - has_exposure_condition
     - follows_protocols
     - assay_date
+    - reference_dataset
+    - hemoglobin_level
+    - recent_respiratory_illness
+    - LungFunctionAssay_study_subject
+    - LungFunctionAssay_has_specified_output
+    - sample_collection_method
+    - clinical_context
+    slot_usage:
+      study_subject:
+        name: study_subject
+        range: InVivoSubject
+      has_specified_output:
+        name: has_specified_output
+        range: LungFunctionOutput
+    class_uri: assay_microschemas:LungFunctionAssay
+  LungFunctionOutput:
+    name: LungFunctionOutput
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/LungFunctionOutput
+    description: Measurement results from a lung function assay. Contains spirometry
+      measurements, diffusing capacity, and related clinical metrics.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    is_a: AssayOutputMeasurement
+    slots:
+    - id
+    - name
+    - description
     - fev1
     - fvc
-    - reference_dataset
     - fev1_fvc_ratio
     - feno
     - decline_rate
     - bronchodilator_response
     - dlco
-    - hemoglobin_level
-    - recent_respiratory_illness
     - peak_expiratory_flow
     - fef25_75
     - total_lung_capacity
@@ -5029,18 +5187,7 @@ classes:
     - lung_compliance
     - lung_elastance
     - lung_resistance
-    - LungFunctionAssay_spirometry_protocol
-    - LungFunctionAssay_study_subject
-    - sample_collection_method
-    - clinical_context
-    slot_usage:
-      study_subject:
-        name: study_subject
-        range: InVivoSubject
-      spirometry_protocol:
-        name: spirometry_protocol
-        required: true
-    class_uri: assay_microschemas:LungFunctionAssay
+    class_uri: assay_microschemas:LungFunctionOutput
   FoxJExpressionAssay:
     name: FoxJExpressionAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/FoxJExpressionAssay
@@ -5065,24 +5212,35 @@ classes:
     - cell_type
     - tissue_context
     - study_subject
-    - input_sample
+    - has_exposure_condition
     - follows_protocols
     - assay_date
-    - foxj1_mrna_expression
-    - foxj1_protein_expression
-    - foxj1_positive_cell_percentage
-    - foxj1_nuclear_localization
-    - FoxJExpressionAssay_molecular_protocol
-    - staining_protocol
+    - FoxJExpressionAssay_has_specified_output
     - cell_culture_system
     - days_at_ali_or_differentiation
     - passage_number_at_assay
     - donor_characteristics
     slot_usage:
-      molecular_protocol:
-        name: molecular_protocol
-        required: true
+      has_specified_output:
+        name: has_specified_output
+        range: FoxJExpressionOutput
     class_uri: assay_microschemas:FoxJExpressionAssay
+  FoxJExpressionOutput:
+    name: FoxJExpressionOutput
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/FoxJExpressionOutput
+    description: Measurement results from a FoxJ1 expression assay. Contains the measured
+      values for FoxJ1 mRNA, protein, and cellular localization.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    is_a: AssayOutputMeasurement
+    slots:
+    - id
+    - name
+    - description
+    - foxj1_mrna_expression
+    - foxj1_protein_expression
+    - foxj1_positive_cell_percentage
+    - foxj1_nuclear_localization
+    class_uri: assay_microschemas:FoxJExpressionOutput
   GeneExpressionAssay:
     name: GeneExpressionAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/GeneExpressionAssay
@@ -5104,28 +5262,40 @@ classes:
     - cell_type
     - tissue_context
     - study_subject
-    - input_sample
+    - has_exposure_condition
     - follows_protocols
     - assay_date
     - target_gene
-    - mrna_level
-    - protein_level
-    - percentage_positive_cells
     - gene_expression_method
     - normalization_reference
-    - GeneExpressionAssay_molecular_protocol
+    - GeneExpressionAssay_has_specified_output
     - cell_culture_system
     - days_at_ali_or_differentiation
     - passage_number_at_assay
     - donor_characteristics
     slot_usage:
-      molecular_protocol:
-        name: molecular_protocol
-        required: true
+      has_specified_output:
+        name: has_specified_output
+        range: GeneExpressionOutput
     class_uri: assay_microschemas:GeneExpressionAssay
+  GeneExpressionOutput:
+    name: GeneExpressionOutput
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/GeneExpressionOutput
+    description: Measurement results from a gene expression assay. Contains the measured
+      values for mRNA level, protein level, and positive cell percentage.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
+    is_a: AssayOutputMeasurement
+    slots:
+    - id
+    - name
+    - description
+    - mrna_level
+    - protein_level
+    - percentage_positive_cells
+    class_uri: assay_microschemas:GeneExpressionOutput
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2026-02-19T00:38:14'
+source_file_date: '2026-02-20T02:09:55'
 source_file_size: 6988
-generation_date: '2026-02-19T00:38:32'
+generation_date: '2026-02-20T02:10:18'
 

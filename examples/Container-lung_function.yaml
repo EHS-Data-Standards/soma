@@ -4,16 +4,44 @@
 lung_function_assays:
   - id: "LF:001"
     name: "FEV1 measurement"
-    fev1:
-      value: "82.5"
-      unit:
-        id: "UO:0000187"
-        name: "percent predicted"
-    fvc:
-      value: "95.0"
-      unit:
-        id: "UO:0000187"
-        name: "percent predicted"
+    has_specified_output:
+      id: "LF:001-output"
+      name: "LF:001 measurement results"
+      fev1:
+        value: "82.5"
+        unit:
+          id: "UO:0000187"
+          name: "percent predicted"
+      fvc:
+        value: "95.0"
+        unit:
+          id: "UO:0000187"
+          name: "percent predicted"
+      fev1_fvc_ratio:
+        value: "86.8"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+      feno:
+        value: "22"
+        unit:
+          id: "UO:0000170"
+          name: "parts per billion"
+      bronchodilator_response:
+        value: "8.5"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+      dlco:
+        value: "88"
+        unit:
+          id: "UO:0000187"
+          name: "percent predicted"
+      peak_expiratory_flow:
+        value: "92"
+        unit:
+          id: "UO:0000187"
+          name: "percent predicted"
     reference_dataset: "GLI-2012"
     assay_date: "2024-08-10"
     # InVivoAssayMixin slots
@@ -32,13 +60,14 @@ lung_function_assays:
           name: "year"
       sex: "male"
       subject_characteristics: "Non-smoker, no respiratory disease"
-    spirometry_protocol:
-      id: "PROTOCOL:spiro-001"
-      name: "Pre- and post-bronchodilator spirometry"
-      spirometry_standard: "ATS/ERS 2019"
-      bronchodilator_agent: "albuterol"
-      bronchodilator_dose:
-        value: "400"
-        unit:
-          id: "UO:0000022"
-          name: "microgram"
+    follows_protocols:
+      - protocol_type: SpirometryProtocol
+        id: "PROTOCOL:spiro-001"
+        name: "Pre- and post-bronchodilator spirometry"
+        spirometry_standard: "ATS/ERS 2019"
+        bronchodilator_agent: "albuterol"
+        bronchodilator_dose:
+          value: "400"
+          unit:
+            id: "UO:0000022"
+            name: "microgram"

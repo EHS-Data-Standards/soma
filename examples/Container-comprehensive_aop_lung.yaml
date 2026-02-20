@@ -68,11 +68,14 @@ oxidative_stress_assays:
   - id: "OX:001"
     name: "ROS level - Control 4h"
     description: "Intracellular ROS in control HBE cells at 4 hours"
-    reactive_oxygen_species:
-      value: "1.0"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
+    has_specified_output:
+      id: "OX:001-output"
+      name: "OX:001 measurement results"
+      reactive_oxygen_species:
+        value: "1.0"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
     ros_probe_type: "DCFDA"
     assay_date: "2024-01-15"
     informs_on_key_event:
@@ -93,21 +96,25 @@ oxidative_stress_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    molecular_protocol:
-      id: "PROTOCOL:001"
-      name: "DCFDA ROS detection in ALI cultures"
-      detection_method: "fluorescence plate reader"
-      normalization_method: "cell count normalization"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:001"
+        name: "DCFDA ROS detection in ALI cultures"
+        detection_method: "fluorescence plate reader"
+        normalization_method: "cell count normalization"
 
   # PM2.5 exposed - 4h
   - id: "OX:002"
     name: "ROS level - PM2.5 4h"
     description: "Intracellular ROS in PM2.5-exposed HBE cells at 4 hours"
-    reactive_oxygen_species:
-      value: "2.8"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
+    has_specified_output:
+      id: "OX:002-output"
+      name: "OX:002 measurement results"
+      reactive_oxygen_species:
+        value: "2.8"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
     ros_probe_type: "DCFDA"
     assay_date: "2024-01-15"
     informs_on_key_event:
@@ -118,15 +125,22 @@ oxidative_stress_assays:
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
-    input_sample:
-      id: "SAMPLE:pm25-4h"
-      name: "PM2.5 exposed cells - 4h"
-      exposure_conditions: "PM2.5 10 ug/cm2"
-      exposure_duration:
-        value: "4"
-        unit:
-          id: "UO:0000032"
-          name: "hour"
+    has_exposure_condition:
+      - id: "EXPOSURE:pm25-4h"
+        name: "PM2.5 10 ug/cm2 for 4 hours"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "4"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-aop-001"
@@ -134,21 +148,25 @@ oxidative_stress_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    molecular_protocol:
-      id: "PROTOCOL:001"
-      name: "DCFDA ROS detection in ALI cultures"
-      detection_method: "fluorescence plate reader"
-      normalization_method: "cell count normalization"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:001"
+        name: "DCFDA ROS detection in ALI cultures"
+        detection_method: "fluorescence plate reader"
+        normalization_method: "cell count normalization"
 
   # Lipid peroxidation marker - PM2.5 24h
   - id: "OX:003"
     name: "MDA level - PM2.5 24h"
     description: "Malondialdehyde (lipid peroxidation marker) after PM2.5 exposure"
-    malondialdehyde:
-      value: "1.9"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
+    has_specified_output:
+      id: "OX:003-output"
+      name: "OX:003 measurement results"
+      malondialdehyde_level:
+        value: "1.9"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
     assay_date: "2024-01-16"
     informs_on_key_event:
       id: "KE:mie-oxidative-stress"
@@ -165,10 +183,11 @@ oxidative_stress_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    molecular_protocol:
-      id: "PROTOCOL:001"
-      name: "DCFDA ROS detection in ALI cultures"
-      detection_method: "fluorescence plate reader"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:001"
+        name: "DCFDA ROS detection in ALI cultures"
+        detection_method: "fluorescence plate reader"
 
 # =============================================================================
 # EGFR SIGNALING ASSAYS (KE1)
@@ -179,11 +198,14 @@ egfr_signaling_assays:
   - id: "EGFR:001"
     name: "pEGFR Y1068 - Control 4h"
     description: "EGFR phosphorylation at Y1068 in control cells at 4 hours"
-    egfr_phosphorylation_y1068:
-      value: "1.0"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
+    has_specified_output:
+      id: "EGFR:001-output"
+      name: "EGFR:001 measurement results"
+      egfr_phosphorylation_y1068:
+        value: "1.0"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
     normalization_reference: "beta-actin"
     phosphorylation_site: "Y1068"
     assay_date: "2024-01-15"
@@ -202,24 +224,28 @@ egfr_signaling_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    molecular_protocol:
-      id: "PROTOCOL:002"
-      name: "Western blot for phospho-EGFR"
-      detection_method: "chemiluminescence"
-      antibodies_used:
-        - "anti-pEGFR Y1068 (Cell Signaling #3777)"
-        - "anti-total EGFR (Cell Signaling #4267)"
-      normalization_method: "total protein normalization"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:002"
+        name: "Western blot for phospho-EGFR"
+        detection_method: "chemiluminescence"
+        antibodies_used:
+          - "anti-pEGFR Y1068 (Cell Signaling #3777)"
+          - "anti-total EGFR (Cell Signaling #4267)"
+        normalization_method: "total protein normalization"
 
   # PM2.5 exposed - 4h
   - id: "EGFR:002"
     name: "pEGFR Y1068 - PM2.5 4h"
     description: "EGFR phosphorylation at Y1068 after PM2.5 exposure at 4 hours"
-    egfr_phosphorylation_y1068:
-      value: "3.5"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
+    has_specified_output:
+      id: "EGFR:002-output"
+      name: "EGFR:002 measurement results"
+      egfr_phosphorylation_y1068:
+        value: "3.5"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
     normalization_reference: "beta-actin"
     phosphorylation_site: "Y1068"
     assay_date: "2024-01-15"
@@ -238,23 +264,27 @@ egfr_signaling_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    molecular_protocol:
-      id: "PROTOCOL:002"
-      name: "Western blot for phospho-EGFR"
-      detection_method: "chemiluminescence"
-      antibodies_used:
-        - "anti-pEGFR Y1068 (Cell Signaling #3777)"
-      normalization_method: "total protein normalization"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:002"
+        name: "Western blot for phospho-EGFR"
+        detection_method: "chemiluminescence"
+        antibodies_used:
+          - "anti-pEGFR Y1068 (Cell Signaling #3777)"
+        normalization_method: "total protein normalization"
 
   # Total EGFR protein (normalization control)
   - id: "EGFR:003"
     name: "Total EGFR - PM2.5 4h"
     description: "Total EGFR protein expression (loading control)"
-    total_egfr_protein:
-      value: "1.05"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
+    has_specified_output:
+      id: "EGFR:003-output"
+      name: "EGFR:003 measurement results"
+      total_egfr_protein:
+        value: "1.05"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
     assay_date: "2024-01-15"
     cell_type:
       id: "CL:0002328"
@@ -266,10 +296,11 @@ egfr_signaling_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    molecular_protocol:
-      id: "PROTOCOL:002"
-      name: "Western blot for phospho-EGFR"
-      detection_method: "chemiluminescence"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:002"
+        name: "Western blot for phospho-EGFR"
+        detection_method: "chemiluminescence"
 
 # =============================================================================
 # GOBLET CELL ASSAYS (KE2)
@@ -280,11 +311,14 @@ goblet_cell_assays:
   - id: "GCM:001"
     name: "MUC5AC mRNA - Control 24h"
     description: "MUC5AC mRNA expression in control cells at 24 hours"
-    muc5ac_mrna_expression:
-      value: "1.0"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
+    has_specified_output:
+      id: "GCM:001-output"
+      name: "GCM:001 measurement results"
+      muc5ac_mrna_expression:
+        value: "1.0"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
     assay_date: "2024-01-16"
     informs_on_key_event:
       id: "KE:ke2-goblet-hyperplasia"
@@ -301,21 +335,25 @@ goblet_cell_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    staining_protocol:
-      id: "PROTOCOL:stain-aop-001"
-      name: "AB-PAS staining for goblet cells"
-      staining_type: "AB-PAS"
-      fixation_method: "4% paraformaldehyde"
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:stain-aop-001"
+        name: "AB-PAS staining for goblet cells"
+        staining_type: "AB-PAS"
+        fixation_method: "4% paraformaldehyde"
 
   # MUC5AC mRNA - PM2.5 24h
   - id: "GCM:002"
     name: "MUC5AC mRNA - PM2.5 24h"
     description: "MUC5AC mRNA expression after PM2.5 exposure at 24 hours"
-    muc5ac_mrna_expression:
-      value: "4.2"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
+    has_specified_output:
+      id: "GCM:002-output"
+      name: "GCM:002 measurement results"
+      muc5ac_mrna_expression:
+        value: "4.2"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
     assay_date: "2024-01-16"
     informs_on_key_event:
       id: "KE:ke2-goblet-hyperplasia"
@@ -332,20 +370,24 @@ goblet_cell_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    staining_protocol:
-      id: "PROTOCOL:stain-aop-001"
-      name: "AB-PAS staining for goblet cells"
-      staining_type: "AB-PAS"
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:stain-aop-001"
+        name: "AB-PAS staining for goblet cells"
+        staining_type: "AB-PAS"
 
   # Goblet cell percentage - PM2.5 7d
   - id: "GCM:003"
     name: "Goblet cell percentage - PM2.5 7d"
     description: "Percentage of goblet cells after 7-day PM2.5 exposure"
-    goblet_cell_percentage:
-      value: "32"
-      unit:
-        id: "UO:0000187"
-        name: "percent"
+    has_specified_output:
+      id: "GCM:003-output"
+      name: "GCM:003 measurement results"
+      goblet_cell_percentage:
+        value: "32"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
     assay_date: "2024-01-22"
     cell_type:
       id: "CL:0002328"
@@ -357,20 +399,24 @@ goblet_cell_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    staining_protocol:
-      id: "PROTOCOL:stain-aop-001"
-      name: "AB-PAS staining for goblet cells"
-      staining_type: "AB-PAS"
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:stain-aop-001"
+        name: "AB-PAS staining for goblet cells"
+        staining_type: "AB-PAS"
 
   # Mucus viscosity - PM2.5 7d
   - id: "GCM:004"
     name: "Mucus viscosity - PM2.5 7d"
     description: "Mucus viscosity after 7-day PM2.5 exposure showing hypersecretion phenotype"
-    mucus_viscosity:
-      value: "185"
-      unit:
-        id: "UO:0000019"
-        name: "centipoise"
+    has_specified_output:
+      id: "GCM:004-output"
+      name: "GCM:004 measurement results"
+      mucus_viscosity:
+        value: "185"
+        unit:
+          id: "UO:0000019"
+          name: "centipoise"
     assay_date: "2024-01-22"
     cell_type:
       id: "CL:0002328"
@@ -382,10 +428,11 @@ goblet_cell_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    staining_protocol:
-      id: "PROTOCOL:stain-aop-001"
-      name: "AB-PAS staining for goblet cells"
-      staining_type: "AB-PAS"
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:stain-aop-001"
+        name: "AB-PAS staining for goblet cells"
+        staining_type: "AB-PAS"
 
 # =============================================================================
 # CILIARY FUNCTION ASSAYS (KE3 - part 1)
@@ -396,11 +443,14 @@ ciliary_function_assays:
   - id: "CILIARY:001"
     name: "CBF - Control baseline"
     description: "Ciliary beat frequency in control HBE cells at baseline"
-    beat_frequency_hz:
-      value: "12.5"
-      unit:
-        id: "UO:0000106"
-        name: "hertz"
+    has_specified_output:
+      id: "CILIARY:001-output"
+      name: "CILIARY:001 measurement results"
+      beat_frequency_hz:
+        value: "12.5"
+        unit:
+          id: "UO:0000106"
+          name: "hertz"
     assay_date: "2024-01-15"
     informs_on_key_event:
       id: "KE:ke3-impaired-ciliary"
@@ -463,35 +513,39 @@ ciliary_function_assays:
               unit:
                 id: "UO:0000064"
                 name: "micrograms per milliliter"
-    imaging_protocol:
-      id: "PROTOCOL:004"
-      name: "CBF measurement by high-speed microscopy"
-      imaging_frame_rate:
-        value: "200"
-        unit:
-          id: "UO:0000105"
-          name: "hertz"
-      imaging_duration:
-        value: "5"
-        unit:
-          id: "UO:0000010"
-          name: "second"
-      temperature_control:
-        value: "37"
-        unit:
-          id: "UO:0000027"
-          name: "degree Celsius"
-      evaporation_prevention: "perfluorocarbon overlay"
+    follows_protocols:
+      - protocol_type: ImagingProtocol
+        id: "PROTOCOL:004"
+        name: "CBF measurement by high-speed microscopy"
+        imaging_frame_rate:
+          value: "200"
+          unit:
+            id: "UO:0000105"
+            name: "hertz"
+        imaging_duration:
+          value: "5"
+          unit:
+            id: "UO:0000010"
+            name: "second"
+        temperature_control:
+          value: "37"
+          unit:
+            id: "UO:0000027"
+            name: "degree Celsius"
+        evaporation_prevention: "perfluorocarbon overlay"
 
   # CBF - PM2.5 24h
   - id: "CILIARY:002"
     name: "CBF - PM2.5 24h"
     description: "Ciliary beat frequency after PM2.5 exposure at 24 hours"
-    beat_frequency_hz:
-      value: "9.8"
-      unit:
-        id: "UO:0000106"
-        name: "hertz"
+    has_specified_output:
+      id: "CILIARY:002-output"
+      name: "CILIARY:002 measurement results"
+      beat_frequency_hz:
+        value: "9.8"
+        unit:
+          id: "UO:0000106"
+          name: "hertz"
     assay_date: "2024-01-16"
     informs_on_key_event:
       id: "KE:ke3-impaired-ciliary"
@@ -509,24 +563,28 @@ ciliary_function_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       substrate_type: transwell_insert
-    imaging_protocol:
-      id: "PROTOCOL:004"
-      name: "CBF measurement by high-speed microscopy"
-      imaging_frame_rate:
-        value: "200"
-        unit:
-          id: "UO:0000105"
-          name: "hertz"
+    follows_protocols:
+      - protocol_type: ImagingProtocol
+        id: "PROTOCOL:004"
+        name: "CBF measurement by high-speed microscopy"
+        imaging_frame_rate:
+          value: "200"
+          unit:
+            id: "UO:0000105"
+            name: "hertz"
 
   # CBF - PM2.5 7d
   - id: "CILIARY:003"
     name: "CBF - PM2.5 7d"
     description: "Ciliary beat frequency after 7-day PM2.5 exposure"
-    beat_frequency_hz:
-      value: "7.2"
-      unit:
-        id: "UO:0000106"
-        name: "hertz"
+    has_specified_output:
+      id: "CILIARY:003-output"
+      name: "CILIARY:003 measurement results"
+      beat_frequency_hz:
+        value: "7.2"
+        unit:
+          id: "UO:0000106"
+          name: "hertz"
     assay_date: "2024-01-22"
     informs_on_key_event:
       id: "KE:ke3-impaired-ciliary"
@@ -544,24 +602,28 @@ ciliary_function_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       substrate_type: transwell_insert
-    imaging_protocol:
-      id: "PROTOCOL:004"
-      name: "CBF measurement by high-speed microscopy"
-      imaging_frame_rate:
-        value: "200"
-        unit:
-          id: "UO:0000105"
-          name: "hertz"
+    follows_protocols:
+      - protocol_type: ImagingProtocol
+        id: "PROTOCOL:004"
+        name: "CBF measurement by high-speed microscopy"
+        imaging_frame_rate:
+          value: "200"
+          unit:
+            id: "UO:0000105"
+            name: "hertz"
 
   # Ciliated cell percentage - PM2.5 7d
   - id: "CILIARY:004"
     name: "Ciliated cell percentage - PM2.5 7d"
     description: "Percentage of ciliated cells after 7-day PM2.5 exposure"
-    percentage_ciliated_cells:
-      value: "45"
-      unit:
-        id: "UO:0000187"
-        name: "percent"
+    has_specified_output:
+      id: "CILIARY:004-output"
+      name: "CILIARY:004 measurement results"
+      percentage_ciliated_cells:
+        value: "45"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
     assay_date: "2024-01-22"
     cell_type:
       id: "CL:0002328"
@@ -574,14 +636,15 @@ ciliary_function_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       substrate_type: transwell_insert
-    imaging_protocol:
-      id: "PROTOCOL:004"
-      name: "CBF measurement by high-speed microscopy"
-      imaging_frame_rate:
-        value: "200"
-        unit:
-          id: "UO:0000105"
-          name: "hertz"
+    follows_protocols:
+      - protocol_type: ImagingProtocol
+        id: "PROTOCOL:004"
+        name: "CBF measurement by high-speed microscopy"
+        imaging_frame_rate:
+          value: "200"
+          unit:
+            id: "UO:0000105"
+            name: "hertz"
 
 # =============================================================================
 # MUCOCILIARY CLEARANCE ASSAYS (KE3 - part 2)
@@ -592,12 +655,15 @@ mcc_assays:
   - id: "MCC:001"
     name: "MCT rate - Control baseline"
     description: "Mucociliary transport rate in control HBE cells at baseline"
-    transport_rate:
-      value: "52"
-      unit:
-        id: "UO:0000103"
-        name: "micrometer per second"
-    transport_directionality: normal
+    has_specified_output:
+      id: "MCC:001-output"
+      name: "MCC:001 measurement results"
+      transport_rate:
+        value: "52"
+        unit:
+          id: "UO:0000103"
+          name: "micrometer per second"
+      transport_directionality: normal
     assay_date: "2024-01-15"
     informs_on_key_event:
       id: "KE:ke3-impaired-mcc"
@@ -614,27 +680,31 @@ mcc_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    imaging_protocol:
-      id: "PROTOCOL:005"
-      name: "MCT rate by microsphere tracking"
-      fluorescent_tracer: "1-um fluorescent microspheres"
-      particle_tracking_method: "automated particle tracking"
-      particle_size:
-        value: "1"
-        unit:
-          id: "UO:0000017"
-          name: "micrometer"
+    follows_protocols:
+      - protocol_type: ImagingProtocol
+        id: "PROTOCOL:005"
+        name: "MCT rate by microsphere tracking"
+        fluorescent_tracer: "1-um fluorescent microspheres"
+        particle_tracking_method: "automated particle tracking"
+        particle_size:
+          value: "1"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
 
   # MCT rate - PM2.5 24h
   - id: "MCC:002"
     name: "MCT rate - PM2.5 24h"
     description: "Mucociliary transport rate after PM2.5 exposure at 24 hours"
-    transport_rate:
-      value: "38"
-      unit:
-        id: "UO:0000103"
-        name: "micrometer per second"
-    transport_directionality: normal
+    has_specified_output:
+      id: "MCC:002-output"
+      name: "MCC:002 measurement results"
+      transport_rate:
+        value: "38"
+        unit:
+          id: "UO:0000103"
+          name: "micrometer per second"
+      transport_directionality: normal
     assay_date: "2024-01-16"
     informs_on_key_event:
       id: "KE:ke3-impaired-mcc"
@@ -651,22 +721,26 @@ mcc_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    imaging_protocol:
-      id: "PROTOCOL:005"
-      name: "MCT rate by microsphere tracking"
-      fluorescent_tracer: "1-um fluorescent microspheres"
-      particle_tracking_method: "automated particle tracking"
+    follows_protocols:
+      - protocol_type: ImagingProtocol
+        id: "PROTOCOL:005"
+        name: "MCT rate by microsphere tracking"
+        fluorescent_tracer: "1-um fluorescent microspheres"
+        particle_tracking_method: "automated particle tracking"
 
   # MCT rate - PM2.5 7d (severely impaired)
   - id: "MCC:003"
     name: "MCT rate - PM2.5 7d"
     description: "Mucociliary transport rate after 7-day PM2.5 exposure"
-    transport_rate:
-      value: "18"
-      unit:
-        id: "UO:0000103"
-        name: "micrometer per second"
-    transport_directionality: variable
+    has_specified_output:
+      id: "MCC:003-output"
+      name: "MCC:003 measurement results"
+      transport_rate:
+        value: "18"
+        unit:
+          id: "UO:0000103"
+          name: "micrometer per second"
+      transport_directionality: variable
     assay_date: "2024-01-22"
     informs_on_key_event:
       id: "KE:ke3-impaired-mcc"
@@ -683,20 +757,24 @@ mcc_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    imaging_protocol:
-      id: "PROTOCOL:005"
-      name: "MCT rate by microsphere tracking"
-      fluorescent_tracer: "1-um fluorescent microspheres"
+    follows_protocols:
+      - protocol_type: ImagingProtocol
+        id: "PROTOCOL:005"
+        name: "MCT rate by microsphere tracking"
+        fluorescent_tracer: "1-um fluorescent microspheres"
 
   # Percentage active transport - PM2.5 7d
   - id: "MCC:004"
     name: "Active transport percentage - PM2.5 7d"
     description: "Percentage of surface with active mucociliary transport after 7-day PM2.5 exposure"
-    percentage_active_transport:
-      value: "35"
-      unit:
-        id: "UO:0000187"
-        name: "percent"
+    has_specified_output:
+      id: "MCC:004-output"
+      name: "MCC:004 measurement results"
+      percentage_active_transport:
+        value: "35"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
     assay_date: "2024-01-22"
     cell_type:
       id: "CL:0002328"
@@ -708,10 +786,11 @@ mcc_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    imaging_protocol:
-      id: "PROTOCOL:005"
-      name: "MCT rate by microsphere tracking"
-      fluorescent_tracer: "1-um fluorescent microspheres"
+    follows_protocols:
+      - protocol_type: ImagingProtocol
+        id: "PROTOCOL:005"
+        name: "MCT rate by microsphere tracking"
+        fluorescent_tracer: "1-um fluorescent microspheres"
 
 # =============================================================================
 # LUNG FUNCTION ASSAYS (Adverse Outcome - Clinical, InVivoSubject)
@@ -722,11 +801,14 @@ lung_function_assays:
   - id: "LF:001"
     name: "FEV1 - Subject 1 baseline"
     description: "FEV1 in subject from high PM2.5 exposure area at baseline"
-    fev1:
-      value: "78"
-      unit:
-        id: "UO:0000187"
-        name: "percent predicted"
+    has_specified_output:
+      id: "LF:001-output"
+      name: "LF:001 measurement results"
+      fev1:
+        value: "78"
+        unit:
+          id: "UO:0000187"
+          name: "percent predicted"
     reference_dataset: "GLI-2012"
     assay_date: "2024-02-01"
     informs_on_key_event:
@@ -750,26 +832,30 @@ lung_function_assays:
       sample_type: exhaled_breath_condensate
       collection_site: "pulmonary function laboratory"
       subject_characteristics: "Non-smoker, high PM2.5 exposure area resident, 15 years"
-    spirometry_protocol:
-      id: "PROTOCOL:006"
-      name: "Pre- and post-bronchodilator spirometry"
-      spirometry_standard: "ATS/ERS 2019"
-      bronchodilator_agent: "albuterol"
-      bronchodilator_dose:
-        value: "400"
-        unit:
-          id: "UO:0000022"
-          name: "microgram"
+    follows_protocols:
+      - protocol_type: SpirometryProtocol
+        id: "PROTOCOL:006"
+        name: "Pre- and post-bronchodilator spirometry"
+        spirometry_standard: "ATS/ERS 2019"
+        bronchodilator_agent: "albuterol"
+        bronchodilator_dose:
+          value: "400"
+          unit:
+            id: "UO:0000022"
+            name: "microgram"
 
   # FEV1 - Subject 1 follow-up
   - id: "LF:002"
     name: "FEV1 - Subject 1 1-year follow-up"
     description: "FEV1 decline after 1 year continued PM2.5 exposure"
-    fev1:
-      value: "74"
-      unit:
-        id: "UO:0000187"
-        name: "percent predicted"
+    has_specified_output:
+      id: "LF:002-output"
+      name: "LF:002 measurement results"
+      fev1:
+        value: "74"
+        unit:
+          id: "UO:0000187"
+          name: "percent predicted"
     reference_dataset: "GLI-2012"
     assay_date: "2025-02-01"
     study_subject:
@@ -786,20 +872,24 @@ lung_function_assays:
           name: "year"
       sex: "male"
       subject_characteristics: "Non-smoker, high PM2.5 exposure area resident, 16 years"
-    spirometry_protocol:
-      id: "PROTOCOL:006"
-      name: "Pre- and post-bronchodilator spirometry"
-      spirometry_standard: "ATS/ERS 2019"
+    follows_protocols:
+      - protocol_type: SpirometryProtocol
+        id: "PROTOCOL:006"
+        name: "Pre- and post-bronchodilator spirometry"
+        spirometry_standard: "ATS/ERS 2019"
 
   # FEV1/FVC ratio - Subject 1
   - id: "LF:003"
     name: "FEV1/FVC ratio - Subject 1"
     description: "FEV1/FVC ratio indicating obstructive pattern"
-    fev1_fvc_ratio:
-      value: "0.68"
-      unit:
-        id: "UO:0000196"
-        name: "ratio"
+    has_specified_output:
+      id: "LF:003-output"
+      name: "LF:003 measurement results"
+      fev1_fvc_ratio:
+        value: "0.68"
+        unit:
+          id: "UO:0000196"
+          name: "ratio"
     assay_date: "2025-02-01"
     study_subject:
       subject_type: InVivoSubject
@@ -814,20 +904,24 @@ lung_function_assays:
           id: "UO:0000036"
           name: "year"
       sex: "male"
-    spirometry_protocol:
-      id: "PROTOCOL:006"
-      name: "Pre- and post-bronchodilator spirometry"
-      spirometry_standard: "ATS/ERS 2019"
+    follows_protocols:
+      - protocol_type: SpirometryProtocol
+        id: "PROTOCOL:006"
+        name: "Pre- and post-bronchodilator spirometry"
+        spirometry_standard: "ATS/ERS 2019"
 
   # FEV1 decline rate - Subject 1
   - id: "LF:004"
     name: "FEV1 decline rate - Subject 1"
     description: "Rate of FEV1 decline over 1 year (accelerated compared to normal aging)"
-    decline_rate:
-      value: "65"
-      unit:
-        id: "UO:0000098"
-        name: "milliliter per year"
+    has_specified_output:
+      id: "LF:004-output"
+      name: "LF:004 measurement results"
+      decline_rate:
+        value: "65"
+        unit:
+          id: "UO:0000098"
+          name: "milliliter per year"
     assay_date: "2025-02-01"
     study_subject:
       subject_type: InVivoSubject
@@ -843,7 +937,8 @@ lung_function_assays:
           name: "year"
       sex: "male"
       subject_characteristics: "Accelerated decline >2x normal (25-30 mL/year)"
-    spirometry_protocol:
-      id: "PROTOCOL:006"
-      name: "Pre- and post-bronchodilator spirometry"
-      spirometry_standard: "ATS/ERS 2019"
+    follows_protocols:
+      - protocol_type: SpirometryProtocol
+        id: "PROTOCOL:006"
+        name: "Pre- and post-bronchodilator spirometry"
+        spirometry_standard: "ATS/ERS 2019"

@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://EHS-Data-Standards.github.io/outcomes-working-group/elements/malondialdehyde/">
+        <link rel="canonical" href="https://EHS-Data-Standards.github.io/outcomes-working-group/elements/protocol_type/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: malondialdehyde - outcomes-working-group</title>
+        <title>Slot: protocol_type - outcomes-working-group</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-malondialdehyde" class="md-skip">
+        <a href="#slot-protocol_type" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: malondialdehyde
+              Slot: protocol_type
             
           </span>
         </div>
@@ -443,10 +443,10 @@
   
 
 
-<h1 id="slot-malondialdehyde">Slot: malondialdehyde</h1>
-<p><em>MDA level - lipid peroxidation marker. TIER 1.</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/malondialdehyde">outcomes_working_group:malondialdehyde</a>
-Alias: malondialdehyde</p>
+<h1 id="slot-protocol_type">Slot: protocol_type</h1>
+<p><em>The specific type of protocol. Used to designate which concrete class (e.g., ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is instantiated for polymorphic protocol slots.</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/protocol_type">outcomes_working_group:protocol_type</a>
+Alias: protocol_type</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -460,15 +460,35 @@ Alias: malondialdehyde</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../OxidativeStressAssay/">OxidativeStressAssay</a></td>
-<td>Assay for measuring oxidative stress markers</td>
+<td><a href="../ImagingProtocol/">ImagingProtocol</a></td>
+<td>Protocol for imaging-based assays (CBF, ASL, MCC)</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SpirometryProtocol/">SpirometryProtocol</a></td>
+<td>Protocol for lung function / spirometry assays</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Protocol/">Protocol</a></td>
+<td>A detailed set of steps for how to perform a specific assay</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MolecularAssayProtocol/">MolecularAssayProtocol</a></td>
+<td>Protocol for molecular biology assays (qRT-PCR, Western blot, ELISA)</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../StainingProtocol/">StainingProtocol</a></td>
+<td>Protocol for staining-based assays (goblet cell, immunofluorescence)</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../QuantityValue/">QuantityValue</a></li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -486,25 +506,27 @@ Alias: malondialdehyde</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>outcomes_working_group:malondialdehyde</td>
+<td>outcomes_working_group:protocol_type</td>
 </tr>
 <tr>
 <td>native</td>
-<td>outcomes_working_group:malondialdehyde</td>
+<td>outcomes_working_group:protocol_type</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">malondialdehyde</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MDA level - lipid peroxidation marker. TIER 1.</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocol_type</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The specific type of protocol. Used to designate which concrete class</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">(e.g., ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol)</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">is instantiated for polymorphic protocol slots.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">malondialdehyde</span>
+<span class="nt">designates_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocol_type</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protocol</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>
 

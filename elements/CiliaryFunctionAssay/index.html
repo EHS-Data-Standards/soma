@@ -290,7 +290,7 @@
 <h1 id="class-ciliaryfunctionassay">Class: CiliaryFunctionAssay</h1>
 <p><em>Assay for measuring ciliary function including beat frequency, active area, cilia morphology, and ciliated cell populations. Informs on Key Event: "Decreased ciliary function" in respiratory AOPs.</em></p>
 <p><em>CONTEXT: Can be performed in vitro (tissue slices, 2D cell culture, spheroids) or in vivo (often using optical coherence tomography).</em></p>
-<p><em>TIER 1 slots (critical): beat_frequency_hz, active_area_percentage, cilia_length, cilia_per_cell, percentage_ciliated_cells, cell_type_ratios, imaging_protocol.</em></p>
+<p><em>TIER 1 slots (critical): beat_frequency_hz, active_area_percentage, cilia_length, cilia_per_cell, percentage_ciliated_cells, cell_type_ratios,</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/CiliaryFunctionAssay">outcomes_working_group:CiliaryFunctionAssay</a></p>
 <pre class="mermaid"><code> classDiagram
     class CiliaryFunctionAssay
@@ -302,33 +302,11 @@
       Assay &lt;|-- CiliaryFunctionAssay
         click Assay href "../Assay/"
 
-      CiliaryFunctionAssay : active_area_percentage
-
-
-
-
-
-        CiliaryFunctionAssay --&gt; "0..1" QuantityValue : active_area_percentage
-        click QuantityValue href "../QuantityValue/"
-
-
-
       CiliaryFunctionAssay : airway_region
 
       CiliaryFunctionAssay : analysis_software
 
       CiliaryFunctionAssay : assay_date
-
-      CiliaryFunctionAssay : beat_frequency_hz
-
-
-
-
-
-        CiliaryFunctionAssay --&gt; "0..1" QuantityValue : beat_frequency_hz
-        click QuantityValue href "../QuantityValue/"
-
-
 
       CiliaryFunctionAssay : cell_culture_system
 
@@ -340,52 +318,6 @@
 
         CiliaryFunctionAssay --&gt; "0..1" NamedEntity : cell_type
         click NamedEntity href "../NamedEntity/"
-
-
-
-      CiliaryFunctionAssay : cell_type_ratios
-
-      CiliaryFunctionAssay : cilia_length
-
-
-
-
-
-        CiliaryFunctionAssay --&gt; "0..1" QuantityValue : cilia_length
-        click QuantityValue href "../QuantityValue/"
-
-
-
-      CiliaryFunctionAssay : cilia_per_cell
-
-
-
-
-
-        CiliaryFunctionAssay --&gt; "0..1" QuantityValue : cilia_per_cell
-        click QuantityValue href "../QuantityValue/"
-
-
-
-      CiliaryFunctionAssay : ciliary_beat_amplitude
-
-
-
-
-
-        CiliaryFunctionAssay --&gt; "0..1" QuantityValue : ciliary_beat_amplitude
-        click QuantityValue href "../QuantityValue/"
-
-
-
-      CiliaryFunctionAssay : ciliary_motion_patterns
-
-
-
-
-
-        CiliaryFunctionAssay --&gt; "0..1" CiliaryMotionPatternEnum : ciliary_motion_patterns
-        click CiliaryMotionPatternEnum href "../CiliaryMotionPatternEnum/"
 
 
 
@@ -408,18 +340,29 @@
 
 
 
+      CiliaryFunctionAssay : has_exposure_condition
+
+
+
+
+
+        CiliaryFunctionAssay --&gt; "*" ExposureCondition : has_exposure_condition
+        click ExposureCondition href "../ExposureCondition/"
+
+
+
+      CiliaryFunctionAssay : has_specified_output
+
+
+
+
+
+        CiliaryFunctionAssay --&gt; "0..1" CiliaryFunctionOutput : has_specified_output
+        click CiliaryFunctionOutput href "../CiliaryFunctionOutput/"
+
+
+
       CiliaryFunctionAssay : id
-
-      CiliaryFunctionAssay : imaging_protocol
-
-
-
-
-
-        CiliaryFunctionAssay --&gt; "1" ImagingProtocol : imaging_protocol
-        click ImagingProtocol href "../ImagingProtocol/"
-
-
 
       CiliaryFunctionAssay : informs_on_key_event
 
@@ -432,31 +375,9 @@
 
 
 
-      CiliaryFunctionAssay : input_sample
-
-
-
-
-
-        CiliaryFunctionAssay --&gt; "0..1" InputSample : input_sample
-        click InputSample href "../InputSample/"
-
-
-
       CiliaryFunctionAssay : name
 
       CiliaryFunctionAssay : passage_number_at_assay
-
-      CiliaryFunctionAssay : percentage_ciliated_cells
-
-
-
-
-
-        CiliaryFunctionAssay --&gt; "0..1" QuantityValue : percentage_ciliated_cells
-        click QuantityValue href "../QuantityValue/"
-
-
 
       CiliaryFunctionAssay : sample_collection_method
 
@@ -505,60 +426,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><a href="../beat_frequency_hz/">beat_frequency_hz</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Ciliary beat frequency measured in Hz</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../active_area_percentage/">active_area_percentage</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Percentage of epithelial surface with actively beating cilia</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../cilia_length/">cilia_length</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Length of cilia measured in micrometers</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../cilia_per_cell/">cilia_per_cell</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Number of cilia per ciliated cell</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../percentage_ciliated_cells/">percentage_ciliated_cells</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Percentage of cells that are ciliated</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../cell_type_ratios/">cell_type_ratios</a></td>
-<td>* <br/> <a href="../String/">String</a></td>
-<td></td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../imaging_protocol/">imaging_protocol</a></td>
-<td>1 <br/> <a href="../ImagingProtocol/">ImagingProtocol</a></td>
-<td>Reference to the imaging protocol used</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../ciliary_motion_patterns/">ciliary_motion_patterns</a></td>
-<td>0..1 <br/> <a href="../CiliaryMotionPatternEnum/">CiliaryMotionPatternEnum</a></td>
-<td>Patterns of ciliary motion (coordinated, dyskinetic, immotile)</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../ciliary_beat_amplitude/">ciliary_beat_amplitude</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Amplitude of ciliary beat</td>
-<td>direct</td>
-</tr>
 <tr>
 <td><a href="../analysis_software/">analysis_software</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
@@ -632,9 +499,9 @@
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
-<td><a href="../input_sample/">input_sample</a></td>
-<td>0..1 <br/> <a href="../InputSample/">InputSample</a></td>
-<td>Description of the input sample and manipulations</td>
+<td><a href="../has_exposure_condition/">has_exposure_condition</a></td>
+<td>* <br/> <a href="../ExposureCondition/">ExposureCondition</a></td>
+<td>The exposure condition(s) applied to the study subject</td>
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
@@ -647,6 +514,12 @@
 <td><a href="../assay_date/">assay_date</a></td>
 <td>0..1 <br/> <a href="../Date/">Date</a></td>
 <td>Date when the assay was performed</td>
+<td><a href="../Assay/">Assay</a></td>
+</tr>
+<tr>
+<td><a href="../has_specified_output/">has_specified_output</a></td>
+<td>0..1 <br/> <a href="../CiliaryFunctionOutput/">CiliaryFunctionOutput</a></td>
+<td>The measurement results produced by this assay — the specified output of a pl...</td>
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
@@ -744,34 +617,24 @@
 <span class="w">  </span><span class="s">in</span><span class="nv"> </span><span class="s">vivo</span><span class="nv"> </span><span class="s">(often</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">optical</span><span class="nv"> </span><span class="s">coherence</span><span class="nv"> </span><span class="s">tomography).</span>
 
 <span class="w">  </span><span class="s">TIER</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">(critical):</span><span class="nv"> </span><span class="s">beat_frequency_hz,</span><span class="nv"> </span><span class="s">active_area_percentage,</span><span class="nv"> </span><span class="s">cilia_length,</span>
-<span class="w">  </span><span class="s">cilia_per_cell,</span><span class="nv"> </span><span class="s">percentage_ciliated_cells,</span><span class="nv"> </span><span class="s">cell_type_ratios,</span><span class="nv"> </span><span class="s">imaging_protocol.'</span>
+<span class="w">  </span><span class="s">cilia_per_cell,</span><span class="nv"> </span><span class="s">percentage_ciliated_cells,</span><span class="nv"> </span><span class="s">cell_type_ratios,'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="nt">mixins</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
 <span class="nt">slots</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">beat_frequency_hz</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">active_area_percentage</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cilia_length</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cilia_per_cell</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">percentage_ciliated_cells</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_type_ratios</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imaging_protocol</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_motion_patterns</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_beat_amplitude</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">analysis_software</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">airway_region</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">imaging_protocol</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imaging_protocol</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImagingProtocol</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">study_subject</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Can be ModelSystem (in vitro - ALI cultures, tissue slices, spheroids)</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">or InVivoSubject (in vivo - OCT measurements)</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
+<span class="w">  </span><span class="nt">has_specified_output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionOutput</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
@@ -789,130 +652,22 @@
 <span class="w">  </span><span class="s">in</span><span class="nv"> </span><span class="s">vivo</span><span class="nv"> </span><span class="s">(often</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">optical</span><span class="nv"> </span><span class="s">coherence</span><span class="nv"> </span><span class="s">tomography).</span>
 
 <span class="w">  </span><span class="s">TIER</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">(critical):</span><span class="nv"> </span><span class="s">beat_frequency_hz,</span><span class="nv"> </span><span class="s">active_area_percentage,</span><span class="nv"> </span><span class="s">cilia_length,</span>
-<span class="w">  </span><span class="s">cilia_per_cell,</span><span class="nv"> </span><span class="s">percentage_ciliated_cells,</span><span class="nv"> </span><span class="s">cell_type_ratios,</span><span class="nv"> </span><span class="s">imaging_protocol.'</span>
+<span class="w">  </span><span class="s">cilia_per_cell,</span><span class="nv"> </span><span class="s">percentage_ciliated_cells,</span><span class="nv"> </span><span class="s">cell_type_ratios,'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="nt">mixins</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">imaging_protocol</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imaging_protocol</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImagingProtocol</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">study_subject</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Can be ModelSystem (in vitro - ALI cultures, tissue slices, spheroids)</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">or InVivoSubject (in vivo - OCT measurements)</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
+<span class="w">  </span><span class="nt">has_specified_output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionOutput</span>
 <span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">beat_frequency_hz</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">beat_frequency_hz</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ciliary beat frequency measured in Hz. TIER 1 - critical for assessing</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">ciliary function.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">beat_frequency_hz</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">active_area_percentage</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">active_area_percentage</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Percentage of epithelial surface with actively beating cilia. TIER</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">1 - critical for assessing ciliary coverage.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">active_area_percentage</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">cilia_length</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cilia_length</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Length of cilia measured in micrometers. TIER 1 - morphological assessment</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">of cilia.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cilia_length</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">cilia_per_cell</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cilia_per_cell</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of cilia per ciliated cell. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cilia_per_cell</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">percentage_ciliated_cells</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">percentage_ciliated_cells</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Percentage of cells that are ciliated. TIER 1 - critical for understanding</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">ciliated cell populations.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">percentage_ciliated_cells</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">cell_type_ratios</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_type_ratios</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_type_ratios</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CoCulture</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">imaging_protocol</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imaging_protocol</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reference to the imaging protocol used. TIER 1 for CBF, ASL assays.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imaging_protocol</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASLAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MucociliaryClearanceAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GobletCellAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImagingProtocol</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">ciliary_motion_patterns</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_motion_patterns</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Patterns of ciliary motion (coordinated, dyskinetic, immotile). TIER</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">2 - supporting information.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_motion_patterns</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryMotionPatternEnum</span>
-<span class="w">  </span><span class="nt">ciliary_beat_amplitude</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_beat_amplitude</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amplitude of ciliary beat. TIER 2.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_beat_amplitude</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">analysis_software</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">analysis_software</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Software used for analysis (e.g., SAVA, Cilia FA).</span>
@@ -1052,18 +807,21 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">input_sample</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_sample</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Description of the input sample and manipulations. TIER 1 slot -</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">critical for understanding what was measured and under what conditions.</span>
+<span class="w">  </span><span class="nt">has_exposure_condition</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_exposure_condition</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The exposure condition(s) applied to the study subject. Captures</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the agent, concentration, duration, and timing of exposure/treatment. Multivalued</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">to support co-exposures or dose-response series.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_sample</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_exposure_condition</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InputSample</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExposureCondition</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">follows_protocols</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocols</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Protocol(s) that this assay follows. Any Protocol or Protocol</span>
@@ -1090,6 +848,21 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date</span>
+<span class="w">  </span><span class="nt">has_specified_output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The measurement results produced by this assay — the specified output</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">of a planned process (OBI). Contains the domain-specific measurement values</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">(e.g., beat frequency, cilia length for CiliaryFunctionAssay).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">exact_mappings</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0000299</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliaryFunctionOutput</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A unique identifier for the entity.</span>

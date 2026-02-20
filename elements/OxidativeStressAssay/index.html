@@ -279,8 +279,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-oxidativestressassay">Class: OxidativeStressAssay</h1>
-<p><em>Assay for measuring oxidative stress markers. Informs on Key Event: "Increased oxidative stress" - often a Molecular Initiating Event (MIE) in respiratory toxicology AOPs.</em></p>
-<p><em>TIER 1 slots (critical): All surrogate markers for oxidative stress. Multiple detection methods expected - no single "best" for lung function.</em></p>
+<p><em>Assay for measuring oxidative stress markers. Informs on Key Event: "Increased oxidative stress" - often a Molecular Initiating Event (MIE) in respiratory toxicology AOPs. TIER 1 slots (critical): All surrogate markers for oxidative stress. Multiple detection methods expected - no single "best" for lung function.</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/OxidativeStressAssay">outcomes_working_group:OxidativeStressAssay</a></p>
 <pre class="mermaid"><code> classDiagram
     class OxidativeStressAssay
@@ -288,31 +287,7 @@
       Assay &lt;|-- OxidativeStressAssay
         click Assay href "../Assay/"
 
-      OxidativeStressAssay : antioxidant_capacity
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : antioxidant_capacity
-        click QuantityValue href "../QuantityValue/"
-
-
-
-      OxidativeStressAssay : antioxidant_enzyme_activities
-
       OxidativeStressAssay : assay_date
-
-      OxidativeStressAssay : catalase_activity
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : catalase_activity
-        click QuantityValue href "../QuantityValue/"
-
-
 
       OxidativeStressAssay : cell_type
 
@@ -327,41 +302,6 @@
 
       OxidativeStressAssay : description
 
-      OxidativeStressAssay : detection_method_details
-
-      OxidativeStressAssay : dna_damage_markers
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : dna_damage_markers
-        click QuantityValue href "../QuantityValue/"
-
-
-
-      OxidativeStressAssay : eight_isoprostane
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : eight_isoprostane
-        click QuantityValue href "../QuantityValue/"
-
-
-
-      OxidativeStressAssay : eight_ohdg
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : eight_ohdg
-        click QuantityValue href "../QuantityValue/"
-
-
-
       OxidativeStressAssay : follows_protocols
 
 
@@ -373,36 +313,25 @@
 
 
 
-      OxidativeStressAssay : four_hydroxynonenal
+      OxidativeStressAssay : has_exposure_condition
 
 
 
 
 
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : four_hydroxynonenal
-        click QuantityValue href "../QuantityValue/"
+        OxidativeStressAssay --&gt; "*" ExposureCondition : has_exposure_condition
+        click ExposureCondition href "../ExposureCondition/"
 
 
 
-      OxidativeStressAssay : glutathione_peroxidase_activity
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : glutathione_peroxidase_activity
-        click QuantityValue href "../QuantityValue/"
-
-
-
-      OxidativeStressAssay : glutathione_ratio
+      OxidativeStressAssay : has_specified_output
 
 
 
 
 
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : glutathione_ratio
-        click QuantityValue href "../QuantityValue/"
+        OxidativeStressAssay --&gt; "0..1" OxidativeStressOutput : has_specified_output
+        click OxidativeStressOutput href "../OxidativeStressOutput/"
 
 
 
@@ -419,110 +348,9 @@
 
 
 
-      OxidativeStressAssay : input_sample
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" InputSample : input_sample
-        click InputSample href "../InputSample/"
-
-
-
-      OxidativeStressAssay : lipid_peroxidation
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : lipid_peroxidation
-        click QuantityValue href "../QuantityValue/"
-
-
-
-      OxidativeStressAssay : malondialdehyde
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : malondialdehyde
-        click QuantityValue href "../QuantityValue/"
-
-
-
-      OxidativeStressAssay : molecular_protocol
-
-
-
-
-
-        OxidativeStressAssay --&gt; "1" MolecularAssayProtocol : molecular_protocol
-        click MolecularAssayProtocol href "../MolecularAssayProtocol/"
-
-
-
       OxidativeStressAssay : name
 
-      OxidativeStressAssay : nitrotyrosine
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : nitrotyrosine
-        click QuantityValue href "../QuantityValue/"
-
-
-
-      OxidativeStressAssay : nrf2_activation
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : nrf2_activation
-        click QuantityValue href "../QuantityValue/"
-
-
-
-      OxidativeStressAssay : protein_carbonyl_content
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : protein_carbonyl_content
-        click QuantityValue href "../QuantityValue/"
-
-
-
-      OxidativeStressAssay : protein_oxidation_markers
-
-      OxidativeStressAssay : reactive_oxygen_species
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : reactive_oxygen_species
-        click QuantityValue href "../QuantityValue/"
-
-
-
       OxidativeStressAssay : ros_probe_type
-
-      OxidativeStressAssay : staining_protocol
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" StainingProtocol : staining_protocol
-        click StainingProtocol href "../StainingProtocol/"
-
-
 
       OxidativeStressAssay : study_subject
 
@@ -535,17 +363,6 @@
 
 
 
-      OxidativeStressAssay : superoxide_dismutase_activity
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : superoxide_dismutase_activity
-        click QuantityValue href "../QuantityValue/"
-
-
-
       OxidativeStressAssay : tissue_context
 
 
@@ -554,17 +371,6 @@
 
         OxidativeStressAssay --&gt; "0..1" NamedEntity : tissue_context
         click NamedEntity href "../NamedEntity/"
-
-
-
-      OxidativeStressAssay : total_antioxidant_capacity
-
-
-
-
-
-        OxidativeStressAssay --&gt; "0..1" QuantityValue : total_antioxidant_capacity
-        click QuantityValue href "../QuantityValue/"
 
 
 
@@ -592,135 +398,9 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../reactive_oxygen_species/">reactive_oxygen_species</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>ROS level as fold change or fluorescence intensity</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../ros_probe_type/">ros_probe_type</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Type of ROS probe used (DCFDA, DHE, MitoSOX, etc</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../lipid_peroxidation/">lipid_peroxidation</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Lipid peroxidation level</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../malondialdehyde/">malondialdehyde</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>MDA level - lipid peroxidation marker</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../four_hydroxynonenal/">four_hydroxynonenal</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>4-HNE level - lipid peroxidation marker</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../eight_isoprostane/">eight_isoprostane</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>8-isoprostane level</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../protein_oxidation_markers/">protein_oxidation_markers</a></td>
-<td>* <br/> <a href="../String/">String</a></td>
-<td>Protein oxidation markers (carbonyls, nitrotyrosine)</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../protein_carbonyl_content/">protein_carbonyl_content</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Protein carbonyl content</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../nitrotyrosine/">nitrotyrosine</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Nitrotyrosine level</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../dna_damage_markers/">dna_damage_markers</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>DNA damage markers (8-OHdG)</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../eight_ohdg/">eight_ohdg</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>8-OHdG level (DNA oxidation marker)</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../antioxidant_capacity/">antioxidant_capacity</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Total antioxidant capacity or GSH/GSSG ratio</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../glutathione_ratio/">glutathione_ratio</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>GSH/GSSG ratio indicating antioxidant status</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../antioxidant_enzyme_activities/">antioxidant_enzyme_activities</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Antioxidant enzyme activities (SOD, catalase, GPx)</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../superoxide_dismutase_activity/">superoxide_dismutase_activity</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>SOD activity</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../catalase_activity/">catalase_activity</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Catalase activity</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../glutathione_peroxidase_activity/">glutathione_peroxidase_activity</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>GPx activity</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../total_antioxidant_capacity/">total_antioxidant_capacity</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Total antioxidant capacity</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../nrf2_activation/">nrf2_activation</a></td>
-<td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Nrf2 activation level</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../detection_method_details/">detection_method_details</a></td>
-<td>* <br/> <a href="../String/">String</a></td>
-<td>Detection method details</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../molecular_protocol/">molecular_protocol</a></td>
-<td>1 <br/> <a href="../MolecularAssayProtocol/">MolecularAssayProtocol</a></td>
-<td>Reference to the molecular assay protocol used</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../staining_protocol/">staining_protocol</a></td>
-<td>0..1 <br/> <a href="../StainingProtocol/">StainingProtocol</a></td>
-<td>Reference to staining protocol (AB-PAS, immunochem)</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -748,9 +428,9 @@
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
-<td><a href="../input_sample/">input_sample</a></td>
-<td>0..1 <br/> <a href="../InputSample/">InputSample</a></td>
-<td>Description of the input sample and manipulations</td>
+<td><a href="../has_exposure_condition/">has_exposure_condition</a></td>
+<td>* <br/> <a href="../ExposureCondition/">ExposureCondition</a></td>
+<td>The exposure condition(s) applied to the study subject</td>
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
@@ -763,6 +443,12 @@
 <td><a href="../assay_date/">assay_date</a></td>
 <td>0..1 <br/> <a href="../Date/">Date</a></td>
 <td>Date when the assay was performed</td>
+<td><a href="../Assay/">Assay</a></td>
+</tr>
+<tr>
+<td><a href="../has_specified_output/">has_specified_output</a></td>
+<td>0..1 <br/> <a href="../OxidativeStressOutput/">OxidativeStressOutput</a></td>
+<td>The measurement results produced by this assay — the specified output of a pl...</td>
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
@@ -835,39 +521,16 @@
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">oxidative</span><span class="nv"> </span><span class="s">stress</span><span class="nv"> </span><span class="s">markers.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span>
 <span class="w">  </span><span class="s">"Increased</span><span class="nv"> </span><span class="s">oxidative</span><span class="nv"> </span><span class="s">stress"</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">often</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Molecular</span><span class="nv"> </span><span class="s">Initiating</span><span class="nv"> </span><span class="s">Event</span><span class="nv"> </span><span class="s">(MIE)</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">respiratory</span>
-<span class="w">  </span><span class="s">toxicology</span><span class="nv"> </span><span class="s">AOPs.</span>
-
-<span class="w">  </span><span class="s">TIER</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">(critical):</span><span class="nv"> </span><span class="s">All</span><span class="nv"> </span><span class="s">surrogate</span><span class="nv"> </span><span class="s">markers</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">oxidative</span><span class="nv"> </span><span class="s">stress.</span><span class="nv"> </span><span class="s">Multiple</span><span class="nv"> </span><span class="s">detection</span>
-<span class="w">  </span><span class="s">methods</span><span class="nv"> </span><span class="s">expected</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">"best"</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">lung</span><span class="nv"> </span><span class="s">function.'</span>
+<span class="w">  </span><span class="s">toxicology</span><span class="nv"> </span><span class="s">AOPs.</span><span class="nv"> </span><span class="s">TIER</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">(critical):</span><span class="nv"> </span><span class="s">All</span><span class="nv"> </span><span class="s">surrogate</span><span class="nv"> </span><span class="s">markers</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">oxidative</span><span class="nv"> </span><span class="s">stress.</span>
+<span class="w">  </span><span class="s">Multiple</span><span class="nv"> </span><span class="s">detection</span><span class="nv"> </span><span class="s">methods</span><span class="nv"> </span><span class="s">expected</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">"best"</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">lung</span><span class="nv"> </span><span class="s">function.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="nt">slots</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactive_oxygen_species</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ros_probe_type</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lipid_peroxidation</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">malondialdehyde</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">four_hydroxynonenal</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eight_isoprostane</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protein_oxidation_markers</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protein_carbonyl_content</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nitrotyrosine</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dna_damage_markers</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eight_ohdg</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">antioxidant_capacity</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">glutathione_ratio</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">antioxidant_enzyme_activities</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superoxide_dismutase_activity</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalase_activity</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">glutathione_peroxidase_activity</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">total_antioxidant_capacity</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nrf2_activation</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">detection_method_details</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">molecular_protocol</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staining_protocol</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">molecular_protocol</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">molecular_protocol</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">has_specified_output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressOutput</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
@@ -875,28 +538,15 @@
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Assay</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">measuring</span><span class="nv"> </span><span class="s">oxidative</span><span class="nv"> </span><span class="s">stress</span><span class="nv"> </span><span class="s">markers.</span><span class="nv"> </span><span class="s">Informs</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Key</span><span class="nv"> </span><span class="s">Event:</span>
 <span class="w">  </span><span class="s">"Increased</span><span class="nv"> </span><span class="s">oxidative</span><span class="nv"> </span><span class="s">stress"</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">often</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Molecular</span><span class="nv"> </span><span class="s">Initiating</span><span class="nv"> </span><span class="s">Event</span><span class="nv"> </span><span class="s">(MIE)</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">respiratory</span>
-<span class="w">  </span><span class="s">toxicology</span><span class="nv"> </span><span class="s">AOPs.</span>
-
-<span class="w">  </span><span class="s">TIER</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">(critical):</span><span class="nv"> </span><span class="s">All</span><span class="nv"> </span><span class="s">surrogate</span><span class="nv"> </span><span class="s">markers</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">oxidative</span><span class="nv"> </span><span class="s">stress.</span><span class="nv"> </span><span class="s">Multiple</span><span class="nv"> </span><span class="s">detection</span>
-<span class="w">  </span><span class="s">methods</span><span class="nv"> </span><span class="s">expected</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">"best"</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">lung</span><span class="nv"> </span><span class="s">function.'</span>
+<span class="w">  </span><span class="s">toxicology</span><span class="nv"> </span><span class="s">AOPs.</span><span class="nv"> </span><span class="s">TIER</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">(critical):</span><span class="nv"> </span><span class="s">All</span><span class="nv"> </span><span class="s">surrogate</span><span class="nv"> </span><span class="s">markers</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">oxidative</span><span class="nv"> </span><span class="s">stress.</span>
+<span class="w">  </span><span class="s">Multiple</span><span class="nv"> </span><span class="s">detection</span><span class="nv"> </span><span class="s">methods</span><span class="nv"> </span><span class="s">expected</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">"best"</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">lung</span><span class="nv"> </span><span class="s">function.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">molecular_protocol</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">molecular_protocol</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">has_specified_output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressOutput</span>
 <span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">reactive_oxygen_species</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactive_oxygen_species</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ROS level as fold change or fluorescence intensity. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactive_oxygen_species</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">ros_probe_type</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ros_probe_type</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type of ROS probe used (DCFDA, DHE, MitoSOX, etc.). TIER 1 - varies</span>
@@ -908,234 +558,6 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">lipid_peroxidation</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lipid_peroxidation</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lipid peroxidation level. TIER 1 - surrogate marker for OS.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lipid_peroxidation</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">malondialdehyde</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">malondialdehyde</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MDA level - lipid peroxidation marker. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">malondialdehyde</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">four_hydroxynonenal</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">four_hydroxynonenal</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4-HNE level - lipid peroxidation marker. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">four_hydroxynonenal</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">eight_isoprostane</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eight_isoprostane</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8-isoprostane level. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eight_isoprostane</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">protein_oxidation_markers</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protein_oxidation_markers</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protein oxidation markers (carbonyls, nitrotyrosine). TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protein_oxidation_markers</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">protein_carbonyl_content</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protein_carbonyl_content</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Protein carbonyl content. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protein_carbonyl_content</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">nitrotyrosine</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nitrotyrosine</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nitrotyrosine level. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nitrotyrosine</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">dna_damage_markers</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dna_damage_markers</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DNA damage markers (8-OHdG). TIER 1 - surrogate for OS.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dna_damage_markers</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">eight_ohdg</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eight_ohdg</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8-OHdG level (DNA oxidation marker). TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eight_ohdg</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">antioxidant_capacity</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">antioxidant_capacity</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Total antioxidant capacity or GSH/GSSG ratio. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">antioxidant_capacity</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">glutathione_ratio</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">glutathione_ratio</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GSH/GSSG ratio indicating antioxidant status. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">glutathione_ratio</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">antioxidant_enzyme_activities</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">antioxidant_enzyme_activities</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Antioxidant enzyme activities (SOD, catalase, GPx). TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">antioxidant_enzyme_activities</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">superoxide_dismutase_activity</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superoxide_dismutase_activity</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SOD activity. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superoxide_dismutase_activity</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">catalase_activity</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalase_activity</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Catalase activity. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalase_activity</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">glutathione_peroxidase_activity</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">glutathione_peroxidase_activity</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GPx activity. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">glutathione_peroxidase_activity</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">total_antioxidant_capacity</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">total_antioxidant_capacity</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Total antioxidant capacity. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">total_antioxidant_capacity</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">nrf2_activation</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nrf2_activation</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nrf2 activation level. TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nrf2_activation</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">detection_method_details</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">detection_method_details</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Detection method details. TIER 1 per feedback - expected to have</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">multiple detection methods.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">detection_method_details</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">molecular_protocol</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">molecular_protocol</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reference to the molecular assay protocol used.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">molecular_protocol</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EGFRSignalingAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BALFSputumAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FoxJExpressionAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeneExpressionAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MolecularAssayProtocol</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">staining_protocol</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staining_protocol</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reference to staining protocol (AB-PAS, immunochem). TIER 1.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staining_protocol</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EGFRSignalingAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GobletCellAssay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FoxJExpressionAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StainingProtocol</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">informs_on_key_event</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Key Event that this assay provides evidence for. This establishes</span>
@@ -1190,18 +612,21 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">input_sample</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_sample</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Description of the input sample and manipulations. TIER 1 slot -</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">critical for understanding what was measured and under what conditions.</span>
+<span class="w">  </span><span class="nt">has_exposure_condition</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_exposure_condition</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The exposure condition(s) applied to the study subject. Captures</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the agent, concentration, duration, and timing of exposure/treatment. Multivalued</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">to support co-exposures or dose-response series.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_sample</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_exposure_condition</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InputSample</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExposureCondition</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">follows_protocols</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follows_protocols</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Protocol(s) that this assay follows. Any Protocol or Protocol</span>
@@ -1228,6 +653,21 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date</span>
+<span class="w">  </span><span class="nt">has_specified_output</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The measurement results produced by this assay — the specified output</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">of a planned process (OBI). Contains the domain-specific measurement values</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">(e.g., beat frequency, cilia length for CiliaryFunctionAssay).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">exact_mappings</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0000299</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressAssay</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OxidativeStressOutput</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A unique identifier for the entity.</span>

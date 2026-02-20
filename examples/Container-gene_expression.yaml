@@ -5,11 +5,24 @@ gene_expression_assays:
   - id: "GE:001"
     name: "IL-8 gene expression after exposure"
     target_gene: "PR:000006689"
-    mrna_level:
-      value: "3.5"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
+    has_specified_output:
+      id: "GE:001-output"
+      name: "GE:001 measurement results"
+      mrna_level:
+        value: "3.5"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+      protein_level:
+        value: "2.1"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+      percentage_positive_cells:
+        value: "45"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
     gene_expression_method: "qRT-PCR"
     normalization_reference: "GAPDH"
     assay_date: "2024-10-01"
@@ -28,9 +41,10 @@ gene_expression_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    molecular_protocol:
-      id: "PROTOCOL:qpcr-002"
-      name: "qRT-PCR for cytokine expression"
-      detection_method: "TaqMan qPCR"
-      reference_gene: "GAPDH"
-      platform: "QuantStudio 6"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:qpcr-002"
+        name: "qRT-PCR for cytokine expression"
+        detection_method: "TaqMan qPCR"
+        reference_gene: "GAPDH"
+        platform: "QuantStudio 6"

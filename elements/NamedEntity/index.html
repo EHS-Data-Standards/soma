@@ -284,8 +284,8 @@
 <pre class="mermaid"><code> classDiagram
     class NamedEntity
     click NamedEntity href "../NamedEntity/"
-      NamedEntity &lt;|-- InputSample
-        click InputSample href "../InputSample/"
+      NamedEntity &lt;|-- ExposureCondition
+        click ExposureCondition href "../ExposureCondition/"
       NamedEntity &lt;|-- CellLine
         click CellLine href "../CellLine/"
       NamedEntity &lt;|-- CellCultureConditions
@@ -304,7 +304,7 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><strong>NamedEntity</strong><ul>
-<li><a href="../InputSample/">InputSample</a></li>
+<li><a href="../ExposureCondition/">ExposureCondition</a></li>
 <li><a href="../CellLine/">CellLine</a></li>
 <li><a href="../CellCultureConditions/">CellCultureConditions</a></li>
 <li><a href="../CellCultureMedium/">CellCultureMedium</a></li>
@@ -381,6 +381,12 @@
 <tr>
 <td><a href="../PopulationSubject/">PopulationSubject</a></td>
 <td><a href="../model_species/">model_species</a></td>
+<td>range</td>
+<td><a href="./">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../ExposureCondition/">ExposureCondition</a></td>
+<td><a href="../exposure_agent/">exposure_agent</a></td>
 <td>range</td>
 <td><a href="./">NamedEntity</a></td>
 </tr>

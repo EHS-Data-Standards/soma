@@ -4,11 +4,6 @@ protocols:
     name: "High-speed video microscopy for CBF"
     description: "Protocol for measuring ciliary beat frequency using high-speed video microscopy"
     protocol_version: "2.1"
-    temperature_control:
-      value: "37"
-      unit:
-        id: "UO:0000027"
-        name: "degree Celsius"
     quality_control_criteria: "Minimum 5 fields per insert, discard if >50% debris"
     replicate_requirements: 3
     sub_protocols:
@@ -16,11 +11,6 @@ protocols:
         name: "Sample preparation for CBF imaging"
         description: "Pre-imaging wash and equilibration steps"
         protocol_version: "1.0"
-        temperature_control:
-          value: "37"
-          unit:
-            id: "UO:0000027"
-            name: "degree Celsius"
       - id: "PROTOCOL:001b"
         name: "Post-imaging data export"
         description: "Steps for exporting and archiving video files after acquisition"

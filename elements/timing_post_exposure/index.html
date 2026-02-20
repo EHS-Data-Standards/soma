@@ -444,7 +444,7 @@
 
 
 <h1 id="slot-timing_post_exposure">Slot: timing_post_exposure</h1>
-<p><em>Time after exposure when measurement was taken.</em></p>
+<p><em>Time after exposure when the measurement was taken. Used to capture the temporal relationship between exposure and assay readout.</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/timing_post_exposure">outcomes_working_group:timing_post_exposure</a>
 Alias: timing_post_exposure</p>
 <!-- no inheritance hierarchy -->
@@ -460,8 +460,8 @@ Alias: timing_post_exposure</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../InputSample/">InputSample</a></td>
-<td>Description of the input sample and any manipulations performed</td>
+<td><a href="../ExposureCondition/">ExposureCondition</a></td>
+<td>A structured description of an exposure or treatment applied to a biological ...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -497,12 +497,13 @@ Alias: timing_post_exposure</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">timing_post_exposure</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Time after exposure when measurement was taken.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Time after exposure when the measurement was taken. Used to capture the</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">temporal relationship between exposure and assay readout.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">timing_post_exposure</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InputSample</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExposureCondition</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
 <span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>

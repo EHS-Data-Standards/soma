@@ -4,16 +4,29 @@
 foxj_assays:
   - id: "FOXJ:001"
     name: "FoxJ1 mRNA expression"
-    foxj1_mrna_expression:
-      value: "0.65"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
-    foxj1_positive_cell_percentage:
-      value: "42"
-      unit:
-        id: "UO:0000187"
-        name: "percent"
+    has_specified_output:
+      id: "FOXJ:001-output"
+      name: "FOXJ:001 measurement results"
+      foxj1_mrna_expression:
+        value: "0.65"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+      foxj1_positive_cell_percentage:
+        value: "42"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+      foxj1_protein_expression:
+        value: "0.58"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+      foxj1_nuclear_localization:
+        value: "35"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
     assay_date: "2024-09-05"
     cell_type:
       id: "CL:0002328"
@@ -30,11 +43,12 @@ foxj_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    molecular_protocol:
-      id: "PROTOCOL:qpcr-001"
-      name: "qRT-PCR for FoxJ1"
-      detection_method: "SYBR Green qPCR"
-      reference_gene: "GAPDH"
-      primer_sequences:
-        - "FOXJ1-F: 5'-CAGGCCCAGAACTTTCTCC-3'"
-        - "FOXJ1-R: 5'-GGCCTTTGGTACTGTCTCAC-3'"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:qpcr-001"
+        name: "qRT-PCR for FoxJ1"
+        detection_method: "SYBR Green qPCR"
+        reference_gene: "GAPDH"
+        primer_sequences:
+          - "FOXJ1-F: 5'-CAGGCCCAGAACTTTCTCC-3'"
+          - "FOXJ1-R: 5'-GGCCTTTGGTACTGTCTCAC-3'"

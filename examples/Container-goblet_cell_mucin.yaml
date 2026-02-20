@@ -2,16 +2,59 @@
 goblet_cell_assays:
   - id: "GCM:001"
     name: "MUC5AC expression and goblet cell quantification"
-    muc5ac_mrna_expression:
-      value: "4.8"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
-    goblet_cell_percentage:
-      value: "28"
-      unit:
-        id: "UO:0000187"
-        name: "percent"
+    has_specified_output:
+      id: "GCM:001-output"
+      name: "GCM:001 measurement results"
+      muc5ac_mrna_expression:
+        value: "4.8"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+      goblet_cell_percentage:
+        value: "28"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+      goblet_cell_count:
+        value: "85"
+        unit:
+          id: "UO:0000189"
+          name: "count"
+      muc5ac_protein_expression:
+        value: "3.2"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+      muc5b_mrna_expression:
+        value: "1.8"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+      muc5b_protein_expression:
+        value: "1.5"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+      muc5ac_muc5b_ratio:
+        value: "2.7"
+        unit:
+          id: "UO:0000190"
+          name: "ratio"
+      mucin_secretion_rate:
+        value: "12.5"
+        unit:
+          id: "UO:0000298"
+          name: "microgram per hour"
+      percent_solids:
+        value: "4.2"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+      goblet_to_ciliated_ratio:
+        value: "0.45"
+        unit:
+          id: "UO:0000190"
+          name: "ratio"
     assay_date: "2024-06-15"
     cell_type:
       id: "CL:0002328"
@@ -23,9 +66,10 @@ goblet_cell_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    staining_protocol:
-      id: "PROTOCOL:stain-001"
-      name: "AB-PAS staining for goblet cells"
-      staining_type: "AB-PAS"
-      fixation_method: "4% paraformaldehyde"
-      counterstain: "hematoxylin"
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:stain-001"
+        name: "AB-PAS staining for goblet cells"
+        staining_type: "AB-PAS"
+        fixation_method: "4% paraformaldehyde"
+        counterstain: "hematoxylin"
