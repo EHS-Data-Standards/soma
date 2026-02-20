@@ -467,9 +467,24 @@ foxj_assays:
       subject_type: TwoDCellCulture
       id: "owg:culture-008"
       name: "Primary HBE ALI culture"
+      cell_type:
+        id: "CL:0002328"
+        name: "bronchial epithelial cell"
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
+      primary_cell:
+        id: "CL:0002328"
+        name: "bronchial epithelial cell"
+      anatomical_origin:
+        id: "UBERON:0002031"
+        name: "bronchus"
+      cell_culture_growth_mode: air_liquid_interface
+      days_at_differentiation: 14
+      donor_info: "Healthy donor, non-smoker"
+      replicates_per_donor: 3
+      substrate_type: transwell_insert
+      passage_number: 2
     follows_protocols:
       - protocol_type: MolecularAssayProtocol
         id: "PROTOCOL:qpcr-001"
@@ -507,9 +522,24 @@ gene_expression_assays:
       subject_type: TwoDCellCulture
       id: "owg:culture-009"
       name: "Primary HBE ALI culture"
+      cell_type:
+        id: "CL:0002328"
+        name: "bronchial epithelial cell"
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
+      primary_cell:
+        id: "CL:0002328"
+        name: "bronchial epithelial cell"
+      anatomical_origin:
+        id: "UBERON:0002031"
+        name: "bronchus"
+      cell_culture_growth_mode: air_liquid_interface
+      days_at_differentiation: 21
+      donor_info: "Healthy donor, non-smoker, age 40"
+      replicates_per_donor: 3
+      substrate_type: transwell_insert
+      passage_number: 2
     follows_protocols:
       - protocol_type: MolecularAssayProtocol
         id: "PROTOCOL:qpcr-002"
@@ -569,6 +599,7 @@ lung_function_assays:
           name: "year"
       sex: "male"
       subject_characteristics: "Non-smoker, no respiratory disease"
+      clinical_context: "Baseline spirometry, pre-bronchodilator"
     follows_protocols:
       - protocol_type: SpirometryProtocol
         id: "PROTOCOL:spiro-001"
@@ -637,6 +668,8 @@ balf_sputum_assays:
       sample_type: sputum
       collection_site: "pulmonary clinic"
       subject_characteristics: "Non-smoker, mild asthma"
+      sample_collection_method: "Induced sputum with hypertonic saline nebulization"
+      clinical_context: "Routine monitoring, stable asthma"
     follows_protocols:
       - protocol_type: MolecularAssayProtocol
         id: "PROTOCOL:balf-001"
