@@ -298,6 +298,8 @@
 
 
 
+      InVivoSubject : clinical_context
+
       InVivoSubject : collection_date
 
       InVivoSubject : collection_site
@@ -320,6 +322,8 @@
 
 
       InVivoSubject : name
+
+      InVivoSubject : sample_collection_method
 
       InVivoSubject : sample_type
 
@@ -401,6 +405,18 @@
 <td><a href="../collection_date/">collection_date</a></td>
 <td>0..1 <br/> <a href="../Date/">Date</a></td>
 <td>Date when the sample was collected</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../sample_collection_method/">sample_collection_method</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Method used for sample collection in vivo (e</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../clinical_context/">clinical_context</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Clinical context for in vivo measurements (e</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -508,6 +524,8 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_type</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">collection_site</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">collection_date</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_collection_method</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clinical_context</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
@@ -591,6 +609,28 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoSubject</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date</span>
+<span class="w">  </span><span class="nt">sample_collection_method</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_collection_method</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method used for sample collection in vivo (e.g., bronchoscopy, induced</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">sputum, spirometry).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_collection_method</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoSubject</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoSubject</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">clinical_context</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clinical_context</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Clinical context for in vivo measurements (e.g., routine screening,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">post-exposure assessment, disease monitoring, baseline spirometry).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clinical_context</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoSubject</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoSubject</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">subject_type</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subject_type</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The specific type of study subject. Used to designate which concrete</span>

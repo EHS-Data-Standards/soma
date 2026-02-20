@@ -294,14 +294,10 @@
 <pre class="mermaid"><code> classDiagram
     class BALFSputumAssay
     click BALFSputumAssay href "../BALFSputumAssay/"
-      InVivoAssayMixin &lt;|-- BALFSputumAssay
-        click InVivoAssayMixin href "../InVivoAssayMixin/"
       Assay &lt;|-- BALFSputumAssay
         click Assay href "../Assay/"
 
       BALFSputumAssay : assay_date
-
-      BALFSputumAssay : clinical_context
 
       BALFSputumAssay : description
 
@@ -353,8 +349,6 @@
 
       BALFSputumAssay : name
 
-      BALFSputumAssay : sample_collection_method
-
       BALFSputumAssay : study_subject
 
 
@@ -383,7 +377,7 @@
 <ul>
 <li><a href="../NamedThing/">NamedThing</a><ul>
 <li><a href="../Assay/">Assay</a><ul>
-<li><strong>BALFSputumAssay</strong> [ <a href="../InVivoAssayMixin/">InVivoAssayMixin</a>]</li>
+<li><strong>BALFSputumAssay</strong></li>
 </ul>
 </li>
 </ul>
@@ -405,18 +399,6 @@
 <td>0..1 <br/> <a href="../NamedEntity/">NamedEntity</a></td>
 <td>The specific cell type that is the primary focus of this assay's analysis, wh...</td>
 <td>direct</td>
-</tr>
-<tr>
-<td><a href="../sample_collection_method/">sample_collection_method</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Method used for sample collection in vivo (e</td>
-<td><a href="../InVivoAssayMixin/">InVivoAssayMixin</a></td>
-</tr>
-<tr>
-<td><a href="../clinical_context/">clinical_context</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Clinical context for in vivo measurements (e</td>
-<td><a href="../InVivoAssayMixin/">InVivoAssayMixin</a></td>
 </tr>
 <tr>
 <td><a href="../informs_on_key_event/">informs_on_key_event</a></td>
@@ -548,8 +530,6 @@
 <span class="w">  </span><span class="s">This</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">IN</span><span class="nv"> </span><span class="s">VIVO</span><span class="nv"> </span><span class="s">ONLY</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">requires</span><span class="nv"> </span><span class="s">samples</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">animal</span><span class="nv"> </span><span class="s">subjects.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="nt">mixins</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">target_cell_type</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
@@ -575,8 +555,6 @@
 <span class="w">  </span><span class="s">This</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">IN</span><span class="nv"> </span><span class="s">VIVO</span><span class="nv"> </span><span class="s">ONLY</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">requires</span><span class="nv"> </span><span class="s">samples</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">animal</span><span class="nv"> </span><span class="s">subjects.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="nt">mixins</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">study_subject</span>
@@ -598,28 +576,6 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BALFSputumAssay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">sample_collection_method</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_collection_method</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Method used for sample collection in vivo (e.g., bronchoscopy, induced</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">sputum, spirometry).</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_collection_method</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BALFSputumAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">clinical_context</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clinical_context</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Clinical context for in vivo measurements (e.g., routine screening,</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">post-exposure assessment, disease monitoring, baseline spirometry).</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clinical_context</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BALFSputumAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoAssayMixin</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">informs_on_key_event</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Key Event that this assay provides evidence for. This establishes</span>

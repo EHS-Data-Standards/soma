@@ -293,20 +293,12 @@
 <pre class="mermaid"><code> classDiagram
     class GeneExpressionAssay
     click GeneExpressionAssay href "../GeneExpressionAssay/"
-      InVitroAssayMixin &lt;|-- GeneExpressionAssay
-        click InVitroAssayMixin href "../InVitroAssayMixin/"
       Assay &lt;|-- GeneExpressionAssay
         click Assay href "../Assay/"
 
       GeneExpressionAssay : assay_date
 
-      GeneExpressionAssay : cell_culture_system
-
-      GeneExpressionAssay : days_at_ali_or_differentiation
-
       GeneExpressionAssay : description
-
-      GeneExpressionAssay : donor_characteristics
 
       GeneExpressionAssay : follows_protocols
 
@@ -360,8 +352,6 @@
 
       GeneExpressionAssay : normalization_reference
 
-      GeneExpressionAssay : passage_number_at_assay
-
       GeneExpressionAssay : study_subject
 
 
@@ -381,7 +371,7 @@
 <ul>
 <li><a href="../NamedThing/">NamedThing</a><ul>
 <li><a href="../Assay/">Assay</a><ul>
-<li><strong>GeneExpressionAssay</strong> [ <a href="../InVitroAssayMixin/">InVitroAssayMixin</a>]</li>
+<li><strong>GeneExpressionAssay</strong></li>
 </ul>
 </li>
 </ul>
@@ -415,30 +405,6 @@
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Normalization reference (beta-actin, GAPDH, total EGFR)</td>
 <td>direct</td>
-</tr>
-<tr>
-<td><a href="../cell_culture_system/">cell_culture_system</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Description of the cell culture system used for in vitro assays (e</td>
-<td><a href="../InVitroAssayMixin/">InVitroAssayMixin</a></td>
-</tr>
-<tr>
-<td><a href="../days_at_ali_or_differentiation/">days_at_ali_or_differentiation</a></td>
-<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
-<td>Number of days the cells were cultured at air-liquid interface or in differen...</td>
-<td><a href="../InVitroAssayMixin/">InVitroAssayMixin</a></td>
-</tr>
-<tr>
-<td><a href="../passage_number_at_assay/">passage_number_at_assay</a></td>
-<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
-<td>Passage number of the cells at the time of the assay</td>
-<td><a href="../InVitroAssayMixin/">InVitroAssayMixin</a></td>
-</tr>
-<tr>
-<td><a href="../donor_characteristics/">donor_characteristics</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Characteristics of the cell/tissue donor for in vitro systems (e</td>
-<td><a href="../InVitroAssayMixin/">InVitroAssayMixin</a></td>
 </tr>
 <tr>
 <td><a href="../informs_on_key_event/">informs_on_key_event</a></td>
@@ -567,8 +533,6 @@
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">per domain feedback - gene expression is more commonly the primary output.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="nt">mixins</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">target_gene</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gene_expression_method</span>
@@ -590,8 +554,6 @@
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">per domain feedback - gene expression is more commonly the primary output.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="nt">mixins</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">has_specified_output</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
@@ -627,50 +589,6 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EGFRSignalingAssay</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeneExpressionAssay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">cell_culture_system</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_culture_system</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Description of the cell culture system used for in vitro assays (e.g.,</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">"Air-liquid interface (ALI) culture on transwell inserts", "Primary HBE cells</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">at ALI", "3D spheroid culture").</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_culture_system</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeneExpressionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">days_at_ali_or_differentiation</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">days_at_ali_or_differentiation</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of days the cells were cultured at air-liquid interface or</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">in differentiation conditions before the assay.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">days_at_ali_or_differentiation</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeneExpressionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
-<span class="w">  </span><span class="nt">passage_number_at_assay</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">passage_number_at_assay</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Passage number of the cells at the time of the assay.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">passage_number_at_assay</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeneExpressionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
-<span class="w">  </span><span class="nt">donor_characteristics</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">donor_characteristics</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Characteristics of the cell/tissue donor for in vitro systems (e.g.,</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">"Healthy non-smoker, male, age 35").</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">donor_characteristics</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeneExpressionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">informs_on_key_event</span>

@@ -1253,50 +1253,6 @@ slots:
     range: StudySubject
     inlined: true
     inlined_as_list: false
-  cell_culture_system:
-    name: cell_culture_system
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/cell_culture_system
-    description: Description of the cell culture system used for in vitro assays (e.g.,
-      "Air-liquid interface (ALI) culture on transwell inserts", "Primary HBE cells
-      at ALI", "3D spheroid culture").
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:cell_culture_system
-    owner: InVitroAssayMixin
-    domain_of:
-    - InVitroAssayMixin
-    range: string
-  days_at_ali_or_differentiation:
-    name: days_at_ali_or_differentiation
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/days_at_ali_or_differentiation
-    description: Number of days the cells were cultured at air-liquid interface or
-      in differentiation conditions before the assay.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:days_at_ali_or_differentiation
-    owner: InVitroAssayMixin
-    domain_of:
-    - InVitroAssayMixin
-    range: integer
-  passage_number_at_assay:
-    name: passage_number_at_assay
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/passage_number_at_assay
-    description: Passage number of the cells at the time of the assay.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:passage_number_at_assay
-    owner: InVitroAssayMixin
-    domain_of:
-    - InVitroAssayMixin
-    range: integer
-  donor_characteristics:
-    name: donor_characteristics
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/donor_characteristics
-    description: Characteristics of the cell/tissue donor for in vitro systems (e.g.,
-      "Healthy non-smoker, male, age 35").
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:donor_characteristics
-    owner: InVitroAssayMixin
-    domain_of:
-    - InVitroAssayMixin
-    range: string
   sample_collection_method:
     name: sample_collection_method
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/sample_collection_method
@@ -1304,9 +1260,9 @@ slots:
       sputum, spirometry).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:sample_collection_method
-    owner: InVivoAssayMixin
+    owner: InVivoSubject
     domain_of:
-    - InVivoAssayMixin
+    - InVivoSubject
     range: string
   clinical_context:
     name: clinical_context
@@ -1315,9 +1271,9 @@ slots:
       post-exposure assessment, disease monitoring, baseline spirometry).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:clinical_context
-    owner: InVivoAssayMixin
+    owner: InVivoSubject
     domain_of:
-    - InVivoAssayMixin
+    - InVivoSubject
     range: string
   has_exposure_condition:
     name: has_exposure_condition
@@ -4234,6 +4190,8 @@ classes:
     - sample_type
     - collection_site
     - collection_date
+    - sample_collection_method
+    - clinical_context
     class_uri: assay_base:InVivoSubject
   PopulationSubject:
     name: PopulationSubject
@@ -4656,32 +4614,6 @@ classes:
     - max_value
     - unit
     class_uri: assay_base:QuantityRange
-  InVitroAssayMixin:
-    name: InVitroAssayMixin
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/InVitroAssayMixin
-    description: Mixin providing slots relevant for in vitro assay contexts. Apply
-      to assay classes that can be performed in vitro (cell cultures, tissue slices,
-      organoids, etc.).
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    mixin: true
-    slots:
-    - cell_culture_system
-    - days_at_ali_or_differentiation
-    - passage_number_at_assay
-    - donor_characteristics
-    class_uri: assay_base:InVitroAssayMixin
-  InVivoAssayMixin:
-    name: InVivoAssayMixin
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/InVivoAssayMixin
-    description: Mixin providing slots relevant for in vivo assay contexts. Apply
-      to assay classes that can be performed in vivo (measurements on living human
-      or animal subjects).
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    mixin: true
-    slots:
-    - sample_collection_method
-    - clinical_context
-    class_uri: assay_base:InVivoAssayMixin
   CiliaryFunctionAssay:
     name: CiliaryFunctionAssay
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/CiliaryFunctionAssay
@@ -4700,9 +4632,6 @@ classes:
       cilia_per_cell, percentage_ciliated_cells, cell_type_ratios,'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
-    mixins:
-    - InVitroAssayMixin
-    - InVivoAssayMixin
     slots:
     - id
     - name
@@ -4715,12 +4644,6 @@ classes:
     - airway_region
     - CiliaryFunctionAssay_study_subject
     - CiliaryFunctionAssay_has_specified_output
-    - cell_culture_system
-    - days_at_ali_or_differentiation
-    - passage_number_at_assay
-    - donor_characteristics
-    - sample_collection_method
-    - clinical_context
     slot_usage:
       study_subject:
         name: study_subject
@@ -4894,9 +4817,7 @@ classes:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/CFTRFunctionAssay
     description: 'Assay for measuring CFTR (Cystic Fibrosis Transmembrane Conductance
       Regulator) function. Informs on Key Event: "Decreased CFTR function" in cystic
-      fibrosis-related AOPs.
-
-      TIER 1 slots (critical): cell_culture_details is critical.'
+      fibrosis-related AOPs.'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
     slots:
@@ -5051,8 +4972,6 @@ classes:
       This assay is IN VIVO ONLY - requires samples from human or animal subjects.'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
-    mixins:
-    - InVivoAssayMixin
     slots:
     - id
     - name
@@ -5064,8 +4983,6 @@ classes:
     - target_cell_type
     - BALFSputumAssay_study_subject
     - BALFSputumAssay_has_specified_output
-    - sample_collection_method
-    - clinical_context
     slot_usage:
       study_subject:
         name: study_subject
@@ -5117,8 +5034,6 @@ classes:
       \ This assay is IN VIVO ONLY."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
-    mixins:
-    - InVivoAssayMixin
     slots:
     - id
     - name
@@ -5132,8 +5047,6 @@ classes:
     - recent_respiratory_illness
     - LungFunctionAssay_study_subject
     - LungFunctionAssay_has_specified_output
-    - sample_collection_method
-    - clinical_context
     slot_usage:
       study_subject:
         name: study_subject
@@ -5183,8 +5096,6 @@ classes:
       This assay is primarily IN VITRO focused.'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
-    mixins:
-    - InVitroAssayMixin
     slots:
     - id
     - name
@@ -5195,10 +5106,6 @@ classes:
     - follows_protocols
     - assay_date
     - FoxJExpressionAssay_has_specified_output
-    - cell_culture_system
-    - days_at_ali_or_differentiation
-    - passage_number_at_assay
-    - donor_characteristics
     slot_usage:
       has_specified_output:
         name: has_specified_output
@@ -5231,8 +5138,6 @@ classes:
       per domain feedback - gene expression is more commonly the primary output.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_microschemas
     is_a: Assay
-    mixins:
-    - InVitroAssayMixin
     slots:
     - id
     - name
@@ -5246,10 +5151,6 @@ classes:
     - gene_expression_method
     - normalization_reference
     - GeneExpressionAssay_has_specified_output
-    - cell_culture_system
-    - days_at_ali_or_differentiation
-    - passage_number_at_assay
-    - donor_characteristics
     slot_usage:
       has_specified_output:
         name: has_specified_output
@@ -5272,7 +5173,7 @@ classes:
     class_uri: assay_microschemas:GeneExpressionOutput
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2026-02-20T14:22:59'
+source_file_date: '2026-02-20T15:03:43'
 source_file_size: 6988
-generation_date: '2026-02-20T14:23:20'
+generation_date: '2026-02-20T15:04:03'
 

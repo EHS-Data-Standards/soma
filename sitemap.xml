@@ -193,14 +193,6 @@
          <lastmod>2026-02-20</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/InVitroAssayMixin/</loc>
-         <lastmod>2026-02-20</lastmod>
-    </url>
-    <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/InVivoAssayMixin/</loc>
-         <lastmod>2026-02-20</lastmod>
-    </url>
-    <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/InVivoSubject/</loc>
          <lastmod>2026-02-20</lastmod>
     </url>
@@ -501,10 +493,6 @@
          <lastmod>2026-02-20</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cell_culture_system/</loc>
-         <lastmod>2026-02-20</lastmod>
-    </url>
-    <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/cell_free_dna/</loc>
          <lastmod>2026-02-20</lastmod>
     </url>
@@ -605,10 +593,6 @@
          <lastmod>2026-02-20</lastmod>
     </url>
     <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/days_at_ali_or_differentiation/</loc>
-         <lastmod>2026-02-20</lastmod>
-    </url>
-    <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/days_at_differentiation/</loc>
          <lastmod>2026-02-20</lastmod>
     </url>
@@ -638,10 +622,6 @@
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/dna_damage_markers/</loc>
-         <lastmod>2026-02-20</lastmod>
-    </url>
-    <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/donor_characteristics/</loc>
          <lastmod>2026-02-20</lastmod>
     </url>
     <url>
@@ -1106,10 +1086,6 @@
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/passage_number/</loc>
-         <lastmod>2026-02-20</lastmod>
-    </url>
-    <url>
-         <loc>https://EHS-Data-Standards.github.io/outcomes-working-group/elements/passage_number_at_assay/</loc>
          <lastmod>2026-02-20</lastmod>
     </url>
     <url>

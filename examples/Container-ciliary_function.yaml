@@ -60,11 +60,6 @@ ciliary_function_assays:
           unit:
             id: "UO:0000032"
             name: "hour"
-    # InVitroAssayMixin slots
-    cell_culture_system: "Air-liquid interface (ALI) culture on transwell inserts"
-    days_at_ali_or_differentiation: 21
-    passage_number_at_assay: 2
-    donor_characteristics: "Healthy non-smoker, male, age 35"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-001"
@@ -132,6 +127,58 @@ ciliary_function_assays:
             name: "hertz"
         imaging_duration:
           value: "5"
+          unit:
+            id: "UO:0000010"
+            name: "second"
+        temperature_control:
+          value: "37"
+          unit:
+            id: "UO:0000027"
+            name: "degree Celsius"
+  # Example 2: In vivo context using OCT-based measurement
+  - id: "CILIARY:002"
+    name: "In vivo OCT-based ciliary function assessment"
+    has_specified_output:
+      id: "CILIARY:002-output"
+      name: "CILIARY:002 measurement results"
+      beat_frequency_hz:
+        value: "11.2"
+        unit:
+          id: "UO:0000106"
+          name: "hertz"
+      active_area_percentage:
+        value: "85"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+    assay_date: "2024-03-10"
+    study_subject:
+      subject_type: InVivoSubject
+      id: "SUBJECT:003"
+      name: "Subject C"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      age:
+        value: "38"
+        unit:
+          id: "UO:0000036"
+          name: "year"
+      sex: "female"
+      subject_characteristics: "Non-smoker, no respiratory disease, healthy volunteer"
+      sample_collection_method: "In vivo OCT imaging of nasal epithelium"
+      clinical_context: "Baseline assessment, no active respiratory symptoms"
+    follows_protocols:
+      - protocol_type: ImagingProtocol
+        id: "PROTOCOL:oct-001"
+        name: "In vivo OCT for ciliary function"
+        imaging_frame_rate:
+          value: "100"
+          unit:
+            id: "UO:0000105"
+            name: "hertz"
+        imaging_duration:
+          value: "10"
           unit:
             id: "UO:0000010"
             name: "second"

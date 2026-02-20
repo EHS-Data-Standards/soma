@@ -294,20 +294,12 @@
 <pre class="mermaid"><code> classDiagram
     class FoxJExpressionAssay
     click FoxJExpressionAssay href "../FoxJExpressionAssay/"
-      InVitroAssayMixin &lt;|-- FoxJExpressionAssay
-        click InVitroAssayMixin href "../InVitroAssayMixin/"
       Assay &lt;|-- FoxJExpressionAssay
         click Assay href "../Assay/"
 
       FoxJExpressionAssay : assay_date
 
-      FoxJExpressionAssay : cell_culture_system
-
-      FoxJExpressionAssay : days_at_ali_or_differentiation
-
       FoxJExpressionAssay : description
-
-      FoxJExpressionAssay : donor_characteristics
 
       FoxJExpressionAssay : follows_protocols
 
@@ -357,8 +349,6 @@
 
       FoxJExpressionAssay : name
 
-      FoxJExpressionAssay : passage_number_at_assay
-
       FoxJExpressionAssay : study_subject
 
 
@@ -376,7 +366,7 @@
 <ul>
 <li><a href="../NamedThing/">NamedThing</a><ul>
 <li><a href="../Assay/">Assay</a><ul>
-<li><strong>FoxJExpressionAssay</strong> [ <a href="../InVitroAssayMixin/">InVitroAssayMixin</a>]</li>
+<li><strong>FoxJExpressionAssay</strong></li>
 </ul>
 </li>
 </ul>
@@ -393,30 +383,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><a href="../cell_culture_system/">cell_culture_system</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Description of the cell culture system used for in vitro assays (e</td>
-<td><a href="../InVitroAssayMixin/">InVitroAssayMixin</a></td>
-</tr>
-<tr>
-<td><a href="../days_at_ali_or_differentiation/">days_at_ali_or_differentiation</a></td>
-<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
-<td>Number of days the cells were cultured at air-liquid interface or in differen...</td>
-<td><a href="../InVitroAssayMixin/">InVitroAssayMixin</a></td>
-</tr>
-<tr>
-<td><a href="../passage_number_at_assay/">passage_number_at_assay</a></td>
-<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
-<td>Passage number of the cells at the time of the assay</td>
-<td><a href="../InVitroAssayMixin/">InVitroAssayMixin</a></td>
-</tr>
-<tr>
-<td><a href="../donor_characteristics/">donor_characteristics</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Characteristics of the cell/tissue donor for in vitro systems (e</td>
-<td><a href="../InVitroAssayMixin/">InVitroAssayMixin</a></td>
-</tr>
 <tr>
 <td><a href="../informs_on_key_event/">informs_on_key_event</a></td>
 <td>0..1 <br/> <a href="../KeyEvent/">KeyEvent</a></td>
@@ -547,8 +513,6 @@
 <span class="w">  </span><span class="s">This</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">primarily</span><span class="nv"> </span><span class="s">IN</span><span class="nv"> </span><span class="s">VITRO</span><span class="nv"> </span><span class="s">focused.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="nt">mixins</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">has_specified_output</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
@@ -569,57 +533,11 @@
 <span class="w">  </span><span class="s">This</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">primarily</span><span class="nv"> </span><span class="s">IN</span><span class="nv"> </span><span class="s">VITRO</span><span class="nv"> </span><span class="s">focused.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="nt">mixins</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">has_specified_output</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FoxJExpressionOutput</span>
 <span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">cell_culture_system</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_culture_system</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Description of the cell culture system used for in vitro assays (e.g.,</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">"Air-liquid interface (ALI) culture on transwell inserts", "Primary HBE cells</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">at ALI", "3D spheroid culture").</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_culture_system</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FoxJExpressionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">days_at_ali_or_differentiation</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">days_at_ali_or_differentiation</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of days the cells were cultured at air-liquid interface or</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">in differentiation conditions before the assay.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">days_at_ali_or_differentiation</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FoxJExpressionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
-<span class="w">  </span><span class="nt">passage_number_at_assay</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">passage_number_at_assay</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Passage number of the cells at the time of the assay.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">passage_number_at_assay</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FoxJExpressionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
-<span class="w">  </span><span class="nt">donor_characteristics</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">donor_characteristics</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Characteristics of the cell/tissue donor for in vitro systems (e.g.,</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">"Healthy non-smoker, male, age 35").</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">donor_characteristics</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FoxJExpressionAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVitroAssayMixin</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">informs_on_key_event</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Key Event that this assay provides evidence for. This establishes</span>
