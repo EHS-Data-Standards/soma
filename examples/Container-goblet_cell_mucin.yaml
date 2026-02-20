@@ -56,13 +56,13 @@ goblet_cell_assays:
           id: "UO:0000190"
           name: "ratio"
     assay_date: "2024-06-15"
-    cell_type:
-      id: "CL:0002328"
-      name: "bronchial epithelial cell"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-004"
       name: "Primary HBE ALI culture"
+      cell_type:
+        id: "CL:0002328"
+        name: "bronchial epithelial cell"
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"

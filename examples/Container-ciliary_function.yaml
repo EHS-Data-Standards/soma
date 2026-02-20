@@ -39,12 +39,27 @@ ciliary_function_assays:
           id: "UO:0000017"
           name: "micrometer"
     assay_date: "2024-01-15"
-    cell_type:
-      id: "CL:0002328"
-      name: "bronchial epithelial cell"
-    tissue_context:
-      id: "UBERON:0002031"
-      name: "bronchus"
+    has_exposure_condition:
+      - id: "EXPOSURE:ozone-200ppb-4h"
+        name: "Ozone 200 ppb for 4 hours"
+        exposure_agent:
+          id: "CHEBI:25812"
+          name: "ozone"
+        exposure_concentration:
+          value: "200"
+          unit:
+            id: "UO:0000169"
+            name: "parts per billion"
+        exposure_duration:
+          value: "4"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+        timing_post_exposure:
+          value: "2"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     # InVitroAssayMixin slots
     cell_culture_system: "Air-liquid interface (ALI) culture on transwell inserts"
     days_at_ali_or_differentiation: 21
@@ -54,6 +69,9 @@ ciliary_function_assays:
       subject_type: TwoDCellCulture
       id: "owg:culture-001"
       name: "Primary HBE ALI culture"
+      cell_type:
+        id: "CL:0002328"
+        name: "bronchial epithelial cell"
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"

@@ -27,13 +27,13 @@ mcc_assays:
           id: "UO:0000010"
           name: "second"
     assay_date: "2024-03-05"
-    cell_type:
-      id: "CL:0002328"
-      name: "bronchial epithelial cell"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-007"
       name: "Primary HBE ALI culture"
+      cell_type:
+        id: "CL:0002328"
+        name: "bronchial epithelial cell"
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"

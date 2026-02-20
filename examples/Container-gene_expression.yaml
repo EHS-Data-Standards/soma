@@ -26,9 +26,22 @@ gene_expression_assays:
     gene_expression_method: "qRT-PCR"
     normalization_reference: "GAPDH"
     assay_date: "2024-10-01"
-    cell_type:
-      id: "CL:0002328"
-      name: "bronchial epithelial cell"
+    has_exposure_condition:
+      - id: "EXPOSURE:lps-100ng-6h"
+        name: "LPS 100 ng/mL for 6 hours"
+        exposure_agent:
+          id: "CHEBI:16412"
+          name: "lipopolysaccharide"
+        exposure_concentration:
+          value: "100"
+          unit:
+            id: "UO:0000275"
+            name: "nanogram per milliliter"
+        exposure_duration:
+          value: "6"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     # InVitroAssayMixin slots
     cell_culture_system: "Primary HBE cells at ALI"
     days_at_ali_or_differentiation: 21
@@ -38,6 +51,9 @@ gene_expression_assays:
       subject_type: TwoDCellCulture
       id: "owg:culture-009"
       name: "Primary HBE ALI culture"
+      cell_type:
+        id: "CL:0002328"
+        name: "bronchial epithelial cell"
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"

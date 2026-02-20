@@ -289,17 +289,6 @@
 
       MucociliaryClearanceAssay : assay_date
 
-      MucociliaryClearanceAssay : cell_type
-
-
-
-
-
-        MucociliaryClearanceAssay --&gt; "0..1" NamedEntity : cell_type
-        click NamedEntity href "../NamedEntity/"
-
-
-
       MucociliaryClearanceAssay : description
 
       MucociliaryClearanceAssay : follows_protocols
@@ -363,17 +352,6 @@
 
 
 
-      MucociliaryClearanceAssay : tissue_context
-
-
-
-
-
-        MucociliaryClearanceAssay --&gt; "0..1" NamedEntity : tissue_context
-        click NamedEntity href "../NamedEntity/"
-
-
-
 
 </code></pre>
 <h2 id="inheritance">Inheritance</h2>
@@ -407,18 +385,6 @@
 <td><a href="../informs_on_key_event/">informs_on_key_event</a></td>
 <td>0..1 <br/> <a href="../KeyEvent/">KeyEvent</a></td>
 <td>The Key Event that this assay provides evidence for</td>
-<td><a href="../Assay/">Assay</a></td>
-</tr>
-<tr>
-<td><a href="../cell_type/">cell_type</a></td>
-<td>0..1 <br/> <a href="../NamedEntity/">NamedEntity</a></td>
-<td>The cell type being studied</td>
-<td><a href="../Assay/">Assay</a></td>
-</tr>
-<tr>
-<td><a href="../tissue_context/">tissue_context</a></td>
-<td>0..1 <br/> <a href="../NamedEntity/">NamedEntity</a></td>
-<td>The anatomical/tissue context</td>
 <td><a href="../Assay/">Assay</a></td>
 </tr>
 <tr>
@@ -568,33 +534,6 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KeyEvent</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">cell_type</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_type</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The cell type being studied. Reference to a Cell Ontology (CL) term.</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">This is a TIER 1 slot - critical for data discovery and comparison.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0000324</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_type</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MucociliaryClearanceAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellLine</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">tissue_context</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tissue_context</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The anatomical/tissue context. Reference to UBERON anatomy term.</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Important for understanding where measurements were taken.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tissue_context</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MucociliaryClearanceAssay</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">study_subject</span>

@@ -53,7 +53,7 @@ balf_sputum_assays:
           id: "UO:0000176"
           name: "milligram per milliliter"
     assay_date: "2024-07-22"
-    cell_type:
+    target_cell_type:
       id: "CL:0000775"
       name: "neutrophil"
     # InVivoAssayMixin slots

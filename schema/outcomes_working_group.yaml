@@ -1186,29 +1186,29 @@ slots:
     name: cell_type
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/cell_type
     description: The cell type being studied. Reference to a Cell Ontology (CL) term.
-      This is a TIER 1 slot - critical for data discovery and comparison.
+      Used on CellularSystem and CellLine to describe the cell identity.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     mappings:
     - EFO:0000324
     slot_uri: EFO:0000324
     owner: CellLine
     domain_of:
-    - Assay
     - CellularSystem
     - CellLine
     range: NamedEntity
     inlined: true
     inlined_as_list: false
-  tissue_context:
-    name: tissue_context
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/tissue_context
-    description: The anatomical/tissue context. Reference to UBERON anatomy term.
-      Important for understanding where measurements were taken.
+  target_cell_type:
+    name: target_cell_type
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/target_cell_type
+    description: The specific cell type that is the primary focus of this assay's
+      analysis, when the assay examines multiple cell populations in a sample (e.g.,
+      neutrophils in a BALF differential).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:tissue_context
-    owner: Assay
+    slot_uri: assay_base:target_cell_type
+    owner: BALFSputumAssay
     domain_of:
-    - Assay
+    - BALFSputumAssay
     range: NamedEntity
     inlined: true
     inlined_as_list: false
@@ -4159,8 +4159,6 @@ classes:
     - name
     - description
     - informs_on_key_event
-    - cell_type
-    - tissue_context
     - study_subject
     - has_exposure_condition
     - follows_protocols
@@ -4710,8 +4708,6 @@ classes:
     - name
     - description
     - informs_on_key_event
-    - cell_type
-    - tissue_context
     - has_exposure_condition
     - follows_protocols
     - assay_date
@@ -4769,8 +4765,6 @@ classes:
     - name
     - description
     - informs_on_key_event
-    - cell_type
-    - tissue_context
     - study_subject
     - has_exposure_condition
     - follows_protocols
@@ -4811,8 +4805,6 @@ classes:
     - name
     - description
     - informs_on_key_event
-    - cell_type
-    - tissue_context
     - study_subject
     - has_exposure_condition
     - follows_protocols
@@ -4855,8 +4847,6 @@ classes:
     - name
     - description
     - informs_on_key_event
-    - cell_type
-    - tissue_context
     - study_subject
     - has_exposure_condition
     - follows_protocols
@@ -4914,8 +4904,6 @@ classes:
     - name
     - description
     - informs_on_key_event
-    - cell_type
-    - tissue_context
     - study_subject
     - has_exposure_condition
     - follows_protocols
@@ -4966,8 +4954,6 @@ classes:
     - name
     - description
     - informs_on_key_event
-    - cell_type
-    - tissue_context
     - study_subject
     - has_exposure_condition
     - follows_protocols
@@ -5017,8 +5003,6 @@ classes:
     - name
     - description
     - informs_on_key_event
-    - cell_type
-    - tissue_context
     - study_subject
     - has_exposure_condition
     - follows_protocols
@@ -5074,11 +5058,10 @@ classes:
     - name
     - description
     - informs_on_key_event
-    - cell_type
-    - tissue_context
     - has_exposure_condition
     - follows_protocols
     - assay_date
+    - target_cell_type
     - BALFSputumAssay_study_subject
     - BALFSputumAssay_has_specified_output
     - sample_collection_method
@@ -5141,8 +5124,6 @@ classes:
     - name
     - description
     - informs_on_key_event
-    - cell_type
-    - tissue_context
     - has_exposure_condition
     - follows_protocols
     - assay_date
@@ -5209,8 +5190,6 @@ classes:
     - name
     - description
     - informs_on_key_event
-    - cell_type
-    - tissue_context
     - study_subject
     - has_exposure_condition
     - follows_protocols
@@ -5259,8 +5238,6 @@ classes:
     - name
     - description
     - informs_on_key_event
-    - cell_type
-    - tissue_context
     - study_subject
     - has_exposure_condition
     - follows_protocols
@@ -5295,7 +5272,7 @@ classes:
     class_uri: assay_microschemas:GeneExpressionOutput
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2026-02-20T02:09:55'
+source_file_date: '2026-02-20T14:21:45'
 source_file_size: 6988
-generation_date: '2026-02-20T02:10:18'
+generation_date: '2026-02-20T14:22:06'
 

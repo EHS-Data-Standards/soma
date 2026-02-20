@@ -43,13 +43,29 @@ egfr_signaling_assays:
           name: "percent"
     normalization_reference: "beta-actin"
     assay_date: "2024-05-08"
-    cell_type:
-      id: "CL:0002328"
-      name: "bronchial epithelial cell"
+    has_exposure_condition:
+      - id: "EXPOSURE:cse-4h"
+        name: "Cigarette smoke extract 5% for 4 hours"
+        exposure_agent:
+          id: "CHEBI:39188"
+          name: "cigarette smoke extract"
+        exposure_concentration:
+          value: "5"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+        exposure_duration:
+          value: "4"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-005"
       name: "Primary HBE ALI culture"
+      cell_type:
+        id: "CL:0002328"
+        name: "bronchial epithelial cell"
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
