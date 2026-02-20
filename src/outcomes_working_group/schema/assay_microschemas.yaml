@@ -57,7 +57,6 @@ classes:
 
       TIER 1 slots (critical): beat_frequency_hz, active_area_percentage,
       cilia_length, cilia_per_cell, percentage_ciliated_cells, cell_type_ratios,
-      imaging_protocol.
     slots:
       # TIER 1 - Critical (Rank 1) - Named measurement slots
       - beat_frequency_hz
@@ -92,9 +91,6 @@ classes:
       Assay for measuring airway surface liquid properties including ASL height,
       periciliary layer depth, and ion composition. Informs on Key Event:
       "Decreased ASL height" or "Altered airway hydration" in CF-related AOPs.
-
-      TIER 1 slots (critical): asl_height_um, periciliary_layer_depth,
-      imaging_protocol.
     slots:
       # TIER 1 - Critical (Rank 1) - Named measurement slots
       - asl_height_um
@@ -165,16 +161,6 @@ classes:
       - total_antioxidant_capacity
       - nrf2_activation
 
-      # Detection method details (TIER 1 per feedback)
-      - detection_method_details
-
-      # Protocols
-      - molecular_protocol
-      - staining_protocol
-    slot_usage:
-      molecular_protocol:
-        required: true
-
   # ---------------------------------------------------------------------------
   # CFTRFunctionAssay
   # Informs on Key Event: Decreased CFTR function
@@ -236,13 +222,6 @@ classes:
       - normalization_reference
       - phosphorylation_site
 
-      # Protocols
-      - molecular_protocol
-      - staining_protocol
-    slot_usage:
-      molecular_protocol:
-        required: true
-
   # ---------------------------------------------------------------------------
   # GobletCellAssay (combines GobletCellMeasurement + MucinProductionMeasurement)
   # Informs on Key Event: Goblet cell hyperplasia / Mucin hypersecretion
@@ -258,9 +237,6 @@ classes:
       measurements - cells may stay same but secretion changes. AB-PAS staining
       common for visualizing goblet cells. Some secreted mucins not tethered
       to goblet cells.
-
-      TIER 1 slots (critical): goblet_cell_count, staining_protocol,
-      mucin_expression_level, mucin_protein_concentration.
     slots:
       # TIER 1 - Critical (Rank 1) - Named measurement slots
       - goblet_cell_count
@@ -315,14 +291,9 @@ classes:
       - beta_diversity
       - bacterial_load
       - cell_free_dna
-
-      # Protocol
-      - molecular_protocol
     slot_usage:
       study_subject:
         range: InVivoSubject
-      molecular_protocol:
-        required: true
 
   # ---------------------------------------------------------------------------
   # LungFunctionAssay (InVivo only)
@@ -372,14 +343,9 @@ classes:
       - lung_compliance
       - lung_elastance
       - lung_resistance
-
-      # Protocol
-      - spirometry_protocol
     slot_usage:
       study_subject:
         range: InVivoSubject
-      spirometry_protocol:
-        required: true
 
   # ---------------------------------------------------------------------------
   # FoxJExpressionAssay (InVitro focus)
@@ -405,13 +371,6 @@ classes:
       - foxj1_positive_cell_percentage
       - foxj1_nuclear_localization
 
-      # Protocols
-      - molecular_protocol
-      - staining_protocol
-    slot_usage:
-      molecular_protocol:
-        required: true
-
   # ---------------------------------------------------------------------------
   # GeneExpressionAssay (renamed from TranscriptionFactorExpressionMeasurement)
   # Generic assay for gene/protein expression measurements
@@ -435,12 +394,6 @@ classes:
       - percentage_positive_cells
       - gene_expression_method
       - normalization_reference
-
-      # Protocol
-      - molecular_protocol
-    slot_usage:
-      molecular_protocol:
-        required: true
 
 # =============================================================================
 # SLOTS - Named Measurement Slots for Each Assay
