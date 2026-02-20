@@ -94,6 +94,7 @@ oxidative_stress_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:001"
       name: "DCFDA ROS detection in ALI cultures"
       detection_method: "fluorescence plate reader"
@@ -135,6 +136,7 @@ oxidative_stress_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:001"
       name: "DCFDA ROS detection in ALI cultures"
       detection_method: "fluorescence plate reader"
@@ -166,6 +168,7 @@ oxidative_stress_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:001"
       name: "DCFDA ROS detection in ALI cultures"
       detection_method: "fluorescence plate reader"
@@ -203,6 +206,7 @@ egfr_signaling_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:002"
       name: "Western blot for phospho-EGFR"
       detection_method: "chemiluminescence"
@@ -239,6 +243,7 @@ egfr_signaling_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:002"
       name: "Western blot for phospho-EGFR"
       detection_method: "chemiluminescence"
@@ -267,6 +272,7 @@ egfr_signaling_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:002"
       name: "Western blot for phospho-EGFR"
       detection_method: "chemiluminescence"
@@ -302,6 +308,7 @@ goblet_cell_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     staining_protocol:
+      protocol_type: StainingProtocol
       id: "PROTOCOL:stain-aop-001"
       name: "AB-PAS staining for goblet cells"
       staining_type: "AB-PAS"
@@ -333,6 +340,7 @@ goblet_cell_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     staining_protocol:
+      protocol_type: StainingProtocol
       id: "PROTOCOL:stain-aop-001"
       name: "AB-PAS staining for goblet cells"
       staining_type: "AB-PAS"
@@ -358,6 +366,7 @@ goblet_cell_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     staining_protocol:
+      protocol_type: StainingProtocol
       id: "PROTOCOL:stain-aop-001"
       name: "AB-PAS staining for goblet cells"
       staining_type: "AB-PAS"
@@ -383,6 +392,7 @@ goblet_cell_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     staining_protocol:
+      protocol_type: StainingProtocol
       id: "PROTOCOL:stain-aop-001"
       name: "AB-PAS staining for goblet cells"
       staining_type: "AB-PAS"
@@ -464,6 +474,7 @@ ciliary_function_assays:
                 id: "UO:0000064"
                 name: "micrograms per milliliter"
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:004"
       name: "CBF measurement by high-speed microscopy"
       imaging_frame_rate:
@@ -510,6 +521,7 @@ ciliary_function_assays:
         name: "Homo sapiens"
       substrate_type: transwell_insert
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:004"
       name: "CBF measurement by high-speed microscopy"
       imaging_frame_rate:
@@ -545,6 +557,7 @@ ciliary_function_assays:
         name: "Homo sapiens"
       substrate_type: transwell_insert
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:004"
       name: "CBF measurement by high-speed microscopy"
       imaging_frame_rate:
@@ -575,6 +588,7 @@ ciliary_function_assays:
         name: "Homo sapiens"
       substrate_type: transwell_insert
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:004"
       name: "CBF measurement by high-speed microscopy"
       imaging_frame_rate:
@@ -615,6 +629,7 @@ mcc_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:005"
       name: "MCT rate by microsphere tracking"
       fluorescent_tracer: "1-um fluorescent microspheres"
@@ -652,6 +667,7 @@ mcc_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:005"
       name: "MCT rate by microsphere tracking"
       fluorescent_tracer: "1-um fluorescent microspheres"
@@ -684,6 +700,7 @@ mcc_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:005"
       name: "MCT rate by microsphere tracking"
       fluorescent_tracer: "1-um fluorescent microspheres"
@@ -709,6 +726,7 @@ mcc_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:005"
       name: "MCT rate by microsphere tracking"
       fluorescent_tracer: "1-um fluorescent microspheres"
@@ -751,6 +769,7 @@ lung_function_assays:
       collection_site: "pulmonary function laboratory"
       subject_characteristics: "Non-smoker, high PM2.5 exposure area resident, 15 years"
     spirometry_protocol:
+      protocol_type: SpirometryProtocol
       id: "PROTOCOL:006"
       name: "Pre- and post-bronchodilator spirometry"
       spirometry_standard: "ATS/ERS 2019"
@@ -787,6 +806,7 @@ lung_function_assays:
       sex: "male"
       subject_characteristics: "Non-smoker, high PM2.5 exposure area resident, 16 years"
     spirometry_protocol:
+      protocol_type: SpirometryProtocol
       id: "PROTOCOL:006"
       name: "Pre- and post-bronchodilator spirometry"
       spirometry_standard: "ATS/ERS 2019"
@@ -815,6 +835,7 @@ lung_function_assays:
           name: "year"
       sex: "male"
     spirometry_protocol:
+      protocol_type: SpirometryProtocol
       id: "PROTOCOL:006"
       name: "Pre- and post-bronchodilator spirometry"
       spirometry_standard: "ATS/ERS 2019"
@@ -844,6 +865,7 @@ lung_function_assays:
       sex: "male"
       subject_characteristics: "Accelerated decline >2x normal (25-30 mL/year)"
     spirometry_protocol:
+      protocol_type: SpirometryProtocol
       id: "PROTOCOL:006"
       name: "Pre- and post-bronchodilator spirometry"
       spirometry_standard: "ATS/ERS 2019"

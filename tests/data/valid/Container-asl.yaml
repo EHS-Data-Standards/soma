@@ -24,6 +24,7 @@ asl_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:asl-001"
       name: "Confocal microscopy for ASL height"
       spatial_resolution:

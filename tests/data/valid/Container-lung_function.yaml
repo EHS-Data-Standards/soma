@@ -33,6 +33,7 @@ lung_function_assays:
       sex: "male"
       subject_characteristics: "Non-smoker, no respiratory disease"
     spirometry_protocol:
+      protocol_type: SpirometryProtocol
       id: "PROTOCOL:spiro-001"
       name: "Pre- and post-bronchodilator spirometry"
       spirometry_standard: "ATS/ERS 2019"

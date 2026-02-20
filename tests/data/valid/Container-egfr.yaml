@@ -25,6 +25,7 @@ egfr_signaling_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:wb-001"
       name: "Western blot for phospho-EGFR"
       detection_method: "chemiluminescence"

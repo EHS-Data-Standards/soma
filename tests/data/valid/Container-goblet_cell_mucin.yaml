@@ -24,6 +24,7 @@ goblet_cell_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     staining_protocol:
+      protocol_type: StainingProtocol
       id: "PROTOCOL:stain-001"
       name: "AB-PAS staining for goblet cells"
       staining_type: "AB-PAS"

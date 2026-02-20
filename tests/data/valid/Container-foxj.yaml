@@ -31,6 +31,7 @@ foxj_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:qpcr-001"
       name: "qRT-PCR for FoxJ1"
       detection_method: "SYBR Green qPCR"

@@ -20,6 +20,7 @@ oxidative_stress_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:ros-001"
       name: "DCFDA ROS detection in ALI cultures"
       detection_method: "fluorescence plate reader"

@@ -38,6 +38,7 @@ balf_sputum_assays:
       collection_site: "pulmonary clinic"
       subject_characteristics: "Non-smoker, mild asthma"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:balf-001"
       name: "Sputum cell differential protocol"
       detection_method: "cytospin and Diff-Quik staining"

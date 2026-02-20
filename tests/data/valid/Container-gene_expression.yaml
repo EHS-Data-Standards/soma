@@ -29,6 +29,7 @@ gene_expression_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:qpcr-002"
       name: "qRT-PCR for cytokine expression"
       detection_method: "TaqMan qPCR"

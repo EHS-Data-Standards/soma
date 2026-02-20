@@ -85,6 +85,7 @@ ciliary_function_assays:
                 id: "UO:0000064"
                 name: "micrograms per milliliter"
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:cbf-001"
       name: "High-speed video microscopy for CBF"
       imaging_frame_rate:

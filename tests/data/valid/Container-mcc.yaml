@@ -20,6 +20,7 @@ mcc_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:mcc-001"
       name: "Fluorescent microsphere tracking for MCC"
       fluorescent_tracer: "1-um fluorescent microspheres"

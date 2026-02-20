@@ -12,7 +12,7 @@ and adapt it to your data. Each example shows:
 - Required fields for the assay type
 - Named measurement slots (e.g., `beat_frequency_hz`, not generic `observation_type`)
 - Study subject with appropriate detail level
-- Typed protocols (ImagingProtocol, MolecularAssayProtocol, etc.)
+- Typed protocols with `protocol_type` designator (ImagingProtocol, MolecularAssayProtocol, etc.)
 
 ---
 
@@ -105,6 +105,7 @@ ciliary_function_assays:
                 id: "UO:0000064"
                 name: "micrograms per milliliter"
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:cbf-001"
       name: "High-speed video microscopy for CBF"
       imaging_frame_rate:
@@ -134,6 +135,7 @@ ciliary_function_assays:
   - `donor_info` for subject demographics and health status
   - `culture_conditions` with ALI-specific parameters
   - `culture_media` with base medium, manufacturer, and detailed `supplements` (type, concentration)
+- `protocol_type: ImagingProtocol` designates the concrete Protocol subclass for polymorphic dispatch
 - `imaging_protocol` (ImagingProtocol) with frame rate, duration, and temperature
 
 ---
@@ -168,6 +170,7 @@ asl_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:asl-001"
       name: "Confocal microscopy for ASL height"
       spatial_resolution:
@@ -206,6 +209,7 @@ mcc_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:mcc-001"
       name: "Fluorescent microsphere tracking for MCC"
       fluorescent_tracer: "1-um fluorescent microspheres"
@@ -240,6 +244,7 @@ oxidative_stress_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:ros-001"
       name: "DCFDA ROS detection in ALI cultures"
       detection_method: "fluorescence plate reader"
@@ -319,6 +324,7 @@ egfr_signaling_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:wb-001"
       name: "Western blot for phospho-EGFR"
       detection_method: "chemiluminescence"
@@ -360,6 +366,7 @@ goblet_cell_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     staining_protocol:
+      protocol_type: StainingProtocol
       id: "PROTOCOL:stain-001"
       name: "AB-PAS staining for goblet cells"
       staining_type: "AB-PAS"
@@ -399,6 +406,7 @@ foxj_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:qpcr-001"
       name: "qRT-PCR for FoxJ1"
       detection_method: "SYBR Green qPCR"
@@ -435,6 +443,7 @@ gene_expression_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:qpcr-002"
       name: "qRT-PCR for cytokine expression"
       detection_method: "TaqMan qPCR"
@@ -485,6 +494,7 @@ lung_function_assays:
       sex: "male"
       subject_characteristics: "Non-smoker, no respiratory disease"
     spirometry_protocol:
+      protocol_type: SpirometryProtocol
       id: "PROTOCOL:spiro-001"
       name: "Pre- and post-bronchodilator spirometry"
       spirometry_standard: "ATS/ERS 2019"
@@ -499,6 +509,7 @@ lung_function_assays:
 **Key points:**
 
 - `study_subject` includes InVivoSubject slots: `age`, `sex`, `subject_characteristics`
+- `protocol_type: SpirometryProtocol` designates the concrete Protocol subclass
 - `spirometry_protocol` (SpirometryProtocol) with standards and bronchodilator details
 
 ---
@@ -542,6 +553,7 @@ balf_sputum_assays:
       collection_site: "pulmonary clinic"
       subject_characteristics: "Non-smoker, mild asthma"
     molecular_protocol:
+      protocol_type: MolecularAssayProtocol
       id: "PROTOCOL:balf-001"
       name: "Sputum cell differential protocol"
       detection_method: "cytospin and Diff-Quik staining"
@@ -556,6 +568,11 @@ typed Protocols (specific procedures).
 
 **Key protocol features:**
 
+- **`protocol_type`** (on Protocol): designates which concrete Protocol subclass is
+  instantiated (e.g., `ImagingProtocol`, `StainingProtocol`, `SpirometryProtocol`,
+  `MolecularAssayProtocol`). This enables polymorphic dispatch — when protocols are
+  referenced via `follows_protocols` or `sub_protocols`, the `protocol_type` field
+  tells the system which subclass to use for validation and deserialization.
 - **`follows_protocols`** (on Assay): multivalued — an assay can reference multiple protocols
 - **`sub_protocols`** (on Protocol): protocols can compose other protocols to represent
   composite workflows (e.g., sample prep, wash steps, post-processing)
@@ -610,6 +627,7 @@ protocols:
 ### Typed Protocols on Assays
 
 Assays reference typed protocols directly for domain-specific details.
+The `protocol_type` field designates which concrete Protocol subclass is being used.
 The base `follows_protocols` slot is also available for general protocol references:
 
 ```yaml
@@ -631,6 +649,7 @@ ciliary_function_assays:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     imaging_protocol:
+      protocol_type: ImagingProtocol
       id: "PROTOCOL:cbf-001"
       name: "CBF measurement by high-speed microscopy"
       imaging_frame_rate:
@@ -672,7 +691,7 @@ Key features demonstrated in the comprehensive example:
 
 - **AOP linkage**: Each assay uses `informs_on_key_event` to connect to the biological pathway
 - **Named measurement slots**: `reactive_oxygen_species`, `egfr_phosphorylation_y1068`, `beat_frequency_hz`, `fev1`
-- **Typed protocols**: ImagingProtocol, MolecularAssayProtocol, StainingProtocol, SpirometryProtocol
+- **Typed protocols** with `protocol_type` designator: ImagingProtocol, MolecularAssayProtocol, StainingProtocol, SpirometryProtocol
 - **In vitro study subjects**: StudySubject with `model_species` for cell culture assays
 - **In vivo study subjects**: InVivoSubject with `age`, `sex`, `subject_characteristics` for clinical assays
 - **Input samples**: `input_sample` with exposure conditions and duration
