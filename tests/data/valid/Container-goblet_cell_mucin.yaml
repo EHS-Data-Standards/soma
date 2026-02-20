@@ -2,16 +2,19 @@
 goblet_cell_assays:
   - id: "GCM:001"
     name: "MUC5AC expression and goblet cell quantification"
-    muc5ac_mrna_expression:
-      value: "4.8"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
-    goblet_cell_percentage:
-      value: "28"
-      unit:
-        id: "UO:0000187"
-        name: "percent"
+    has_specified_output:
+      id: "GCM:001-output"
+      name: "GCM:001 measurement results"
+      muc5ac_mrna_expression:
+        value: "4.8"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+      goblet_cell_percentage:
+        value: "28"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
     assay_date: "2024-06-15"
     cell_type:
       id: "CL:0002328"
@@ -23,10 +26,10 @@ goblet_cell_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    staining_protocol:
-      protocol_type: StainingProtocol
-      id: "PROTOCOL:stain-001"
-      name: "AB-PAS staining for goblet cells"
-      staining_type: "AB-PAS"
-      fixation_method: "4% paraformaldehyde"
-      counterstain: "hematoxylin"
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:stain-001"
+        name: "AB-PAS staining for goblet cells"
+        staining_type: "AB-PAS"
+        fixation_method: "4% paraformaldehyde"
+        counterstain: "hematoxylin"

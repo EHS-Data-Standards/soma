@@ -53,9 +53,7 @@ classes:
       biological state relevant to a Key Event in an Adverse Outcome Pathway.
       Assays are organized by the functional domain they assess (e.g., ciliary
       function, oxidative stress), and each domain-specific assay class contains
-      named slots for the specific measurements it can produce.
-
-      This is the central organizing concept in the schema - assays inform on
+      named slots for the specific measurements it can produce. Assays inform on
       key events and contain the measurement data as named slots.
     slots:
       - informs_on_key_event
@@ -65,6 +63,23 @@ classes:
       - input_sample
       - follows_protocols
       - assay_date
+      - has_specified_output
+
+  # ---------------------------------------------------------------------------
+  # Assay Output Measurement (Abstract Base)
+  # ---------------------------------------------------------------------------
+
+  AssayOutputMeasurement:
+    is_a: NamedThing
+    abstract: true
+    exact_mappings:
+      - IAO:0000109
+    description: >-
+      The measurement results produced by an assay. The specified output
+      of a planned process. Each domain-specific assay class has a
+      corresponding AssayOutputMeasurement subclass containing the named
+      measurement slots for that assay type. This class represents the "output" in the Input/Process/Output
+      model: what was measured and what values were obtained.
 
   # ---------------------------------------------------------------------------
   # Study Subject Hierarchy
@@ -125,32 +140,17 @@ classes:
       A detailed set of steps for how to perform a specific assay.
       Protocols ensure reproducibility across laboratories.
       Contains universal slots; domain-specific details are in protocol
-      subclasses (ImagingProtocol, StainingProtocol, etc.).
-
-      Protocols can reference other protocols via sub_protocols to represent
+      subclasses (ImagingProtocol, StainingProtocol, etc.). Protocols can reference other protocols via sub_protocols to represent
       composite workflows (e.g., sample preparation, wash steps, or
       post-processing protocols that are shared across assays).
     slots:
       # Type designator for polymorphism
       - protocol_type
-
-      # Core identity
       - protocol_version
-      - sop_reference
       - equipment_required
-
-      # Composite protocol support
       - sub_protocols
-
-      # Environmental controls
-      - temperature_control
-      - humidity_control
-
-      # Quality
       - quality_control_criteria
       - replicate_requirements
-
-      # Provenance
       - protocol_author
       - institution
       - publication_reference
@@ -170,6 +170,8 @@ classes:
       - fluorescent_tracer
       - evaporation_prevention
       - particle_tracking_method
+      - temperature_control
+      - humidity_control
       - particle_size
 
   StainingProtocol:
@@ -437,6 +439,20 @@ slots:
       Adverse Outcome Pathway framework. Multiple assays can inform on the
       same key event, providing converging evidence.
     range: KeyEvent
+    inlined: true
+
+  # ---------------------------------------------------------------------------
+  # Assay Output Slot
+  # ---------------------------------------------------------------------------
+
+  has_specified_output:
+    description: >-
+      The measurement results produced by this assay — the specified output
+      of a planned process (OBI). Contains the domain-specific measurement
+      values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).
+    range: AssayOutputMeasurement
+    exact_mappings:
+      - OBI:0000299
     inlined: true
 
   # ---------------------------------------------------------------------------

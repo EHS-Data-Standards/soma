@@ -4,16 +4,19 @@
 balf_sputum_assays:
   - id: "BALF:001"
     name: "Neutrophil percentage in induced sputum"
-    neutrophil_percentage:
-      value: "45.0"
-      unit:
-        id: "UO:0000187"
-        name: "percent"
-    il8_concentration:
-      value: "250"
-      unit:
-        id: "UO:0000175"
-        name: "picogram per milliliter"
+    has_specified_output:
+      id: "BALF:001-output"
+      name: "BALF:001 measurement results"
+      neutrophil_percentage:
+        value: "45.0"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+      il8_concentration:
+        value: "250"
+        unit:
+          id: "UO:0000175"
+          name: "picogram per milliliter"
     assay_date: "2024-07-22"
     cell_type:
       id: "CL:0000775"
@@ -37,8 +40,8 @@ balf_sputum_assays:
       sample_type: sputum
       collection_site: "pulmonary clinic"
       subject_characteristics: "Non-smoker, mild asthma"
-    molecular_protocol:
-      protocol_type: MolecularAssayProtocol
-      id: "PROTOCOL:balf-001"
-      name: "Sputum cell differential protocol"
-      detection_method: "cytospin and Diff-Quik staining"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:balf-001"
+        name: "Sputum cell differential protocol"
+        detection_method: "cytospin and Diff-Quik staining"

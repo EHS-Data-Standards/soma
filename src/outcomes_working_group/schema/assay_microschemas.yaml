@@ -30,7 +30,7 @@ default_prefix: assay_microschemas
 default_range: string
 
 # =============================================================================
-# CLASSES - Domain-Specific Assay Classes
+# CLASSES - Domain-Specific Assay Classes and Output Classes
 # =============================================================================
 
 classes:
@@ -58,19 +58,7 @@ classes:
       TIER 1 slots (critical): beat_frequency_hz, active_area_percentage,
       cilia_length, cilia_per_cell, percentage_ciliated_cells, cell_type_ratios,
     slots:
-      # TIER 1 - Critical (Rank 1) - Named measurement slots
-      - beat_frequency_hz
-      - active_area_percentage
-      - cilia_length
-      - cilia_per_cell
-      - percentage_ciliated_cells
-      - cell_type_ratios
-
-      # TIER 2 - Important but optional (Rank 2)
-      - ciliary_motion_patterns
-      - ciliary_beat_amplitude
-
-      # Assay-specific parameters
+      # Assay-specific parameters (NOT measurements)
       - analysis_software
       - airway_region
     slot_usage:
@@ -79,6 +67,26 @@ classes:
         description: >-
           Can be ModelSystem (in vitro - ALI cultures, tissue slices, spheroids)
           or InVivoSubject (in vivo - OCT measurements)
+      has_specified_output:
+        range: CiliaryFunctionOutput
+
+  CiliaryFunctionOutput:
+    is_a: AssayOutputMeasurement
+    description: >-
+      Measurement results from a ciliary function assay. Contains the
+      measured values for ciliary beat frequency, active area, cilia
+      morphology, and ciliated cell populations.
+    slots:
+      # TIER 1 - Critical (Rank 1) - Named measurement slots
+      - beat_frequency_hz
+      - active_area_percentage
+      - cilia_length
+      - cilia_per_cell
+      - percentage_ciliated_cells
+      - cell_type_ratios
+      # TIER 2 - Important but optional (Rank 2)
+      - ciliary_motion_patterns
+      - ciliary_beat_amplitude
 
   # ---------------------------------------------------------------------------
   # ASLAssay (Airway Surface Liquid)
@@ -91,14 +99,22 @@ classes:
       Assay for measuring airway surface liquid properties including ASL height,
       periciliary layer depth, and ion composition. Informs on Key Event:
       "Decreased ASL height" or "Altered airway hydration" in CF-related AOPs.
+    slot_usage:
+      has_specified_output:
+        range: ASLOutput
+
+  ASLOutput:
+    is_a: AssayOutputMeasurement
+    description: >-
+      Measurement results from an airway surface liquid assay. Contains the
+      measured values for ASL height, periciliary layer depth, and ion
+      composition.
     slots:
       # TIER 1 - Critical (Rank 1) - Named measurement slots
       - asl_height_um
       - periciliary_layer_depth
-
       # TIER 2 - Optional on Assay (Rank 2)
       - mucus_layer_thickness
-
       # TIER 3 - Protocol level but kept for convenience
       - ion_composition
       - asl_ph
@@ -115,13 +131,24 @@ classes:
       Key Event: "Impaired mucociliary clearance" in respiratory AOPs.
       TIER 1 slots (critical): transport_rate, directionality.
     slots:
+      # TIER 2 - Important context (Rank 2)
+      - mucus_composition
+    slot_usage:
+      has_specified_output:
+        range: MucociliaryClearanceOutput
+
+  MucociliaryClearanceOutput:
+    is_a: AssayOutputMeasurement
+    description: >-
+      Measurement results from a mucociliary clearance assay. Contains the
+      measured values for transport rate, directionality, and clearance
+      metrics.
+    slots:
       # TIER 1 - Critical (Rank 1) - Named measurement slots
       - transport_rate
       - transport_directionality
-
       # TIER 2 - Important context (Rank 2)
       - mucus_layer_thickness
-      - mucus_composition
       - percentage_active_transport
       - particle_clearance_time
 
@@ -140,9 +167,20 @@ classes:
       TIER 1 slots (critical): All surrogate markers for oxidative stress.
       Multiple detection methods expected - no single "best" for lung function.
     slots:
+      - ros_probe_type
+    slot_usage:
+      has_specified_output:
+        range: OxidativeStressOutput
+
+  OxidativeStressOutput:
+    is_a: AssayOutputMeasurement
+    description: >-
+      Measurement results from an oxidative stress assay. Contains all
+      surrogate markers for oxidative stress including ROS levels, lipid
+      peroxidation, protein oxidation, DNA damage, and antioxidant capacity.
+    slots:
       # TIER 1 - Critical (Rank 1) - Named measurement slots
       - reactive_oxygen_species
-      - ros_probe_type
       - lipid_peroxidation
       - malondialdehyde
       - four_hydroxynonenal
@@ -175,6 +213,20 @@ classes:
 
       TIER 1 slots (critical): cell_culture_details is critical.
     slots:
+      # Assay-specific parameters
+      - stimulation_agent
+      - inhibitor_used
+    slot_usage:
+      has_specified_output:
+        range: CFTRFunctionOutput
+
+  CFTRFunctionOutput:
+    is_a: AssayOutputMeasurement
+    description: >-
+      Measurement results from a CFTR function assay. Contains the
+      measured values for CFTR-mediated chloride secretion, forskolin
+      response, and related electrophysiology measurements.
+    slots:
       # TIER 1 - Critical (Rank 1) - Named measurement slots
       - cftr_chloride_secretion
       - cftr_forskolin_response
@@ -182,10 +234,6 @@ classes:
       - cftr_specific_current
       - sweat_chloride_concentration
       - nasal_potential_difference
-
-      # Assay-specific
-      - stimulation_agent
-      - inhibitor_used
 
   # ---------------------------------------------------------------------------
   # EGFRSignalingAssay
@@ -205,11 +253,24 @@ classes:
 
       TIER 1 slots (critical): egfr_phosphorylation with site specification.
     slots:
+      # Assay-specific parameters
+      - normalization_reference
+      - phosphorylation_site
+    slot_usage:
+      has_specified_output:
+        range: EGFRSignalingOutput
+
+  EGFRSignalingOutput:
+    is_a: AssayOutputMeasurement
+    description: >-
+      Measurement results from an EGFR signaling assay. Contains the
+      measured values for EGFR phosphorylation, total protein, and
+      downstream kinase activation.
+    slots:
       # TIER 1 - Critical (Rank 1) - Named measurement slots
       - egfr_phosphorylation_y1068
       - egfr_phosphorylation_y1173
       - total_egfr_protein
-
       # TIER 2 - Supporting evidence (Rank 2)
       - downstream_kinase_activation
       - erk_phosphorylation
@@ -217,10 +278,6 @@ classes:
       - pathway_biomarkers
       - egfr_ligand_expression
       - egfr_membrane_localization
-
-      # Assay-specific
-      - normalization_reference
-      - phosphorylation_site
 
   # ---------------------------------------------------------------------------
   # GobletCellAssay (combines GobletCellMeasurement + MucinProductionMeasurement)
@@ -237,6 +294,15 @@ classes:
       measurements - cells may stay same but secretion changes. AB-PAS staining
       common for visualizing goblet cells. Some secreted mucins not tethered
       to goblet cells.
+    slot_usage:
+      has_specified_output:
+        range: GobletCellOutput
+
+  GobletCellOutput:
+    is_a: AssayOutputMeasurement
+    description: >-
+      Measurement results from a goblet cell assay. Contains the measured
+      values for goblet cell counts, mucin expression, and mucus properties.
     slots:
       # TIER 1 - Critical (Rank 1) - Named measurement slots
       - goblet_cell_count
@@ -249,7 +315,6 @@ classes:
       - mucin_protein_concentration
       - mucin_secretion_rate
       - percent_solids
-
       # TIER 2 - Optional (Rank 2)
       - goblet_to_ciliated_ratio
       - mucus_viscosity
@@ -271,6 +336,17 @@ classes:
       evidence for inflammatory cell populations and cytokine levels.
 
       This assay is IN VIVO ONLY - requires samples from human or animal subjects.
+    slot_usage:
+      study_subject:
+        range: InVivoSubject
+      has_specified_output:
+        range: BALFSputumOutput
+
+  BALFSputumOutput:
+    is_a: AssayOutputMeasurement
+    description: >-
+      Measurement results from a BALF/sputum assay. Contains inflammatory
+      cell differentials, cytokine concentrations, and microbiome metrics.
     slots:
       # Inflammatory cell percentages
       - neutrophil_percentage
@@ -278,22 +354,17 @@ classes:
       - macrophage_percentage
       - lymphocyte_percentage
       - total_cell_count
-
       # Cytokine concentrations
       - il6_concentration
       - il8_concentration
       - tnf_alpha_concentration
       - il1_beta_concentration
-
       # Other markers
       - total_protein_concentration
       - alpha_diversity
       - beta_diversity
       - bacterial_load
       - cell_free_dna
-    slot_usage:
-      study_subject:
-        range: InVivoSubject
 
   # ---------------------------------------------------------------------------
   # LungFunctionAssay (InVivo only)
@@ -320,21 +391,32 @@ classes:
       TIER 1 slots (critical): fev1, fvc, subject_characteristics, reference_dataset.
       This assay is IN VIVO ONLY.
     slots:
+      # Assay-specific parameters and context
+      - reference_dataset
+      - hemoglobin_level
+      - recent_respiratory_illness
+    slot_usage:
+      study_subject:
+        range: InVivoSubject
+      has_specified_output:
+        range: LungFunctionOutput
+
+  LungFunctionOutput:
+    is_a: AssayOutputMeasurement
+    description: >-
+      Measurement results from a lung function assay. Contains spirometry
+      measurements, diffusing capacity, and related clinical metrics.
+    slots:
       # TIER 1 - Critical (Rank 1) - Named measurement slots
       - fev1
       - fvc
-      - reference_dataset
-
       # TIER 2 - Important clinical context (Rank 2)
       - fev1_fvc_ratio
       - feno
       - decline_rate
       - bronchodilator_response
       - dlco
-      - hemoglobin_level
-      - recent_respiratory_illness
       - peak_expiratory_flow
-
       # TIER 3 - Specialized tests (often in Protocol)
       - fef25_75
       - total_lung_capacity
@@ -343,9 +425,6 @@ classes:
       - lung_compliance
       - lung_elastance
       - lung_resistance
-    slot_usage:
-      study_subject:
-        range: InVivoSubject
 
   # ---------------------------------------------------------------------------
   # FoxJExpressionAssay (InVitro focus)
@@ -364,6 +443,15 @@ classes:
       FoxJ1 is a master transcription factor for motile cilia.
 
       This assay is primarily IN VITRO focused.
+    slot_usage:
+      has_specified_output:
+        range: FoxJExpressionOutput
+
+  FoxJExpressionOutput:
+    is_a: AssayOutputMeasurement
+    description: >-
+      Measurement results from a FoxJ1 expression assay. Contains the
+      measured values for FoxJ1 mRNA, protein, and cellular localization.
     slots:
       # Named measurement slots
       - foxj1_mrna_expression
@@ -387,13 +475,25 @@ classes:
       TranscriptionFactorExpressionMeasurement per domain feedback -
       gene expression is more commonly the primary output.
     slots:
-      # Named measurement slots
+      # Assay-specific parameters
       - target_gene
+      - gene_expression_method
+      - normalization_reference
+    slot_usage:
+      has_specified_output:
+        range: GeneExpressionOutput
+
+  GeneExpressionOutput:
+    is_a: AssayOutputMeasurement
+    description: >-
+      Measurement results from a gene expression assay. Contains the
+      measured values for mRNA level, protein level, and positive cell
+      percentage.
+    slots:
+      # Named measurement slots
       - mrna_level
       - protein_level
       - percentage_positive_cells
-      - gene_expression_method
-      - normalization_reference
 
 # =============================================================================
 # SLOTS - Named Measurement Slots for Each Assay
@@ -437,12 +537,6 @@ slots:
       Percentage of cells that are ciliated. TIER 1 - critical for
       understanding ciliated cell populations.
     range: QuantityValue
-    inlined: true
-
-  imaging_protocol:
-    description: >-
-      Reference to the imaging protocol used. TIER 1 for CBF, ASL assays.
-    range: ImagingProtocol
     inlined: true
 
   ciliary_motion_patterns:
@@ -775,12 +869,6 @@ slots:
     range: QuantityValue
     inlined: true
 
-  staining_protocol:
-    description: >-
-      Reference to staining protocol (AB-PAS, immunochem). TIER 1.
-    range: StainingProtocol
-    inlined: true
-
   muc5ac_mrna_expression:
     description: MUC5AC mRNA expression level (fold change). TIER 1.
     range: QuantityValue
@@ -835,6 +923,34 @@ slots:
   mucus_viscosity:
     description: Mucus viscosity in centipoise. TIER 2.
     range: QuantityValue
+    inlined: true
+
+  # ---------------------------------------------------------------------------
+  # Protocol Reference Slots
+  # ---------------------------------------------------------------------------
+
+  imaging_protocol:
+    description: >-
+      Reference to the imaging protocol used. TIER 1 for CBF, ASL assays.
+    range: ImagingProtocol
+    inlined: true
+
+  staining_protocol:
+    description: >-
+      Reference to staining protocol (AB-PAS, immunochem). TIER 1.
+    range: StainingProtocol
+    inlined: true
+
+  molecular_protocol:
+    description: >-
+      Reference to the molecular assay protocol used.
+    range: MolecularAssayProtocol
+    inlined: true
+
+  spirometry_protocol:
+    description: >-
+      Reference to the spirometry protocol used.
+    range: SpirometryProtocol
     inlined: true
 
   # ---------------------------------------------------------------------------
@@ -1027,22 +1143,6 @@ slots:
     description: >-
       Lung resistance. TIER 3 - most often reported for animals.
     range: QuantityValue
-    inlined: true
-
-  # ---------------------------------------------------------------------------
-  # Protocol Reference Slots
-  # ---------------------------------------------------------------------------
-
-  molecular_protocol:
-    description: >-
-      Reference to the molecular assay protocol used.
-    range: MolecularAssayProtocol
-    inlined: true
-
-  spirometry_protocol:
-    description: >-
-      Reference to the spirometry protocol used.
-    range: SpirometryProtocol
     inlined: true
 
   # ---------------------------------------------------------------------------

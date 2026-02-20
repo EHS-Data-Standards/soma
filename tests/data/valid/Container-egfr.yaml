@@ -2,16 +2,19 @@
 egfr_signaling_assays:
   - id: "EGFR:001"
     name: "EGFR phosphorylation after smoke exposure"
-    egfr_phosphorylation_y1068:
-      value: "3.2"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
-    total_egfr_protein:
-      value: "1.0"
-      unit:
-        id: "UO:0000193"
-        name: "fold change"
+    has_specified_output:
+      id: "EGFR:001-output"
+      name: "EGFR:001 measurement results"
+      egfr_phosphorylation_y1068:
+        value: "3.2"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+      total_egfr_protein:
+        value: "1.0"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
     normalization_reference: "beta-actin"
     assay_date: "2024-05-08"
     cell_type:
@@ -24,12 +27,12 @@ egfr_signaling_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    molecular_protocol:
-      protocol_type: MolecularAssayProtocol
-      id: "PROTOCOL:wb-001"
-      name: "Western blot for phospho-EGFR"
-      detection_method: "chemiluminescence"
-      antibodies_used:
-        - "anti-pEGFR Y1068 (Cell Signaling #3777)"
-        - "anti-total EGFR (Cell Signaling #4267)"
-      normalization_method: "total protein normalization"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:wb-001"
+        name: "Western blot for phospho-EGFR"
+        detection_method: "chemiluminescence"
+        antibodies_used:
+          - "anti-pEGFR Y1068 (Cell Signaling #3777)"
+          - "anti-total EGFR (Cell Signaling #4267)"
+        normalization_method: "total protein normalization"

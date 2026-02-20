@@ -2,12 +2,15 @@
 mcc_assays:
   - id: "MCC:001"
     name: "Mucociliary transport rate"
-    transport_rate:
-      value: "45.3"
-      unit:
-        id: "UO:0000103"
-        name: "micrometer per second"
-    transport_directionality: normal
+    has_specified_output:
+      id: "MCC:001-output"
+      name: "MCC:001 measurement results"
+      transport_rate:
+        value: "45.3"
+        unit:
+          id: "UO:0000103"
+          name: "micrometer per second"
+      transport_directionality: normal
     assay_date: "2024-03-05"
     cell_type:
       id: "CL:0002328"
@@ -19,19 +22,19 @@ mcc_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    imaging_protocol:
-      protocol_type: ImagingProtocol
-      id: "PROTOCOL:mcc-001"
-      name: "Fluorescent microsphere tracking for MCC"
-      fluorescent_tracer: "1-um fluorescent microspheres"
-      particle_tracking_method: "automated particle tracking"
-      particle_size:
-        value: "1"
-        unit:
-          id: "UO:0000017"
-          name: "micrometer"
-      imaging_frame_rate:
-        value: "30"
-        unit:
-          id: "UO:0000105"
-          name: "hertz"
+    follows_protocols:
+      - protocol_type: ImagingProtocol
+        id: "PROTOCOL:mcc-001"
+        name: "Fluorescent microsphere tracking for MCC"
+        fluorescent_tracer: "1-um fluorescent microspheres"
+        particle_tracking_method: "automated particle tracking"
+        particle_size:
+          value: "1"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
+        imaging_frame_rate:
+          value: "30"
+          unit:
+            id: "UO:0000105"
+            name: "hertz"

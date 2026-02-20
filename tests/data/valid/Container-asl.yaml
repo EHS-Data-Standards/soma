@@ -2,16 +2,19 @@
 asl_assays:
   - id: "ASL:001"
     name: "Airway surface liquid height"
-    asl_height_um:
-      value: "7.2"
-      unit:
-        id: "UO:0000017"
-        name: "micrometer"
-    periciliary_layer_depth:
-      value: "5.1"
-      unit:
-        id: "UO:0000017"
-        name: "micrometer"
+    has_specified_output:
+      id: "ASL:001-output"
+      name: "ASL:001 measurement results"
+      asl_height_um:
+        value: "7.2"
+        unit:
+          id: "UO:0000017"
+          name: "micrometer"
+      periciliary_layer_depth:
+        value: "5.1"
+        unit:
+          id: "UO:0000017"
+          name: "micrometer"
     assay_date: "2024-02-10"
     cell_type:
       id: "CL:0002328"
@@ -23,18 +26,18 @@ asl_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
-    imaging_protocol:
-      protocol_type: ImagingProtocol
-      id: "PROTOCOL:asl-001"
-      name: "Confocal microscopy for ASL height"
-      spatial_resolution:
-        value: "1.5"
-        unit:
-          id: "UO:0000017"
-          name: "micrometer"
-      fluorescent_labeling: "Texas Red-dextran"
-      temperature_control:
-        value: "37"
-        unit:
-          id: "UO:0000027"
-          name: "degree Celsius"
+    follows_protocols:
+      - protocol_type: ImagingProtocol
+        id: "PROTOCOL:asl-001"
+        name: "Confocal microscopy for ASL height"
+        spatial_resolution:
+          value: "1.5"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
+        fluorescent_labeling: "Texas Red-dextran"
+        temperature_control:
+          value: "37"
+          unit:
+            id: "UO:0000027"
+            name: "degree Celsius"
