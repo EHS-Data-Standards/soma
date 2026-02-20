@@ -28,11 +28,6 @@ foxj_assays:
           id: "UO:0000187"
           name: "percent"
     assay_date: "2024-09-05"
-    # InVitroAssayMixin slots
-    cell_culture_system: "Primary HBE cells at ALI"
-    days_at_ali_or_differentiation: 14
-    passage_number_at_assay: 2
-    donor_characteristics: "Healthy donor, non-smoker"
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-008"
@@ -43,6 +38,18 @@ foxj_assays:
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
+      primary_cell:
+        id: "CL:0002328"
+        name: "bronchial epithelial cell"
+      anatomical_origin:
+        id: "UBERON:0002031"
+        name: "bronchus"
+      cell_culture_growth_mode: air_liquid_interface
+      days_at_differentiation: 14
+      donor_info: "Healthy donor, non-smoker"
+      replicates_per_donor: 3
+      substrate_type: transwell_insert
+      passage_number: 2
     follows_protocols:
       - protocol_type: MolecularAssayProtocol
         id: "PROTOCOL:qpcr-001"

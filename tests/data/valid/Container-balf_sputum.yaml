@@ -56,9 +56,6 @@ balf_sputum_assays:
     target_cell_type:
       id: "CL:0000775"
       name: "neutrophil"
-    # InVivoAssayMixin slots
-    sample_collection_method: "Induced sputum with hypertonic saline nebulization"
-    clinical_context: "Routine monitoring, stable asthma"
     study_subject:
       subject_type: InVivoSubject
       id: "SUBJECT:001"
@@ -75,6 +72,8 @@ balf_sputum_assays:
       sample_type: sputum
       collection_site: "pulmonary clinic"
       subject_characteristics: "Non-smoker, mild asthma"
+      sample_collection_method: "Induced sputum with hypertonic saline nebulization"
+      clinical_context: "Routine monitoring, stable asthma"
     follows_protocols:
       - protocol_type: MolecularAssayProtocol
         id: "PROTOCOL:balf-001"

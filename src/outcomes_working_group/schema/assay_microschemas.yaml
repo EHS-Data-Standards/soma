@@ -38,9 +38,6 @@ classes:
 
   CiliaryFunctionAssay:
     is_a: Assay
-    mixins:
-      - InVitroAssayMixin
-      - InVivoAssayMixin
     annotations:
       supported_contexts: in_vitro_or_in_vivo
     description: >-
@@ -195,8 +192,6 @@ classes:
       Assay for measuring CFTR (Cystic Fibrosis Transmembrane Conductance
       Regulator) function. Informs on Key Event: "Decreased CFTR function"
       in cystic fibrosis-related AOPs.
-
-      TIER 1 slots (critical): cell_culture_details is critical.
     slots:
       # Assay-specific parameters
       - stimulation_agent
@@ -311,8 +306,6 @@ classes:
 
   BALFSputumAssay:
     is_a: Assay
-    mixins:
-      - InVivoAssayMixin
     annotations:
       supported_contexts: in_vivo_only
     description: >-
@@ -360,8 +353,6 @@ classes:
 
   LungFunctionAssay:
     is_a: Assay
-    mixins:
-      - InVivoAssayMixin
     annotations:
       supported_contexts: in_vivo_only
     description: >-
@@ -420,8 +411,6 @@ classes:
 
   FoxJExpressionAssay:
     is_a: Assay
-    mixins:
-      - InVitroAssayMixin
     annotations:
       supported_contexts: in_vitro_only
     description: >-
@@ -453,8 +442,6 @@ classes:
 
   GeneExpressionAssay:
     is_a: Assay
-    mixins:
-      - InVitroAssayMixin
     annotations:
       supported_contexts: in_vitro_only
     description: >-

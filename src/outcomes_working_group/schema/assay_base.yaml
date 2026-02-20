@@ -114,6 +114,8 @@ classes:
       - sample_type
       - collection_site
       - collection_date
+      - sample_collection_method
+      - clinical_context
 
   PopulationSubject:
     is_a: StudySubject
@@ -393,32 +395,6 @@ classes:
       - max_value
       - unit
 
-  # ---------------------------------------------------------------------------
-  # Assay Context Mixins
-  # ---------------------------------------------------------------------------
-
-  InVitroAssayMixin:
-    mixin: true
-    description: >-
-      Mixin providing slots relevant for in vitro assay contexts.
-      Apply to assay classes that can be performed in vitro (cell cultures,
-      tissue slices, organoids, etc.).
-    slots:
-      - cell_culture_system
-      - days_at_ali_or_differentiation
-      - passage_number_at_assay
-      - donor_characteristics
-
-  InVivoAssayMixin:
-    mixin: true
-    description: >-
-      Mixin providing slots relevant for in vivo assay contexts.
-      Apply to assay classes that can be performed in vivo (measurements
-      on living human or animal subjects).
-    slots:
-      - sample_collection_method
-      - clinical_context
-
 # =============================================================================
 # SLOTS
 # =============================================================================
@@ -499,34 +475,6 @@ slots:
       slots are available.
     range: StudySubject
     inlined: true
-
-  # ---------------------------------------------------------------------------
-  # Assay Context Mixin Slots
-  # ---------------------------------------------------------------------------
-
-  cell_culture_system:
-    description: >-
-      Description of the cell culture system used for in vitro assays
-      (e.g., "Air-liquid interface (ALI) culture on transwell inserts",
-      "Primary HBE cells at ALI", "3D spheroid culture").
-    range: string
-
-  days_at_ali_or_differentiation:
-    description: >-
-      Number of days the cells were cultured at air-liquid interface
-      or in differentiation conditions before the assay.
-    range: integer
-
-  passage_number_at_assay:
-    description: >-
-      Passage number of the cells at the time of the assay.
-    range: integer
-
-  donor_characteristics:
-    description: >-
-      Characteristics of the cell/tissue donor for in vitro systems
-      (e.g., "Healthy non-smoker, male, age 35").
-    range: string
 
   sample_collection_method:
     description: >-
