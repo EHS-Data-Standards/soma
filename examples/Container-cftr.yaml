@@ -38,6 +38,11 @@ cftr_assays:
     stimulation_agent: "forskolin 10 uM"
     inhibitor_used: "CFTRinh-172"
     assay_date: "2024-04-12"
+    informs_on_key_event:
+      id: "KE:ke-decreased-cftr"
+      name: "Decreased CFTR function"
+      biological_action: decreased
+      level_of_biological_organization: molecular
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-006"

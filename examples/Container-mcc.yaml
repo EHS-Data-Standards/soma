@@ -27,6 +27,11 @@ mcc_assays:
           id: "UO:0000010"
           name: "second"
     assay_date: "2024-03-05"
+    informs_on_key_event:
+      id: "KE:ke3-impaired-mcc"
+      name: "Impaired mucociliary clearance"
+      biological_action: impaired
+      level_of_biological_organization: tissue
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-007"

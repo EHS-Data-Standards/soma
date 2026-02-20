@@ -56,6 +56,11 @@ oxidative_stress_assays:
       antioxidant_enzyme_activities: "SOD, catalase, GPx measured"
     ros_probe_type: "DCFDA"
     assay_date: "2024-01-20"
+    informs_on_key_event:
+      id: "KE:mie-oxidative-stress"
+      name: "Increased oxidative stress"
+      biological_action: increased
+      level_of_biological_organization: molecular
     has_exposure_condition:
       - id: "EXPOSURE:pm25-24h"
         name: "PM2.5 10 ug/cm2 for 24 hours"
