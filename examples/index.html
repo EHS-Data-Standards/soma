@@ -353,6 +353,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#download-example-data-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download Example Data Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#in-vitro-assays" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -641,6 +652,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#download-example-data-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download Example Data Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#in-vitro-assays" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -886,18 +908,85 @@ and adapt it to your data. Each example shows:</p>
 <ul>
 <li>Required fields for the assay type</li>
 <li>Named measurement slots inside <code>has_specified_output</code> (e.g., <code>beat_frequency_hz</code>, not generic <code>observation_type</code>)</li>
-<li>Study subject with appropriate detail level</li>
+<li>Study subject with <code>cell_type</code> on the subject (not the assay) and appropriate detail level</li>
 <li>Protocols via <code>follows_protocols</code> with <code>protocol_type</code> designator (ImagingProtocol, MolecularAssayProtocol, etc.)</li>
+<li>Exposure conditions via <code>has_exposure_condition</code> (agent, concentration, duration, timing)</li>
 </ul>
+<h2 id="download-example-data-files">Download Example Data Files</h2>
+<p>All example data files are available for download. These are the same files used for schema validation testing:</p>
+<table>
+<thead>
+<tr>
+<th>Assay Type</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ciliary Function</td>
+<td><a href="Container-ciliary_function.yaml"><code>Container-ciliary_function.yaml</code></a></td>
+</tr>
+<tr>
+<td>Airway Surface Liquid</td>
+<td><a href="Container-asl.yaml"><code>Container-asl.yaml</code></a></td>
+</tr>
+<tr>
+<td>Mucociliary Clearance</td>
+<td><a href="Container-mcc.yaml"><code>Container-mcc.yaml</code></a></td>
+</tr>
+<tr>
+<td>Oxidative Stress</td>
+<td><a href="Container-oxidative_stress.yaml"><code>Container-oxidative_stress.yaml</code></a></td>
+</tr>
+<tr>
+<td>CFTR Function</td>
+<td><a href="Container-cftr.yaml"><code>Container-cftr.yaml</code></a></td>
+</tr>
+<tr>
+<td>EGFR Signaling</td>
+<td><a href="Container-egfr.yaml"><code>Container-egfr.yaml</code></a></td>
+</tr>
+<tr>
+<td>Goblet Cell / Mucin</td>
+<td><a href="Container-goblet_cell_mucin.yaml"><code>Container-goblet_cell_mucin.yaml</code></a></td>
+</tr>
+<tr>
+<td>FoxJ Expression</td>
+<td><a href="Container-foxj.yaml"><code>Container-foxj.yaml</code></a></td>
+</tr>
+<tr>
+<td>Gene Expression</td>
+<td><a href="Container-gene_expression.yaml"><code>Container-gene_expression.yaml</code></a></td>
+</tr>
+<tr>
+<td>Lung Function</td>
+<td><a href="Container-lung_function.yaml"><code>Container-lung_function.yaml</code></a></td>
+</tr>
+<tr>
+<td>BALF / Sputum</td>
+<td><a href="Container-balf_sputum.yaml"><code>Container-balf_sputum.yaml</code></a></td>
+</tr>
+<tr>
+<td>Protocol (base)</td>
+<td><a href="Container-protocol.yaml"><code>Container-protocol.yaml</code></a></td>
+</tr>
+<tr>
+<td>Comprehensive AOP</td>
+<td><a href="Container-comprehensive_aop_lung.yaml"><code>Container-comprehensive_aop_lung.yaml</code></a></td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="in-vitro-assays">In Vitro Assays</h2>
 <p>These examples demonstrate assays performed on cell culture systems. The <code>study_subject</code>
-slot captures the biological model, and <code>follows_protocols</code> captures domain-specific protocol details.</p>
+slot captures the biological model (including <code>cell_type</code>), and <code>follows_protocols</code> captures domain-specific protocol details.</p>
 <h3 id="ciliary-function-assay">Ciliary Function Assay</h3>
-<p>Measuring ciliary beat frequency (CBF) in primary human bronchial epithelial cells:</p>
+<p>Measuring ciliary beat frequency (CBF) in primary human bronchial epithelial cells.
+This assay supports both in vitro and in vivo contexts (<code>supported_contexts: in_vitro_or_in_vivo</code>).</p>
 <div class="highlight"><pre><span></span><code><span class="nt">ciliary_function_assays</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Example 1: In vitro context using ALI culture</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:001&quot;</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">ozone</span><span class="nv"> </span><span class="s">exposure&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">ozone</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">(in</span><span class="nv"> </span><span class="s">vitro)&quot;</span>
 <span class="w">    </span><span class="nt">has_specified_output</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:001-output&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:001</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">results&quot;</span>
@@ -916,22 +1005,56 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">      </span><span class="nt">cilia_length</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.2&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000017&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;micrometer&quot;</span>
+<span class="w">      </span><span class="nt">cilia_per_cell</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;150&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000189&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;count&quot;</span>
+<span class="w">      </span><span class="nt">ciliary_motion_patterns</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coordinated</span>
+<span class="w">      </span><span class="nt">ciliary_beat_amplitude</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4.5&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000017&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;micrometer&quot;</span>
 <span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-15&quot;</span>
 <span class="w">    </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;KE:ke3-impaired-ciliary&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Decreased</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function&quot;</span>
 <span class="w">      </span><span class="nt">biological_action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">decreased</span>
 <span class="w">      </span><span class="nt">level_of_biological_organization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cellular</span>
-<span class="w">    </span><span class="nt">cell_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
-<span class="w">    </span><span class="nt">tissue_context</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UBERON:0002031&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchus&quot;</span>
+<span class="w">    </span><span class="nt">has_exposure_condition</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EXPOSURE:ozone-200ppb-4h&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ozone</span><span class="nv"> </span><span class="s">200</span><span class="nv"> </span><span class="s">ppb</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">4</span><span class="nv"> </span><span class="s">hours&quot;</span>
+<span class="w">        </span><span class="nt">exposure_agent</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CHEBI:25812&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ozone&quot;</span>
+<span class="w">        </span><span class="nt">exposure_concentration</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;200&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000169&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;parts</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">billion&quot;</span>
+<span class="w">        </span><span class="nt">exposure_duration</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000032&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hour&quot;</span>
+<span class="w">        </span><span class="nt">timing_post_exposure</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000032&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hour&quot;</span>
 <span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">subject_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-001&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_type</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
 <span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
@@ -1000,21 +1123,81 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000027&quot;</span>
 <span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;degree</span><span class="nv"> </span><span class="s">Celsius&quot;</span>
+
+<span class="w">  </span><span class="c1"># Example 2: In vivo context using OCT-based measurement</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:002&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;In</span><span class="nv"> </span><span class="s">vivo</span><span class="nv"> </span><span class="s">OCT-based</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function</span><span class="nv"> </span><span class="s">assessment&quot;</span>
+<span class="w">    </span><span class="nt">has_specified_output</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:002-output&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:002</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">results&quot;</span>
+<span class="w">      </span><span class="nt">beat_frequency_hz</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;11.2&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000106&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
+<span class="w">      </span><span class="nt">active_area_percentage</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;85&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-03-10&quot;</span>
+<span class="w">    </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;KE:ke3-impaired-ciliary&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Decreased</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function&quot;</span>
+<span class="w">      </span><span class="nt">biological_action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">decreased</span>
+<span class="w">      </span><span class="nt">level_of_biological_organization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cellular</span>
+<span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">subject_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoSubject</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SUBJECT:003&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Subject</span><span class="nv"> </span><span class="s">C&quot;</span>
+<span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
+<span class="w">      </span><span class="nt">age</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;38&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000036&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;year&quot;</span>
+<span class="w">      </span><span class="nt">sex</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;female&quot;</span>
+<span class="w">      </span><span class="nt">subject_characteristics</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Non-smoker,</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">respiratory</span><span class="nv"> </span><span class="s">disease,</span><span class="nv"> </span><span class="s">healthy</span><span class="nv"> </span><span class="s">volunteer&quot;</span>
+<span class="w">      </span><span class="nt">sample_collection_method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;In</span><span class="nv"> </span><span class="s">vivo</span><span class="nv"> </span><span class="s">OCT</span><span class="nv"> </span><span class="s">imaging</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">nasal</span><span class="nv"> </span><span class="s">epithelium&quot;</span>
+<span class="w">      </span><span class="nt">clinical_context</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Baseline</span><span class="nv"> </span><span class="s">assessment,</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">active</span><span class="nv"> </span><span class="s">respiratory</span><span class="nv"> </span><span class="s">symptoms&quot;</span>
+<span class="w">    </span><span class="nt">follows_protocols</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImagingProtocol</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:oct-001&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;In</span><span class="nv"> </span><span class="s">vivo</span><span class="nv"> </span><span class="s">OCT</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">ciliary</span><span class="nv"> </span><span class="s">function&quot;</span>
+<span class="w">        </span><span class="nt">imaging_frame_rate</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000105&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
+<span class="w">        </span><span class="nt">imaging_duration</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000010&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;second&quot;</span>
+<span class="w">        </span><span class="nt">temperature_control</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;37&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000027&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;degree</span><span class="nv"> </span><span class="s">Celsius&quot;</span>
 </code></pre></div>
 <p><strong>Key points:</strong></p>
 <ul>
-<li>Named measurement slots inside <code>has_specified_output</code>: <code>beat_frequency_hz</code>, <code>active_area_percentage</code>, <code>percentage_ciliated_cells</code></li>
+<li>Named measurement slots inside <code>has_specified_output</code>: <code>beat_frequency_hz</code>, <code>active_area_percentage</code>, <code>percentage_ciliated_cells</code>, <code>cilia_length</code>, <code>cilia_per_cell</code>, <code>ciliary_motion_patterns</code>, <code>ciliary_beat_amplitude</code></li>
+<li><code>cell_type</code> is on the <code>study_subject</code>, NOT on the assay — this is where cell identity belongs</li>
 <li><code>informs_on_key_event</code> links the assay to AOP Key Event: "Decreased ciliary function"</li>
-<li><code>tissue_context</code> links the assay to the anatomical site (bronchus)</li>
+<li><code>has_exposure_condition</code> captures the exposure agent, concentration, duration, and timing post-exposure</li>
 <li><code>study_subject</code> captures the full biological model including:</li>
-<li><code>primary_cell</code> and <code>anatomical_origin</code> for cell provenance</li>
+<li><code>cell_type</code>, <code>primary_cell</code> and <code>anatomical_origin</code> for cell provenance</li>
 <li>Culture details: <code>cell_culture_growth_mode</code>, <code>days_at_differentiation</code>, <code>passage_number</code>, <code>seeding_density</code></li>
 <li><code>donor_info</code> for subject demographics and health status</li>
 <li><code>culture_conditions</code> with ALI-specific parameters</li>
 <li><code>culture_media</code> with base medium, manufacturer, and detailed <code>supplements</code> (type, concentration)</li>
 <li><code>follows_protocols</code> references protocols with <code>protocol_type: ImagingProtocol</code> for polymorphic dispatch</li>
-<li>ImagingProtocol details: frame rate, duration, and temperature</li>
+<li>Example 2 shows the same assay in an <strong>in vivo</strong> context with <code>InVivoSubject</code></li>
 </ul>
+<p><strong>See <a href="Container-ciliary_function.yaml"><code>Container-ciliary_function.yaml</code></a> for the full data file.</strong></p>
 <hr />
 <h3 id="airway-surface-liquid-asl-assay">Airway Surface Liquid (ASL) Assay</h3>
 <p>Measuring ASL height using confocal microscopy:</p>
@@ -1034,19 +1217,30 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000017&quot;</span>
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;micrometer&quot;</span>
+<span class="w">      </span><span class="nt">mucus_layer_thickness</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;35&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000017&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;micrometer&quot;</span>
+<span class="w">      </span><span class="nt">ion_composition</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Cl-</span><span class="nv"> </span><span class="s">125</span><span class="nv"> </span><span class="s">mM,</span><span class="nv"> </span><span class="s">Na+</span><span class="nv"> </span><span class="s">140</span><span class="nv"> </span><span class="s">mM,</span><span class="nv"> </span><span class="s">K+</span><span class="nv"> </span><span class="s">15</span><span class="nv"> </span><span class="s">mM&quot;</span>
+<span class="w">      </span><span class="nt">asl_ph</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;7.1&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000196&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;pH&quot;</span>
 <span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-02-10&quot;</span>
 <span class="w">    </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;KE:ke-decreased-asl&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Decreased</span><span class="nv"> </span><span class="s">ASL</span><span class="nv"> </span><span class="s">height&quot;</span>
 <span class="w">      </span><span class="nt">biological_action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">decreased</span>
 <span class="w">      </span><span class="nt">level_of_biological_organization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cellular</span>
-<span class="w">    </span><span class="nt">cell_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
 <span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">subject_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-002&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_type</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
 <span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
@@ -1060,7 +1254,13 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000017&quot;</span>
 <span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;micrometer&quot;</span>
 <span class="w">        </span><span class="nt">fluorescent_labeling</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Texas</span><span class="nv"> </span><span class="s">Red-dextran&quot;</span>
+<span class="w">        </span><span class="nt">temperature_control</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;37&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000027&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;degree</span><span class="nv"> </span><span class="s">Celsius&quot;</span>
 </code></pre></div>
+<p><strong>See <a href="Container-asl.yaml"><code>Container-asl.yaml</code></a> for the full data file.</strong></p>
 <hr />
 <h3 id="mucociliary-clearance-mcc-assay">Mucociliary Clearance (MCC) Assay</h3>
 <p>Tracking fluorescent microsphere transport rate:</p>
@@ -1076,19 +1276,34 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000103&quot;</span>
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;micrometer</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">second&quot;</span>
 <span class="w">      </span><span class="nt">transport_directionality</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">normal</span>
+<span class="w">      </span><span class="nt">mucus_layer_thickness</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;28&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000017&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;micrometer&quot;</span>
+<span class="w">      </span><span class="nt">percentage_active_transport</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;82&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">      </span><span class="nt">particle_clearance_time</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;120&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000010&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;second&quot;</span>
 <span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-03-05&quot;</span>
 <span class="w">    </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;KE:ke3-impaired-mcc&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Impaired</span><span class="nv"> </span><span class="s">mucociliary</span><span class="nv"> </span><span class="s">clearance&quot;</span>
 <span class="w">      </span><span class="nt">biological_action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">impaired</span>
 <span class="w">      </span><span class="nt">level_of_biological_organization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tissue</span>
-<span class="w">    </span><span class="nt">cell_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
 <span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">subject_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-007&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_type</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
 <span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
@@ -1098,7 +1313,18 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Fluorescent</span><span class="nv"> </span><span class="s">microsphere</span><span class="nv"> </span><span class="s">tracking</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">MCC&quot;</span>
 <span class="w">        </span><span class="nt">fluorescent_tracer</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1-um</span><span class="nv"> </span><span class="s">fluorescent</span><span class="nv"> </span><span class="s">microspheres&quot;</span>
 <span class="w">        </span><span class="nt">particle_tracking_method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;automated</span><span class="nv"> </span><span class="s">particle</span><span class="nv"> </span><span class="s">tracking&quot;</span>
+<span class="w">        </span><span class="nt">particle_size</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000017&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;micrometer&quot;</span>
+<span class="w">        </span><span class="nt">imaging_frame_rate</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;30&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000105&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
 </code></pre></div>
+<p><strong>See <a href="Container-mcc.yaml"><code>Container-mcc.yaml</code></a> for the full data file.</strong></p>
 <hr />
 <h3 id="oxidative-stress-assay">Oxidative Stress Assay</h3>
 <p>Measuring reactive oxygen species (ROS) after PM2.5 exposure:</p>
@@ -1113,6 +1339,50 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">lipid_peroxidation</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.8&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">malondialdehyde_level</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.2&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000063&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;nanomole</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">milligram</span><span class="nv"> </span><span class="s">protein&quot;</span>
+<span class="w">      </span><span class="nt">protein_carbonyl_content</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.1&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000063&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;nanomole</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">milligram</span><span class="nv"> </span><span class="s">protein&quot;</span>
+<span class="w">      </span><span class="nt">glutathione_ratio</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.65&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000190&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ratio&quot;</span>
+<span class="w">      </span><span class="nt">eight_ohdg_level</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;12.5&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000275&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;nanogram</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">milligram</span><span class="nv"> </span><span class="s">creatinine&quot;</span>
+<span class="w">      </span><span class="nt">superoxide_dismutase_activity</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.75&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">catalase_activity</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.82&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">nrf2_activation</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.8&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">protein_oxidation_markers</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;carbonyl&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;nitrotyrosine&quot;</span>
+<span class="w">      </span><span class="nt">antioxidant_enzyme_activities</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SOD,</span><span class="nv"> </span><span class="s">catalase,</span><span class="nv"> </span><span class="s">GPx</span><span class="nv"> </span><span class="s">measured&quot;</span>
 <span class="w">    </span><span class="nt">ros_probe_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DCFDA&quot;</span>
 <span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-20&quot;</span>
 <span class="w">    </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
@@ -1120,13 +1390,34 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Increased</span><span class="nv"> </span><span class="s">oxidative</span><span class="nv"> </span><span class="s">stress&quot;</span>
 <span class="w">      </span><span class="nt">biological_action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">increased</span>
 <span class="w">      </span><span class="nt">level_of_biological_organization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">molecular</span>
-<span class="w">    </span><span class="nt">cell_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
+<span class="w">    </span><span class="nt">has_exposure_condition</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EXPOSURE:pm25-24h&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PM2.5</span><span class="nv"> </span><span class="s">10</span><span class="nv"> </span><span class="s">ug/cm2</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">24</span><span class="nv"> </span><span class="s">hours&quot;</span>
+<span class="w">        </span><span class="nt">exposure_agent</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CHEBI:74481&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PM2.5&quot;</span>
+<span class="w">        </span><span class="nt">exposure_concentration</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000274&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;microgram</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">square</span><span class="nv"> </span><span class="s">centimeter&quot;</span>
+<span class="w">        </span><span class="nt">exposure_duration</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;24&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000032&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hour&quot;</span>
+<span class="w">        </span><span class="nt">timing_post_exposure</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000032&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hour&quot;</span>
 <span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">subject_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-003&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_type</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
 <span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
@@ -1137,6 +1428,13 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">        </span><span class="nt">detection_method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fluorescence</span><span class="nv"> </span><span class="s">plate</span><span class="nv"> </span><span class="s">reader&quot;</span>
 <span class="w">        </span><span class="nt">normalization_method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cell</span><span class="nv"> </span><span class="s">count</span><span class="nv"> </span><span class="s">normalization&quot;</span>
 </code></pre></div>
+<p><strong>Key points:</strong></p>
+<ul>
+<li>Rich set of oxidative stress markers: <code>reactive_oxygen_species</code>, <code>lipid_peroxidation</code>, <code>malondialdehyde_level</code>, <code>glutathione_ratio</code>, <code>nrf2_activation</code>, and more</li>
+<li><code>has_exposure_condition</code> captures PM2.5 exposure details including <code>timing_post_exposure</code></li>
+<li><code>cell_type</code> is on the <code>study_subject</code>, not the assay</li>
+</ul>
+<p><strong>See <a href="Container-oxidative_stress.yaml"><code>Container-oxidative_stress.yaml</code></a> for the full data file.</strong></p>
 <hr />
 <h3 id="cftr-function-assay">CFTR Function Assay</h3>
 <p>Measuring CFTR-mediated chloride secretion using Ussing chambers:</p>
@@ -1151,6 +1449,31 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000274&quot;</span>
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;microampere</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">square</span><span class="nv"> </span><span class="s">centimeter&quot;</span>
+<span class="w">      </span><span class="nt">cftr_forskolin_response</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;12.8&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000274&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;microampere</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">square</span><span class="nv"> </span><span class="s">centimeter&quot;</span>
+<span class="w">      </span><span class="nt">inhibitor_sensitive_current</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;14.5&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000274&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;microampere</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">square</span><span class="nv"> </span><span class="s">centimeter&quot;</span>
+<span class="w">      </span><span class="nt">cftr_specific_current</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;13.9&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000274&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;microampere</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">square</span><span class="nv"> </span><span class="s">centimeter&quot;</span>
+<span class="w">      </span><span class="nt">sweat_chloride_concentration</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;25&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000308&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;milliequivalent</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">liter&quot;</span>
+<span class="w">      </span><span class="nt">nasal_potential_difference</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-18.5&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000247&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;millivolt&quot;</span>
 <span class="w">    </span><span class="nt">stimulation_agent</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;forskolin</span><span class="nv"> </span><span class="s">10</span><span class="nv"> </span><span class="s">uM&quot;</span>
 <span class="w">    </span><span class="nt">inhibitor_used</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CFTRinh-172&quot;</span>
 <span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-04-12&quot;</span>
@@ -1159,13 +1482,13 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Decreased</span><span class="nv"> </span><span class="s">CFTR</span><span class="nv"> </span><span class="s">function&quot;</span>
 <span class="w">      </span><span class="nt">biological_action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">decreased</span>
 <span class="w">      </span><span class="nt">level_of_biological_organization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">molecular</span>
-<span class="w">    </span><span class="nt">cell_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
 <span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">subject_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-006&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_type</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
 <span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
@@ -1179,7 +1502,9 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <p><strong>Key points:</strong></p>
 <ul>
 <li><code>follows_protocols</code> is multivalued — an assay can reference multiple protocols (e.g., the main assay protocol plus a preparation protocol)</li>
+<li>Rich CFTR measurement outputs: <code>cftr_chloride_secretion</code>, <code>cftr_forskolin_response</code>, <code>inhibitor_sensitive_current</code>, <code>sweat_chloride_concentration</code>, <code>nasal_potential_difference</code></li>
 </ul>
+<p><strong>See <a href="Container-cftr.yaml"><code>Container-cftr.yaml</code></a> for the full data file.</strong></p>
 <hr />
 <h3 id="egfr-signaling-assay">EGFR Signaling Assay</h3>
 <p>Measuring EGFR phosphorylation after smoke exposure:</p>
@@ -1199,6 +1524,32 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">egfr_phosphorylation_y1173</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.1&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">downstream_kinase_activation</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ERK1/2</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">AKT</span><span class="nv"> </span><span class="s">activated&quot;</span>
+<span class="w">      </span><span class="nt">erk_phosphorylation</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.8&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">akt_phosphorylation</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.5&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">egfr_ligand_expression</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.9&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">egfr_membrane_localization</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;78&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
 <span class="w">    </span><span class="nt">normalization_reference</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;beta-actin&quot;</span>
 <span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-05-08&quot;</span>
 <span class="w">    </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
@@ -1206,13 +1557,29 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EGFR</span><span class="nv"> </span><span class="s">activation&quot;</span>
 <span class="w">      </span><span class="nt">biological_action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">activated</span>
 <span class="w">      </span><span class="nt">level_of_biological_organization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">molecular</span>
-<span class="w">    </span><span class="nt">cell_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
+<span class="w">    </span><span class="nt">has_exposure_condition</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EXPOSURE:cse-4h&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Cigarette</span><span class="nv"> </span><span class="s">smoke</span><span class="nv"> </span><span class="s">extract</span><span class="nv"> </span><span class="s">5%</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">4</span><span class="nv"> </span><span class="s">hours&quot;</span>
+<span class="w">        </span><span class="nt">exposure_agent</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CHEBI:39188&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cigarette</span><span class="nv"> </span><span class="s">smoke</span><span class="nv"> </span><span class="s">extract&quot;</span>
+<span class="w">        </span><span class="nt">exposure_concentration</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;5&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">        </span><span class="nt">exposure_duration</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000032&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hour&quot;</span>
 <span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">subject_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-005&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_type</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
 <span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
@@ -1226,6 +1593,7 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;anti-total</span><span class="nv"> </span><span class="s">EGFR</span><span class="nv"> </span><span class="s">(Cell</span><span class="nv"> </span><span class="s">Signaling</span><span class="nv"> </span><span class="s">#4267)&quot;</span>
 <span class="w">        </span><span class="nt">normalization_method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;total</span><span class="nv"> </span><span class="s">protein</span><span class="nv"> </span><span class="s">normalization&quot;</span>
 </code></pre></div>
+<p><strong>See <a href="Container-egfr.yaml"><code>Container-egfr.yaml</code></a> for the full data file.</strong></p>
 <hr />
 <h3 id="goblet-cell-assay">Goblet Cell Assay</h3>
 <p>Measuring MUC5AC expression and goblet cell quantification:</p>
@@ -1245,19 +1613,59 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">      </span><span class="nt">goblet_cell_count</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;85&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000189&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;count&quot;</span>
+<span class="w">      </span><span class="nt">muc5ac_protein_expression</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.2&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">muc5b_mrna_expression</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.8&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">muc5b_protein_expression</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.5&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">muc5ac_muc5b_ratio</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.7&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000190&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ratio&quot;</span>
+<span class="w">      </span><span class="nt">mucin_secretion_rate</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;12.5&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000298&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;microgram</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">hour&quot;</span>
+<span class="w">      </span><span class="nt">percent_solids</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4.2&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">      </span><span class="nt">goblet_to_ciliated_ratio</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.45&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000190&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ratio&quot;</span>
 <span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-06-15&quot;</span>
 <span class="w">    </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;KE:ke2-goblet-hyperplasia&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Goblet</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">hyperplasia&quot;</span>
 <span class="w">      </span><span class="nt">biological_action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">increased</span>
 <span class="w">      </span><span class="nt">level_of_biological_organization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cellular</span>
-<span class="w">    </span><span class="nt">cell_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
 <span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">subject_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-004&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_type</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
 <span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
@@ -1269,9 +1677,11 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">        </span><span class="nt">fixation_method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4%</span><span class="nv"> </span><span class="s">paraformaldehyde&quot;</span>
 <span class="w">        </span><span class="nt">counterstain</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hematoxylin&quot;</span>
 </code></pre></div>
+<p><strong>See <a href="Container-goblet_cell_mucin.yaml"><code>Container-goblet_cell_mucin.yaml</code></a> for the full data file.</strong></p>
 <hr />
 <h3 id="foxj-expression-assay">FoxJ Expression Assay</h3>
-<p>Measuring FoxJ1 transcription factor expression (master regulator of ciliogenesis):</p>
+<p>Measuring FoxJ1 transcription factor expression (master regulator of ciliogenesis).
+This assay is <strong>in vitro only</strong> (<code>supported_contexts: in_vitro_only</code>).</p>
 <div class="highlight"><pre><span></span><code><span class="nt">foxj_assays</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FOXJ:001&quot;</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FoxJ1</span><span class="nv"> </span><span class="s">mRNA</span><span class="nv"> </span><span class="s">expression&quot;</span>
@@ -1288,15 +1698,22 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">      </span><span class="nt">foxj1_protein_expression</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.58&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">foxj1_nuclear_localization</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;35&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
 <span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-09-05&quot;</span>
 <span class="w">    </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;KE:ke-altered-ciliogenesis&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Altered</span><span class="nv"> </span><span class="s">ciliogenesis&quot;</span>
 <span class="w">      </span><span class="nt">biological_action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">altered</span>
 <span class="w">      </span><span class="nt">level_of_biological_organization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cellular</span>
-<span class="w">    </span><span class="nt">cell_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
 <span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">subject_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-008&quot;</span>
@@ -1325,13 +1742,19 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;qRT-PCR</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">FoxJ1&quot;</span>
 <span class="w">        </span><span class="nt">detection_method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SYBR</span><span class="nv"> </span><span class="s">Green</span><span class="nv"> </span><span class="s">qPCR&quot;</span>
 <span class="w">        </span><span class="nt">reference_gene</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GAPDH&quot;</span>
+<span class="w">        </span><span class="nt">primer_sequences</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;FOXJ1-F:</span><span class="nv"> </span><span class="s">5&#39;-CAGGCCCAGAACTTTCTCC-3&#39;&quot;</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;FOXJ1-R:</span><span class="nv"> </span><span class="s">5&#39;-GGCCTTTGGTACTGTCTCAC-3&#39;&quot;</span>
 </code></pre></div>
+<p><strong>See <a href="Container-foxj.yaml"><code>Container-foxj.yaml</code></a> for the full data file.</strong></p>
 <hr />
 <h3 id="gene-expression-assay">Gene Expression Assay</h3>
-<p>Measuring target gene mRNA expression:</p>
+<p>Measuring target gene mRNA expression.
+This assay is <strong>in vitro only</strong> (<code>supported_contexts: in_vitro_only</code>).</p>
 <div class="highlight"><pre><span></span><code><span class="nt">gene_expression_assays</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GE:001&quot;</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;IL-8</span><span class="nv"> </span><span class="s">gene</span><span class="nv"> </span><span class="s">expression</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">exposure&quot;</span>
+<span class="w">    </span><span class="nt">target_gene</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PR:000006689&quot;</span>
 <span class="w">    </span><span class="nt">has_specified_output</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GE:001-output&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GE:001</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">results&quot;</span>
@@ -1340,13 +1763,35 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
-<span class="w">    </span><span class="nt">target_gene</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PR:000006689&quot;</span>
+<span class="w">      </span><span class="nt">protein_level</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.1&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000193&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fold</span><span class="nv"> </span><span class="s">change&quot;</span>
+<span class="w">      </span><span class="nt">percentage_positive_cells</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;45&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
 <span class="w">    </span><span class="nt">gene_expression_method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;qRT-PCR&quot;</span>
 <span class="w">    </span><span class="nt">normalization_reference</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GAPDH&quot;</span>
 <span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-10-01&quot;</span>
-<span class="w">    </span><span class="nt">cell_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
+<span class="w">    </span><span class="nt">has_exposure_condition</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EXPOSURE:lps-100ng-6h&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;LPS</span><span class="nv"> </span><span class="s">100</span><span class="nv"> </span><span class="s">ng/mL</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">6</span><span class="nv"> </span><span class="s">hours&quot;</span>
+<span class="w">        </span><span class="nt">exposure_agent</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CHEBI:16412&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;lipopolysaccharide&quot;</span>
+<span class="w">        </span><span class="nt">exposure_concentration</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000275&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;nanogram</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">milliliter&quot;</span>
+<span class="w">        </span><span class="nt">exposure_duration</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;6&quot;</span>
+<span class="w">          </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000032&quot;</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hour&quot;</span>
 <span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">subject_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-009&quot;</span>
@@ -1377,13 +1822,21 @@ slot captures the biological model, and <code>follows_protocols</code> captures 
 <span class="w">        </span><span class="nt">reference_gene</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GAPDH&quot;</span>
 <span class="w">        </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;QuantStudio</span><span class="nv"> </span><span class="s">6&quot;</span>
 </code></pre></div>
+<p><strong>Key points:</strong></p>
+<ul>
+<li><code>target_gene</code> is an assay-level slot (not inside <code>has_specified_output</code>)</li>
+<li>Output includes <code>mrna_level</code>, <code>protein_level</code>, and <code>percentage_positive_cells</code></li>
+<li><code>has_exposure_condition</code> captures LPS exposure details</li>
+</ul>
+<p><strong>See <a href="Container-gene_expression.yaml"><code>Container-gene_expression.yaml</code></a> for the full data file.</strong></p>
 <hr />
 <h2 id="in-vivo-assays">In Vivo Assays</h2>
 <p>These examples demonstrate assays from human or animal subjects. The <code>study_subject</code>
 slot uses InVivoSubject-level properties including <code>age</code>, <code>sex</code>, <code>sample_type</code>,
 <code>collection_site</code>, and <code>subject_characteristics</code>.</p>
 <h3 id="lung-function-assay">Lung Function Assay</h3>
-<p>Spirometry measurement from a human subject:</p>
+<p>Spirometry measurement from a human subject.
+This assay is <strong>in vivo only</strong> (<code>supported_contexts: in_vivo_only</code>).</p>
 <div class="highlight"><pre><span></span><code><span class="nt">lung_function_assays</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;LF:001&quot;</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FEV1</span><span class="nv"> </span><span class="s">measurement&quot;</span>
@@ -1397,6 +1850,31 @@ slot uses InVivoSubject-level properties including <code>age</code>, <code>sex</
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent</span><span class="nv"> </span><span class="s">predicted&quot;</span>
 <span class="w">      </span><span class="nt">fvc</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;95.0&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent</span><span class="nv"> </span><span class="s">predicted&quot;</span>
+<span class="w">      </span><span class="nt">fev1_fvc_ratio</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;86.8&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">      </span><span class="nt">feno</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;22&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000170&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;parts</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">billion&quot;</span>
+<span class="w">      </span><span class="nt">bronchodilator_response</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8.5&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">      </span><span class="nt">dlco</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;88&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent</span><span class="nv"> </span><span class="s">predicted&quot;</span>
+<span class="w">      </span><span class="nt">peak_expiratory_flow</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;92&quot;</span>
 <span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent</span><span class="nv"> </span><span class="s">predicted&quot;</span>
@@ -1437,13 +1915,15 @@ slot uses InVivoSubject-level properties including <code>age</code>, <code>sex</
 <p><strong>Key points:</strong></p>
 <ul>
 <li><code>informs_on_key_event</code> links to AOP Adverse Outcome: "Decreased lung function"</li>
-<li><code>study_subject</code> includes InVivoSubject slots: <code>age</code>, <code>sex</code>, <code>subject_characteristics</code></li>
+<li><code>study_subject</code> includes InVivoSubject slots: <code>age</code>, <code>sex</code>, <code>subject_characteristics</code>, <code>clinical_context</code></li>
+<li>Rich lung function outputs: <code>fev1</code>, <code>fvc</code>, <code>fev1_fvc_ratio</code>, <code>feno</code>, <code>bronchodilator_response</code>, <code>dlco</code>, <code>peak_expiratory_flow</code></li>
 <li><code>follows_protocols</code> references a SpirometryProtocol with <code>protocol_type</code> designator for polymorphic dispatch</li>
-<li>SpirometryProtocol details: standards and bronchodilator information</li>
 </ul>
+<p><strong>See <a href="Container-lung_function.yaml"><code>Container-lung_function.yaml</code></a> for the full data file.</strong></p>
 <hr />
 <h3 id="balfsputum-assay">BALF/Sputum Assay</h3>
-<p>Inflammatory cell differential from induced sputum:</p>
+<p>Inflammatory cell differential from induced sputum.
+This assay is <strong>in vivo only</strong> (<code>supported_contexts: in_vivo_only</code>).</p>
 <div class="highlight"><pre><span></span><code><span class="nt">balf_sputum_assays</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;BALF:001&quot;</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Neutrophil</span><span class="nv"> </span><span class="s">percentage</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">induced</span><span class="nv"> </span><span class="s">sputum&quot;</span>
@@ -1460,13 +1940,48 @@ slot uses InVivoSubject-level properties including <code>age</code>, <code>sex</
 <span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000175&quot;</span>
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;picogram</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">milliliter&quot;</span>
+<span class="w">      </span><span class="nt">eosinophil_percentage</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.5&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">      </span><span class="nt">macrophage_percentage</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;38.0&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">      </span><span class="nt">lymphocyte_percentage</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;12.5&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
+<span class="w">      </span><span class="nt">total_cell_count</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2500000&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000209&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cells</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">milliliter&quot;</span>
+<span class="w">      </span><span class="nt">il6_concentration</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;85&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000175&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;picogram</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">milliliter&quot;</span>
+<span class="w">      </span><span class="nt">tnf_alpha_concentration</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;120&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000175&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;picogram</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">milliliter&quot;</span>
+<span class="w">      </span><span class="nt">total_protein_concentration</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.2&quot;</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000176&quot;</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;milligram</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">milliliter&quot;</span>
 <span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-07-22&quot;</span>
 <span class="w">    </span><span class="nt">informs_on_key_event</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;KE:ke-airway-inflammation&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Airway</span><span class="nv"> </span><span class="s">inflammation&quot;</span>
 <span class="w">      </span><span class="nt">biological_action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">increased</span>
 <span class="w">      </span><span class="nt">level_of_biological_organization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tissue</span>
-<span class="w">    </span><span class="nt">cell_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">target_cell_type</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0000775&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;neutrophil&quot;</span>
 <span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
@@ -1493,6 +2008,14 @@ slot uses InVivoSubject-level properties including <code>age</code>, <code>sex</
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Sputum</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">differential</span><span class="nv"> </span><span class="s">protocol&quot;</span>
 <span class="w">        </span><span class="nt">detection_method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cytospin</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Diff-Quik</span><span class="nv"> </span><span class="s">staining&quot;</span>
 </code></pre></div>
+<p><strong>Key points:</strong></p>
+<ul>
+<li>Uses <code>target_cell_type</code> (not <code>cell_type</code>) to indicate the cell population being analyzed (neutrophils)</li>
+<li>Rich inflammatory panel: <code>neutrophil_percentage</code>, <code>eosinophil_percentage</code>, <code>macrophage_percentage</code>, <code>lymphocyte_percentage</code>, <code>total_cell_count</code></li>
+<li>Cytokine measurements: <code>il8_concentration</code>, <code>il6_concentration</code>, <code>tnf_alpha_concentration</code></li>
+<li>InVivoSubject with <code>sample_type</code>, <code>collection_site</code>, <code>sample_collection_method</code>, <code>clinical_context</code></li>
+</ul>
+<p><strong>See <a href="Container-balf_sputum.yaml"><code>Container-balf_sputum.yaml</code></a> for the full data file.</strong></p>
 <hr />
 <h2 id="protocols">Protocols</h2>
 <p>The schema supports detailed documentation of experimental procedures through
@@ -1539,6 +2062,7 @@ reusable workflow steps:</p>
 <li>This enables reuse of common steps (wash protocols, fixation, equilibration) across
   multiple parent protocols</li>
 </ul>
+<p><strong>See <a href="Container-protocol.yaml"><code>Container-protocol.yaml</code></a> for the full data file.</strong></p>
 <hr />
 <h3 id="protocols-on-assays-via-follows_protocols">Protocols on Assays via <code>follows_protocols</code></h3>
 <p>Assays reference protocols via the <code>follows_protocols</code> slot, which is multivalued.
@@ -1561,6 +2085,9 @@ enabling polymorphic dispatch:</p>
 <span class="w">      </span><span class="nt">subject_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TwoDCellCulture</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owg:culture-001&quot;</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
+<span class="w">      </span><span class="nt">cell_type</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
 <span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
@@ -1597,17 +2124,17 @@ matter (PM2.5) exposure leading to impaired lung function. The pathway includes:
 <li>Exposure: PM2.5 (10 ug/cm2) vs. clean air control</li>
 <li>Timepoints: 4h (early), 24h (intermediate), 7d (late)</li>
 </ul>
-<p><strong>See <a href="../examples/Container-comprehensive_aop_lung.yaml"><code>Container-comprehensive_aop_lung.yaml</code></a>
-and <a href="../examples/assay_centric_example.yaml"><code>assay_centric_example.yaml</code></a> for the full data files.</strong></p>
+<p><strong>See <a href="Container-comprehensive_aop_lung.yaml"><code>Container-comprehensive_aop_lung.yaml</code></a> for the full data file.</strong></p>
 <p>Key features demonstrated in the comprehensive example:</p>
 <ul>
 <li><strong>AOP linkage</strong>: Each assay uses <code>informs_on_key_event</code> to connect to the biological pathway</li>
 <li><strong>Output classes</strong>: Measurements wrapped in <code>has_specified_output</code> using domain-specific output classes (e.g., <code>OxidativeStressOutput</code>, <code>CiliaryFunctionOutput</code>, <code>LungFunctionOutput</code>)</li>
 <li><strong>Named measurement slots</strong>: <code>reactive_oxygen_species</code>, <code>egfr_phosphorylation_y1068</code>, <code>beat_frequency_hz</code>, <code>fev1</code> inside their output classes</li>
 <li><strong>Protocols via <code>follows_protocols</code></strong> with <code>protocol_type</code> designator: ImagingProtocol, MolecularAssayProtocol, StainingProtocol, SpirometryProtocol</li>
-<li><strong>In vitro study subjects</strong>: StudySubject with <code>model_species</code> for cell culture assays</li>
+<li><strong>In vitro study subjects</strong>: <code>cell_type</code> on the StudySubject (TwoDCellCulture) for cell culture assays</li>
 <li><strong>In vivo study subjects</strong>: InVivoSubject with <code>age</code>, <code>sex</code>, <code>subject_characteristics</code> for clinical assays</li>
-<li><strong>Input samples</strong>: <code>input_sample</code> with exposure conditions and duration</li>
+<li><strong>Exposure conditions</strong>: <code>has_exposure_condition</code> with agent, concentration, duration, and <code>timing_post_exposure</code></li>
+<li><strong>Co-exposures</strong>: Multivalued <code>has_exposure_condition</code> for PM2.5 + ozone co-exposure</li>
 <li><strong>Time-course data</strong>: Multiple timepoints per assay type showing dose-response</li>
 </ul>
 <hr />
