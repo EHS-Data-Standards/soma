@@ -48,6 +48,11 @@ ciliary_function_assays:
           id: "UO:0000187"
           name: "percent"
     assay_date: "2024-01-15"
+    informs_on_key_event:
+      id: "KE:ke3-impaired-ciliary"
+      name: "Decreased ciliary function"
+      biological_action: decreased
+      level_of_biological_organization: cellular
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
@@ -131,6 +136,7 @@ ciliary_function_assays:
 **Key points:**
 
 - Named measurement slots inside `has_specified_output`: `beat_frequency_hz`, `active_area_percentage`, `percentage_ciliated_cells`
+- `informs_on_key_event` links the assay to AOP Key Event: "Decreased ciliary function"
 - `tissue_context` links the assay to the anatomical site (bronchus)
 - `study_subject` captures the full biological model including:
   - `primary_cell` and `anatomical_origin` for cell provenance
@@ -165,6 +171,11 @@ asl_assays:
           id: "UO:0000017"
           name: "micrometer"
     assay_date: "2024-02-10"
+    informs_on_key_event:
+      id: "KE:ke-decreased-asl"
+      name: "Decreased ASL height"
+      biological_action: decreased
+      level_of_biological_organization: cellular
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
@@ -207,6 +218,11 @@ mcc_assays:
           name: "micrometer per second"
       transport_directionality: normal
     assay_date: "2024-03-05"
+    informs_on_key_event:
+      id: "KE:ke3-impaired-mcc"
+      name: "Impaired mucociliary clearance"
+      biological_action: impaired
+      level_of_biological_organization: tissue
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
@@ -245,6 +261,11 @@ oxidative_stress_assays:
           name: "fold change"
     ros_probe_type: "DCFDA"
     assay_date: "2024-01-20"
+    informs_on_key_event:
+      id: "KE:mie-oxidative-stress"
+      name: "Increased oxidative stress"
+      biological_action: increased
+      level_of_biological_organization: molecular
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
@@ -284,6 +305,11 @@ cftr_assays:
     stimulation_agent: "forskolin 10 uM"
     inhibitor_used: "CFTRinh-172"
     assay_date: "2024-04-12"
+    informs_on_key_event:
+      id: "KE:ke-decreased-cftr"
+      name: "Decreased CFTR function"
+      biological_action: decreased
+      level_of_biological_organization: molecular
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
@@ -331,6 +357,11 @@ egfr_signaling_assays:
           name: "fold change"
     normalization_reference: "beta-actin"
     assay_date: "2024-05-08"
+    informs_on_key_event:
+      id: "KE:ke1-egfr-activation"
+      name: "EGFR activation"
+      biological_action: activated
+      level_of_biological_organization: molecular
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
@@ -376,6 +407,11 @@ goblet_cell_assays:
           id: "UO:0000187"
           name: "percent"
     assay_date: "2024-06-15"
+    informs_on_key_event:
+      id: "KE:ke2-goblet-hyperplasia"
+      name: "Goblet cell hyperplasia"
+      biological_action: increased
+      level_of_biological_organization: cellular
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
@@ -419,6 +455,11 @@ foxj_assays:
           id: "UO:0000187"
           name: "percent"
     assay_date: "2024-09-05"
+    informs_on_key_event:
+      id: "KE:ke-altered-ciliogenesis"
+      name: "Altered ciliogenesis"
+      biological_action: altered
+      level_of_biological_organization: cellular
     cell_type:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
@@ -509,6 +550,11 @@ lung_function_assays:
           name: "percent predicted"
     reference_dataset: "GLI-2012"
     assay_date: "2024-08-10"
+    informs_on_key_event:
+      id: "KE:ao-decreased-lung-function"
+      name: "Decreased lung function"
+      biological_action: decreased
+      level_of_biological_organization: organ
     study_subject:
       subject_type: InVivoSubject
       id: "SUBJECT:002"
@@ -538,6 +584,7 @@ lung_function_assays:
 
 **Key points:**
 
+- `informs_on_key_event` links to AOP Adverse Outcome: "Decreased lung function"
 - `study_subject` includes InVivoSubject slots: `age`, `sex`, `subject_characteristics`
 - `follows_protocols` references a SpirometryProtocol with `protocol_type` designator for polymorphic dispatch
 - SpirometryProtocol details: standards and bronchodilator information
@@ -566,6 +613,11 @@ balf_sputum_assays:
           id: "UO:0000175"
           name: "picogram per milliliter"
     assay_date: "2024-07-22"
+    informs_on_key_event:
+      id: "KE:ke-airway-inflammation"
+      name: "Airway inflammation"
+      biological_action: increased
+      level_of_biological_organization: tissue
     cell_type:
       id: "CL:0000775"
       name: "neutrophil"

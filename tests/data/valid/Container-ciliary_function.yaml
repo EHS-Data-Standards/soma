@@ -39,6 +39,11 @@ ciliary_function_assays:
           id: "UO:0000017"
           name: "micrometer"
     assay_date: "2024-01-15"
+    informs_on_key_event:
+      id: "KE:ke3-impaired-ciliary"
+      name: "Decreased ciliary function"
+      biological_action: decreased
+      level_of_biological_organization: cellular
     has_exposure_condition:
       - id: "EXPOSURE:ozone-200ppb-4h"
         name: "Ozone 200 ppb for 4 hours"
@@ -152,6 +157,11 @@ ciliary_function_assays:
           id: "UO:0000187"
           name: "percent"
     assay_date: "2024-03-10"
+    informs_on_key_event:
+      id: "KE:ke3-impaired-ciliary"
+      name: "Decreased ciliary function"
+      biological_action: decreased
+      level_of_biological_organization: cellular
     study_subject:
       subject_type: InVivoSubject
       id: "SUBJECT:003"

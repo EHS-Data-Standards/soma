@@ -44,6 +44,11 @@ lung_function_assays:
           name: "percent predicted"
     reference_dataset: "GLI-2012"
     assay_date: "2024-08-10"
+    informs_on_key_event:
+      id: "KE:ao-decreased-lung-function"
+      name: "Decreased lung function"
+      biological_action: decreased
+      level_of_biological_organization: organ
     study_subject:
       subject_type: InVivoSubject
       id: "SUBJECT:002"

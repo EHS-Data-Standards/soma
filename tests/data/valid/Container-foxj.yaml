@@ -28,6 +28,11 @@ foxj_assays:
           id: "UO:0000187"
           name: "percent"
     assay_date: "2024-09-05"
+    informs_on_key_event:
+      id: "KE:ke-altered-ciliogenesis"
+      name: "Altered ciliogenesis"
+      biological_action: altered
+      level_of_biological_organization: cellular
     study_subject:
       subject_type: TwoDCellCulture
       id: "owg:culture-008"

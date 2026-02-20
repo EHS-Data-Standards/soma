@@ -43,6 +43,11 @@ egfr_signaling_assays:
           name: "percent"
     normalization_reference: "beta-actin"
     assay_date: "2024-05-08"
+    informs_on_key_event:
+      id: "KE:ke1-egfr-activation"
+      name: "EGFR activation"
+      biological_action: activated
+      level_of_biological_organization: molecular
     has_exposure_condition:
       - id: "EXPOSURE:cse-4h"
         name: "Cigarette smoke extract 5% for 4 hours"
