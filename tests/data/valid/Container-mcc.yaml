@@ -11,6 +11,21 @@ mcc_assays:
           id: "UO:0000103"
           name: "micrometer per second"
       transport_directionality: normal
+      mucus_layer_thickness:
+        value: "28"
+        unit:
+          id: "UO:0000017"
+          name: "micrometer"
+      percentage_active_transport:
+        value: "82"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+      particle_clearance_time:
+        value: "120"
+        unit:
+          id: "UO:0000010"
+          name: "second"
     assay_date: "2024-03-05"
     cell_type:
       id: "CL:0002328"

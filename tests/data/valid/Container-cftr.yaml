@@ -10,6 +10,31 @@ cftr_assays:
         unit:
           id: "UO:0000274"
           name: "microampere per square centimeter"
+      cftr_forskolin_response:
+        value: "12.8"
+        unit:
+          id: "UO:0000274"
+          name: "microampere per square centimeter"
+      inhibitor_sensitive_current:
+        value: "14.5"
+        unit:
+          id: "UO:0000274"
+          name: "microampere per square centimeter"
+      cftr_specific_current:
+        value: "13.9"
+        unit:
+          id: "UO:0000274"
+          name: "microampere per square centimeter"
+      sweat_chloride_concentration:
+        value: "25"
+        unit:
+          id: "UO:0000308"
+          name: "milliequivalent per liter"
+      nasal_potential_difference:
+        value: "-18.5"
+        unit:
+          id: "UO:0000247"
+          name: "millivolt"
     stimulation_agent: "forskolin 10 uM"
     inhibitor_used: "CFTRinh-172"
     assay_date: "2024-04-12"

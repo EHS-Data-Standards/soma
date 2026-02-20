@@ -4,10 +4,6 @@ description: >-
   outcomes research. Each assay class extends the Assay base class and contains
   named slots for its specific measurements, organized by priority tier from
   user feedback.
-
-  TIER 1 slots are critical for data discovery and comparison.
-  TIER 2 slots are important but optional.
-  TIER 3 slots are in Protocol class.
 title: Assay Microschemas
 id: https://w3id.org/EHS-Data-Standards/assay_microschemas
 
@@ -58,7 +54,6 @@ classes:
       TIER 1 slots (critical): beat_frequency_hz, active_area_percentage,
       cilia_length, cilia_per_cell, percentage_ciliated_cells, cell_type_ratios,
     slots:
-      # Assay-specific parameters (NOT measurements)
       - analysis_software
       - airway_region
     slot_usage:
@@ -77,14 +72,12 @@ classes:
       measured values for ciliary beat frequency, active area, cilia
       morphology, and ciliated cell populations.
     slots:
-      # TIER 1 - Critical (Rank 1) - Named measurement slots
       - beat_frequency_hz
       - active_area_percentage
       - cilia_length
       - cilia_per_cell
       - percentage_ciliated_cells
       - cell_type_ratios
-      # TIER 2 - Important but optional (Rank 2)
       - ciliary_motion_patterns
       - ciliary_beat_amplitude
 
@@ -110,12 +103,9 @@ classes:
       measured values for ASL height, periciliary layer depth, and ion
       composition.
     slots:
-      # TIER 1 - Critical (Rank 1) - Named measurement slots
       - asl_height_um
       - periciliary_layer_depth
-      # TIER 2 - Optional on Assay (Rank 2)
       - mucus_layer_thickness
-      # TIER 3 - Protocol level but kept for convenience
       - ion_composition
       - asl_ph
 
@@ -131,7 +121,6 @@ classes:
       Key Event: "Impaired mucociliary clearance" in respiratory AOPs.
       TIER 1 slots (critical): transport_rate, directionality.
     slots:
-      # TIER 2 - Important context (Rank 2)
       - mucus_composition
     slot_usage:
       has_specified_output:
@@ -144,10 +133,8 @@ classes:
       measured values for transport rate, directionality, and clearance
       metrics.
     slots:
-      # TIER 1 - Critical (Rank 1) - Named measurement slots
       - transport_rate
       - transport_directionality
-      # TIER 2 - Important context (Rank 2)
       - mucus_layer_thickness
       - percentage_active_transport
       - particle_clearance_time
@@ -162,9 +149,7 @@ classes:
     description: >-
       Assay for measuring oxidative stress markers. Informs on Key Event:
       "Increased oxidative stress" - often a Molecular Initiating Event (MIE)
-      in respiratory toxicology AOPs.
-
-      TIER 1 slots (critical): All surrogate markers for oxidative stress.
+      in respiratory toxicology AOPs. TIER 1 slots (critical): All surrogate markers for oxidative stress.
       Multiple detection methods expected - no single "best" for lung function.
     slots:
       - ros_probe_type
@@ -182,14 +167,14 @@ classes:
       # TIER 1 - Critical (Rank 1) - Named measurement slots
       - reactive_oxygen_species
       - lipid_peroxidation
-      - malondialdehyde
-      - four_hydroxynonenal
-      - eight_isoprostane
+      - malondialdehyde_level
+      - four_hydroxynonenal_level
+      - eight_isoprostane_level
       - protein_oxidation_markers
       - protein_carbonyl_content
-      - nitrotyrosine
+      - nitrotyrosine_level
       - dna_damage_markers
-      - eight_ohdg
+      - eight_ohdg_level
       - antioxidant_capacity
       - glutathione_ratio
       - antioxidant_enzyme_activities
@@ -649,21 +634,21 @@ slots:
     range: QuantityValue
     inlined: true
 
-  malondialdehyde:
+  malondialdehyde_level:
     description: >-
-      MDA level - lipid peroxidation marker. TIER 1.
+      MDA level - lipid peroxidation marker.
     range: QuantityValue
     inlined: true
 
-  four_hydroxynonenal:
+  four_hydroxynonenal_level:
     description: >-
-      4-HNE level - lipid peroxidation marker. TIER 1.
+      4-HNE level - lipid peroxidation marker.
     range: QuantityValue
     inlined: true
 
-  eight_isoprostane:
+  eight_isoprostane_level:
     description: >-
-      8-isoprostane level. TIER 1.
+      8-isoprostane level.
     range: QuantityValue
     inlined: true
 
@@ -678,7 +663,7 @@ slots:
     range: QuantityValue
     inlined: true
 
-  nitrotyrosine:
+  nitrotyrosine_level:
     description: Nitrotyrosine level. TIER 1.
     range: QuantityValue
     inlined: true
@@ -689,7 +674,7 @@ slots:
     range: QuantityValue
     inlined: true
 
-  eight_ohdg:
+  eight_ohdg_level:
     description: 8-OHdG level (DNA oxidation marker). TIER 1.
     range: QuantityValue
     inlined: true

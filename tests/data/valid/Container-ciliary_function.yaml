@@ -22,6 +22,22 @@ ciliary_function_assays:
         unit:
           id: "UO:0000187"
           name: "percent"
+      cilia_length:
+        value: "7.2"
+        unit:
+          id: "UO:0000017"
+          name: "micrometer"
+      cilia_per_cell:
+        value: "150"
+        unit:
+          id: "UO:0000189"
+          name: "count"
+      ciliary_motion_patterns: coordinated
+      ciliary_beat_amplitude:
+        value: "4.5"
+        unit:
+          id: "UO:0000017"
+          name: "micrometer"
     assay_date: "2024-01-15"
     cell_type:
       id: "CL:0002328"

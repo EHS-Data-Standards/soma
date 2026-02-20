@@ -17,6 +17,16 @@ foxj_assays:
         unit:
           id: "UO:0000187"
           name: "percent"
+      foxj1_protein_expression:
+        value: "0.58"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+      foxj1_nuclear_localization:
+        value: "35"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
     assay_date: "2024-09-05"
     cell_type:
       id: "CL:0002328"

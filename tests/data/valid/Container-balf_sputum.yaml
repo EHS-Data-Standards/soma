@@ -17,6 +17,41 @@ balf_sputum_assays:
         unit:
           id: "UO:0000175"
           name: "picogram per milliliter"
+      eosinophil_percentage:
+        value: "3.5"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+      macrophage_percentage:
+        value: "38.0"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+      lymphocyte_percentage:
+        value: "12.5"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+      total_cell_count:
+        value: "2500000"
+        unit:
+          id: "UO:0000209"
+          name: "cells per milliliter"
+      il6_concentration:
+        value: "85"
+        unit:
+          id: "UO:0000175"
+          name: "picogram per milliliter"
+      tnf_alpha_concentration:
+        value: "120"
+        unit:
+          id: "UO:0000175"
+          name: "picogram per milliliter"
+      total_protein_concentration:
+        value: "1.2"
+        unit:
+          id: "UO:0000176"
+          name: "milligram per milliliter"
     assay_date: "2024-07-22"
     cell_type:
       id: "CL:0000775"

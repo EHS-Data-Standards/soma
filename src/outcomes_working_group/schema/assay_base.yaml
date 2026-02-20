@@ -60,7 +60,7 @@ classes:
       - cell_type
       - tissue_context
       - study_subject
-      - input_sample
+      - has_exposure_condition
       - follows_protocols
       - assay_date
       - has_specified_output
@@ -244,20 +244,19 @@ classes:
       - name
 
   # ---------------------------------------------------------------------------
-  # Input Sample Class
+  # Exposure Condition Class
   # ---------------------------------------------------------------------------
 
-  InputSample:
+  ExposureCondition:
     is_a: NamedEntity
     description: >-
-      Description of the input sample and any manipulations performed.
-      Captures the test system, exposure conditions, and sample preparation.
+      A structured description of an exposure or treatment applied to a
+      biological system. Captures what agent was applied, at what concentration,
+      for how long, and when the measurement was taken relative to exposure.
     slots:
-      - sample_source
-      - exposure_conditions
-      - exposure_duration
+      - exposure_agent
       - exposure_concentration
-      - sample_preparation
+      - exposure_duration
       - timing_post_exposure
 
   # ---------------------------------------------------------------------------
@@ -546,12 +545,14 @@ slots:
   # Test System Slots
   # ---------------------------------------------------------------------------
 
-  input_sample:
+  has_exposure_condition:
     description: >-
-      Description of the input sample and manipulations. TIER 1 slot -
-      critical for understanding what was measured and under what conditions.
-    range: InputSample
-    inlined: true
+      The exposure condition(s) applied to the study subject. Captures the
+      agent, concentration, duration, and timing of exposure/treatment.
+      Multivalued to support co-exposures or dose-response series.
+    range: ExposureCondition
+    multivalued: true
+    inlined_as_list: true
 
   # ---------------------------------------------------------------------------
   # Methodology Slots
@@ -844,33 +845,30 @@ slots:
     range: uriorcurie
 
   # ---------------------------------------------------------------------------
-  # Input Sample Slots
+  # Exposure Condition Slots
   # ---------------------------------------------------------------------------
 
-  sample_source:
-    description: Source of the sample (cell line, primary cells, tissue).
-    range: string
-
-  exposure_conditions:
-    description: Exposure conditions applied to the sample.
-    range: string
+  exposure_agent:
+    description: >-
+      The chemical, biological, or environmental agent used for exposure
+      or treatment. Reference to a CHEBI or ECTO ontology term.
+    range: NamedEntity
+    inlined: true
 
   exposure_duration:
-    description: Duration of exposure.
+    description: Duration of exposure or treatment.
     range: QuantityValue
     inlined: true
 
   exposure_concentration:
-    description: Concentration of exposure agent.
+    description: Concentration of the exposure agent applied.
     range: QuantityValue
     inlined: true
 
-  sample_preparation:
-    description: Sample preparation steps.
-    range: string
-
   timing_post_exposure:
-    description: Time after exposure when measurement was taken.
+    description: >-
+      Time after exposure when the measurement was taken. Used to capture
+      the temporal relationship between exposure and assay readout.
     range: QuantityValue
     inlined: true
 
