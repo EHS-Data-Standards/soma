@@ -60,8 +60,8 @@ classes:
       - study_subject
       - has_exposure_condition
       - follows_protocols
-      - assay_date
       - has_specified_output
+      - assay_date
 
   # ---------------------------------------------------------------------------
   # Assay Output Measurement (Abstract Base)
