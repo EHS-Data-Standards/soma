@@ -57,8 +57,6 @@ classes:
       key events and contain the measurement data as named slots.
     slots:
       - informs_on_key_event
-      - cell_type
-      - tissue_context
       - study_subject
       - has_exposure_condition
       - follows_protocols
@@ -455,21 +453,22 @@ slots:
     inlined: true
 
   # ---------------------------------------------------------------------------
-  # Context Slots (ELEVATED - on Assay base class)
+  # Context Slots
   # ---------------------------------------------------------------------------
 
   cell_type:
     description: >-
       The cell type being studied. Reference to a Cell Ontology (CL) term.
-      This is a TIER 1 slot - critical for data discovery and comparison.
+      Used on CellularSystem and CellLine to describe the cell identity.
     range: NamedEntity
     inlined: true
     slot_uri: EFO:0000324
 
-  tissue_context:
+  target_cell_type:
     description: >-
-      The anatomical/tissue context. Reference to UBERON anatomy term.
-      Important for understanding where measurements were taken.
+      The specific cell type that is the primary focus of this assay's
+      analysis, when the assay examines multiple cell populations in a
+      sample (e.g., neutrophils in a BALF differential).
     range: NamedEntity
     inlined: true
 

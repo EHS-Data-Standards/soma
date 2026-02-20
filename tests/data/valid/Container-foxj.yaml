@@ -28,9 +28,6 @@ foxj_assays:
           id: "UO:0000187"
           name: "percent"
     assay_date: "2024-09-05"
-    cell_type:
-      id: "CL:0002328"
-      name: "bronchial epithelial cell"
     # InVitroAssayMixin slots
     cell_culture_system: "Primary HBE cells at ALI"
     days_at_ali_or_differentiation: 14
@@ -40,6 +37,9 @@ foxj_assays:
       subject_type: TwoDCellCulture
       id: "owg:culture-008"
       name: "Primary HBE ALI culture"
+      cell_type:
+        id: "CL:0002328"
+        name: "bronchial epithelial cell"
       model_species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"

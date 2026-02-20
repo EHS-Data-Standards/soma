@@ -321,6 +321,8 @@ classes:
       evidence for inflammatory cell populations and cytokine levels.
 
       This assay is IN VIVO ONLY - requires samples from human or animal subjects.
+    slots:
+      - target_cell_type
     slot_usage:
       study_subject:
         range: InVivoSubject
