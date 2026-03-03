@@ -1188,7 +1188,7 @@ slots:
     name: subject_type
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/subject_type
     description: The specific type of study subject. Used to designate which concrete
-      class (e.g., TwoDCellCulture, InVivoSubject) is instantiated for polymorphic
+      class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic
       study_subject slots.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:subject_type
@@ -1945,6 +1945,7 @@ slots:
     slot_uri: assay_base:substrate_type
     owner: CellCultureConditions
     domain_of:
+    - CellularSystem
     - CellCultureConditions
     range: SubstrateTypeEnum
   passage_number:
@@ -1954,6 +1955,7 @@ slots:
     slot_uri: assay_base:passage_number
     owner: CellCultureConditions
     domain_of:
+    - CellularSystem
     - CellCultureConditions
     range: integer
   days_at_air_liquid_interface:
@@ -1979,6 +1981,9 @@ slots:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/confluence_level
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:confluence_level
+    owner: CellularSystem
+    domain_of:
+    - CellularSystem
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -1987,6 +1992,9 @@ slots:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/seeding_density
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:seeding_density
+    owner: CellularSystem
+    domain_of:
+    - CellularSystem
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -1995,18 +2003,27 @@ slots:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/coating
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:coating
+    owner: CellularSystem
+    domain_of:
+    - CellularSystem
     range: string
   matrix_composition:
     name: matrix_composition
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/matrix_composition
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:matrix_composition
+    owner: CellularSystem
+    domain_of:
+    - CellularSystem
     range: string
   size_range:
     name: size_range
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/size_range
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:size_range
+    owner: CellularSystem
+    domain_of:
+    - CellularSystem
     range: QuantityRange
     inlined: true
     inlined_as_list: true
@@ -2015,6 +2032,9 @@ slots:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/organoid_type
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:organoid_type
+    owner: CellularSystem
+    domain_of:
+    - CellularSystem
     range: string
   cell_type_ratios:
     name: cell_type_ratios
@@ -2023,6 +2043,7 @@ slots:
     slot_uri: assay_base:cell_type_ratios
     owner: CiliaryFunctionOutput
     domain_of:
+    - CellularSystem
     - CiliaryFunctionOutput
     range: string
     multivalued: true
@@ -4344,6 +4365,15 @@ classes:
     - cell_type
     - anatomical_origin
     - cell_culture_growth_mode
+    - substrate_type
+    - confluence_level
+    - passage_number
+    - seeding_density
+    - coating
+    - matrix_composition
+    - size_range
+    - organoid_type
+    - cell_type_ratios
     - culture_conditions
     - culture_media
     - days_at_differentiation
@@ -4993,7 +5023,7 @@ classes:
     class_uri: assay_microschemas:GeneExpressionOutput
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2026-03-03T01:12:36'
+source_file_date: '2026-03-03T02:08:00'
 source_file_size: 6988
-generation_date: '2026-03-03T01:12:52'
+generation_date: '2026-03-03T02:08:18'
 
