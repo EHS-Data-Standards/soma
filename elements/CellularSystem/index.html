@@ -270,22 +270,13 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-cellularsystem">Class: CellularSystem</h1>
-<p><em>Cell-based model systems that use living cells to model biological processes. Includes 2D cultures, 3D systems, and co-cultures.</em></p>
+<p><em>Cell-based model systems that use living cells to model biological processes.</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/outcomes_working_group/CellularSystem">outcomes_working_group:CellularSystem</a></p>
 <pre class="mermaid"><code> classDiagram
     class CellularSystem
     click CellularSystem href "../CellularSystem/"
       ModelSystem &lt;|-- CellularSystem
         click ModelSystem href "../ModelSystem/"
-
-
-      CellularSystem &lt;|-- TwoDCellCulture
-        click TwoDCellCulture href "../TwoDCellCulture/"
-      CellularSystem &lt;|-- ThreeDCellCulture
-        click ThreeDCellCulture href "../ThreeDCellCulture/"
-      CellularSystem &lt;|-- CoCulture
-        click CoCulture href "../CoCulture/"
-
 
       CellularSystem : anatomical_origin
 
@@ -396,12 +387,7 @@
 <li><a href="../NamedThing/">NamedThing</a><ul>
 <li><a href="../StudySubject/">StudySubject</a><ul>
 <li><a href="../ModelSystem/">ModelSystem</a><ul>
-<li><strong>CellularSystem</strong><ul>
-<li><a href="../TwoDCellCulture/">TwoDCellCulture</a></li>
-<li><a href="../ThreeDCellCulture/">ThreeDCellCulture</a></li>
-<li><a href="../CoCulture/">CoCulture</a></li>
-</ul>
-</li>
+<li><strong>CellularSystem</strong></li>
 </ul>
 </li>
 </ul>
@@ -542,7 +528,6 @@
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cell-based model systems that use living cells to model biological processes.</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Includes 2D cultures, 3D systems, and co-cultures.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelSystem</span>
 <span class="nt">slots</span><span class="p">:</span>
@@ -562,7 +547,6 @@
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cell-based model systems that use living cells to model biological processes.</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Includes 2D cultures, 3D systems, and co-cultures.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/outcomes_working_group</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelSystem</span>
 <span class="nt">attributes</span><span class="p">:</span>

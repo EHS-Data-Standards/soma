@@ -34,7 +34,7 @@ foxj_assays:
       biological_action: altered
       level_of_biological_organization: cellular
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-008"
       name: "Primary HBE ALI culture"
       cell_type:

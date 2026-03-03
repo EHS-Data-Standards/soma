@@ -66,7 +66,7 @@ ciliary_function_assays:
             id: "UO:0000032"
             name: "hour"
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-001"
       name: "Primary HBE ALI culture"
       cell_type:

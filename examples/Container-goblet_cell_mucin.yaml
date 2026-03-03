@@ -62,7 +62,7 @@ goblet_cell_assays:
       biological_action: increased
       level_of_biological_organization: cellular
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-004"
       name: "Primary HBE ALI culture"
       cell_type:

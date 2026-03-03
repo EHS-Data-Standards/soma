@@ -541,48 +541,6 @@ enums:
       pdms:
         text: pdms
         description: Polydimethylsiloxane (microfluidics)
-  ThreeDArchitectureEnum:
-    name: ThreeDArchitectureEnum
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/ThreeDArchitectureEnum
-    description: Types of 3D cell culture architecture.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    permissible_values:
-      spheroid:
-        text: spheroid
-        description: Spherical cellular aggregates
-      organoid:
-        text: organoid
-        description: Self-organizing 3D tissue culture
-      scaffold_based:
-        text: scaffold_based
-        description: Cells grown on a 3D scaffold
-      hydrogel_embedded:
-        text: hydrogel_embedded
-        description: Cells embedded within a hydrogel matrix
-      hanging_drop:
-        text: hanging_drop
-        description: 3D cultures formed by hanging drop method
-  CoCultureConfigurationEnum:
-    name: CoCultureConfigurationEnum
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/CoCultureConfigurationEnum
-    description: Physical configurations for co-culture systems.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    permissible_values:
-      direct_contact:
-        text: direct_contact
-        description: Cell types in direct physical contact
-      transwell:
-        text: transwell
-        description: Cell types separated by transwell membrane
-      microfluidic:
-        text: microfluidic
-        description: Cell types connected via microfluidic channels
-      conditioned_medium:
-        text: conditioned_medium
-        description: Cells grown in medium conditioned by another cell type
-      mixed:
-        text: mixed
-        description: Multiple cell types mixed together
   SupplementTypeEnum:
     name: SupplementTypeEnum
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/SupplementTypeEnum
@@ -1987,9 +1945,6 @@ slots:
     slot_uri: assay_base:substrate_type
     owner: CellCultureConditions
     domain_of:
-    - TwoDCellCulture
-    - ThreeDCellCulture
-    - CoCulture
     - CellCultureConditions
     range: SubstrateTypeEnum
   passage_number:
@@ -1999,7 +1954,6 @@ slots:
     slot_uri: assay_base:passage_number
     owner: CellCultureConditions
     domain_of:
-    - TwoDCellCulture
     - CellCultureConditions
     range: integer
   days_at_air_liquid_interface:
@@ -2025,9 +1979,6 @@ slots:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/confluence_level
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:confluence_level
-    owner: TwoDCellCulture
-    domain_of:
-    - TwoDCellCulture
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2036,9 +1987,6 @@ slots:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/seeding_density
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:seeding_density
-    owner: TwoDCellCulture
-    domain_of:
-    - TwoDCellCulture
     range: QuantityValue
     inlined: true
     inlined_as_list: true
@@ -2047,36 +1995,18 @@ slots:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/coating
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:coating
-    owner: TwoDCellCulture
-    domain_of:
-    - TwoDCellCulture
     range: string
-  three_d_architecture:
-    name: three_d_architecture
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/three_d_architecture
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:three_d_architecture
-    owner: ThreeDCellCulture
-    domain_of:
-    - ThreeDCellCulture
-    range: ThreeDArchitectureEnum
   matrix_composition:
     name: matrix_composition
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/matrix_composition
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:matrix_composition
-    owner: ThreeDCellCulture
-    domain_of:
-    - ThreeDCellCulture
     range: string
   size_range:
     name: size_range
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/size_range
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:size_range
-    owner: ThreeDCellCulture
-    domain_of:
-    - ThreeDCellCulture
     range: QuantityRange
     inlined: true
     inlined_as_list: true
@@ -2085,19 +2015,7 @@ slots:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/organoid_type
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:organoid_type
-    owner: ThreeDCellCulture
-    domain_of:
-    - ThreeDCellCulture
     range: string
-  coculture_configuration:
-    name: coculture_configuration
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/coculture_configuration
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:coculture_configuration
-    owner: CoCulture
-    domain_of:
-    - CoCulture
-    range: CoCultureConfigurationEnum
   cell_type_ratios:
     name: cell_type_ratios
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/cell_type_ratios
@@ -2105,7 +2023,6 @@ slots:
     slot_uri: assay_base:cell_type_ratios
     owner: CiliaryFunctionOutput
     domain_of:
-    - CoCulture
     - CiliaryFunctionOutput
     range: string
     multivalued: true
@@ -4413,7 +4330,7 @@ classes:
     name: CellularSystem
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/CellularSystem
     description: Cell-based model systems that use living cells to model biological
-      processes. Includes 2D cultures, 3D systems, and co-cultures.
+      processes.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     is_a: ModelSystem
     slots:
@@ -4433,103 +4350,6 @@ classes:
     - donor_info
     - replicates_per_donor
     class_uri: assay_base:CellularSystem
-  TwoDCellCulture:
-    name: TwoDCellCulture
-    id_prefixes:
-    - owg
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/TwoDCellCulture
-    description: Conventional monolayer cell cultures grown on flat surfaces. Includes
-      adherent and suspension cultures in standard tissue culture vessels.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    mappings:
-    - NAMO:0000002
-    is_a: CellularSystem
-    slots:
-    - id
-    - name
-    - description
-    - subject_type
-    - model_species
-    - cell_line
-    - primary_cell
-    - cell_type
-    - anatomical_origin
-    - cell_culture_growth_mode
-    - culture_conditions
-    - culture_media
-    - days_at_differentiation
-    - donor_info
-    - replicates_per_donor
-    - substrate_type
-    - confluence_level
-    - passage_number
-    - seeding_density
-    - coating
-    class_uri: NAMO:0000002
-  ThreeDCellCulture:
-    name: ThreeDCellCulture
-    id_prefixes:
-    - owg
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/ThreeDCellCulture
-    description: Three-dimensional cell culture systems including spheroids, organoids,
-      and scaffold-based cultures.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    mappings:
-    - NAMO:0000003
-    is_a: CellularSystem
-    slots:
-    - id
-    - name
-    - description
-    - subject_type
-    - model_species
-    - cell_line
-    - primary_cell
-    - cell_type
-    - anatomical_origin
-    - cell_culture_growth_mode
-    - culture_conditions
-    - culture_media
-    - days_at_differentiation
-    - donor_info
-    - replicates_per_donor
-    - three_d_architecture
-    - matrix_composition
-    - size_range
-    - organoid_type
-    - substrate_type
-    class_uri: NAMO:0000003
-  CoCulture:
-    name: CoCulture
-    id_prefixes:
-    - owg
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/CoCulture
-    description: Co-culture systems combining multiple cell types to simulate tissue
-      microenvironments and cell-cell interactions.
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    mappings:
-    - NAMO:0000004
-    is_a: CellularSystem
-    slots:
-    - id
-    - name
-    - description
-    - subject_type
-    - model_species
-    - cell_line
-    - primary_cell
-    - cell_type
-    - anatomical_origin
-    - cell_culture_growth_mode
-    - culture_conditions
-    - culture_media
-    - days_at_differentiation
-    - donor_info
-    - replicates_per_donor
-    - coculture_configuration
-    - cell_type_ratios
-    - substrate_type
-    class_uri: NAMO:0000004
   CellLine:
     name: CellLine
     id_prefixes:
@@ -4625,8 +4445,8 @@ classes:
       area, cilia morphology, and ciliated cell populations. Informs on Key Event:
       "Decreased ciliary function" in respiratory AOPs.
 
-      CONTEXT: Can be performed in vitro (tissue slices, 2D cell culture, spheroids)
-      or in vivo (often using optical coherence tomography).
+      CONTEXT: Can be performed in vitro (tissue slices, spheroids) or in vivo (often
+      using optical coherence tomography).
 
       TIER 1 slots (critical): beat_frequency_hz, active_area_percentage, cilia_length,
       cilia_per_cell, percentage_ciliated_cells, cell_type_ratios,'
@@ -5173,7 +4993,7 @@ classes:
     class_uri: assay_microschemas:GeneExpressionOutput
 metamodel_version: 1.7.0
 source_file: outcomes_working_group.yaml
-source_file_date: '2026-02-24T21:06:36'
+source_file_date: '2026-03-03T01:12:36'
 source_file_size: 6988
-generation_date: '2026-02-24T21:06:58'
+generation_date: '2026-03-03T01:12:52'
 

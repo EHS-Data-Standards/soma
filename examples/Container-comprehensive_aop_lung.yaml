@@ -84,7 +84,7 @@ oxidative_stress_assays:
       biological_action: increased
       level_of_biological_organization: molecular
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -139,7 +139,7 @@ oxidative_stress_assays:
             id: "UO:0000032"
             name: "hour"
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -195,7 +195,7 @@ oxidative_stress_assays:
       biological_action: increased
       level_of_biological_organization: molecular
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -236,7 +236,7 @@ egfr_signaling_assays:
       biological_action: activated
       level_of_biological_organization: molecular
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -276,7 +276,7 @@ egfr_signaling_assays:
       biological_action: activated
       level_of_biological_organization: molecular
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -308,7 +308,7 @@ egfr_signaling_assays:
           name: "fold change"
     assay_date: "2024-01-15"
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -347,7 +347,7 @@ goblet_cell_assays:
       biological_action: increased
       level_of_biological_organization: cellular
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -382,7 +382,7 @@ goblet_cell_assays:
       biological_action: increased
       level_of_biological_organization: cellular
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -411,7 +411,7 @@ goblet_cell_assays:
           name: "percent"
     assay_date: "2024-01-22"
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -440,7 +440,7 @@ goblet_cell_assays:
           name: "centipoise"
     assay_date: "2024-01-22"
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -479,7 +479,7 @@ ciliary_function_assays:
       biological_action: decreased
       level_of_biological_organization: cellular
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -605,7 +605,7 @@ ciliary_function_assays:
       biological_action: decreased
       level_of_biological_organization: cellular
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -644,7 +644,7 @@ ciliary_function_assays:
       biological_action: decreased
       level_of_biological_organization: cellular
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -678,7 +678,7 @@ ciliary_function_assays:
           name: "percent"
     assay_date: "2024-01-22"
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -723,7 +723,7 @@ mcc_assays:
       biological_action: impaired
       level_of_biological_organization: tissue
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -764,7 +764,7 @@ mcc_assays:
       biological_action: impaired
       level_of_biological_organization: tissue
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -800,7 +800,7 @@ mcc_assays:
       biological_action: impaired
       level_of_biological_organization: tissue
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
@@ -829,7 +829,7 @@ mcc_assays:
           name: "percent"
     assay_date: "2024-01-22"
     study_subject:
-      subject_type: TwoDCellCulture
+      subject_type: CellularSystem
       id: "owg:culture-aop-001"
       name: "Primary HBE ALI culture - Donor 1"
       cell_type:
