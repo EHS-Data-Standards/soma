@@ -39,7 +39,7 @@ The model is built using:
 | Domain | Description |
 |--------|-------------|
 | Assays | Domain-specific assay classes with named measurement slots (e.g., CiliaryFunctionAssay, LungFunctionAssay) |
-| Study Subjects | Biological systems under study: cell cultures (CellularSystem, TwoDCellCulture), human/animal subjects (InVivoSubject), populations (PopulationSubject) |
+| Study Subjects | Biological systems under study: cell cultures (CellularSystem), human/animal subjects (InVivoSubject), populations (PopulationSubject) |
 | Protocols | Typed experimental procedures: ImagingProtocol, MolecularAssayProtocol, StainingProtocol, SpirometryProtocol |
 | AOP Framework | Adverse Outcome Pathways: KeyEvent, AdverseOutcomePathway, with assay linkage via `informs_on_key_event` |
 

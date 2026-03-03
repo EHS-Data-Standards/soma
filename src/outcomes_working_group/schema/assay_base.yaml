@@ -276,6 +276,15 @@ classes:
       - anatomical_origin
       # Culture properties
       - cell_culture_growth_mode
+      - substrate_type
+      - confluence_level
+      - passage_number
+      - seeding_density
+      - coating
+      - matrix_composition
+      - size_range
+      - organoid_type
+      - cell_type_ratios
       - culture_conditions
       - culture_media
       # Subject info (moved from Assay base)
@@ -419,7 +428,7 @@ slots:
   subject_type:
     description: >-
       The specific type of study subject. Used to designate which concrete
-      class (e.g., TwoDCellCulture, InVivoSubject) is instantiated for
+      class (e.g., CellularSystem, InVivoSubject) is instantiated for
       polymorphic study_subject slots.
     designates_type: true
     range: string

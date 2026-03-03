@@ -51,9 +51,7 @@ any class in the StudySubject hierarchy:
 |-------|----------|-----------|
 | StudySubject | Base class | `model_species` |
 | ModelSystem | Laboratory model systems | (inherits from StudySubject) |
-| CellularSystem | Cell-based experiments | `cell_type`, `cell_line`, `culture_conditions`, `days_at_differentiation` |
-| TwoDCellCulture | ALI / monolayer cultures | `substrate_type`, `passage_number`, `confluence_level` |
-| ThreeDCellCulture | Organoids, spheroids | `scaffold_type`, `organoid_type` |
+| CellularSystem | Cell-based experiments | `cell_type`, `cell_line`, `culture_conditions`, `days_at_differentiation`, `substrate_type`, `passage_number` |
 | InVivoSubject | Human/animal samples | `age`, `sex`, `sample_type`, `collection_site`, `subject_characteristics` |
 | PopulationSubject | Epidemiological cohorts | `cohort_name`, `sample_size`, `demographics` |
 

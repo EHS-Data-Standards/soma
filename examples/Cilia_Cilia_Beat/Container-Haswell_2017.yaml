@@ -1,0 +1,351 @@
+# Extracted from: Haswell LE, Baxter A, Banerjee A, et al. (2017)
+#   "Reduced biological effect of e-cigarette aerosol compared to cigarette
+#   smoke evaluated in vitro using normalized nicotine dose and RNA-seq-based
+#   toxicogenomics." Scientific Reports 7:888. DOI:10.1038/s41598-017-00852-y
+# Extraction date: 2026-03-02
+#
+# Verified ontology identifiers:
+#   - CHEBI:17688 (nicotine) - OLS verified
+#   - CHEBI:16997 (propane-1,2-diol / propylene glycol) - OLS verified
+#   - CHEBI:17754 (glycerol) - OLS verified
+#   - CL:0002368 (respiratory tract epithelial cell) - OLS verified
+#   - UBERON:0001707 (nasal cavity) - OLS verified
+#   - UBERON:0005385 (nasal cavity respiratory epithelium) - OLS verified
+#   - UO:0000275 (nanogram per milliliter) - OLS verified
+#   Pre-verified from schema: UO:0000187, UO:0000032, UO:0000106,
+#   UO:0000105, UO:0000027, NCBITaxon:9606
+#
+# Study overview:
+#   MucilAir(TM) (reconstituted human airway epithelia from nasal swabs,
+#   ALI-differentiated) exposed for 1 hour to:
+#     - Air control
+#     - 3R4F cigarette smoke at 1/30 dilution (HCI regimen)
+#     - E-cigarette aerosol (Vype ePen) at 1/7 dilution (~nicotine-matched to 3R4F)
+#     - E-cigarette aerosol (Vype ePen) at 1/3 dilution (~2x nicotine vs 3R4F)
+#   Endpoints measured at 24hrs and 48hrs post-exposure.
+#   Primary donor: #MD058501 (age 41, Caucasian female, non-smoker).
+#
+# Additional endpoints measured but not fully extracted here:
+#   - CBF (ciliary beat frequency): Measured immediately post-exposure.
+#     "No reduction in CBF was observed between the air controls and the
+#     aerosol treated cells" (Supplementary Fig. S1). Exact values not
+#     reported in main text.
+#   - TEER: Air 24hrs 1432.7+/-198 Ohm; Air 48hrs 1342.9+/-239 Ohm;
+#     E-cig 1/3 24hrs 1130.9+/-93 Ohm; E-cig 1/3 48hrs 1105.9+/-130 Ohm
+#     (significant at p<0.05 but within tight junction integrity range).
+#     TEER does not map to an assay type in this schema.
+#   - LDH release: Below 5% for all treatments (no cytotoxicity).
+#   - RNA-seq: 873 DEGs for 3R4F at 24hrs (pFDR<0.01, FC>2); 205 at 48hrs.
+#     Only 3 DEGs for e-cig 1/3 at 24hrs and 48hrs individually (pFDR<0.05).
+#     113 DEGs for e-cig 1/3 after combining timepoints (pFDR<0.05), only 3
+#     exceeded FC of 2. Gene enrichment showed fibrosis, inflammation, DNA
+#     damage, oxidative stress, and lung cancer pathways for 3R4F; metabolic/
+#     biosynthetic processes and extracellular membrane for e-cigarette.
+
+# =============================================================================
+# GOBLET CELL / MUCIN ASSAYS - MUC5AC Quantitative Immunohistochemistry
+# =============================================================================
+# MUC5AC % quantitation from Fig. 3C. Values for air control and e-cig 1/3
+# are explicitly stated in the text (p.3). Values for 3R4F 1/30 and e-cig 1/7
+# are in Fig. 3C only (not extracted to avoid estimation from figures).
+
+goblet_cell_assays:
+
+  # --- Air control, 24hrs post-exposure ---
+  - id: "GCM:haswell2017-air-24h"
+    name: "MUC5AC IHC - Air control 24hrs post-exposure (Haswell 2017)"
+    has_specified_output:
+      id: "GCM:haswell2017-air-24h-output"
+      name: "GCM:haswell2017-air-24h measurement results"
+      goblet_cell_percentage:
+        value: "0.7"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+    assay_date: "2017-04-18"
+    informs_on_key_event:
+      id: "KE:mucin-hypersecretion"
+      name: "Mucin hypersecretion"
+      biological_action: altered
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: CellularSystem
+      id: "owg:haswell2017-mucilair-md058501"
+      name: "MucilAir ALI culture - Donor MD058501"
+      cell_type:
+        id: "CL:0002368"
+        name: "respiratory tract epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      primary_cell:
+        id: "CL:0002368"
+        name: "respiratory tract epithelial cell"
+      anatomical_origin:
+        id: "UBERON:0001707"
+        name: "nasal cavity"
+      cell_culture_growth_mode: air_liquid_interface
+      donor_info: "Donor #MD058501, age 41, Caucasian female, non-smoker"
+      replicates_per_donor: 3
+      substrate_type: transwell_insert
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:haswell2017-ihc-muc5ac"
+        name: "MUC5AC quantitative immunohistochemistry"
+        staining_type: "Immunohistochemistry (HRP-conjugated ABC system)"
+        fixation_method: "3.6% formaldehyde/PBS followed by 70% ethanol dehydration and paraffin inclusion"
+        counterstain: "MUC5AC primary antibody (Abcam) + biotinylated secondary (Dako)"
+
+  # --- Air control, 48hrs post-exposure ---
+  - id: "GCM:haswell2017-air-48h"
+    name: "MUC5AC IHC - Air control 48hrs post-exposure (Haswell 2017)"
+    has_specified_output:
+      id: "GCM:haswell2017-air-48h-output"
+      name: "GCM:haswell2017-air-48h measurement results"
+      goblet_cell_percentage:
+        value: "0.4"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+    assay_date: "2017-04-18"
+    informs_on_key_event:
+      id: "KE:mucin-hypersecretion"
+      name: "Mucin hypersecretion"
+      biological_action: altered
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: CellularSystem
+      id: "owg:haswell2017-mucilair-md058501"
+      name: "MucilAir ALI culture - Donor MD058501"
+      cell_type:
+        id: "CL:0002368"
+        name: "respiratory tract epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      primary_cell:
+        id: "CL:0002368"
+        name: "respiratory tract epithelial cell"
+      anatomical_origin:
+        id: "UBERON:0001707"
+        name: "nasal cavity"
+      cell_culture_growth_mode: air_liquid_interface
+      donor_info: "Donor #MD058501, age 41, Caucasian female, non-smoker"
+      replicates_per_donor: 3
+      substrate_type: transwell_insert
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:haswell2017-ihc-muc5ac"
+        name: "MUC5AC quantitative immunohistochemistry"
+        staining_type: "Immunohistochemistry (HRP-conjugated ABC system)"
+        fixation_method: "3.6% formaldehyde/PBS followed by 70% ethanol dehydration and paraffin inclusion"
+        counterstain: "MUC5AC primary antibody (Abcam) + biotinylated secondary (Dako)"
+
+  # --- E-cigarette 1/3 dilution, 24hrs post-exposure ---
+  # Significant decrease vs air control at p<0.05
+  - id: "GCM:haswell2017-ecig13-24h"
+    name: "MUC5AC IHC - E-cigarette 1/3 at 24hrs post-exposure (Haswell 2017)"
+    has_specified_output:
+      id: "GCM:haswell2017-ecig13-24h-output"
+      name: "GCM:haswell2017-ecig13-24h measurement results"
+      goblet_cell_percentage:
+        value: "0.1"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+    assay_date: "2017-04-18"
+    informs_on_key_event:
+      id: "KE:mucin-hypersecretion"
+      name: "Mucin hypersecretion"
+      biological_action: decreased
+      level_of_biological_organization: cellular
+    has_exposure_condition:
+      - id: "EXPOSURE:haswell2017-ecig-1-3"
+        name: "Vype ePen e-cigarette aerosol 1/3 dilution for 1 hour"
+        exposure_agent:
+          id: "NEEDS_VERIFICATION:e_cigarette_aerosol"
+          name: "e-cigarette aerosol (Vype ePen, Blended Tobacco, 18mg/ml nicotine e-liquid)"
+        exposure_concentration:
+          # Nicotine delivered to exposure chamber media: 5778.9 +/- 1940 ng/ml
+          value: "5778.9"
+          unit:
+            id: "UO:0000275"
+            name: "nanogram per milliliter"
+        exposure_duration:
+          value: "1"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+        timing_post_exposure:
+          value: "24"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    study_subject:
+      subject_type: CellularSystem
+      id: "owg:haswell2017-mucilair-md058501"
+      name: "MucilAir ALI culture - Donor MD058501"
+      cell_type:
+        id: "CL:0002368"
+        name: "respiratory tract epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      primary_cell:
+        id: "CL:0002368"
+        name: "respiratory tract epithelial cell"
+      anatomical_origin:
+        id: "UBERON:0001707"
+        name: "nasal cavity"
+      cell_culture_growth_mode: air_liquid_interface
+      donor_info: "Donor #MD058501, age 41, Caucasian female, non-smoker"
+      replicates_per_donor: 3
+      substrate_type: transwell_insert
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:haswell2017-ihc-muc5ac"
+        name: "MUC5AC quantitative immunohistochemistry"
+        staining_type: "Immunohistochemistry (HRP-conjugated ABC system)"
+        fixation_method: "3.6% formaldehyde/PBS followed by 70% ethanol dehydration and paraffin inclusion"
+        counterstain: "MUC5AC primary antibody (Abcam) + biotinylated secondary (Dako)"
+
+  # --- E-cigarette 1/3 dilution, 48hrs post-exposure ---
+  # Significant decrease vs air control at p<0.05
+  - id: "GCM:haswell2017-ecig13-48h"
+    name: "MUC5AC IHC - E-cigarette 1/3 at 48hrs post-exposure (Haswell 2017)"
+    has_specified_output:
+      id: "GCM:haswell2017-ecig13-48h-output"
+      name: "GCM:haswell2017-ecig13-48h measurement results"
+      goblet_cell_percentage:
+        value: "0.05"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+    assay_date: "2017-04-18"
+    informs_on_key_event:
+      id: "KE:mucin-hypersecretion"
+      name: "Mucin hypersecretion"
+      biological_action: decreased
+      level_of_biological_organization: cellular
+    has_exposure_condition:
+      - id: "EXPOSURE:haswell2017-ecig-1-3"
+        name: "Vype ePen e-cigarette aerosol 1/3 dilution for 1 hour"
+        exposure_agent:
+          id: "NEEDS_VERIFICATION:e_cigarette_aerosol"
+          name: "e-cigarette aerosol (Vype ePen, Blended Tobacco, 18mg/ml nicotine e-liquid)"
+        exposure_concentration:
+          # Nicotine delivered to exposure chamber media: 5778.9 +/- 1940 ng/ml
+          value: "5778.9"
+          unit:
+            id: "UO:0000275"
+            name: "nanogram per milliliter"
+        exposure_duration:
+          value: "1"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+        timing_post_exposure:
+          value: "48"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    study_subject:
+      subject_type: CellularSystem
+      id: "owg:haswell2017-mucilair-md058501"
+      name: "MucilAir ALI culture - Donor MD058501"
+      cell_type:
+        id: "CL:0002368"
+        name: "respiratory tract epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      primary_cell:
+        id: "CL:0002368"
+        name: "respiratory tract epithelial cell"
+      anatomical_origin:
+        id: "UBERON:0001707"
+        name: "nasal cavity"
+      cell_culture_growth_mode: air_liquid_interface
+      donor_info: "Donor #MD058501, age 41, Caucasian female, non-smoker"
+      replicates_per_donor: 3
+      substrate_type: transwell_insert
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:haswell2017-ihc-muc5ac"
+        name: "MUC5AC quantitative immunohistochemistry"
+        staining_type: "Immunohistochemistry (HRP-conjugated ABC system)"
+        fixation_method: "3.6% formaldehyde/PBS followed by 70% ethanol dehydration and paraffin inclusion"
+        counterstain: "MUC5AC primary antibody (Abcam) + biotinylated secondary (Dako)"
+
+# =============================================================================
+# FOXJ1 EXPRESSION ASSAYS - FOXJ1 Quantitative Immunohistochemistry
+# =============================================================================
+# FOXJ1 % quantitation from Fig. 3D. The paper states "No significant change
+# in FOXJ1 is observed at p<0.05" across all treatments. Exact numeric values
+# are only presented in Fig. 3D scatter plots and are not reported in the text.
+# Therefore no specific foxj1_positive_cell_percentage values are extracted.
+
+foxj_assays:
+
+  # --- Air control, FOXJ1 IHC (representative entry) ---
+  # No significant change observed across any treatment at p<0.05
+  - id: "FOXJ:haswell2017-air"
+    name: "FOXJ1 IHC - Air control (Haswell 2017)"
+    has_specified_output:
+      id: "FOXJ:haswell2017-air-output"
+      name: "FOXJ:haswell2017-air measurement results"
+      # Exact FOXJ1 % values not reported in text; available in Fig. 3D only.
+      # No significant change observed across treatments (air, 3R4F 1/30,
+      # e-cig 1/7, e-cig 1/3) at either 24hrs or 48hrs post-exposure (p>0.05).
+    assay_date: "2017-04-18"
+    informs_on_key_event:
+      id: "KE:altered-ciliogenesis"
+      name: "Altered ciliogenesis"
+      biological_action: altered
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: CellularSystem
+      id: "owg:haswell2017-mucilair-md058501"
+      name: "MucilAir ALI culture - Donor MD058501"
+      cell_type:
+        id: "CL:0002368"
+        name: "respiratory tract epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      primary_cell:
+        id: "CL:0002368"
+        name: "respiratory tract epithelial cell"
+      anatomical_origin:
+        id: "UBERON:0001707"
+        name: "nasal cavity"
+      cell_culture_growth_mode: air_liquid_interface
+      donor_info: "Donor #MD058501, age 41, Caucasian female, non-smoker"
+      replicates_per_donor: 3
+      substrate_type: transwell_insert
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:haswell2017-ihc-foxj1"
+        name: "FOXJ1 quantitative immunohistochemistry"
+        staining_type: "Immunohistochemistry (HRP-conjugated ABC system)"
+        fixation_method: "3.6% formaldehyde/PBS followed by 70% ethanol dehydration and paraffin inclusion"
+        counterstain: "FOXJ1 primary antibody (Abcam) + biotinylated secondary (Dako)"
+
+# =============================================================================
+# PROTOCOLS
+# =============================================================================
+
+protocols:
+  - id: "PROTOCOL:haswell2017-cbf"
+    name: "High-speed video microscopy for CBF (Haswell 2017)"
+    description: >-
+      CBF measured using inverted AX10 Zeiss microscope (100x magnification,
+      10x ocular, 10x objective) fitted with heated chamber (Pecon) at 37C
+      and high speed digital camera (Ammons engineering). MucilAir cultures
+      equilibrated for 5 min prior to measurement. Video recorded at 120
+      frames/s capturing at least 512 frames. CBF measured immediately after
+      exposure. Result: No reduction in CBF between air controls and aerosol
+      treated cells (Supplementary Fig. S1).
+    protocol_version: "1.0"
+    quality_control_criteria: "Equilibration for 5 min prior to measurement"
+    replicate_requirements: 3
