@@ -3,7 +3,7 @@
 # and OntologyReference pattern with id + name for readability
 
 exposure_measurements:
-  - id: owg:exposure-003
+  - id: soma:exposure-003
     name: PM2.5 personal exposure - Participant P002
     description: 24-hour integrated personal PM2.5 exposure from wearable monitor
     observation_type: pm2_5_exposure
@@ -16,13 +16,13 @@ exposure_measurements:
       id: ENVO:01000415
       name: Particulate matter with aerodynamic diameter less than or equal to 2.5 micrometers
     participant:
-      id: owg:participant-002
+      id: soma:participant-002
       name: Participant 002
     measurement_method: Personal exposure monitor (RTI MicroPEM)
     measurement_date: "2024-03-16"
     sample_type: air
 
-  - id: owg:exposure-004
+  - id: soma:exposure-004
     name: Urinary cotinine - Participant P003
     description: Urinary cotinine as biomarker of tobacco smoke exposure
     observation_type: urinary_cotinine_level
@@ -45,13 +45,13 @@ exposure_measurements:
       id: CHEBI:68641
       name: Cotinine
     participant:
-      id: owg:participant-003
+      id: soma:participant-003
       name: Participant 003
     measurement_method: LC-MS/MS
     measurement_date: "2024-03-17"
     sample_type: urine
 
-  - id: owg:exposure-005
+  - id: soma:exposure-005
     name: Ozone exposure - Participant P004
     description: Ambient ozone concentration at participant residence
     observation_type: ozone_exposure
@@ -64,7 +64,7 @@ exposure_measurements:
       id: CHEBI:25812
       name: Ozone
     participant:
-      id: owg:participant-004
+      id: soma:participant-004
       name: Participant 004
     measurement_method: UV photometric analyzer
     measurement_date: "2024-03-18"

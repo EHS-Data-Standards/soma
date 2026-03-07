@@ -115,7 +115,7 @@ ciliary_function_assays:
             name: "hour"
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-001"
+      id: "soma:culture-001"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"
@@ -141,19 +141,19 @@ ciliary_function_assays:
           id: "UO:0000210"
           name: "cells per square centimeter"
       culture_conditions:
-        id: "owg:conditions-001"
+        id: "soma:conditions-001"
         name: "Standard ALI culture conditions"
         days_at_air_liquid_interface: 21
         substrate_type: transwell_insert
         cell_culture_growth_mode: air_liquid_interface
         replicates_per_donor: 3
       culture_media:
-        id: "owg:media-001"
+        id: "soma:media-001"
         name: "PneumaCult-ALI medium"
         base_medium: "PneumaCult-ALI"
         manufacturer: "STEMCELL Technologies"
         supplements:
-          - id: "owg:supp-001"
+          - id: "soma:supp-001"
             name: "Hydrocortisone"
             supplement_type: hormone
             concentration:
@@ -161,7 +161,7 @@ ciliary_function_assays:
               unit:
                 id: "UO:0000064"
                 name: "micrograms per milliliter"
-          - id: "owg:supp-002"
+          - id: "soma:supp-002"
             name: "Heparin"
             supplement_type: growth_factor
             concentration:
@@ -307,7 +307,7 @@ asl_assays:
       level_of_biological_organization: cellular
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-002"
+      id: "soma:culture-002"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"
@@ -376,7 +376,7 @@ mcc_assays:
       level_of_biological_organization: tissue
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-007"
+      id: "soma:culture-007"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"
@@ -496,7 +496,7 @@ oxidative_stress_assays:
             name: "hour"
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-003"
+      id: "soma:culture-003"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"
@@ -573,7 +573,7 @@ cftr_assays:
       level_of_biological_organization: molecular
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-006"
+      id: "soma:culture-006"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"
@@ -670,7 +670,7 @@ egfr_signaling_assays:
             name: "hour"
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-005"
+      id: "soma:culture-005"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"
@@ -762,7 +762,7 @@ goblet_cell_assays:
       level_of_biological_organization: cellular
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-004"
+      id: "soma:culture-004"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"
@@ -823,7 +823,7 @@ foxj_assays:
       level_of_biological_organization: cellular
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-008"
+      id: "soma:culture-008"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"
@@ -907,7 +907,7 @@ gene_expression_assays:
             name: "hour"
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-009"
+      id: "soma:culture-009"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"
@@ -1224,7 +1224,7 @@ ciliary_function_assays:
     assay_date: "2024-01-15"
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-001"
+      id: "soma:culture-001"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"

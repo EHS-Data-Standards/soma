@@ -4,7 +4,7 @@
 
 biomarker_measurements:
   # Oxidative Stress Markers
-  - id: owg:biomarker-001
+  - id: soma:biomarker-001
     name: Exhaled breath condensate 8-isoprostane - Participant P001
     description: Lipid peroxidation marker in exhaled breath condensate
     observation_type: lipid_peroxidation
@@ -28,12 +28,12 @@ biomarker_measurements:
       id: CHEBI:27894
       name: 8-isoprostane
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     measurement_method: ELISA
     measurement_date: "2024-03-15"
 
-  - id: owg:biomarker-002
+  - id: soma:biomarker-002
     name: BALF glutathione ratio - Participant P001
     description: GSH/GSSG ratio in bronchoalveolar lavage fluid
     observation_type: glutathione_ratio
@@ -57,13 +57,13 @@ biomarker_measurements:
       id: CHEBI:16856
       name: Glutathione
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     measurement_method: HPLC with fluorescence detection
     measurement_date: "2024-03-15"
 
   # Inflammatory Cytokines
-  - id: owg:biomarker-003
+  - id: soma:biomarker-003
     name: Sputum IL-8 level - Participant P002
     description: Interleukin-8 concentration in induced sputum
     observation_type: IL8_level
@@ -87,12 +87,12 @@ biomarker_measurements:
       id: PR:000001562
       name: Interleukin-8
     participant:
-      id: owg:participant-002
+      id: soma:participant-002
       name: Participant 002
     measurement_method: Multiplex cytokine assay (Luminex)
     measurement_date: "2024-03-16"
 
-  - id: owg:biomarker-004
+  - id: soma:biomarker-004
     name: Serum IL-6 level - Participant P002
     description: Systemic interleukin-6 concentration
     observation_type: IL6_level
@@ -116,13 +116,13 @@ biomarker_measurements:
       id: PR:000001461
       name: Interleukin-6
     participant:
-      id: owg:participant-002
+      id: soma:participant-002
       name: Participant 002
     measurement_method: High-sensitivity ELISA
     measurement_date: "2024-03-16"
 
   # Inflammatory Cell Differentials
-  - id: owg:biomarker-005
+  - id: soma:biomarker-005
     name: Sputum eosinophil percentage - Participant P003
     description: Percentage of eosinophils in induced sputum differential
     observation_type: eosinophil_percentage
@@ -146,12 +146,12 @@ biomarker_measurements:
       id: CL:0000771
       name: Eosinophil
     participant:
-      id: owg:participant-003
+      id: soma:participant-003
       name: Participant 003
     measurement_method: Cytospin with Diff-Quik staining
     measurement_date: "2024-03-17"
 
-  - id: owg:biomarker-006
+  - id: soma:biomarker-006
     name: Sputum neutrophil percentage - Participant P003
     description: Percentage of neutrophils in induced sputum differential
     observation_type: neutrophil_percentage
@@ -175,13 +175,13 @@ biomarker_measurements:
       id: CL:0000775
       name: Neutrophil
     participant:
-      id: owg:participant-003
+      id: soma:participant-003
       name: Participant 003
     measurement_method: Cytospin with Diff-Quik staining
     measurement_date: "2024-03-17"
 
   # Barrier Integrity
-  - id: owg:biomarker-008
+  - id: soma:biomarker-008
     name: ALI culture TEER - In vitro sample
     description: Transepithelial electrical resistance of primary bronchial epithelial cells at ALI
     observation_type: TEER
@@ -205,7 +205,7 @@ biomarker_measurements:
       id: CL:0002328
       name: Bronchial epithelial cell
     participant:
-      id: owg:participant-004
+      id: soma:participant-004
       name: Participant 004
     measurement_method: EVOM2 Epithelial Voltohmmeter
     measurement_date: "2024-03-18"

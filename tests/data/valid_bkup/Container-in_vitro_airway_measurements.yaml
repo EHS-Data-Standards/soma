@@ -6,7 +6,7 @@
 # ============ Phenotype Measurements (Ciliary, ASL, MCC, Goblet Cell) ============
 phenotype_measurements:
   # Ciliary Function
-  - id: owg:cilia-001-control
+  - id: soma:cilia-001-control
     name: CBF - Control ALI culture Day 21
     description: Ciliary beat frequency in untreated control ALI culture
     observation_type: ciliary_beat_frequency
@@ -31,7 +31,7 @@ phenotype_measurements:
     measurement_method: High-speed video microscopy (200 fps)
     measurement_date: "2024-03-15"
 
-  - id: owg:cilia-001-pm25-exposed
+  - id: soma:cilia-001-pm25-exposed
     name: CBF - PM2.5 exposed ALI culture Day 21
     description: Ciliary beat frequency after 24h PM2.5 exposure (50 ug/mL)
     observation_type: ciliary_beat_frequency
@@ -56,7 +56,7 @@ phenotype_measurements:
     measurement_method: High-speed video microscopy (200 fps)
     measurement_date: "2024-03-15"
 
-  - id: owg:cilia-002-active-area
+  - id: soma:cilia-002-active-area
     name: Ciliary active area - Control
     description: Percentage of epithelial surface with actively beating cilia
     observation_type: ciliary_active_area_percentage
@@ -81,7 +81,7 @@ phenotype_measurements:
     measurement_method: ImageJ analysis of video frames
     measurement_date: "2024-03-15"
 
-  - id: owg:cilia-003-length
+  - id: soma:cilia-003-length
     name: Cilia length - Control
     description: Mean cilia length measured by immunofluorescence microscopy
     observation_type: cilia_length
@@ -107,7 +107,7 @@ phenotype_measurements:
     measurement_date: "2024-03-15"
 
   # ASL Measurements
-  - id: owg:asl-001-control
+  - id: soma:asl-001-control
     name: ASL height - Control ALI culture
     description: Airway surface liquid depth in untreated healthy donor cells
     observation_type: asl_height
@@ -132,7 +132,7 @@ phenotype_measurements:
     measurement_method: Confocal z-stack with Texas Red-dextran
     measurement_date: "2024-03-16"
 
-  - id: owg:asl-002-cf-donor
+  - id: soma:asl-002-cf-donor
     name: ASL height - CF donor ALI culture
     description: Reduced ASL height in cystic fibrosis donor epithelium
     observation_type: asl_height
@@ -157,7 +157,7 @@ phenotype_measurements:
     measurement_method: Confocal z-stack with Texas Red-dextran
     measurement_date: "2024-03-16"
 
-  - id: owg:asl-003-pcl-depth
+  - id: soma:asl-003-pcl-depth
     name: PCL depth - Control ALI culture
     description: Periciliary liquid layer depth surrounding cilia
     observation_type: periciliary_layer_depth
@@ -183,7 +183,7 @@ phenotype_measurements:
     measurement_date: "2024-03-16"
 
   # MCC Measurements
-  - id: owg:mcc-001-control
+  - id: soma:mcc-001-control
     name: MCT rate - Control ALI culture
     description: Mucociliary transport rate measured with fluorescent beads
     observation_type: mucociliary_transport_rate
@@ -208,7 +208,7 @@ phenotype_measurements:
     measurement_method: 1um fluorescent microsphere tracking
     measurement_date: "2024-03-17"
 
-  - id: owg:mcc-002-exposed
+  - id: soma:mcc-002-exposed
     name: MCT rate - Diesel exhaust particle exposed
     description: MCT rate after 24h DEP exposure (10 ug/cm2)
     observation_type: mucociliary_transport_rate
@@ -234,7 +234,7 @@ phenotype_measurements:
     measurement_date: "2024-03-17"
 
   # Goblet Cell Measurements
-  - id: owg:goblet-001-control
+  - id: soma:goblet-001-control
     name: Goblet cell percentage - Control
     description: Percentage of goblet cells in differentiated ALI culture
     observation_type: goblet_cell_count
@@ -259,7 +259,7 @@ phenotype_measurements:
     measurement_method: AB-PAS staining with cell counting
     measurement_date: "2024-03-18"
 
-  - id: owg:goblet-002-il13-stimulated
+  - id: soma:goblet-002-il13-stimulated
     name: Goblet cell percentage - IL-13 stimulated
     description: Goblet cell hyperplasia after IL-13 stimulation (10 ng/mL, 14 days)
     observation_type: goblet_cell_count
@@ -284,7 +284,7 @@ phenotype_measurements:
     measurement_method: AB-PAS staining with cell counting
     measurement_date: "2024-03-18"
 
-  - id: owg:goblet-003-ratio
+  - id: soma:goblet-003-ratio
     name: Goblet to ciliated cell ratio - Control
     description: Ratio of goblet cells to ciliated cells in healthy epithelium
     observation_type: goblet_to_ciliated_ratio
@@ -309,7 +309,7 @@ phenotype_measurements:
     measurement_method: Cell counting on H&E sections
     measurement_date: "2024-03-18"
 
-  - id: owg:mucin-conc-001
+  - id: soma:mucin-conc-001
     name: Secreted mucin concentration - Control
     description: Total mucin protein in apical wash
     observation_type: mucin_protein_concentration
@@ -327,7 +327,7 @@ phenotype_measurements:
 # ============ Biomarker Measurements (Oxidative Stress, Barrier, Cytotoxicity) ============
 biomarker_measurements:
   # Oxidative Stress
-  - id: owg:ros-001-control
+  - id: soma:ros-001-control
     name: ROS level - Control ALI culture
     description: Reactive oxygen species measured by CM-H2DCFDA fluorescence
     observation_type: reactive_oxygen_species
@@ -342,7 +342,7 @@ biomarker_measurements:
     measurement_method: CM-H2DCFDA fluorescence plate reader
     measurement_date: "2024-03-19"
 
-  - id: owg:ros-002-pm25
+  - id: soma:ros-002-pm25
     name: ROS level - PM2.5 exposed
     description: ROS induction after PM2.5 exposure (50 ug/mL, 4h)
     observation_type: reactive_oxygen_species
@@ -357,7 +357,7 @@ biomarker_measurements:
     measurement_method: CM-H2DCFDA fluorescence plate reader
     measurement_date: "2024-03-19"
 
-  - id: owg:gsh-001-control
+  - id: soma:gsh-001-control
     name: GSH/GSSG ratio - Control
     description: Glutathione redox ratio in control cells
     observation_type: glutathione_ratio
@@ -382,7 +382,7 @@ biomarker_measurements:
     measurement_method: GSH/GSSG-Glo Assay (Promega)
     measurement_date: "2024-03-19"
 
-  - id: owg:gsh-002-oxidant-stress
+  - id: soma:gsh-002-oxidant-stress
     name: GSH/GSSG ratio - Oxidant stress
     description: Depleted glutathione after H2O2 exposure (200 uM, 2h)
     observation_type: glutathione_ratio
@@ -408,7 +408,7 @@ biomarker_measurements:
     measurement_date: "2024-03-19"
 
   # Barrier Integrity
-  - id: owg:teer-001-day21
+  - id: soma:teer-001-day21
     name: TEER - Mature ALI culture Day 21
     description: Transepithelial electrical resistance indicating barrier maturity
     observation_type: TEER
@@ -433,7 +433,7 @@ biomarker_measurements:
     measurement_method: EVOM2 Epithelial Voltohmmeter
     measurement_date: "2024-03-20"
 
-  - id: owg:teer-002-injured
+  - id: soma:teer-002-injured
     name: TEER - After mechanical scratch wound
     description: Reduced TEER immediately after scratch wound injury
     observation_type: TEER
@@ -459,7 +459,7 @@ biomarker_measurements:
     measurement_date: "2024-03-20"
 
   # Cytotoxicity
-  - id: owg:viability-001-control
+  - id: soma:viability-001-control
     name: Cell viability - Control
     description: Cell viability in untreated ALI cultures
     observation_type: cell_viability
@@ -484,7 +484,7 @@ biomarker_measurements:
     measurement_method: Calcein-AM/EthD-1 live-dead assay
     measurement_date: "2024-03-20"
 
-  - id: owg:ldh-001-control
+  - id: soma:ldh-001-control
     name: LDH release - Control
     description: Baseline LDH release in control cultures
     observation_type: LDH_release
@@ -509,7 +509,7 @@ biomarker_measurements:
     measurement_method: CytoTox 96 Non-Radioactive Cytotoxicity Assay
     measurement_date: "2024-03-20"
 
-  - id: owg:ldh-002-cytotoxic
+  - id: soma:ldh-002-cytotoxic
     name: LDH release - High-dose toxicant
     description: LDH release after cytotoxic exposure
     observation_type: LDH_release

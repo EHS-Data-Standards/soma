@@ -4,7 +4,7 @@
 
 # ============ Study Definition ============
 studies:
-  - id: owg:study-APEX-2024
+  - id: soma:study-APEX-2024
     name: Air Pollution and Exacerbation Study (APEX)
     description: >-
       A prospective cohort study examining the relationship between ambient
@@ -18,11 +18,11 @@ studies:
 
 # ============ Cohort Definition ============
 cohorts:
-  - id: owg:cohort-APEX-main
+  - id: soma:cohort-APEX-main
     name: APEX Main Cohort
     description: Primary study cohort of adult asthma patients
     part_of_study:
-      id: owg:study-APEX-2024
+      id: soma:study-APEX-2024
       name: Air Pollution and Exacerbation Study (APEX)
     cohort_size: 150
     inclusion_criteria: >-
@@ -34,11 +34,11 @@ cohorts:
 # Participants link Person entities to study cohorts with study-specific attributes.
 # Age and sex are recorded at enrollment and may differ across study registrations.
 participants:
-  - id: owg:participant-APEX-001
+  - id: soma:participant-APEX-001
     name: APEX-001
     description: Study participant with moderate persistent asthma
     part_of_cohort:
-      id: owg:cohort-APEX-main
+      id: soma:cohort-APEX-main
       name: APEX Main Cohort
     participant_id: APEX-001
     age: 34
@@ -46,11 +46,11 @@ participants:
     enrollment_date: "2024-03-01"
     study_arm: Treatment
 
-  - id: owg:participant-APEX-002
+  - id: soma:participant-APEX-002
     name: APEX-002
     description: Study participant with mild intermittent asthma
     part_of_cohort:
-      id: owg:cohort-APEX-main
+      id: soma:cohort-APEX-main
       name: APEX Main Cohort
     participant_id: APEX-002
     age: 28
@@ -58,11 +58,11 @@ participants:
     enrollment_date: "2024-03-01"
     study_arm: Control
 
-  - id: owg:participant-APEX-003
+  - id: soma:participant-APEX-003
     name: APEX-003
     description: Study participant with severe persistent asthma
     part_of_cohort:
-      id: owg:cohort-APEX-main
+      id: soma:cohort-APEX-main
       name: APEX Main Cohort
     participant_id: APEX-003
     age: 52
@@ -73,7 +73,7 @@ participants:
 # ============ Exposure Measurements ============
 exposure_measurements:
   # Participant APEX-001
-  - id: owg:exp-APEX-001-pm25-baseline
+  - id: soma:exp-APEX-001-pm25-baseline
     name: PM2.5 exposure - APEX-001 Baseline
     description: 7-day average PM2.5 personal exposure at baseline
     observation_type: pm2_5_exposure
@@ -86,13 +86,13 @@ exposure_measurements:
       id: ENVO:01000415
       name: PM2.5
     participant:
-      id: owg:participant-APEX-001
+      id: soma:participant-APEX-001
       name: APEX-001
     measurement_method: Personal exposure monitor (RTI MicroPEM)
     measurement_date: "2024-03-01"
     sample_type: air
 
-  - id: owg:exp-APEX-001-ozone-baseline
+  - id: soma:exp-APEX-001-ozone-baseline
     name: Ozone exposure - APEX-001 Baseline
     description: 8-hour max ozone at residential address
     observation_type: ozone_exposure
@@ -105,14 +105,14 @@ exposure_measurements:
       id: CHEBI:25812
       name: Ozone
     participant:
-      id: owg:participant-APEX-001
+      id: soma:participant-APEX-001
       name: APEX-001
     measurement_method: EPA AQS monitor data (nearest monitor)
     measurement_date: "2024-03-01"
     sample_type: air
 
   # Participant APEX-002
-  - id: owg:exp-APEX-002-pm25-baseline
+  - id: soma:exp-APEX-002-pm25-baseline
     name: PM2.5 exposure - APEX-002 Baseline
     description: 7-day average PM2.5 personal exposure at baseline
     observation_type: pm2_5_exposure
@@ -125,14 +125,14 @@ exposure_measurements:
       id: ENVO:01000415
       name: PM2.5
     participant:
-      id: owg:participant-APEX-002
+      id: soma:participant-APEX-002
       name: APEX-002
     measurement_method: Personal exposure monitor (RTI MicroPEM)
     measurement_date: "2024-03-01"
     sample_type: air
 
   # Participant APEX-003 (high exposure)
-  - id: owg:exp-APEX-003-pm25-baseline
+  - id: soma:exp-APEX-003-pm25-baseline
     name: PM2.5 exposure - APEX-003 Baseline
     description: 7-day average PM2.5 personal exposure at baseline
     observation_type: pm2_5_exposure
@@ -145,7 +145,7 @@ exposure_measurements:
       id: ENVO:01000415
       name: PM2.5
     participant:
-      id: owg:participant-APEX-003
+      id: soma:participant-APEX-003
       name: APEX-003
     measurement_method: Personal exposure monitor (RTI MicroPEM)
     measurement_date: "2024-03-01"
@@ -154,7 +154,7 @@ exposure_measurements:
 # ============ Biomarker Measurements ============
 biomarker_measurements:
   # Oxidative stress - APEX-001
-  - id: owg:bio-APEX-001-8iso-baseline
+  - id: soma:bio-APEX-001-8iso-baseline
     name: 8-isoprostane - APEX-001 Baseline
     description: Urinary 8-isoprostane as systemic oxidative stress marker
     observation_type: lipid_peroxidation
@@ -178,13 +178,13 @@ biomarker_measurements:
       id: CHEBI:27894
       name: 8-isoprostane
     participant:
-      id: owg:participant-APEX-001
+      id: soma:participant-APEX-001
       name: APEX-001
     measurement_method: LC-MS/MS
     measurement_date: "2024-03-01"
 
   # Inflammatory markers - APEX-001
-  - id: owg:bio-APEX-001-sputum-eos-baseline
+  - id: soma:bio-APEX-001-sputum-eos-baseline
     name: Sputum eosinophils - APEX-001 Baseline
     description: Induced sputum eosinophil percentage
     observation_type: eosinophil_percentage
@@ -208,12 +208,12 @@ biomarker_measurements:
       id: CL:0000771
       name: Eosinophil
     participant:
-      id: owg:participant-APEX-001
+      id: soma:participant-APEX-001
       name: APEX-001
     measurement_method: Cytospin with modified Wright stain
     measurement_date: "2024-03-01"
 
-  - id: owg:bio-APEX-001-IL8-baseline
+  - id: soma:bio-APEX-001-IL8-baseline
     name: Sputum IL-8 - APEX-001 Baseline
     description: Induced sputum interleukin-8 concentration
     observation_type: IL8_level
@@ -237,13 +237,13 @@ biomarker_measurements:
       id: PR:000001562
       name: Interleukin-8
     participant:
-      id: owg:participant-APEX-001
+      id: soma:participant-APEX-001
       name: APEX-001
     measurement_method: Multiplex cytokine panel (MSD)
     measurement_date: "2024-03-01"
 
   # APEX-003 (severe asthma, high exposure)
-  - id: owg:bio-APEX-003-8iso-baseline
+  - id: soma:bio-APEX-003-8iso-baseline
     name: 8-isoprostane - APEX-003 Baseline
     description: Urinary 8-isoprostane in severe asthma patient with high PM2.5 exposure
     observation_type: lipid_peroxidation
@@ -267,12 +267,12 @@ biomarker_measurements:
       id: CHEBI:27894
       name: 8-isoprostane
     participant:
-      id: owg:participant-APEX-003
+      id: soma:participant-APEX-003
       name: APEX-003
     measurement_method: LC-MS/MS
     measurement_date: "2024-03-01"
 
-  - id: owg:bio-APEX-003-sputum-neut-baseline
+  - id: soma:bio-APEX-003-sputum-neut-baseline
     name: Sputum neutrophils - APEX-003 Baseline
     description: Induced sputum neutrophil percentage in severe asthma
     observation_type: neutrophil_percentage
@@ -296,7 +296,7 @@ biomarker_measurements:
       id: CL:0000775
       name: Neutrophil
     participant:
-      id: owg:participant-APEX-003
+      id: soma:participant-APEX-003
       name: APEX-003
     measurement_method: Cytospin with modified Wright stain
     measurement_date: "2024-03-01"
@@ -304,7 +304,7 @@ biomarker_measurements:
 # ============ Phenotype Measurements ============
 phenotype_measurements:
   # Lung function - APEX-001
-  - id: owg:phen-APEX-001-fev1-baseline
+  - id: soma:phen-APEX-001-fev1-baseline
     name: FEV1 - APEX-001 Baseline
     description: Pre-bronchodilator FEV1 at baseline visit
     observation_type: FEV1
@@ -327,11 +327,11 @@ phenotype_measurements:
       id: HP:0002099
       name: Asthma
     participant:
-      id: owg:participant-APEX-001
+      id: soma:participant-APEX-001
       name: APEX-001
     measurement_date: "2024-03-01"
 
-  - id: owg:phen-APEX-001-fvc-baseline
+  - id: soma:phen-APEX-001-fvc-baseline
     name: FVC - APEX-001 Baseline
     description: Pre-bronchodilator FVC at baseline visit
     observation_type: FVC
@@ -354,11 +354,11 @@ phenotype_measurements:
       id: HP:0002099
       name: Asthma
     participant:
-      id: owg:participant-APEX-001
+      id: soma:participant-APEX-001
       name: APEX-001
     measurement_date: "2024-03-01"
 
-  - id: owg:phen-APEX-001-ratio-baseline
+  - id: soma:phen-APEX-001-ratio-baseline
     name: FEV1/FVC - APEX-001 Baseline
     description: FEV1/FVC ratio at baseline visit
     observation_type: FEV1_FEC_ratio
@@ -381,11 +381,11 @@ phenotype_measurements:
       id: HP:0002099
       name: Asthma
     participant:
-      id: owg:participant-APEX-001
+      id: soma:participant-APEX-001
       name: APEX-001
     measurement_date: "2024-03-01"
 
-  - id: owg:phen-APEX-001-feno-baseline
+  - id: soma:phen-APEX-001-feno-baseline
     name: FeNO - APEX-001 Baseline
     description: Fractional exhaled nitric oxide at baseline
     observation_type: FeNO
@@ -408,12 +408,12 @@ phenotype_measurements:
       id: HP:0002099
       name: Asthma
     participant:
-      id: owg:participant-APEX-001
+      id: soma:participant-APEX-001
       name: APEX-001
     measurement_date: "2024-03-01"
 
   # Lung function - APEX-002 (mild asthma)
-  - id: owg:phen-APEX-002-fev1-baseline
+  - id: soma:phen-APEX-002-fev1-baseline
     name: FEV1 - APEX-002 Baseline
     description: Pre-bronchodilator FEV1 at baseline visit
     observation_type: FEV1
@@ -436,11 +436,11 @@ phenotype_measurements:
       id: HP:0002099
       name: Asthma
     participant:
-      id: owg:participant-APEX-002
+      id: soma:participant-APEX-002
       name: APEX-002
     measurement_date: "2024-03-01"
 
-  - id: owg:phen-APEX-002-feno-baseline
+  - id: soma:phen-APEX-002-feno-baseline
     name: FeNO - APEX-002 Baseline
     description: Fractional exhaled nitric oxide at baseline
     observation_type: FeNO
@@ -463,12 +463,12 @@ phenotype_measurements:
       id: HP:0002099
       name: Asthma
     participant:
-      id: owg:participant-APEX-002
+      id: soma:participant-APEX-002
       name: APEX-002
     measurement_date: "2024-03-01"
 
   # Lung function - APEX-003 (severe asthma)
-  - id: owg:phen-APEX-003-fev1-baseline
+  - id: soma:phen-APEX-003-fev1-baseline
     name: FEV1 - APEX-003 Baseline
     description: Pre-bronchodilator FEV1 showing severe obstruction
     observation_type: FEV1
@@ -491,11 +491,11 @@ phenotype_measurements:
       id: HP:0002099
       name: Asthma
     participant:
-      id: owg:participant-APEX-003
+      id: soma:participant-APEX-003
       name: APEX-003
     measurement_date: "2024-03-01"
 
-  - id: owg:phen-APEX-003-ratio-baseline
+  - id: soma:phen-APEX-003-ratio-baseline
     name: FEV1/FVC - APEX-003 Baseline
     description: FEV1/FVC ratio showing severe obstruction
     observation_type: FEV1_FEC_ratio
@@ -518,11 +518,11 @@ phenotype_measurements:
       id: HP:0006536
       name: Airway obstruction
     participant:
-      id: owg:participant-APEX-003
+      id: soma:participant-APEX-003
       name: APEX-003
     measurement_date: "2024-03-01"
 
-  - id: owg:phen-APEX-003-feno-baseline
+  - id: soma:phen-APEX-003-feno-baseline
     name: FeNO - APEX-003 Baseline
     description: Fractional exhaled nitric oxide in severe asthma
     observation_type: FeNO
@@ -545,13 +545,13 @@ phenotype_measurements:
       id: HP:0002099
       name: Asthma
     participant:
-      id: owg:participant-APEX-003
+      id: soma:participant-APEX-003
       name: APEX-003
     measurement_date: "2024-03-01"
 
 # ============ Aggregated Measurements ============
 aggregated_measurements:
-  - id: owg:agg-APEX-pm25-cohort-mean
+  - id: soma:agg-APEX-pm25-cohort-mean
     name: Cohort mean PM2.5 exposure
     description: Mean 7-day PM2.5 exposure across APEX cohort at baseline
     observation_type: pm2_5_exposure
@@ -564,12 +564,12 @@ aggregated_measurements:
       id: ENVO:01000415
       name: PM2.5
     cohort:
-      id: owg:cohort-APEX-main
+      id: soma:cohort-APEX-main
       name: APEX Main Cohort
     summary_statistic: mean
     sample_size: 150
 
-  - id: owg:agg-APEX-fev1-cohort-mean
+  - id: soma:agg-APEX-fev1-cohort-mean
     name: Cohort mean FEV1 percent predicted
     description: Mean FEV1 percent predicted across APEX cohort at baseline
     observation_type: FEV1
@@ -582,7 +582,7 @@ aggregated_measurements:
       id: NCIT:C38083
       name: FEV1
     cohort:
-      id: owg:cohort-APEX-main
+      id: soma:cohort-APEX-main
       name: APEX Main Cohort
     summary_statistic: mean
     sample_size: 150

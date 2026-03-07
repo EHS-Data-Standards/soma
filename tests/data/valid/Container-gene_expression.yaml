@@ -44,7 +44,7 @@ gene_expression_assays:
             name: "hour"
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-009"
+      id: "soma:culture-009"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"

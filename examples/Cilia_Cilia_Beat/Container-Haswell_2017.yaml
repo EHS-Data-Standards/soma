@@ -70,7 +70,7 @@ goblet_cell_assays:
       level_of_biological_organization: cellular
     study_subject:
       subject_type: CellularSystem
-      id: "owg:haswell2017-mucilair-md058501"
+      id: "soma:haswell2017-mucilair-md058501"
       name: "MucilAir ALI culture - Donor MD058501"
       cell_type:
         id: "CL:0002368"
@@ -115,7 +115,7 @@ goblet_cell_assays:
       level_of_biological_organization: cellular
     study_subject:
       subject_type: CellularSystem
-      id: "owg:haswell2017-mucilair-md058501"
+      id: "soma:haswell2017-mucilair-md058501"
       name: "MucilAir ALI culture - Donor MD058501"
       cell_type:
         id: "CL:0002368"
@@ -183,7 +183,7 @@ goblet_cell_assays:
             name: "hour"
     study_subject:
       subject_type: CellularSystem
-      id: "owg:haswell2017-mucilair-md058501"
+      id: "soma:haswell2017-mucilair-md058501"
       name: "MucilAir ALI culture - Donor MD058501"
       cell_type:
         id: "CL:0002368"
@@ -251,7 +251,7 @@ goblet_cell_assays:
             name: "hour"
     study_subject:
       subject_type: CellularSystem
-      id: "owg:haswell2017-mucilair-md058501"
+      id: "soma:haswell2017-mucilair-md058501"
       name: "MucilAir ALI culture - Donor MD058501"
       cell_type:
         id: "CL:0002368"
@@ -305,7 +305,7 @@ foxj_assays:
       level_of_biological_organization: cellular
     study_subject:
       subject_type: CellularSystem
-      id: "owg:haswell2017-mucilair-md058501"
+      id: "soma:haswell2017-mucilair-md058501"
       name: "MucilAir ALI culture - Donor MD058501"
       cell_type:
         id: "CL:0002368"

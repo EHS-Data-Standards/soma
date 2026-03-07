@@ -66,7 +66,7 @@ egfr_signaling_assays:
             name: "hour"
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-005"
+      id: "soma:culture-005"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"

@@ -28,7 +28,7 @@ cell_lines:
     authentication_method: STR profiling
     mycoplasma_status: negative
 
-  - id: owg:cell-line-hbec
+  - id: soma:cell-line-hbec
     name: Primary Human Bronchial Epithelial Cells
     description: Primary HBECs isolated from healthy donor bronchial tissue
     cell_culture_type:
@@ -47,7 +47,7 @@ cell_lines:
 
 # ============ 2D Cell Culture Models ============
 two_d_cell_cultures:
-  - id: owg:2d-a549-control
+  - id: soma:2d-a549-control
     name: A549 Monolayer - Control
     description: A549 cells grown in standard monolayer for baseline measurements
     cell_line:
@@ -67,21 +67,21 @@ two_d_cell_cultures:
         id: UO:0000189
         name: cells per square centimeter
     environmental_measurements:
-      - id: owg:env-2d-temp
+      - id: soma:env-2d-temp
         observation_type: temperature
         quantity_measured:
           value: "37"
           unit:
             id: UO:0000027
             name: degree Celsius
-      - id: owg:env-2d-co2
+      - id: soma:env-2d-co2
         observation_type: co2_percentage
         quantity_measured:
           value: "5"
           unit:
             id: UO:0000187
             name: percent
-      - id: owg:env-2d-humidity
+      - id: soma:env-2d-humidity
         observation_type: humidity
         quantity_measured:
           value: "95"
@@ -89,7 +89,7 @@ two_d_cell_cultures:
             id: UO:0000187
             name: percent
     culture_media:
-      id: owg:media-dmem
+      id: soma:media-dmem
       name: DMEM Complete
       base_medium: DMEM high glucose
       serum_type: Fetal Bovine Serum
@@ -99,7 +99,7 @@ two_d_cell_cultures:
           id: UO:0000187
           name: percent
       supplements:
-        - id: owg:supp-penstrep
+        - id: soma:supp-penstrep
           name: Penicillin-Streptomycin
           supplement_type: antibiotic
           concentration:
@@ -107,7 +107,7 @@ two_d_cell_cultures:
             unit:
               id: UO:0000187
               name: percent
-        - id: owg:supp-glutamine
+        - id: soma:supp-glutamine
           name: L-Glutamine
           supplement_type: amino_acid
           concentration:
@@ -116,7 +116,7 @@ two_d_cell_cultures:
               id: UO:0000063
               name: millimolar
 
-  - id: owg:2d-a549-bap-exposed
+  - id: soma:2d-a549-bap-exposed
     name: A549 Monolayer - BaP Exposed
     description: A549 cells exposed to benzo[a]pyrene for 24 hours
     cell_line:
@@ -136,14 +136,14 @@ two_d_cell_cultures:
         id: UO:0000189
         name: cells per square centimeter
     environmental_measurements:
-      - id: owg:env-2d-bap-temp
+      - id: soma:env-2d-bap-temp
         observation_type: temperature
         quantity_measured:
           value: "37"
           unit:
             id: UO:0000027
             name: degree Celsius
-      - id: owg:env-2d-bap-co2
+      - id: soma:env-2d-bap-co2
         observation_type: co2_percentage
         quantity_measured:
           value: "5"
@@ -153,7 +153,7 @@ two_d_cell_cultures:
 
 # ============ 3D Cell Culture Models (Organoids) ============
 three_d_cell_cultures:
-  - id: owg:3d-lung-organoid-control
+  - id: soma:3d-lung-organoid-control
     name: Human Lung Organoid - Control
     description: iPSC-derived lung organoids cultured in Matrigel for physiologically relevant exposure testing
     cell_culture_growth_mode: organoid
@@ -179,21 +179,21 @@ three_d_cell_cultures:
       id: NCBITaxon:9606
       name: Homo sapiens
     environmental_measurements:
-      - id: owg:env-3d-temp
+      - id: soma:env-3d-temp
         observation_type: temperature
         quantity_measured:
           value: "37"
           unit:
             id: UO:0000027
             name: degree Celsius
-      - id: owg:env-3d-co2
+      - id: soma:env-3d-co2
         observation_type: co2_percentage
         quantity_measured:
           value: "5"
           unit:
             id: UO:0000187
             name: percent
-      - id: owg:env-3d-o2
+      - id: soma:env-3d-o2
         observation_type: o2_percentage
         quantity_measured:
           value: "21"
@@ -201,7 +201,7 @@ three_d_cell_cultures:
             id: UO:0000187
             name: percent
 
-  - id: owg:3d-lung-organoid-bap
+  - id: soma:3d-lung-organoid-bap
     name: Human Lung Organoid - BaP Exposed
     description: Lung organoids exposed to benzo[a]pyrene (1 uM, 48h)
     cell_culture_growth_mode: organoid
@@ -227,7 +227,7 @@ three_d_cell_cultures:
       id: NCBITaxon:9606
       name: Homo sapiens
 
-  - id: owg:3d-ali-hbec-control
+  - id: soma:3d-ali-hbec-control
     name: ALI-HBEC Culture - Control
     description: Primary HBECs cultured at air-liquid interface for 21 days, differentiated
     primary_cultured_cell:
@@ -243,7 +243,7 @@ three_d_cell_cultures:
       id: NCBITaxon:9606
       name: Homo sapiens
     culture_conditions:
-      id: owg:ali-conditions
+      id: soma:ali-conditions
       days_at_air_liquid_interface: 21
       passage_number: 2
       substrate_type: transwell_insert
@@ -251,7 +251,7 @@ three_d_cell_cultures:
       donor_count: 3
       replicates_per_donor: 4
     membrane_properties:
-      - id: owg:membrane-transwell
+      - id: soma:membrane-transwell
         observation_type: pore_size
         membrane_material: PET
         quantity_measured:
@@ -259,7 +259,7 @@ three_d_cell_cultures:
           unit:
             id: UO:0000017
             name: micrometer
-      - id: owg:membrane-teer
+      - id: soma:membrane-teer
         observation_type: teer
         quantity_measured:
           value: "520"
@@ -267,14 +267,14 @@ three_d_cell_cultures:
             id: UO:0010045
             name: ohm square centimeter
     environmental_measurements:
-      - id: owg:env-ali-temp
+      - id: soma:env-ali-temp
         observation_type: temperature
         quantity_measured:
           value: "37"
           unit:
             id: UO:0000027
             name: degree Celsius
-      - id: owg:env-ali-co2
+      - id: soma:env-ali-co2
         observation_type: co2_percentage
         quantity_measured:
           value: "5"
@@ -283,7 +283,7 @@ three_d_cell_cultures:
             name: percent
 
   # Lung-on-chip model with mechanical stimulation
-  - id: owg:3d-lung-chip-control
+  - id: soma:3d-lung-chip-control
     name: Lung-on-Chip - Control
     description: Microfluidic lung-on-chip model with mechanical breathing motions
     cell_culture_growth_mode: three_dimensional
@@ -296,7 +296,7 @@ three_d_cell_cultures:
       id: NCBITaxon:9606
       name: Homo sapiens
     membrane_properties:
-      - id: owg:chip-membrane-pore
+      - id: soma:chip-membrane-pore
         observation_type: pore_size
         membrane_material: PDMS
         quantity_measured:
@@ -304,7 +304,7 @@ three_d_cell_cultures:
           unit:
             id: UO:0000017
             name: micrometer
-      - id: owg:chip-membrane-thickness
+      - id: soma:chip-membrane-thickness
         observation_type: thickness
         quantity_measured:
           value: "10"
@@ -312,7 +312,7 @@ three_d_cell_cultures:
             id: UO:0000017
             name: micrometer
     mechanical_measurements:
-      - id: owg:mech-stretch-freq
+      - id: soma:mech-stretch-freq
         observation_type: stretch_frequency
         quantity_measured:
           value: "0.2"
@@ -320,7 +320,7 @@ three_d_cell_cultures:
             id: UO:0000106
             name: hertz
         description: Cyclic stretch frequency mimicking breathing (12 breaths/min)
-      - id: owg:mech-stretch-amp
+      - id: soma:mech-stretch-amp
         observation_type: stretch_amplitude
         quantity_measured:
           value: "10"
@@ -328,7 +328,7 @@ three_d_cell_cultures:
             id: UO:0000187
             name: percent
         description: 10% linear strain to mimic physiological breathing
-      - id: owg:mech-flow-rate
+      - id: soma:mech-flow-rate
         observation_type: flow_rate
         quantity_measured:
           value: "60"
@@ -337,7 +337,7 @@ three_d_cell_cultures:
             name: microliter per hour
         description: Vascular channel perfusion rate
     environmental_measurements:
-      - id: owg:env-chip-temp
+      - id: soma:env-chip-temp
         observation_type: temperature
         quantity_measured:
           value: "37"
@@ -347,7 +347,7 @@ three_d_cell_cultures:
 
 # ============ Co-Culture Models ============
 co_cultures:
-  - id: owg:coculture-epithelial-endothelial
+  - id: soma:coculture-epithelial-endothelial
     name: Epithelial-Endothelial Co-culture
     description: Transwell co-culture of bronchial epithelial cells with pulmonary microvascular endothelial cells
     cell_culture_growth_mode: air_liquid_interface
@@ -362,7 +362,7 @@ co_cultures:
       name: Homo sapiens
     substrate_type: transwell_insert
     membrane_properties:
-      - id: owg:coculture-membrane
+      - id: soma:coculture-membrane
         observation_type: pore_size
         membrane_material: PET
         quantity_measured:
@@ -372,7 +372,7 @@ co_cultures:
             name: micrometer
         description: Larger pores for cell-cell communication
     environmental_measurements:
-      - id: owg:env-coculture-temp
+      - id: soma:env-coculture-temp
         observation_type: temperature
         quantity_measured:
           value: "37"
@@ -382,7 +382,7 @@ co_cultures:
 
 # ============ Chemical Exposures (Simple) ============
 chemical_exposures:
-  - id: owg:exposure-bap-low
+  - id: soma:exposure-bap-low
     name: BaP Low Dose Exposure
     description: Benzo[a]pyrene exposure at 0.1 uM for 24 hours
     exposed_to_chemical:
@@ -394,7 +394,7 @@ chemical_exposures:
     exposure_duration: "24 hours"
     exposure_concentration: 0.1
 
-  - id: owg:exposure-bap-high
+  - id: soma:exposure-bap-high
     name: BaP High Dose Exposure
     description: Benzo[a]pyrene exposure at 1 uM for 24 hours
     exposed_to_chemical:
@@ -410,7 +410,7 @@ chemical_exposures:
 # ExposureMaterial provides detailed specification of test substances
 # including physical form, purity, and particle properties
 exposure_materials:
-  - id: owg:material-bap-solution
+  - id: soma:material-bap-solution
     name: Benzo[a]pyrene Solution Stock
     description: BaP dissolved in DMSO for cell culture exposure
     test_substance:
@@ -436,11 +436,11 @@ exposure_materials:
     manufacturer: Sigma-Aldrich
     catalog_number: B1760
 
-  - id: owg:material-diesel-exhaust-particles
+  - id: soma:material-diesel-exhaust-particles
     name: Diesel Exhaust Particles (DEP)
     description: Standard reference material for particulate matter exposure studies
     test_substance:
-      id: owg:substance-dep
+      id: soma:substance-dep
       name: Diesel Exhaust Particles
       cas_number: "1333-86-4"
     chemical_form: nanoparticle
@@ -450,7 +450,7 @@ exposure_materials:
     catalog_number: SRM 2975
     # Particle properties for this particulate test material
     particle_properties:
-      id: owg:dep-particle-props
+      id: soma:dep-particle-props
       name: DEP Particle Characterization
       particle_size:
         value: "150"
@@ -481,12 +481,12 @@ exposure_materials:
 # InVitroExposure extends ExposureEvent with in vitro-specific parameters
 # including aerosol generation, sample preparation, and dosimetry
 in_vitro_exposures:
-  - id: owg:invitro-bap-ali-exposure
+  - id: soma:invitro-bap-ali-exposure
     name: ALI BaP Aerosol Exposure
     description: Aerosol exposure of ALI-differentiated HBECs to BaP
     # Links exposure to the cell culture model via polymorphic exposed_subject
     exposed_subject:
-      id: owg:3d-ali-hbec-control
+      id: soma:3d-ali-hbec-control
       name: ALI-HBEC Culture - Control
     # Inherits from ExposureEvent
     exposed_to_chemical:
@@ -496,7 +496,7 @@ in_vitro_exposures:
     exposure_duration: "4 hours"
     # In vitro-specific slots
     exposure_material:
-      id: owg:material-bap-solution
+      id: soma:material-bap-solution
       name: Benzo[a]pyrene Solution Stock
     exposure_frequency: "Single acute exposure"
     exposure_regiment: acute
@@ -526,7 +526,7 @@ in_vitro_exposures:
         name: ohm square centimeter
     # Aerosol generation parameters
     aerosol_generation:
-      id: owg:aerosol-gen-vitrocell
+      id: soma:aerosol-gen-vitrocell
       name: Vitrocell Cloud Aerosol Generation
       aerosol_generation_method: cloud_system
       aerosol_generation_equipment: "Vitrocell Cloud 12"
@@ -544,7 +544,7 @@ in_vitro_exposures:
       aerosol_characterization_method: "Cascade impactor, gravimetric"
     # Sample preparation (ASL-specific)
     sample_preparation:
-      id: owg:sample-prep-ali
+      id: soma:sample-prep-ali
       name: ALI Sample Preparation
       mucus_removal_performed: true
       mucus_removal_method: "PBS wash, 3x gentle aspiration"
@@ -557,20 +557,20 @@ in_vitro_exposures:
           id: UO:0000031
           name: minute
 
-  - id: owg:invitro-dep-submerged-exposure
+  - id: soma:invitro-dep-submerged-exposure
     name: DEP Submerged Exposure
     description: Submerged exposure of A549 cells to diesel exhaust particles
     # Links exposure to the 2D A549 cell culture via polymorphic exposed_subject
     exposed_subject:
-      id: owg:2d-a549-control
+      id: soma:2d-a549-control
       name: A549 Monolayer - Control
     exposed_to_chemical:
-      id: owg:substance-dep
+      id: soma:substance-dep
       name: Diesel Exhaust Particles
     exposure_route: inhalation
     exposure_duration: "24 hours"
     exposure_material:
-      id: owg:material-diesel-exhaust-particles
+      id: soma:material-diesel-exhaust-particles
       name: Diesel Exhaust Particles (DEP)
     exposure_frequency: "Single exposure"
     exposure_regiment: single
@@ -593,7 +593,7 @@ in_vitro_exposures:
 # Analysis documents how measurement data was acquired and processed
 # Can be referenced from measurements to provide data provenance
 analyses:
-  - id: owg:analysis-qpcr-gene-expression
+  - id: soma:analysis-qpcr-gene-expression
     name: qRT-PCR Gene Expression Analysis
     description: Standard qRT-PCR analysis pipeline for gene expression measurements
     # Data acquisition
@@ -620,7 +620,7 @@ analyses:
       id: UO:0000186
       name: dimensionless unit
 
-  - id: owg:analysis-cbf-video
+  - id: soma:analysis-cbf-video
     name: Ciliary Beat Frequency Video Analysis
     description: High-speed video microscopy analysis of ciliary beating
     # Data acquisition
@@ -667,7 +667,7 @@ analyses:
       id: UO:0000106
       name: hertz
 
-  - id: owg:analysis-ros-plate-reader
+  - id: soma:analysis-ros-plate-reader
     name: ROS Plate Reader Analysis
     description: Fluorescence-based ROS measurement analysis
     raw_data_type: fluorescence_intensity
@@ -694,7 +694,7 @@ analyses:
 # ============ Gene Expression Measurements ============
 gene_expression_measurements:
   # CYP1A1 - induced by PAH exposure
-  - id: owg:expr-cyp1a1-2d-control
+  - id: soma:expr-cyp1a1-2d-control
     name: CYP1A1 expression - 2D Control
     description: Baseline CYP1A1 expression in A549 monolayer
     target_gene:
@@ -717,7 +717,7 @@ gene_expression_measurements:
     normalization_reference: GAPDH
     measurement_date: "2024-06-15"
 
-  - id: owg:expr-cyp1a1-2d-bap
+  - id: soma:expr-cyp1a1-2d-bap
     name: CYP1A1 expression - 2D BaP Exposed
     description: CYP1A1 induction after BaP exposure in A549 cells
     target_gene:
@@ -740,7 +740,7 @@ gene_expression_measurements:
     normalization_reference: GAPDH
     measurement_date: "2024-06-15"
 
-  - id: owg:expr-cyp1a1-3d-organoid-bap
+  - id: soma:expr-cyp1a1-3d-organoid-bap
     name: CYP1A1 expression - Organoid BaP Exposed
     description: CYP1A1 induction after BaP exposure in lung organoids - lower than 2D
     target_gene:
@@ -763,7 +763,7 @@ gene_expression_measurements:
     normalization_reference: GAPDH
     measurement_date: "2024-06-15"
 
-  - id: owg:expr-cyp1a1-chip-bap
+  - id: soma:expr-cyp1a1-chip-bap
     name: CYP1A1 expression - Lung-on-Chip BaP Exposed
     description: CYP1A1 induction in lung-on-chip with mechanical stimulation - most physiological response
     target_gene:
@@ -789,7 +789,7 @@ gene_expression_measurements:
 # ============ Biomarker Measurements (Oxidative Stress, Cytotoxicity) ============
 biomarker_measurements:
   # Oxidative stress markers
-  - id: owg:ros-2d-control
+  - id: soma:ros-2d-control
     name: ROS - 2D Control
     observation_type: reactive_oxygen_species
     quantity_measured:
@@ -803,7 +803,7 @@ biomarker_measurements:
     measurement_method: CM-H2DCFDA
     measurement_date: "2024-06-16"
 
-  - id: owg:ros-2d-bap
+  - id: soma:ros-2d-bap
     name: ROS - 2D BaP Exposed
     observation_type: reactive_oxygen_species
     quantity_measured:
@@ -817,7 +817,7 @@ biomarker_measurements:
     measurement_method: CM-H2DCFDA
     measurement_date: "2024-06-16"
 
-  - id: owg:ros-organoid-bap
+  - id: soma:ros-organoid-bap
     name: ROS - Organoid BaP Exposed
     observation_type: reactive_oxygen_species
     quantity_measured:
@@ -832,7 +832,7 @@ biomarker_measurements:
     measurement_date: "2024-06-16"
 
   # Cytotoxicity
-  - id: owg:viability-2d-bap
+  - id: soma:viability-2d-bap
     name: Cell Viability - 2D BaP Exposed
     observation_type: cell_viability
     quantity_measured:
@@ -846,7 +846,7 @@ biomarker_measurements:
     measurement_method: MTT assay
     measurement_date: "2024-06-16"
 
-  - id: owg:viability-organoid-bap
+  - id: soma:viability-organoid-bap
     name: Cell Viability - Organoid BaP Exposed
     observation_type: cell_viability
     quantity_measured:
@@ -863,7 +863,7 @@ biomarker_measurements:
 # ============ Phenotype Measurements ============
 phenotype_measurements:
   # Ciliary function in ALI cultures
-  - id: owg:cbf-ali-control
+  - id: soma:cbf-ali-control
     name: CBF - ALI Control
     observation_type: ciliary_beat_frequency
     quantity_measured:
@@ -877,7 +877,7 @@ phenotype_measurements:
     measurement_method: High-speed video microscopy
     measurement_date: "2024-06-17"
 
-  - id: owg:cbf-ali-bap
+  - id: soma:cbf-ali-bap
     name: CBF - ALI BaP Exposed
     observation_type: ciliary_beat_frequency
     quantity_measured:
@@ -901,13 +901,13 @@ phenotypes:
 
 # ============ Exposure to Phenotype Associations ============
 exposure_to_phenotype_associations:
-  - id: owg:assoc-bap-oxidative
+  - id: soma:assoc-bap-oxidative
     name: BaP induces oxidative stress in lung epithelium
     exposure:
-      id: owg:exposure-bap-high
+      id: soma:exposure-bap-high
       name: BaP High Dose Exposure
     phenotype:
-      id: owg:phenotype-oxidative-damage
+      id: soma:phenotype-oxidative-damage
       name: Oxidative DNA damage
     association_type: causal
     evidence: Demonstrated in 2D, 3D organoid, and lung-on-chip models with dose-dependent ROS induction

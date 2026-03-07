@@ -133,7 +133,7 @@ ciliary_function_assays:
       id: "CL:0002328"
       name: "bronchial epithelial cell"
     study_subject:
-      id: "owg:culture-001"
+      id: "soma:culture-001"
       name: "Primary HBE ALI culture"
       model_species:
         id: "NCBITaxon:9606"

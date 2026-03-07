@@ -3,7 +3,7 @@
 
 phenotype_measurements:
   # Spirometry - Lung Function Tests
-  - id: owg:phenotype-001
+  - id: soma:phenotype-001
     name: FEV1 measurement - Participant P001
     description: Forced expiratory volume in 1 second, pre-bronchodilator
     observation_type: FEV1
@@ -26,11 +26,11 @@ phenotype_measurements:
       id: HP:0002094
       name: Dyspnea
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     measurement_date: "2024-03-15"
 
-  - id: owg:phenotype-002
+  - id: soma:phenotype-002
     name: FVC measurement - Participant P001
     description: Forced vital capacity, pre-bronchodilator
     observation_type: FVC
@@ -53,11 +53,11 @@ phenotype_measurements:
       id: HP:0002094
       name: Dyspnea
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     measurement_date: "2024-03-15"
 
-  - id: owg:phenotype-003
+  - id: soma:phenotype-003
     name: FEV1/FVC ratio - Participant P001
     description: Ratio of FEV1 to FVC indicating airflow obstruction
     observation_type: FEV1_FEC_ratio
@@ -80,11 +80,11 @@ phenotype_measurements:
       id: HP:0006536
       name: Airway obstruction
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     measurement_date: "2024-03-15"
 
-  - id: owg:phenotype-004
+  - id: soma:phenotype-004
     name: FEF25-75 measurement - Participant P001
     description: Forced expiratory flow at 25-75% of FVC (small airways)
     observation_type: FEF25_75
@@ -107,12 +107,12 @@ phenotype_measurements:
       id: HP:0006536
       name: Airway obstruction
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     measurement_date: "2024-03-15"
 
   # FeNO - Airway Inflammation Marker
-  - id: owg:phenotype-005
+  - id: soma:phenotype-005
     name: FeNO measurement - Participant P002
     description: Fractional exhaled nitric oxide at 50 mL/s flow rate
     observation_type: FeNO
@@ -135,12 +135,12 @@ phenotype_measurements:
       id: HP:0002099
       name: Asthma
     participant:
-      id: owg:participant-002
+      id: soma:participant-002
       name: Participant 002
     measurement_date: "2024-03-16"
 
   # Bronchodilator Response
-  - id: owg:phenotype-006
+  - id: soma:phenotype-006
     name: Bronchodilator response - Participant P002
     description: Change in FEV1 after albuterol administration
     observation_type: bronchodilator_response
@@ -163,12 +163,12 @@ phenotype_measurements:
       id: HP:0002099
       name: Asthma
     participant:
-      id: owg:participant-002
+      id: soma:participant-002
       name: Participant 002
     measurement_date: "2024-03-16"
 
   # Diffusing Capacity
-  - id: owg:phenotype-007
+  - id: soma:phenotype-007
     name: DLCO measurement - Participant P003
     description: Diffusing capacity of the lung for carbon monoxide
     observation_type: DLCO
@@ -191,12 +191,12 @@ phenotype_measurements:
       id: HP:0002088
       name: Abnormal lung morphology
     participant:
-      id: owg:participant-003
+      id: soma:participant-003
       name: Participant 003
     measurement_date: "2024-03-17"
 
   # Ciliary Function (from in vitro ALI cultures)
-  - id: owg:phenotype-008
+  - id: soma:phenotype-008
     name: Ciliary beat frequency - ALI culture from P004
     description: Ciliary beat frequency measured by high-speed video microscopy
     observation_type: ciliary_beat_frequency
@@ -219,11 +219,11 @@ phenotype_measurements:
       id: HP:0012265
       name: Ciliary dyskinesia
     participant:
-      id: owg:participant-004
+      id: soma:participant-004
       name: Participant 004
     measurement_date: "2024-03-18"
 
-  - id: owg:phenotype-009
+  - id: soma:phenotype-009
     name: Percentage ciliated cells - ALI culture from P004
     description: Proportion of epithelial cells with visible cilia
     observation_type: percentage_ciliated_cells
@@ -246,12 +246,12 @@ phenotype_measurements:
       id: HP:0012265
       name: Ciliary dyskinesia
     participant:
-      id: owg:participant-004
+      id: soma:participant-004
       name: Participant 004
     measurement_date: "2024-03-18"
 
   # Mucociliary Clearance
-  - id: owg:phenotype-010
+  - id: soma:phenotype-010
     name: Mucociliary transport rate - ALI culture from P005
     description: Rate of fluorescent bead transport across epithelial surface
     observation_type: mucociliary_transport_rate
@@ -274,12 +274,12 @@ phenotype_measurements:
       id: HP:0002110
       name: Bronchiectasis
     participant:
-      id: owg:participant-005
+      id: soma:participant-005
       name: Participant 005
     measurement_date: "2024-03-19"
 
   # Airway Surface Liquid Height
-  - id: owg:phenotype-011
+  - id: soma:phenotype-011
     name: ASL height - ALI culture from P005
     description: Airway surface liquid height measured by confocal microscopy
     observation_type: asl_height
@@ -302,12 +302,12 @@ phenotype_measurements:
       id: HP:0002110
       name: Bronchiectasis
     participant:
-      id: owg:participant-005
+      id: soma:participant-005
       name: Participant 005
     measurement_date: "2024-03-19"
 
   # Goblet Cell Measurements
-  - id: owg:phenotype-012
+  - id: soma:phenotype-012
     name: Goblet cell percentage - Bronchial biopsy P006
     description: Percentage of goblet cells in bronchial epithelium
     observation_type: goblet_cell_count
@@ -330,6 +330,6 @@ phenotype_measurements:
       id: HP:0002099
       name: Asthma
     participant:
-      id: owg:participant-006
+      id: soma:participant-006
       name: Participant 006
     measurement_date: "2024-03-20"

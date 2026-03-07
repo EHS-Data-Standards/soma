@@ -8,7 +8,7 @@
 
 # ============ Study Definition ============
 studies:
-  - id: owg:study-pm25-cohort
+  - id: soma:study-pm25-cohort
     name: Industrial Community Air Quality and Respiratory Health Study
     description: >-
       A two-year prospective cohort study examining the relationship between
@@ -24,33 +24,33 @@ studies:
 
 # ============ Cohorts ============
 cohorts:
-  - id: owg:cohort-high-exposure
+  - id: soma:cohort-high-exposure
     name: High PM2.5 Exposure Group
     description: Participants living within 1 km of industrial source
     part_of_study:
-      id: owg:study-pm25-cohort
+      id: soma:study-pm25-cohort
       name: Industrial Community Air Quality Study
     cohort_size: 150
     inclusion_criteria: >-
       Adults 25-65 years, residence within 1km of facility for >2 years,
       no occupational PM exposure, non-smoker or former smoker (quit >5 years)
 
-  - id: owg:cohort-moderate-exposure
+  - id: soma:cohort-moderate-exposure
     name: Moderate PM2.5 Exposure Group
     description: Participants living 1-3 km from industrial source
     part_of_study:
-      id: owg:study-pm25-cohort
+      id: soma:study-pm25-cohort
       name: Industrial Community Air Quality Study
     cohort_size: 200
     inclusion_criteria: >-
       Adults 25-65 years, residence 1-3km from facility for >2 years,
       no occupational PM exposure, non-smoker or former smoker (quit >5 years)
 
-  - id: owg:cohort-low-exposure
+  - id: soma:cohort-low-exposure
     name: Low PM2.5 Exposure Control Group
     description: Participants living 3-5 km from industrial source (control)
     part_of_study:
-      id: owg:study-pm25-cohort
+      id: soma:study-pm25-cohort
       name: Industrial Community Air Quality Study
     cohort_size: 175
     inclusion_criteria: >-
@@ -59,7 +59,7 @@ cohorts:
 
 # ============ Participants ============
 participants:
-  - id: owg:participant-001
+  - id: soma:participant-001
     name: Participant 001
     participant_id: PM25-001
     age: 45
@@ -67,10 +67,10 @@ participants:
     enrollment_date: "2022-03-15"
     study_arm: High Exposure
     part_of_cohort:
-      id: owg:cohort-high-exposure
+      id: soma:cohort-high-exposure
       name: High PM2.5 Exposure Group
 
-  - id: owg:participant-002
+  - id: soma:participant-002
     name: Participant 002
     participant_id: PM25-002
     age: 52
@@ -78,10 +78,10 @@ participants:
     enrollment_date: "2022-03-18"
     study_arm: High Exposure
     part_of_cohort:
-      id: owg:cohort-high-exposure
+      id: soma:cohort-high-exposure
       name: High PM2.5 Exposure Group
 
-  - id: owg:participant-003
+  - id: soma:participant-003
     name: Participant 003
     participant_id: PM25-003
     age: 38
@@ -89,10 +89,10 @@ participants:
     enrollment_date: "2022-03-20"
     study_arm: Moderate Exposure
     part_of_cohort:
-      id: owg:cohort-moderate-exposure
+      id: soma:cohort-moderate-exposure
       name: Moderate PM2.5 Exposure Group
 
-  - id: owg:participant-004
+  - id: soma:participant-004
     name: Participant 004
     participant_id: PM25-004
     age: 61
@@ -100,12 +100,12 @@ participants:
     enrollment_date: "2022-03-22"
     study_arm: Low Exposure (Control)
     part_of_cohort:
-      id: owg:cohort-low-exposure
+      id: soma:cohort-low-exposure
       name: Low PM2.5 Exposure Control Group
 
 # ============ Environmental Exposures ============
 environmental_exposures:
-  - id: owg:env-exposure-high
+  - id: soma:env-exposure-high
     name: High PM2.5 Exposure - Zone A
     description: Annual average PM2.5 exposure for high exposure cohort
     exposed_to_chemical:
@@ -120,7 +120,7 @@ environmental_exposures:
       Industrial corridor, within 1km of petrochemical facility.
       Elevated levels of PAHs and metals in PM2.5 composition.
 
-  - id: owg:env-exposure-moderate
+  - id: soma:env-exposure-moderate
     name: Moderate PM2.5 Exposure - Zone B
     description: Annual average PM2.5 exposure for moderate exposure cohort
     exposed_to_chemical:
@@ -134,7 +134,7 @@ environmental_exposures:
       Mixed residential/commercial area, 1-3km from industrial source.
       Moderate traffic contribution to PM2.5.
 
-  - id: owg:env-exposure-low
+  - id: soma:env-exposure-low
     name: Low PM2.5 Exposure - Zone C
     description: Annual average PM2.5 exposure for control cohort
     exposed_to_chemical:
@@ -151,7 +151,7 @@ environmental_exposures:
 # ============ Exposure Measurements (Personal Monitors) ============
 exposure_measurements:
   # Personal PM2.5 monitoring
-  - id: owg:pm25-personal-001-baseline
+  - id: soma:pm25-personal-001-baseline
     name: Personal PM2.5 - Participant 001 Baseline
     description: 7-day personal PM2.5 monitoring at enrollment
     observation_type: pm2_5_exposure
@@ -169,13 +169,13 @@ exposure_measurements:
       id: CHEBI:141011
       name: PM2.5
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     sample_type: air
     measurement_method: Personal DataRAM nephelometer
     measurement_date: "2022-03-22"
 
-  - id: owg:pm25-personal-001-year1
+  - id: soma:pm25-personal-001-year1
     name: Personal PM2.5 - Participant 001 Year 1
     description: 7-day personal PM2.5 monitoring at 12-month follow-up
     observation_type: pm2_5_exposure
@@ -188,13 +188,13 @@ exposure_measurements:
       id: CHEBI:141011
       name: PM2.5
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     sample_type: air
     measurement_method: Personal DataRAM nephelometer
     measurement_date: "2023-03-20"
 
-  - id: owg:pm25-personal-004-baseline
+  - id: soma:pm25-personal-004-baseline
     name: Personal PM2.5 - Participant 004 Baseline
     description: 7-day personal PM2.5 monitoring for control participant
     observation_type: pm2_5_exposure
@@ -212,7 +212,7 @@ exposure_measurements:
       id: CHEBI:141011
       name: PM2.5
     participant:
-      id: owg:participant-004
+      id: soma:participant-004
       name: Participant 004
     sample_type: air
     measurement_method: Personal DataRAM nephelometer
@@ -221,7 +221,7 @@ exposure_measurements:
 # ============ Phenotype Measurements (Lung Function) ============
 phenotype_measurements:
   # Spirometry - High exposure participant
-  - id: owg:fev1-001-baseline
+  - id: soma:fev1-001-baseline
     name: FEV1 - Participant 001 Baseline
     description: Forced expiratory volume at enrollment
     observation_type: FEV1
@@ -244,12 +244,12 @@ phenotype_measurements:
       id: NCIT:C38083
       name: FEV1
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     measurement_method: Spirometry per ATS/ERS guidelines
     measurement_date: "2022-03-15"
 
-  - id: owg:fev1-001-year1
+  - id: soma:fev1-001-year1
     name: FEV1 - Participant 001 Year 1
     description: FEV1 at 12-month follow-up showing decline
     observation_type: FEV1
@@ -272,12 +272,12 @@ phenotype_measurements:
       id: NCIT:C38083
       name: FEV1
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     measurement_method: Spirometry per ATS/ERS guidelines
     measurement_date: "2023-03-15"
 
-  - id: owg:fev1-001-year2
+  - id: soma:fev1-001-year2
     name: FEV1 - Participant 001 Year 2
     description: FEV1 at 24-month follow-up showing continued decline
     observation_type: FEV1
@@ -290,13 +290,13 @@ phenotype_measurements:
       id: NCIT:C38083
       name: FEV1
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     measurement_method: Spirometry per ATS/ERS guidelines
     measurement_date: "2024-03-15"
 
   # Control participant - stable lung function
-  - id: owg:fev1-004-baseline
+  - id: soma:fev1-004-baseline
     name: FEV1 - Participant 004 Baseline
     description: FEV1 at enrollment for control participant
     observation_type: FEV1
@@ -319,12 +319,12 @@ phenotype_measurements:
       id: NCIT:C38083
       name: FEV1
     participant:
-      id: owg:participant-004
+      id: soma:participant-004
       name: Participant 004
     measurement_method: Spirometry per ATS/ERS guidelines
     measurement_date: "2022-03-22"
 
-  - id: owg:fev1-004-year2
+  - id: soma:fev1-004-year2
     name: FEV1 - Participant 004 Year 2
     description: FEV1 at 24-month follow-up - stable in control
     observation_type: FEV1
@@ -337,13 +337,13 @@ phenotype_measurements:
       id: NCIT:C38083
       name: FEV1
     participant:
-      id: owg:participant-004
+      id: soma:participant-004
       name: Participant 004
     measurement_method: Spirometry per ATS/ERS guidelines
     measurement_date: "2024-03-22"
 
   # FVC measurements
-  - id: owg:fvc-001-baseline
+  - id: soma:fvc-001-baseline
     name: FVC - Participant 001 Baseline
     observation_type: FVC
     quantity_measured:
@@ -355,13 +355,13 @@ phenotype_measurements:
       id: NCIT:C38082
       name: FVC
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     measurement_method: Spirometry per ATS/ERS guidelines
     measurement_date: "2022-03-15"
 
   # FeNO - airway inflammation marker
-  - id: owg:feno-001-baseline
+  - id: soma:feno-001-baseline
     name: FeNO - Participant 001 Baseline
     description: Fractional exhaled nitric oxide indicating airway inflammation
     observation_type: FeNO
@@ -379,12 +379,12 @@ phenotype_measurements:
       id: CHEBI:16480
       name: nitric oxide
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     measurement_method: NIOX VERO electrochemical analyzer
     measurement_date: "2022-03-15"
 
-  - id: owg:feno-004-baseline
+  - id: soma:feno-004-baseline
     name: FeNO - Participant 004 Baseline
     description: Normal FeNO in control participant
     observation_type: FeNO
@@ -402,7 +402,7 @@ phenotype_measurements:
       id: CHEBI:16480
       name: nitric oxide
     participant:
-      id: owg:participant-004
+      id: soma:participant-004
       name: Participant 004
     measurement_method: NIOX VERO electrochemical analyzer
     measurement_date: "2022-03-22"
@@ -410,7 +410,7 @@ phenotype_measurements:
 # ============ Biomarker Measurements ============
 biomarker_measurements:
   # Systemic inflammation markers
-  - id: owg:il6-001-baseline
+  - id: soma:il6-001-baseline
     name: IL-6 - Participant 001 Baseline
     description: Serum interleukin-6 indicating systemic inflammation
     observation_type: IL6_level
@@ -428,13 +428,13 @@ biomarker_measurements:
       id: NCIT:C20487
       name: Interleukin-6
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     biomarker_type: inflammatory
     measurement_method: Luminex multiplex
     measurement_date: "2022-03-15"
 
-  - id: owg:il8-001-baseline
+  - id: soma:il8-001-baseline
     name: IL-8 - Participant 001 Baseline
     description: Serum IL-8 as neutrophil chemokine
     observation_type: IL8_level
@@ -447,14 +447,14 @@ biomarker_measurements:
       id: NCIT:C20506
       name: Interleukin-8
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     biomarker_type: inflammatory
     measurement_method: Luminex multiplex
     measurement_date: "2022-03-15"
 
   # Oxidative stress biomarkers
-  - id: owg:8ohdg-001-baseline
+  - id: soma:8ohdg-001-baseline
     name: 8-OHdG - Participant 001 Baseline
     description: Urinary 8-hydroxydeoxyguanosine as oxidative DNA damage marker
     observation_type: DNA_8ohdg
@@ -472,14 +472,14 @@ biomarker_measurements:
       id: CHEBI:40304
       name: 8-oxo-7,8-dihydro-2'-deoxyguanosine
     participant:
-      id: owg:participant-001
+      id: soma:participant-001
       name: Participant 001
     biomarker_type: oxidative stress
     sample_type: urine
     measurement_method: ELISA
     measurement_date: "2022-03-15"
 
-  - id: owg:8ohdg-004-baseline
+  - id: soma:8ohdg-004-baseline
     name: 8-OHdG - Participant 004 Baseline
     description: Normal urinary 8-OHdG in control participant
     observation_type: DNA_8ohdg
@@ -497,7 +497,7 @@ biomarker_measurements:
       id: CHEBI:40304
       name: 8-oxo-7,8-dihydro-2'-deoxyguanosine
     participant:
-      id: owg:participant-004
+      id: soma:participant-004
       name: Participant 004
     biomarker_type: oxidative stress
     sample_type: urine
@@ -506,7 +506,7 @@ biomarker_measurements:
 
 # ============ Aggregated Measurements (Cohort-level) ============
 aggregated_measurements:
-  - id: owg:agg-fev1-decline-high
+  - id: soma:agg-fev1-decline-high
     name: FEV1 Annual Decline Rate - High Exposure Cohort
     description: Mean annual FEV1 decline in high exposure group
     observation_type: lung_function_decline_rate
@@ -516,13 +516,13 @@ aggregated_measurements:
         id: UO:0000273
         name: milliliter per year
     cohort:
-      id: owg:cohort-high-exposure
+      id: soma:cohort-high-exposure
       name: High PM2.5 Exposure Group
     summary_statistic: mean
     sample_size: 142
     stratification: High PM2.5 exposure (>25 ug/m3)
 
-  - id: owg:agg-fev1-decline-moderate
+  - id: soma:agg-fev1-decline-moderate
     name: FEV1 Annual Decline Rate - Moderate Exposure Cohort
     description: Mean annual FEV1 decline in moderate exposure group
     observation_type: lung_function_decline_rate
@@ -532,13 +532,13 @@ aggregated_measurements:
         id: UO:0000273
         name: milliliter per year
     cohort:
-      id: owg:cohort-moderate-exposure
+      id: soma:cohort-moderate-exposure
       name: Moderate PM2.5 Exposure Group
     summary_statistic: mean
     sample_size: 189
     stratification: Moderate PM2.5 exposure (15-25 ug/m3)
 
-  - id: owg:agg-fev1-decline-control
+  - id: soma:agg-fev1-decline-control
     name: FEV1 Annual Decline Rate - Control Cohort
     description: Mean annual FEV1 decline in low exposure control group
     observation_type: lung_function_decline_rate
@@ -548,7 +548,7 @@ aggregated_measurements:
         id: UO:0000273
         name: milliliter per year
     cohort:
-      id: owg:cohort-low-exposure
+      id: soma:cohort-low-exposure
       name: Low PM2.5 Exposure Control Group
     summary_statistic: mean
     sample_size: 168
@@ -585,37 +585,37 @@ phenotypes:
     description: Progressive airflow limitation
     severity: mild
 
-  - id: owg:phenotype-accelerated-decline
+  - id: soma:phenotype-accelerated-decline
     name: Accelerated lung function decline
     description: FEV1 decline rate exceeding age-expected decline by >20 mL/year
     severity: moderate
 
 # ============ Exposure to Phenotype Associations ============
 exposure_to_phenotype_associations:
-  - id: owg:assoc-pm25-fev1-decline
+  - id: soma:assoc-pm25-fev1-decline
     name: PM2.5 exposure accelerates lung function decline
     description: >-
       High PM2.5 exposure (>25 ug/m3 annual average) associated with
       accelerated FEV1 decline of 40 mL/year above expected rate.
       Dose-response relationship observed across exposure groups.
     exposure:
-      id: owg:env-exposure-high
+      id: soma:env-exposure-high
       name: High PM2.5 Exposure
     phenotype:
-      id: owg:phenotype-accelerated-decline
+      id: soma:phenotype-accelerated-decline
       name: Accelerated lung function decline
     association_type: dose-response
     evidence: >-
       Linear regression adjusted for age, sex, smoking history, and
       occupational exposures. p<0.001 for PM2.5 exposure term.
 
-  - id: owg:assoc-pm25-airway-inflammation
+  - id: soma:assoc-pm25-airway-inflammation
     name: PM2.5 exposure increases airway inflammation
     description: >-
       Elevated PM2.5 exposure associated with increased FeNO levels
       indicating eosinophilic airway inflammation.
     exposure:
-      id: owg:env-exposure-high
+      id: soma:env-exposure-high
       name: High PM2.5 Exposure
     phenotype:
       id: HP:0002099
@@ -625,16 +625,16 @@ exposure_to_phenotype_associations:
       Odds ratio 2.3 (95% CI 1.5-3.5) for elevated FeNO (>25 ppb)
       in high vs. low exposure groups.
 
-  - id: owg:assoc-pm25-oxidative-stress
+  - id: soma:assoc-pm25-oxidative-stress
     name: PM2.5 induces systemic oxidative stress
     description: >-
       PM2.5 exposure correlated with elevated urinary 8-OHdG levels,
       indicating oxidative DNA damage.
     exposure:
-      id: owg:env-exposure-high
+      id: soma:env-exposure-high
       name: High PM2.5 Exposure
     phenotype:
-      id: owg:phenotype-accelerated-decline
+      id: soma:phenotype-accelerated-decline
       name: Accelerated lung function decline
     association_type: mechanistic
     evidence: >-
