@@ -45,7 +45,7 @@ cftr_assays:
       level_of_biological_organization: molecular
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-006"
+      id: "soma:culture-006"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"

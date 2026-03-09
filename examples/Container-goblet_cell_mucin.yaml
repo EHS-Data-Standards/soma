@@ -63,7 +63,7 @@ goblet_cell_assays:
       level_of_biological_organization: cellular
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-004"
+      id: "soma:culture-004"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"

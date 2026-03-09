@@ -1,4 +1,4 @@
-name: outcomes_working_group
+name: soma
 description: 'A LinkML data model for representing biological assays, measurements,
   and experimental protocols in the context of outcomes research. The schema is centered
   around ASSAYS that inform on Key Events in Adverse Outcome Pathways (AOPs), with
@@ -6,10 +6,10 @@ description: 'A LinkML data model for representing biological assays, measuremen
 
   This is the main entry point that imports the AOP framework, assay base schema,
   and domain-specific assay microschemas.'
-title: Outcomes Working Group Schema
+title: SOMA Schema
 see_also:
-- https://EHS-Data-Standards.github.io/outcomes-working-group
-id: https://w3id.org/EHS-Data-Standards/outcomes_working_group
+- https://EHS-Data-Standards.github.io/soma
+id: https://w3id.org/EHS-Data-Standards/soma
 imports:
 - linkml:types
 - aop_framework
@@ -17,9 +17,9 @@ imports:
 - assay_microschemas
 license: MIT
 prefixes:
-  outcomes_working_group:
-    prefix_prefix: outcomes_working_group
-    prefix_reference: https://w3id.org/EHS-Data-Standards/outcomes_working_group/
+  soma:
+    prefix_prefix: soma
+    prefix_reference: https://w3id.org/EHS-Data-Standards/soma/
   aop_framework:
     prefix_prefix: aop_framework
     prefix_reference: https://w3id.org/EHS-Data-Standards/aop_framework/
@@ -76,8 +76,8 @@ prefixes:
     prefix_reference: http://qudt.org/vocab/unit/
   owg:
     prefix_prefix: owg
-    prefix_reference: https://w3id.org/EHS-Data-Standards/outcomes-working-group/
-default_prefix: outcomes_working_group
+    prefix_reference: https://w3id.org/EHS-Data-Standards/soma/
+default_prefix: soma
 default_range: string
 types:
   string:
@@ -645,11 +645,11 @@ enums:
 slots:
   adverse_outcome_pathways:
     name: adverse_outcome_pathways
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/adverse_outcome_pathways
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/adverse_outcome_pathways
     description: Collection of Adverse Outcome Pathways. AOPs describe sequences of
       causally linked events from molecular initiating events to adverse outcomes.
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:adverse_outcome_pathways
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:adverse_outcome_pathways
     owner: Container
     domain_of:
     - Container
@@ -659,12 +659,12 @@ slots:
     inlined_as_list: true
   ciliary_function_assays:
     name: ciliary_function_assays
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/ciliary_function_assays
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/ciliary_function_assays
     description: 'Collection of ciliary function assays. Informs on Key Event: "Decreased
       ciliary function". Contains named slots for beat frequency, active area, cilia
       length, etc.'
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:ciliary_function_assays
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:ciliary_function_assays
     owner: Container
     domain_of:
     - Container
@@ -674,11 +674,11 @@ slots:
     inlined_as_list: true
   asl_assays:
     name: asl_assays
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/asl_assays
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/asl_assays
     description: 'Collection of airway surface liquid assays. Informs on Key Event:
       "Decreased ASL height" or "Altered airway hydration".'
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:asl_assays
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:asl_assays
     owner: Container
     domain_of:
     - Container
@@ -688,11 +688,11 @@ slots:
     inlined_as_list: true
   mcc_assays:
     name: mcc_assays
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/mcc_assays
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/mcc_assays
     description: 'Collection of mucociliary clearance assays. Informs on Key Event:
       "Impaired mucociliary clearance".'
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:mcc_assays
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:mcc_assays
     owner: Container
     domain_of:
     - Container
@@ -702,11 +702,11 @@ slots:
     inlined_as_list: true
   oxidative_stress_assays:
     name: oxidative_stress_assays
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/oxidative_stress_assays
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/oxidative_stress_assays
     description: 'Collection of oxidative stress assays. Informs on Key Event: "Increased
       oxidative stress" - often a Molecular Initiating Event.'
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:oxidative_stress_assays
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:oxidative_stress_assays
     owner: Container
     domain_of:
     - Container
@@ -716,11 +716,11 @@ slots:
     inlined_as_list: true
   cftr_assays:
     name: cftr_assays
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/cftr_assays
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/cftr_assays
     description: 'Collection of CFTR function assays. Informs on Key Event: "Decreased
       CFTR function".'
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:cftr_assays
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:cftr_assays
     owner: Container
     domain_of:
     - Container
@@ -730,11 +730,11 @@ slots:
     inlined_as_list: true
   egfr_signaling_assays:
     name: egfr_signaling_assays
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/egfr_signaling_assays
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/egfr_signaling_assays
     description: 'Collection of EGFR signaling assays. Informs on Key Event: "EGFR
       activation". Note: EGFR phosphorylation is the most specific evidence for activation.'
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:egfr_signaling_assays
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:egfr_signaling_assays
     owner: Container
     domain_of:
     - Container
@@ -744,12 +744,12 @@ slots:
     inlined_as_list: true
   goblet_cell_assays:
     name: goblet_cell_assays
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/goblet_cell_assays
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/goblet_cell_assays
     description: 'Collection of goblet cell and mucin assays. Informs on Key Event:
       "Goblet cell hyperplasia" or "Mucin hypersecretion". Combined from previous
       GobletCellMeasurement and MucinProductionMeasurement.'
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:goblet_cell_assays
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:goblet_cell_assays
     owner: Container
     domain_of:
     - Container
@@ -759,11 +759,11 @@ slots:
     inlined_as_list: true
   balf_sputum_assays:
     name: balf_sputum_assays
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/balf_sputum_assays
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/balf_sputum_assays
     description: 'Collection of BALF and sputum assays. In vivo only. Informs on Key
       Event: "Airway inflammation".'
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:balf_sputum_assays
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:balf_sputum_assays
     owner: Container
     domain_of:
     - Container
@@ -773,11 +773,11 @@ slots:
     inlined_as_list: true
   lung_function_assays:
     name: lung_function_assays
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/lung_function_assays
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/lung_function_assays
     description: 'Collection of lung function assays. In vivo only. Informs on Adverse
       Outcome: "Decreased lung function" - the composite clinical outcome.'
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:lung_function_assays
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:lung_function_assays
     owner: Container
     domain_of:
     - Container
@@ -787,11 +787,11 @@ slots:
     inlined_as_list: true
   foxj_assays:
     name: foxj_assays
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/foxj_assays
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/foxj_assays
     description: 'Collection of FoxJ1/ciliogenesis assays. Informs on Key Event: "Altered
       ciliogenesis".'
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:foxj_assays
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:foxj_assays
     owner: Container
     domain_of:
     - Container
@@ -801,11 +801,11 @@ slots:
     inlined_as_list: true
   gene_expression_assays:
     name: gene_expression_assays
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/gene_expression_assays
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/gene_expression_assays
     description: Collection of gene expression assays. Generic assay for gene/protein
       expression measurements.
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:gene_expression_assays
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:gene_expression_assays
     owner: Container
     domain_of:
     - Container
@@ -815,11 +815,11 @@ slots:
     inlined_as_list: true
   protocols:
     name: protocols
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/protocols
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/protocols
     description: Collection of protocols. Contains Tier 2/3 procedural details important
       for reproducibility.
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
-    slot_uri: outcomes_working_group:protocols
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:protocols
     owner: Container
     domain_of:
     - Container
@@ -3894,14 +3894,14 @@ slots:
 classes:
   Container:
     name: Container
-    definition_uri: https://w3id.org/EHS-Data-Standards/outcomes_working_group/Container
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/Container
     description: 'Root container for outcomes research data. Organized around ASSAYS
       that inform on Key Events in Adverse Outcome Pathways (AOPs).
 
       The schema is assay-centric: each assay class contains named slots for its specific
       measurements, with an explicit connection to the Key Event it informs via the
       informs_on_key_event slot.'
-    from_schema: https://w3id.org/EHS-Data-Standards/outcomes_working_group
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
     slots:
     - key_events
     - adverse_outcome_pathways
@@ -3917,7 +3917,7 @@ classes:
     - foxj_assays
     - gene_expression_assays
     - protocols
-    class_uri: outcomes_working_group:Container
+    class_uri: soma:Container
     tree_root: true
   NamedThing:
     name: NamedThing
@@ -5022,8 +5022,8 @@ classes:
     - percentage_positive_cells
     class_uri: assay_microschemas:GeneExpressionOutput
 metamodel_version: 1.7.0
-source_file: outcomes_working_group.yaml
-source_file_date: '2026-03-03T02:11:33'
-source_file_size: 6988
-generation_date: '2026-03-03T02:11:51'
+source_file: soma.yaml
+source_file_date: '2026-03-09T17:13:47'
+source_file_size: 6844
+generation_date: '2026-03-09T17:14:04'
 

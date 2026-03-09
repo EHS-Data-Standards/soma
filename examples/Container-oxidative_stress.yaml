@@ -84,7 +84,7 @@ oxidative_stress_assays:
             name: "hour"
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-003"
+      id: "soma:culture-003"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"

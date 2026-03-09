@@ -34,7 +34,7 @@ mcc_assays:
       level_of_biological_organization: tissue
     study_subject:
       subject_type: CellularSystem
-      id: "owg:culture-007"
+      id: "soma:culture-007"
       name: "Primary HBE ALI culture"
       cell_type:
         id: "CL:0002328"
