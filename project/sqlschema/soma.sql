@@ -771,7 +771,7 @@ CREATE TABLE "MolecularAssayProtocol_primer_sequences" (
 	primer_sequences TEXT,
 	PRIMARY KEY ("MolecularAssayProtocol_id", primer_sequences),
 	FOREIGN KEY("MolecularAssayProtocol_id") REFERENCES "MolecularAssayProtocol" (id)
-);CREATE INDEX "ix_MolecularAssayProtocol_primer_sequences_MolecularAssayProtocol_id" ON "MolecularAssayProtocol_primer_sequences" ("MolecularAssayProtocol_id");CREATE INDEX "ix_MolecularAssayProtocol_primer_sequences_primer_sequences" ON "MolecularAssayProtocol_primer_sequences" (primer_sequences);
+);CREATE INDEX "ix_MolecularAssayProtocol_primer_sequences_primer_sequences" ON "MolecularAssayProtocol_primer_sequences" (primer_sequences);CREATE INDEX "ix_MolecularAssayProtocol_primer_sequences_MolecularAssayProtocol_id" ON "MolecularAssayProtocol_primer_sequences" ("MolecularAssayProtocol_id");
 CREATE TABLE "MolecularAssayProtocol_equipment_required" (
 	"MolecularAssayProtocol_id" TEXT,
 	equipment_required TEXT,
@@ -1133,7 +1133,7 @@ CREATE TABLE "AdverseOutcomePathway_stressors" (
 	stressors TEXT,
 	PRIMARY KEY ("AdverseOutcomePathway_id", stressors),
 	FOREIGN KEY("AdverseOutcomePathway_id") REFERENCES "AdverseOutcomePathway" (id)
-);CREATE INDEX "ix_AdverseOutcomePathway_stressors_AdverseOutcomePathway_id" ON "AdverseOutcomePathway_stressors" ("AdverseOutcomePathway_id");CREATE INDEX "ix_AdverseOutcomePathway_stressors_stressors" ON "AdverseOutcomePathway_stressors" (stressors);
+);CREATE INDEX "ix_AdverseOutcomePathway_stressors_stressors" ON "AdverseOutcomePathway_stressors" (stressors);CREATE INDEX "ix_AdverseOutcomePathway_stressors_AdverseOutcomePathway_id" ON "AdverseOutcomePathway_stressors" ("AdverseOutcomePathway_id");
 CREATE TABLE "KeyEventRelationship" (
 	relationship_type TEXT,
 	evidence_support VARCHAR(13),
@@ -1357,25 +1357,25 @@ CREATE TABLE "SpirometryProtocol_equipment_required" (
 	equipment_required TEXT,
 	PRIMARY KEY ("SpirometryProtocol_id", equipment_required),
 	FOREIGN KEY("SpirometryProtocol_id") REFERENCES "SpirometryProtocol" (id)
-);CREATE INDEX "ix_SpirometryProtocol_equipment_required_equipment_required" ON "SpirometryProtocol_equipment_required" (equipment_required);CREATE INDEX "ix_SpirometryProtocol_equipment_required_SpirometryProtocol_id" ON "SpirometryProtocol_equipment_required" ("SpirometryProtocol_id");
+);CREATE INDEX "ix_SpirometryProtocol_equipment_required_SpirometryProtocol_id" ON "SpirometryProtocol_equipment_required" ("SpirometryProtocol_id");CREATE INDEX "ix_SpirometryProtocol_equipment_required_equipment_required" ON "SpirometryProtocol_equipment_required" (equipment_required);
 CREATE TABLE "CiliaryFunctionOutput_cell_type_ratios" (
 	"CiliaryFunctionOutput_id" TEXT,
 	cell_type_ratios TEXT,
 	PRIMARY KEY ("CiliaryFunctionOutput_id", cell_type_ratios),
 	FOREIGN KEY("CiliaryFunctionOutput_id") REFERENCES "CiliaryFunctionOutput" (id)
-);CREATE INDEX "ix_CiliaryFunctionOutput_cell_type_ratios_cell_type_ratios" ON "CiliaryFunctionOutput_cell_type_ratios" (cell_type_ratios);CREATE INDEX "ix_CiliaryFunctionOutput_cell_type_ratios_CiliaryFunctionOutput_id" ON "CiliaryFunctionOutput_cell_type_ratios" ("CiliaryFunctionOutput_id");
+);CREATE INDEX "ix_CiliaryFunctionOutput_cell_type_ratios_CiliaryFunctionOutput_id" ON "CiliaryFunctionOutput_cell_type_ratios" ("CiliaryFunctionOutput_id");CREATE INDEX "ix_CiliaryFunctionOutput_cell_type_ratios_cell_type_ratios" ON "CiliaryFunctionOutput_cell_type_ratios" (cell_type_ratios);
 CREATE TABLE "OxidativeStressOutput_protein_oxidation_markers" (
 	"OxidativeStressOutput_id" TEXT,
 	protein_oxidation_markers TEXT,
 	PRIMARY KEY ("OxidativeStressOutput_id", protein_oxidation_markers),
 	FOREIGN KEY("OxidativeStressOutput_id") REFERENCES "OxidativeStressOutput" (id)
-);CREATE INDEX "ix_OxidativeStressOutput_protein_oxidation_markers_protein_oxidation_markers" ON "OxidativeStressOutput_protein_oxidation_markers" (protein_oxidation_markers);CREATE INDEX "ix_OxidativeStressOutput_protein_oxidation_markers_OxidativeStressOutput_id" ON "OxidativeStressOutput_protein_oxidation_markers" ("OxidativeStressOutput_id");
+);CREATE INDEX "ix_OxidativeStressOutput_protein_oxidation_markers_OxidativeStressOutput_id" ON "OxidativeStressOutput_protein_oxidation_markers" ("OxidativeStressOutput_id");CREATE INDEX "ix_OxidativeStressOutput_protein_oxidation_markers_protein_oxidation_markers" ON "OxidativeStressOutput_protein_oxidation_markers" (protein_oxidation_markers);
 CREATE TABLE "EGFRSignalingOutput_pathway_biomarkers" (
 	"EGFRSignalingOutput_id" TEXT,
 	pathway_biomarkers TEXT,
 	PRIMARY KEY ("EGFRSignalingOutput_id", pathway_biomarkers),
 	FOREIGN KEY("EGFRSignalingOutput_id") REFERENCES "EGFRSignalingOutput" (id)
-);CREATE INDEX "ix_EGFRSignalingOutput_pathway_biomarkers_pathway_biomarkers" ON "EGFRSignalingOutput_pathway_biomarkers" (pathway_biomarkers);CREATE INDEX "ix_EGFRSignalingOutput_pathway_biomarkers_EGFRSignalingOutput_id" ON "EGFRSignalingOutput_pathway_biomarkers" ("EGFRSignalingOutput_id");
+);CREATE INDEX "ix_EGFRSignalingOutput_pathway_biomarkers_EGFRSignalingOutput_id" ON "EGFRSignalingOutput_pathway_biomarkers" ("EGFRSignalingOutput_id");CREATE INDEX "ix_EGFRSignalingOutput_pathway_biomarkers_pathway_biomarkers" ON "EGFRSignalingOutput_pathway_biomarkers" (pathway_biomarkers);
 CREATE TABLE "InVivoSubject" (
 	sex TEXT,
 	subject_characteristics TEXT,
@@ -1568,4 +1568,4 @@ CREATE TABLE "Protocol_equipment_required" (
 	equipment_required TEXT,
 	PRIMARY KEY ("Protocol_id", equipment_required),
 	FOREIGN KEY("Protocol_id") REFERENCES "Protocol" (id)
-);CREATE INDEX "ix_Protocol_equipment_required_Protocol_id" ON "Protocol_equipment_required" ("Protocol_id");CREATE INDEX "ix_Protocol_equipment_required_equipment_required" ON "Protocol_equipment_required" (equipment_required);
+);CREATE INDEX "ix_Protocol_equipment_required_equipment_required" ON "Protocol_equipment_required" (equipment_required);CREATE INDEX "ix_Protocol_equipment_required_Protocol_id" ON "Protocol_equipment_required" ("Protocol_id");
