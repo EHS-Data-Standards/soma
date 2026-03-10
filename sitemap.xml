@@ -2,1374 +2,1374 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/about/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/examples/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/ASLAssay/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/ASLOutput/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/AdverseOutcome/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/AdverseOutcomePathway/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Assay/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/AssayContextCapabilityEnum/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/AssayOutputMeasurement/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/BALFSputumAssay/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/BALFSputumOutput/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/BiologicalActionEnum/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/BiologicalOrganizationLevelEnum/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Boolean/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/CFTRFunctionAssay/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/CFTRFunctionOutput/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/CellCultureConditions/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/CellCultureGrowthModeEnum/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/CellCultureMedium/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/CellLine/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/CellularSystem/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/CiliaryFunctionAssay/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/CiliaryFunctionOutput/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/CiliaryMotionPatternEnum/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Container/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Curie/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Date/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/DateOrDatetime/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Datetime/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Decimal/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/DirectionalityEnum/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Double/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/EGFRSignalingAssay/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/EGFRSignalingOutput/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/EvidenceSupportEnum/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/ExposureCondition/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Float/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/FoxJExpressionAssay/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/FoxJExpressionOutput/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/GeneExpressionAssay/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/GeneExpressionOutput/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/GobletCellAssay/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/GobletCellOutput/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/ImagingProtocol/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/InVivoSubject/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Integer/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Jsonpath/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Jsonpointer/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/KeyEvent/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/KeyEventRelationship/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/LungFunctionAssay/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/LungFunctionOutput/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/MediumSupplement/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/ModelSystem/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/MolecularAssayProtocol/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/MolecularInitiatingEvent/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/MucociliaryClearanceAssay/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/MucociliaryClearanceOutput/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/NamedEntity/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/NamedThing/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Ncname/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Nodeidentifier/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Objectidentifier/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/OutcomeLevelEnum/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/OxidativeStressAssay/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/OxidativeStressOutput/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/PopulationSubject/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Protocol/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/QuantitativeUnderstandingEnum/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/QuantityRange/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/QuantityValue/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/SampleTypeEnum/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Sparqlpath/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/SpirometryProtocol/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/StainingProtocol/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/String/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/StudySubject/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/SubstrateTypeEnum/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/SupplementTypeEnum/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Time/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Unit/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Uri/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Uriorcurie/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/active_area_percentage/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/adverse_outcome/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/adverse_outcome_pathways/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/age/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/age_range/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/airway_region/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/akt_phosphorylation/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/alpha_diversity/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/analysis_software/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/anatomical_origin/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/antibodies_used/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/antioxidant_capacity/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/antioxidant_enzyme_activities/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/aopwiki_id/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/asl_assays/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/asl_height_um/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/asl_ph/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/assay_date/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/authentication_method/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/bacterial_load/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/balf_sputum_assays/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/base_medium/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/beat_frequency_hz/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/beta_diversity/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/biological_action/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/biological_object/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/biological_process/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/bronchodilator_agent/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/bronchodilator_dose/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/bronchodilator_response/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/catalase_activity/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/catalog_number/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/cell_culture_growth_mode/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/cell_free_dna/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/cell_line/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/cell_type/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/cell_type_ratios/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/cftr_assays/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/cftr_chloride_secretion/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/cftr_forskolin_response/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/cftr_specific_current/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/cilia_length/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/cilia_per_cell/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/ciliary_beat_amplitude/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/ciliary_function_assays/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/ciliary_motion_patterns/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/clinical_context/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/coating/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/cohort_size/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/collection_date/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/collection_site/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/concentration/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/confluence_level/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/counterstain/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/culture_conditions/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/culture_media/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/days_at_air_liquid_interface/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/days_at_differentiation/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/decline_rate/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/description/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/detection_method/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/detection_method_details/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/disease_state/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/dlco/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/dna_damage_markers/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/donor_count/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/donor_info/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/downstream_event/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/downstream_key_events/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/downstream_kinase_activation/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/egfr_ligand_expression/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/egfr_membrane_localization/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/egfr_phosphorylation_y1068/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/egfr_phosphorylation_y1173/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/egfr_signaling_assays/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/eight_isoprostane_level/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/eight_ohdg_level/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/eosinophil_percentage/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/equipment_required/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/erk_phosphorylation/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/evaporation_prevention/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/evidence_support/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/exposure_agent/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/exposure_concentration/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/exposure_duration/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/fef25_75/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/feno/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/fev1/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/fev1_fvc_ratio/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/fixation_method/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/fluorescent_labeling/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/fluorescent_tracer/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/follows_protocols/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/four_hydroxynonenal_level/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/foxj1_mrna_expression/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/foxj1_nuclear_localization/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/foxj1_positive_cell_percentage/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/foxj1_protein_expression/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/foxj_assays/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/functional_residual_capacity/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/fvc/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/gene_expression_assays/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/gene_expression_method/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/general_procedure/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/glutathione_peroxidase_activity/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/glutathione_ratio/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/goblet_cell_assays/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/goblet_cell_count/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/goblet_cell_percentage/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/goblet_to_ciliated_ratio/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/has_exposure_condition/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/has_specified_output/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/hemoglobin_level/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/humidity_control/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/id/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/il1_beta_concentration/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/il6_concentration/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/il8_concentration/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/imaging_duration/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/imaging_frame_rate/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/imaging_protocol/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/inclusion_criteria/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/informs_on_key_event/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/inhibitor_sensitive_current/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/inhibitor_used/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/institution/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/ion_composition/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/key_event_relationships/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/key_events/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/key_reagents/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/last_updated/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/level_of_biological_organization/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/lipid_peroxidation/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/lot_number/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/lung_compliance/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/lung_elastance/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/lung_function_assays/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/lung_resistance/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/lymphocyte_percentage/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/lysis_buffer/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/macrophage_percentage/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/malondialdehyde_level/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/manufacturer/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/matrix_composition/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/max_value/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/mcc_assays/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/min_value/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/model_species/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/molecular_initiating_event/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/molecular_protocol/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/mrna_level/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/muc5ac_mrna_expression/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/muc5ac_muc5b_ratio/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/muc5ac_protein_expression/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/muc5b_mrna_expression/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/muc5b_protein_expression/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/mucin_protein_concentration/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/mucin_secretion_rate/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/mucus_composition/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/mucus_layer_thickness/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/mucus_viscosity/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/mycoplasma_status/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/name/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/nasal_potential_difference/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/neutrophil_percentage/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/nitrotyrosine_level/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/normalization_method/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/normalization_reference/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/nrf2_activation/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/obi_mapping/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/occurs_in_anatomy/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/occurs_in_cell_type/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/organoid_type/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/osmolality/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/outcome_level/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/oxidative_stress_assays/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/particle_clearance_time/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/particle_size/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/particle_tracking_method/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/passage_number/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/pathway_biomarkers/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/peak_expiratory_flow/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/percent_solids/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/percentage_active_transport/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/percentage_ciliated_cells/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/percentage_positive_cells/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/periciliary_layer_depth/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/phosphorylation_site/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/platform/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/plethysmography_method/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/preparation_date/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/primary_cell/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/primer_sequences/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/protein_carbonyl_content/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/protein_level/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/protein_oxidation_markers/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/protocol_author/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/protocol_type/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/protocol_version/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/protocols/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/publication_reference/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/quality_control_criteria/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/quantitative_understanding/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/reactive_oxygen_species/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/recent_respiratory_illness/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/reference_dataset/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/reference_gene/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/relationship_type/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/replicate_requirements/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/replicates_per_donor/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/residual_volume/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/ros_probe_type/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/sample_collection_method/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/sample_type/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/seeding_density/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/serum_concentration/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/serum_type/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/sex/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/size_range/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/soma/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/sop_reference/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/spatial_resolution/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/spirometry_protocol/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/spirometry_standard/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/staining_protocol/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/staining_type/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/stimulation_agent/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/stressors/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/study_subject/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/sub_protocols/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/subject_characteristics/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/subject_type/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/subjects/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/substrate_type/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/superoxide_dismutase_activity/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/supplement_type/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/supplements/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/supplier/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/sweat_chloride_concentration/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/target_cell_type/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/target_gene/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/target_molecule/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/temperature_control/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/timing_post_exposure/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/tissue_origin/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/tnf_alpha_concentration/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/total_antioxidant_capacity/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/total_cell_count/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/total_egfr_protein/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/total_lung_capacity/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/total_protein_concentration/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/transport_directionality/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/transport_rate/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/unit/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/upstream_event/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/upstream_key_events/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/validation_status/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/value/</loc>
-         <lastmod>2026-03-09</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
 </urlset>
