@@ -1,0 +1,858 @@
+# =============================================================================
+# Montgomery et al. (2020) - Genome-Wide Analysis Reveals Mucociliary
+# Remodeling of the Nasal Airway Epithelium Induced by Urban PM2.5
+# =============================================================================
+#
+# Source: Am J Respir Cell Mol Biol. 2020;63(2):172-184
+# DOI: 10.1165/rcmb.2019-0454OC
+# PMCID: PMC7397762
+#
+# Study Design:
+#   - In vitro: Primary human nasal airway epithelial cells (AECs) at ALI
+#   - Donors: GALA II childhood asthma study (healthy + asthmatic)
+#   - Exposure: PM2.5 organic extract (OE) from California urban sites
+#   - Doses: Low (0.045 ug/cm2), Moderate (0.45 ug/cm2), High (4.5 ug/cm2)
+#   - Acute protocol: 2 stimulations 24h apart, harvest 24h after second
+#   - Chronic protocol: 5 stimulations over 5 days
+#
+# Key findings from paper:
+#   - Moderate OE: 424 DEGs (281 up, 143 down), CYP1A1 LFC=6.21
+#   - AhR signaling activation, IL-1 inflammatory program
+#   - MUC5AC upregulation (LFC=0.90), mucus secretory cell enrichment
+#   - High OE: 1296 DEGs, ciliary gene downregulation
+#   - Chronic OE: MUC5AC+ cells FC=2.88, FOXJ1+ nuclei 75% decrease
+#   - SPDEF protein 1.5-fold increase, mucin secretion remodeling
+#
+# =============================================================================
+
+# =============================================================================
+# PROTOCOLS
+# =============================================================================
+
+protocols:
+  - id: "PROTOCOL:montgomery-rnaseq-001"
+    name: "Whole transcriptome RNA-seq protocol"
+    equipment_required:
+      - "Illumina NovaSeq 6000"
+      - "KAPA mRNA HyperPrep kit (Roche)"
+
+  - id: "PROTOCOL:montgomery-qpcr-001"
+    name: "qRT-PCR validation protocol"
+    equipment_required:
+      - "Real-time PCR system"
+
+  - id: "PROTOCOL:montgomery-wb-001"
+    name: "Western blot for SPDEF protein"
+    equipment_required:
+      - "SDS-PAGE apparatus"
+      - "Densitometry imaging system"
+
+  - id: "PROTOCOL:montgomery-if-001"
+    name: "Immunofluorescence for MUC5AC/MUC5B/FOXJ1"
+    equipment_required:
+      - "Confocal microscope"
+      - "Anti-MUC5AC antibody"
+      - "Anti-MUC5B antibody"
+      - "Anti-FOXJ1 antibody"
+      - "Anti-acetylated alpha-tubulin antibody"
+      - "DAPI"
+
+  - id: "PROTOCOL:montgomery-elisa-001"
+    name: "Colorimetric ELISA for mucin secretion"
+    equipment_required:
+      - "Plate reader (490 nm)"
+      - "Anti-MUC5AC ELISA"
+      - "Anti-MUC5B ELISA"
+
+  - id: "PROTOCOL:montgomery-abpas-001"
+    name: "Alcian blue-PAS staining for mucins"
+    equipment_required:
+      - "Histological staining reagents (AB-PAS)"
+      - "Light microscope"
+
+# =============================================================================
+# GENE EXPRESSION ASSAYS - Acute Stimulation (RNA-seq validated)
+# =============================================================================
+
+gene_expression_assays:
+  # CYP1A1 - AhR pathway activation (moderate OE dose)
+  - id: "GE:montgomery-cyp1a1-mod"
+    name: "CYP1A1 mRNA - moderate OE dose"
+    description: "CYP1A1 induction by PM2.5 organic extract at moderate dose (0.45 ug/cm2). LFC=6.21, the most highly upregulated gene. Marker of AhR pathway activation by PAH components."
+    target_gene: "PR:000005470"
+    gene_expression_method: "RNA-seq (KAPA mRNA HyperPrep, NovaSeq 6000)"
+    normalization_reference: "DESeq2 median of ratios"
+    has_specified_output:
+      id: "GE:montgomery-cyp1a1-mod-output"
+      name: "CYP1A1 moderate OE measurement"
+      mrna_level:
+        value: "6.21"
+        unit:
+          id: "UO:0000193"
+          name: "log2 fold change"
+    assay_date: "2020-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:montgomery-mod-oe"
+        name: "PM2.5 organic extract 0.45 ug/cm2 (moderate dose)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "0.45"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "48"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:mie-ahr-activation"
+      name: "AhR pathway activation"
+      biological_action: activated
+      level_of_biological_organization: molecular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:montgomery-culture-001"
+      name: "Primary nasal AEC ALI culture - GALA II donors"
+      cell_type:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      anatomical_origin:
+        id: "UBERON:0001707"
+        name: "nasal cavity"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      primary_cell:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      cell_culture_growth_mode: air_liquid_interface
+      days_at_differentiation: 28
+      donor_info: "12 donors (6 healthy, 6 asthmatic) from GALA II childhood asthma study"
+      substrate_type: transwell_insert
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-rnaseq-001"
+        name: "RNA-seq with KAPA mRNA HyperPrep"
+        detection_method: "Illumina NovaSeq 6000 sequencing"
+        normalization_method: "DESeq2 median of ratios"
+
+  # IL1A - inflammatory cytokine (moderate OE)
+  - id: "GE:montgomery-il1a-mod"
+    name: "IL1A mRNA - moderate OE dose"
+    description: "IL1A upregulation by PM2.5 OE at moderate dose. LFC=0.91. Identified as hub cytokine driving broader epithelial inflammatory response."
+    target_gene: "PR:000001551"
+    gene_expression_method: "RNA-seq"
+    normalization_reference: "DESeq2 median of ratios"
+    has_specified_output:
+      id: "GE:montgomery-il1a-mod-output"
+      name: "IL1A moderate OE measurement"
+      mrna_level:
+        value: "0.91"
+        unit:
+          id: "UO:0000193"
+          name: "log2 fold change"
+    assay_date: "2020-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:montgomery-mod-oe"
+        name: "PM2.5 organic extract 0.45 ug/cm2 (moderate dose)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "0.45"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "48"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke-il1-inflammation"
+      name: "IL-1 inflammatory program activation"
+      biological_action: increased
+      level_of_biological_organization: molecular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:montgomery-culture-001"
+      name: "Primary nasal AEC ALI culture - GALA II donors"
+      cell_type:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-rnaseq-001"
+        name: "RNA-seq with KAPA mRNA HyperPrep"
+        detection_method: "Illumina NovaSeq 6000 sequencing"
+
+  # IL1B - inflammatory cytokine (moderate OE)
+  - id: "GE:montgomery-il1b-mod"
+    name: "IL1B mRNA - moderate OE dose"
+    description: "IL1B upregulation by PM2.5 OE at moderate dose. LFC=1.22. Hub cytokine in inflammatory network driving mucus metaplasia."
+    target_gene: "PR:000001554"
+    gene_expression_method: "RNA-seq"
+    normalization_reference: "DESeq2 median of ratios"
+    has_specified_output:
+      id: "GE:montgomery-il1b-mod-output"
+      name: "IL1B moderate OE measurement"
+      mrna_level:
+        value: "1.22"
+        unit:
+          id: "UO:0000193"
+          name: "log2 fold change"
+    assay_date: "2020-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:montgomery-mod-oe"
+        name: "PM2.5 organic extract 0.45 ug/cm2 (moderate dose)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "0.45"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "48"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke-il1-inflammation"
+      name: "IL-1 inflammatory program activation"
+      biological_action: increased
+      level_of_biological_organization: molecular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:montgomery-culture-001"
+      name: "Primary nasal AEC ALI culture - GALA II donors"
+      cell_type:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-rnaseq-001"
+        name: "RNA-seq with KAPA mRNA HyperPrep"
+        detection_method: "Illumina NovaSeq 6000 sequencing"
+
+  # SPDEF - mucus metaplasia TF (chronic OE, qPCR)
+  - id: "GE:montgomery-spdef-chronic"
+    name: "SPDEF mRNA - chronic OE stimulation"
+    description: "SPDEF upregulation after 5-day chronic PM2.5 OE stimulation. LFC=0.84 (p=3.19e-2). Master transcription factor for mucus metaplasia."
+    target_gene: "PR:000014070"
+    gene_expression_method: "qRT-PCR"
+    normalization_reference: "housekeeping gene"
+    has_specified_output:
+      id: "GE:montgomery-spdef-chronic-output"
+      name: "SPDEF chronic OE measurement"
+      mrna_level:
+        value: "0.84"
+        unit:
+          id: "UO:0000193"
+          name: "log2 fold change"
+      protein_level:
+        value: "1.5"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+    assay_date: "2020-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:montgomery-chronic-oe"
+        name: "PM2.5 organic extract chronic 5-day stimulation (high OE dose)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "4.5"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "120"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke2-goblet-hyperplasia"
+      name: "Goblet cell hyperplasia"
+      biological_action: increased
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:montgomery-culture-chronic"
+      name: "Primary nasal AEC ALI culture - chronic stimulation"
+      cell_type:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      anatomical_origin:
+        id: "UBERON:0001707"
+        name: "nasal cavity"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      cell_culture_growth_mode: air_liquid_interface
+      days_at_differentiation: 28
+      donor_info: "4-5 donors from GALA II study"
+      substrate_type: transwell_insert
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-qpcr-001"
+        name: "qRT-PCR validation"
+        detection_method: "qRT-PCR"
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-wb-001"
+        name: "Western blot for SPDEF protein"
+        detection_method: "densitometry"
+        normalization_method: "actin loading control"
+
+  # SCGB1A1 - club cell marker downregulation (chronic OE)
+  - id: "GE:montgomery-scgb1a1-chronic"
+    name: "SCGB1A1 mRNA - chronic OE stimulation"
+    description: "SCGB1A1 (club cell marker) downregulation after chronic PM2.5 OE. LFC=-1.51 (p=2.94e-2). Indicates loss of club cell identity."
+    target_gene: "PR:000014857"
+    gene_expression_method: "qRT-PCR"
+    normalization_reference: "housekeeping gene"
+    has_specified_output:
+      id: "GE:montgomery-scgb1a1-chronic-output"
+      name: "SCGB1A1 chronic OE measurement"
+      mrna_level:
+        value: "-1.51"
+        unit:
+          id: "UO:0000193"
+          name: "log2 fold change"
+    assay_date: "2020-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:montgomery-chronic-oe"
+        name: "PM2.5 organic extract chronic 5-day stimulation (high OE dose)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "4.5"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "120"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke-club-cell-loss"
+      name: "Club cell marker loss"
+      biological_action: decreased
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:montgomery-culture-chronic"
+      name: "Primary nasal AEC ALI culture - chronic stimulation"
+      cell_type:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-qpcr-001"
+        name: "qRT-PCR validation"
+        detection_method: "qRT-PCR"
+
+  # MUC5AC mRNA - acute moderate OE (RNA-seq)
+  - id: "GE:montgomery-muc5ac-mod"
+    name: "MUC5AC mRNA - moderate OE dose (RNA-seq)"
+    description: "MUC5AC upregulation by PM2.5 OE at moderate dose. LFC=0.90. Part of mucus secretory cell enrichment (Padj=1.19e-74)."
+    target_gene: "PR:000011230"
+    gene_expression_method: "RNA-seq"
+    normalization_reference: "DESeq2 median of ratios"
+    has_specified_output:
+      id: "GE:montgomery-muc5ac-mod-output"
+      name: "MUC5AC moderate OE RNA-seq measurement"
+      mrna_level:
+        value: "0.90"
+        unit:
+          id: "UO:0000193"
+          name: "log2 fold change"
+    assay_date: "2020-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:montgomery-mod-oe"
+        name: "PM2.5 organic extract 0.45 ug/cm2 (moderate dose)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "0.45"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "48"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke2-goblet-hyperplasia"
+      name: "Goblet cell hyperplasia"
+      biological_action: increased
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:montgomery-culture-001"
+      name: "Primary nasal AEC ALI culture - GALA II donors"
+      cell_type:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-rnaseq-001"
+        name: "RNA-seq with KAPA mRNA HyperPrep"
+        detection_method: "Illumina NovaSeq 6000 sequencing"
+
+  # MUC2 mRNA - acute moderate OE (RNA-seq)
+  - id: "GE:montgomery-muc2-mod"
+    name: "MUC2 mRNA - moderate OE dose (RNA-seq)"
+    description: "MUC2 upregulation by PM2.5 OE at moderate dose. LFC=1.34."
+    target_gene: "PR:000011228"
+    gene_expression_method: "RNA-seq"
+    normalization_reference: "DESeq2 median of ratios"
+    has_specified_output:
+      id: "GE:montgomery-muc2-mod-output"
+      name: "MUC2 moderate OE RNA-seq measurement"
+      mrna_level:
+        value: "1.34"
+        unit:
+          id: "UO:0000193"
+          name: "log2 fold change"
+    assay_date: "2020-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:montgomery-mod-oe"
+        name: "PM2.5 organic extract 0.45 ug/cm2 (moderate dose)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "0.45"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "48"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke2-goblet-hyperplasia"
+      name: "Goblet cell hyperplasia"
+      biological_action: increased
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:montgomery-culture-001"
+      name: "Primary nasal AEC ALI culture - GALA II donors"
+      cell_type:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-rnaseq-001"
+        name: "RNA-seq with KAPA mRNA HyperPrep"
+        detection_method: "Illumina NovaSeq 6000 sequencing"
+
+# =============================================================================
+# GOBLET CELL ASSAYS - Chronic Stimulation Results
+# =============================================================================
+
+goblet_cell_assays:
+  # MUC5AC chronic OE - mRNA, protein (IF), and secretion
+  - id: "GCM:montgomery-muc5ac-chronic"
+    name: "MUC5AC expression and secretion - chronic OE"
+    description: "Chronic 5-day PM2.5 OE stimulation. MUC5AC mRNA LFC=1.72 (p=1.27e-2). MUC5AC+ cells FC=2.88 (p=3.19e-2). MUC5AC secretion FC=2.2 (p=1.54e-2). All 4 donors showed increase in MUC5AC+ cells."
+    has_specified_output:
+      id: "GCM:montgomery-muc5ac-chronic-output"
+      name: "MUC5AC chronic OE measurements"
+      muc5ac_mrna_expression:
+        value: "1.72"
+        unit:
+          id: "UO:0000193"
+          name: "log2 fold change"
+      muc5ac_protein_expression:
+        value: "2.88"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+      mucin_secretion_rate:
+        value: "2.2"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+    assay_date: "2020-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:montgomery-chronic-oe"
+        name: "PM2.5 organic extract chronic 5-day stimulation (high OE dose)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "4.5"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "120"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke2-goblet-hyperplasia"
+      name: "Goblet cell hyperplasia and mucin hypersecretion"
+      biological_action: increased
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:montgomery-culture-chronic"
+      name: "Primary nasal AEC ALI culture - chronic stimulation"
+      cell_type:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      anatomical_origin:
+        id: "UBERON:0001707"
+        name: "nasal cavity"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      cell_culture_growth_mode: air_liquid_interface
+      days_at_differentiation: 28
+      donor_info: "4-5 donors from GALA II study"
+      substrate_type: transwell_insert
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-qpcr-001"
+        name: "qRT-PCR for MUC5AC mRNA"
+        detection_method: "qRT-PCR"
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:montgomery-if-001"
+        name: "Immunofluorescence for MUC5AC protein"
+        staining_type: "immunofluorescence"
+        antibodies_used:
+          - "anti-MUC5AC"
+        detection_method: "confocal microscopy maximum intensity projection"
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-elisa-001"
+        name: "ATP-induced mucin secretion ELISA"
+        detection_method: "colorimetric ELISA at 490 nm"
+
+  # MUC5B chronic OE - decreased expression and secretion
+  - id: "GCM:montgomery-muc5b-chronic"
+    name: "MUC5B expression and secretion - chronic OE"
+    description: "Chronic 5-day PM2.5 OE stimulation. MUC5B mRNA LFC=-0.72 (p=9.74e-2, trend). MUC5B+ cells FC=0.74 (p=8.84e-2). MUC5B secretion FC=0.81 (p=3.59e-3). All 4 donors showed MUC5B+ cell decrease."
+    has_specified_output:
+      id: "GCM:montgomery-muc5b-chronic-output"
+      name: "MUC5B chronic OE measurements"
+      muc5b_mrna_expression:
+        value: "-0.72"
+        unit:
+          id: "UO:0000193"
+          name: "log2 fold change"
+      muc5b_protein_expression:
+        value: "0.74"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+    assay_date: "2020-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:montgomery-chronic-oe"
+        name: "PM2.5 organic extract chronic 5-day stimulation (high OE dose)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "4.5"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "120"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke2-goblet-hyperplasia"
+      name: "Goblet cell hyperplasia and mucin hypersecretion"
+      biological_action: increased
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:montgomery-culture-chronic"
+      name: "Primary nasal AEC ALI culture - chronic stimulation"
+      cell_type:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-qpcr-001"
+        name: "qRT-PCR for MUC5B mRNA"
+        detection_method: "qRT-PCR"
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:montgomery-if-001"
+        name: "Immunofluorescence for MUC5B protein"
+        staining_type: "immunofluorescence"
+        antibodies_used:
+          - "anti-MUC5B"
+        detection_method: "confocal microscopy maximum intensity projection"
+
+  # AB-PAS mucin-positive cells - chronic OE
+  - id: "GCM:montgomery-abpas-chronic"
+    name: "Mucin-positive cells (AB-PAS) - chronic OE"
+    description: "AB-PAS staining after chronic 5-day PM2.5 OE stimulation. Average FC=2.01 in mucin-positive cells (p=6.52e-2). 3 of 4 donors showed increase."
+    has_specified_output:
+      id: "GCM:montgomery-abpas-chronic-output"
+      name: "AB-PAS chronic OE measurements"
+      goblet_cell_percentage:
+        value: "2.01"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+    assay_date: "2020-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:montgomery-chronic-oe"
+        name: "PM2.5 organic extract chronic 5-day stimulation (high OE dose)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "4.5"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "120"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke2-goblet-hyperplasia"
+      name: "Goblet cell hyperplasia"
+      biological_action: increased
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:montgomery-culture-chronic"
+      name: "Primary nasal AEC ALI culture - chronic stimulation"
+      cell_type:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:montgomery-abpas-001"
+        name: "Alcian blue-PAS staining for mucopolysaccharides"
+        staining_type: "AB-PAS"
+
+  # MUC5AC/MUC5B ratio - acute moderate OE
+  - id: "GCM:montgomery-ratio-mod"
+    name: "MUC5AC/MUC5B ratio shift - moderate OE dose"
+    description: "MUC5AC/MUC5B ratio significantly increased at moderate OE dose (p=3.19e-2). MUC5AC LFC=0.90 with MUC5B trending down (LFC=-0.79 at high dose, Padj=1.0e-1)."
+    has_specified_output:
+      id: "GCM:montgomery-ratio-mod-output"
+      name: "MUC5AC/MUC5B ratio moderate OE"
+      muc5ac_mrna_expression:
+        value: "0.90"
+        unit:
+          id: "UO:0000193"
+          name: "log2 fold change"
+      muc5b_mrna_expression:
+        value: "-0.79"
+        unit:
+          id: "UO:0000193"
+          name: "log2 fold change"
+    assay_date: "2020-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:montgomery-high-oe"
+        name: "PM2.5 organic extract 4.5 ug/cm2 (high dose)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "4.5"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "48"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke2-goblet-hyperplasia"
+      name: "Goblet cell hyperplasia"
+      biological_action: increased
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:montgomery-culture-001"
+      name: "Primary nasal AEC ALI culture - GALA II donors"
+      cell_type:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-rnaseq-001"
+        name: "RNA-seq with KAPA mRNA HyperPrep"
+        detection_method: "Illumina NovaSeq 6000 sequencing"
+
+# =============================================================================
+# FOXJ1 EXPRESSION ASSAYS - Chronic Stimulation
+# =============================================================================
+
+foxj_assays:
+  # FOXJ1 mRNA - chronic OE
+  - id: "FOXJ:montgomery-chronic"
+    name: "FOXJ1 expression - chronic OE stimulation"
+    description: "FOXJ1 downregulation after chronic 5-day PM2.5 OE. mRNA LFC=-0.36 (p=1.92e-2). FOXJ1+ nuclei decreased 75% vs mock (p=1.20e-2). n=3 donors. Weaker acetylated alpha-tubulin staining observed."
+    has_specified_output:
+      id: "FOXJ:montgomery-chronic-output"
+      name: "FOXJ1 chronic OE measurements"
+      foxj1_mrna_expression:
+        value: "-0.36"
+        unit:
+          id: "UO:0000193"
+          name: "log2 fold change"
+      foxj1_positive_cell_percentage:
+        value: "25"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+    assay_date: "2020-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:montgomery-chronic-oe"
+        name: "PM2.5 organic extract chronic 5-day stimulation (high OE dose)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "4.5"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "120"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke-altered-ciliogenesis"
+      name: "Altered ciliogenesis"
+      biological_action: decreased
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:montgomery-culture-chronic"
+      name: "Primary nasal AEC ALI culture - chronic stimulation"
+      cell_type:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      anatomical_origin:
+        id: "UBERON:0001707"
+        name: "nasal cavity"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      primary_cell:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      cell_culture_growth_mode: air_liquid_interface
+      days_at_differentiation: 28
+      donor_info: "3 donors from GALA II study"
+      substrate_type: transwell_insert
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-qpcr-001"
+        name: "qRT-PCR for FOXJ1 mRNA"
+        detection_method: "qRT-PCR"
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:montgomery-if-001"
+        name: "Immunofluorescence for FOXJ1 nuclear localization"
+        staining_type: "immunofluorescence"
+        antibodies_used:
+          - "anti-FOXJ1"
+          - "anti-acetylated alpha-tubulin"
+        counterstain: "DAPI"
+        detection_method: "confocal microscopy"
+
+  # FOXJ1 high OE acute dose - ciliogenesis TF downregulation (RNA-seq)
+  - id: "FOXJ:montgomery-high-acute"
+    name: "FOXJ1 and ciliogenesis TFs - high OE acute dose"
+    description: "At high OE dose (4.5 ug/cm2), ciliary assembly module mean expression downregulated (p=4.20e-4). Ciliogenesis TFs FOXJ1, MCIDAS, MYB, TP73, RFX2, RFX3 all decreased. Ciliated cell marker enrichment Padj=3.57e-118."
+    has_specified_output:
+      id: "FOXJ:montgomery-high-acute-output"
+      name: "FOXJ1 high OE measurements"
+      foxj1_mrna_expression:
+        value: "-0.36"
+        unit:
+          id: "UO:0000193"
+          name: "log2 fold change"
+    assay_date: "2020-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:montgomery-high-oe"
+        name: "PM2.5 organic extract 4.5 ug/cm2 (high dose)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "4.5"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "48"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke-altered-ciliogenesis"
+      name: "Altered ciliogenesis"
+      biological_action: decreased
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:montgomery-culture-high"
+      name: "Primary nasal AEC ALI culture - high OE dose"
+      cell_type:
+        id: "CL:0002603"
+        name: "nasal epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      cell_culture_growth_mode: air_liquid_interface
+      days_at_differentiation: 28
+      donor_info: "5 donors from GALA II study"
+      substrate_type: transwell_insert
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:montgomery-rnaseq-001"
+        name: "RNA-seq with KAPA mRNA HyperPrep"
+        detection_method: "Illumina NovaSeq 6000 sequencing"

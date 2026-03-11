@@ -275,6 +275,9 @@ _copy-artifacts:
   cp {{pymodel}}/{{schema_name}}_pydantic.py docs/artifacts/
   cp {{pymodel}}/{{schema_name}}.py docs/artifacts/
   cp {{dest}}/excel/{{schema_name}}.xlsx docs/artifacts/
+  @echo "Copying paper-derived SOMA data workbooks..."
+  -cp {{src}}/docs/Montgomery2020_PM25_Mucociliary_SOMA.xlsx docs/artifacts/
+  -cp {{src}}/docs/Liu2024_PM25_CFTR_SOMA.xlsx docs/artifacts/
   @echo "Artifacts copied successfully!"
 
 # ============== Include project-specific recipes ==============
