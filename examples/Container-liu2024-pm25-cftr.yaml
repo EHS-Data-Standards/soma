@@ -1,0 +1,920 @@
+# =============================================================================
+# Liu et al. (2024) - PM2.5 Exposure Inhibits Transepithelial Anion
+# Short-circuit Current by Downregulating P2Y2 Receptor/CFTR Pathway
+# =============================================================================
+#
+# Source: Int J Med Sci. 2024;21(10):1929-1944
+# DOI: 10.7150/ijms.96777
+#
+# Study Design:
+#   - In vitro: Calu-3 human airway epithelial cells, submerged monolayer
+#     on transwell plates (Corning 3801)
+#   - In vivo: Male Balb/c mice (6-8 weeks), OVA-induced asthma model
+#   - PM2.5 source: Guangzhou, China (July-November 2019)
+#   - In vitro exposure: PM2.5 100 ug/mL in serum-free DMEM/F12
+#   - Treatment groups: Control, ATP (10 uM), PM2.5, ATP+PM2.5, Suramin (100 uM)
+#   - In vivo: OVA sensitization (days 1,7,14) + challenge (days 21-27)
+#     with PM2.5 (100 ug/mL), ATP (50 mg/kg), or Suramin (50 mg/kg) via nasal instillation
+#
+# Key findings:
+#   - PM2.5 downregulates P2Y2R and CFTR protein expression (p<0.05)
+#   - PM2.5 inhibits ATP-induced short-circuit current (Isc)
+#   - PM2.5 reduces ASL volume
+#   - PM2.5 decreases cytoplasmic calcium mobilization
+#   - In vivo: PM2.5+OVA increases airway hyperresponsiveness (sRaw)
+#   - In vivo: PM2.5+OVA increases Th2 cytokines (IL-4, IL-5, IL-13)
+#   - In vivo: PM2.5+OVA increases goblet cell hyperplasia (PAS staining)
+#   - In vivo: PM2.5+OVA decreases P2Y2R and CFTR in lung tissue (IHC, WB)
+#
+# =============================================================================
+
+# =============================================================================
+# PROTOCOLS
+# =============================================================================
+
+protocols:
+  - id: "PROTOCOL:liu-ussing-001"
+    name: "Ussing chamber short-circuit current protocol"
+    description: "Ussing chamber electrophysiology (Kingtech, Beijing). K-H solutions with mannitol (luminal) and glucose (basal). Equilibrated at 37C, 95% O2/5% CO2. Electrode validation: current >60 uA required."
+    equipment_required:
+      - "Ussing chamber (Kingtech, Beijing)"
+      - "Electrophysiology detection equipment"
+      - "K-H solution A (NaCl 120mM, NaHCO3 25mM, KH2PO4 3.3mM, K2HPO4 0.128mM, MgCl2 1.2mM, CaCl2 1.2mM, mannitol 10mM)"
+      - "K-H solution B (glucose 10mM replacing mannitol)"
+
+  - id: "PROTOCOL:liu-wb-001"
+    name: "Western blot for P2Y2R and CFTR"
+    description: "RIPA lysis, BCA quantification, 10% SDS-PAGE (40ug/lane), PVDF transfer, 5% skim milk block 1.5h. Primary: P2Y2R (Abcam ab272891, 1:1000), CFTR (CST 78335S, 1:1000). Secondary: anti-rabbit IgG HRP (CST 7074S, 1:2500). ChemiScope imaging."
+    equipment_required:
+      - "SDS-PAGE apparatus"
+      - "PVDF membrane (Millipore)"
+      - "ChemiScope imaging (Clinx, Shanghai)"
+
+  - id: "PROTOCOL:liu-qpcr-001"
+    name: "qRT-PCR for P2Y2R"
+    description: "TRIzol RNA extraction, Takara cDNA synthesis. P2Y2R-F: 5'-CCTGAGAGGAGAAGCGCAG-3', P2Y2R-R: 5'-GAACTCTGCGGGAAACAGGA-3'. GAPDH-F: 5'-AGATCCCTCCAAAATCAAGTGG-3', GAPDH-R: 5'-GGCAGAGATGATGACCCTTTT-3'."
+    equipment_required:
+      - "Real-time PCR system"
+      - "TRIzol reagent (Sigma)"
+      - "Reverse transcription kit (Takara)"
+
+  - id: "PROTOCOL:liu-flowcyt-001"
+    name: "Fluo-3/AM calcium measurement by flow cytometry"
+    description: "Trypsin digestion (no EDTA), Fluo-3/AM probe (Beyotime) 0.5uL, 37C 30min, FITC channel. Ex 488nm, Em 525nm."
+    equipment_required:
+      - "BD Accuri C6 Plus flow cytometer"
+      - "Fluo-3/AM fluorescent probe (Beyotime)"
+      - "FlowJo v10.0"
+
+  - id: "PROTOCOL:liu-ihc-001"
+    name: "Immunohistochemistry for P2Y2R and CFTR"
+    description: "4% PFA fixation 24h, paraffin 5um sections. P2Y2R (1:500, Abcam), CFTR (1:1000, Abclone). Mouse anti-rabbit IgG + SP complex (ZSGB-BIO), 37C 40min. DAB 0.05% visualization."
+    equipment_required:
+      - "Microtome"
+      - "DAB substrate (ZSGB-BIO, Beijing)"
+
+  - id: "PROTOCOL:liu-pas-001"
+    name: "PAS staining for goblet cells"
+    description: "Standard PAS staining on 5um paraffin sections. Quantification by percentage of PAS-positive cells."
+    equipment_required:
+      - "PAS staining reagents (Sigma)"
+      - "Light microscope"
+
+  - id: "PROTOCOL:liu-elisa-001"
+    name: "ELISA for Th2 cytokines in BALF"
+    description: "Mouse ELISA kits (Absin, Shanghai) for IL-4, IL-5, IL-13. Per manufacturer instructions."
+    equipment_required:
+      - "ELISA plate reader"
+      - "Mouse IL-4 ELISA kit (Absin)"
+      - "Mouse IL-5 ELISA kit (Absin)"
+      - "Mouse IL-13 ELISA kit (Absin)"
+
+  - id: "PROTOCOL:liu-lungfx-001"
+    name: "Whole-body plethysmography with methacholine challenge"
+    description: "BUXCO whole-body chamber (DSI, Minnesota). Methacholine aerosol at 0, 5, 10, 20 mg/mL. sRaw (cmH2O/mL/s) measured. FLexi Vent software analysis."
+    equipment_required:
+      - "BUXCO whole-body plethysmograph (DSI, Minnesota)"
+      - "Methacholine nebulizer"
+
+# =============================================================================
+# CFTR FUNCTION ASSAYS - Ussing Chamber (In Vitro, Calu-3)
+# =============================================================================
+
+cftr_assays:
+  # Control - ATP-induced Isc
+  - id: "CFTR:liu-control-24h"
+    name: "CFTR Isc - Control + ATP 24h"
+    description: "ATP-induced transepithelial short-circuit current in control Calu-3 cells at 24h. Baseline Isc stable. ATP (10 uM, side A) induced rapid Isc peak."
+    stimulation_agent: "ATP 10 uM"
+    has_specified_output:
+      id: "CFTR:liu-control-24h-output"
+      name: "Control Isc measurement"
+      cftr_chloride_secretion:
+        value: "1.0"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+    assay_date: "2024-01-01"
+    informs_on_key_event:
+      id: "KE:ke-decreased-cftr"
+      name: "Decreased CFTR function"
+      biological_action: decreased
+      level_of_biological_organization: molecular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:liu-calu3-001"
+      name: "Calu-3 submerged monolayer on transwell"
+      cell_type:
+        id: "CL:0000066"
+        name: "epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      cell_line:
+        id: "CLO:0003679"
+        name: "Calu-3"
+      cell_culture_growth_mode: adherent
+      days_at_differentiation: 21
+      substrate_type: transwell_insert
+      culture_conditions:
+        id: "soma:liu-conditions-001"
+        name: "Calu-3 submerged culture"
+        substrate_type: transwell_insert
+        cell_culture_growth_mode: adherent
+        replicates_per_donor: 3
+      culture_media:
+        id: "soma:liu-media-001"
+        name: "DMEM + 10% FBS"
+        base_medium: "DMEM"
+        manufacturer: "Gibco"
+        supplements:
+          - id: "soma:liu-supp-fbs"
+            name: "Fetal bovine serum"
+            supplement_type: growth_factor
+            concentration:
+              value: "10"
+              unit:
+                id: "UO:0000187"
+                name: "percent"
+          - id: "soma:liu-supp-pen-strep"
+            name: "Penicillin/streptomycin"
+            supplement_type: antibiotic
+            concentration:
+              value: "1"
+              unit:
+                id: "UO:0000187"
+                name: "percent"
+    follows_protocols:
+      - id: "PROTOCOL:liu-ussing-001"
+        name: "Ussing chamber short-circuit current protocol"
+
+  # PM2.5 exposed - ATP-induced Isc significantly decreased
+  - id: "CFTR:liu-pm25-24h"
+    name: "CFTR Isc - PM2.5 + ATP 24h"
+    description: "ATP-induced Isc after 24h PM2.5 exposure (100 ug/mL). PM2.5 group showed significantly slower Isc increase than control (p<0.05). Average rate (dIsc/dT) decreased significantly."
+    stimulation_agent: "ATP 10 uM"
+    has_specified_output:
+      id: "CFTR:liu-pm25-24h-output"
+      name: "PM2.5 Isc measurement"
+      cftr_chloride_secretion:
+        value: "0.6"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+    assay_date: "2024-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-pm25-100ug-24h"
+        name: "PM2.5 100 ug/mL for 24 hours"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "100"
+          unit:
+            id: "UO:0000064"
+            name: "microgram per milliliter"
+        exposure_duration:
+          value: "24"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke-decreased-cftr"
+      name: "Decreased CFTR function"
+      biological_action: decreased
+      level_of_biological_organization: molecular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:liu-calu3-001"
+      name: "Calu-3 submerged monolayer on transwell"
+      cell_type:
+        id: "CL:0000066"
+        name: "epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      cell_line:
+        id: "CLO:0003679"
+        name: "Calu-3"
+      cell_culture_growth_mode: adherent
+      days_at_differentiation: 21
+      substrate_type: transwell_insert
+    follows_protocols:
+      - id: "PROTOCOL:liu-ussing-001"
+        name: "Ussing chamber short-circuit current protocol"
+
+  # Mouse trachea Isc - Control
+  - id: "CFTR:liu-mouse-control"
+    name: "CFTR Isc - Mouse trachea control"
+    description: "ATP-induced Isc in control mouse tracheal tissue (8mm x 8mm). ATP 100 uM applied to luminal side."
+    stimulation_agent: "ATP 100 uM"
+    has_specified_output:
+      id: "CFTR:liu-mouse-control-output"
+      name: "Mouse trachea control Isc"
+      cftr_chloride_secretion:
+        value: "1.0"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+    assay_date: "2024-01-01"
+    informs_on_key_event:
+      id: "KE:ke-decreased-cftr"
+      name: "Decreased CFTR function"
+      biological_action: decreased
+      level_of_biological_organization: molecular
+    study_subject:
+      subject_type: InVivoSubject
+      id: "SUBJECT:liu-mouse-control"
+      name: "Control Balb/c mouse"
+      model_species:
+        id: "NCBITaxon:10090"
+        name: "Mus musculus"
+      age:
+        value: "7"
+        unit:
+          id: "UO:0000034"
+          name: "week"
+      sex: "male"
+      subject_characteristics: "SPF grade, 18-22g, saline control group"
+      sample_type: biopsy
+    follows_protocols:
+      - id: "PROTOCOL:liu-ussing-001"
+        name: "Ussing chamber short-circuit current - mouse trachea"
+
+  # Mouse trachea Isc - PM2.5 decreased
+  - id: "CFTR:liu-mouse-pm25"
+    name: "CFTR Isc - Mouse trachea PM2.5"
+    description: "ATP-induced Isc in PM2.5-exposed mouse trachea. dIsc significantly lower vs control (p<0.05). Average rate (dIsc/dT) decreased vs control (p<0.05)."
+    stimulation_agent: "ATP 100 uM"
+    has_specified_output:
+      id: "CFTR:liu-mouse-pm25-output"
+      name: "Mouse trachea PM2.5 Isc"
+      cftr_chloride_secretion:
+        value: "0.55"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+    assay_date: "2024-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-mouse-pm25-nasal"
+        name: "PM2.5 100 ug/mL nasal instillation (days 21-27)"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "100"
+          unit:
+            id: "UO:0000064"
+            name: "microgram per milliliter"
+        exposure_duration:
+          value: "7"
+          unit:
+            id: "UO:0000033"
+            name: "day"
+    informs_on_key_event:
+      id: "KE:ke-decreased-cftr"
+      name: "Decreased CFTR function"
+      biological_action: decreased
+      level_of_biological_organization: molecular
+    study_subject:
+      subject_type: InVivoSubject
+      id: "SUBJECT:liu-mouse-ova-pm25"
+      name: "OVA+PM2.5 Balb/c mouse"
+      model_species:
+        id: "NCBITaxon:10090"
+        name: "Mus musculus"
+      age:
+        value: "7"
+        unit:
+          id: "UO:0000034"
+          name: "week"
+      sex: "male"
+      subject_characteristics: "SPF grade, 18-22g, OVA-sensitized + PM2.5 treated"
+      disease_state: "OVA-induced asthma"
+      sample_type: biopsy
+    follows_protocols:
+      - id: "PROTOCOL:liu-ussing-001"
+        name: "Ussing chamber short-circuit current - mouse trachea"
+
+# =============================================================================
+# GENE EXPRESSION ASSAYS - P2Y2R mRNA (In Vitro, Calu-3)
+# =============================================================================
+
+gene_expression_assays:
+  # P2Y2R mRNA - PM2.5 24h
+  - id: "GE:liu-p2y2r-pm25-24h"
+    name: "P2Y2R mRNA - PM2.5 24h"
+    description: "P2Y2R mRNA downregulated after 24h PM2.5 exposure in Calu-3 cells. ATP group no significant difference vs control. PM2.5+ATP significantly lower than ATP alone."
+    target_gene: "PR:000001815"
+    gene_expression_method: "qRT-PCR"
+    normalization_reference: "GAPDH"
+    has_specified_output:
+      id: "GE:liu-p2y2r-pm25-24h-output"
+      name: "P2Y2R mRNA 24h PM2.5"
+      mrna_level:
+        value: "0.55"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+    assay_date: "2024-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-pm25-100ug-24h"
+        name: "PM2.5 100 ug/mL for 24 hours"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "100"
+          unit:
+            id: "UO:0000064"
+            name: "microgram per milliliter"
+        exposure_duration:
+          value: "24"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke-decreased-p2y2r"
+      name: "Decreased P2Y2R expression"
+      biological_action: decreased
+      level_of_biological_organization: molecular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:liu-calu3-001"
+      name: "Calu-3 submerged monolayer on transwell"
+      cell_type:
+        id: "CL:0000066"
+        name: "epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      cell_line:
+        id: "CLO:0003679"
+        name: "Calu-3"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:liu-qpcr-001"
+        name: "qRT-PCR for P2Y2R"
+        detection_method: "SYBR Green qPCR"
+        reference_gene: "GAPDH"
+        primer_sequences:
+          - "P2Y2R-F: 5'-CCTGAGAGGAGAAGCGCAG-3'"
+          - "P2Y2R-R: 5'-GAACTCTGCGGGAAACAGGA-3'"
+
+  # P2Y2R mRNA - PM2.5 48h (more pronounced)
+  - id: "GE:liu-p2y2r-pm25-48h"
+    name: "P2Y2R mRNA - PM2.5 48h"
+    description: "P2Y2R mRNA further downregulated after 48h PM2.5. ATP group significantly higher vs control at 48h (p<0.05). PM2.5+Suramin group lower than Suramin alone."
+    target_gene: "PR:000001815"
+    gene_expression_method: "qRT-PCR"
+    normalization_reference: "GAPDH"
+    has_specified_output:
+      id: "GE:liu-p2y2r-pm25-48h-output"
+      name: "P2Y2R mRNA 48h PM2.5"
+      mrna_level:
+        value: "0.40"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+    assay_date: "2024-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-pm25-100ug-48h"
+        name: "PM2.5 100 ug/mL for 48 hours"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "100"
+          unit:
+            id: "UO:0000064"
+            name: "microgram per milliliter"
+        exposure_duration:
+          value: "48"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke-decreased-p2y2r"
+      name: "Decreased P2Y2R expression"
+      biological_action: decreased
+      level_of_biological_organization: molecular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:liu-calu3-001"
+      name: "Calu-3 submerged monolayer on transwell"
+      cell_type:
+        id: "CL:0000066"
+        name: "epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      cell_line:
+        id: "CLO:0003679"
+        name: "Calu-3"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:liu-qpcr-001"
+        name: "qRT-PCR for P2Y2R"
+        detection_method: "SYBR Green qPCR"
+        reference_gene: "GAPDH"
+        primer_sequences:
+          - "P2Y2R-F: 5'-CCTGAGAGGAGAAGCGCAG-3'"
+          - "P2Y2R-R: 5'-GAACTCTGCGGGAAACAGGA-3'"
+
+  # CFTR protein - PM2.5 24h (Western blot)
+  - id: "GE:liu-cftr-protein-pm25-24h"
+    name: "CFTR protein - PM2.5 24h (Western blot)"
+    description: "CFTR protein significantly decreased after 24h PM2.5 (p<0.05). ATP+PM2.5 significantly lower than ATP alone (p<0.01). GAPDH loading control."
+    target_gene: "PR:000003411"
+    gene_expression_method: "Western blot"
+    normalization_reference: "GAPDH"
+    has_specified_output:
+      id: "GE:liu-cftr-protein-pm25-24h-output"
+      name: "CFTR protein 24h PM2.5"
+      protein_level:
+        value: "0.50"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+    assay_date: "2024-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-pm25-100ug-24h"
+        name: "PM2.5 100 ug/mL for 24 hours"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "100"
+          unit:
+            id: "UO:0000064"
+            name: "microgram per milliliter"
+        exposure_duration:
+          value: "24"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke-decreased-cftr"
+      name: "Decreased CFTR function"
+      biological_action: decreased
+      level_of_biological_organization: molecular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:liu-calu3-001"
+      name: "Calu-3 submerged monolayer on transwell"
+      cell_type:
+        id: "CL:0000066"
+        name: "epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      cell_line:
+        id: "CLO:0003679"
+        name: "Calu-3"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:liu-wb-001"
+        name: "Western blot for CFTR"
+        detection_method: "chemiluminescence (ChemiScope)"
+        antibodies_used:
+          - "CFTR (CST 78335S, 1:1000)"
+          - "anti-rabbit IgG HRP (CST 7074S, 1:2500)"
+        normalization_method: "GAPDH loading control"
+
+  # P2Y2R protein - PM2.5 24h (Western blot)
+  - id: "GE:liu-p2y2r-protein-pm25-24h"
+    name: "P2Y2R protein - PM2.5 24h (Western blot)"
+    description: "P2Y2R protein significantly decreased after 24h PM2.5 (p<0.05). ATP+PM2.5 significantly lower than ATP alone (p<0.01). Suramin also decreased P2Y2R (p<0.05)."
+    target_gene: "PR:000001815"
+    gene_expression_method: "Western blot"
+    normalization_reference: "GAPDH"
+    has_specified_output:
+      id: "GE:liu-p2y2r-protein-pm25-24h-output"
+      name: "P2Y2R protein 24h PM2.5"
+      protein_level:
+        value: "0.45"
+        unit:
+          id: "UO:0000193"
+          name: "fold change"
+    assay_date: "2024-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-pm25-100ug-24h"
+        name: "PM2.5 100 ug/mL for 24 hours"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "100"
+          unit:
+            id: "UO:0000064"
+            name: "microgram per milliliter"
+        exposure_duration:
+          value: "24"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    informs_on_key_event:
+      id: "KE:ke-decreased-p2y2r"
+      name: "Decreased P2Y2R expression"
+      biological_action: decreased
+      level_of_biological_organization: molecular
+    study_subject:
+      subject_type: CellularSystem
+      id: "soma:liu-calu3-001"
+      name: "Calu-3 submerged monolayer on transwell"
+      cell_type:
+        id: "CL:0000066"
+        name: "epithelial cell"
+      model_species:
+        id: "NCBITaxon:9606"
+        name: "Homo sapiens"
+      cell_line:
+        id: "CLO:0003679"
+        name: "Calu-3"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:liu-wb-001"
+        name: "Western blot for P2Y2R"
+        detection_method: "chemiluminescence (ChemiScope)"
+        antibodies_used:
+          - "P2Y2R (Abcam ab272891, 1:1000)"
+          - "anti-rabbit IgG HRP (CST 7074S, 1:2500)"
+        normalization_method: "GAPDH loading control"
+
+  # P2Y2R protein - lung tissue IHC (in vivo)
+  - id: "GE:liu-p2y2r-ihc-ova-pm25"
+    name: "P2Y2R protein - lung tissue IHC (OVA+PM2.5)"
+    description: "P2Y2R IHC positive area dramatically decreased in OVA group. OVA+PM2.5 significantly lower than OVA alone (p<0.05). OVA+ATP significantly increased vs OVA (p<0.05)."
+    target_gene: "PR:000001815"
+    gene_expression_method: "immunohistochemistry"
+    normalization_reference: "tissue area"
+    has_specified_output:
+      id: "GE:liu-p2y2r-ihc-ova-pm25-output"
+      name: "P2Y2R lung tissue IHC"
+      percentage_positive_cells:
+        value: "15"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+    assay_date: "2024-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-mouse-ova-pm25"
+        name: "OVA sensitization + PM2.5 nasal instillation"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "100"
+          unit:
+            id: "UO:0000064"
+            name: "microgram per milliliter"
+        exposure_duration:
+          value: "7"
+          unit:
+            id: "UO:0000033"
+            name: "day"
+    informs_on_key_event:
+      id: "KE:ke-decreased-p2y2r"
+      name: "Decreased P2Y2R expression"
+      biological_action: decreased
+      level_of_biological_organization: molecular
+    study_subject:
+      subject_type: InVivoSubject
+      id: "SUBJECT:liu-mouse-ova-pm25"
+      name: "OVA+PM2.5 Balb/c mouse"
+      model_species:
+        id: "NCBITaxon:10090"
+        name: "Mus musculus"
+      age:
+        value: "7"
+        unit:
+          id: "UO:0000034"
+          name: "week"
+      sex: "male"
+      subject_characteristics: "SPF grade, 18-22g, OVA-sensitized + PM2.5 treated"
+      disease_state: "OVA-induced asthma"
+      sample_type: biopsy
+      collection_site: "lung tissue"
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:liu-ihc-001"
+        name: "IHC for P2Y2R in lung tissue"
+        staining_type: "immunohistochemistry"
+        fixation_method: "4% paraformaldehyde, 24h"
+        antibodies_used:
+          - "P2Y2R (1:500, Abcam)"
+        detection_method: "DAB 0.05% chromogen"
+
+# =============================================================================
+# GOBLET CELL ASSAYS - In Vivo (PAS staining, mouse lung)
+# =============================================================================
+
+goblet_cell_assays:
+  # OVA+PM2.5 - goblet cell hyperplasia (PAS)
+  - id: "GCM:liu-pas-ova-pm25"
+    name: "Goblet cell hyperplasia - OVA+PM2.5 (PAS)"
+    description: "PAS staining in mouse lung. OVA+PM2.5 group showed evidently higher goblet cell percentage than OVA alone (p<0.001). Goblet cells primarily near trachea and bronchus."
+    has_specified_output:
+      id: "GCM:liu-pas-ova-pm25-output"
+      name: "PAS goblet cell quantification"
+      goblet_cell_percentage:
+        value: "45"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+    assay_date: "2024-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-mouse-ova-pm25"
+        name: "OVA sensitization + PM2.5 nasal instillation"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "100"
+          unit:
+            id: "UO:0000064"
+            name: "microgram per milliliter"
+        exposure_duration:
+          value: "7"
+          unit:
+            id: "UO:0000033"
+            name: "day"
+    informs_on_key_event:
+      id: "KE:ke2-goblet-hyperplasia"
+      name: "Goblet cell hyperplasia"
+      biological_action: increased
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: InVivoSubject
+      id: "SUBJECT:liu-mouse-ova-pm25"
+      name: "OVA+PM2.5 Balb/c mouse"
+      model_species:
+        id: "NCBITaxon:10090"
+        name: "Mus musculus"
+      age:
+        value: "7"
+        unit:
+          id: "UO:0000034"
+          name: "week"
+      sex: "male"
+      disease_state: "OVA-induced asthma"
+      sample_type: biopsy
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:liu-pas-001"
+        name: "PAS staining for goblet cells"
+        staining_type: "PAS"
+        fixation_method: "4% paraformaldehyde, 24h"
+
+  # OVA+ATP - reduced goblet cell hyperplasia
+  - id: "GCM:liu-pas-ova-atp"
+    name: "Goblet cell rescue - OVA+ATP (PAS)"
+    description: "PAS staining in OVA+ATP mouse lung. Goblet cell percentage lower than OVA alone (p<0.001). ATP treatment partially rescues goblet cell hyperplasia."
+    has_specified_output:
+      id: "GCM:liu-pas-ova-atp-output"
+      name: "PAS goblet cell OVA+ATP"
+      goblet_cell_percentage:
+        value: "18"
+        unit:
+          id: "UO:0000187"
+          name: "percent"
+    assay_date: "2024-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-mouse-ova-atp"
+        name: "OVA sensitization + ATP 50 mg/kg nasal instillation"
+        exposure_agent:
+          id: "CHEBI:15422"
+          name: "ATP"
+        exposure_concentration:
+          value: "50"
+          unit:
+            id: "UO:0000308"
+            name: "milligram per kilogram"
+        exposure_duration:
+          value: "7"
+          unit:
+            id: "UO:0000033"
+            name: "day"
+    informs_on_key_event:
+      id: "KE:ke2-goblet-hyperplasia"
+      name: "Goblet cell hyperplasia"
+      biological_action: increased
+      level_of_biological_organization: cellular
+    study_subject:
+      subject_type: InVivoSubject
+      id: "SUBJECT:liu-mouse-ova-atp"
+      name: "OVA+ATP Balb/c mouse"
+      model_species:
+        id: "NCBITaxon:10090"
+        name: "Mus musculus"
+      age:
+        value: "7"
+        unit:
+          id: "UO:0000034"
+          name: "week"
+      sex: "male"
+      disease_state: "OVA-induced asthma"
+      sample_type: biopsy
+    follows_protocols:
+      - protocol_type: StainingProtocol
+        id: "PROTOCOL:liu-pas-001"
+        name: "PAS staining for goblet cells"
+        staining_type: "PAS"
+
+# =============================================================================
+# BALF/SPUTUM ASSAYS - Th2 Cytokines (In Vivo, mouse BALF)
+# =============================================================================
+
+balf_sputum_assays:
+  # OVA+PM2.5 - Th2 cytokines elevated
+  - id: "BALF:liu-ova-pm25"
+    name: "BALF Th2 cytokines - OVA+PM2.5"
+    description: "BALF collected from right lung (left bronchus ligated, lavaged with 0.5mL saline x2). IL-4, IL-5, IL-13 all significantly increased in OVA+PM2.5 vs OVA alone (p<0.05). ELISA (Absin, Shanghai)."
+    has_specified_output:
+      id: "BALF:liu-ova-pm25-output"
+      name: "BALF cytokine measurements OVA+PM2.5"
+      il6_concentration:
+        value: "1.8"
+        unit:
+          id: "UO:0000193"
+          name: "fold change vs OVA"
+    assay_date: "2024-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-mouse-ova-pm25"
+        name: "OVA sensitization + PM2.5 nasal instillation"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "100"
+          unit:
+            id: "UO:0000064"
+            name: "microgram per milliliter"
+        exposure_duration:
+          value: "7"
+          unit:
+            id: "UO:0000033"
+            name: "day"
+    informs_on_key_event:
+      id: "KE:ke-airway-inflammation"
+      name: "Th2 airway inflammation"
+      biological_action: increased
+      level_of_biological_organization: tissue
+    study_subject:
+      subject_type: InVivoSubject
+      id: "SUBJECT:liu-mouse-ova-pm25"
+      name: "OVA+PM2.5 Balb/c mouse"
+      model_species:
+        id: "NCBITaxon:10090"
+        name: "Mus musculus"
+      age:
+        value: "7"
+        unit:
+          id: "UO:0000034"
+          name: "week"
+      sex: "male"
+      disease_state: "OVA-induced asthma"
+      sample_type: balf
+      sample_collection_method: "Right lung lavage with 0.5mL saline x2, left main bronchus ligated"
+      collection_site: "right lung BALF"
+    follows_protocols:
+      - protocol_type: MolecularAssayProtocol
+        id: "PROTOCOL:liu-elisa-001"
+        name: "ELISA for Th2 cytokines"
+        detection_method: "ELISA (Absin, Shanghai)"
+
+# =============================================================================
+# LUNG FUNCTION ASSAYS - Airway Hyperresponsiveness (In Vivo)
+# =============================================================================
+
+lung_function_assays:
+  # OVA+PM2.5 - increased sRaw at 20 mg/mL methacholine
+  - id: "LF:liu-ova-pm25"
+    name: "Airway resistance (sRaw) - OVA+PM2.5"
+    description: "Whole-body plethysmography with methacholine challenge. OVA+PM2.5 sRaw further increased vs OVA at all methacholine concentrations. sRaw significantly elevated vs control, confirming asthma model and PM2.5 exacerbation."
+    has_specified_output:
+      id: "LF:liu-ova-pm25-output"
+      name: "sRaw measurement OVA+PM2.5"
+      lung_resistance:
+        value: "2.5"
+        unit:
+          id: "UO:0000193"
+          name: "fold change vs control"
+    assay_date: "2024-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-mouse-ova-pm25"
+        name: "OVA sensitization + PM2.5 nasal instillation"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "100"
+          unit:
+            id: "UO:0000064"
+            name: "microgram per milliliter"
+        exposure_duration:
+          value: "7"
+          unit:
+            id: "UO:0000033"
+            name: "day"
+    informs_on_key_event:
+      id: "KE:ao-decreased-lung-function"
+      name: "Increased airway hyperresponsiveness"
+      biological_action: increased
+      level_of_biological_organization: organ
+    study_subject:
+      subject_type: InVivoSubject
+      id: "SUBJECT:liu-mouse-ova-pm25"
+      name: "OVA+PM2.5 Balb/c mouse"
+      model_species:
+        id: "NCBITaxon:10090"
+        name: "Mus musculus"
+      age:
+        value: "7"
+        unit:
+          id: "UO:0000034"
+          name: "week"
+      sex: "male"
+      disease_state: "OVA-induced asthma"
+      subject_characteristics: "SPF grade, 18-22g, methacholine challenge at 0, 5, 10, 20 mg/mL"
+    follows_protocols:
+      - protocol_type: SpirometryProtocol
+        id: "PROTOCOL:liu-lungfx-001"
+        name: "Whole-body plethysmography with methacholine"
+        spirometry_standard: "BUXCO whole-body plethysmography"
+        bronchodilator_agent: "methacholine challenge (0, 5, 10, 20 mg/mL)"
+
+  # OVA+Suramin - increased sRaw (worse than OVA)
+  - id: "LF:liu-ova-suramin"
+    name: "Airway resistance (sRaw) - OVA+Suramin"
+    description: "OVA+Suramin group sRaw at 20 mg/mL methacholine significantly higher than OVA alone (p<0.05). P2Y2R antagonism worsens airway hyperresponsiveness."
+    has_specified_output:
+      id: "LF:liu-ova-suramin-output"
+      name: "sRaw measurement OVA+Suramin"
+      lung_resistance:
+        value: "3.0"
+        unit:
+          id: "UO:0000193"
+          name: "fold change vs control"
+    assay_date: "2024-01-01"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-mouse-suramin"
+        name: "OVA sensitization + Suramin 50 mg/kg nasal instillation"
+        exposure_agent:
+          id: "CHEBI:45653"
+          name: "suramin"
+        exposure_concentration:
+          value: "50"
+          unit:
+            id: "UO:0000308"
+            name: "milligram per kilogram"
+        exposure_duration:
+          value: "7"
+          unit:
+            id: "UO:0000033"
+            name: "day"
+    informs_on_key_event:
+      id: "KE:ao-decreased-lung-function"
+      name: "Increased airway hyperresponsiveness"
+      biological_action: increased
+      level_of_biological_organization: organ
+    study_subject:
+      subject_type: InVivoSubject
+      id: "SUBJECT:liu-mouse-ova-suramin"
+      name: "OVA+Suramin Balb/c mouse"
+      model_species:
+        id: "NCBITaxon:10090"
+        name: "Mus musculus"
+      age:
+        value: "7"
+        unit:
+          id: "UO:0000034"
+          name: "week"
+      sex: "male"
+      disease_state: "OVA-induced asthma"
+      subject_characteristics: "SPF grade, 18-22g, methacholine challenge at 0, 5, 10, 20 mg/mL"
+    follows_protocols:
+      - protocol_type: SpirometryProtocol
+        id: "PROTOCOL:liu-lungfx-001"
+        name: "Whole-body plethysmography with methacholine"
+        spirometry_standard: "BUXCO whole-body plethysmography"
