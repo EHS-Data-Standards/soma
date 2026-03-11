@@ -1,5 +1,5 @@
 # Auto generated from soma.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-03-11T00:44:53
+# Generation date: 2026-03-11T17:47:24
 # Schema: soma
 #
 # id: https://w3id.org/EHS-Data-Standards/soma
@@ -73,6 +73,7 @@ ENVO = CurieNamespace('ENVO', 'http://purl.obolibrary.org/obo/ENVO_')
 GO = CurieNamespace('GO', 'http://purl.obolibrary.org/obo/GO_')
 HP = CurieNamespace('HP', 'http://purl.obolibrary.org/obo/HP_')
 IAO = CurieNamespace('IAO', 'http://purl.obolibrary.org/obo/IAO_')
+NCBITAXON = CurieNamespace('NCBITaxon', 'http://purl.obolibrary.org/obo/NCBITaxon_')
 OBI = CurieNamespace('OBI', 'http://purl.obolibrary.org/obo/OBI_')
 PATO = CurieNamespace('PATO', 'http://purl.obolibrary.org/obo/PATO_')
 QUDT = CurieNamespace('QUDT', 'http://qudt.org/vocab/unit/')
@@ -166,6 +167,22 @@ class UnitId(URIorCURIE):
 
 
 class NamedEntityId(URIorCURIE):
+    pass
+
+
+class CellTypeReferenceId(NamedEntityId):
+    pass
+
+
+class SpeciesReferenceId(NamedEntityId):
+    pass
+
+
+class ChemicalEntityReferenceId(NamedEntityId):
+    pass
+
+
+class AnatomicalEntityReferenceId(NamedEntityId):
     pass
 
 
@@ -670,7 +687,7 @@ class StudySubject(NamedThing):
 
     id: Union[str, StudySubjectId] = None
     subject_type: Optional[str] = None
-    model_species: Optional[Union[dict, "NamedEntity"]] = None
+    model_species: Optional[Union[dict, "SpeciesReference"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -680,8 +697,8 @@ class StudySubject(NamedThing):
 
         self.subject_type = str(self.class_name)
 
-        if self.model_species is not None and not isinstance(self.model_species, NamedEntity):
-            self.model_species = NamedEntity(**as_dict(self.model_species))
+        if self.model_species is not None and not isinstance(self.model_species, SpeciesReference):
+            self.model_species = SpeciesReference(**as_dict(self.model_species))
 
         super().__post_init__(**kwargs)
 
@@ -1207,6 +1224,98 @@ class NamedEntity(YAMLRoot):
 
 
 @dataclass(repr=False)
+class CellTypeReference(NamedEntity):
+    """
+    A reference to a cell type from the Cell Ontology (CL).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ASSAY_BASE["CellTypeReference"]
+    class_class_curie: ClassVar[str] = "assay_base:CellTypeReference"
+    class_name: ClassVar[str] = "CellTypeReference"
+    class_model_uri: ClassVar[URIRef] = SOMA.CellTypeReference
+
+    id: Union[str, CellTypeReferenceId] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, CellTypeReferenceId):
+            self.id = CellTypeReferenceId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class SpeciesReference(NamedEntity):
+    """
+    A reference to a species from the NCBI Taxonomy.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ASSAY_BASE["SpeciesReference"]
+    class_class_curie: ClassVar[str] = "assay_base:SpeciesReference"
+    class_name: ClassVar[str] = "SpeciesReference"
+    class_model_uri: ClassVar[URIRef] = SOMA.SpeciesReference
+
+    id: Union[str, SpeciesReferenceId] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, SpeciesReferenceId):
+            self.id = SpeciesReferenceId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ChemicalEntityReference(NamedEntity):
+    """
+    A reference to a chemical entity from CHEBI or an exposure concept from ECTO.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ASSAY_BASE["ChemicalEntityReference"]
+    class_class_curie: ClassVar[str] = "assay_base:ChemicalEntityReference"
+    class_name: ClassVar[str] = "ChemicalEntityReference"
+    class_model_uri: ClassVar[URIRef] = SOMA.ChemicalEntityReference
+
+    id: Union[str, ChemicalEntityReferenceId] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, ChemicalEntityReferenceId):
+            self.id = ChemicalEntityReferenceId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class AnatomicalEntityReference(NamedEntity):
+    """
+    A reference to an anatomical entity from UBERON.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ASSAY_BASE["AnatomicalEntityReference"]
+    class_class_curie: ClassVar[str] = "assay_base:AnatomicalEntityReference"
+    class_name: ClassVar[str] = "AnatomicalEntityReference"
+    class_model_uri: ClassVar[URIRef] = SOMA.AnatomicalEntityReference
+
+    id: Union[str, AnatomicalEntityReferenceId] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, AnatomicalEntityReferenceId):
+            self.id = AnatomicalEntityReferenceId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
 class ExposureCondition(NamedEntity):
     """
     A structured description of an exposure or treatment applied to a biological system. Captures what agent was
@@ -1220,7 +1329,7 @@ class ExposureCondition(NamedEntity):
     class_model_uri: ClassVar[URIRef] = SOMA.ExposureCondition
 
     id: Union[str, ExposureConditionId] = None
-    exposure_agent: Optional[Union[dict, NamedEntity]] = None
+    exposure_agent: Optional[Union[dict, ChemicalEntityReference]] = None
     exposure_concentration: Optional[Union[dict, QuantityValue]] = None
     exposure_duration: Optional[Union[dict, QuantityValue]] = None
     timing_post_exposure: Optional[Union[dict, QuantityValue]] = None
@@ -1231,8 +1340,8 @@ class ExposureCondition(NamedEntity):
         if not isinstance(self.id, ExposureConditionId):
             self.id = ExposureConditionId(self.id)
 
-        if self.exposure_agent is not None and not isinstance(self.exposure_agent, NamedEntity):
-            self.exposure_agent = NamedEntity(**as_dict(self.exposure_agent))
+        if self.exposure_agent is not None and not isinstance(self.exposure_agent, ChemicalEntityReference):
+            self.exposure_agent = ChemicalEntityReference(**as_dict(self.exposure_agent))
 
         if self.exposure_concentration is not None and not isinstance(self.exposure_concentration, QuantityValue):
             self.exposure_concentration = QuantityValue(**as_dict(self.exposure_concentration))
@@ -1260,9 +1369,9 @@ class CellularSystem(ModelSystem):
 
     id: Union[str, CellularSystemId] = None
     cell_line: Optional[Union[dict, "CellLine"]] = None
-    primary_cell: Optional[Union[dict, NamedEntity]] = None
-    cell_type: Optional[Union[dict, NamedEntity]] = None
-    anatomical_origin: Optional[Union[dict, NamedEntity]] = None
+    primary_cell: Optional[Union[dict, CellTypeReference]] = None
+    cell_type: Optional[Union[dict, CellTypeReference]] = None
+    anatomical_origin: Optional[Union[dict, AnatomicalEntityReference]] = None
     cell_culture_growth_mode: Optional[Union[str, "CellCultureGrowthModeEnum"]] = None
     substrate_type: Optional[Union[str, "SubstrateTypeEnum"]] = None
     confluence_level: Optional[Union[dict, QuantityValue]] = None
@@ -1288,14 +1397,14 @@ class CellularSystem(ModelSystem):
         if self.cell_line is not None and not isinstance(self.cell_line, CellLine):
             self.cell_line = CellLine(**as_dict(self.cell_line))
 
-        if self.primary_cell is not None and not isinstance(self.primary_cell, NamedEntity):
-            self.primary_cell = NamedEntity(**as_dict(self.primary_cell))
+        if self.primary_cell is not None and not isinstance(self.primary_cell, CellTypeReference):
+            self.primary_cell = CellTypeReference(**as_dict(self.primary_cell))
 
-        if self.cell_type is not None and not isinstance(self.cell_type, NamedEntity):
-            self.cell_type = NamedEntity(**as_dict(self.cell_type))
+        if self.cell_type is not None and not isinstance(self.cell_type, CellTypeReference):
+            self.cell_type = CellTypeReference(**as_dict(self.cell_type))
 
-        if self.anatomical_origin is not None and not isinstance(self.anatomical_origin, NamedEntity):
-            self.anatomical_origin = NamedEntity(**as_dict(self.anatomical_origin))
+        if self.anatomical_origin is not None and not isinstance(self.anatomical_origin, AnatomicalEntityReference):
+            self.anatomical_origin = AnatomicalEntityReference(**as_dict(self.anatomical_origin))
 
         if self.cell_culture_growth_mode is not None and not isinstance(self.cell_culture_growth_mode, CellCultureGrowthModeEnum):
             self.cell_culture_growth_mode = CellCultureGrowthModeEnum(self.cell_culture_growth_mode)
@@ -1360,8 +1469,8 @@ class CellLine(NamedEntity):
     class_model_uri: ClassVar[URIRef] = SOMA.CellLine
 
     id: Union[str, CellLineId] = None
-    cell_type: Optional[Union[dict, NamedEntity]] = None
-    model_species: Optional[Union[dict, NamedEntity]] = None
+    cell_type: Optional[Union[dict, CellTypeReference]] = None
+    model_species: Optional[Union[dict, SpeciesReference]] = None
     tissue_origin: Optional[str] = None
     disease_state: Optional[str] = None
     supplier: Optional[str] = None
@@ -1375,11 +1484,11 @@ class CellLine(NamedEntity):
         if not isinstance(self.id, CellLineId):
             self.id = CellLineId(self.id)
 
-        if self.cell_type is not None and not isinstance(self.cell_type, NamedEntity):
-            self.cell_type = NamedEntity(**as_dict(self.cell_type))
+        if self.cell_type is not None and not isinstance(self.cell_type, CellTypeReference):
+            self.cell_type = CellTypeReference(**as_dict(self.cell_type))
 
-        if self.model_species is not None and not isinstance(self.model_species, NamedEntity):
-            self.model_species = NamedEntity(**as_dict(self.model_species))
+        if self.model_species is not None and not isinstance(self.model_species, SpeciesReference):
+            self.model_species = SpeciesReference(**as_dict(self.model_species))
 
         if self.tissue_origin is not None and not isinstance(self.tissue_origin, str):
             self.tissue_origin = str(self.tissue_origin)
@@ -2261,7 +2370,7 @@ class BALFSputumAssay(Assay):
     class_model_uri: ClassVar[URIRef] = SOMA.BALFSputumAssay
 
     id: Union[str, BALFSputumAssayId] = None
-    target_cell_type: Optional[Union[dict, NamedEntity]] = None
+    target_cell_type: Optional[Union[dict, CellTypeReference]] = None
     study_subject: Optional[Union[dict, InVivoSubject]] = None
     has_specified_output: Optional[Union[dict, "BALFSputumOutput"]] = None
 
@@ -2271,8 +2380,8 @@ class BALFSputumAssay(Assay):
         if not isinstance(self.id, BALFSputumAssayId):
             self.id = BALFSputumAssayId(self.id)
 
-        if self.target_cell_type is not None and not isinstance(self.target_cell_type, NamedEntity):
-            self.target_cell_type = NamedEntity(**as_dict(self.target_cell_type))
+        if self.target_cell_type is not None and not isinstance(self.target_cell_type, CellTypeReference):
+            self.target_cell_type = CellTypeReference(**as_dict(self.target_cell_type))
 
         if self.study_subject is not None and not isinstance(self.study_subject, InVivoSubject):
             self.study_subject = InVivoSubject(**as_dict(self.study_subject))
@@ -3033,7 +3142,8 @@ slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEM
                    model_uri=SOMA.description, domain=None, range=Optional[str])
 
 slots.biological_process = Slot(uri=AOP_FRAMEWORK.biological_process, name="biological_process", curie=AOP_FRAMEWORK.curie('biological_process'),
-                   model_uri=SOMA.biological_process, domain=None, range=Optional[Union[str, URIorCURIE]])
+                   model_uri=SOMA.biological_process, domain=None, range=Optional[Union[str, URIorCURIE]],
+                   pattern=re.compile(r'^GO:\d{7}$'))
 
 slots.biological_object = Slot(uri=AOP_FRAMEWORK.biological_object, name="biological_object", curie=AOP_FRAMEWORK.curie('biological_object'),
                    model_uri=SOMA.biological_object, domain=None, range=Optional[str])
@@ -3045,10 +3155,12 @@ slots.level_of_biological_organization = Slot(uri=AOP_FRAMEWORK.level_of_biologi
                    model_uri=SOMA.level_of_biological_organization, domain=None, range=Optional[Union[str, "BiologicalOrganizationLevelEnum"]])
 
 slots.occurs_in_cell_type = Slot(uri=AOP_FRAMEWORK.occurs_in_cell_type, name="occurs_in_cell_type", curie=AOP_FRAMEWORK.curie('occurs_in_cell_type'),
-                   model_uri=SOMA.occurs_in_cell_type, domain=None, range=Optional[Union[str, URIorCURIE]])
+                   model_uri=SOMA.occurs_in_cell_type, domain=None, range=Optional[Union[str, URIorCURIE]],
+                   pattern=re.compile(r'^CL:\d{7}$'))
 
 slots.occurs_in_anatomy = Slot(uri=AOP_FRAMEWORK.occurs_in_anatomy, name="occurs_in_anatomy", curie=AOP_FRAMEWORK.curie('occurs_in_anatomy'),
-                   model_uri=SOMA.occurs_in_anatomy, domain=None, range=Optional[Union[str, URIorCURIE]])
+                   model_uri=SOMA.occurs_in_anatomy, domain=None, range=Optional[Union[str, URIorCURIE]],
+                   pattern=re.compile(r'^UBERON:\d{7}$'))
 
 slots.aopwiki_id = Slot(uri=AOP_FRAMEWORK.aopwiki_id, name="aopwiki_id", curie=AOP_FRAMEWORK.curie('aopwiki_id'),
                    model_uri=SOMA.aopwiki_id, domain=None, range=Optional[str])
@@ -3102,13 +3214,13 @@ slots.has_specified_output = Slot(uri=ASSAY_BASE.has_specified_output, name="has
                    model_uri=SOMA.has_specified_output, domain=None, range=Optional[Union[dict, AssayOutputMeasurement]])
 
 slots.cell_type = Slot(uri=EFO['0000324'], name="cell_type", curie=EFO.curie('0000324'),
-                   model_uri=SOMA.cell_type, domain=None, range=Optional[Union[dict, NamedEntity]])
+                   model_uri=SOMA.cell_type, domain=None, range=Optional[Union[dict, CellTypeReference]])
 
 slots.target_cell_type = Slot(uri=ASSAY_BASE.target_cell_type, name="target_cell_type", curie=ASSAY_BASE.curie('target_cell_type'),
-                   model_uri=SOMA.target_cell_type, domain=None, range=Optional[Union[dict, NamedEntity]])
+                   model_uri=SOMA.target_cell_type, domain=None, range=Optional[Union[dict, CellTypeReference]])
 
 slots.model_species = Slot(uri=ASSAY_BASE.model_species, name="model_species", curie=ASSAY_BASE.curie('model_species'),
-                   model_uri=SOMA.model_species, domain=None, range=Optional[Union[dict, NamedEntity]])
+                   model_uri=SOMA.model_species, domain=None, range=Optional[Union[dict, SpeciesReference]])
 
 slots.subject_type = Slot(uri=ASSAY_BASE.subject_type, name="subject_type", curie=ASSAY_BASE.curie('subject_type'),
                    model_uri=SOMA.subject_type, domain=None, range=Optional[str])
@@ -3288,7 +3400,7 @@ slots.obi_mapping = Slot(uri=ASSAY_BASE.obi_mapping, name="obi_mapping", curie=A
                    model_uri=SOMA.obi_mapping, domain=None, range=Optional[Union[str, URIorCURIE]])
 
 slots.exposure_agent = Slot(uri=ASSAY_BASE.exposure_agent, name="exposure_agent", curie=ASSAY_BASE.curie('exposure_agent'),
-                   model_uri=SOMA.exposure_agent, domain=None, range=Optional[Union[dict, NamedEntity]])
+                   model_uri=SOMA.exposure_agent, domain=None, range=Optional[Union[dict, ChemicalEntityReference]])
 
 slots.exposure_duration = Slot(uri=ASSAY_BASE.exposure_duration, name="exposure_duration", curie=ASSAY_BASE.curie('exposure_duration'),
                    model_uri=SOMA.exposure_duration, domain=None, range=Optional[Union[dict, QuantityValue]])
@@ -3303,10 +3415,10 @@ slots.cell_line = Slot(uri=ASSAY_BASE.cell_line, name="cell_line", curie=ASSAY_B
                    model_uri=SOMA.cell_line, domain=None, range=Optional[Union[dict, CellLine]])
 
 slots.primary_cell = Slot(uri=ASSAY_BASE.primary_cell, name="primary_cell", curie=ASSAY_BASE.curie('primary_cell'),
-                   model_uri=SOMA.primary_cell, domain=None, range=Optional[Union[dict, NamedEntity]])
+                   model_uri=SOMA.primary_cell, domain=None, range=Optional[Union[dict, CellTypeReference]])
 
 slots.anatomical_origin = Slot(uri=ASSAY_BASE.anatomical_origin, name="anatomical_origin", curie=ASSAY_BASE.curie('anatomical_origin'),
-                   model_uri=SOMA.anatomical_origin, domain=None, range=Optional[Union[dict, NamedEntity]])
+                   model_uri=SOMA.anatomical_origin, domain=None, range=Optional[Union[dict, AnatomicalEntityReference]])
 
 slots.cell_culture_growth_mode = Slot(uri=ASSAY_BASE.cell_culture_growth_mode, name="cell_culture_growth_mode", curie=ASSAY_BASE.curie('cell_culture_growth_mode'),
                    model_uri=SOMA.cell_culture_growth_mode, domain=None, range=Optional[Union[str, "CellCultureGrowthModeEnum"]])
@@ -3754,6 +3866,30 @@ slots.percentage_positive_cells = Slot(uri=ASSAY_MICROSCHEMAS.percentage_positiv
 
 slots.gene_expression_method = Slot(uri=ASSAY_MICROSCHEMAS.gene_expression_method, name="gene_expression_method", curie=ASSAY_MICROSCHEMAS.curie('gene_expression_method'),
                    model_uri=SOMA.gene_expression_method, domain=None, range=Optional[str])
+
+slots.Unit_id = Slot(uri=AOP_FRAMEWORK.id, name="Unit_id", curie=AOP_FRAMEWORK.curie('id'),
+                   model_uri=SOMA.Unit_id, domain=Unit, range=Union[str, UnitId],
+                   pattern=re.compile(r'^(UO:\d{7}|UCUM:\S+|QUDT:\S+)$'))
+
+slots.CellTypeReference_id = Slot(uri=AOP_FRAMEWORK.id, name="CellTypeReference_id", curie=AOP_FRAMEWORK.curie('id'),
+                   model_uri=SOMA.CellTypeReference_id, domain=CellTypeReference, range=Union[str, CellTypeReferenceId],
+                   pattern=re.compile(r'^CL:\d{7}$'))
+
+slots.SpeciesReference_id = Slot(uri=AOP_FRAMEWORK.id, name="SpeciesReference_id", curie=AOP_FRAMEWORK.curie('id'),
+                   model_uri=SOMA.SpeciesReference_id, domain=SpeciesReference, range=Union[str, SpeciesReferenceId],
+                   pattern=re.compile(r'^NCBITaxon:\d+$'))
+
+slots.ChemicalEntityReference_id = Slot(uri=AOP_FRAMEWORK.id, name="ChemicalEntityReference_id", curie=AOP_FRAMEWORK.curie('id'),
+                   model_uri=SOMA.ChemicalEntityReference_id, domain=ChemicalEntityReference, range=Union[str, ChemicalEntityReferenceId],
+                   pattern=re.compile(r'^(CHEBI:\d+|ECTO:\d{7})$'))
+
+slots.AnatomicalEntityReference_id = Slot(uri=AOP_FRAMEWORK.id, name="AnatomicalEntityReference_id", curie=AOP_FRAMEWORK.curie('id'),
+                   model_uri=SOMA.AnatomicalEntityReference_id, domain=AnatomicalEntityReference, range=Union[str, AnatomicalEntityReferenceId],
+                   pattern=re.compile(r'^UBERON:\d{7}$'))
+
+slots.CellLine_id = Slot(uri=AOP_FRAMEWORK.id, name="CellLine_id", curie=AOP_FRAMEWORK.curie('id'),
+                   model_uri=SOMA.CellLine_id, domain=CellLine, range=Union[str, CellLineId],
+                   pattern=re.compile(r'^CLO:\d{7}$'))
 
 slots.CiliaryFunctionAssay_study_subject = Slot(uri=ASSAY_BASE.study_subject, name="CiliaryFunctionAssay_study_subject", curie=ASSAY_BASE.curie('study_subject'),
                    model_uri=SOMA.CiliaryFunctionAssay_study_subject, domain=CiliaryFunctionAssay, range=Optional[Union[dict, StudySubject]])

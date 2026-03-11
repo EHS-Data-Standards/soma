@@ -106,6 +106,8 @@ linkml_meta = LinkMLMeta({'default_prefix': 'soma',
                          'prefix_reference': 'http://purl.obolibrary.org/obo/GO_'},
                   'HP': {'prefix_prefix': 'HP',
                          'prefix_reference': 'http://purl.obolibrary.org/obo/HP_'},
+                  'NCBITaxon': {'prefix_prefix': 'NCBITaxon',
+                                'prefix_reference': 'http://purl.obolibrary.org/obo/NCBITaxon_'},
                   'OBI': {'prefix_prefix': 'OBI',
                           'prefix_reference': 'http://purl.obolibrary.org/obo/OBI_'},
                   'PATO': {'prefix_prefix': 'PATO',
@@ -518,6 +520,45 @@ class KeyEvent(NamedThing):
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
+    @field_validator('biological_process')
+    def pattern_biological_process(cls, v):
+        pattern=re.compile(r"^GO:\d{7}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid biological_process format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid biological_process format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+    @field_validator('occurs_in_cell_type')
+    def pattern_occurs_in_cell_type(cls, v):
+        pattern=re.compile(r"^CL:\d{7}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid occurs_in_cell_type format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid occurs_in_cell_type format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+    @field_validator('occurs_in_anatomy')
+    def pattern_occurs_in_anatomy(cls, v):
+        pattern=re.compile(r"^UBERON:\d{7}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid occurs_in_anatomy format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid occurs_in_anatomy format: {v}"
+            raise ValueError(err_msg)
+        return v
+
 
 class KeyEventRelationship(NamedThing):
     """
@@ -548,6 +589,32 @@ class AdverseOutcome(NamedThing):
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+
+    @field_validator('biological_process')
+    def pattern_biological_process(cls, v):
+        pattern=re.compile(r"^GO:\d{7}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid biological_process format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid biological_process format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+    @field_validator('occurs_in_anatomy')
+    def pattern_occurs_in_anatomy(cls, v):
+        pattern=re.compile(r"^UBERON:\d{7}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid occurs_in_anatomy format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid occurs_in_anatomy format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
 class AdverseOutcomePathway(NamedThing):
@@ -586,6 +653,45 @@ class MolecularInitiatingEvent(KeyEvent):
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+
+    @field_validator('biological_process')
+    def pattern_biological_process(cls, v):
+        pattern=re.compile(r"^GO:\d{7}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid biological_process format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid biological_process format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+    @field_validator('occurs_in_cell_type')
+    def pattern_occurs_in_cell_type(cls, v):
+        pattern=re.compile(r"^CL:\d{7}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid occurs_in_cell_type format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid occurs_in_cell_type format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+    @field_validator('occurs_in_anatomy')
+    def pattern_occurs_in_anatomy(cls, v):
+        pattern=re.compile(r"^UBERON:\d{7}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid occurs_in_anatomy format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid occurs_in_anatomy format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
 class Assay(NamedThing):
@@ -627,7 +733,7 @@ class StudySubject(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
 
     subject_type: Literal["StudySubject"] = Field(default="StudySubject", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[NamedEntity] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
+    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -640,7 +746,7 @@ class ModelSystem(StudySubject):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
 
     subject_type: Literal["ModelSystem"] = Field(default="ModelSystem", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[NamedEntity] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
+    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -662,7 +768,7 @@ class InVivoSubject(StudySubject):
     sample_collection_method: Optional[str] = Field(default=None, description="""Method used for sample collection in vivo (e.g., bronchoscopy, induced sputum, spirometry).""", json_schema_extra = { "linkml_meta": {'domain_of': ['InVivoSubject']} })
     clinical_context: Optional[str] = Field(default=None, description="""Clinical context for in vivo measurements (e.g., routine screening, post-exposure assessment, disease monitoring, baseline spirometry).""", json_schema_extra = { "linkml_meta": {'domain_of': ['InVivoSubject']} })
     subject_type: Literal["InVivoSubject"] = Field(default="InVivoSubject", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[NamedEntity] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
+    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -679,7 +785,7 @@ class PopulationSubject(StudySubject):
     age_range: Optional[QuantityRange] = Field(default=None, description="""Age range of the study population.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PopulationSubject']} })
     subjects: Optional[list[InVivoSubject]] = Field(default=[], description="""Individual subjects in the population or cohort. Optional — use when individual-level data is available alongside aggregate cohort metadata.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PopulationSubject']} })
     subject_type: Literal["PopulationSubject"] = Field(default="PopulationSubject", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[NamedEntity] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
+    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -838,10 +944,25 @@ class Unit(ConfiguredBaseModel):
     A unit of measurement from a standard ontology (UO, UCUM, QUDT).
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base',
-         'id_prefixes': ['UO', 'UCUM', 'QUDT']})
+         'id_prefixes': ['UO', 'UCUM', 'QUDT'],
+         'slot_usage': {'id': {'name': 'id',
+                               'pattern': '^(UO:\\d{7}|UCUM:\\S+|QUDT:\\S+)$'}}})
 
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+
+    @field_validator('id')
+    def pattern_id(cls, v):
+        pattern=re.compile(r"^(UO:\d{7}|UCUM:\S+|QUDT:\S+)$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid id format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
 class NamedEntity(ConfiguredBaseModel):
@@ -854,13 +975,113 @@ class NamedEntity(ConfiguredBaseModel):
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
 
 
+class CellTypeReference(NamedEntity):
+    """
+    A reference to a cell type from the Cell Ontology (CL).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base',
+         'id_prefixes': ['CL'],
+         'slot_usage': {'id': {'name': 'id', 'pattern': '^CL:\\d{7}$'}}})
+
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+
+    @field_validator('id')
+    def pattern_id(cls, v):
+        pattern=re.compile(r"^CL:\d{7}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class SpeciesReference(NamedEntity):
+    """
+    A reference to a species from the NCBI Taxonomy.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base',
+         'id_prefixes': ['NCBITaxon'],
+         'slot_usage': {'id': {'name': 'id', 'pattern': '^NCBITaxon:\\d+$'}}})
+
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+
+    @field_validator('id')
+    def pattern_id(cls, v):
+        pattern=re.compile(r"^NCBITaxon:\d+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class ChemicalEntityReference(NamedEntity):
+    """
+    A reference to a chemical entity from CHEBI or an exposure concept from ECTO.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base',
+         'id_prefixes': ['CHEBI', 'ECTO'],
+         'slot_usage': {'id': {'name': 'id', 'pattern': '^(CHEBI:\\d+|ECTO:\\d{7})$'}}})
+
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+
+    @field_validator('id')
+    def pattern_id(cls, v):
+        pattern=re.compile(r"^(CHEBI:\d+|ECTO:\d{7})$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class AnatomicalEntityReference(NamedEntity):
+    """
+    A reference to an anatomical entity from UBERON.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base',
+         'id_prefixes': ['UBERON'],
+         'slot_usage': {'id': {'name': 'id', 'pattern': '^UBERON:\\d{7}$'}}})
+
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+
+    @field_validator('id')
+    def pattern_id(cls, v):
+        pattern=re.compile(r"^UBERON:\d{7}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
 class ExposureCondition(NamedEntity):
     """
     A structured description of an exposure or treatment applied to a biological system. Captures what agent was applied, at what concentration, for how long, and when the measurement was taken relative to exposure.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
 
-    exposure_agent: Optional[NamedEntity] = Field(default=None, description="""The chemical, biological, or environmental agent used for exposure or treatment. Reference to a CHEBI or ECTO ontology term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureCondition']} })
+    exposure_agent: Optional[ChemicalEntityReference] = Field(default=None, description="""The chemical, biological, or environmental agent used for exposure or treatment. Reference to a CHEBI or ECTO ontology term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureCondition']} })
     exposure_concentration: Optional[QuantityValue] = Field(default=None, description="""Concentration of the exposure agent applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureCondition']} })
     exposure_duration: Optional[QuantityValue] = Field(default=None, description="""Duration of exposure or treatment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureCondition']} })
     timing_post_exposure: Optional[QuantityValue] = Field(default=None, description="""Time after exposure when the measurement was taken. Used to capture the temporal relationship between exposure and assay readout.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureCondition']} })
@@ -875,9 +1096,9 @@ class CellularSystem(ModelSystem):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
 
     cell_line: Optional[CellLine] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
-    primary_cell: Optional[NamedEntity] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
-    cell_type: Optional[NamedEntity] = Field(default=None, description="""The cell type being studied. Reference to a Cell Ontology (CL) term. Used on CellularSystem and CellLine to describe the cell identity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellLine'], 'slot_uri': 'EFO:0000324'} })
-    anatomical_origin: Optional[NamedEntity] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    primary_cell: Optional[CellTypeReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    cell_type: Optional[CellTypeReference] = Field(default=None, description="""The cell type being studied. Reference to a Cell Ontology (CL) term. Used on CellularSystem and CellLine to describe the cell identity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellLine'], 'slot_uri': 'EFO:0000324'} })
+    anatomical_origin: Optional[AnatomicalEntityReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
     cell_culture_growth_mode: Optional[CellCultureGrowthModeEnum] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellCultureConditions']} })
     substrate_type: Optional[SubstrateTypeEnum] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellCultureConditions']} })
     confluence_level: Optional[QuantityValue] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
@@ -894,7 +1115,7 @@ class CellularSystem(ModelSystem):
     donor_info: Optional[str] = Field(default=None, description="""Information about cell donor (e.g., healthy non-smoker, CF patient, age, anatomical region).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
     replicates_per_donor: Optional[int] = Field(default=None, description="""Number of biological replicates per donor.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellCultureConditions']} })
     subject_type: Literal["CellularSystem"] = Field(default="CellularSystem", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[NamedEntity] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
+    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -905,10 +1126,11 @@ class CellLine(NamedEntity):
     A cell line - a genetically stable cultured cell population.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base',
-         'id_prefixes': ['CLO']})
+         'id_prefixes': ['CLO'],
+         'slot_usage': {'id': {'name': 'id', 'pattern': '^CLO:\\d{7}$'}}})
 
-    cell_type: Optional[NamedEntity] = Field(default=None, description="""The cell type being studied. Reference to a Cell Ontology (CL) term. Used on CellularSystem and CellLine to describe the cell identity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellLine'], 'slot_uri': 'EFO:0000324'} })
-    model_species: Optional[NamedEntity] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
+    cell_type: Optional[CellTypeReference] = Field(default=None, description="""The cell type being studied. Reference to a Cell Ontology (CL) term. Used on CellularSystem and CellLine to describe the cell identity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellLine'], 'slot_uri': 'EFO:0000324'} })
+    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
     tissue_origin: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine']} })
     disease_state: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['InVivoSubject', 'CellLine']} })
     supplier: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine']} })
@@ -917,6 +1139,19 @@ class CellLine(NamedEntity):
     mycoplasma_status: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+
+    @field_validator('id')
+    def pattern_id(cls, v):
+        pattern=re.compile(r"^CLO:\d{7}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid id format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
 class CellCultureConditions(NamedEntity):
@@ -1289,7 +1524,7 @@ class BALFSputumAssay(Assay):
                         'study_subject': {'name': 'study_subject',
                                           'range': 'InVivoSubject'}}})
 
-    target_cell_type: Optional[NamedEntity] = Field(default=None, description="""The specific cell type that is the primary focus of this assay's analysis, when the assay examines multiple cell populations in a sample (e.g., neutrophils in a BALF differential).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BALFSputumAssay']} })
+    target_cell_type: Optional[CellTypeReference] = Field(default=None, description="""The specific cell type that is the primary focus of this assay's analysis, when the assay examines multiple cell populations in a sample (e.g., neutrophils in a BALF differential).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BALFSputumAssay']} })
     informs_on_key_event: Optional[KeyEvent] = Field(default=None, description="""The Key Event that this assay provides evidence for. This establishes the mechanistic connection between the assay measurements and the Adverse Outcome Pathway framework. Multiple assays can inform on the same key event, providing converging evidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     study_subject: Optional[InVivoSubject] = Field(default=None, description="""The subject of the study — what the assay is performed on. Can be a ModelSystem (e.g., CellularSystem), an InVivoSubject, or a PopulationSubject. The type of subject determines which context slots are available.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_exposure_condition: Optional[list[ExposureCondition]] = Field(default=[], description="""The exposure condition(s) applied to the study subject. Captures the agent, concentration, duration, and timing of exposure/treatment. Multivalued to support co-exposures or dose-response series.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
@@ -1502,6 +1737,10 @@ MolecularAssayProtocol.model_rebuild()
 QuantityValue.model_rebuild()
 Unit.model_rebuild()
 NamedEntity.model_rebuild()
+CellTypeReference.model_rebuild()
+SpeciesReference.model_rebuild()
+ChemicalEntityReference.model_rebuild()
+AnatomicalEntityReference.model_rebuild()
 ExposureCondition.model_rebuild()
 CellularSystem.model_rebuild()
 CellLine.model_rebuild()

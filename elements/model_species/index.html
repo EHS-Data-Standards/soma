@@ -487,18 +487,8 @@ Alias: model_species</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../CellularSystem/">CellularSystem</a></td>
-<td>Cell-based model systems that use living cells to model biological processes</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../ModelSystem/">ModelSystem</a></td>
 <td>An in vitro or ex vivo model system used to study biological processes</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CellLine/">CellLine</a></td>
-<td>A cell line - a genetically stable cultured cell population</td>
 <td>no</td>
 </tr>
 <tr>
@@ -507,20 +497,30 @@ Alias: model_species</p>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../PopulationSubject/">PopulationSubject</a></td>
+<td>A population or cohort of subjects studied in aggregate</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CellLine/">CellLine</a></td>
+<td>A cell line - a genetically stable cultured cell population</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../InVivoSubject/">InVivoSubject</a></td>
 <td>A living human or animal subject from whom measurements are taken</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../PopulationSubject/">PopulationSubject</a></td>
-<td>A population or cohort of subjects studied in aggregate</td>
+<td><a href="../CellularSystem/">CellularSystem</a></td>
+<td>Cell-based model systems that use living cells to model biological processes</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../NamedEntity/">NamedEntity</a></li>
+<li>Range: <a href="../SpeciesReference/">SpeciesReference</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -557,7 +557,7 @@ Alias: model_species</p>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellLine</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpeciesReference</span>
 <span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>

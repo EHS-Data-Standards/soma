@@ -318,8 +318,8 @@
 
 
 
-        StudySubject --&gt; "0..1" NamedEntity : model_species
-        click NamedEntity href "../NamedEntity/"
+        StudySubject --&gt; "0..1" SpeciesReference : model_species
+        click SpeciesReference href "../SpeciesReference/"
 
 
 
@@ -360,7 +360,7 @@
 </tr>
 <tr>
 <td><a href="../model_species/">model_species</a></td>
-<td>0..1 <br/> <a href="../NamedEntity/">NamedEntity</a></td>
+<td>0..1 <br/> <a href="../SpeciesReference/">SpeciesReference</a></td>
 <td>The species of origin for the cells or organism being studied</td>
 <td>direct</td>
 </tr>
@@ -531,7 +531,7 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellLine</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpeciesReference</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>

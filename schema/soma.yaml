@@ -74,6 +74,9 @@ prefixes:
   QUDT:
     prefix_prefix: QUDT
     prefix_reference: http://qudt.org/vocab/unit/
+  NCBITaxon:
+    prefix_prefix: NCBITaxon
+    prefix_reference: http://purl.obolibrary.org/obo/NCBITaxon_
   owg:
     prefix_prefix: owg
     prefix_reference: https://w3id.org/EHS-Data-Standards/soma/
@@ -879,6 +882,7 @@ slots:
     - KeyEvent
     - AdverseOutcome
     range: uriorcurie
+    pattern: ^GO:\d{7}$
   biological_object:
     name: biological_object
     definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/biological_object
@@ -920,6 +924,7 @@ slots:
     domain_of:
     - KeyEvent
     range: uriorcurie
+    pattern: ^CL:\d{7}$
   occurs_in_anatomy:
     name: occurs_in_anatomy
     definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/occurs_in_anatomy
@@ -932,6 +937,7 @@ slots:
     - KeyEvent
     - AdverseOutcome
     range: uriorcurie
+    pattern: ^UBERON:\d{7}$
   aopwiki_id:
     name: aopwiki_id
     definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/aopwiki_id
@@ -1153,7 +1159,7 @@ slots:
     domain_of:
     - CellularSystem
     - CellLine
-    range: NamedEntity
+    range: CellTypeReference
     inlined: true
     inlined_as_list: false
   target_cell_type:
@@ -1167,7 +1173,7 @@ slots:
     owner: BALFSputumAssay
     domain_of:
     - BALFSputumAssay
-    range: NamedEntity
+    range: CellTypeReference
     inlined: true
     inlined_as_list: false
   model_species:
@@ -1181,7 +1187,7 @@ slots:
     domain_of:
     - StudySubject
     - CellLine
-    range: NamedEntity
+    range: SpeciesReference
     inlined: true
     inlined_as_list: false
   subject_type:
@@ -1832,7 +1838,7 @@ slots:
     owner: ExposureCondition
     domain_of:
     - ExposureCondition
-    range: NamedEntity
+    range: ChemicalEntityReference
     inlined: true
     inlined_as_list: false
   exposure_duration:
@@ -1891,7 +1897,7 @@ slots:
     owner: CellularSystem
     domain_of:
     - CellularSystem
-    range: NamedEntity
+    range: CellTypeReference
     inlined: true
     inlined_as_list: false
   anatomical_origin:
@@ -1902,7 +1908,7 @@ slots:
     owner: CellularSystem
     domain_of:
     - CellularSystem
-    range: NamedEntity
+    range: AnatomicalEntityReference
     inlined: true
     inlined_as_list: false
   cell_culture_growth_mode:
@@ -3604,6 +3610,114 @@ slots:
     domain_of:
     - GeneExpressionAssay
     range: string
+  Unit_id:
+    name: Unit_id
+    definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/id
+    description: A unique identifier for the entity.
+    from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
+    is_a: id
+    domain: Unit
+    slot_uri: aop_framework:id
+    identifier: true
+    alias: id
+    owner: Unit
+    domain_of:
+    - Unit
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^(UO:\d{7}|UCUM:\S+|QUDT:\S+)$
+  CellTypeReference_id:
+    name: CellTypeReference_id
+    definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/id
+    description: A unique identifier for the entity.
+    from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
+    is_a: id
+    domain: CellTypeReference
+    slot_uri: aop_framework:id
+    identifier: true
+    alias: id
+    owner: CellTypeReference
+    domain_of:
+    - CellTypeReference
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^CL:\d{7}$
+  SpeciesReference_id:
+    name: SpeciesReference_id
+    definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/id
+    description: A unique identifier for the entity.
+    from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
+    is_a: id
+    domain: SpeciesReference
+    slot_uri: aop_framework:id
+    identifier: true
+    alias: id
+    owner: SpeciesReference
+    domain_of:
+    - SpeciesReference
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^NCBITaxon:\d+$
+  ChemicalEntityReference_id:
+    name: ChemicalEntityReference_id
+    definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/id
+    description: A unique identifier for the entity.
+    from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
+    is_a: id
+    domain: ChemicalEntityReference
+    slot_uri: aop_framework:id
+    identifier: true
+    alias: id
+    owner: ChemicalEntityReference
+    domain_of:
+    - ChemicalEntityReference
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^(CHEBI:\d+|ECTO:\d{7})$
+  AnatomicalEntityReference_id:
+    name: AnatomicalEntityReference_id
+    definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/id
+    description: A unique identifier for the entity.
+    from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
+    is_a: id
+    domain: AnatomicalEntityReference
+    slot_uri: aop_framework:id
+    identifier: true
+    alias: id
+    owner: AnatomicalEntityReference
+    domain_of:
+    - AnatomicalEntityReference
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^UBERON:\d{7}$
+  CellLine_id:
+    name: CellLine_id
+    definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/id
+    description: A unique identifier for the entity.
+    from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
+    is_a: id
+    domain: CellLine
+    slot_uri: aop_framework:id
+    identifier: true
+    alias: id
+    owner: CellLine
+    domain_of:
+    - CellLine
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^CLO:\d{7}$
   CiliaryFunctionAssay_study_subject:
     name: CiliaryFunctionAssay_study_subject
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/study_subject
@@ -4318,8 +4432,12 @@ classes:
     description: A unit of measurement from a standard ontology (UO, UCUM, QUDT).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slots:
-    - id
+    - Unit_id
     - name
+    slot_usage:
+      id:
+        name: id
+        pattern: ^(UO:\d{7}|UCUM:\S+|QUDT:\S+)$
     class_uri: assay_base:Unit
   NamedEntity:
     name: NamedEntity
@@ -4331,6 +4449,72 @@ classes:
     - id
     - name
     class_uri: assay_base:NamedEntity
+  CellTypeReference:
+    name: CellTypeReference
+    id_prefixes:
+    - CL
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/CellTypeReference
+    description: A reference to a cell type from the Cell Ontology (CL).
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    is_a: NamedEntity
+    slots:
+    - name
+    - CellTypeReference_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^CL:\d{7}$
+    class_uri: assay_base:CellTypeReference
+  SpeciesReference:
+    name: SpeciesReference
+    id_prefixes:
+    - NCBITaxon
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/SpeciesReference
+    description: A reference to a species from the NCBI Taxonomy.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    is_a: NamedEntity
+    slots:
+    - name
+    - SpeciesReference_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^NCBITaxon:\d+$
+    class_uri: assay_base:SpeciesReference
+  ChemicalEntityReference:
+    name: ChemicalEntityReference
+    id_prefixes:
+    - CHEBI
+    - ECTO
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/ChemicalEntityReference
+    description: A reference to a chemical entity from CHEBI or an exposure concept
+      from ECTO.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    is_a: NamedEntity
+    slots:
+    - name
+    - ChemicalEntityReference_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^(CHEBI:\d+|ECTO:\d{7})$
+    class_uri: assay_base:ChemicalEntityReference
+  AnatomicalEntityReference:
+    name: AnatomicalEntityReference
+    id_prefixes:
+    - UBERON
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/AnatomicalEntityReference
+    description: A reference to an anatomical entity from UBERON.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    is_a: NamedEntity
+    slots:
+    - name
+    - AnatomicalEntityReference_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^UBERON:\d{7}$
+    class_uri: assay_base:AnatomicalEntityReference
   ExposureCondition:
     name: ExposureCondition
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/ExposureCondition
@@ -4389,7 +4573,6 @@ classes:
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     is_a: NamedEntity
     slots:
-    - id
     - name
     - cell_type
     - model_species
@@ -4399,6 +4582,11 @@ classes:
     - catalog_number
     - authentication_method
     - mycoplasma_status
+    - CellLine_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^CLO:\d{7}$
     class_uri: assay_base:CellLine
   CellCultureConditions:
     name: CellCultureConditions
@@ -5023,7 +5211,7 @@ classes:
     class_uri: assay_microschemas:GeneExpressionOutput
 metamodel_version: 1.7.0
 source_file: soma.yaml
-source_file_date: '2026-03-11T00:44:32'
-source_file_size: 6844
-generation_date: '2026-03-11T00:45:25'
+source_file_date: '2026-03-11T17:47:04'
+source_file_size: 6899
+generation_date: '2026-03-11T17:47:58'
 

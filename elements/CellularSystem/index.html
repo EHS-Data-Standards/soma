@@ -296,8 +296,8 @@
 
 
 
-        CellularSystem --&gt; "0..1" NamedEntity : anatomical_origin
-        click NamedEntity href "../NamedEntity/"
+        CellularSystem --&gt; "0..1" AnatomicalEntityReference : anatomical_origin
+        click AnatomicalEntityReference href "../AnatomicalEntityReference/"
 
 
 
@@ -329,8 +329,8 @@
 
 
 
-        CellularSystem --&gt; "0..1" NamedEntity : cell_type
-        click NamedEntity href "../NamedEntity/"
+        CellularSystem --&gt; "0..1" CellTypeReference : cell_type
+        click CellTypeReference href "../CellTypeReference/"
 
 
 
@@ -387,8 +387,8 @@
 
 
 
-        CellularSystem --&gt; "0..1" NamedEntity : model_species
-        click NamedEntity href "../NamedEntity/"
+        CellularSystem --&gt; "0..1" SpeciesReference : model_species
+        click SpeciesReference href "../SpeciesReference/"
 
 
 
@@ -404,8 +404,8 @@
 
 
 
-        CellularSystem --&gt; "0..1" NamedEntity : primary_cell
-        click NamedEntity href "../NamedEntity/"
+        CellularSystem --&gt; "0..1" CellTypeReference : primary_cell
+        click CellTypeReference href "../CellTypeReference/"
 
 
 
@@ -480,19 +480,19 @@
 </tr>
 <tr>
 <td><a href="../primary_cell/">primary_cell</a></td>
-<td>0..1 <br/> <a href="../NamedEntity/">NamedEntity</a></td>
+<td>0..1 <br/> <a href="../CellTypeReference/">CellTypeReference</a></td>
 <td></td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../cell_type/">cell_type</a></td>
-<td>0..1 <br/> <a href="../NamedEntity/">NamedEntity</a></td>
+<td>0..1 <br/> <a href="../CellTypeReference/">CellTypeReference</a></td>
 <td>The cell type being studied</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../anatomical_origin/">anatomical_origin</a></td>
-<td>0..1 <br/> <a href="../NamedEntity/">NamedEntity</a></td>
+<td>0..1 <br/> <a href="../AnatomicalEntityReference/">AnatomicalEntityReference</a></td>
 <td></td>
 <td>direct</td>
 </tr>
@@ -594,7 +594,7 @@
 </tr>
 <tr>
 <td><a href="../model_species/">model_species</a></td>
-<td>0..1 <br/> <a href="../NamedEntity/">NamedEntity</a></td>
+<td>0..1 <br/> <a href="../SpeciesReference/">SpeciesReference</a></td>
 <td>The species of origin for the cells or organism being studied</td>
 <td><a href="../StudySubject/">StudySubject</a></td>
 </tr>
@@ -697,7 +697,7 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellTypeReference</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">cell_type</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_type</span>
@@ -711,7 +711,7 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellLine</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellTypeReference</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">anatomical_origin</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">anatomical_origin</span>
@@ -721,7 +721,7 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellularSystem</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AnatomicalEntityReference</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">cell_culture_growth_mode</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cell_culture_growth_mode</span>
@@ -898,7 +898,7 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellLine</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpeciesReference</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>

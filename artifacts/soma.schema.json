@@ -211,6 +211,7 @@
                 },
                 "biological_process": {
                     "description": "The biological process affected by this key event. Should reference a GO biological process term.",
+                    "pattern": "^GO:\\d{7}$",
                     "type": [
                         "string",
                         "null"
@@ -236,6 +237,7 @@
                 },
                 "occurs_in_anatomy": {
                     "description": "The anatomical location where this key event occurs. Should reference a UBERON anatomy term.",
+                    "pattern": "^UBERON:\\d{7}$",
                     "type": [
                         "string",
                         "null"
@@ -338,6 +340,29 @@
                 "id"
             ],
             "title": "AdverseOutcomePathway",
+            "type": "object"
+        },
+        "AnatomicalEntityReference": {
+            "additionalProperties": false,
+            "description": "A reference to an anatomical entity from UBERON.",
+            "properties": {
+                "id": {
+                    "description": "A unique identifier for the entity.",
+                    "pattern": "^UBERON:\\d{7}$",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "AnatomicalEntityReference",
             "type": "object"
         },
         "AssayContextCapabilityEnum": {
@@ -452,7 +477,7 @@
                 "target_cell_type": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/NamedEntity"
+                            "$ref": "#/$defs/CellTypeReference"
                         },
                         {
                             "type": "null"
@@ -1087,7 +1112,7 @@
                 "cell_type": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/NamedEntity"
+                            "$ref": "#/$defs/CellTypeReference"
                         },
                         {
                             "type": "null"
@@ -1103,12 +1128,13 @@
                 },
                 "id": {
                     "description": "A unique identifier for the entity.",
+                    "pattern": "^CLO:\\d{7}$",
                     "type": "string"
                 },
                 "model_species": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/NamedEntity"
+                            "$ref": "#/$defs/SpeciesReference"
                         },
                         {
                             "type": "null"
@@ -1148,6 +1174,29 @@
             "title": "CellLine",
             "type": "object"
         },
+        "CellTypeReference": {
+            "additionalProperties": false,
+            "description": "A reference to a cell type from the Cell Ontology (CL).",
+            "properties": {
+                "id": {
+                    "description": "A unique identifier for the entity.",
+                    "pattern": "^CL:\\d{7}$",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "CellTypeReference",
+            "type": "object"
+        },
         "CellularSystem": {
             "additionalProperties": false,
             "description": "Cell-based model systems that use living cells to model biological processes.",
@@ -1155,7 +1204,7 @@
                 "anatomical_origin": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/NamedEntity"
+                            "$ref": "#/$defs/AnatomicalEntityReference"
                         },
                         {
                             "type": "null"
@@ -1178,7 +1227,7 @@
                 "cell_type": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/NamedEntity"
+                            "$ref": "#/$defs/CellTypeReference"
                         },
                         {
                             "type": "null"
@@ -1265,7 +1314,7 @@
                 "model_species": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/NamedEntity"
+                            "$ref": "#/$defs/SpeciesReference"
                         },
                         {
                             "type": "null"
@@ -1295,7 +1344,7 @@
                 "primary_cell": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/NamedEntity"
+                            "$ref": "#/$defs/CellTypeReference"
                         },
                         {
                             "type": "null"
@@ -1347,6 +1396,29 @@
                 "id"
             ],
             "title": "CellularSystem",
+            "type": "object"
+        },
+        "ChemicalEntityReference": {
+            "additionalProperties": false,
+            "description": "A reference to a chemical entity from CHEBI or an exposure concept from ECTO.",
+            "properties": {
+                "id": {
+                    "description": "A unique identifier for the entity.",
+                    "pattern": "^(CHEBI:\\d+|ECTO:\\d{7})$",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "ChemicalEntityReference",
             "type": "object"
         },
         "CiliaryFunctionAssay": {
@@ -2049,7 +2121,7 @@
                 "exposure_agent": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/NamedEntity"
+                            "$ref": "#/$defs/ChemicalEntityReference"
                         },
                         {
                             "type": "null"
@@ -3062,7 +3134,7 @@
                 "model_species": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/NamedEntity"
+                            "$ref": "#/$defs/SpeciesReference"
                         },
                         {
                             "type": "null"
@@ -3143,6 +3215,7 @@
                 },
                 "biological_process": {
                     "description": "The biological process affected by this key event. Should reference a GO biological process term.",
+                    "pattern": "^GO:\\d{7}$",
                     "type": [
                         "string",
                         "null"
@@ -3182,6 +3255,7 @@
                 },
                 "occurs_in_anatomy": {
                     "description": "The anatomical location where this key event occurs. Should reference a UBERON anatomy term.",
+                    "pattern": "^UBERON:\\d{7}$",
                     "type": [
                         "string",
                         "null"
@@ -3189,6 +3263,7 @@
                 },
                 "occurs_in_cell_type": {
                     "description": "The cell type in which this key event occurs. Should reference a Cell Ontology (CL) term.",
+                    "pattern": "^CL:\\d{7}$",
                     "type": [
                         "string",
                         "null"
@@ -3667,7 +3742,7 @@
                 "model_species": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/NamedEntity"
+                            "$ref": "#/$defs/SpeciesReference"
                         },
                         {
                             "type": "null"
@@ -3910,6 +3985,7 @@
                 },
                 "biological_process": {
                     "description": "The biological process affected by this key event. Should reference a GO biological process term.",
+                    "pattern": "^GO:\\d{7}$",
                     "type": [
                         "string",
                         "null"
@@ -3949,6 +4025,7 @@
                 },
                 "occurs_in_anatomy": {
                     "description": "The anatomical location where this key event occurs. Should reference a UBERON anatomy term.",
+                    "pattern": "^UBERON:\\d{7}$",
                     "type": [
                         "string",
                         "null"
@@ -3956,6 +4033,7 @@
                 },
                 "occurs_in_cell_type": {
                     "description": "The cell type in which this key event occurs. Should reference a Cell Ontology (CL) term.",
+                    "pattern": "^CL:\\d{7}$",
                     "type": [
                         "string",
                         "null"
@@ -4637,7 +4715,7 @@
                 "model_species": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/NamedEntity"
+                            "$ref": "#/$defs/SpeciesReference"
                         },
                         {
                             "type": "null"
@@ -4902,6 +4980,29 @@
             ],
             "title": "SampleTypeEnum",
             "type": "string"
+        },
+        "SpeciesReference": {
+            "additionalProperties": false,
+            "description": "A reference to a species from the NCBI Taxonomy.",
+            "properties": {
+                "id": {
+                    "description": "A unique identifier for the entity.",
+                    "pattern": "^NCBITaxon:\\d+$",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "SpeciesReference",
+            "type": "object"
         },
         "SpirometryProtocol": {
             "additionalProperties": false,
@@ -5262,7 +5363,7 @@
                 "model_species": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/NamedEntity"
+                            "$ref": "#/$defs/SpeciesReference"
                         },
                         {
                             "type": "null"
@@ -5333,6 +5434,7 @@
             "properties": {
                 "id": {
                     "description": "A unique identifier for the entity.",
+                    "pattern": "^(UO:\\d{7}|UCUM:\\S+|QUDT:\\S+)$",
                     "type": "string"
                 },
                 "name": {

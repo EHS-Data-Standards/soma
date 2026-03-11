@@ -37,6 +37,10 @@
          <lastmod>2026-03-11</lastmod>
     </url>
     <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/AnatomicalEntityReference/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Assay/</loc>
          <lastmod>2026-03-11</lastmod>
     </url>
@@ -93,7 +97,15 @@
          <lastmod>2026-03-11</lastmod>
     </url>
     <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/CellTypeReference/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/CellularSystem/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/ChemicalEntityReference/</loc>
          <lastmod>2026-03-11</lastmod>
     </url>
     <url>
@@ -302,6 +314,10 @@
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Sparqlpath/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/SpeciesReference/</loc>
          <lastmod>2026-03-11</lastmod>
     </url>
     <url>

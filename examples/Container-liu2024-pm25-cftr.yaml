@@ -757,7 +757,7 @@ balf_sputum_assays:
         value: "1.8"
         unit:
           id: "UO:0000193"
-          name: "fold change vs OVA"
+          name: "fold change"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-mouse-ova-pm25"
@@ -819,7 +819,7 @@ lung_function_assays:
         value: "2.5"
         unit:
           id: "UO:0000193"
-          name: "fold change vs control"
+          name: "fold change"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-mouse-ova-pm25"
@@ -875,7 +875,7 @@ lung_function_assays:
         value: "3.0"
         unit:
           id: "UO:0000193"
-          name: "fold change vs control"
+          name: "fold change"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-mouse-suramin"

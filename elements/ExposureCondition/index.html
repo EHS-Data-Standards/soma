@@ -305,8 +305,8 @@
 
 
 
-        ExposureCondition --&gt; "0..1" NamedEntity : exposure_agent
-        click NamedEntity href "../NamedEntity/"
+        ExposureCondition --&gt; "0..1" ChemicalEntityReference : exposure_agent
+        click ChemicalEntityReference href "../ChemicalEntityReference/"
 
 
 
@@ -369,7 +369,7 @@
 <tbody>
 <tr>
 <td><a href="../exposure_agent/">exposure_agent</a></td>
-<td>0..1 <br/> <a href="../NamedEntity/">NamedEntity</a></td>
+<td>0..1 <br/> <a href="../ChemicalEntityReference/">ChemicalEntityReference</a></td>
 <td>The chemical, biological, or environmental agent used for exposure or treatme...</td>
 <td>direct</td>
 </tr>
@@ -550,7 +550,7 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExposureCondition</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExposureCondition</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalEntityReference</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">exposure_concentration</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exposure_concentration</span>
