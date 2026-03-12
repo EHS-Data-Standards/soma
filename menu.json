@@ -3,6 +3,76 @@
     "Container": {
       "name": "Container",
       "status": "published",
+      "display": false
+    },
+    "CiliaryFunctionAssay": {
+      "name": "Ciliary Function Assay",
+      "status": "published",
+      "display": true
+    },
+    "ASLAssay": {
+      "name": "Airway Surface Liquid Assay",
+      "status": "published",
+      "display": true
+    },
+    "MucociliaryClearanceAssay": {
+      "name": "Mucociliary Clearance Assay",
+      "status": "published",
+      "display": true
+    },
+    "OxidativeStressAssay": {
+      "name": "Oxidative Stress Assay",
+      "status": "published",
+      "display": true
+    },
+    "CFTRFunctionAssay": {
+      "name": "CFTR Function Assay",
+      "status": "published",
+      "display": true
+    },
+    "EGFRSignalingAssay": {
+      "name": "EGFR Signaling Assay",
+      "status": "published",
+      "display": true
+    },
+    "GobletCellAssay": {
+      "name": "Goblet Cell Assay",
+      "status": "published",
+      "display": true
+    },
+    "BALFSputumAssay": {
+      "name": "BALF/Sputum Assay",
+      "status": "published",
+      "display": true
+    },
+    "LungFunctionAssay": {
+      "name": "Lung Function Assay",
+      "status": "published",
+      "display": true
+    },
+    "FoxJExpressionAssay": {
+      "name": "FoxJ Expression Assay",
+      "status": "published",
+      "display": true
+    },
+    "GeneExpressionAssay": {
+      "name": "Gene Expression Assay",
+      "status": "published",
+      "display": true
+    },
+    "Protocol": {
+      "name": "Protocol",
+      "status": "published",
+      "display": true
+    },
+    "KeyEvent": {
+      "name": "Key Event",
+      "status": "published",
+      "display": true
+    },
+    "AdverseOutcomePathway": {
+      "name": "Adverse Outcome Pathway",
+      "status": "published",
       "display": true
     }
   }
