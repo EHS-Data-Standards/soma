@@ -2,13 +2,21 @@
 site_name: "soma"
 theme:
   name: material
-  # palette:
-  #  scheme: slate
-  #  primary: cyan
+  palette:
+    scheme: default
+    primary: custom
+    accent: custom
   features:
     - content.tabs.link
+    - navigation.tabs
+    - navigation.top
+
+extra_css:
+  - stylesheets/extra.css
 
 markdown_extensions:
+  - attr_list
+  - md_in_html
   - pymdownx.details
   - pymdownx.superfences:
       custom_fences:

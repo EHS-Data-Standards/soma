@@ -1,8 +1,62 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
+<div class="aop-hero" markdown>
+
 # SOMA: Schema for Outcomes, Measurements, and Assays
 
-The SOMA: Schema for Outcomes, Measurements, and Assays is a [LinkML](https://linkml.io/) schema for representing
-Key Event and Outcome measurements, assays, and experimental protocols in the context of environmental
-health sciences (EHS) outcomes research.
+<p class="aop-subtitle">A <a href="https://linkml.io/">LinkML</a> schema for representing Key Event and Outcome measurements, assays, and experimental protocols in the context of environmental health sciences (EHS) outcomes research.</p>
+
+</div>
+
+<div class="aop-cards" markdown>
+
+<div class="aop-card aop-card--green" markdown>
+
+### Schema Overview
+
+<a href="elements/index.md" class="aop-btn aop-btn--green">Schema</a>
+<a href="examples.md" class="aop-btn aop-btn--green">Examples</a>
+
+Browse the assay classes, slots, enumerations, and study subjects defined in the SOMA data model.
+
+</div>
+
+<div class="aop-card aop-card--orange" markdown>
+
+### Contribute
+
+<a href="https://github.com/EHS-Data-Standards/soma" class="aop-btn aop-btn--orange">GitHub Repository</a>
+<a href="about.md" class="aop-btn aop-btn--orange">About This Project</a>
+
+Submit issues, propose schema changes, or contribute new assay definitions to the SOMA project.
+
+</div>
+
+<div class="aop-card aop-card--blue" markdown>
+
+### Download Content
+
+<a href="artifacts.md" class="aop-btn aop-btn--blue">Artifacts</a>
+
+Download generated artifacts: JSON Schema, Python dataclasses, Pydantic models, and Excel templates.
+
+</div>
+
+<div class="aop-card aop-card--purple" markdown>
+
+### Data Entry
+
+<a href="harmonizer.html" class="aop-btn aop-btn--outline">Data Harmonizer</a>
+
+Use the browser-based Data Harmonizer to enter and validate SOMA data interactively.
+
+</div>
+
+</div>
 
 ## Purpose
 
@@ -95,13 +149,6 @@ The schema integrates with major biomedical ontologies:
 
 ## Getting Started
 
-### Browse the Schema
-
-Navigate to the [Schema Overview](elements/index.md) to explore all classes, slots,
-and enumerations defined in the model.
-
-### Use the Schema
-
 The schema can be used to:
 
 1. **Validate data** - Ensure your data conforms to the model
@@ -184,8 +231,4 @@ protocols, and study configurations.**
 
 ## Resources
 
-- [Examples](examples.md) - Comprehensive examples for all assay types
-- [Schema Documentation](elements/index.md) - Full schema reference
-- [GitHub Repository](https://github.com/EHS-Data-Standards/soma)
 - [LinkML Documentation](https://linkml.io/linkml/)
-- [About This Project](about.md)

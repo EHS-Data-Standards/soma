@@ -281,6 +281,8 @@ _copy-examples:
 _copy-docs:
   @echo "Copying static documentation files..."
   cp src/docs/*.md docs/
+  -mkdir -p docs/stylesheets
+  -cp -r src/docs/stylesheets/* docs/stylesheets/
   @echo "Static docs copied successfully!"
 
 # Copy generated artifacts (jsonschema, pydantic, python, excel) to docs for the site
