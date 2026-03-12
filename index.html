@@ -29,6 +29,9 @@
     
       <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
       
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
       
 
 
@@ -46,6 +49,8 @@
       
     
     
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
       <link rel="stylesheet" href="css/ansi-colours.css">
     
       <link rel="stylesheet" href="css/jupyter-cells.css">
@@ -61,7 +66,12 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -82,9 +92,7 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="soma" class="md-header__button md-logo" aria-label="soma" data-md-component="logo">
       
@@ -113,8 +121,8 @@
       </div>
     </div>
     
+      
     
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -180,6 +188,131 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="elements/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Schema
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="harmonizer.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Harmonizer
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="examples/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="artifacts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Artifacts
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -187,14 +320,18 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="." title="soma" class="md-nav__button md-logo" aria-label="soma" data-md-component="logo">
       
@@ -284,6 +421,50 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#schema-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contribute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download Content
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Entry
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#purpose" class="md-nav__link">
@@ -376,34 +557,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Getting Started">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#browse-the-schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Browse the Schema
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-the-schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Use the Schema
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -608,7 +761,9 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -625,6 +780,50 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#schema-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contribute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download Content
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Entry
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#purpose" class="md-nav__link">
@@ -718,34 +917,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Getting Started">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#browse-the-schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Browse the Schema
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-the-schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Use the Schema
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -812,16 +983,42 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+
 
 
   
   
 
 
+<div class="aop-hero">
 <h1 id="soma-schema-for-outcomes-measurements-and-assays">SOMA: Schema for Outcomes, Measurements, and Assays</h1>
-<p>The SOMA: Schema for Outcomes, Measurements, and Assays is a <a href="https://linkml.io/">LinkML</a> schema for representing
-Key Event and Outcome measurements, assays, and experimental protocols in the context of environmental
-health sciences (EHS) outcomes research.</p>
+<p class="aop-subtitle">A <a href="https://linkml.io/">LinkML</a> schema for representing Key Event and Outcome measurements, assays, and experimental protocols in the context of environmental health sciences (EHS) outcomes research.</p>
+</div>
+<div class="aop-cards">
+<div class="aop-card aop-card--green">
+<h3 id="schema-overview">Schema Overview</h3>
+<p><a href="elements/index.md" class="aop-btn aop-btn--green">Schema</a>
+<a href="examples.md" class="aop-btn aop-btn--green">Examples</a></p>
+<p>Browse the assay classes, slots, enumerations, and study subjects defined in the SOMA data model.</p>
+</div>
+<div class="aop-card aop-card--orange">
+<h3 id="contribute">Contribute</h3>
+<p><a href="https://github.com/EHS-Data-Standards/soma" class="aop-btn aop-btn--orange">GitHub Repository</a>
+<a href="about.md" class="aop-btn aop-btn--orange">About This Project</a></p>
+<p>Submit issues, propose schema changes, or contribute new assay definitions to the SOMA project.</p>
+</div>
+<div class="aop-card aop-card--blue">
+<h3 id="download-content">Download Content</h3>
+<p><a href="artifacts.md" class="aop-btn aop-btn--blue">Artifacts</a></p>
+<p>Download generated artifacts: JSON Schema, Python dataclasses, Pydantic models, and Excel templates.</p>
+</div>
+<div class="aop-card aop-card--purple">
+<h3 id="data-entry">Data Entry</h3>
+<p><a href="harmonizer.html" class="aop-btn aop-btn--outline">Data Harmonizer</a></p>
+<p>Use the browser-based Data Harmonizer to enter and validate SOMA data interactively.</p>
+</div>
+</div>
 <h2 id="purpose">Purpose</h2>
 <p>This data model provides a standardized way to capture and exchange data about airway biology
 assays relevant to respiratory health outcomes, including:</p>
@@ -1056,10 +1253,6 @@ Any Protocol subclass is valid in both slots.</p>
 </tbody>
 </table>
 <h2 id="getting-started">Getting Started</h2>
-<h3 id="browse-the-schema">Browse the Schema</h3>
-<p>Navigate to the <a href="elements/">Overview</a> to explore all classes, slots,
-and enumerations defined in the model.</p>
-<h3 id="use-the-schema">Use the Schema</h3>
 <p>The schema can be used to:</p>
 <ol>
 <li><strong>Validate data</strong> - Ensure your data conforms to the model</li>
@@ -1133,11 +1326,7 @@ and enumerations defined in the model.</p>
 protocols, and study configurations.</strong></p>
 <h2 id="resources">Resources</h2>
 <ul>
-<li><a href="examples/">Examples</a> - Comprehensive examples for all assay types</li>
-<li><a href="elements/">Schema Documentation</a> - Full schema reference</li>
-<li><a href="https://github.com/EHS-Data-Standards/soma">GitHub Repository</a></li>
 <li><a href="https://linkml.io/linkml/">LinkML Documentation</a></li>
-<li><a href="about/">About This Project</a></li>
 </ul>
 
 
@@ -1146,8 +1335,13 @@ protocols, and study configurations.</strong></p>
 
 
 
+  
+  
 
 
+
+
+  
 
 
 
@@ -1160,6 +1354,12 @@ protocols, and study configurations.</strong></p>
 
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -1190,7 +1390,7 @@ protocols, and study configurations.</strong></p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.tabs.link"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.tabs.link", "navigation.tabs", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
