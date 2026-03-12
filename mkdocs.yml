@@ -47,6 +47,7 @@ nav:
   - Data Harmonizer: harmonizer.html
   - Examples: examples.md
   - Artifacts: artifacts.md
+  - Claude Code Skills: claude-code-skills.md
   - About: about.md
 
 exclude_docs: |
