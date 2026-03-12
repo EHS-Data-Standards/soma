@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Circular pathway "O" from SOMA logo, adapted as a standalone icon -->
+  <g transform="translate(32, 28)">
+    <!-- Arc: top → right -->
+    <path d="M 6,-23 A 24,24 0 0,1 21,-8" fill="none" stroke="#5cb85c" stroke-width="2.2" stroke-linecap="round"/>
+    <polygon points="22,-10 24,-5 18,-7" fill="#5cb85c"/>
+
+    <!-- Arc: right → bottom -->
+    <path d="M 23,6 A 24,24 0 0,1 8,22" fill="none" stroke="#5cb85c" stroke-width="2.2" stroke-linecap="round"/>
+    <polygon points="10,23 5,24 7,18" fill="#5cb85c"/>
+
+    <!-- Arc: bottom → left -->
+    <path d="M -6,23 A 24,24 0 0,1 -21,8" fill="none" stroke="#5cb85c" stroke-width="2.2" stroke-linecap="round"/>
+    <polygon points="-22,10 -24,5 -18,7" fill="#5cb85c"/>
+
+    <!-- Arc: left → top -->
+    <path d="M -23,-6 A 24,24 0 0,1 -8,-22" fill="none" stroke="#5cb85c" stroke-width="2.2" stroke-linecap="round"/>
+    <polygon points="-10,-23 -5,-24 -7,-18" fill="#5cb85c"/>
+
+    <!-- Icon: Patient (top) -->
+    <circle cx="0" cy="-27" r="3.5" fill="#fff"/>
+    <path d="M -5,-22 Q 0,-25 5,-22 L 6,-18 Q 0,-20 -6,-18 Z" fill="#fff"/>
+
+    <!-- Icon: Petri dish (right) -->
+    <ellipse cx="27" cy="-2" rx="6" ry="4" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <ellipse cx="27" cy="0" rx="6" ry="4" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <circle cx="25" cy="-1" r="1" fill="#5cb85c" opacity="0.7"/>
+    <circle cx="29" cy="1" r="0.8" fill="#5cb85c" opacity="0.6"/>
+
+    <!-- Icon: Flask (bottom) -->
+    <path d="M -2,21 L -2,25 L -5,31 Q -5.5,32 -4.5,32.5 L 4.5,32.5 Q 5.5,32 5,31 L 2,25 L 2,21 Z"
+          fill="#fff" stroke="#fff" stroke-width="0.5"/>
+    <line x1="-3" y1="21" x2="3" y2="21" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M -3.8,29 L 3.8,29 L 5,31 Q 5.5,32 4.5,32.5 L -4.5,32.5 Q -5.5,32 -5,31 Z" fill="#5cb85c" opacity="0.6"/>
+
+    <!-- Icon: Graph (left) -->
+    <rect x="-33" y="-5" width="13" height="10" rx="1.5" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <rect x="-31" y="0" width="2.5" height="3.5" rx="0.5" fill="#fff"/>
+    <rect x="-27.5" y="-3" width="2.5" height="6.5" rx="0.5" fill="#5cb85c"/>
+    <rect x="-24" y="-1" width="2.5" height="4.5" rx="0.5" fill="#fff"/>
+  </g>
+</svg>
