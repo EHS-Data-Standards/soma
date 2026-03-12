@@ -1,0 +1,134 @@
+{
+  "soma": {
+    "Container": {
+      "name": "Container",
+      "status": "published",
+      "display": false
+    },
+    "CiliaryFunctionAssay": {
+      "name": "Ciliary Function Assay",
+      "status": "published",
+      "display": true
+    },
+    "ASLAssay": {
+      "name": "Airway Surface Liquid Assay",
+      "status": "published",
+      "display": true
+    },
+    "MucociliaryClearanceAssay": {
+      "name": "Mucociliary Clearance Assay",
+      "status": "published",
+      "display": true
+    },
+    "OxidativeStressAssay": {
+      "name": "Oxidative Stress Assay",
+      "status": "published",
+      "display": true
+    },
+    "CFTRFunctionAssay": {
+      "name": "CFTR Function Assay",
+      "status": "published",
+      "display": true
+    },
+    "EGFRSignalingAssay": {
+      "name": "EGFR Signaling Assay",
+      "status": "published",
+      "display": true
+    },
+    "GobletCellAssay": {
+      "name": "Goblet Cell Assay",
+      "status": "published",
+      "display": true
+    },
+    "BALFSputumAssay": {
+      "name": "BALF/Sputum Assay",
+      "status": "published",
+      "display": true
+    },
+    "LungFunctionAssay": {
+      "name": "Lung Function Assay",
+      "status": "published",
+      "display": true
+    },
+    "FoxJExpressionAssay": {
+      "name": "FoxJ Expression Assay",
+      "status": "published",
+      "display": true
+    },
+    "GeneExpressionAssay": {
+      "name": "Gene Expression Assay",
+      "status": "published",
+      "display": true
+    },
+    "CiliaryFunctionOutput": {
+      "name": "Ciliary Function Output",
+      "status": "published",
+      "display": true
+    },
+    "ASLOutput": {
+      "name": "Airway Surface Liquid Output",
+      "status": "published",
+      "display": true
+    },
+    "MucociliaryClearanceOutput": {
+      "name": "Mucociliary Clearance Output",
+      "status": "published",
+      "display": true
+    },
+    "OxidativeStressOutput": {
+      "name": "Oxidative Stress Output",
+      "status": "published",
+      "display": true
+    },
+    "CFTRFunctionOutput": {
+      "name": "CFTR Function Output",
+      "status": "published",
+      "display": true
+    },
+    "EGFRSignalingOutput": {
+      "name": "EGFR Signaling Output",
+      "status": "published",
+      "display": true
+    },
+    "GobletCellOutput": {
+      "name": "Goblet Cell Output",
+      "status": "published",
+      "display": true
+    },
+    "BALFSputumOutput": {
+      "name": "BALF/Sputum Output",
+      "status": "published",
+      "display": true
+    },
+    "LungFunctionOutput": {
+      "name": "Lung Function Output",
+      "status": "published",
+      "display": true
+    },
+    "FoxJExpressionOutput": {
+      "name": "FoxJ Expression Output",
+      "status": "published",
+      "display": true
+    },
+    "GeneExpressionOutput": {
+      "name": "Gene Expression Output",
+      "status": "published",
+      "display": true
+    },
+    "Protocol": {
+      "name": "Protocol",
+      "status": "published",
+      "display": true
+    },
+    "KeyEvent": {
+      "name": "Key Event",
+      "status": "published",
+      "display": true
+    },
+    "AdverseOutcomePathway": {
+      "name": "Adverse Outcome Pathway",
+      "status": "published",
+      "display": true
+    }
+  }
+}
