@@ -131,6 +131,10 @@
   color: var(--aop-text);
 }
 
+.aop-hero img {
+  margin-bottom: 0.5rem;
+}
+
 .aop-hero .aop-subtitle {
   font-size: 1.05rem;
   color: #666;

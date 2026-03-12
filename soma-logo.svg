@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 140" width="480" height="140">
+  <!-- S -->
+  <text x="100" y="82" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="6" fill="#333333">S</text>
+
+  <!-- O replaced by circular pathway with 4 icons -->
+  <g transform="translate(190, 50)">
+    <!-- Arc: top → right -->
+    <path d="M 6,-23 A 24,24 0 0,1 21,-8" fill="none" stroke="#5cb85c" stroke-width="2.2" stroke-linecap="round"/>
+    <polygon points="22,-10 24,-5 18,-7" fill="#5cb85c"/>
+
+    <!-- Arc: right → bottom -->
+    <path d="M 23,6 A 24,24 0 0,1 8,22" fill="none" stroke="#5cb85c" stroke-width="2.2" stroke-linecap="round"/>
+    <polygon points="10,23 5,24 7,18" fill="#5cb85c"/>
+
+    <!-- Arc: bottom → left -->
+    <path d="M -6,23 A 24,24 0 0,1 -21,8" fill="none" stroke="#5cb85c" stroke-width="2.2" stroke-linecap="round"/>
+    <polygon points="-22,10 -24,5 -18,7" fill="#5cb85c"/>
+
+    <!-- Arc: left → top -->
+    <path d="M -23,-6 A 24,24 0 0,1 -8,-22" fill="none" stroke="#5cb85c" stroke-width="2.2" stroke-linecap="round"/>
+    <polygon points="-10,-23 -5,-24 -7,-18" fill="#5cb85c"/>
+
+    <!-- Icon: Patient (top) — head + shoulders -->
+    <circle cx="0" cy="-27" r="3.5" fill="#333333"/>
+    <path d="M -5,-22 Q 0,-25 5,-22 L 6,-18 Q 0,-20 -6,-18 Z" fill="#333333"/>
+
+    <!-- Icon: Petri dish (right) — oval with dots -->
+    <ellipse cx="27" cy="-2" rx="6" ry="4" fill="#f9f9f9" stroke="#333333" stroke-width="1.2"/>
+    <ellipse cx="27" cy="0" rx="6" ry="4" fill="#f9f9f9" stroke="#333333" stroke-width="1.2"/>
+    <circle cx="25" cy="-1" r="1" fill="#333333" opacity="0.7"/>
+    <circle cx="29" cy="1" r="0.8" fill="#333333" opacity="0.6"/>
+
+    <!-- Icon: Flask (bottom) — small erlenmeyer -->
+    <path d="M -2,21 L -2,25 L -5,31 Q -5.5,32 -4.5,32.5 L 4.5,32.5 Q 5.5,32 5,31 L 2,25 L 2,21 Z"
+          fill="#333333" stroke="#333333" stroke-width="1"/>
+    <line x1="-3" y1="21" x2="3" y2="21" stroke="#333333" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M -3.8,29 L 3.8,29 L 5,31 Q 5.5,32 4.5,32.5 L -4.5,32.5 Q -5.5,32 -5,31 Z" fill="#5cb85c" opacity="0.6"/>
+
+    <!-- Icon: Graph (left) — mini bar chart -->
+    <rect x="-33" y="-5" width="13" height="10" rx="1.5" fill="#f9f9f9" stroke="#333333" stroke-width="1.2"/>
+    <rect x="-31" y="0" width="2.5" height="3.5" rx="0.5" fill="#333333"/>
+    <rect x="-27.5" y="-3" width="2.5" height="6.5" rx="0.5" fill="#449d44"/>
+    <rect x="-24" y="-1" width="2.5" height="4.5" rx="0.5" fill="#333333"/>
+  </g>
+
+  <!-- MA -->
+  <text x="228" y="82" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="6" fill="#333333">MA</text>
+
+  <!-- Descriptor line -->
+  <line x1="40" y1="95" x2="440" y2="95" stroke="#5cb85c" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Full name — centered -->
+  <text x="240" y="114" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" letter-spacing="2.5" fill="#449d44">
+    SCHEMA FOR OUTCOMES, MEASUREMENTS &amp; ASSAYS
+  </text>
+
+  <!-- Subtitle — centered -->
+  <text x="240" y="131" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="300" letter-spacing="1.5" fill="#666666">
+    Environmental Health Sciences Data Standard
+  </text>
+</svg>
