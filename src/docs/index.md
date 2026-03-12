@@ -97,7 +97,7 @@ The schema integrates with major biomedical ontologies:
 
 ### Browse the Schema
 
-Navigate to the [Schema Overview](elements/index.md) to explore all classes, slots,
+Navigate to the [Overview](elements/index.md) to explore all classes, slots,
 and enumerations defined in the model.
 
 ### Use the Schema
