@@ -16,7 +16,13 @@ dynamic = ["version"]
 
 dependencies = [
   "linkml-runtime >=1.9.4",
+  "click >=8.0",
+  "openpyxl >=3.1.0",
+  "pyyaml >=6.0",
 ]
+
+[project.scripts]
+soma-flatten = "soma.flatten.cli:main"
 
 [dependency-groups]
 dev = [

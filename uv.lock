@@ -3150,7 +3150,10 @@ wheels = [
 name = "soma"
 source = { editable = "." }
 dependencies = [
+    { name = "click" },
     { name = "linkml-runtime" },
+    { name = "openpyxl" },
+    { name = "pyyaml" },
 ]
 
 [package.dev-dependencies]
@@ -3163,7 +3166,12 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "linkml-runtime", specifier = ">=1.9.4" }]
+requires-dist = [
+    { name = "click", specifier = ">=8.0" },
+    { name = "linkml-runtime", specifier = ">=1.9.4" },
+    { name = "openpyxl", specifier = ">=3.1.0" },
+    { name = "pyyaml", specifier = ">=6.0" },
+]
 
 [package.metadata.requires-dev]
 dev = [

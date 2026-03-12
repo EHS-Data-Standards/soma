@@ -1,0 +1,141 @@
+source_class: GeneExpressionAssay
+container_slot: gene_expression_assays
+target_sheet: GeneExpressionAssay
+flatten_rules:
+  scalars:
+  - id
+  - name
+  - assay_date
+  - target_gene
+  - gene_expression_method
+  - normalization_reference
+  quantity_values:
+  - path: has_specified_output.mrna_level
+    prefix: mrna_level
+  - path: has_specified_output.protein_level
+    prefix: protein_level
+  - path: has_specified_output.percentage_positive_cells
+    prefix: percentage_positive_cells
+  inlined_objects:
+  - path: informs_on_key_event
+    columns:
+    - slot: id
+      column: key_event_id
+    - slot: name
+      column: key_event_name
+  study_subject_common:
+    scalars:
+    - id
+    - name
+    inlined_objects:
+    - path: model_species
+      columns:
+      - slot: id
+        column: model_species_id
+      - slot: name
+        column: model_species_name
+  polymorphic:
+  - path: study_subject
+    discriminator: subject_type
+    variants:
+      CellularSystem:
+        scalars:
+        - cell_culture_growth_mode
+        - substrate_type
+        - passage_number
+        - coating
+        - matrix_composition
+        - size_range
+        - organoid_type
+        - days_at_differentiation
+        - donor_info
+        - replicates_per_donor
+        quantity_values:
+        - path: confluence_level
+          prefix: confluence_level
+        - path: seeding_density
+          prefix: seeding_density
+        inlined_objects:
+        - path: cell_line
+          columns:
+          - slot: id
+            column: cell_line_id
+          - slot: name
+            column: cell_line_name
+        - path: primary_cell
+          columns:
+          - slot: id
+            column: primary_cell_id
+          - slot: name
+            column: primary_cell_name
+        - path: cell_type
+          columns:
+          - slot: id
+            column: cell_type_id
+          - slot: name
+            column: cell_type_name
+        - path: anatomical_origin
+          columns:
+          - slot: id
+            column: anatomical_origin_id
+          - slot: name
+            column: anatomical_origin_name
+        - path: culture_conditions
+          columns:
+          - slot: id
+            column: culture_conditions_id
+          - slot: name
+            column: culture_conditions_name
+        - path: culture_media
+          columns:
+          - slot: id
+            column: culture_media_id
+          - slot: name
+            column: culture_media_name
+      InVivoSubject:
+        scalars:
+        - sex
+        - subject_characteristics
+        - disease_state
+        - sample_type
+        - collection_site
+        - collection_date
+        - sample_collection_method
+        - clinical_context
+        quantity_values:
+        - path: age
+          prefix: age
+      PopulationSubject:
+        scalars:
+        - cohort_size
+        - inclusion_criteria
+        - age_range
+  multivalued:
+  - path: has_exposure_condition
+    strategy: expand_rows
+    per_item:
+    - slot: id
+      column: exposure_id
+    - slot: name
+      column: exposure_name
+    - slot: exposure_agent.name
+      column: exposure_agent
+    - slot: exposure_agent.id
+      column: exposure_agent_id
+    - slot: exposure_concentration
+      type: quantity_value
+      prefix: exposure_concentration
+    - slot: exposure_duration
+      type: quantity_value
+      prefix: exposure_duration
+    - slot: timing_post_exposure
+      type: quantity_value
+      prefix: timing_post_exposure
+  - path: follows_protocols
+    strategy: delimited
+    delimiter: ' | '
+    slot: name
+  - path: study_subject.culture_media.supplements
+    strategy: delimited
+    delimiter: ' | '
+    slot: name
