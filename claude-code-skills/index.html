@@ -1,0 +1,1427 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://EHS-Data-Standards.github.io/soma/claude-code-skills/">
+      
+      
+        <link rel="prev" href="../artifacts/">
+      
+      
+        <link rel="next" href="../about/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Claude Code Skills - soma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#claude-code-skills-for-soma" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="soma" class="md-header__button md-logo" aria-label="soma" data-md-component="logo">
+      
+  <img src="../soma-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            soma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Claude Code Skills
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/EHS-Data-Standards/soma" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../elements/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Schema
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../harmonizer.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Harmonizer
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../artifacts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Artifacts
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Claude Code Skills
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="soma" class="md-nav__button md-logo" aria-label="soma" data-md-component="logo">
+      
+  <img src="../soma-icon.svg" alt="logo">
+
+    </a>
+    soma
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/EHS-Data-Standards/soma" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../elements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonizer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Harmonizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../artifacts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code Skills
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is Claude Code?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Is Claude Code?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#important-things-to-keep-in-mind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Things to Keep in Mind
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-a-claude-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting a Claude Account
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting a Claude Account">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-claude-pro-plan-20month" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1: Claude Pro Plan ($20/month)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-claude-max-plan-100month-recommended-for-heavy-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2: Claude Max Plan ($100/month, recommended for heavy use)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-3-anthropic-api-recommended-for-teams-or-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 3: Anthropic API (recommended for teams or automation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-if-i-only-have-a-free-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What if I only have a free account?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Skills
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Skills">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oaklib-ontology-term-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /oaklib - Ontology Term Lookup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdf-to-yaml-extract-data-from-a-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /pdf-to-yaml - Extract Data from a Publication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linkml-validate-validate-yaml-against-the-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /linkml-validate - Validate YAML Against the Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml-to-excel-convert-yaml-to-excel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /yaml-to-excel - Convert YAML to Excel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-pipeline-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full Pipeline Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternative-opencode-open-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternative: OpenCode (Open Source)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternative: OpenCode (Open Source)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-opencode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing OpenCode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connecting-to-anthropic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connecting to Anthropic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-extended-thinking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling Extended Thinking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-opencode-in-the-soma-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running OpenCode in the SOMA Repo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations-vs-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations vs Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is Claude Code?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Is Claude Code?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#important-things-to-keep-in-mind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Things to Keep in Mind
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-a-claude-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting a Claude Account
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting a Claude Account">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-claude-pro-plan-20month" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1: Claude Pro Plan ($20/month)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-claude-max-plan-100month-recommended-for-heavy-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2: Claude Max Plan ($100/month, recommended for heavy use)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-3-anthropic-api-recommended-for-teams-or-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 3: Anthropic API (recommended for teams or automation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-if-i-only-have-a-free-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What if I only have a free account?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Skills
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Skills">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oaklib-ontology-term-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /oaklib - Ontology Term Lookup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdf-to-yaml-extract-data-from-a-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /pdf-to-yaml - Extract Data from a Publication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linkml-validate-validate-yaml-against-the-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /linkml-validate - Validate YAML Against the Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml-to-excel-convert-yaml-to-excel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /yaml-to-excel - Convert YAML to Excel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-pipeline-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full Pipeline Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternative-opencode-open-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternative: OpenCode (Open Source)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternative: OpenCode (Open Source)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-opencode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing OpenCode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connecting-to-anthropic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connecting to Anthropic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-extended-thinking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling Extended Thinking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-opencode-in-the-soma-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running OpenCode in the SOMA Repo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations-vs-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations vs Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="claude-code-skills-for-soma">Claude Code Skills for SOMA</h1>
+<p>SOMA includes a set of <a href="https://docs.anthropic.com/en/docs/claude-code/overview">Claude Code</a> skills that automate the pipeline from publication PDF to validated Excel spreadsheet. This guide explains how to set up Claude Code and use each skill.</p>
+<h2 id="what-is-claude-code">What Is Claude Code?</h2>
+<p>Claude Code is an AI assistant that lives in your terminal (the text-based command window on your computer). It can read your files, help you write and edit code, plan tasks, and work alongside you on projects. Think of it as a very capable helper that sits inside your coding environment.</p>
+<h3 id="important-things-to-keep-in-mind">Important Things to Keep in Mind</h3>
+<p>Before diving into setup and skills, it is worth understanding what Claude Code is and is not. The following guidance is adapted from <a href="https://orcid.org/0000-0002-4142-7153">Sabrina Toro, PhD</a> and the <a href="https://oboacademy.github.io/obook/">OBO Academy</a>, based on workshops and bootcamp training for curators and non-developers.</p>
+<ul>
+<li><strong>Claude is not an oracle.</strong> It is an extremely efficient tool, but you should never rely on it alone to tell you <em>how</em> to do something. You need to provide it with context and information so it can help you find the answer.</li>
+<li><strong>Claude is trained to please you.</strong> It will tend to agree with you and show you what you want to see. This means it is not always the best partner for debating ideas or getting pushback. Be aware of this tendency.</li>
+<li><strong>Stay focused.</strong> It is easy to go down a rabbit hole with Claude. Keep your task in mind and avoid scope creep.</li>
+<li><strong>You must be able to verify the work.</strong> Claude cannot do work that you yourself cannot evaluate. If you ask it to extract data from a paper, you need to review the output against the source. If you ask it to suggest ontology terms, you need to confirm they are correct. Claude can suggest approaches you might not have thought of, but ultimately you decide what is right.</li>
+</ul>
+<hr />
+<h2 id="getting-a-claude-account">Getting a Claude Account</h2>
+<p>Claude Code requires a paid plan. It is <strong>not available on the free Anthropic tier</strong>. The free tier gives you access to claude.ai for basic conversations, but Claude Code (and therefore these skills) require at least a Pro subscription or an API key.</p>
+<h3 id="option-1-claude-pro-plan-20month">Option 1: Claude Pro Plan ($20/month)</h3>
+<ol>
+<li>Go to <a href="https://claude.ai/">claude.ai</a> and create an account</li>
+<li>Subscribe to the <strong>Pro plan</strong> ($20/month) under <strong>Settings &gt; Subscription</strong></li>
+<li>Claude Code is included with Pro</li>
+</ol>
+<p>This is the minimum required to use Claude Code and the SOMA skills. Pro gives you 5x the capacity of the free tier and access to all models.</p>
+<h3 id="option-2-claude-max-plan-100month-recommended-for-heavy-use">Option 2: Claude Max Plan ($100/month, recommended for heavy use)</h3>
+<ol>
+<li>Go to <a href="https://claude.ai/">claude.ai</a> and create an account</li>
+<li>Subscribe to the <strong>Max plan</strong> ($100/month) under <strong>Settings &gt; Subscription</strong></li>
+<li>Claude Code is included with Max -- no API key needed</li>
+</ol>
+<p>Max provides significantly higher rate limits (5x Pro), which is useful when running the full PDF-to-Excel pipeline repeatedly. A Max 20x tier is also available at $200/month.</p>
+<h3 id="option-3-anthropic-api-recommended-for-teams-or-automation">Option 3: Anthropic API (recommended for teams or automation)</h3>
+<ol>
+<li>Go to <a href="https://console.anthropic.com/">console.anthropic.com</a> and create an Anthropic account</li>
+<li>Add a payment method under <strong>Settings &gt; Billing</strong></li>
+<li>Generate an API key under <strong>Settings &gt; API Keys</strong></li>
+<li>Set the key in your environment: <code>export ANTHROPIC_API_KEY=sk-ant-...</code></li>
+</ol>
+<p>API billing is pay-per-use and suited for programmatic or team workflows.</p>
+<h3 id="what-if-i-only-have-a-free-account">What if I only have a free account?</h3>
+<p>Claude Code is not available on the free plan. You will need to upgrade to at least the <strong>Pro plan</strong> ($20/month) to use Claude Code and the SOMA skills. You can sign up for free at <a href="https://claude.ai/">claude.ai</a> and upgrade at any time from <strong>Settings &gt; Subscription</strong>.</p>
+<h2 id="installing-claude-code">Installing Claude Code</h2>
+<p>Install Claude Code globally via npm:</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@anthropic-ai/claude-code
+</code></pre></div>
+<p>Then launch Claude Code from the SOMA project root:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/soma
+claude
+</code></pre></div>
+<p>If you are on the Max plan, Claude Code will open a browser window to authenticate on first launch. If you are using an API key, make sure <code>ANTHROPIC_API_KEY</code> is set in your shell environment before running <code>claude</code>.</p>
+<p>The skills are defined in <code>.claude/skills/</code> and are automatically available when Claude Code runs inside the SOMA repository.</p>
+<h2 id="the-skills">The Skills</h2>
+<p>SOMA provides four skills that form a pipeline:</p>
+<div class="highlight"><pre><span></span><code>PDF --&gt; /pdf-to-yaml --&gt; /linkml-validate --&gt; /yaml-to-excel
+                              ^
+                         /oaklib (ontology lookup)
+</code></pre></div>
+<h3 id="oaklib-ontology-term-lookup"><code>/oaklib</code> - Ontology Term Lookup</h3>
+<p>Look up, search, and validate ontology terms (CURIEs) used in SOMA data files.</p>
+<p><strong>Example usage:</strong></p>
+<div class="highlight"><pre><span></span><code>/oaklib
+&gt; Look up CHEBI:74481
+&gt; Search the Cell Ontology for &quot;nasal epithelial cell&quot;
+&gt; Validate that CL:0002603 is a real term
+</code></pre></div>
+<p><strong>Supported ontologies:</strong> CHEBI, CL, UBERON, NCBITaxon, UO, OBI, GO, ECTO, PR, HP, PATO, CLO</p>
+<p><strong>Output:</strong> Term labels, definitions, ancestors, and cross-references printed directly in the chat.</p>
+<hr />
+<h3 id="pdf-to-yaml-extract-data-from-a-publication"><code>/pdf-to-yaml</code> - Extract Data from a Publication</h3>
+<p>Reads a publication PDF and extracts structured assay/measurement data into a SOMA-compliant YAML file.</p>
+<p><strong>Example usage:</strong></p>
+<div class="highlight"><pre><span></span><code>/pdf-to-yaml
+&gt; Extract data from docs/papers/smith2024-pm25-ciliary.pdf
+</code></pre></div>
+<p><strong>What it does:</strong></p>
+<ol>
+<li>Reads the PDF (in 20-page chunks)</li>
+<li>Identifies assay types, measurements, protocols, and exposure conditions</li>
+<li>Maps entities to ontology terms (using <code>/oaklib</code> internally)</li>
+<li>Generates a Container YAML file following SOMA naming conventions</li>
+</ol>
+<p><strong>Output location:</strong> <code>tests/data/valid/Container-&lt;author&gt;&lt;year&gt;-&lt;agent&gt;-&lt;focus&gt;.yaml</code></p>
+<p><strong>Important constraints:</strong></p>
+<ul>
+<li>All numeric values must come from the paper (never hallucinated)</li>
+<li>Figure-derived values are marked as approximate</li>
+<li>Missing data is omitted, not guessed</li>
+</ul>
+<hr />
+<h3 id="linkml-validate-validate-yaml-against-the-schema"><code>/linkml-validate</code> - Validate YAML Against the Schema</h3>
+<p>Validates a SOMA YAML file against the LinkML schema to catch structural and type errors.</p>
+<p><strong>Example usage:</strong></p>
+<div class="highlight"><pre><span></span><code>/linkml-validate
+&gt; Validate tests/data/valid/Container-liu2024-pm25-cftr.yaml
+</code></pre></div>
+<p><strong>What it does:</strong></p>
+<ol>
+<li>Runs <code>linkml-validate</code> CLI for a quick syntax/structure check</li>
+<li>Optionally runs the Python loader for deeper validation</li>
+<li>Reports any errors (missing fields, invalid enums, type mismatches)</li>
+</ol>
+<p><strong>Output:</strong> Validation results printed in the chat. No files are created -- errors are reported for you to fix.</p>
+<hr />
+<h3 id="yaml-to-excel-convert-yaml-to-excel"><code>/yaml-to-excel</code> - Convert YAML to Excel</h3>
+<p>Converts a validated SOMA YAML file into a formatted Excel workbook.</p>
+<p><strong>Example usage:</strong></p>
+<div class="highlight"><pre><span></span><code>/yaml-to-excel
+&gt; Convert tests/data/valid/Container-liu2024-pm25-cftr.yaml to Excel
+</code></pre></div>
+<p><strong>What it does:</strong></p>
+<ol>
+<li>Loads and validates the YAML</li>
+<li>Reads the LinkML scaffold (<code>project/excel/soma.xlsx</code>) for canonical tab names</li>
+<li>Creates tabs for each non-empty collection (Metadata, Protocol, ExposureCondition, KeyEvent, assay tabs, output tabs, etc.)</li>
+<li>Applies SOMA styling (blue headers, borders, auto-width columns)</li>
+</ol>
+<p><strong>Output location:</strong> <code>src/docs/&lt;Author&gt;&lt;Year&gt;_&lt;Agent&gt;_&lt;Focus&gt;_SOMA.xlsx</code></p>
+<p>For example:</p>
+<ul>
+<li><code>src/docs/Liu2024_PM25_CFTR_SOMA.xlsx</code></li>
+<li><code>src/docs/Montgomery2020_PM25_Mucociliary_SOMA.xlsx</code></li>
+</ul>
+<hr />
+<h2 id="full-pipeline-example">Full Pipeline Example</h2>
+<p>Here is a typical workflow using all four skills in sequence:</p>
+<div class="highlight"><pre><span></span><code>&gt; /pdf-to-yaml
+  Extract data from docs/papers/liu2024-pm25-cftr.pdf
+
+&gt; /oaklib
+  Verify that CHEBI:74481 is correct for PM2.5
+
+&gt; /linkml-validate
+  Validate tests/data/valid/Container-liu2024-pm25-cftr.yaml
+
+&gt; /yaml-to-excel
+  Convert tests/data/valid/Container-liu2024-pm25-cftr.yaml to Excel
+</code></pre></div>
+<p>The final Excel file will appear in <code>src/docs/</code> and can be downloaded from the <a href="../artifacts/">Artifacts</a> page.</p>
+<hr />
+<h2 id="alternative-opencode-open-source">Alternative: OpenCode (Open Source)</h2>
+<p><a href="https://github.com/opencode-ai/opencode">OpenCode</a> is an open source terminal-based AI coding agent that supports Anthropic Claude models (among many others). It can serve as an alternative to Claude Code if you prefer an open source tool or want to use your own API key without a Pro/Max subscription.</p>
+<p>OpenCode does not support Claude Code skills (the <code>/oaklib</code>, <code>/pdf-to-yaml</code>, etc. commands above) directly, but you can use it as a general-purpose AI coding assistant within the SOMA repository using Claude models.</p>
+<h3 id="installing-opencode">Installing OpenCode</h3>
+<p><strong>macOS (Homebrew):</strong></p>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>opencode-ai/tap/opencode
+</code></pre></div>
+<p><strong>Linux/macOS (install script):</strong></p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/opencode-ai/opencode/refs/heads/main/install<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</code></pre></div>
+<p><strong>Go:</strong></p>
+<div class="highlight"><pre><span></span><code>go<span class="w"> </span>install<span class="w"> </span>github.com/opencode-ai/opencode@latest
+</code></pre></div>
+<h3 id="connecting-to-anthropic">Connecting to Anthropic</h3>
+<p>You will need an Anthropic API key. Create one at <a href="https://console.anthropic.com/">console.anthropic.com</a> under <strong>Settings &gt; API Keys</strong> (requires a payment method for pay-per-use billing).</p>
+<p><strong>Option A: Interactive setup</strong></p>
+<p>Launch OpenCode and use the built-in connection wizard:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/soma
+opencode
+</code></pre></div>
+<p>Inside the TUI, type <code>/connect</code> and select <strong>Anthropic</strong>. You can authenticate by entering your API key directly.</p>
+<p><strong>Option B: Configuration file</strong></p>
+<p>Create <code>~/.config/opencode/opencode.json</code> (global) or <code>opencode.json</code> in the SOMA project root (project-level):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://opencode.ai/config.json&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;anthropic&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;apiKey&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{env:ANTHROPIC_API_KEY}&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;anthropic/claude-sonnet-4-5&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;small_model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;anthropic/claude-haiku-4-5&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Then set your API key in your shell profile (e.g., <code>~/.zshrc</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>sk-ant-...
+</code></pre></div>
+<h3 id="enabling-extended-thinking">Enabling Extended Thinking</h3>
+<p>Claude models in OpenCode support extended thinking for deeper reasoning on complex tasks. Add a <code>models</code> block to your provider config:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;anthropic&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;apiKey&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{env:ANTHROPIC_API_KEY}&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;models&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;claude-sonnet-4-5&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;enabled&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;budgetTokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16000</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;anthropic/claude-sonnet-4-5&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="running-opencode-in-the-soma-repo">Running OpenCode in the SOMA Repo</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/soma
+opencode
+</code></pre></div>
+<p>Once in the TUI, you can ask it to run the same underlying commands that the Claude Code skills use:</p>
+<div class="highlight"><pre><span></span><code>&gt; Run: uv run linkml-validate -s src/soma/schema/soma.yaml tests/data/valid/Container-liu2024-pm25-cftr.yaml
+&gt; Run: uv run runoak -i sqlite:obo:chebi info CHEBI:74481
+&gt; Run: uv run python scripts/yaml_to_excel.py --input tests/data/valid/Container-liu2024-pm25-cftr.yaml --output src/docs/output.xlsx
+</code></pre></div>
+<p>You can also run a single prompt non-interactively:</p>
+<div class="highlight"><pre><span></span><code>opencode<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Validate all YAML files in tests/data/valid/ against the SOMA schema&quot;</span>
+</code></pre></div>
+<h3 id="limitations-vs-claude-code">Limitations vs Claude Code</h3>
+<ul>
+<li><strong>No skills support</strong>: OpenCode does not load <code>.claude/skills/</code> files. You need to provide instructions manually or use OpenCode's own <a href="https://opencode.ai/docs/agents/">agent configuration</a> to replicate similar behavior.</li>
+<li><strong>Pay-per-use only</strong>: There is no bundled subscription -- you pay Anthropic directly for API usage.</li>
+<li><strong>Different tool permissions model</strong>: OpenCode has its own permission system for file writes, shell commands, etc.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "navigation.tabs", "navigation.top"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
