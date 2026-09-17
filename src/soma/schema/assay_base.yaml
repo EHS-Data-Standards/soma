@@ -64,6 +64,7 @@ classes:
       - follows_protocols
       - has_specified_output
       - assay_date
+      - evidence
 
   # ---------------------------------------------------------------------------
   # Assay Output Measurement (Abstract Base)
@@ -87,6 +88,7 @@ classes:
       gets its own output record, marked with experimental_group and linked
       to the specific exposure condition via measured_under.
     slots:
+      - evidence
       - experimental_group
       - measured_under
 
@@ -305,14 +307,16 @@ classes:
   ChemicalEntityReference:
     is_a: NamedEntity
     description: >-
-      A reference to a chemical entity from CHEBI or an exposure
-      concept from ECTO.
+      A reference to a chemical entity from CHEBI, an exposure concept from
+      ECTO, or an environmental material from ENVO (e.g. particulate matter,
+      which is an ENVO concept, not a CHEBI chemical).
     id_prefixes:
       - CHEBI
       - ECTO
+      - ENVO
     slot_usage:
       id:
-        pattern: "^(CHEBI:\\d+|ECTO:\\d{7})$"
+        pattern: "^(CHEBI:\\d+|ECTO:\\d{7}|ENVO:\\d{8})$"
 
   AnatomicalEntityReference:
     is_a: NamedEntity
@@ -541,6 +545,10 @@ slots:
     range: CellTypeReference
     inlined: true
     slot_uri: EFO:0000324
+    bindings:
+      - binds_value_of: id
+        range: CellTypeTerm
+        obligation_level: REQUIRED
 
   target_cell_type:
     description: >-
@@ -549,6 +557,10 @@ slots:
       sample (e.g., neutrophils in a BALF differential).
     range: CellTypeReference
     inlined: true
+    bindings:
+      - binds_value_of: id
+        range: CellTypeTerm
+        obligation_level: REQUIRED
 
   model_species:
     description: >-
@@ -556,6 +568,10 @@ slots:
       Reference to NCBITaxon term.
     range: SpeciesReference
     inlined: true
+    bindings:
+      - binds_value_of: id
+        range: SpeciesTerm
+        obligation_level: REQUIRED
 
   # ---------------------------------------------------------------------------
   # Study Subject Slots
@@ -903,6 +919,10 @@ slots:
       or treatment. Reference to a CHEBI or ECTO ontology term.
     range: ChemicalEntityReference
     inlined: true
+    bindings:
+      - binds_value_of: id
+        range: ChemicalEntityTerm
+        obligation_level: REQUIRED
 
   exposure_duration:
     description: Duration of exposure or treatment.
@@ -932,10 +952,18 @@ slots:
   primary_cell:
     range: CellTypeReference
     inlined: true
+    bindings:
+      - binds_value_of: id
+        range: CellTypeTerm
+        obligation_level: REQUIRED
 
   anatomical_origin:
     range: AnatomicalEntityReference
     inlined: true
+    bindings:
+      - binds_value_of: id
+        range: AnatomicalEntityTerm
+        obligation_level: REQUIRED
 
   cell_culture_growth_mode:
     range: CellCultureGrowthModeEnum
@@ -1059,6 +1087,10 @@ slots:
     description: The unit of measurement.
     range: Unit
     inlined: true
+    bindings:
+      - binds_value_of: id
+        range: UnitTerm
+        obligation_level: REQUIRED
 
   central_tendency:
     description: >-
@@ -1181,6 +1213,54 @@ slots:
 # =============================================================================
 
 enums:
+
+  # ---------------------------------------------------------------------------
+  # Term-checking enums
+  #
+  # These enums power linkml-term-validator. A slot that carries an ontology
+  # reference (an id + name pair) declares a binding to one of these enums;
+  # the validator then checks that the id really exists in the ontology, that
+  # the name matches the ontology's official label, and — where the enum has a
+  # reachable_from block — that the term sits under the named root (e.g. a
+  # cell type must be underneath CL "cell"). Enums without a reachable_from
+  # block still get the exists + label-matches checks, just no branch check
+  # (used where a slot legitimately mixes ontologies).
+  # ---------------------------------------------------------------------------
+
+  CellTypeTerm:
+    description: A cell type term from the Cell Ontology (CL), under "cell".
+    reachable_from:
+      source_nodes:
+        - CL:0000000  ## cell
+      is_direct: false
+      relationship_types:
+        - rdfs:subClassOf
+
+  AnatomicalEntityTerm:
+    description: >-
+      An anatomical term from UBERON, under "anatomical entity".
+    reachable_from:
+      source_nodes:
+        - UBERON:0001062  ## anatomical entity
+      is_direct: false
+      relationship_types:
+        - rdfs:subClassOf
+
+  ChemicalEntityTerm:
+    description: >-
+      A chemical entity from CHEBI or an exposure concept from ECTO.
+      No branch constraint because two ontologies are allowed — the
+      validator still checks the term exists and the label matches.
+
+  SpeciesTerm:
+    description: >-
+      A species from the NCBI Taxonomy. No branch constraint — the validator
+      checks the term exists and the label matches.
+
+  UnitTerm:
+    description: >-
+      A unit of measurement from UO (UCUM/QUDT/STATO ids are also allowed by
+      the Unit class but are not label-checked). No branch constraint.
 
   SampleTypeEnum:
     description: Types of biological samples for in vivo assays.

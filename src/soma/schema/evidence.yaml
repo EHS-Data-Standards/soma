@@ -1,0 +1,194 @@
+name: evidence
+description: >-
+  Evidence model for SOMA. Any claim-bearing object (an assay, a measurement,
+  a key event, a key event relationship) can carry a list of evidence items.
+  Each evidence item cites a publication and quotes the exact passage that
+  supports the claim.
+
+  Two of these fields are checked automatically by linkml-reference-validator
+  against a cached copy of the cited publication (fetched from PubMed into
+  references_cache/): the snippet must appear word-for-word in the publication,
+  and the reference_title must match the publication's real title. This is what
+  makes "verify the extraction" a mechanical check instead of a judgment call.
+title: SOMA Evidence Schema
+id: https://w3id.org/EHS-Data-Standards/evidence
+
+imports:
+  - linkml:types
+
+prefixes:
+  evidence: https://w3id.org/EHS-Data-Standards/evidence/
+  linkml: https://w3id.org/linkml/
+  dcterms: http://purl.org/dc/terms/
+  PMID: http://www.ncbi.nlm.nih.gov/pubmed/
+  DOI: https://doi.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: evidence
+default_range: string
+
+# =============================================================================
+# TYPES
+# =============================================================================
+
+types:
+
+  PMID:
+    base: str
+    uri: xsd:string
+    description: >-
+      A PubMed identifier written as a CURIE, e.g. "PMID:12345678".
+
+# =============================================================================
+# CLASSES
+# =============================================================================
+
+classes:
+
+  EvidenceItem:
+    description: >-
+      One piece of evidence for a claim: which publication it comes from,
+      an exact quote from that publication, whether the quote supports or
+      refutes the claim, and what kind of study produced it.
+    slots:
+      - reference
+      - reference_title
+      - supports
+      - evidence_source
+      - snippet
+      - explanation
+
+  PublicationReference:
+    description: >-
+      The publication a data file was extracted from. Every Container names
+      its source paper here, so each kb/ file is traceable to one publication.
+    slots:
+      - reference
+      - reference_title
+      - doi
+
+# =============================================================================
+# SLOTS
+# =============================================================================
+
+slots:
+
+  reference:
+    description: >-
+      The cited publication's PubMed ID, e.g. "PMID:12345678".
+    range: PMID
+    pattern: "^PMID:\\d+$"
+    # This annotation is what tells linkml-reference-validator that this
+    # field names the publication to check snippets against. Only this
+    # exact URI works.
+    implements:
+      - linkml:authoritative_reference
+
+  reference_title:
+    description: >-
+      The title of the cited publication, copied from the cached reference
+      record (references_cache/), never typed from memory.
+    range: string
+    recommended: true
+    # This annotation lets linkml-reference-validator compare the declared
+    # title against the fetched publication and flag a mismatch. It must be
+    # dcterms:title — linkml:title is silently ignored by the validator.
+    implements:
+      - dcterms:title
+
+  supports:
+    description: >-
+      Which way the quoted evidence points: does it support the claim,
+      contradict it, or turn out not to bear on it at all.
+    range: EvidenceItemSupportEnum
+
+  evidence_source:
+    description: >-
+      What kind of study the cited publication reports — classify the paper,
+      not the person doing the extraction.
+    range: EvidenceSourceEnum
+
+  snippet:
+    description: >-
+      An exact quote from the cited publication that supports or refutes the
+      claim. Checked automatically: the text must appear word-for-word in the
+      cached copy of the publication.
+    range: string
+    implements:
+      - linkml:excerpt
+
+  explanation:
+    description: >-
+      One or two sentences on how the quoted passage supports the specific
+      claim it is attached to.
+    range: string
+
+  doi:
+    description: >-
+      The publication's DOI, e.g. "10.1164/rccm.202001-0086OC" (without a
+      "DOI:" prefix).
+    range: string
+
+  evidence:
+    description: >-
+      Evidence items backing this object's claims. Each one carries an exact
+      quote from a cited publication.
+    multivalued: true
+    range: EvidenceItem
+    inlined_as_list: true
+    recommended: true
+
+  source_publication:
+    description: >-
+      The publication this data was extracted from.
+    range: PublicationReference
+    inlined: true
+
+# =============================================================================
+# ENUMS
+# =============================================================================
+
+enums:
+
+  EvidenceItemSupportEnum:
+    description: >-
+      Which way the cited evidence points relative to the claim. Direction
+      only — it says nothing about how strong the evidence is.
+    permissible_values:
+      SUPPORT:
+        title: Supports
+        description: The quoted evidence supports the claim
+      REFUTE:
+        title: Refutes
+        description: The quoted evidence contradicts the claim
+      NO_EVIDENCE:
+        title: No evidence
+        description: >-
+          The cited publication turned out not to contain evidence relevant
+          to the claim
+
+  EvidenceSourceEnum:
+    description: The kind of study the cited publication reports.
+    permissible_values:
+      HUMAN_CLINICAL:
+        title: Human clinical
+        description: >-
+          Human observations: patients, cohorts, case reports, clinical
+          trials, epidemiology
+      MODEL_ORGANISM:
+        title: Model organism
+        description: >-
+          In vivo animal evidence: mouse, rat, other non-human animal models
+      IN_VITRO:
+        title: In vitro / ex vivo
+        description: >-
+          Cell culture, air-liquid interface cultures, organoids, tissue
+          slices, biochemical assays
+      COMPUTATIONAL:
+        title: Computational
+        description: >-
+          In silico or modeling studies, even when they use clinical data
+          as input
+      OTHER:
+        title: Other
+        description: Evidence not fitting the categories above

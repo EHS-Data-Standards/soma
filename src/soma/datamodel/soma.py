@@ -1,5 +1,5 @@
 # Auto generated from soma.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-09-28T11:54:34
+# Generation date: 2026-09-28T15:40:05
 # Schema: soma
 #
 # id: https://w3id.org/EHS-Data-Standards/soma
@@ -67,6 +67,7 @@ version = None
 CHEBI = CurieNamespace('CHEBI', 'http://purl.obolibrary.org/obo/CHEBI_')
 CL = CurieNamespace('CL', 'http://purl.obolibrary.org/obo/CL_')
 CLO = CurieNamespace('CLO', 'http://purl.obolibrary.org/obo/CLO_')
+DOI = CurieNamespace('DOI', 'https://doi.org/')
 ECTO = CurieNamespace('ECTO', 'http://purl.obolibrary.org/obo/ECTO_')
 EFO = CurieNamespace('EFO', 'http://www.ebi.ac.uk/efo/EFO_')
 ENVO = CurieNamespace('ENVO', 'http://purl.obolibrary.org/obo/ENVO_')
@@ -76,6 +77,7 @@ IAO = CurieNamespace('IAO', 'http://purl.obolibrary.org/obo/IAO_')
 NCBITAXON = CurieNamespace('NCBITaxon', 'http://purl.obolibrary.org/obo/NCBITaxon_')
 OBI = CurieNamespace('OBI', 'http://purl.obolibrary.org/obo/OBI_')
 PATO = CurieNamespace('PATO', 'http://purl.obolibrary.org/obo/PATO_')
+PMID = CurieNamespace('PMID', 'http://www.ncbi.nlm.nih.gov/pubmed/')
 QUDT = CurieNamespace('QUDT', 'http://qudt.org/vocab/unit/')
 STATO = CurieNamespace('STATO', 'http://purl.obolibrary.org/obo/STATO_')
 UBERON = CurieNamespace('UBERON', 'http://purl.obolibrary.org/obo/UBERON_')
@@ -85,14 +87,24 @@ AOP_FRAMEWORK = CurieNamespace('aop_framework', 'https://w3id.org/EHS-Data-Stand
 ASSAY_BASE = CurieNamespace('assay_base', 'https://w3id.org/EHS-Data-Standards/assay_base/')
 ASSAY_MICROSCHEMAS = CurieNamespace('assay_microschemas', 'https://w3id.org/EHS-Data-Standards/assay_microschemas/')
 BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/')
+DCTERMS = CurieNamespace('dcterms', 'http://purl.org/dc/terms/')
+EVIDENCE = CurieNamespace('evidence', 'https://w3id.org/EHS-Data-Standards/evidence/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 OWG = CurieNamespace('owg', 'https://w3id.org/EHS-Data-Standards/soma/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 SOMA = CurieNamespace('soma', 'https://w3id.org/EHS-Data-Standards/soma/')
+XSD = CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#')
 DEFAULT_ = SOMA
 
 
 # Types
+class PMID(str):
+    """ A PubMed identifier written as a CURIE, e.g. "PMID:12345678". """
+    type_class_uri = XSD["string"]
+    type_class_curie = "xsd:string"
+    type_name = "PMID"
+    type_model_uri = SOMA.PMID
+
 
 # Class references
 class NamedThingId(URIorCURIE):
@@ -318,6 +330,7 @@ class Container(YAMLRoot):
     class_name: ClassVar[str] = "Container"
     class_model_uri: ClassVar[URIRef] = SOMA.Container
 
+    source_publication: Optional[Union[dict, "PublicationReference"]] = None
     key_events: Optional[Union[dict[Union[str, KeyEventId], Union[dict, "KeyEvent"]], list[Union[dict, "KeyEvent"]]]] = empty_dict()
     key_event_relationships: Optional[Union[dict[Union[str, KeyEventRelationshipId], Union[dict, "KeyEventRelationship"]], list[Union[dict, "KeyEventRelationship"]]]] = empty_dict()
     adverse_outcome_pathways: Optional[Union[dict[Union[str, AdverseOutcomePathwayId], Union[dict, "AdverseOutcomePathway"]], list[Union[dict, "AdverseOutcomePathway"]]]] = empty_dict()
@@ -336,6 +349,9 @@ class Container(YAMLRoot):
     protocols: Optional[Union[dict[Union[str, ProtocolId], Union[dict, "Protocol"]], list[Union[dict, "Protocol"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
+        if self.source_publication is not None and not isinstance(self.source_publication, PublicationReference):
+            self.source_publication = PublicationReference(**as_dict(self.source_publication))
+
         self._normalize_inlined_as_list(slot_name="key_events", slot_type=KeyEvent, key_name="id", keyed=True)
 
         self._normalize_inlined_as_list(slot_name="key_event_relationships", slot_type=KeyEventRelationship, key_name="id", keyed=True)
@@ -367,6 +383,78 @@ class Container(YAMLRoot):
         self._normalize_inlined_as_list(slot_name="gene_expression_assays", slot_type=GeneExpressionAssay, key_name="id", keyed=True)
 
         self._normalize_inlined_as_list(slot_name="protocols", slot_type=Protocol, key_name="id", keyed=True)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class EvidenceItem(YAMLRoot):
+    """
+    One piece of evidence for a claim: which publication it comes from, an exact quote from that publication, whether
+    the quote supports or refutes the claim, and what kind of study produced it.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = EVIDENCE["EvidenceItem"]
+    class_class_curie: ClassVar[str] = "evidence:EvidenceItem"
+    class_name: ClassVar[str] = "EvidenceItem"
+    class_model_uri: ClassVar[URIRef] = SOMA.EvidenceItem
+
+    reference: Optional[str] = None
+    reference_title: Optional[str] = None
+    supports: Optional[Union[str, "EvidenceItemSupportEnum"]] = None
+    evidence_source: Optional[Union[str, "EvidenceSourceEnum"]] = None
+    snippet: Optional[str] = None
+    explanation: Optional[str] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self.reference is not None and not isinstance(self.reference, str):
+            self.reference = str(self.reference)
+
+        if self.reference_title is not None and not isinstance(self.reference_title, str):
+            self.reference_title = str(self.reference_title)
+
+        if self.supports is not None and not isinstance(self.supports, EvidenceItemSupportEnum):
+            self.supports = EvidenceItemSupportEnum(self.supports)
+
+        if self.evidence_source is not None and not isinstance(self.evidence_source, EvidenceSourceEnum):
+            self.evidence_source = EvidenceSourceEnum(self.evidence_source)
+
+        if self.snippet is not None and not isinstance(self.snippet, str):
+            self.snippet = str(self.snippet)
+
+        if self.explanation is not None and not isinstance(self.explanation, str):
+            self.explanation = str(self.explanation)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class PublicationReference(YAMLRoot):
+    """
+    The publication a data file was extracted from. Every Container names its source paper here, so each kb/ file is
+    traceable to one publication.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = EVIDENCE["PublicationReference"]
+    class_class_curie: ClassVar[str] = "evidence:PublicationReference"
+    class_name: ClassVar[str] = "PublicationReference"
+    class_model_uri: ClassVar[URIRef] = SOMA.PublicationReference
+
+    reference: Optional[str] = None
+    reference_title: Optional[str] = None
+    doi: Optional[str] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self.reference is not None and not isinstance(self.reference, str):
+            self.reference = str(self.reference)
+
+        if self.reference_title is not None and not isinstance(self.reference_title, str):
+            self.reference_title = str(self.reference_title)
+
+        if self.doi is not None and not isinstance(self.doi, str):
+            self.doi = str(self.doi)
 
         super().__post_init__(**kwargs)
 
@@ -427,6 +515,7 @@ class KeyEvent(NamedThing):
     aopwiki_id: Optional[str] = None
     upstream_key_events: Optional[Union[dict[Union[str, KeyEventId], Union[dict, "KeyEvent"]], list[Union[dict, "KeyEvent"]]]] = empty_dict()
     downstream_key_events: Optional[Union[dict[Union[str, KeyEventId], Union[dict, "KeyEvent"]], list[Union[dict, "KeyEvent"]]]] = empty_dict()
+    evidence: Optional[Union[Union[dict, EvidenceItem], list[Union[dict, EvidenceItem]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -459,6 +548,10 @@ class KeyEvent(NamedThing):
 
         self._normalize_inlined_as_list(slot_name="downstream_key_events", slot_type=KeyEvent, key_name="id", keyed=True)
 
+        if not isinstance(self.evidence, list):
+            self.evidence = [self.evidence] if self.evidence is not None else []
+        self.evidence = [v if isinstance(v, EvidenceItem) else EvidenceItem(**as_dict(v)) for v in self.evidence]
+
         super().__post_init__(**kwargs)
 
 
@@ -481,6 +574,7 @@ class KeyEventRelationship(NamedThing):
     relationship_type: Optional[str] = None
     evidence_support: Optional[Union[str, "EvidenceSupportEnum"]] = None
     quantitative_understanding: Optional[Union[str, "QuantitativeUnderstandingEnum"]] = None
+    evidence: Optional[Union[Union[dict, EvidenceItem], list[Union[dict, EvidenceItem]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -502,6 +596,10 @@ class KeyEventRelationship(NamedThing):
 
         if self.quantitative_understanding is not None and not isinstance(self.quantitative_understanding, QuantitativeUnderstandingEnum):
             self.quantitative_understanding = QuantitativeUnderstandingEnum(self.quantitative_understanding)
+
+        if not isinstance(self.evidence, list):
+            self.evidence = [self.evidence] if self.evidence is not None else []
+        self.evidence = [v if isinstance(v, EvidenceItem) else EvidenceItem(**as_dict(v)) for v in self.evidence]
 
         super().__post_init__(**kwargs)
 
@@ -645,6 +743,7 @@ class Assay(NamedThing):
     follows_protocols: Optional[Union[dict[Union[str, ProtocolId], Union[dict, "Protocol"]], list[Union[dict, "Protocol"]]]] = empty_dict()
     has_specified_output: Optional[Union[dict[Union[str, AssayOutputMeasurementId], Union[dict, "AssayOutputMeasurement"]], list[Union[dict, "AssayOutputMeasurement"]]]] = empty_dict()
     assay_date: Optional[Union[str, XSDDate]] = None
+    evidence: Optional[Union[Union[dict, EvidenceItem], list[Union[dict, EvidenceItem]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self.informs_on_key_event is not None and not isinstance(self.informs_on_key_event, KeyEvent):
@@ -661,6 +760,10 @@ class Assay(NamedThing):
 
         if self.assay_date is not None and not isinstance(self.assay_date, XSDDate):
             self.assay_date = XSDDate(self.assay_date)
+
+        if not isinstance(self.evidence, list):
+            self.evidence = [self.evidence] if self.evidence is not None else []
+        self.evidence = [v if isinstance(v, EvidenceItem) else EvidenceItem(**as_dict(v)) for v in self.evidence]
 
         super().__post_init__(**kwargs)
 
@@ -684,10 +787,15 @@ class AssayOutputMeasurement(NamedThing):
     class_model_uri: ClassVar[URIRef] = SOMA.AssayOutputMeasurement
 
     id: Union[str, AssayOutputMeasurementId] = None
+    evidence: Optional[Union[Union[dict, EvidenceItem], list[Union[dict, EvidenceItem]]]] = empty_list()
     experimental_group: Optional[Union[str, "ExperimentalGroupEnum"]] = None
     measured_under: Optional[Union[str, ExposureConditionId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
+        if not isinstance(self.evidence, list):
+            self.evidence = [self.evidence] if self.evidence is not None else []
+        self.evidence = [v if isinstance(v, EvidenceItem) else EvidenceItem(**as_dict(v)) for v in self.evidence]
+
         if self.experimental_group is not None and not isinstance(self.experimental_group, ExperimentalGroupEnum):
             self.experimental_group = ExperimentalGroupEnum(self.experimental_group)
 
@@ -1353,7 +1461,8 @@ class SpeciesReference(NamedEntity):
 @dataclass(repr=False)
 class ChemicalEntityReference(NamedEntity):
     """
-    A reference to a chemical entity from CHEBI or an exposure concept from ECTO.
+    A reference to a chemical entity from CHEBI, an exposure concept from ECTO, or an environmental material from ENVO
+    (e.g. particulate matter, which is an ENVO concept, not a CHEBI chemical).
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2889,6 +2998,59 @@ class GeneExpressionOutput(AssayOutputMeasurement):
 
 
 # Enumerations
+class EvidenceItemSupportEnum(EnumDefinitionImpl):
+    """
+    Which way the cited evidence points relative to the claim. Direction only — it says nothing about how strong the
+    evidence is.
+    """
+    SUPPORT = PermissibleValue(
+        text="SUPPORT",
+        title="Supports",
+        description="The quoted evidence supports the claim")
+    REFUTE = PermissibleValue(
+        text="REFUTE",
+        title="Refutes",
+        description="The quoted evidence contradicts the claim")
+    NO_EVIDENCE = PermissibleValue(
+        text="NO_EVIDENCE",
+        title="No evidence",
+        description="The cited publication turned out not to contain evidence relevant to the claim")
+
+    _defn = EnumDefinition(
+        name="EvidenceItemSupportEnum",
+        description="""Which way the cited evidence points relative to the claim. Direction only — it says nothing about how strong the evidence is.""",
+    )
+
+class EvidenceSourceEnum(EnumDefinitionImpl):
+    """
+    The kind of study the cited publication reports.
+    """
+    HUMAN_CLINICAL = PermissibleValue(
+        text="HUMAN_CLINICAL",
+        title="Human clinical",
+        description="Human observations: patients, cohorts, case reports, clinical trials, epidemiology")
+    MODEL_ORGANISM = PermissibleValue(
+        text="MODEL_ORGANISM",
+        title="Model organism",
+        description="In vivo animal evidence: mouse, rat, other non-human animal models")
+    IN_VITRO = PermissibleValue(
+        text="IN_VITRO",
+        title="In vitro / ex vivo",
+        description="Cell culture, air-liquid interface cultures, organoids, tissue slices, biochemical assays")
+    COMPUTATIONAL = PermissibleValue(
+        text="COMPUTATIONAL",
+        title="Computational",
+        description="In silico or modeling studies, even when they use clinical data as input")
+    OTHER = PermissibleValue(
+        text="OTHER",
+        title="Other",
+        description="Evidence not fitting the categories above")
+
+    _defn = EnumDefinition(
+        name="EvidenceSourceEnum",
+        description="The kind of study the cited publication reports.",
+    )
+
 class BiologicalActionEnum(EnumDefinitionImpl):
     """
     Types of biological changes or actions in key events.
@@ -3006,6 +3168,54 @@ class OutcomeLevelEnum(EnumDefinitionImpl):
     _defn = EnumDefinition(
         name="OutcomeLevelEnum",
         description="Levels at which adverse outcomes manifest.",
+    )
+
+class CellTypeTerm(EnumDefinitionImpl):
+    """
+    A cell type term from the Cell Ontology (CL), under "cell".
+    """
+    _defn = EnumDefinition(
+        name="CellTypeTerm",
+        description="A cell type term from the Cell Ontology (CL), under \"cell\".",
+    )
+
+class AnatomicalEntityTerm(EnumDefinitionImpl):
+    """
+    An anatomical term from UBERON, under "anatomical entity".
+    """
+    _defn = EnumDefinition(
+        name="AnatomicalEntityTerm",
+        description="An anatomical term from UBERON, under \"anatomical entity\".",
+    )
+
+class ChemicalEntityTerm(EnumDefinitionImpl):
+    """
+    A chemical entity from CHEBI or an exposure concept from ECTO. No branch constraint because two ontologies are
+    allowed — the validator still checks the term exists and the label matches.
+    """
+    _defn = EnumDefinition(
+        name="ChemicalEntityTerm",
+        description="""A chemical entity from CHEBI or an exposure concept from ECTO. No branch constraint because two ontologies are allowed — the validator still checks the term exists and the label matches.""",
+    )
+
+class SpeciesTerm(EnumDefinitionImpl):
+    """
+    A species from the NCBI Taxonomy. No branch constraint — the validator checks the term exists and the label
+    matches.
+    """
+    _defn = EnumDefinition(
+        name="SpeciesTerm",
+        description="""A species from the NCBI Taxonomy. No branch constraint — the validator checks the term exists and the label matches.""",
+    )
+
+class UnitTerm(EnumDefinitionImpl):
+    """
+    A unit of measurement from UO (UCUM/QUDT/STATO ids are also allowed by the Unit class but are not label-checked).
+    No branch constraint.
+    """
+    _defn = EnumDefinition(
+        name="UnitTerm",
+        description="""A unit of measurement from UO (UCUM/QUDT/STATO ids are also allowed by the Unit class but are not label-checked). No branch constraint.""",
     )
 
 class SampleTypeEnum(EnumDefinitionImpl):
@@ -3407,6 +3617,34 @@ slots.gene_expression_assays = Slot(uri=SOMA.gene_expression_assays, name="gene_
 
 slots.protocols = Slot(uri=SOMA.protocols, name="protocols", curie=SOMA.curie('protocols'),
                    model_uri=SOMA.protocols, domain=None, range=Optional[Union[dict[Union[str, ProtocolId], Union[dict, Protocol]], list[Union[dict, Protocol]]]])
+
+slots.reference = Slot(uri=EVIDENCE.reference, name="reference", curie=EVIDENCE.curie('reference'),
+                   model_uri=SOMA.reference, domain=None, range=Optional[str],
+                   pattern=re.compile(r'^PMID:\d+$'))
+
+slots.reference_title = Slot(uri=EVIDENCE.reference_title, name="reference_title", curie=EVIDENCE.curie('reference_title'),
+                   model_uri=SOMA.reference_title, domain=None, range=Optional[str])
+
+slots.supports = Slot(uri=EVIDENCE.supports, name="supports", curie=EVIDENCE.curie('supports'),
+                   model_uri=SOMA.supports, domain=None, range=Optional[Union[str, "EvidenceItemSupportEnum"]])
+
+slots.evidence_source = Slot(uri=EVIDENCE.evidence_source, name="evidence_source", curie=EVIDENCE.curie('evidence_source'),
+                   model_uri=SOMA.evidence_source, domain=None, range=Optional[Union[str, "EvidenceSourceEnum"]])
+
+slots.snippet = Slot(uri=EVIDENCE.snippet, name="snippet", curie=EVIDENCE.curie('snippet'),
+                   model_uri=SOMA.snippet, domain=None, range=Optional[str])
+
+slots.explanation = Slot(uri=EVIDENCE.explanation, name="explanation", curie=EVIDENCE.curie('explanation'),
+                   model_uri=SOMA.explanation, domain=None, range=Optional[str])
+
+slots.doi = Slot(uri=EVIDENCE.doi, name="doi", curie=EVIDENCE.curie('doi'),
+                   model_uri=SOMA.doi, domain=None, range=Optional[str])
+
+slots.evidence = Slot(uri=EVIDENCE.evidence, name="evidence", curie=EVIDENCE.curie('evidence'),
+                   model_uri=SOMA.evidence, domain=None, range=Optional[Union[Union[dict, EvidenceItem], list[Union[dict, EvidenceItem]]]])
+
+slots.source_publication = Slot(uri=EVIDENCE.source_publication, name="source_publication", curie=EVIDENCE.curie('source_publication'),
+                   model_uri=SOMA.source_publication, domain=None, range=Optional[Union[dict, PublicationReference]])
 
 slots.id = Slot(uri=AOP_FRAMEWORK.id, name="id", curie=AOP_FRAMEWORK.curie('id'),
                    model_uri=SOMA.id, domain=None, range=URIRef)
@@ -4211,7 +4449,7 @@ slots.SpeciesReference_id = Slot(uri=AOP_FRAMEWORK.id, name="SpeciesReference_id
 
 slots.ChemicalEntityReference_id = Slot(uri=AOP_FRAMEWORK.id, name="ChemicalEntityReference_id", curie=AOP_FRAMEWORK.curie('id'),
                    model_uri=SOMA.ChemicalEntityReference_id, domain=ChemicalEntityReference, range=Union[str, ChemicalEntityReferenceId],
-                   pattern=re.compile(r'^(CHEBI:\d+|ECTO:\d{7})$'))
+                   pattern=re.compile(r'^(CHEBI:\d+|ECTO:\d{7}|ENVO:\d{8})$'))
 
 slots.AnatomicalEntityReference_id = Slot(uri=AOP_FRAMEWORK.id, name="AnatomicalEntityReference_id", curie=AOP_FRAMEWORK.curie('id'),
                    model_uri=SOMA.AnatomicalEntityReference_id, domain=AnatomicalEntityReference, range=Union[str, AnatomicalEntityReferenceId],

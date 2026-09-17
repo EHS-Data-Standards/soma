@@ -97,8 +97,8 @@ gene_expression_assays:
       - id: "EXPOSURE:montgomery-mod-oe"
         name: "PM2.5 organic extract 0.45 ug/cm2 (moderate dose)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "0.45"
           unit:
@@ -163,8 +163,8 @@ gene_expression_assays:
       - id: "EXPOSURE:montgomery-mod-oe"
         name: "PM2.5 organic extract 0.45 ug/cm2 (moderate dose)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "0.45"
           unit:
@@ -218,8 +218,8 @@ gene_expression_assays:
       - id: "EXPOSURE:montgomery-mod-oe"
         name: "PM2.5 organic extract 0.45 ug/cm2 (moderate dose)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "0.45"
           unit:
@@ -278,8 +278,8 @@ gene_expression_assays:
       - id: "EXPOSURE:montgomery-chronic-oe"
         name: "PM2.5 organic extract chronic 5-day stimulation (high OE dose)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "4.5"
           unit:
@@ -345,8 +345,8 @@ gene_expression_assays:
       - id: "EXPOSURE:montgomery-chronic-oe"
         name: "PM2.5 organic extract chronic 5-day stimulation (high OE dose)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "4.5"
           unit:
@@ -400,8 +400,8 @@ gene_expression_assays:
       - id: "EXPOSURE:montgomery-mod-oe"
         name: "PM2.5 organic extract 0.45 ug/cm2 (moderate dose)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "0.45"
           unit:
@@ -455,8 +455,8 @@ gene_expression_assays:
       - id: "EXPOSURE:montgomery-mod-oe"
         name: "PM2.5 organic extract 0.45 ug/cm2 (moderate dose)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "0.45"
           unit:
@@ -522,8 +522,8 @@ goblet_cell_assays:
       - id: "EXPOSURE:montgomery-chronic-oe"
         name: "PM2.5 organic extract chronic 5-day stimulation (high OE dose)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "4.5"
           unit:
@@ -597,8 +597,8 @@ goblet_cell_assays:
       - id: "EXPOSURE:montgomery-chronic-oe"
         name: "PM2.5 organic extract chronic 5-day stimulation (high OE dose)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "4.5"
           unit:
@@ -656,8 +656,8 @@ goblet_cell_assays:
       - id: "EXPOSURE:montgomery-chronic-oe"
         name: "PM2.5 organic extract chronic 5-day stimulation (high OE dose)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "4.5"
           unit:
@@ -713,8 +713,8 @@ goblet_cell_assays:
       - id: "EXPOSURE:montgomery-high-oe"
         name: "PM2.5 organic extract 4.5 ug/cm2 (high dose)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "4.5"
           unit:
@@ -775,8 +775,8 @@ foxj_assays:
       - id: "EXPOSURE:montgomery-chronic-oe"
         name: "PM2.5 organic extract chronic 5-day stimulation (high OE dose)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "4.5"
           unit:
@@ -846,8 +846,8 @@ foxj_assays:
       - id: "EXPOSURE:montgomery-high-oe"
         name: "PM2.5 organic extract 4.5 ug/cm2 (high dose)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "4.5"
           unit:

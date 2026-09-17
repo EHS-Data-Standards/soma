@@ -7,6 +7,7 @@ id: https://w3id.org/EHS-Data-Standards/aop_framework
 
 imports:
   - linkml:types
+  - evidence
 
 prefixes:
   aop_framework: https://w3id.org/EHS-Data-Standards/aop_framework/
@@ -63,6 +64,7 @@ classes:
       - aopwiki_id
       - upstream_key_events
       - downstream_key_events
+      - evidence
 
   KeyEventRelationship:
     is_a: NamedThing
@@ -76,6 +78,7 @@ classes:
       - relationship_type
       - evidence_support
       - quantitative_understanding
+      - evidence
 
   AdverseOutcome:
     is_a: NamedThing
