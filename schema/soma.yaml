@@ -5698,7 +5698,7 @@ classes:
     class_uri: assay_microschemas:GeneExpressionOutput
 metamodel_version: 1.7.0
 source_file: soma.yaml
-source_file_date: '2026-09-28T21:53:53'
+source_file_date: '2026-09-28T22:05:27'
 source_file_size: 7630
-generation_date: '2026-09-28T21:55:01'
+generation_date: '2026-09-28T22:06:32'
 
