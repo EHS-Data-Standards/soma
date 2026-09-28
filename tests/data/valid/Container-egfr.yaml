@@ -1,54 +1,18 @@
 # Test file for EGFRSignalingAssay
+# Demonstrates per-condition outputs: a vehicle control record that anchors
+# the fold-change scale at 1.0 and a cigarette-smoke-extract record, each
+# linked to its exposure condition via measured_under.
 egfr_signaling_assays:
   - id: "EGFR:001"
     name: "EGFR phosphorylation after smoke exposure"
-    has_specified_output:
-      - id: "EGFR:001-output"
-        name: "EGFR:001 measurement results"
-        egfr_phosphorylation_y1068:
-          value: "3.2"
-          unit:
-            id: "STATO:0000169"
-            name: "fold change"
-        total_egfr_protein:
-          value: "1.0"
-          unit:
-            id: "STATO:0000169"
-            name: "fold change"
-        egfr_phosphorylation_y1173:
-          value: "2.1"
-          unit:
-            id: "STATO:0000169"
-            name: "fold change"
-        downstream_kinase_activation: "ERK1/2 and AKT activated"
-        erk_phosphorylation:
-          value: "2.8"
-          unit:
-            id: "STATO:0000169"
-            name: "fold change"
-        akt_phosphorylation:
-          value: "1.5"
-          unit:
-            id: "STATO:0000169"
-            name: "fold change"
-        egfr_ligand_expression:
-          value: "1.9"
-          unit:
-            id: "STATO:0000169"
-            name: "fold change"
-        egfr_membrane_localization:
-          value: "78"
-          unit:
-            id: "UO:0000187"
-            name: "percent"
-    normalization_reference: "beta-actin"
-    assay_date: "2024-05-08"
-    informs_on_key_event:
-      id: "KE:ke1-egfr-activation"
-      name: "EGFR activation"
-      biological_action: activated
-      level_of_biological_organization: molecular
     has_exposure_condition:
+      - id: "EXPOSURE:egfr-vehicle-4h"
+        name: "Culture medium vehicle 4 hours (control)"
+        exposure_duration:
+          value: "4"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
       - id: "EXPOSURE:cse-4h"
         name: "Cigarette smoke extract 5% for 4 hours"
         exposure_agent:
@@ -64,6 +28,140 @@ egfr_signaling_assays:
           unit:
             id: "UO:0000032"
             name: "hour"
+    has_specified_output:
+      - id: "EGFR:001-output-control"
+        name: "Vehicle control EGFR signaling measurements"
+        experimental_group: vehicle_control
+        measured_under: "EXPOSURE:egfr-vehicle-4h"
+        egfr_phosphorylation_y1068:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        total_egfr_protein:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        egfr_phosphorylation_y1173:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        downstream_kinase_activation: "ERK1/2 and AKT at basal activity"
+        erk_phosphorylation:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        akt_phosphorylation:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        egfr_ligand_expression:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        egfr_membrane_localization:
+          value: "45"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 4
+          variability:
+            variability_type: standard_error
+            value: "3.8"
+            unit:
+              id: "UO:0000187"
+              name: "percent"
+      - id: "EGFR:001-output-cse"
+        name: "Cigarette smoke extract EGFR signaling measurements"
+        experimental_group: treated
+        measured_under: "EXPOSURE:cse-4h"
+        egfr_phosphorylation_y1068:
+          value: "3.2"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+          variability:
+            variability_type: standard_error
+            value: "0.4"
+            unit:
+              id: "STATO:0000169"
+              name: "fold change"
+        total_egfr_protein:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        egfr_phosphorylation_y1173:
+          value: "2.1"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        downstream_kinase_activation: "ERK1/2 and AKT activated"
+        erk_phosphorylation:
+          value: "2.8"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        akt_phosphorylation:
+          value: "1.5"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        egfr_ligand_expression:
+          value: "1.9"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        egfr_membrane_localization:
+          value: "78"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 4
+          variability:
+            variability_type: standard_error
+            value: "4.1"
+            unit:
+              id: "UO:0000187"
+              name: "percent"
+    normalization_reference: "beta-actin"
+    assay_date: "2024-05-08"
+    informs_on_key_event:
+      id: "KE:ke1-egfr-activation"
+      name: "EGFR activation"
+      biological_action: activated
+      level_of_biological_organization: molecular
     study_subject:
       subject_type: CellularSystem
       id: "soma:culture-005"
@@ -83,3 +181,40 @@ egfr_signaling_assays:
           - "anti-pEGFR Y1068 (Cell Signaling #3777)"
           - "anti-total EGFR (Cell Signaling #4267)"
         normalization_method: "total protein normalization"
+
+# Analysis layer: EGFR membrane localization is reported as a percentage, so
+# the change relative to control is an absolute difference in percentage
+# points rather than a fold change.
+response_comparisons:
+  - id: "COMP:EGFR001-y1068"
+    name: "Change in EGFR Y1068 phosphorylation, CSE vs vehicle"
+    derived_from_assay: "EGFR:001"
+    compared_measurement: "egfr_phosphorylation_y1068"
+    control_output: "EGFR:001-output-control"
+    treated_output: "EGFR:001-output-cse"
+    change_type: fold_change
+    change_direction: increased
+    change_value:
+      value: "3.2"
+      unit:
+        id: "STATO:0000169"
+        name: "fold change"
+    p_value: 0.002
+    statistical_test: "two-sample t-test"
+    derivation: reported_in_paper
+  - id: "COMP:EGFR001-membrane-localization"
+    name: "Change in EGFR membrane localization, CSE vs vehicle"
+    derived_from_assay: "EGFR:001"
+    compared_measurement: "egfr_membrane_localization"
+    control_output: "EGFR:001-output-control"
+    treated_output: "EGFR:001-output-cse"
+    change_type: absolute_difference
+    change_direction: increased
+    change_value:
+      value: "33"
+      unit:
+        id: "UO:0000187"
+        name: "percent"
+    p_value: 0.005
+    statistical_test: "two-sample t-test"
+    derivation: computed

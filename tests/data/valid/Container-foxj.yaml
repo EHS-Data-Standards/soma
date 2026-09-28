@@ -1,32 +1,119 @@
 # Test file for FoxJExpressionAssay (in vitro only)
 # This assay is IN VITRO ONLY (supported_contexts: in_vitro_only)
-# Performed on cell culture systems
+# Performed on cell culture systems.
+#
+# Demonstrates per-condition outputs: the vehicle control record anchors the
+# fold-change scale at 1.0 and the PM2.5 record carries the reduced values,
+# each linked to its exposure condition via measured_under.
 foxj_assays:
   - id: "FOXJ:001"
-    name: "FoxJ1 mRNA expression"
+    name: "FoxJ1 expression after PM2.5 exposure"
+    has_exposure_condition:
+      - id: "EXPOSURE:foxj-vehicle-24h"
+        name: "DMSO vehicle 0.1% for 24 hours (control)"
+        exposure_duration:
+          value: "24"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+      - id: "EXPOSURE:foxj-pm25-24h"
+        name: "PM2.5 10 ug/cm2 for 24 hours"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "24"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     has_specified_output:
-      - id: "FOXJ:001-output"
-        name: "FOXJ:001 measurement results"
+      - id: "FOXJ:001-output-control"
+        name: "Vehicle control FoxJ1 measurements"
+        experimental_group: vehicle_control
+        measured_under: "EXPOSURE:foxj-vehicle-24h"
+        foxj1_mrna_expression:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 3
+        foxj1_positive_cell_percentage:
+          value: "68"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 3
+          variability:
+            variability_type: standard_deviation
+            value: "4.5"
+            unit:
+              id: "UO:0000187"
+              name: "percent"
+        foxj1_protein_expression:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 3
+        foxj1_nuclear_localization:
+          value: "61"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 3
+      - id: "FOXJ:001-output-pm25"
+        name: "PM2.5-exposed FoxJ1 measurements"
+        experimental_group: treated
+        measured_under: "EXPOSURE:foxj-pm25-24h"
         foxj1_mrna_expression:
           value: "0.65"
           unit:
             id: "STATO:0000169"
             name: "fold change"
+          central_tendency: mean
+          sample_size: 3
+          variability:
+            variability_type: standard_deviation
+            value: "0.08"
+            unit:
+              id: "STATO:0000169"
+              name: "fold change"
         foxj1_positive_cell_percentage:
           value: "42"
           unit:
             id: "UO:0000187"
             name: "percent"
+          central_tendency: mean
+          sample_size: 3
+          variability:
+            variability_type: standard_deviation
+            value: "5.2"
+            unit:
+              id: "UO:0000187"
+              name: "percent"
         foxj1_protein_expression:
           value: "0.58"
           unit:
             id: "STATO:0000169"
             name: "fold change"
+          central_tendency: mean
+          sample_size: 3
         foxj1_nuclear_localization:
           value: "35"
           unit:
             id: "UO:0000187"
             name: "percent"
+          central_tendency: mean
+          sample_size: 3
     assay_date: "2024-09-05"
     informs_on_key_event:
       id: "KE:ke-altered-ciliogenesis"
@@ -64,3 +151,23 @@ foxj_assays:
         primer_sequences:
           - "FOXJ1-F: 5'-CAGGCCCAGAACTTTCTCC-3'"
           - "FOXJ1-R: 5'-GGCCTTTGGTACTGTCTCAC-3'"
+
+# Analysis layer: the fold change reported by the paper, so derivation is
+# "reported" rather than computed from the two output records.
+response_comparisons:
+  - id: "COMP:FOXJ001-mrna"
+    name: "Change in FOXJ1 mRNA expression, PM2.5 vs vehicle"
+    derived_from_assay: "FOXJ:001"
+    compared_measurement: "foxj1_mrna_expression"
+    control_output: "FOXJ:001-output-control"
+    treated_output: "FOXJ:001-output-pm25"
+    change_type: fold_change
+    change_direction: decreased
+    change_value:
+      value: "0.65"
+      unit:
+        id: "STATO:0000169"
+        name: "fold change"
+    p_value: 0.01
+    statistical_test: "two-sample t-test"
+    derivation: reported_in_paper

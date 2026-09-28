@@ -1,34 +1,39 @@
 # Test file for GeneExpressionAssay (in vitro only)
 # This assay is IN VITRO ONLY (supported_contexts: in_vitro_only)
-# Performed on cell culture systems
+# Performed on cell culture systems.
+#
+# Demonstrates a dose-response series as per-condition outputs: one
+# AssayOutputMeasurement record per LPS concentration, each linked to its own
+# exposure condition via measured_under.
 gene_expression_assays:
   - id: "GE:001"
-    name: "IL-8 gene expression after exposure"
+    name: "IL-8 gene expression across an LPS dose series"
     target_gene: "PR:000006689"
-    has_specified_output:
-      - id: "GE:001-output"
-        name: "GE:001 measurement results"
-        mrna_level:
-          value: "3.5"
-          unit:
-            id: "STATO:0000169"
-            name: "fold change"
-        protein_level:
-          value: "2.1"
-          unit:
-            id: "STATO:0000169"
-            name: "fold change"
-        percentage_positive_cells:
-          value: "45"
-          unit:
-            id: "UO:0000187"
-            name: "percent"
-    gene_expression_method: "qRT-PCR"
-    normalization_reference: "GAPDH"
-    assay_date: "2024-10-01"
     has_exposure_condition:
+      - id: "EXPOSURE:lps-vehicle-6h"
+        name: "Saline vehicle for 6 hours (control)"
+        exposure_duration:
+          value: "6"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+      - id: "EXPOSURE:lps-10ng-6h"
+        name: "LPS 10 ng/mL for 6 hours (low dose)"
+        exposure_agent:
+          id: "CHEBI:16412"
+          name: "lipopolysaccharide"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000275"
+            name: "nanogram per milliliter"
+        exposure_duration:
+          value: "6"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
       - id: "EXPOSURE:lps-100ng-6h"
-        name: "LPS 100 ng/mL for 6 hours"
+        name: "LPS 100 ng/mL for 6 hours (high dose)"
         exposure_agent:
           id: "CHEBI:16412"
           name: "lipopolysaccharide"
@@ -42,6 +47,97 @@ gene_expression_assays:
           unit:
             id: "UO:0000032"
             name: "hour"
+    has_specified_output:
+      - id: "GE:001-output-control"
+        name: "Vehicle control IL-8 measurements"
+        experimental_group: vehicle_control
+        measured_under: "EXPOSURE:lps-vehicle-6h"
+        mrna_level:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 3
+        protein_level:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 3
+        percentage_positive_cells:
+          value: "12"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 3
+      - id: "GE:001-output-lps-low"
+        name: "LPS 10 ng/mL IL-8 measurements"
+        experimental_group: treated
+        measured_under: "EXPOSURE:lps-10ng-6h"
+        mrna_level:
+          value: "1.9"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 3
+          variability:
+            variability_type: standard_deviation
+            value: "0.3"
+            unit:
+              id: "STATO:0000169"
+              name: "fold change"
+        protein_level:
+          value: "1.4"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 3
+        percentage_positive_cells:
+          value: "27"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 3
+      - id: "GE:001-output-lps-high"
+        name: "LPS 100 ng/mL IL-8 measurements"
+        experimental_group: treated
+        measured_under: "EXPOSURE:lps-100ng-6h"
+        mrna_level:
+          value: "3.5"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 3
+          variability:
+            variability_type: standard_deviation
+            value: "0.4"
+            unit:
+              id: "STATO:0000169"
+              name: "fold change"
+        protein_level:
+          value: "2.1"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 3
+        percentage_positive_cells:
+          value: "45"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 3
+    gene_expression_method: "qRT-PCR"
+    normalization_reference: "GAPDH"
+    assay_date: "2024-10-01"
     study_subject:
       subject_type: CellularSystem
       id: "soma:culture-009"
@@ -71,3 +167,39 @@ gene_expression_assays:
         detection_method: "TaqMan qPCR"
         reference_gene: "GAPDH"
         platform: "QuantStudio 6"
+
+# Analysis layer: one comparison per dose, both against the same vehicle
+# control output record.
+response_comparisons:
+  - id: "COMP:GE001-mrna-low"
+    name: "Change in IL-8 mRNA, LPS 10 ng/mL vs vehicle"
+    derived_from_assay: "GE:001"
+    compared_measurement: "mrna_level"
+    control_output: "GE:001-output-control"
+    treated_output: "GE:001-output-lps-low"
+    change_type: fold_change
+    change_direction: increased
+    change_value:
+      value: "1.9"
+      unit:
+        id: "STATO:0000169"
+        name: "fold change"
+    p_value: 0.03
+    statistical_test: "one-way ANOVA with Dunnett post hoc"
+    derivation: reported_in_paper
+  - id: "COMP:GE001-mrna-high"
+    name: "Change in IL-8 mRNA, LPS 100 ng/mL vs vehicle"
+    derived_from_assay: "GE:001"
+    compared_measurement: "mrna_level"
+    control_output: "GE:001-output-control"
+    treated_output: "GE:001-output-lps-high"
+    change_type: fold_change
+    change_direction: increased
+    change_value:
+      value: "3.5"
+      unit:
+        id: "STATO:0000169"
+        name: "fold change"
+    p_value: 0.001
+    statistical_test: "one-way ANOVA with Dunnett post hoc"
+    derivation: reported_in_paper
