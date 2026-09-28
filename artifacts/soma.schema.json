@@ -19,6 +19,16 @@
                         "null"
                     ]
                 },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "follows_protocols": {
                     "description": "The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.",
                     "items": {
@@ -147,6 +157,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -375,6 +395,11 @@
             "title": "AnatomicalEntityReference",
             "type": "object"
         },
+        "AnatomicalEntityTerm": {
+            "description": "An anatomical term from UBERON, under \"anatomical entity\".",
+            "title": "AnatomicalEntityTerm",
+            "type": "string"
+        },
         "AssayContextCapabilityEnum": {
             "description": "Indicates what experimental contexts an assay class supports. Used to constrain valid study_subject types and enable context-appropriate slots.",
             "enum": [
@@ -401,6 +426,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -566,6 +601,16 @@
                         }
                     ],
                     "description": "Eosinophil percentage in BALF/sputum."
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "experimental_group": {
                     "$ref": "#/$defs/ExperimentalGroupEnum",
@@ -741,6 +786,16 @@
                         "null"
                     ]
                 },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "follows_protocols": {
                     "description": "The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.",
                     "items": {
@@ -894,6 +949,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -1227,6 +1292,11 @@
             "title": "CellTypeReference",
             "type": "object"
         },
+        "CellTypeTerm": {
+            "description": "A cell type term from the Cell Ontology (CL), under \"cell\".",
+            "title": "CellTypeTerm",
+            "type": "string"
+        },
         "CellularSystem": {
             "additionalProperties": false,
             "description": "Cell-based model systems that use living cells to model biological processes.",
@@ -1462,11 +1532,11 @@
         },
         "ChemicalEntityReference": {
             "additionalProperties": false,
-            "description": "A reference to a chemical entity from CHEBI or an exposure concept from ECTO.",
+            "description": "A reference to a chemical entity from CHEBI, an exposure concept from ECTO, or an environmental material from ENVO (e.g. particulate matter, which is an ENVO concept, not a CHEBI chemical).",
             "properties": {
                 "id": {
                     "description": "A unique identifier for the entity.",
-                    "pattern": "^(CHEBI:\\d+|ECTO:\\d{7})$",
+                    "pattern": "^(CHEBI:\\d+|ECTO:\\d{7}|ENVO:\\d{8})$",
                     "type": "string"
                 },
                 "name": {
@@ -1482,6 +1552,11 @@
             ],
             "title": "ChemicalEntityReference",
             "type": "object"
+        },
+        "ChemicalEntityTerm": {
+            "description": "A chemical entity from CHEBI or an exposure concept from ECTO. No branch constraint because two ontologies are allowed \u2014 the validator still checks the term exists and the label matches.",
+            "title": "ChemicalEntityTerm",
+            "type": "string"
         },
         "CiliaryFunctionAssay": {
             "additionalProperties": false,
@@ -1513,6 +1588,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -1690,6 +1775,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -1924,6 +2019,17 @@
                         "array",
                         "null"
                     ]
+                },
+                "source_publication": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PublicationReference"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The publication this data was extracted from."
                 }
             },
             "title": "Container",
@@ -1965,6 +2071,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -2164,6 +2280,16 @@
                     ],
                     "description": "ERK phosphorylation level. TIER 2."
                 },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "experimental_group": {
                     "$ref": "#/$defs/ExperimentalGroupEnum",
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
@@ -2213,6 +2339,73 @@
             ],
             "title": "EGFRSignalingOutput",
             "type": "object"
+        },
+        "EvidenceItem": {
+            "additionalProperties": false,
+            "description": "One piece of evidence for a claim: which publication it comes from, an exact quote from that publication, whether the quote supports or refutes the claim, and what kind of study produced it.",
+            "properties": {
+                "evidence_source": {
+                    "$ref": "#/$defs/EvidenceSourceEnum",
+                    "description": "What kind of study the cited publication reports \u2014 classify the paper, not the person doing the extraction."
+                },
+                "explanation": {
+                    "description": "One or two sentences on how the quoted passage supports the specific claim it is attached to.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "reference": {
+                    "description": "The cited publication's PubMed ID, e.g. \"PMID:12345678\".",
+                    "pattern": "^PMID:\\d+$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "reference_title": {
+                    "description": "The title of the cited publication, copied from the cached reference record (references_cache/), never typed from memory.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "snippet": {
+                    "description": "An exact quote from the cited publication that supports or refutes the claim. Checked automatically: the text must appear word-for-word in the cached copy of the publication.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "supports": {
+                    "$ref": "#/$defs/EvidenceItemSupportEnum",
+                    "description": "Which way the quoted evidence points: does it support the claim, contradict it, or turn out not to bear on it at all."
+                }
+            },
+            "title": "EvidenceItem",
+            "type": "object"
+        },
+        "EvidenceItemSupportEnum": {
+            "description": "Which way the cited evidence points relative to the claim. Direction only \u2014 it says nothing about how strong the evidence is.",
+            "enum": [
+                "SUPPORT",
+                "REFUTE",
+                "NO_EVIDENCE"
+            ],
+            "title": "EvidenceItemSupportEnum",
+            "type": "string"
+        },
+        "EvidenceSourceEnum": {
+            "description": "The kind of study the cited publication reports.",
+            "enum": [
+                "HUMAN_CLINICAL",
+                "MODEL_ORGANISM",
+                "IN_VITRO",
+                "COMPUTATIONAL",
+                "OTHER"
+            ],
+            "title": "EvidenceSourceEnum",
+            "type": "string"
         },
         "EvidenceSupportEnum": {
             "description": "Levels of evidence support for key event relationships.",
@@ -2320,6 +2513,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -2432,6 +2635,16 @@
                         "null"
                     ]
                 },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "experimental_group": {
                     "$ref": "#/$defs/ExperimentalGroupEnum",
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
@@ -2521,6 +2734,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -2654,6 +2877,16 @@
                         "null"
                     ]
                 },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "experimental_group": {
                     "$ref": "#/$defs/ExperimentalGroupEnum",
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
@@ -2732,6 +2965,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -2841,6 +3084,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -3392,6 +3645,16 @@
                         "null"
                     ]
                 },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "type": "string"
@@ -3462,6 +3725,16 @@
                     ],
                     "description": "The downstream key event in this relationship (effect)."
                 },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "evidence_support": {
                     "$ref": "#/$defs/EvidenceSupportEnum",
                     "description": "Level of evidence supporting this key event relationship."
@@ -3522,6 +3795,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -3679,6 +3962,16 @@
                         }
                     ],
                     "description": "Diffusing capacity for carbon monoxide. TIER 2 - measure of fibrosis, needs hemoglobin level."
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "experimental_group": {
                     "$ref": "#/$defs/ExperimentalGroupEnum",
@@ -4172,6 +4465,16 @@
                         "null"
                     ]
                 },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "type": "string"
@@ -4243,6 +4546,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -4359,6 +4672,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -4515,6 +4838,16 @@
                     "description": "A detailed description of the entity.",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -4695,6 +5028,16 @@
                         }
                     ],
                     "description": "8-OHdG level (DNA oxidation marker). TIER 1."
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "experimental_group": {
                     "$ref": "#/$defs/ExperimentalGroupEnum",
@@ -5073,6 +5416,36 @@
             "title": "Protocol",
             "type": "object"
         },
+        "PublicationReference": {
+            "additionalProperties": false,
+            "description": "The publication a data file was extracted from. Every Container names its source paper here, so each kb/ file is traceable to one publication.",
+            "properties": {
+                "doi": {
+                    "description": "The publication's DOI, e.g. \"10.1164/rccm.202001-0086OC\" (without a \"DOI:\" prefix).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "reference": {
+                    "description": "The cited publication's PubMed ID, e.g. \"PMID:12345678\".",
+                    "pattern": "^PMID:\\d+$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "reference_title": {
+                    "description": "The title of the cited publication, copied from the cached reference record (references_cache/), never typed from memory.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "PublicationReference",
+            "type": "object"
+        },
         "QuantitativeUnderstandingEnum": {
             "description": "Levels of quantitative understanding for key event relationships.",
             "enum": [
@@ -5303,6 +5676,11 @@
             ],
             "title": "SpeciesReference",
             "type": "object"
+        },
+        "SpeciesTerm": {
+            "description": "A species from the NCBI Taxonomy. No branch constraint \u2014 the validator checks the term exists and the label matches.",
+            "title": "SpeciesTerm",
+            "type": "string"
         },
         "SpirometryProtocol": {
             "additionalProperties": false,
@@ -5751,6 +6129,11 @@
             "title": "Unit",
             "type": "object"
         },
+        "UnitTerm": {
+            "description": "A unit of measurement from UO (UCUM/QUDT/STATO ids are also allowed by the Unit class but are not label-checked). No branch constraint.",
+            "title": "UnitTerm",
+            "type": "string"
+        },
         "Variability": {
             "additionalProperties": false,
             "description": "The reported spread or uncertainty around a measured value, kept separate from the value itself because papers report it in different forms. Use variability_type to say what was reported (standard deviation, standard error, confidence interval, range) and either a single magnitude (value) or bounds (lower_bound/upper_bound), with a unit when it differs from the measurement's unit.",
@@ -5990,6 +6373,17 @@
                 "array",
                 "null"
             ]
+        },
+        "source_publication": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/PublicationReference"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "description": "The publication this data was extracted from."
         }
     },
     "title": "soma",

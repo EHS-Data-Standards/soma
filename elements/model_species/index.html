@@ -691,6 +691,21 @@ Alias: model_species</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="../CellularSystem/">CellularSystem</a></td>
+<td>Cell-based model systems that use living cells to model biological processes</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ModelSystem/">ModelSystem</a></td>
+<td>An in vitro or ex vivo model system used to study biological processes</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../InVivoSubject/">InVivoSubject</a></td>
+<td>A living human or animal subject from whom measurements are taken</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../PopulationSubject/">PopulationSubject</a></td>
 <td>A population or cohort of subjects studied in aggregate</td>
 <td>no</td>
@@ -701,23 +716,8 @@ Alias: model_species</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ModelSystem/">ModelSystem</a></td>
-<td>An in vitro or ex vivo model system used to study biological processes</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CellularSystem/">CellularSystem</a></td>
-<td>Cell-based model systems that use living cells to model biological processes</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../StudySubject/">StudySubject</a></td>
 <td>The subject of a study — what the assay is performed on</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../InVivoSubject/">InVivoSubject</a></td>
-<td>A living human or animal subject from whom measurements are taken</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -762,6 +762,10 @@ Alias: model_species</p>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StudySubject</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CellLine</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpeciesReference</span>
+<span class="nt">bindings</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpeciesTerm</span>
+<span class="w">  </span><span class="nt">obligation_level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUIRED</span>
+<span class="w">  </span><span class="nt">binds_value_of</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>

@@ -12,6 +12,7 @@ see_also:
 id: https://w3id.org/EHS-Data-Standards/soma
 imports:
 - linkml:types
+- evidence
 - aop_framework
 - assay_base
 - assay_microschemas
@@ -80,6 +81,18 @@ prefixes:
   owg:
     prefix_prefix: owg
     prefix_reference: https://w3id.org/EHS-Data-Standards/soma/
+  evidence:
+    prefix_prefix: evidence
+    prefix_reference: https://w3id.org/EHS-Data-Standards/evidence/
+  dcterms:
+    prefix_prefix: dcterms
+    prefix_reference: http://purl.org/dc/terms/
+  PMID:
+    prefix_prefix: PMID
+    prefix_reference: http://www.ncbi.nlm.nih.gov/pubmed/
+  DOI:
+    prefix_prefix: DOI
+    prefix_reference: https://doi.org/
 default_prefix: soma
 default_range: string
 types:
@@ -351,7 +364,64 @@ types:
     base: str
     uri: xsd:string
     repr: str
+  PMID:
+    name: PMID
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/PMID
+    description: A PubMed identifier written as a CURIE, e.g. "PMID:12345678".
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    base: str
+    uri: xsd:string
 enums:
+  EvidenceItemSupportEnum:
+    name: EvidenceItemSupportEnum
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/EvidenceItemSupportEnum
+    description: "Which way the cited evidence points relative to the claim. Direction\
+      \ only \u2014 it says nothing about how strong the evidence is."
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    permissible_values:
+      SUPPORT:
+        text: SUPPORT
+        description: The quoted evidence supports the claim
+        title: Supports
+      REFUTE:
+        text: REFUTE
+        description: The quoted evidence contradicts the claim
+        title: Refutes
+      NO_EVIDENCE:
+        text: NO_EVIDENCE
+        description: The cited publication turned out not to contain evidence relevant
+          to the claim
+        title: No evidence
+  EvidenceSourceEnum:
+    name: EvidenceSourceEnum
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/EvidenceSourceEnum
+    description: The kind of study the cited publication reports.
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    permissible_values:
+      HUMAN_CLINICAL:
+        text: HUMAN_CLINICAL
+        description: 'Human observations: patients, cohorts, case reports, clinical
+          trials, epidemiology'
+        title: Human clinical
+      MODEL_ORGANISM:
+        text: MODEL_ORGANISM
+        description: 'In vivo animal evidence: mouse, rat, other non-human animal
+          models'
+        title: Model organism
+      IN_VITRO:
+        text: IN_VITRO
+        description: Cell culture, air-liquid interface cultures, organoids, tissue
+          slices, biochemical assays
+        title: In vitro / ex vivo
+      COMPUTATIONAL:
+        text: COMPUTATIONAL
+        description: In silico or modeling studies, even when they use clinical data
+          as input
+        title: Computational
+      OTHER:
+        text: OTHER
+        description: Evidence not fitting the categories above
+        title: Other
   BiologicalActionEnum:
     name: BiologicalActionEnum
     definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/BiologicalActionEnum
@@ -451,6 +521,47 @@ enums:
       population:
         text: population
         description: Adverse outcome at the population level
+  CellTypeTerm:
+    name: CellTypeTerm
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/CellTypeTerm
+    description: A cell type term from the Cell Ontology (CL), under "cell".
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    reachable_from:
+      source_nodes:
+      - CL:0000000
+      relationship_types:
+      - rdfs:subClassOf
+      is_direct: false
+  AnatomicalEntityTerm:
+    name: AnatomicalEntityTerm
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/AnatomicalEntityTerm
+    description: An anatomical term from UBERON, under "anatomical entity".
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    reachable_from:
+      source_nodes:
+      - UBERON:0001062
+      relationship_types:
+      - rdfs:subClassOf
+      is_direct: false
+  ChemicalEntityTerm:
+    name: ChemicalEntityTerm
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/ChemicalEntityTerm
+    description: "A chemical entity from CHEBI or an exposure concept from ECTO. No\
+      \ branch constraint because two ontologies are allowed \u2014 the validator\
+      \ still checks the term exists and the label matches."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+  SpeciesTerm:
+    name: SpeciesTerm
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/SpeciesTerm
+    description: "A species from the NCBI Taxonomy. No branch constraint \u2014 the\
+      \ validator checks the term exists and the label matches."
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+  UnitTerm:
+    name: UnitTerm
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/UnitTerm
+    description: A unit of measurement from UO (UCUM/QUDT/STATO ids are also allowed
+      by the Unit class but are not label-checked). No branch constraint.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
   SampleTypeEnum:
     name: SampleTypeEnum
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/SampleTypeEnum
@@ -958,6 +1069,123 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
+  reference:
+    name: reference
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/reference
+    implements:
+    - linkml:authoritative_reference
+    description: The cited publication's PubMed ID, e.g. "PMID:12345678".
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    slot_uri: evidence:reference
+    owner: PublicationReference
+    domain_of:
+    - EvidenceItem
+    - PublicationReference
+    range: PMID
+    pattern: ^PMID:\d+$
+  reference_title:
+    name: reference_title
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/reference_title
+    implements:
+    - dcterms:title
+    description: The title of the cited publication, copied from the cached reference
+      record (references_cache/), never typed from memory.
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    slot_uri: evidence:reference_title
+    owner: PublicationReference
+    domain_of:
+    - EvidenceItem
+    - PublicationReference
+    range: string
+    recommended: true
+  supports:
+    name: supports
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/supports
+    description: 'Which way the quoted evidence points: does it support the claim,
+      contradict it, or turn out not to bear on it at all.'
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    slot_uri: evidence:supports
+    owner: EvidenceItem
+    domain_of:
+    - EvidenceItem
+    range: EvidenceItemSupportEnum
+  evidence_source:
+    name: evidence_source
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/evidence_source
+    description: "What kind of study the cited publication reports \u2014 classify\
+      \ the paper, not the person doing the extraction."
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    slot_uri: evidence:evidence_source
+    owner: EvidenceItem
+    domain_of:
+    - EvidenceItem
+    range: EvidenceSourceEnum
+  snippet:
+    name: snippet
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/snippet
+    implements:
+    - linkml:excerpt
+    description: 'An exact quote from the cited publication that supports or refutes
+      the claim. Checked automatically: the text must appear word-for-word in the
+      cached copy of the publication.'
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    slot_uri: evidence:snippet
+    owner: EvidenceItem
+    domain_of:
+    - EvidenceItem
+    range: string
+  explanation:
+    name: explanation
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/explanation
+    description: One or two sentences on how the quoted passage supports the specific
+      claim it is attached to.
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    slot_uri: evidence:explanation
+    owner: EvidenceItem
+    domain_of:
+    - EvidenceItem
+    range: string
+  doi:
+    name: doi
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/doi
+    description: The publication's DOI, e.g. "10.1164/rccm.202001-0086OC" (without
+      a "DOI:" prefix).
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    slot_uri: evidence:doi
+    owner: PublicationReference
+    domain_of:
+    - PublicationReference
+    range: string
+  evidence:
+    name: evidence
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/evidence
+    description: Evidence items backing this object's claims. Each one carries an
+      exact quote from a cited publication.
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    slot_uri: evidence:evidence
+    owner: AssayOutputMeasurement
+    domain_of:
+    - KeyEvent
+    - KeyEventRelationship
+    - Assay
+    - AssayOutputMeasurement
+    range: EvidenceItem
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  source_publication:
+    name: source_publication
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/source_publication
+    description: The publication this data was extracted from.
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    slot_uri: evidence:source_publication
+    owner: Container
+    domain_of:
+    - Container
+    range: PublicationReference
+    inlined: true
+    inlined_as_list: true
   id:
     name: id
     definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/id
@@ -1322,6 +1550,12 @@ slots:
     - CellularSystem
     - CellLine
     range: CellTypeReference
+    bindings:
+    - range: CellTypeTerm
+      obligation_level:
+        text: REQUIRED
+        description: The metadata element is required to be present in the model
+      binds_value_of: id
     inlined: true
     inlined_as_list: false
   target_cell_type:
@@ -1336,6 +1570,12 @@ slots:
     domain_of:
     - BALFSputumAssay
     range: CellTypeReference
+    bindings:
+    - range: CellTypeTerm
+      obligation_level:
+        text: REQUIRED
+        description: The metadata element is required to be present in the model
+      binds_value_of: id
     inlined: true
     inlined_as_list: false
   model_species:
@@ -1350,6 +1590,12 @@ slots:
     - StudySubject
     - CellLine
     range: SpeciesReference
+    bindings:
+    - range: SpeciesTerm
+      obligation_level:
+        text: REQUIRED
+        description: The metadata element is required to be present in the model
+      binds_value_of: id
     inlined: true
     inlined_as_list: false
   subject_type:
@@ -2001,6 +2247,12 @@ slots:
     domain_of:
     - ExposureCondition
     range: ChemicalEntityReference
+    bindings:
+    - range: ChemicalEntityTerm
+      obligation_level:
+        text: REQUIRED
+        description: The metadata element is required to be present in the model
+      binds_value_of: id
     inlined: true
     inlined_as_list: false
   exposure_duration:
@@ -2060,6 +2312,12 @@ slots:
     domain_of:
     - CellularSystem
     range: CellTypeReference
+    bindings:
+    - range: CellTypeTerm
+      obligation_level:
+        text: REQUIRED
+        description: The metadata element is required to be present in the model
+      binds_value_of: id
     inlined: true
     inlined_as_list: false
   anatomical_origin:
@@ -2071,6 +2329,12 @@ slots:
     domain_of:
     - CellularSystem
     range: AnatomicalEntityReference
+    bindings:
+    - range: AnatomicalEntityTerm
+      obligation_level:
+        text: REQUIRED
+        description: The metadata element is required to be present in the model
+      binds_value_of: id
     inlined: true
     inlined_as_list: false
   cell_culture_growth_mode:
@@ -2395,6 +2659,12 @@ slots:
     - Variability
     - QuantityRange
     range: Unit
+    bindings:
+    - range: UnitTerm
+      obligation_level:
+        text: REQUIRED
+        description: The metadata element is required to be present in the model
+      binds_value_of: id
     inlined: true
     inlined_as_list: false
   central_tendency:
@@ -4028,7 +4298,7 @@ slots:
     usage_slot_name: id
     range: uriorcurie
     required: true
-    pattern: ^(CHEBI:\d+|ECTO:\d{7})$
+    pattern: ^(CHEBI:\d+|ECTO:\d{7}|ENVO:\d{8})$
   AnatomicalEntityReference_id:
     name: AnatomicalEntityReference_id
     definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/id
@@ -4419,6 +4689,7 @@ classes:
       informs_on_key_event slot.'
     from_schema: https://w3id.org/EHS-Data-Standards/soma
     slots:
+    - source_publication
     - key_events
     - key_event_relationships
     - adverse_outcome_pathways
@@ -4437,6 +4708,32 @@ classes:
     - protocols
     class_uri: soma:Container
     tree_root: true
+  EvidenceItem:
+    name: EvidenceItem
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/EvidenceItem
+    description: 'One piece of evidence for a claim: which publication it comes from,
+      an exact quote from that publication, whether the quote supports or refutes
+      the claim, and what kind of study produced it.'
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    slots:
+    - reference
+    - reference_title
+    - supports
+    - evidence_source
+    - snippet
+    - explanation
+    class_uri: evidence:EvidenceItem
+  PublicationReference:
+    name: PublicationReference
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/PublicationReference
+    description: The publication a data file was extracted from. Every Container names
+      its source paper here, so each kb/ file is traceable to one publication.
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    slots:
+    - reference
+    - reference_title
+    - doi
+    class_uri: evidence:PublicationReference
   NamedThing:
     name: NamedThing
     definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/NamedThing
@@ -4473,6 +4770,7 @@ classes:
     - aopwiki_id
     - upstream_key_events
     - downstream_key_events
+    - evidence
     class_uri: ECTO:1000000
   KeyEventRelationship:
     name: KeyEventRelationship
@@ -4491,6 +4789,7 @@ classes:
     - relationship_type
     - evidence_support
     - quantitative_understanding
+    - evidence
     class_uri: aop_framework:KeyEventRelationship
   AdverseOutcome:
     name: AdverseOutcome
@@ -4551,6 +4850,7 @@ classes:
     - aopwiki_id
     - upstream_key_events
     - downstream_key_events
+    - evidence
     - target_molecule
     class_uri: aop_framework:MolecularInitiatingEvent
   Assay:
@@ -4577,6 +4877,7 @@ classes:
     - follows_protocols
     - has_specified_output
     - assay_date
+    - evidence
     class_uri: OBI:0000070
   AssayOutputMeasurement:
     name: AssayOutputMeasurement
@@ -4600,6 +4901,7 @@ classes:
     - id
     - name
     - description
+    - evidence
     - experimental_group
     - measured_under
     class_uri: assay_base:AssayOutputMeasurement
@@ -4923,9 +5225,11 @@ classes:
     id_prefixes:
     - CHEBI
     - ECTO
+    - ENVO
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/ChemicalEntityReference
-    description: A reference to a chemical entity from CHEBI or an exposure concept
-      from ECTO.
+    description: A reference to a chemical entity from CHEBI, an exposure concept
+      from ECTO, or an environmental material from ENVO (e.g. particulate matter,
+      which is an ENVO concept, not a CHEBI chemical).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     is_a: NamedEntity
     slots:
@@ -4934,7 +5238,7 @@ classes:
     slot_usage:
       id:
         name: id
-        pattern: ^(CHEBI:\d+|ECTO:\d{7})$
+        pattern: ^(CHEBI:\d+|ECTO:\d{7}|ENVO:\d{8})$
     class_uri: assay_base:ChemicalEntityReference
   AnatomicalEntityReference:
     name: AnatomicalEntityReference
@@ -5143,6 +5447,7 @@ classes:
     - has_exposure_condition
     - follows_protocols
     - assay_date
+    - evidence
     - analysis_software
     - airway_region
     - CiliaryFunctionAssay_study_subject
@@ -5169,6 +5474,7 @@ classes:
     - id
     - name
     - description
+    - evidence
     - experimental_group
     - measured_under
     - beat_frequency_hz
@@ -5197,6 +5503,7 @@ classes:
     - has_exposure_condition
     - follows_protocols
     - assay_date
+    - evidence
     - ASLAssay_has_specified_output
     slot_usage:
       has_specified_output:
@@ -5214,6 +5521,7 @@ classes:
     - id
     - name
     - description
+    - evidence
     - experimental_group
     - measured_under
     - asl_height_um
@@ -5239,6 +5547,7 @@ classes:
     - has_exposure_condition
     - follows_protocols
     - assay_date
+    - evidence
     - mucus_composition
     - MucociliaryClearanceAssay_has_specified_output
     slot_usage:
@@ -5257,6 +5566,7 @@ classes:
     - id
     - name
     - description
+    - evidence
     - experimental_group
     - measured_under
     - transport_rate
@@ -5283,6 +5593,7 @@ classes:
     - has_exposure_condition
     - follows_protocols
     - assay_date
+    - evidence
     - ros_probe_type
     - OxidativeStressAssay_has_specified_output
     slot_usage:
@@ -5302,6 +5613,7 @@ classes:
     - id
     - name
     - description
+    - evidence
     - experimental_group
     - measured_under
     - reactive_oxygen_species
@@ -5340,6 +5652,7 @@ classes:
     - has_exposure_condition
     - follows_protocols
     - assay_date
+    - evidence
     - stimulation_agent
     - inhibitor_used
     - CFTRFunctionAssay_has_specified_output
@@ -5360,6 +5673,7 @@ classes:
     - id
     - name
     - description
+    - evidence
     - experimental_group
     - measured_under
     - cftr_chloride_secretion
@@ -5392,6 +5706,7 @@ classes:
     - has_exposure_condition
     - follows_protocols
     - assay_date
+    - evidence
     - normalization_reference
     - phosphorylation_site
     - EGFRSignalingAssay_has_specified_output
@@ -5411,6 +5726,7 @@ classes:
     - id
     - name
     - description
+    - evidence
     - experimental_group
     - measured_under
     - egfr_phosphorylation_y1068
@@ -5443,6 +5759,7 @@ classes:
     - has_exposure_condition
     - follows_protocols
     - assay_date
+    - evidence
     - GobletCellAssay_has_specified_output
     slot_usage:
       has_specified_output:
@@ -5460,6 +5777,7 @@ classes:
     - id
     - name
     - description
+    - evidence
     - experimental_group
     - measured_under
     - goblet_cell_count
@@ -5497,6 +5815,7 @@ classes:
     - has_exposure_condition
     - follows_protocols
     - assay_date
+    - evidence
     - target_cell_type
     - BALFSputumAssay_study_subject
     - BALFSputumAssay_has_specified_output
@@ -5519,6 +5838,7 @@ classes:
     - id
     - name
     - description
+    - evidence
     - experimental_group
     - measured_under
     - neutrophil_percentage
@@ -5561,6 +5881,7 @@ classes:
     - has_exposure_condition
     - follows_protocols
     - assay_date
+    - evidence
     - reference_dataset
     - hemoglobin_level
     - recent_respiratory_illness
@@ -5585,6 +5906,7 @@ classes:
     - id
     - name
     - description
+    - evidence
     - experimental_group
     - measured_under
     - fev1
@@ -5626,6 +5948,7 @@ classes:
     - has_exposure_condition
     - follows_protocols
     - assay_date
+    - evidence
     - FoxJExpressionAssay_has_specified_output
     slot_usage:
       has_specified_output:
@@ -5643,6 +5966,7 @@ classes:
     - id
     - name
     - description
+    - evidence
     - experimental_group
     - measured_under
     - foxj1_mrna_expression
@@ -5670,6 +5994,7 @@ classes:
     - has_exposure_condition
     - follows_protocols
     - assay_date
+    - evidence
     - target_gene
     - gene_expression_method
     - normalization_reference
@@ -5690,6 +6015,7 @@ classes:
     - id
     - name
     - description
+    - evidence
     - experimental_group
     - measured_under
     - mrna_level
@@ -5698,7 +6024,7 @@ classes:
     class_uri: assay_microschemas:GeneExpressionOutput
 metamodel_version: 1.7.0
 source_file: soma.yaml
-source_file_date: '2026-09-28T22:26:32'
-source_file_size: 7630
-generation_date: '2026-09-28T22:27:40'
+source_file_date: '2026-09-28T23:02:44'
+source_file_size: 7904
+generation_date: '2026-09-28T23:03:57'
 

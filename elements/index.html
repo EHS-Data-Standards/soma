@@ -784,6 +784,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Root container for outcomes research data</td>
 </tr>
 <tr>
+<td><a href="EvidenceItem/">EvidenceItem</a></td>
+<td>One piece of evidence for a claim: which publication it comes from, an exact ...</td>
+</tr>
+<tr>
 <td><a href="NamedEntity/">NamedEntity</a></td>
 <td>A reference to an entity with an identifier and name</td>
 </tr>
@@ -809,7 +813,7 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ChemicalEntityReference/">ChemicalEntityReference</a></td>
-<td>A reference to a chemical entity from CHEBI or an exposure concept from ECTO</td>
+<td>A reference to a chemical entity from CHEBI, an exposure concept from ECTO, o...</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposureCondition/">ExposureCondition</a></td>
@@ -986,6 +990,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PopulationSubject/">PopulationSubject</a></td>
 <td>A population or cohort of subjects studied in aggregate</td>
+</tr>
+<tr>
+<td><a href="PublicationReference/">PublicationReference</a></td>
+<td>The publication a data file was extracted from</td>
 </tr>
 <tr>
 <td><a href="QuantityRange/">QuantityRange</a></td>
@@ -1307,6 +1315,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>DNA damage markers (8-OHdG)</td>
 </tr>
 <tr>
+<td><a href="doi/">doi</a></td>
+<td>The publication's DOI, e</td>
+</tr>
+<tr>
 <td><a href="donor_count/">donor_count</a></td>
 <td></td>
 </tr>
@@ -1371,12 +1383,24 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Method used to prevent evaporation (e</td>
 </tr>
 <tr>
+<td><a href="evidence/">evidence</a></td>
+<td>Evidence items backing this object's claims</td>
+</tr>
+<tr>
+<td><a href="evidence_source/">evidence_source</a></td>
+<td>What kind of study the cited publication reports — classify the paper, not th...</td>
+</tr>
+<tr>
 <td><a href="evidence_support/">evidence_support</a></td>
 <td>Level of evidence supporting this key event relationship</td>
 </tr>
 <tr>
 <td><a href="experimental_group/">experimental_group</a></td>
 <td>The role of this output record's group in the experimental design: control, v...</td>
+</tr>
+<tr>
+<td><a href="explanation/">explanation</a></td>
+<td>One or two sentences on how the quoted passage supports the specific claim it...</td>
 </tr>
 <tr>
 <td><a href="exposure_agent/">exposure_agent</a></td>
@@ -1883,12 +1907,20 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Recent respiratory illness (affects spirometry)</td>
 </tr>
 <tr>
+<td><a href="reference/">reference</a></td>
+<td>The cited publication's PubMed ID, e</td>
+</tr>
+<tr>
 <td><a href="reference_dataset/">reference_dataset</a></td>
 <td>Reference dataset for interpretation (GLI-2012 for humans)</td>
 </tr>
 <tr>
 <td><a href="reference_gene/">reference_gene</a></td>
 <td>Reference/housekeeping gene used for normalization</td>
+</tr>
+<tr>
+<td><a href="reference_title/">reference_title</a></td>
+<td>The title of the cited publication, copied from the cached reference record (...</td>
 </tr>
 <tr>
 <td><a href="relationship_type/">relationship_type</a></td>
@@ -1947,8 +1979,16 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td></td>
 </tr>
 <tr>
+<td><a href="snippet/">snippet</a></td>
+<td>An exact quote from the cited publication that supports or refutes the claim</td>
+</tr>
+<tr>
 <td><a href="sop_reference/">sop_reference</a></td>
 <td>Reference to standard operating procedure document</td>
+</tr>
+<tr>
+<td><a href="source_publication/">source_publication</a></td>
+<td>The publication this data was extracted from</td>
 </tr>
 <tr>
 <td><a href="spatial_resolution/">spatial_resolution</a></td>
@@ -2021,6 +2061,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="supplier/">supplier</a></td>
 <td></td>
+</tr>
+<tr>
+<td><a href="supports/">supports</a></td>
+<td>Which way the quoted evidence points: does it support the claim, contradict i...</td>
 </tr>
 <tr>
 <td><a href="sweat_chloride_concentration/">sweat_chloride_concentration</a></td>
@@ -2130,6 +2174,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 </thead>
 <tbody>
 <tr>
+<td><a href="AnatomicalEntityTerm/">AnatomicalEntityTerm</a></td>
+<td>An anatomical term from UBERON, under "anatomical entity"</td>
+</tr>
+<tr>
 <td><a href="AssayContextCapabilityEnum/">AssayContextCapabilityEnum</a></td>
 <td>Indicates what experimental contexts an assay class supports</td>
 </tr>
@@ -2146,6 +2194,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Cell culture growth modes</td>
 </tr>
 <tr>
+<td><a href="CellTypeTerm/">CellTypeTerm</a></td>
+<td>A cell type term from the Cell Ontology (CL), under "cell"</td>
+</tr>
+<tr>
 <td><a href="CentralTendencyEnum/">CentralTendencyEnum</a></td>
 <td>What kind of central value a reported number represents</td>
 </tr>
@@ -2158,6 +2210,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Forms in which a change relative to control can be expressed</td>
 </tr>
 <tr>
+<td><a href="ChemicalEntityTerm/">ChemicalEntityTerm</a></td>
+<td>A chemical entity from CHEBI or an exposure concept from ECTO</td>
+</tr>
+<tr>
 <td><a href="CiliaryMotionPatternEnum/">CiliaryMotionPatternEnum</a></td>
 <td>Patterns of ciliary motion</td>
 </tr>
@@ -2168,6 +2224,14 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="DirectionalityEnum/">DirectionalityEnum</a></td>
 <td>Directionality of mucociliary transport</td>
+</tr>
+<tr>
+<td><a href="EvidenceItemSupportEnum/">EvidenceItemSupportEnum</a></td>
+<td>Which way the cited evidence points relative to the claim</td>
+</tr>
+<tr>
+<td><a href="EvidenceSourceEnum/">EvidenceSourceEnum</a></td>
+<td>The kind of study the cited publication reports</td>
 </tr>
 <tr>
 <td><a href="EvidenceSupportEnum/">EvidenceSupportEnum</a></td>
@@ -2190,12 +2254,20 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Types of biological samples for in vivo assays</td>
 </tr>
 <tr>
+<td><a href="SpeciesTerm/">SpeciesTerm</a></td>
+<td>A species from the NCBI Taxonomy</td>
+</tr>
+<tr>
 <td><a href="SubstrateTypeEnum/">SubstrateTypeEnum</a></td>
 <td>Types of cell culture substrates</td>
 </tr>
 <tr>
 <td><a href="SupplementTypeEnum/">SupplementTypeEnum</a></td>
 <td>Categories of cell culture medium supplements</td>
+</tr>
+<tr>
+<td><a href="UnitTerm/">UnitTerm</a></td>
+<td>A unit of measurement from UO (UCUM/QUDT/STATO ids are also allowed by the Un...</td>
 </tr>
 <tr>
 <td><a href="VariabilityTypeEnum/">VariabilityTypeEnum</a></td>
@@ -2267,6 +2339,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="Objectidentifier/">Objectidentifier</a></td>
 <td>A URI or CURIE that represents an object in the model</td>
+</tr>
+<tr>
+<td><a href="PMID/">PMID</a></td>
+<td>A PubMed identifier written as a CURIE, e</td>
 </tr>
 <tr>
 <td><a href="Sparqlpath/">Sparqlpath</a></td>

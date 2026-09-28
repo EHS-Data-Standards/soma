@@ -45,6 +45,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/AnatomicalEntityTerm/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Assay/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -105,6 +109,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/CellTypeTerm/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/CellularSystem/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -122,6 +130,10 @@
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/ChemicalEntityReference/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/ChemicalEntityTerm/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -178,6 +190,18 @@
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/EGFRSignalingOutput/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/EvidenceItem/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/EvidenceItemSupportEnum/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/EvidenceSourceEnum/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -313,11 +337,19 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/PMID/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/PopulationSubject/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Protocol/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/PublicationReference/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -346,6 +378,10 @@
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/SpeciesReference/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/SpeciesTerm/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -378,6 +414,10 @@
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/Unit/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/UnitTerm/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -689,6 +729,10 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/doi/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/donor_count/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
@@ -753,11 +797,23 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/evidence/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/evidence_source/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/evidence_support/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/experimental_group/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/explanation/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -1265,11 +1321,19 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/reference/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/reference_dataset/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/reference_gene/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/reference_title/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -1329,11 +1393,19 @@
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/snippet/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/soma/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/sop_reference/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/source_publication/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>
@@ -1406,6 +1478,10 @@
     </url>
     <url>
          <loc>https://EHS-Data-Standards.github.io/soma/elements/supplier/</loc>
+         <lastmod>2026-09-28</lastmod>
+    </url>
+    <url>
+         <loc>https://EHS-Data-Standards.github.io/soma/elements/supports/</loc>
          <lastmod>2026-09-28</lastmod>
     </url>
     <url>

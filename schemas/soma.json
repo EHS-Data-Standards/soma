@@ -92,6 +92,22 @@
       "prefix_prefix": "owg",
       "prefix_reference": "https://w3id.org/EHS-Data-Standards/soma/"
     },
+    "evidence": {
+      "prefix_prefix": "evidence",
+      "prefix_reference": "https://w3id.org/EHS-Data-Standards/evidence/"
+    },
+    "dcterms": {
+      "prefix_prefix": "dcterms",
+      "prefix_reference": "http://purl.org/dc/terms/"
+    },
+    "PMID": {
+      "prefix_prefix": "PMID",
+      "prefix_reference": "http://www.ncbi.nlm.nih.gov/pubmed/"
+    },
+    "DOI": {
+      "prefix_prefix": "DOI",
+      "prefix_reference": "https://doi.org/"
+    },
     "xsd": {
       "prefix_prefix": "xsd",
       "prefix_reference": "http://www.w3.org/2001/XMLSchema#"
@@ -382,9 +398,70 @@
       "base": "str",
       "uri": "xsd:string",
       "repr": "str"
+    },
+    "PMID": {
+      "name": "PMID",
+      "description": "A PubMed identifier written as a CURIE, e.g. \"PMID:12345678\".",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "base": "str",
+      "uri": "xsd:string"
     }
   },
   "enums": {
+    "EvidenceItemSupportEnum": {
+      "name": "EvidenceItemSupportEnum",
+      "description": "Which way the cited evidence points relative to the claim. Direction only — it says nothing about how strong the evidence is.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "permissible_values": {
+        "SUPPORT": {
+          "text": "SUPPORT",
+          "description": "The quoted evidence supports the claim",
+          "title": "Supports"
+        },
+        "REFUTE": {
+          "text": "REFUTE",
+          "description": "The quoted evidence contradicts the claim",
+          "title": "Refutes"
+        },
+        "NO_EVIDENCE": {
+          "text": "NO_EVIDENCE",
+          "description": "The cited publication turned out not to contain evidence relevant to the claim",
+          "title": "No evidence"
+        }
+      }
+    },
+    "EvidenceSourceEnum": {
+      "name": "EvidenceSourceEnum",
+      "description": "The kind of study the cited publication reports.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "permissible_values": {
+        "HUMAN_CLINICAL": {
+          "text": "HUMAN_CLINICAL",
+          "description": "Human observations: patients, cohorts, case reports, clinical trials, epidemiology",
+          "title": "Human clinical"
+        },
+        "MODEL_ORGANISM": {
+          "text": "MODEL_ORGANISM",
+          "description": "In vivo animal evidence: mouse, rat, other non-human animal models",
+          "title": "Model organism"
+        },
+        "IN_VITRO": {
+          "text": "IN_VITRO",
+          "description": "Cell culture, air-liquid interface cultures, organoids, tissue slices, biochemical assays",
+          "title": "In vitro / ex vivo"
+        },
+        "COMPUTATIONAL": {
+          "text": "COMPUTATIONAL",
+          "description": "In silico or modeling studies, even when they use clinical data as input",
+          "title": "Computational"
+        },
+        "OTHER": {
+          "text": "OTHER",
+          "description": "Evidence not fitting the categories above",
+          "title": "Other"
+        }
+      }
+    },
     "BiologicalActionEnum": {
       "name": "BiologicalActionEnum",
       "description": "Types of biological changes or actions in key events.",
@@ -511,6 +588,49 @@
           "description": "Adverse outcome at the population level"
         }
       }
+    },
+    "CellTypeTerm": {
+      "name": "CellTypeTerm",
+      "description": "A cell type term from the Cell Ontology (CL), under \"cell\".",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "reachable_from": {
+        "source_nodes": [
+          "CL:0000000"
+        ],
+        "relationship_types": [
+          "rdfs:subClassOf"
+        ],
+        "is_direct": false
+      }
+    },
+    "AnatomicalEntityTerm": {
+      "name": "AnatomicalEntityTerm",
+      "description": "An anatomical term from UBERON, under \"anatomical entity\".",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "reachable_from": {
+        "source_nodes": [
+          "UBERON:0001062"
+        ],
+        "relationship_types": [
+          "rdfs:subClassOf"
+        ],
+        "is_direct": false
+      }
+    },
+    "ChemicalEntityTerm": {
+      "name": "ChemicalEntityTerm",
+      "description": "A chemical entity from CHEBI or an exposure concept from ECTO. No branch constraint because two ontologies are allowed — the validator still checks the term exists and the label matches.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma"
+    },
+    "SpeciesTerm": {
+      "name": "SpeciesTerm",
+      "description": "A species from the NCBI Taxonomy. No branch constraint — the validator checks the term exists and the label matches.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma"
+    },
+    "UnitTerm": {
+      "name": "UnitTerm",
+      "description": "A unit of measurement from UO (UCUM/QUDT/STATO ids are also allowed by the Unit class but are not label-checked). No branch constraint.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma"
     },
     "SampleTypeEnum": {
       "name": "SampleTypeEnum",
@@ -1067,6 +1187,130 @@
       "inlined": true,
       "inlined_as_list": true
     },
+    "reference": {
+      "name": "reference",
+      "implements": [
+        "linkml:authoritative_reference"
+      ],
+      "description": "The cited publication's PubMed ID, e.g. \"PMID:12345678\".",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "EvidenceItem",
+        "PublicationReference"
+      ],
+      "range": "PMID",
+      "pattern": "^PMID:\\d+$"
+    },
+    "reference_title": {
+      "name": "reference_title",
+      "implements": [
+        "dcterms:title"
+      ],
+      "description": "The title of the cited publication, copied from the cached reference record (references_cache/), never typed from memory.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "EvidenceItem",
+        "PublicationReference"
+      ],
+      "range": "string",
+      "recommended": true
+    },
+    "supports": {
+      "name": "supports",
+      "description": "Which way the quoted evidence points: does it support the claim, contradict it, or turn out not to bear on it at all.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "EvidenceItem"
+      ],
+      "range": "EvidenceItemSupportEnum"
+    },
+    "evidence_source": {
+      "name": "evidence_source",
+      "description": "What kind of study the cited publication reports — classify the paper, not the person doing the extraction.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "EvidenceItem"
+      ],
+      "range": "EvidenceSourceEnum"
+    },
+    "snippet": {
+      "name": "snippet",
+      "implements": [
+        "linkml:excerpt"
+      ],
+      "description": "An exact quote from the cited publication that supports or refutes the claim. Checked automatically: the text must appear word-for-word in the cached copy of the publication.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "EvidenceItem"
+      ],
+      "range": "string"
+    },
+    "explanation": {
+      "name": "explanation",
+      "description": "One or two sentences on how the quoted passage supports the specific claim it is attached to.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "EvidenceItem"
+      ],
+      "range": "string"
+    },
+    "doi": {
+      "name": "doi",
+      "description": "The publication's DOI, e.g. \"10.1164/rccm.202001-0086OC\" (without a \"DOI:\" prefix).",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "PublicationReference"
+      ],
+      "range": "string"
+    },
+    "evidence": {
+      "name": "evidence",
+      "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "KeyEvent",
+        "KeyEventRelationship",
+        "Assay",
+        "AssayOutputMeasurement",
+        "MolecularInitiatingEvent",
+        "CiliaryFunctionAssay",
+        "CiliaryFunctionOutput",
+        "ASLAssay",
+        "ASLOutput",
+        "MucociliaryClearanceAssay",
+        "MucociliaryClearanceOutput",
+        "OxidativeStressAssay",
+        "OxidativeStressOutput",
+        "CFTRFunctionAssay",
+        "CFTRFunctionOutput",
+        "EGFRSignalingAssay",
+        "EGFRSignalingOutput",
+        "GobletCellAssay",
+        "GobletCellOutput",
+        "BALFSputumAssay",
+        "BALFSputumOutput",
+        "LungFunctionAssay",
+        "LungFunctionOutput",
+        "FoxJExpressionAssay",
+        "FoxJExpressionOutput",
+        "GeneExpressionAssay"
+      ],
+      "range": "EvidenceItem",
+      "recommended": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true
+    },
+    "source_publication": {
+      "name": "source_publication",
+      "description": "The publication this data was extracted from.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "Container"
+      ],
+      "range": "PublicationReference",
+      "inlined": true
+    },
     "id": {
       "name": "id",
       "description": "A unique identifier for the entity.",
@@ -1546,6 +1790,13 @@
         "CellLine"
       ],
       "range": "CellTypeReference",
+      "bindings": [
+        {
+          "range": "CellTypeTerm",
+          "obligation_level": "REQUIRED",
+          "binds_value_of": "id"
+        }
+      ],
       "inlined": true
     },
     "target_cell_type": {
@@ -1556,6 +1807,13 @@
         "BALFSputumAssay"
       ],
       "range": "CellTypeReference",
+      "bindings": [
+        {
+          "range": "CellTypeTerm",
+          "obligation_level": "REQUIRED",
+          "binds_value_of": "id"
+        }
+      ],
       "inlined": true
     },
     "model_species": {
@@ -1571,6 +1829,13 @@
         "CellularSystem"
       ],
       "range": "SpeciesReference",
+      "bindings": [
+        {
+          "range": "SpeciesTerm",
+          "obligation_level": "REQUIRED",
+          "binds_value_of": "id"
+        }
+      ],
       "inlined": true
     },
     "subject_type": {
@@ -2208,6 +2473,13 @@
         "ExposureCondition"
       ],
       "range": "ChemicalEntityReference",
+      "bindings": [
+        {
+          "range": "ChemicalEntityTerm",
+          "obligation_level": "REQUIRED",
+          "binds_value_of": "id"
+        }
+      ],
       "inlined": true
     },
     "exposure_duration": {
@@ -2256,6 +2528,13 @@
         "CellularSystem"
       ],
       "range": "CellTypeReference",
+      "bindings": [
+        {
+          "range": "CellTypeTerm",
+          "obligation_level": "REQUIRED",
+          "binds_value_of": "id"
+        }
+      ],
       "inlined": true
     },
     "anatomical_origin": {
@@ -2265,6 +2544,13 @@
         "CellularSystem"
       ],
       "range": "AnatomicalEntityReference",
+      "bindings": [
+        {
+          "range": "AnatomicalEntityTerm",
+          "obligation_level": "REQUIRED",
+          "binds_value_of": "id"
+        }
+      ],
       "inlined": true
     },
     "cell_culture_growth_mode": {
@@ -2548,6 +2834,13 @@
         "QuantityRange"
       ],
       "range": "Unit",
+      "bindings": [
+        {
+          "range": "UnitTerm",
+          "obligation_level": "REQUIRED",
+          "binds_value_of": "id"
+        }
+      ],
       "inlined": true
     },
     "central_tendency": {
@@ -3844,6 +4137,7 @@
       "description": "Root container for outcomes research data. Organized around ASSAYS that inform on Key Events in Adverse Outcome Pathways (AOPs).\nThe schema is assay-centric: each assay class contains named slots for its specific measurements, with an explicit connection to the Key Event it informs via the informs_on_key_event slot.",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
       "slots": [
+        "source_publication",
         "key_events",
         "key_event_relationships",
         "adverse_outcome_pathways",
@@ -3862,6 +4156,18 @@
         "protocols"
       ],
       "attributes": {
+        "source_publication": {
+          "name": "source_publication",
+          "description": "The publication this data was extracted from.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "source_publication",
+          "owner": "Container",
+          "domain_of": [
+            "Container"
+          ],
+          "range": "PublicationReference",
+          "inlined": true
+        },
         "key_events": {
           "name": "key_events",
           "description": "The key events in this AOP (intermediate events between MIE and AO).",
@@ -4075,6 +4381,155 @@
       },
       "tree_root": true
     },
+    "EvidenceItem": {
+      "name": "EvidenceItem",
+      "description": "One piece of evidence for a claim: which publication it comes from, an exact quote from that publication, whether the quote supports or refutes the claim, and what kind of study produced it.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "slots": [
+        "reference",
+        "reference_title",
+        "supports",
+        "evidence_source",
+        "snippet",
+        "explanation"
+      ],
+      "attributes": {
+        "reference": {
+          "name": "reference",
+          "implements": [
+            "linkml:authoritative_reference"
+          ],
+          "description": "The cited publication's PubMed ID, e.g. \"PMID:12345678\".",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "reference",
+          "owner": "EvidenceItem",
+          "domain_of": [
+            "EvidenceItem",
+            "PublicationReference"
+          ],
+          "range": "PMID",
+          "pattern": "^PMID:\\d+$"
+        },
+        "reference_title": {
+          "name": "reference_title",
+          "implements": [
+            "dcterms:title"
+          ],
+          "description": "The title of the cited publication, copied from the cached reference record (references_cache/), never typed from memory.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "reference_title",
+          "owner": "EvidenceItem",
+          "domain_of": [
+            "EvidenceItem",
+            "PublicationReference"
+          ],
+          "range": "string",
+          "recommended": true
+        },
+        "supports": {
+          "name": "supports",
+          "description": "Which way the quoted evidence points: does it support the claim, contradict it, or turn out not to bear on it at all.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "supports",
+          "owner": "EvidenceItem",
+          "domain_of": [
+            "EvidenceItem"
+          ],
+          "range": "EvidenceItemSupportEnum"
+        },
+        "evidence_source": {
+          "name": "evidence_source",
+          "description": "What kind of study the cited publication reports — classify the paper, not the person doing the extraction.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence_source",
+          "owner": "EvidenceItem",
+          "domain_of": [
+            "EvidenceItem"
+          ],
+          "range": "EvidenceSourceEnum"
+        },
+        "snippet": {
+          "name": "snippet",
+          "implements": [
+            "linkml:excerpt"
+          ],
+          "description": "An exact quote from the cited publication that supports or refutes the claim. Checked automatically: the text must appear word-for-word in the cached copy of the publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "snippet",
+          "owner": "EvidenceItem",
+          "domain_of": [
+            "EvidenceItem"
+          ],
+          "range": "string"
+        },
+        "explanation": {
+          "name": "explanation",
+          "description": "One or two sentences on how the quoted passage supports the specific claim it is attached to.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "explanation",
+          "owner": "EvidenceItem",
+          "domain_of": [
+            "EvidenceItem"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PublicationReference": {
+      "name": "PublicationReference",
+      "description": "The publication a data file was extracted from. Every Container names its source paper here, so each kb/ file is traceable to one publication.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "slots": [
+        "reference",
+        "reference_title",
+        "doi"
+      ],
+      "attributes": {
+        "reference": {
+          "name": "reference",
+          "implements": [
+            "linkml:authoritative_reference"
+          ],
+          "description": "The cited publication's PubMed ID, e.g. \"PMID:12345678\".",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "reference",
+          "owner": "PublicationReference",
+          "domain_of": [
+            "EvidenceItem",
+            "PublicationReference"
+          ],
+          "range": "PMID",
+          "pattern": "^PMID:\\d+$"
+        },
+        "reference_title": {
+          "name": "reference_title",
+          "implements": [
+            "dcterms:title"
+          ],
+          "description": "The title of the cited publication, copied from the cached reference record (references_cache/), never typed from memory.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "reference_title",
+          "owner": "PublicationReference",
+          "domain_of": [
+            "EvidenceItem",
+            "PublicationReference"
+          ],
+          "range": "string",
+          "recommended": true
+        },
+        "doi": {
+          "name": "doi",
+          "description": "The publication's DOI, e.g. \"10.1164/rccm.202001-0086OC\" (without a \"DOI:\" prefix).",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "doi",
+          "owner": "PublicationReference",
+          "domain_of": [
+            "PublicationReference"
+          ],
+          "range": "string"
+        }
+      }
+    },
     "NamedThing": {
       "name": "NamedThing",
       "description": "A generic entity with an identifier and name. Base class for all named entities in the schema.",
@@ -4277,7 +4732,8 @@
         "occurs_in_anatomy",
         "aopwiki_id",
         "upstream_key_events",
-        "downstream_key_events"
+        "downstream_key_events",
+        "evidence"
       ],
       "attributes": {
         "biological_process": {
@@ -4388,6 +4844,46 @@
             "KeyEvent"
           ],
           "range": "KeyEvent",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "KeyEvent",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
           "multivalued": true,
           "inlined": true,
           "inlined_as_list": true
@@ -4581,7 +5077,8 @@
         "downstream_event",
         "relationship_type",
         "evidence_support",
-        "quantitative_understanding"
+        "quantitative_understanding",
+        "evidence"
       ],
       "attributes": {
         "upstream_event": {
@@ -4640,6 +5137,46 @@
             "KeyEventRelationship"
           ],
           "range": "QuantitativeUnderstandingEnum"
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "KeyEventRelationship",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "id": {
           "name": "id",
@@ -5460,6 +5997,45 @@
           "multivalued": true,
           "inlined_as_list": true
         },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "MolecularInitiatingEvent",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined_as_list": true
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -5650,7 +6226,8 @@
         "has_exposure_condition",
         "follows_protocols",
         "has_specified_output",
-        "assay_date"
+        "assay_date",
+        "evidence"
       ],
       "attributes": {
         "informs_on_key_event": {
@@ -5792,6 +6369,46 @@
             "FoxJExpressionAssay"
           ],
           "range": "date"
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "Assay",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "id": {
           "name": "id",
@@ -5982,10 +6599,51 @@
       "is_a": "NamedThing",
       "abstract": true,
       "slots": [
+        "evidence",
         "experimental_group",
         "measured_under"
       ],
       "attributes": {
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "AssayOutputMeasurement",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
         "experimental_group": {
           "name": "experimental_group",
           "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
@@ -6247,6 +6905,13 @@
             "CellularSystem"
           ],
           "range": "SpeciesReference",
+          "bindings": [
+            {
+              "range": "SpeciesTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         },
         "id": {
@@ -6463,6 +7128,13 @@
             "CellularSystem"
           ],
           "range": "SpeciesReference",
+          "bindings": [
+            {
+              "range": "SpeciesTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         },
         "id": {
@@ -6790,6 +7462,13 @@
             "CellularSystem"
           ],
           "range": "SpeciesReference",
+          "bindings": [
+            {
+              "range": "SpeciesTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         },
         "id": {
@@ -7059,6 +7738,13 @@
             "CellularSystem"
           ],
           "range": "SpeciesReference",
+          "bindings": [
+            {
+              "range": "SpeciesTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         },
         "id": {
@@ -9351,6 +10037,13 @@
             "QuantityRange"
           ],
           "range": "Unit",
+          "bindings": [
+            {
+              "range": "UnitTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         },
         "central_tendency": {
@@ -9458,6 +10151,13 @@
             "QuantityRange"
           ],
           "range": "Unit",
+          "bindings": [
+            {
+              "range": "UnitTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         }
       }
@@ -10037,15 +10737,16 @@
       "name": "ChemicalEntityReference",
       "id_prefixes": [
         "CHEBI",
-        "ECTO"
+        "ECTO",
+        "ENVO"
       ],
-      "description": "A reference to a chemical entity from CHEBI or an exposure concept from ECTO.",
+      "description": "A reference to a chemical entity from CHEBI, an exposure concept from ECTO, or an environmental material from ENVO (e.g. particulate matter, which is an ENVO concept, not a CHEBI chemical).",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
       "is_a": "NamedEntity",
       "slot_usage": {
         "id": {
           "name": "id",
-          "pattern": "^(CHEBI:\\d+|ECTO:\\d{7})$"
+          "pattern": "^(CHEBI:\\d+|ECTO:\\d{7}|ENVO:\\d{8})$"
         }
       },
       "attributes": {
@@ -10111,7 +10812,7 @@
           ],
           "range": "uriorcurie",
           "required": true,
-          "pattern": "^(CHEBI:\\d+|ECTO:\\d{7})$"
+          "pattern": "^(CHEBI:\\d+|ECTO:\\d{7}|ENVO:\\d{8})$"
         },
         "name": {
           "name": "name",
@@ -10342,6 +11043,13 @@
             "ExposureCondition"
           ],
           "range": "ChemicalEntityReference",
+          "bindings": [
+            {
+              "range": "ChemicalEntityTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         },
         "exposure_concentration": {
@@ -10864,6 +11572,13 @@
             "CellularSystem"
           ],
           "range": "CellTypeReference",
+          "bindings": [
+            {
+              "range": "CellTypeTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         },
         "cell_type": {
@@ -10878,6 +11593,13 @@
             "CellLine"
           ],
           "range": "CellTypeReference",
+          "bindings": [
+            {
+              "range": "CellTypeTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         },
         "anatomical_origin": {
@@ -10889,6 +11611,13 @@
             "CellularSystem"
           ],
           "range": "AnatomicalEntityReference",
+          "bindings": [
+            {
+              "range": "AnatomicalEntityTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         },
         "cell_culture_growth_mode": {
@@ -11086,6 +11815,13 @@
             "CellularSystem"
           ],
           "range": "SpeciesReference",
+          "bindings": [
+            {
+              "range": "SpeciesTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         },
         "id": {
@@ -11303,6 +12039,13 @@
             "CellLine"
           ],
           "range": "CellTypeReference",
+          "bindings": [
+            {
+              "range": "CellTypeTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         },
         "model_species": {
@@ -11320,6 +12063,13 @@
             "CellularSystem"
           ],
           "range": "SpeciesReference",
+          "bindings": [
+            {
+              "range": "SpeciesTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         },
         "tissue_origin": {
@@ -12203,6 +12953,13 @@
             "QuantityRange"
           ],
           "range": "Unit",
+          "bindings": [
+            {
+              "range": "UnitTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         }
       }
@@ -12392,6 +13149,46 @@
             "FoxJExpressionAssay"
           ],
           "range": "date"
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "CiliaryFunctionAssay",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "id": {
           "name": "id",
@@ -12681,6 +13478,46 @@
           ],
           "range": "QuantityValue",
           "inlined": true
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "CiliaryFunctionOutput",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "experimental_group": {
           "name": "experimental_group",
@@ -13055,6 +13892,46 @@
           ],
           "range": "date"
         },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "ASLAssay",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -13305,6 +14182,46 @@
           ],
           "range": "QuantityValue",
           "inlined": true
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "ASLOutput",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "experimental_group": {
           "name": "experimental_group",
@@ -13693,6 +14610,46 @@
           ],
           "range": "date"
         },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "MucociliaryClearanceAssay",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -13943,6 +14900,46 @@
           ],
           "range": "QuantityValue",
           "inlined": true
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "MucociliaryClearanceOutput",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "experimental_group": {
           "name": "experimental_group",
@@ -14330,6 +15327,46 @@
             "FoxJExpressionAssay"
           ],
           "range": "date"
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "OxidativeStressAssay",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "id": {
           "name": "id",
@@ -14750,6 +15787,46 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "OxidativeStressOutput",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
         "experimental_group": {
           "name": "experimental_group",
           "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
@@ -15149,6 +16226,46 @@
           ],
           "range": "date"
         },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "CFTRFunctionAssay",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -15412,6 +16529,46 @@
           ],
           "range": "QuantityValue",
           "inlined": true
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "CFTRFunctionOutput",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "experimental_group": {
           "name": "experimental_group",
@@ -15813,6 +16970,46 @@
           ],
           "range": "date"
         },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "EGFRSignalingAssay",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -16114,6 +17311,46 @@
           ],
           "range": "QuantityValue",
           "inlined": true
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "EGFRSignalingOutput",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "experimental_group": {
           "name": "experimental_group",
@@ -16488,6 +17725,46 @@
           ],
           "range": "date"
         },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "GobletCellAssay",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -16830,6 +18107,46 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "GobletCellOutput",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
         "experimental_group": {
           "name": "experimental_group",
           "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
@@ -17086,6 +18403,13 @@
             "BALFSputumAssay"
           ],
           "range": "CellTypeReference",
+          "bindings": [
+            {
+              "range": "CellTypeTerm",
+              "obligation_level": "REQUIRED",
+              "binds_value_of": "id"
+            }
+          ],
           "inlined": true
         },
         "informs_on_key_event": {
@@ -17227,6 +18551,46 @@
             "FoxJExpressionAssay"
           ],
           "range": "date"
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "BALFSputumAssay",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "id": {
           "name": "id",
@@ -17595,6 +18959,46 @@
           ],
           "range": "QuantityValue",
           "inlined": true
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "BALFSputumOutput",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "experimental_group": {
           "name": "experimental_group",
@@ -18018,6 +19422,46 @@
           ],
           "range": "date"
         },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "LungFunctionAssay",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -18399,6 +19843,46 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "LungFunctionOutput",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
         "experimental_group": {
           "name": "experimental_group",
           "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
@@ -18778,6 +20262,46 @@
           ],
           "range": "date"
         },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "FoxJExpressionAssay",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -19015,6 +20539,46 @@
           ],
           "range": "QuantityValue",
           "inlined": true
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "FoxJExpressionOutput",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "experimental_group": {
           "name": "experimental_group",
@@ -19434,6 +20998,46 @@
           ],
           "range": "date"
         },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "GeneExpressionAssay",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -19658,6 +21262,46 @@
           ],
           "range": "QuantityValue",
           "inlined": true
+        },
+        "evidence": {
+          "name": "evidence",
+          "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "evidence",
+          "owner": "GeneExpressionOutput",
+          "domain_of": [
+            "KeyEvent",
+            "KeyEventRelationship",
+            "Assay",
+            "AssayOutputMeasurement",
+            "MolecularInitiatingEvent",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "EvidenceItem",
+          "recommended": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "experimental_group": {
           "name": "experimental_group",

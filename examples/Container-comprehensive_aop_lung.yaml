@@ -150,12 +150,12 @@ oxidative_stress_assays:
       - id: "EXPOSURE:pm25-4h"
         name: "PM2.5 10 ug/cm2 for 4 hours"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "4"
@@ -200,12 +200,12 @@ oxidative_stress_assays:
       - id: "EXPOSURE:pm25-24h"
         name: "PM2.5 10 ug/cm2 for 24 hours"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "24"
@@ -320,7 +320,7 @@ egfr_signaling_assays:
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "4"
@@ -379,7 +379,7 @@ egfr_signaling_assays:
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "4"
@@ -480,7 +480,7 @@ goblet_cell_assays:
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "24"
@@ -534,7 +534,7 @@ goblet_cell_assays:
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "7"
@@ -583,7 +583,7 @@ goblet_cell_assays:
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "7"
@@ -683,16 +683,16 @@ ciliary_function_assays:
             concentration:
               value: "0.48"
               unit:
-                id: "UO:0000064"
-                name: "micrograms per milliliter"
+                id: "UO:0000274"
+                name: "microgram per milliliter"
           - id: "soma:supp-aop-002"
             name: "Heparin"
             supplement_type: growth_factor
             concentration:
               value: "4"
               unit:
-                id: "UO:0000064"
-                name: "micrograms per milliliter"
+                id: "UO:0000274"
+                name: "microgram per milliliter"
     follows_protocols:
       - protocol_type: ImagingProtocol
         id: "PROTOCOL:004"
@@ -738,12 +738,12 @@ ciliary_function_assays:
       - id: "EXPOSURE:pm25-24h"
         name: "PM2.5 10 ug/cm2 for 24 hours"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "24"
@@ -816,7 +816,7 @@ ciliary_function_assays:
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "7"
@@ -875,7 +875,7 @@ ciliary_function_assays:
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "7"
@@ -983,7 +983,7 @@ mcc_assays:
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "24"
@@ -1039,7 +1039,7 @@ mcc_assays:
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "7"
@@ -1093,7 +1093,7 @@ mcc_assays:
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "7"
