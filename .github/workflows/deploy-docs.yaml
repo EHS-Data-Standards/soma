@@ -7,6 +7,11 @@ on:  # yamllint disable-line rule:truthy
 
 permissions: {}
 
+# Only one docs deploy at a time; a newer push supersedes an in-flight run.
+concurrency:
+  group: deploy-docs
+  cancel-in-progress: true
+
 jobs:
   build-docs:
     runs-on: ubuntu-latest
@@ -76,4 +81,4 @@ jobs:
           mkdir -p docs/schemas
           uv run gen-linkml --materialize-patterns --materialize-attributes src/soma/schema/soma.yaml > docs/schemas/soma.json
           cp menu.json docs/
-          uv run mkdocs gh-deploy
+          uv run mkdocs gh-deploy --force
