@@ -26,7 +26,7 @@ oxidative_stress_assays:
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "24"

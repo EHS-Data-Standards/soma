@@ -102,7 +102,7 @@ gene_expression_assays:
         exposure_concentration:
           value: "0.45"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "48"
@@ -168,7 +168,7 @@ gene_expression_assays:
         exposure_concentration:
           value: "0.45"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "48"
@@ -223,7 +223,7 @@ gene_expression_assays:
         exposure_concentration:
           value: "0.45"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "48"
@@ -283,7 +283,7 @@ gene_expression_assays:
         exposure_concentration:
           value: "4.5"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "120"
@@ -350,7 +350,7 @@ gene_expression_assays:
         exposure_concentration:
           value: "4.5"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "120"
@@ -405,7 +405,7 @@ gene_expression_assays:
         exposure_concentration:
           value: "0.45"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "48"
@@ -460,7 +460,7 @@ gene_expression_assays:
         exposure_concentration:
           value: "0.45"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "48"
@@ -527,7 +527,7 @@ goblet_cell_assays:
         exposure_concentration:
           value: "4.5"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "120"
@@ -602,7 +602,7 @@ goblet_cell_assays:
         exposure_concentration:
           value: "4.5"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "120"
@@ -661,7 +661,7 @@ goblet_cell_assays:
         exposure_concentration:
           value: "4.5"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "120"
@@ -718,7 +718,7 @@ goblet_cell_assays:
         exposure_concentration:
           value: "4.5"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "48"
@@ -780,7 +780,7 @@ foxj_assays:
         exposure_concentration:
           value: "4.5"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "120"
@@ -851,7 +851,7 @@ foxj_assays:
         exposure_concentration:
           value: "4.5"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "48"
