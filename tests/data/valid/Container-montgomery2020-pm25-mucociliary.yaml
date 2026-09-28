@@ -85,6 +85,8 @@ gene_expression_assays:
     has_specified_output:
       - id: "GE:montgomery-cyp1a1-mod-output"
         name: "CYP1A1 moderate OE measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:montgomery-mod-oe"
         mrna_level:
           value: "6.21"
           unit:
@@ -149,6 +151,8 @@ gene_expression_assays:
     has_specified_output:
       - id: "GE:montgomery-il1a-mod-output"
         name: "IL1A moderate OE measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:montgomery-mod-oe"
         mrna_level:
           value: "0.91"
           unit:
@@ -202,6 +206,8 @@ gene_expression_assays:
     has_specified_output:
       - id: "GE:montgomery-il1b-mod-output"
         name: "IL1B moderate OE measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:montgomery-mod-oe"
         mrna_level:
           value: "1.22"
           unit:
@@ -255,6 +261,8 @@ gene_expression_assays:
     has_specified_output:
       - id: "GE:montgomery-spdef-chronic-output"
         name: "SPDEF chronic OE measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:montgomery-chronic-oe"
         mrna_level:
           value: "0.84"
           unit:
@@ -325,6 +333,8 @@ gene_expression_assays:
     has_specified_output:
       - id: "GE:montgomery-scgb1a1-chronic-output"
         name: "SCGB1A1 chronic OE measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:montgomery-chronic-oe"
         mrna_level:
           value: "-1.51"
           unit:
@@ -378,6 +388,8 @@ gene_expression_assays:
     has_specified_output:
       - id: "GE:montgomery-muc5ac-mod-output"
         name: "MUC5AC moderate OE RNA-seq measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:montgomery-mod-oe"
         mrna_level:
           value: "0.90"
           unit:
@@ -431,6 +443,8 @@ gene_expression_assays:
     has_specified_output:
       - id: "GE:montgomery-muc2-mod-output"
         name: "MUC2 moderate OE RNA-seq measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:montgomery-mod-oe"
         mrna_level:
           value: "1.34"
           unit:
@@ -486,6 +500,8 @@ goblet_cell_assays:
     has_specified_output:
       - id: "GCM:montgomery-muc5ac-chronic-output"
         name: "MUC5AC chronic OE measurements"
+        experimental_group: treated
+        measured_under: "EXPOSURE:montgomery-chronic-oe"
         muc5ac_mrna_expression:
           value: "1.72"
           unit:
@@ -564,6 +580,8 @@ goblet_cell_assays:
     has_specified_output:
       - id: "GCM:montgomery-muc5b-chronic-output"
         name: "MUC5B chronic OE measurements"
+        experimental_group: treated
+        measured_under: "EXPOSURE:montgomery-chronic-oe"
         muc5b_mrna_expression:
           value: "-0.72"
           unit:
@@ -626,6 +644,8 @@ goblet_cell_assays:
     has_specified_output:
       - id: "GCM:montgomery-abpas-chronic-output"
         name: "AB-PAS chronic OE measurements"
+        experimental_group: treated
+        measured_under: "EXPOSURE:montgomery-chronic-oe"
         goblet_cell_percentage:
           value: "2.01"
           unit:
@@ -676,6 +696,8 @@ goblet_cell_assays:
     has_specified_output:
       - id: "GCM:montgomery-ratio-mod-output"
         name: "MUC5AC/MUC5B ratio moderate OE"
+        experimental_group: treated
+        measured_under: "EXPOSURE:montgomery-high-oe"
         muc5ac_mrna_expression:
           value: "0.90"
           unit:
@@ -736,6 +758,8 @@ foxj_assays:
     has_specified_output:
       - id: "FOXJ:montgomery-chronic-output"
         name: "FOXJ1 chronic OE measurements"
+        experimental_group: treated
+        measured_under: "EXPOSURE:montgomery-chronic-oe"
         foxj1_mrna_expression:
           value: "-0.36"
           unit:
@@ -810,6 +834,8 @@ foxj_assays:
     has_specified_output:
       - id: "FOXJ:montgomery-high-acute-output"
         name: "FOXJ1 high OE measurements"
+        experimental_group: treated
+        measured_under: "EXPOSURE:montgomery-high-oe"
         foxj1_mrna_expression:
           value: "-0.36"
           unit:

@@ -20,12 +20,17 @@ EXAMPLE_YAMLS = [
                 "GobletCellAssay", "GobletCellOutput",
                 "BALFSputumAssay", "BALFSputumOutput",
                 "LungFunctionAssay", "LungFunctionOutput",
+                "Responses", "ResponseComparison", "KeyEventRelationship",
             ],
             "min_assay_rows": {
-                "CFTRFunctionAssay": 4,
+                # Calu-3 control/PM2.5 Isc pair merged into one assay with
+                # one output record per condition
+                "CFTRFunctionAssay": 3,
+                "CFTRFunctionOutput": 4,
                 "GeneExpressionAssay": 5,
                 "GobletCellAssay": 2,
                 "LungFunctionAssay": 2,
+                "ResponseComparison": 2,
             },
         },
     ),
