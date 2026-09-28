@@ -3,7 +3,7 @@ requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
 
 [project]
-name = "soma"
+name = "soma-schema"
 description = "This is the project description."
 authors = [
   {name = "Sierra Moxon", email = "smoxon@lbl.gov"},
