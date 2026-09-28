@@ -675,7 +675,7 @@
 
 
 <h1 id="slot-has_specified_output">Slot: has_specified_output</h1>
-<p><em>The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).</em></p>
+<p><em>The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/has_specified_output">soma:has_specified_output</a>
 Alias: has_specified_output</p>
 <!-- no inheritance hierarchy -->
@@ -691,13 +691,8 @@ Alias: has_specified_output</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../LungFunctionAssay/">LungFunctionAssay</a></td>
-<td>Clinical assay for measuring lung function</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../MucociliaryClearanceAssay/">MucociliaryClearanceAssay</a></td>
-<td>Assay for measuring mucociliary clearance and transport</td>
+<td><a href="../GobletCellAssay/">GobletCellAssay</a></td>
+<td>Assay for measuring goblet cell populations and mucin production</td>
 <td>yes</td>
 </tr>
 <tr>
@@ -711,8 +706,18 @@ Alias: has_specified_output</p>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../GobletCellAssay/">GobletCellAssay</a></td>
-<td>Assay for measuring goblet cell populations and mucin production</td>
+<td><a href="../LungFunctionAssay/">LungFunctionAssay</a></td>
+<td>Clinical assay for measuring lung function</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../BALFSputumAssay/">BALFSputumAssay</a></td>
+<td>Assay for measuring bronchoalveolar lavage fluid (BALF) or sputum composition</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../FoxJExpressionAssay/">FoxJExpressionAssay</a></td>
+<td>Assay for measuring FoxJ1 expression related to ciliogenesis</td>
 <td>yes</td>
 </tr>
 <tr>
@@ -721,23 +726,8 @@ Alias: has_specified_output</p>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../GeneExpressionAssay/">GeneExpressionAssay</a></td>
-<td>General assay for gene expression measurements</td>
-<td>yes</td>
-</tr>
-<tr>
 <td><a href="../ASLAssay/">ASLAssay</a></td>
 <td>Assay for measuring airway surface liquid properties including ASL height, pe...</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../Assay/">Assay</a></td>
-<td>A planned process with the objective to produce information about biological ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../BALFSputumAssay/">BALFSputumAssay</a></td>
-<td>Assay for measuring bronchoalveolar lavage fluid (BALF) or sputum composition</td>
 <td>yes</td>
 </tr>
 <tr>
@@ -746,15 +736,30 @@ Alias: has_specified_output</p>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../FoxJExpressionAssay/">FoxJExpressionAssay</a></td>
-<td>Assay for measuring FoxJ1 expression related to ciliogenesis</td>
+<td><a href="../Assay/">Assay</a></td>
+<td>A planned process with the objective to produce information about biological ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MucociliaryClearanceAssay/">MucociliaryClearanceAssay</a></td>
+<td>Assay for measuring mucociliary clearance and transport</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../GeneExpressionAssay/">GeneExpressionAssay</a></td>
+<td>General assay for gene expression measurements</td>
 <td>yes</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../AssayOutputMeasurement/">AssayOutputMeasurement</a></li>
+<li>
+<p>Range: <a href="../AssayOutputMeasurement/">AssayOutputMeasurement</a></p>
+</li>
+<li>
+<p>Multivalued: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -787,9 +792,12 @@ Alias: has_specified_output</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_specified_output</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The measurement results produced by this assay — the specified output</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">of a planned process (OBI). Contains the domain-specific measurement values (e.g.,</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">beat frequency, cilia length for CiliaryFunctionAssay).</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">results</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">specified</span><span class="nv"> </span><span class="s">output</span>
+<span class="w">  </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">planned</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">(OBI).</span><span class="nv"> </span><span class="s">Contains</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">domain-specific</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">(e.g.,</span>
+<span class="w">  </span><span class="s">beat</span><span class="nv"> </span><span class="s">frequency,</span><span class="nv"> </span><span class="s">cilia</span><span class="nv"> </span><span class="s">length</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">CiliaryFunctionAssay).</span><span class="nv"> </span><span class="s">Multivalued:</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">output</span>
+<span class="w">  </span><span class="s">record</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">experimental</span><span class="nv"> </span><span class="s">condition</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">group,</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">control</span><span class="nv"> </span><span class="s">group</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">treatment</span>
+<span class="w">  </span><span class="s">concentration</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">dose-response</span><span class="nv"> </span><span class="s">series</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">get</span><span class="nv"> </span><span class="s">their</span><span class="nv"> </span><span class="s">own</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">(marked</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">experimental_group</span>
+<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">measured_under).&#39;</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="nt">exact_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0000299</span>
@@ -798,7 +806,9 @@ Alias: has_specified_output</p>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assay</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AssayOutputMeasurement</span>
+<span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
 

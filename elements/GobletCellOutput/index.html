@@ -409,6 +409,17 @@
 
       GobletCellOutput : description
 
+      GobletCellOutput : experimental_group
+
+
+
+
+
+        GobletCellOutput --&gt; "0..1" ExperimentalGroupEnum : experimental_group
+        click ExperimentalGroupEnum href "../ExperimentalGroupEnum/"
+
+
+
       GobletCellOutput : goblet_cell_count
 
 
@@ -443,6 +454,17 @@
 
 
       GobletCellOutput : id
+
+      GobletCellOutput : measured_under
+
+
+
+
+
+        GobletCellOutput --&gt; "0..1" ExposureCondition : measured_under
+        click ExposureCondition href "../ExposureCondition/"
+
+
 
       GobletCellOutput : muc5ac_mrna_expression
 
@@ -639,6 +661,18 @@
 <td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
 <td>Mucus viscosity in centipoise</td>
 <td>direct</td>
+</tr>
+<tr>
+<td><a href="../experimental_group/">experimental_group</a></td>
+<td>0..1 <br/> <a href="../ExperimentalGroupEnum/">ExperimentalGroupEnum</a></td>
+<td>The role of this output record's group in the experimental design: control, v...</td>
+<td><a href="../AssayOutputMeasurement/">AssayOutputMeasurement</a></td>
+</tr>
+<tr>
+<td><a href="../measured_under/">measured_under</a></td>
+<td>0..1 <br/> <a href="../ExposureCondition/">ExposureCondition</a></td>
+<td>Reference (by id) to the specific ExposureCondition this output record was me...</td>
+<td><a href="../AssayOutputMeasurement/">AssayOutputMeasurement</a></td>
 </tr>
 <tr>
 <td><a href="../id/">id</a></td>
@@ -870,6 +904,34 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GobletCellOutput</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">experimental_group</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">experimental_group</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">role</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">record</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">group</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">experimental</span><span class="nv"> </span><span class="s">design:</span>
+<span class="w">      </span><span class="s">control,</span><span class="nv"> </span><span class="s">vehicle</span><span class="nv"> </span><span class="s">control,</span><span class="nv"> </span><span class="s">baseline,</span><span class="nv"> </span><span class="s">treated,</span><span class="nv"> </span><span class="s">recovery,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">sham.</span><span class="nv"> </span><span class="s">Lets</span><span class="nv"> </span><span class="s">extraction</span>
+<span class="w">      </span><span class="s">distinguish</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">control/baseline</span><span class="nv"> </span><span class="s">response</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">treated</span><span class="nv"> </span><span class="s">response</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">change</span>
+<span class="w">      </span><span class="s">relative</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">control</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">assembled</span><span class="nv"> </span><span class="s">downstream.'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">experimental_group</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GobletCellOutput</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AssayOutputMeasurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExperimentalGroupEnum</span>
+<span class="w">  </span><span class="nt">measured_under</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">measured_under</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reference (by id) to the specific ExposureCondition this output record</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">was measured under. Links each set of response values to the concentration/treatment</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">it corresponds to, so a dose-response series keeps each response paired with</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">its exposure level. The referenced condition should be listed in the assay's</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">has_exposure_condition.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">measured_under</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GobletCellOutput</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AssayOutputMeasurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExposureCondition</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A unique identifier for the entity.</span>

@@ -686,6 +686,148 @@
         }
       }
     },
+    "ExperimentalGroupEnum": {
+      "name": "ExperimentalGroupEnum",
+      "description": "The role of an experimental group in a study design, used to mark each per-condition output record.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "permissible_values": {
+        "control": {
+          "text": "control",
+          "description": "Untreated or unexposed control group"
+        },
+        "vehicle_control": {
+          "text": "vehicle_control",
+          "description": "Control group receiving the vehicle/carrier only"
+        },
+        "baseline": {
+          "text": "baseline",
+          "description": "Pre-exposure or pre-treatment measurement of the same subjects"
+        },
+        "treated": {
+          "text": "treated",
+          "description": "Group receiving the exposure or treatment"
+        },
+        "recovery": {
+          "text": "recovery",
+          "description": "Post-exposure recovery period measurement"
+        },
+        "sham": {
+          "text": "sham",
+          "description": "Sham-treated control group"
+        }
+      }
+    },
+    "CentralTendencyEnum": {
+      "name": "CentralTendencyEnum",
+      "description": "What kind of central value a reported number represents.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "permissible_values": {
+        "mean": {
+          "text": "mean",
+          "description": "Arithmetic mean"
+        },
+        "median": {
+          "text": "median",
+          "description": "Median"
+        },
+        "geometric_mean": {
+          "text": "geometric_mean",
+          "description": "Geometric mean"
+        },
+        "single_value": {
+          "text": "single_value",
+          "description": "A single measurement, not an aggregate"
+        }
+      }
+    },
+    "VariabilityTypeEnum": {
+      "name": "VariabilityTypeEnum",
+      "description": "Kinds of variability or uncertainty reported around a value.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "permissible_values": {
+        "standard_deviation": {
+          "text": "standard_deviation",
+          "description": "Standard deviation (SD)"
+        },
+        "standard_error": {
+          "text": "standard_error",
+          "description": "Standard error of the mean (SEM)"
+        },
+        "confidence_interval_95": {
+          "text": "confidence_interval_95",
+          "description": "95% confidence interval"
+        },
+        "confidence_interval_other": {
+          "text": "confidence_interval_other",
+          "description": "Confidence interval at a level other than 95%"
+        },
+        "range": {
+          "text": "range",
+          "description": "Minimum-maximum range of observed values"
+        },
+        "interquartile_range": {
+          "text": "interquartile_range",
+          "description": "Interquartile range (IQR)"
+        }
+      }
+    },
+    "ChangeTypeEnum": {
+      "name": "ChangeTypeEnum",
+      "description": "Forms in which a change relative to control can be expressed.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "permissible_values": {
+        "absolute_difference": {
+          "text": "absolute_difference",
+          "description": "Treated minus control, in the measurement's own unit"
+        },
+        "percent_change": {
+          "text": "percent_change",
+          "description": "Change as a percentage of the control value"
+        },
+        "fold_change": {
+          "text": "fold_change",
+          "description": "Treated divided by control, expressed as fold"
+        },
+        "ratio": {
+          "text": "ratio",
+          "description": "Ratio of treated to control"
+        }
+      }
+    },
+    "ChangeDirectionEnum": {
+      "name": "ChangeDirectionEnum",
+      "description": "Direction of a change in the treated group relative to control.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "permissible_values": {
+        "increased": {
+          "text": "increased",
+          "description": "Treated value is higher than control"
+        },
+        "decreased": {
+          "text": "decreased",
+          "description": "Treated value is lower than control"
+        },
+        "no_change": {
+          "text": "no_change",
+          "description": "No meaningful difference from control"
+        }
+      }
+    },
+    "DerivationEnum": {
+      "name": "DerivationEnum",
+      "description": "Provenance of an analysis-layer value.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "permissible_values": {
+        "reported_in_paper": {
+          "text": "reported_in_paper",
+          "description": "The value was stated directly in the publication"
+        },
+        "computed": {
+          "text": "computed",
+          "description": "The value was calculated from extracted values"
+        }
+      }
+    },
     "AssayContextCapabilityEnum": {
       "name": "AssayContextCapabilityEnum",
       "description": "Indicates what experimental contexts an assay class supports. Used to constrain valid study_subject types and enable context-appropriate slots.",
@@ -765,6 +907,18 @@
         "Container"
       ],
       "range": "AdverseOutcomePathway",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true
+    },
+    "response_comparisons": {
+      "name": "response_comparisons",
+      "description": "Collection of analysis-layer records comparing treated responses to control/baseline responses. Kept separate from the extracted assay data: each comparison references the control and treated output records and states the kind, direction, and size of the change with its uncertainty.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "Container"
+      ],
+      "range": "ResponseComparison",
       "multivalued": true,
       "inlined": true,
       "inlined_as_list": true
@@ -943,6 +1097,7 @@
         "ChemicalEntityReference",
         "AnatomicalEntityReference",
         "ExposureCondition",
+        "ResponseComparison",
         "CellularSystem",
         "CellLine",
         "CellCultureConditions",
@@ -1003,6 +1158,7 @@
         "ChemicalEntityReference",
         "AnatomicalEntityReference",
         "ExposureCondition",
+        "ResponseComparison",
         "CellularSystem",
         "CellLine",
         "CellCultureConditions",
@@ -1055,6 +1211,7 @@
         "StainingProtocol",
         "SpirometryProtocol",
         "MolecularAssayProtocol",
+        "ResponseComparison",
         "CellularSystem",
         "CiliaryFunctionAssay",
         "CiliaryFunctionOutput",
@@ -1258,6 +1415,7 @@
       "description": "The key event relationships connecting events in this AOP.",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
       "domain_of": [
+        "Container",
         "AdverseOutcomePathway"
       ],
       "range": "KeyEventRelationship",
@@ -1316,7 +1474,7 @@
     },
     "has_specified_output": {
       "name": "has_specified_output",
-      "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).",
+      "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
       "exact_mappings": [
         "OBI:0000299"
@@ -1335,7 +1493,48 @@
         "FoxJExpressionAssay"
       ],
       "range": "AssayOutputMeasurement",
-      "inlined": true
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true
+    },
+    "experimental_group": {
+      "name": "experimental_group",
+      "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "AssayOutputMeasurement",
+        "CiliaryFunctionOutput",
+        "ASLOutput",
+        "MucociliaryClearanceOutput",
+        "OxidativeStressOutput",
+        "CFTRFunctionOutput",
+        "EGFRSignalingOutput",
+        "GobletCellOutput",
+        "BALFSputumOutput",
+        "LungFunctionOutput",
+        "FoxJExpressionOutput"
+      ],
+      "range": "ExperimentalGroupEnum"
+    },
+    "measured_under": {
+      "name": "measured_under",
+      "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "AssayOutputMeasurement",
+        "CiliaryFunctionOutput",
+        "ASLOutput",
+        "MucociliaryClearanceOutput",
+        "OxidativeStressOutput",
+        "CFTRFunctionOutput",
+        "EGFRSignalingOutput",
+        "GobletCellOutput",
+        "BALFSputumOutput",
+        "LungFunctionOutput",
+        "FoxJExpressionOutput"
+      ],
+      "range": "ExposureCondition",
+      "inlined": false
     },
     "cell_type": {
       "name": "cell_type",
@@ -2334,7 +2533,8 @@
       "description": "The numeric value of the quantity.",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
       "domain_of": [
-        "QuantityValue"
+        "QuantityValue",
+        "Variability"
       ],
       "range": "string"
     },
@@ -2344,10 +2544,66 @@
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
       "domain_of": [
         "QuantityValue",
+        "Variability",
         "QuantityRange"
       ],
       "range": "Unit",
       "inlined": true
+    },
+    "central_tendency": {
+      "name": "central_tendency",
+      "description": "What kind of central value the reported number is: a mean, median, geometric mean, or a single measurement. Important for combining results across studies.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "QuantityValue"
+      ],
+      "range": "CentralTendencyEnum"
+    },
+    "variability": {
+      "name": "variability",
+      "description": "The reported variability around the value (SD, SEM, confidence interval, or range), kept separate from the central value itself.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "QuantityValue"
+      ],
+      "range": "Variability",
+      "inlined": true
+    },
+    "sample_size": {
+      "name": "sample_size",
+      "description": "Number of subjects, samples, or replicates behind this value.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "QuantityValue"
+      ],
+      "range": "integer"
+    },
+    "variability_type": {
+      "name": "variability_type",
+      "description": "The kind of variability reported (standard deviation, standard error, 95% confidence interval, range, interquartile range).",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "Variability"
+      ],
+      "range": "VariabilityTypeEnum"
+    },
+    "lower_bound": {
+      "name": "lower_bound",
+      "description": "Lower bound when variability is reported as an interval (confidence interval, range, IQR).",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "Variability"
+      ],
+      "range": "string"
+    },
+    "upper_bound": {
+      "name": "upper_bound",
+      "description": "Upper bound when variability is reported as an interval (confidence interval, range, IQR).",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "Variability"
+      ],
+      "range": "string"
     },
     "min_value": {
       "name": "min_value",
@@ -2366,6 +2622,100 @@
       ],
       "range": "QuantityValue",
       "inlined": true
+    },
+    "derived_from_assay": {
+      "name": "derived_from_assay",
+      "description": "Reference (by id) to the assay whose output records this comparison is derived from.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "ResponseComparison"
+      ],
+      "range": "Assay",
+      "inlined": false
+    },
+    "compared_measurement": {
+      "name": "compared_measurement",
+      "description": "The name of the measurement slot being compared (e.g., \"total_lung_capacity\", \"beat_frequency_hz\"), matching the slot name in the referenced output records.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "ResponseComparison"
+      ],
+      "range": "string"
+    },
+    "control_output": {
+      "name": "control_output",
+      "description": "Reference (by id) to the AssayOutputMeasurement record for the control or baseline group.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "ResponseComparison"
+      ],
+      "range": "AssayOutputMeasurement",
+      "inlined": false
+    },
+    "treated_output": {
+      "name": "treated_output",
+      "description": "Reference (by id) to the AssayOutputMeasurement record for the treated group.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "ResponseComparison"
+      ],
+      "range": "AssayOutputMeasurement",
+      "inlined": false
+    },
+    "change_type": {
+      "name": "change_type",
+      "description": "How the change is expressed: an absolute difference, a percent change, a fold change, or a ratio. Papers report changes in different forms; this makes the form explicit so values can be compared or converted downstream.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "ResponseComparison"
+      ],
+      "range": "ChangeTypeEnum"
+    },
+    "change_direction": {
+      "name": "change_direction",
+      "description": "Direction of the change in the treated group relative to control.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "ResponseComparison"
+      ],
+      "range": "ChangeDirectionEnum"
+    },
+    "change_value": {
+      "name": "change_value",
+      "description": "The size of the change, with its unit and (when reported) its uncertainty. For a percent change the unit is percent; for an absolute difference it is the measurement's unit; fold changes and ratios are dimensionless.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "ResponseComparison"
+      ],
+      "range": "QuantityValue",
+      "inlined": true
+    },
+    "p_value": {
+      "name": "p_value",
+      "description": "Reported p-value for the comparison, when available.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "ResponseComparison"
+      ],
+      "range": "float"
+    },
+    "statistical_test": {
+      "name": "statistical_test",
+      "description": "Statistical test used for the comparison (e.g., t-test, ANOVA), when reported.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "ResponseComparison"
+      ],
+      "range": "string"
+    },
+    "derivation": {
+      "name": "derivation",
+      "description": "Whether this change was reported directly in the paper or computed afterwards from the extracted control and treated values.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "ResponseComparison"
+      ],
+      "range": "DerivationEnum"
     },
     "beat_frequency_hz": {
       "name": "beat_frequency_hz",
@@ -3495,7 +3845,9 @@
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
       "slots": [
         "key_events",
+        "key_event_relationships",
         "adverse_outcome_pathways",
+        "response_comparisons",
         "ciliary_function_assays",
         "asl_assays",
         "mcc_assays",
@@ -3524,6 +3876,20 @@
           "multivalued": true,
           "inlined_as_list": true
         },
+        "key_event_relationships": {
+          "name": "key_event_relationships",
+          "description": "The key event relationships connecting events in this AOP.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "key_event_relationships",
+          "owner": "Container",
+          "domain_of": [
+            "Container",
+            "AdverseOutcomePathway"
+          ],
+          "range": "KeyEventRelationship",
+          "multivalued": true,
+          "inlined_as_list": true
+        },
         "adverse_outcome_pathways": {
           "name": "adverse_outcome_pathways",
           "description": "Collection of Adverse Outcome Pathways. AOPs describe sequences of causally linked events from molecular initiating events to adverse outcomes.",
@@ -3534,6 +3900,19 @@
             "Container"
           ],
           "range": "AdverseOutcomePathway",
+          "multivalued": true,
+          "inlined_as_list": true
+        },
+        "response_comparisons": {
+          "name": "response_comparisons",
+          "description": "Collection of analysis-layer records comparing treated responses to control/baseline responses. Kept separate from the extracted assay data: each comparison references the control and treated output records and states the kind, direction, and size of the change with its uncertainty.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "response_comparisons",
+          "owner": "Container",
+          "domain_of": [
+            "Container"
+          ],
+          "range": "ResponseComparison",
           "multivalued": true,
           "inlined_as_list": true
         },
@@ -3738,6 +4117,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -3800,6 +4180,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -3854,6 +4235,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -4042,6 +4424,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -4104,6 +4487,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -4158,6 +4542,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -4288,6 +4673,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -4350,6 +4736,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -4404,6 +4791,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -4525,6 +4913,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -4587,6 +4976,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -4641,6 +5031,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -4729,10 +5120,12 @@
           "alias": "key_event_relationships",
           "owner": "AdverseOutcomePathway",
           "domain_of": [
+            "Container",
             "AdverseOutcomePathway"
           ],
           "range": "KeyEventRelationship",
           "multivalued": true,
+          "inlined": true,
           "inlined_as_list": true
         },
         "adverse_outcome": {
@@ -4791,6 +5184,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -4853,6 +5247,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -4907,6 +5302,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -5096,6 +5492,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -5158,6 +5555,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -5212,6 +5610,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -5348,7 +5747,7 @@
         },
         "has_specified_output": {
           "name": "has_specified_output",
-          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).",
+          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
           "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
           "exact_mappings": [
             "OBI:0000299"
@@ -5369,7 +5768,9 @@
             "FoxJExpressionAssay"
           ],
           "range": "AssayOutputMeasurement",
-          "inlined": true
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "assay_date": {
           "name": "assay_date",
@@ -5424,6 +5825,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -5486,6 +5888,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -5540,6 +5943,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -5570,14 +5974,61 @@
     },
     "AssayOutputMeasurement": {
       "name": "AssayOutputMeasurement",
-      "description": "The measurement results produced by an assay. The specified output of a planned process. Each domain-specific assay class has a corresponding AssayOutputMeasurement subclass containing the named measurement slots for that assay type. This class represents the \"output\" in the Input/Process/Output model: what was measured and what values were obtained.",
+      "description": "The measurement results produced by an assay. The specified output of a planned process. Each domain-specific assay class has a corresponding AssayOutputMeasurement subclass containing the named measurement slots for that assay type. This class represents the \"output\" in the Input/Process/Output model: what was measured and what values were obtained.\nOne AssayOutputMeasurement record represents the results for ONE experimental condition or group. When a study reports a control group and one or more treated groups (or a dose-response series), each group gets its own output record, marked with experimental_group and linked to the specific exposure condition via measured_under.",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
       "exact_mappings": [
         "IAO:0000109"
       ],
       "is_a": "NamedThing",
       "abstract": true,
+      "slots": [
+        "experimental_group",
+        "measured_under"
+      ],
       "attributes": {
+        "experimental_group": {
+          "name": "experimental_group",
+          "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "experimental_group",
+          "owner": "AssayOutputMeasurement",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExperimentalGroupEnum"
+        },
+        "measured_under": {
+          "name": "measured_under",
+          "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "measured_under",
+          "owner": "AssayOutputMeasurement",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExposureCondition",
+          "inlined": false
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -5610,6 +6061,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -5672,6 +6124,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -5726,6 +6179,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -5827,6 +6281,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -5889,6 +6344,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -5943,6 +6399,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -6040,6 +6497,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -6102,6 +6560,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -6156,6 +6615,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -6364,6 +6824,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -6426,6 +6887,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -6480,6 +6942,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -6630,6 +7093,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -6692,6 +7156,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -6746,6 +7211,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -6983,6 +7449,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -7045,6 +7512,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -7099,6 +7567,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -7451,6 +7920,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -7513,6 +7983,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -7567,6 +8038,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -7869,6 +8341,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -7931,6 +8404,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -7985,6 +8459,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -8260,6 +8735,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -8322,6 +8798,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -8376,6 +8853,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -8691,6 +9169,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -8753,6 +9232,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -8807,6 +9287,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -8836,11 +9317,14 @@
     },
     "QuantityValue": {
       "name": "QuantityValue",
-      "description": "A quantity with a numeric value and unit of measurement. Used for all measurement values in assays.",
+      "description": "A quantity with a numeric value and unit of measurement. Used for all measurement values in assays. Optionally records what kind of central value this is (mean, median, single measurement), the reported variability around it (SD, SEM, confidence interval, range), and the number of subjects or replicates behind it. Keeping variability separate from the central value lets downstream analyses use each independently.",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
       "slots": [
         "value",
-        "unit"
+        "unit",
+        "central_tendency",
+        "variability",
+        "sample_size"
       ],
       "attributes": {
         "value": {
@@ -8850,7 +9334,8 @@
           "alias": "value",
           "owner": "QuantityValue",
           "domain_of": [
-            "QuantityValue"
+            "QuantityValue",
+            "Variability"
           ],
           "range": "string"
         },
@@ -8862,6 +9347,114 @@
           "owner": "QuantityValue",
           "domain_of": [
             "QuantityValue",
+            "Variability",
+            "QuantityRange"
+          ],
+          "range": "Unit",
+          "inlined": true
+        },
+        "central_tendency": {
+          "name": "central_tendency",
+          "description": "What kind of central value the reported number is: a mean, median, geometric mean, or a single measurement. Important for combining results across studies.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "central_tendency",
+          "owner": "QuantityValue",
+          "domain_of": [
+            "QuantityValue"
+          ],
+          "range": "CentralTendencyEnum"
+        },
+        "variability": {
+          "name": "variability",
+          "description": "The reported variability around the value (SD, SEM, confidence interval, or range), kept separate from the central value itself.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "variability",
+          "owner": "QuantityValue",
+          "domain_of": [
+            "QuantityValue"
+          ],
+          "range": "Variability",
+          "inlined": true
+        },
+        "sample_size": {
+          "name": "sample_size",
+          "description": "Number of subjects, samples, or replicates behind this value.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "sample_size",
+          "owner": "QuantityValue",
+          "domain_of": [
+            "QuantityValue"
+          ],
+          "range": "integer"
+        }
+      }
+    },
+    "Variability": {
+      "name": "Variability",
+      "description": "The reported spread or uncertainty around a measured value, kept separate from the value itself because papers report it in different forms. Use variability_type to say what was reported (standard deviation, standard error, confidence interval, range) and either a single magnitude (value) or bounds (lower_bound/upper_bound), with a unit when it differs from the measurement's unit.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "slots": [
+        "variability_type",
+        "value",
+        "lower_bound",
+        "upper_bound",
+        "unit"
+      ],
+      "attributes": {
+        "variability_type": {
+          "name": "variability_type",
+          "description": "The kind of variability reported (standard deviation, standard error, 95% confidence interval, range, interquartile range).",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "variability_type",
+          "owner": "Variability",
+          "domain_of": [
+            "Variability"
+          ],
+          "range": "VariabilityTypeEnum"
+        },
+        "value": {
+          "name": "value",
+          "description": "The numeric value of the quantity.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "value",
+          "owner": "Variability",
+          "domain_of": [
+            "QuantityValue",
+            "Variability"
+          ],
+          "range": "string"
+        },
+        "lower_bound": {
+          "name": "lower_bound",
+          "description": "Lower bound when variability is reported as an interval (confidence interval, range, IQR).",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "lower_bound",
+          "owner": "Variability",
+          "domain_of": [
+            "Variability"
+          ],
+          "range": "string"
+        },
+        "upper_bound": {
+          "name": "upper_bound",
+          "description": "Upper bound when variability is reported as an interval (confidence interval, range, IQR).",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "upper_bound",
+          "owner": "Variability",
+          "domain_of": [
+            "Variability"
+          ],
+          "range": "string"
+        },
+        "unit": {
+          "name": "unit",
+          "description": "The unit of measurement.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "unit",
+          "owner": "Variability",
+          "domain_of": [
+            "QuantityValue",
+            "Variability",
             "QuantityRange"
           ],
           "range": "Unit",
@@ -8922,6 +9515,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -8985,6 +9579,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -9057,6 +9652,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -9119,6 +9715,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -9197,6 +9794,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -9260,6 +9858,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -9338,6 +9937,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -9401,6 +10001,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -9480,6 +10081,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -9543,6 +10145,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -9621,6 +10224,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -9684,6 +10288,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -9807,6 +10412,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -9869,11 +10475,322 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
             "CellCultureMedium",
             "MediumSupplement",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "ResponseComparison": {
+      "name": "ResponseComparison",
+      "description": "An analysis-layer record describing the change in a measured response between a control/baseline group and a treated group. Lives alongside the extracted assay data rather than inside it: papers report changes in many forms (absolute difference, percent change, fold change, ratio), and downstream models need a single change value with an uncertainty measure. References the control and treated output records by id, names the measurement being compared, and states the kind, direction, and size of the change. Use derivation to record whether the change was reported in the paper or computed afterwards.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "is_a": "NamedThing",
+      "slots": [
+        "derived_from_assay",
+        "compared_measurement",
+        "control_output",
+        "treated_output",
+        "change_type",
+        "change_direction",
+        "change_value",
+        "p_value",
+        "statistical_test",
+        "derivation"
+      ],
+      "attributes": {
+        "derived_from_assay": {
+          "name": "derived_from_assay",
+          "description": "Reference (by id) to the assay whose output records this comparison is derived from.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "derived_from_assay",
+          "owner": "ResponseComparison",
+          "domain_of": [
+            "ResponseComparison"
+          ],
+          "range": "Assay",
+          "inlined": false
+        },
+        "compared_measurement": {
+          "name": "compared_measurement",
+          "description": "The name of the measurement slot being compared (e.g., \"total_lung_capacity\", \"beat_frequency_hz\"), matching the slot name in the referenced output records.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "compared_measurement",
+          "owner": "ResponseComparison",
+          "domain_of": [
+            "ResponseComparison"
+          ],
+          "range": "string"
+        },
+        "control_output": {
+          "name": "control_output",
+          "description": "Reference (by id) to the AssayOutputMeasurement record for the control or baseline group.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "control_output",
+          "owner": "ResponseComparison",
+          "domain_of": [
+            "ResponseComparison"
+          ],
+          "range": "AssayOutputMeasurement",
+          "inlined": false
+        },
+        "treated_output": {
+          "name": "treated_output",
+          "description": "Reference (by id) to the AssayOutputMeasurement record for the treated group.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "treated_output",
+          "owner": "ResponseComparison",
+          "domain_of": [
+            "ResponseComparison"
+          ],
+          "range": "AssayOutputMeasurement",
+          "inlined": false
+        },
+        "change_type": {
+          "name": "change_type",
+          "description": "How the change is expressed: an absolute difference, a percent change, a fold change, or a ratio. Papers report changes in different forms; this makes the form explicit so values can be compared or converted downstream.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "change_type",
+          "owner": "ResponseComparison",
+          "domain_of": [
+            "ResponseComparison"
+          ],
+          "range": "ChangeTypeEnum"
+        },
+        "change_direction": {
+          "name": "change_direction",
+          "description": "Direction of the change in the treated group relative to control.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "change_direction",
+          "owner": "ResponseComparison",
+          "domain_of": [
+            "ResponseComparison"
+          ],
+          "range": "ChangeDirectionEnum"
+        },
+        "change_value": {
+          "name": "change_value",
+          "description": "The size of the change, with its unit and (when reported) its uncertainty. For a percent change the unit is percent; for an absolute difference it is the measurement's unit; fold changes and ratios are dimensionless.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "change_value",
+          "owner": "ResponseComparison",
+          "domain_of": [
+            "ResponseComparison"
+          ],
+          "range": "QuantityValue",
+          "inlined": true
+        },
+        "p_value": {
+          "name": "p_value",
+          "description": "Reported p-value for the comparison, when available.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "p_value",
+          "owner": "ResponseComparison",
+          "domain_of": [
+            "ResponseComparison"
+          ],
+          "range": "float"
+        },
+        "statistical_test": {
+          "name": "statistical_test",
+          "description": "Statistical test used for the comparison (e.g., t-test, ANOVA), when reported.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "statistical_test",
+          "owner": "ResponseComparison",
+          "domain_of": [
+            "ResponseComparison"
+          ],
+          "range": "string"
+        },
+        "derivation": {
+          "name": "derivation",
+          "description": "Whether this change was reported directly in the paper or computed afterwards from the extracted control and treated values.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "derivation",
+          "owner": "ResponseComparison",
+          "domain_of": [
+            "ResponseComparison"
+          ],
+          "range": "DerivationEnum"
+        },
+        "id": {
+          "name": "id",
+          "description": "A unique identifier for the entity.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "identifier": true,
+          "alias": "id",
+          "owner": "ResponseComparison",
+          "domain_of": [
+            "NamedThing",
+            "Unit",
+            "NamedEntity",
+            "KeyEvent",
+            "KeyEventRelationship",
+            "AdverseOutcome",
+            "AdverseOutcomePathway",
+            "MolecularInitiatingEvent",
+            "Assay",
+            "AssayOutputMeasurement",
+            "StudySubject",
+            "ModelSystem",
+            "InVivoSubject",
+            "PopulationSubject",
+            "Protocol",
+            "ImagingProtocol",
+            "StainingProtocol",
+            "SpirometryProtocol",
+            "MolecularAssayProtocol",
+            "CellTypeReference",
+            "SpeciesReference",
+            "ChemicalEntityReference",
+            "AnatomicalEntityReference",
+            "ExposureCondition",
+            "ResponseComparison",
+            "CellularSystem",
+            "CellLine",
+            "CellCultureConditions",
+            "CellCultureMedium",
+            "MediumSupplement",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "name": {
+          "name": "name",
+          "description": "A human-readable name for the entity.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "slot_uri": "schema:name",
+          "alias": "name",
+          "owner": "ResponseComparison",
+          "domain_of": [
+            "NamedThing",
+            "Unit",
+            "NamedEntity",
+            "KeyEvent",
+            "KeyEventRelationship",
+            "AdverseOutcome",
+            "AdverseOutcomePathway",
+            "MolecularInitiatingEvent",
+            "Assay",
+            "AssayOutputMeasurement",
+            "StudySubject",
+            "ModelSystem",
+            "InVivoSubject",
+            "PopulationSubject",
+            "Protocol",
+            "ImagingProtocol",
+            "StainingProtocol",
+            "SpirometryProtocol",
+            "MolecularAssayProtocol",
+            "CellTypeReference",
+            "SpeciesReference",
+            "ChemicalEntityReference",
+            "AnatomicalEntityReference",
+            "ExposureCondition",
+            "ResponseComparison",
+            "CellularSystem",
+            "CellLine",
+            "CellCultureConditions",
+            "CellCultureMedium",
+            "MediumSupplement",
+            "CiliaryFunctionAssay",
+            "CiliaryFunctionOutput",
+            "ASLAssay",
+            "ASLOutput",
+            "MucociliaryClearanceAssay",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressAssay",
+            "OxidativeStressOutput",
+            "CFTRFunctionAssay",
+            "CFTRFunctionOutput",
+            "EGFRSignalingAssay",
+            "EGFRSignalingOutput",
+            "GobletCellAssay",
+            "GobletCellOutput",
+            "BALFSputumAssay",
+            "BALFSputumOutput",
+            "LungFunctionAssay",
+            "LungFunctionOutput",
+            "FoxJExpressionAssay",
+            "FoxJExpressionOutput",
+            "GeneExpressionAssay"
+          ],
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "A detailed description of the entity.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "slot_uri": "schema:description",
+          "alias": "description",
+          "owner": "ResponseComparison",
+          "domain_of": [
+            "NamedThing",
+            "KeyEvent",
+            "KeyEventRelationship",
+            "AdverseOutcome",
+            "AdverseOutcomePathway",
+            "MolecularInitiatingEvent",
+            "Assay",
+            "AssayOutputMeasurement",
+            "StudySubject",
+            "ModelSystem",
+            "InVivoSubject",
+            "PopulationSubject",
+            "Protocol",
+            "ImagingProtocol",
+            "StainingProtocol",
+            "SpirometryProtocol",
+            "MolecularAssayProtocol",
+            "ResponseComparison",
+            "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
             "ASLAssay",
@@ -10203,6 +11120,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -10265,6 +11183,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -10319,6 +11238,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -10497,6 +11417,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -10560,6 +11481,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -10718,6 +11640,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -10780,6 +11703,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -10957,6 +11881,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -11019,6 +11944,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -11138,6 +12064,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -11200,6 +12127,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -11271,6 +12199,7 @@
           "owner": "QuantityRange",
           "domain_of": [
             "QuantityValue",
+            "Variability",
             "QuantityRange"
           ],
           "range": "Unit",
@@ -11419,7 +12348,7 @@
         },
         "has_specified_output": {
           "name": "has_specified_output",
-          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).",
+          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
           "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
           "exact_mappings": [
             "OBI:0000299"
@@ -11440,7 +12369,8 @@
             "FoxJExpressionAssay"
           ],
           "range": "CiliaryFunctionOutput",
-          "inlined": true
+          "multivalued": true,
+          "inlined_as_list": true
         },
         "assay_date": {
           "name": "assay_date",
@@ -11495,6 +12425,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -11557,6 +12488,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -11611,6 +12543,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -11749,6 +12682,49 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "experimental_group": {
+          "name": "experimental_group",
+          "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "experimental_group",
+          "owner": "CiliaryFunctionOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExperimentalGroupEnum"
+        },
+        "measured_under": {
+          "name": "measured_under",
+          "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "measured_under",
+          "owner": "CiliaryFunctionOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExposureCondition",
+          "inlined": false
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -11781,6 +12757,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -11843,6 +12820,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -11897,6 +12875,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -12030,7 +13009,7 @@
         },
         "has_specified_output": {
           "name": "has_specified_output",
-          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).",
+          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
           "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
           "exact_mappings": [
             "OBI:0000299"
@@ -12051,7 +13030,9 @@
             "FoxJExpressionAssay"
           ],
           "range": "ASLOutput",
-          "inlined": true
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "assay_date": {
           "name": "assay_date",
@@ -12106,6 +13087,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -12168,6 +13150,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -12222,6 +13205,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -12322,6 +13306,49 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "experimental_group": {
+          "name": "experimental_group",
+          "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "experimental_group",
+          "owner": "ASLOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExperimentalGroupEnum"
+        },
+        "measured_under": {
+          "name": "measured_under",
+          "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "measured_under",
+          "owner": "ASLOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExposureCondition",
+          "inlined": false
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -12354,6 +13381,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -12416,6 +13444,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -12470,6 +13499,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -12617,7 +13647,7 @@
         },
         "has_specified_output": {
           "name": "has_specified_output",
-          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).",
+          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
           "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
           "exact_mappings": [
             "OBI:0000299"
@@ -12638,7 +13668,9 @@
             "FoxJExpressionAssay"
           ],
           "range": "MucociliaryClearanceOutput",
-          "inlined": true
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "assay_date": {
           "name": "assay_date",
@@ -12693,6 +13725,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -12755,6 +13788,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -12809,6 +13843,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -12909,6 +13944,49 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "experimental_group": {
+          "name": "experimental_group",
+          "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "experimental_group",
+          "owner": "MucociliaryClearanceOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExperimentalGroupEnum"
+        },
+        "measured_under": {
+          "name": "measured_under",
+          "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "measured_under",
+          "owner": "MucociliaryClearanceOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExposureCondition",
+          "inlined": false
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -12941,6 +14019,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -13003,6 +14082,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -13057,6 +14137,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -13204,7 +14285,7 @@
         },
         "has_specified_output": {
           "name": "has_specified_output",
-          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).",
+          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
           "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
           "exact_mappings": [
             "OBI:0000299"
@@ -13225,7 +14306,9 @@
             "FoxJExpressionAssay"
           ],
           "range": "OxidativeStressOutput",
-          "inlined": true
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "assay_date": {
           "name": "assay_date",
@@ -13280,6 +14363,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -13342,6 +14426,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -13396,6 +14481,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -13664,6 +14750,49 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "experimental_group": {
+          "name": "experimental_group",
+          "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "experimental_group",
+          "owner": "OxidativeStressOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExperimentalGroupEnum"
+        },
+        "measured_under": {
+          "name": "measured_under",
+          "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "measured_under",
+          "owner": "OxidativeStressOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExposureCondition",
+          "inlined": false
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -13696,6 +14825,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -13758,6 +14888,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -13812,6 +14943,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -13971,7 +15103,7 @@
         },
         "has_specified_output": {
           "name": "has_specified_output",
-          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).",
+          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
           "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
           "exact_mappings": [
             "OBI:0000299"
@@ -13992,7 +15124,9 @@
             "FoxJExpressionAssay"
           ],
           "range": "CFTRFunctionOutput",
-          "inlined": true
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "assay_date": {
           "name": "assay_date",
@@ -14047,6 +15181,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -14109,6 +15244,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -14163,6 +15299,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -14276,6 +15413,49 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "experimental_group": {
+          "name": "experimental_group",
+          "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "experimental_group",
+          "owner": "CFTRFunctionOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExperimentalGroupEnum"
+        },
+        "measured_under": {
+          "name": "measured_under",
+          "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "measured_under",
+          "owner": "CFTRFunctionOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExposureCondition",
+          "inlined": false
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -14308,6 +15488,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -14370,6 +15551,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -14424,6 +15606,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -14584,7 +15767,7 @@
         },
         "has_specified_output": {
           "name": "has_specified_output",
-          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).",
+          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
           "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
           "exact_mappings": [
             "OBI:0000299"
@@ -14605,7 +15788,9 @@
             "FoxJExpressionAssay"
           ],
           "range": "EGFRSignalingOutput",
-          "inlined": true
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "assay_date": {
           "name": "assay_date",
@@ -14660,6 +15845,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -14722,6 +15908,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -14776,6 +15963,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -14927,6 +16115,49 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "experimental_group": {
+          "name": "experimental_group",
+          "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "experimental_group",
+          "owner": "EGFRSignalingOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExperimentalGroupEnum"
+        },
+        "measured_under": {
+          "name": "measured_under",
+          "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "measured_under",
+          "owner": "EGFRSignalingOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExposureCondition",
+          "inlined": false
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -14959,6 +16190,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -15021,6 +16253,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -15075,6 +16308,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -15208,7 +16442,7 @@
         },
         "has_specified_output": {
           "name": "has_specified_output",
-          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).",
+          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
           "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
           "exact_mappings": [
             "OBI:0000299"
@@ -15229,7 +16463,9 @@
             "FoxJExpressionAssay"
           ],
           "range": "GobletCellOutput",
-          "inlined": true
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "assay_date": {
           "name": "assay_date",
@@ -15284,6 +16520,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -15346,6 +16583,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -15400,6 +16638,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -15591,6 +16830,49 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "experimental_group": {
+          "name": "experimental_group",
+          "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "experimental_group",
+          "owner": "GobletCellOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExperimentalGroupEnum"
+        },
+        "measured_under": {
+          "name": "measured_under",
+          "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "measured_under",
+          "owner": "GobletCellOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExposureCondition",
+          "inlined": false
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -15623,6 +16905,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -15685,6 +16968,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -15739,6 +17023,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -15897,7 +17182,7 @@
         },
         "has_specified_output": {
           "name": "has_specified_output",
-          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).",
+          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
           "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
           "exact_mappings": [
             "OBI:0000299"
@@ -15918,7 +17203,9 @@
             "FoxJExpressionAssay"
           ],
           "range": "BALFSputumOutput",
-          "inlined": true
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "assay_date": {
           "name": "assay_date",
@@ -15973,6 +17260,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -16035,6 +17323,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -16089,6 +17378,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -16306,6 +17596,49 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "experimental_group": {
+          "name": "experimental_group",
+          "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "experimental_group",
+          "owner": "BALFSputumOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExperimentalGroupEnum"
+        },
+        "measured_under": {
+          "name": "measured_under",
+          "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "measured_under",
+          "owner": "BALFSputumOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExposureCondition",
+          "inlined": false
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -16338,6 +17671,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -16400,6 +17734,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -16454,6 +17789,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -16636,7 +17972,7 @@
         },
         "has_specified_output": {
           "name": "has_specified_output",
-          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).",
+          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
           "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
           "exact_mappings": [
             "OBI:0000299"
@@ -16657,7 +17993,9 @@
             "FoxJExpressionAssay"
           ],
           "range": "LungFunctionOutput",
-          "inlined": true
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "assay_date": {
           "name": "assay_date",
@@ -16712,6 +18050,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -16774,6 +18113,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -16828,6 +18168,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -17058,6 +18399,49 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "experimental_group": {
+          "name": "experimental_group",
+          "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "experimental_group",
+          "owner": "LungFunctionOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExperimentalGroupEnum"
+        },
+        "measured_under": {
+          "name": "measured_under",
+          "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "measured_under",
+          "owner": "LungFunctionOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExposureCondition",
+          "inlined": false
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -17090,6 +18474,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -17152,6 +18537,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -17206,6 +18592,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -17345,7 +18732,7 @@
         },
         "has_specified_output": {
           "name": "has_specified_output",
-          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).",
+          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
           "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
           "exact_mappings": [
             "OBI:0000299"
@@ -17366,7 +18753,9 @@
             "FoxJExpressionAssay"
           ],
           "range": "FoxJExpressionOutput",
-          "inlined": true
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "assay_date": {
           "name": "assay_date",
@@ -17421,6 +18810,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -17483,6 +18873,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -17537,6 +18928,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -17624,6 +19016,49 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "experimental_group": {
+          "name": "experimental_group",
+          "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "experimental_group",
+          "owner": "FoxJExpressionOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExperimentalGroupEnum"
+        },
+        "measured_under": {
+          "name": "measured_under",
+          "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "measured_under",
+          "owner": "FoxJExpressionOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExposureCondition",
+          "inlined": false
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -17656,6 +19091,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -17718,6 +19154,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -17772,6 +19209,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -17950,7 +19388,7 @@
         },
         "has_specified_output": {
           "name": "has_specified_output",
-          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).",
+          "description": "The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
           "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
           "exact_mappings": [
             "OBI:0000299"
@@ -17971,7 +19409,9 @@
             "FoxJExpressionAssay"
           ],
           "range": "GeneExpressionOutput",
-          "inlined": true
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
         },
         "assay_date": {
           "name": "assay_date",
@@ -18026,6 +19466,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -18088,6 +19529,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -18142,6 +19584,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",
@@ -18216,6 +19659,49 @@
           "range": "QuantityValue",
           "inlined": true
         },
+        "experimental_group": {
+          "name": "experimental_group",
+          "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "experimental_group",
+          "owner": "GeneExpressionOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExperimentalGroupEnum"
+        },
+        "measured_under": {
+          "name": "measured_under",
+          "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "measured_under",
+          "owner": "GeneExpressionOutput",
+          "domain_of": [
+            "AssayOutputMeasurement",
+            "CiliaryFunctionOutput",
+            "ASLOutput",
+            "MucociliaryClearanceOutput",
+            "OxidativeStressOutput",
+            "CFTRFunctionOutput",
+            "EGFRSignalingOutput",
+            "GobletCellOutput",
+            "BALFSputumOutput",
+            "LungFunctionOutput",
+            "FoxJExpressionOutput"
+          ],
+          "range": "ExposureCondition",
+          "inlined": false
+        },
         "id": {
           "name": "id",
           "description": "A unique identifier for the entity.",
@@ -18248,6 +19734,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -18310,6 +19797,7 @@
             "ChemicalEntityReference",
             "AnatomicalEntityReference",
             "ExposureCondition",
+            "ResponseComparison",
             "CellularSystem",
             "CellLine",
             "CellCultureConditions",
@@ -18364,6 +19852,7 @@
             "StainingProtocol",
             "SpirometryProtocol",
             "MolecularAssayProtocol",
+            "ResponseComparison",
             "CellularSystem",
             "CiliaryFunctionAssay",
             "CiliaryFunctionOutput",

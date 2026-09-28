@@ -1,47 +1,115 @@
 # Test file for LungFunctionAssay (in vivo only)
 # This assay is IN VIVO ONLY (supported_contexts: in_vivo_only)
-# Requires a whole lung to assess function
+# Requires a whole lung to assess function.
+#
+# Demonstrates per-condition outputs for a pre/post design: the same subject
+# is measured before bronchodilator (experimental_group: baseline) and again
+# after albuterol (experimental_group: treated), each record linked to the
+# condition it was measured under.
 lung_function_assays:
   - id: "LF:001"
-    name: "FEV1 measurement"
+    name: "Pre- and post-bronchodilator spirometry"
+    has_exposure_condition:
+      - id: "COND:lf-pre-bronchodilator"
+        name: "Pre-bronchodilator (baseline spirometry)"
+      - id: "COND:lf-post-albuterol"
+        name: "15 minutes after albuterol 400 ug"
+        exposure_concentration:
+          value: "400"
+          unit:
+            id: "UO:0000022"
+            name: "microgram"
+        timing_post_exposure:
+          value: "15"
+          unit:
+            id: "UO:0000031"
+            name: "minute"
     has_specified_output:
-      id: "LF:001-output"
-      name: "LF:001 measurement results"
-      fev1:
-        value: "82.5"
-        unit:
-          id: "UO:0000187"
-          name: "percent predicted"
-      fvc:
-        value: "95.0"
-        unit:
-          id: "UO:0000187"
-          name: "percent predicted"
-      fev1_fvc_ratio:
-        value: "86.8"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
-      feno:
-        value: "22"
-        unit:
-          id: "UO:0000170"
-          name: "parts per billion"
-      bronchodilator_response:
-        value: "8.5"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
-      dlco:
-        value: "88"
-        unit:
-          id: "UO:0000187"
-          name: "percent predicted"
-      peak_expiratory_flow:
-        value: "92"
-        unit:
-          id: "UO:0000187"
-          name: "percent predicted"
+      - id: "LF:001-output-pre"
+        name: "Pre-bronchodilator spirometry results"
+        experimental_group: baseline
+        measured_under: "COND:lf-pre-bronchodilator"
+        fev1:
+          value: "82.5"
+          unit:
+            id: "UO:0000187"
+            name: "percent predicted"
+          central_tendency: single_value
+          sample_size: 1
+        fvc:
+          value: "95.0"
+          unit:
+            id: "UO:0000187"
+            name: "percent predicted"
+          central_tendency: single_value
+          sample_size: 1
+        fev1_fvc_ratio:
+          value: "86.8"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: single_value
+          sample_size: 1
+        feno:
+          value: "22"
+          unit:
+            id: "UO:0000170"
+            name: "parts per billion"
+          central_tendency: single_value
+          sample_size: 1
+        dlco:
+          value: "88"
+          unit:
+            id: "UO:0000187"
+            name: "percent predicted"
+          central_tendency: single_value
+          sample_size: 1
+        peak_expiratory_flow:
+          value: "92"
+          unit:
+            id: "UO:0000187"
+            name: "percent predicted"
+          central_tendency: single_value
+          sample_size: 1
+      - id: "LF:001-output-post"
+        name: "Post-bronchodilator spirometry results"
+        experimental_group: treated
+        measured_under: "COND:lf-post-albuterol"
+        fev1:
+          value: "89.5"
+          unit:
+            id: "UO:0000187"
+            name: "percent predicted"
+          central_tendency: single_value
+          sample_size: 1
+        fvc:
+          value: "97.8"
+          unit:
+            id: "UO:0000187"
+            name: "percent predicted"
+          central_tendency: single_value
+          sample_size: 1
+        fev1_fvc_ratio:
+          value: "91.5"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: single_value
+          sample_size: 1
+        bronchodilator_response:
+          value: "8.5"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: single_value
+          sample_size: 1
+        peak_expiratory_flow:
+          value: "98"
+          unit:
+            id: "UO:0000187"
+            name: "percent predicted"
+          central_tendency: single_value
+          sample_size: 1
     reference_dataset: "GLI-2012"
     assay_date: "2024-08-10"
     informs_on_key_event:
@@ -63,7 +131,7 @@ lung_function_assays:
           name: "year"
       sex: "male"
       subject_characteristics: "Non-smoker, no respiratory disease"
-      clinical_context: "Baseline spirometry, pre-bronchodilator"
+      clinical_context: "Pre- and post-bronchodilator spirometry at a single visit"
     follows_protocols:
       - protocol_type: SpirometryProtocol
         id: "PROTOCOL:spiro-001"
@@ -75,3 +143,22 @@ lung_function_assays:
           unit:
             id: "UO:0000022"
             name: "microgram"
+
+# Analysis layer: the bronchodilator response, which the assay also records
+# directly as a measurement, expressed here as a change relative to the
+# pre-bronchodilator baseline.
+response_comparisons:
+  - id: "COMP:LF001-fev1"
+    name: "Change in FEV1, post-bronchodilator vs pre-bronchodilator"
+    derived_from_assay: "LF:001"
+    compared_measurement: "fev1"
+    control_output: "LF:001-output-pre"
+    treated_output: "LF:001-output-post"
+    change_type: percent_change
+    change_direction: increased
+    change_value:
+      value: "8.5"
+      unit:
+        id: "UO:0000187"
+        name: "percent"
+    derivation: computed

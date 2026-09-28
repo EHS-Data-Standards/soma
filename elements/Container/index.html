@@ -486,6 +486,17 @@
 
 
 
+      Container : key_event_relationships
+
+
+
+
+
+        Container --&gt; "*" KeyEventRelationship : key_event_relationships
+        click KeyEventRelationship href "../KeyEventRelationship/"
+
+
+
       Container : key_events
 
 
@@ -541,6 +552,17 @@
 
 
 
+      Container : response_comparisons
+
+
+
+
+
+        Container --&gt; "*" ResponseComparison : response_comparisons
+        click ResponseComparison href "../ResponseComparison/"
+
+
+
 
 </code></pre>
 <!-- no inheritance hierarchy -->
@@ -562,9 +584,21 @@
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../key_event_relationships/">key_event_relationships</a></td>
+<td>* <br/> <a href="../KeyEventRelationship/">KeyEventRelationship</a></td>
+<td>The key event relationships connecting events in this AOP</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../adverse_outcome_pathways/">adverse_outcome_pathways</a></td>
 <td>* <br/> <a href="../AdverseOutcomePathway/">AdverseOutcomePathway</a></td>
 <td>Collection of Adverse Outcome Pathways</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../response_comparisons/">response_comparisons</a></td>
+<td>* <br/> <a href="../ResponseComparison/">ResponseComparison</a></td>
+<td>Collection of analysis-layer records comparing treated responses to control/b...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -679,7 +713,9 @@
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">key_events</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">key_event_relationships</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">adverse_outcome_pathways</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">response_comparisons</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ciliary_function_assays</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asl_assays</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mcc_assays</span>
@@ -719,6 +755,19 @@
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KeyEvent</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">key_event_relationships</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">key_event_relationships</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The key event relationships connecting events in this AOP.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">key_event_relationships</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AdverseOutcomePathway</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KeyEventRelationship</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">adverse_outcome_pathways</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">adverse_outcome_pathways</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Collection of Adverse Outcome Pathways. AOPs describe sequences of</span>
@@ -730,6 +779,21 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AdverseOutcomePathway</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">response_comparisons</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">response_comparisons</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">analysis-layer</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">comparing</span><span class="nv"> </span><span class="s">treated</span><span class="nv"> </span><span class="s">responses</span>
+<span class="w">      </span><span class="s">to</span><span class="nv"> </span><span class="s">control/baseline</span><span class="nv"> </span><span class="s">responses.</span><span class="nv"> </span><span class="s">Kept</span><span class="nv"> </span><span class="s">separate</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">extracted</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">data:</span>
+<span class="w">      </span><span class="s">each</span><span class="nv"> </span><span class="s">comparison</span><span class="nv"> </span><span class="s">references</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">control</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">treated</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">states</span>
+<span class="w">      </span><span class="s">the</span><span class="nv"> </span><span class="s">kind,</span><span class="nv"> </span><span class="s">direction,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">size</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">change</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">uncertainty.'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">response_comparisons</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ResponseComparison</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">ciliary_function_assays</span><span class="p">:</span>

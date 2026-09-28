@@ -964,6 +964,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Protocol for staining-based assays (goblet cell, immunofluorescence)</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ResponseComparison/">ResponseComparison</a></td>
+<td>An analysis-layer record describing the change in a measured response between...</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="StudySubject/">StudySubject</a></td>
 <td>The subject of a study — what the assay is performed on</td>
 </tr>
@@ -994,6 +998,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="Unit/">Unit</a></td>
 <td>A unit of measurement from a standard ontology (UO, UCUM, QUDT, STATO)</td>
+</tr>
+<tr>
+<td><a href="Variability/">Variability</a></td>
+<td>The reported spread or uncertainty around a measured value, kept separate fro...</td>
 </tr>
 </tbody>
 </table>
@@ -1155,6 +1163,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td></td>
 </tr>
 <tr>
+<td><a href="central_tendency/">central_tendency</a></td>
+<td>What kind of central value the reported number is: a mean, median, geometric ...</td>
+</tr>
+<tr>
 <td><a href="cftr_assays/">cftr_assays</a></td>
 <td>Collection of CFTR function assays</td>
 </tr>
@@ -1169,6 +1181,18 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="cftr_specific_current/">cftr_specific_current</a></td>
 <td>CFTR-specific chloride secretory current</td>
+</tr>
+<tr>
+<td><a href="change_direction/">change_direction</a></td>
+<td>Direction of the change in the treated group relative to control</td>
+</tr>
+<tr>
+<td><a href="change_type/">change_type</a></td>
+<td>How the change is expressed: an absolute difference, a percent change, a fold...</td>
+</tr>
+<tr>
+<td><a href="change_value/">change_value</a></td>
+<td>The size of the change, with its unit and (when reported) its uncertainty</td>
 </tr>
 <tr>
 <td><a href="cilia_length/">cilia_length</a></td>
@@ -1211,12 +1235,20 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Anatomical site of sample collection</td>
 </tr>
 <tr>
+<td><a href="compared_measurement/">compared_measurement</a></td>
+<td>The name of the measurement slot being compared (e</td>
+</tr>
+<tr>
 <td><a href="concentration/">concentration</a></td>
 <td></td>
 </tr>
 <tr>
 <td><a href="confluence_level/">confluence_level</a></td>
 <td></td>
+</tr>
+<tr>
+<td><a href="control_output/">control_output</a></td>
+<td>Reference (by id) to the AssayOutputMeasurement record for the control or bas...</td>
 </tr>
 <tr>
 <td><a href="counterstain/">counterstain</a></td>
@@ -1241,6 +1273,14 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="decline_rate/">decline_rate</a></td>
 <td>Longitudinal decline rate in mL/year</td>
+</tr>
+<tr>
+<td><a href="derivation/">derivation</a></td>
+<td>Whether this change was reported directly in the paper or computed afterwards...</td>
+</tr>
+<tr>
+<td><a href="derived_from_assay/">derived_from_assay</a></td>
+<td>Reference (by id) to the assay whose output records this comparison is derive...</td>
 </tr>
 <tr>
 <td><a href="description/">description</a></td>
@@ -1333,6 +1373,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="evidence_support/">evidence_support</a></td>
 <td>Level of evidence supporting this key event relationship</td>
+</tr>
+<tr>
+<td><a href="experimental_group/">experimental_group</a></td>
+<td>The role of this output record's group in the experimental design: control, v...</td>
 </tr>
 <tr>
 <td><a href="exposure_agent/">exposure_agent</a></td>
@@ -1543,6 +1587,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td></td>
 </tr>
 <tr>
+<td><a href="lower_bound/">lower_bound</a></td>
+<td>Lower bound when variability is reported as an interval (confidence interval,...</td>
+</tr>
+<tr>
 <td><a href="lung_compliance/">lung_compliance</a></td>
 <td>Lung compliance</td>
 </tr>
@@ -1589,6 +1637,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="mcc_assays/">mcc_assays</a></td>
 <td>Collection of mucociliary clearance assays</td>
+</tr>
+<tr>
+<td><a href="measured_under/">measured_under</a></td>
+<td>Reference (by id) to the specific ExposureCondition this output record was me...</td>
 </tr>
 <tr>
 <td><a href="min_value/">min_value</a></td>
@@ -1709,6 +1761,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="oxidative_stress_assays/">oxidative_stress_assays</a></td>
 <td>Collection of oxidative stress assays</td>
+</tr>
+<tr>
+<td><a href="p_value/">p_value</a></td>
+<td>Reported p-value for the comparison, when available</td>
 </tr>
 <tr>
 <td><a href="particle_clearance_time/">particle_clearance_time</a></td>
@@ -1851,12 +1907,20 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Residual volume</td>
 </tr>
 <tr>
+<td><a href="response_comparisons/">response_comparisons</a></td>
+<td>Collection of analysis-layer records comparing treated responses to control/b...</td>
+</tr>
+<tr>
 <td><a href="ros_probe_type/">ros_probe_type</a></td>
 <td>Type of ROS probe used (DCFDA, DHE, MitoSOX, etc</td>
 </tr>
 <tr>
 <td><a href="sample_collection_method/">sample_collection_method</a></td>
 <td>Method used for sample collection in vivo (e</td>
+</tr>
+<tr>
+<td><a href="sample_size/">sample_size</a></td>
+<td>Number of subjects, samples, or replicates behind this value</td>
 </tr>
 <tr>
 <td><a href="sample_type/">sample_type</a></td>
@@ -1905,6 +1969,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="staining_type/">staining_type</a></td>
 <td>Type of staining used (e</td>
+</tr>
+<tr>
+<td><a href="statistical_test/">statistical_test</a></td>
+<td>Statistical test used for the comparison (e</td>
 </tr>
 <tr>
 <td><a href="stimulation_agent/">stimulation_agent</a></td>
@@ -2015,8 +2083,16 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Mucociliary transport rate</td>
 </tr>
 <tr>
+<td><a href="treated_output/">treated_output</a></td>
+<td>Reference (by id) to the AssayOutputMeasurement record for the treated group</td>
+</tr>
+<tr>
 <td><a href="unit/">unit</a></td>
 <td>The unit of measurement</td>
+</tr>
+<tr>
+<td><a href="upper_bound/">upper_bound</a></td>
+<td>Upper bound when variability is reported as an interval (confidence interval,...</td>
 </tr>
 <tr>
 <td><a href="upstream_event/">upstream_event</a></td>
@@ -2033,6 +2109,14 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="value/">value</a></td>
 <td>The numeric value of the quantity</td>
+</tr>
+<tr>
+<td><a href="variability/">variability</a></td>
+<td>The reported variability around the value (SD, SEM, confidence interval, or r...</td>
+</tr>
+<tr>
+<td><a href="variability_type/">variability_type</a></td>
+<td>The kind of variability reported (standard deviation, standard error, 95% con...</td>
 </tr>
 </tbody>
 </table>
@@ -2062,8 +2146,24 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <td>Cell culture growth modes</td>
 </tr>
 <tr>
+<td><a href="CentralTendencyEnum/">CentralTendencyEnum</a></td>
+<td>What kind of central value a reported number represents</td>
+</tr>
+<tr>
+<td><a href="ChangeDirectionEnum/">ChangeDirectionEnum</a></td>
+<td>Direction of a change in the treated group relative to control</td>
+</tr>
+<tr>
+<td><a href="ChangeTypeEnum/">ChangeTypeEnum</a></td>
+<td>Forms in which a change relative to control can be expressed</td>
+</tr>
+<tr>
 <td><a href="CiliaryMotionPatternEnum/">CiliaryMotionPatternEnum</a></td>
 <td>Patterns of ciliary motion</td>
+</tr>
+<tr>
+<td><a href="DerivationEnum/">DerivationEnum</a></td>
+<td>Provenance of an analysis-layer value</td>
 </tr>
 <tr>
 <td><a href="DirectionalityEnum/">DirectionalityEnum</a></td>
@@ -2072,6 +2172,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="EvidenceSupportEnum/">EvidenceSupportEnum</a></td>
 <td>Levels of evidence support for key event relationships</td>
+</tr>
+<tr>
+<td><a href="ExperimentalGroupEnum/">ExperimentalGroupEnum</a></td>
+<td>The role of an experimental group in a study design, used to mark each per-co...</td>
 </tr>
 <tr>
 <td><a href="OutcomeLevelEnum/">OutcomeLevelEnum</a></td>
@@ -2092,6 +2196,10 @@ This is the main entry point that imports the AOP framework, assay base schema, 
 <tr>
 <td><a href="SupplementTypeEnum/">SupplementTypeEnum</a></td>
 <td>Categories of cell culture medium supplements</td>
+</tr>
+<tr>
+<td><a href="VariabilityTypeEnum/">VariabilityTypeEnum</a></td>
+<td>Kinds of variability or uncertainty reported around a value</td>
 </tr>
 </tbody>
 </table>

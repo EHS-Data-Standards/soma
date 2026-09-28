@@ -1,60 +1,196 @@
 # Test file for GobletCellAssay
+# Demonstrates per-condition outputs: a vehicle control record and an
+# IL-13-treated record, each linked to its exposure condition.
 goblet_cell_assays:
   - id: "GCM:001"
-    name: "MUC5AC expression and goblet cell quantification"
+    name: "MUC5AC expression and goblet cell quantification after IL-13 treatment"
+    has_exposure_condition:
+      - id: "EXPOSURE:gcm-vehicle-14d"
+        name: "Vehicle (0.1% BSA in PBS) for 14 days (control)"
+        exposure_duration:
+          value: "14"
+          unit:
+            id: "UO:0000033"
+            name: "day"
+      - id: "EXPOSURE:gcm-il13-14d"
+        name: "IL-13 10 ng/mL for 14 days"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000275"
+            name: "nanogram per milliliter"
+        exposure_duration:
+          value: "14"
+          unit:
+            id: "UO:0000033"
+            name: "day"
     has_specified_output:
-      id: "GCM:001-output"
-      name: "GCM:001 measurement results"
-      muc5ac_mrna_expression:
-        value: "4.8"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
-      goblet_cell_percentage:
-        value: "28"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
-      goblet_cell_count:
-        value: "85"
-        unit:
-          id: "UO:0000189"
-          name: "count"
-      muc5ac_protein_expression:
-        value: "3.2"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
-      muc5b_mrna_expression:
-        value: "1.8"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
-      muc5b_protein_expression:
-        value: "1.5"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
-      muc5ac_muc5b_ratio:
-        value: "2.7"
-        unit:
-          id: "UO:0000190"
-          name: "ratio"
-      mucin_secretion_rate:
-        value: "12.5"
-        unit:
-          id: "UO:0000298"
-          name: "microgram per hour"
-      percent_solids:
-        value: "4.2"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
-      goblet_to_ciliated_ratio:
-        value: "0.45"
-        unit:
-          id: "UO:0000190"
-          name: "ratio"
+      - id: "GCM:001-output-control"
+        name: "Vehicle control goblet cell and mucin measurements"
+        experimental_group: vehicle_control
+        measured_under: "EXPOSURE:gcm-vehicle-14d"
+        muc5ac_mrna_expression:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        goblet_cell_percentage:
+          value: "9"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 4
+          variability:
+            variability_type: standard_deviation
+            value: "1.8"
+            unit:
+              id: "UO:0000187"
+              name: "percent"
+        goblet_cell_count:
+          value: "27"
+          unit:
+            id: "UO:0000189"
+            name: "count"
+          central_tendency: mean
+          sample_size: 4
+        muc5ac_protein_expression:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        muc5b_mrna_expression:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        muc5b_protein_expression:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        muc5ac_muc5b_ratio:
+          value: "0.9"
+          unit:
+            id: "UO:0000190"
+            name: "ratio"
+          central_tendency: mean
+          sample_size: 4
+        mucin_secretion_rate:
+          value: "4.1"
+          unit:
+            id: "UO:0000298"
+            name: "microgram per hour"
+          central_tendency: mean
+          sample_size: 4
+        percent_solids:
+          value: "2.3"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 4
+        goblet_to_ciliated_ratio:
+          value: "0.13"
+          unit:
+            id: "UO:0000190"
+            name: "ratio"
+          central_tendency: mean
+          sample_size: 4
+      - id: "GCM:001-output-il13"
+        name: "IL-13-treated goblet cell and mucin measurements"
+        experimental_group: treated
+        measured_under: "EXPOSURE:gcm-il13-14d"
+        muc5ac_mrna_expression:
+          value: "4.8"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+          variability:
+            variability_type: standard_deviation
+            value: "0.7"
+            unit:
+              id: "STATO:0000169"
+              name: "fold change"
+        goblet_cell_percentage:
+          value: "28"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 4
+          variability:
+            variability_type: standard_deviation
+            value: "3.4"
+            unit:
+              id: "UO:0000187"
+              name: "percent"
+        goblet_cell_count:
+          value: "85"
+          unit:
+            id: "UO:0000189"
+            name: "count"
+          central_tendency: mean
+          sample_size: 4
+        muc5ac_protein_expression:
+          value: "3.2"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        muc5b_mrna_expression:
+          value: "1.8"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        muc5b_protein_expression:
+          value: "1.5"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 4
+        muc5ac_muc5b_ratio:
+          value: "2.7"
+          unit:
+            id: "UO:0000190"
+            name: "ratio"
+          central_tendency: mean
+          sample_size: 4
+        mucin_secretion_rate:
+          value: "12.5"
+          unit:
+            id: "UO:0000298"
+            name: "microgram per hour"
+          central_tendency: mean
+          sample_size: 4
+        percent_solids:
+          value: "4.2"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 4
+        goblet_to_ciliated_ratio:
+          value: "0.45"
+          unit:
+            id: "UO:0000190"
+            name: "ratio"
+          central_tendency: mean
+          sample_size: 4
     assay_date: "2024-06-15"
     informs_on_key_event:
       id: "KE:ke2-goblet-hyperplasia"
@@ -78,3 +214,40 @@ goblet_cell_assays:
         staining_type: "AB-PAS"
         fixation_method: "4% paraformaldehyde"
         counterstain: "hematoxylin"
+
+# Analysis layer: goblet cell percentage is a percentage measurement, so its
+# change is an absolute difference in percentage points; MUC5AC mRNA is
+# already a fold change.
+response_comparisons:
+  - id: "COMP:GCM001-goblet-percentage"
+    name: "Change in goblet cell percentage, IL-13 vs vehicle"
+    derived_from_assay: "GCM:001"
+    compared_measurement: "goblet_cell_percentage"
+    control_output: "GCM:001-output-control"
+    treated_output: "GCM:001-output-il13"
+    change_type: absolute_difference
+    change_direction: increased
+    change_value:
+      value: "19"
+      unit:
+        id: "UO:0000187"
+        name: "percent"
+    p_value: 0.001
+    statistical_test: "two-sample t-test"
+    derivation: computed
+  - id: "COMP:GCM001-muc5ac-mrna"
+    name: "Change in MUC5AC mRNA expression, IL-13 vs vehicle"
+    derived_from_assay: "GCM:001"
+    compared_measurement: "muc5ac_mrna_expression"
+    control_output: "GCM:001-output-control"
+    treated_output: "GCM:001-output-il13"
+    change_type: fold_change
+    change_direction: increased
+    change_value:
+      value: "4.8"
+      unit:
+        id: "STATO:0000169"
+        name: "fold change"
+    p_value: 0.0004
+    statistical_test: "two-sample t-test"
+    derivation: reported_in_paper

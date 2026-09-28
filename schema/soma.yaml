@@ -587,6 +587,118 @@ enums:
       differentiation_factor:
         text: differentiation_factor
         description: Factors promoting cell differentiation
+  ExperimentalGroupEnum:
+    name: ExperimentalGroupEnum
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/ExperimentalGroupEnum
+    description: The role of an experimental group in a study design, used to mark
+      each per-condition output record.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    permissible_values:
+      control:
+        text: control
+        description: Untreated or unexposed control group
+      vehicle_control:
+        text: vehicle_control
+        description: Control group receiving the vehicle/carrier only
+      baseline:
+        text: baseline
+        description: Pre-exposure or pre-treatment measurement of the same subjects
+      treated:
+        text: treated
+        description: Group receiving the exposure or treatment
+      recovery:
+        text: recovery
+        description: Post-exposure recovery period measurement
+      sham:
+        text: sham
+        description: Sham-treated control group
+  CentralTendencyEnum:
+    name: CentralTendencyEnum
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/CentralTendencyEnum
+    description: What kind of central value a reported number represents.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    permissible_values:
+      mean:
+        text: mean
+        description: Arithmetic mean
+      median:
+        text: median
+        description: Median
+      geometric_mean:
+        text: geometric_mean
+        description: Geometric mean
+      single_value:
+        text: single_value
+        description: A single measurement, not an aggregate
+  VariabilityTypeEnum:
+    name: VariabilityTypeEnum
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/VariabilityTypeEnum
+    description: Kinds of variability or uncertainty reported around a value.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    permissible_values:
+      standard_deviation:
+        text: standard_deviation
+        description: Standard deviation (SD)
+      standard_error:
+        text: standard_error
+        description: Standard error of the mean (SEM)
+      confidence_interval_95:
+        text: confidence_interval_95
+        description: 95% confidence interval
+      confidence_interval_other:
+        text: confidence_interval_other
+        description: Confidence interval at a level other than 95%
+      range:
+        text: range
+        description: Minimum-maximum range of observed values
+      interquartile_range:
+        text: interquartile_range
+        description: Interquartile range (IQR)
+  ChangeTypeEnum:
+    name: ChangeTypeEnum
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/ChangeTypeEnum
+    description: Forms in which a change relative to control can be expressed.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    permissible_values:
+      absolute_difference:
+        text: absolute_difference
+        description: Treated minus control, in the measurement's own unit
+      percent_change:
+        text: percent_change
+        description: Change as a percentage of the control value
+      fold_change:
+        text: fold_change
+        description: Treated divided by control, expressed as fold
+      ratio:
+        text: ratio
+        description: Ratio of treated to control
+  ChangeDirectionEnum:
+    name: ChangeDirectionEnum
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/ChangeDirectionEnum
+    description: Direction of a change in the treated group relative to control.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    permissible_values:
+      increased:
+        text: increased
+        description: Treated value is higher than control
+      decreased:
+        text: decreased
+        description: Treated value is lower than control
+      no_change:
+        text: no_change
+        description: No meaningful difference from control
+  DerivationEnum:
+    name: DerivationEnum
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/DerivationEnum
+    description: Provenance of an analysis-layer value.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    permissible_values:
+      reported_in_paper:
+        text: reported_in_paper
+        description: The value was stated directly in the publication
+      computed:
+        text: computed
+        description: The value was calculated from extracted values
   AssayContextCapabilityEnum:
     name: AssayContextCapabilityEnum
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/AssayContextCapabilityEnum
@@ -657,6 +769,22 @@ slots:
     domain_of:
     - Container
     range: AdverseOutcomePathway
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  response_comparisons:
+    name: response_comparisons
+    definition_uri: https://w3id.org/EHS-Data-Standards/soma/response_comparisons
+    description: 'Collection of analysis-layer records comparing treated responses
+      to control/baseline responses. Kept separate from the extracted assay data:
+      each comparison references the control and treated output records and states
+      the kind, direction, and size of the change with its uncertainty.'
+    from_schema: https://w3id.org/EHS-Data-Standards/soma
+    slot_uri: soma:response_comparisons
+    owner: Container
+    domain_of:
+    - Container
+    range: ResponseComparison
     multivalued: true
     inlined: true
     inlined_as_list: true
@@ -1076,6 +1204,7 @@ slots:
     slot_uri: aop_framework:key_event_relationships
     owner: AdverseOutcomePathway
     domain_of:
+    - Container
     - AdverseOutcomePathway
     range: KeyEventRelationship
     multivalued: true
@@ -1135,7 +1264,11 @@ slots:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
     description: "The measurement results produced by this assay \u2014 the specified\
       \ output of a planned process (OBI). Contains the domain-specific measurement\
-      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued:\
+      \ one output record per experimental condition or group, so a control group\
+      \ and each treatment concentration in a dose-response series each get their\
+      \ own record (marked with experimental_group and linked to the exposure via\
+      \ measured_under)."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - OBI:0000299
@@ -1144,8 +1277,37 @@ slots:
     domain_of:
     - Assay
     range: AssayOutputMeasurement
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
+  experimental_group:
+    name: experimental_group
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/experimental_group
+    description: 'The role of this output record''s group in the experimental design:
+      control, vehicle control, baseline, treated, recovery, or sham. Lets extraction
+      distinguish the control/baseline response from the treated response so a change
+      relative to control can be assembled downstream.'
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:experimental_group
+    owner: AssayOutputMeasurement
+    domain_of:
+    - AssayOutputMeasurement
+    range: ExperimentalGroupEnum
+  measured_under:
+    name: measured_under
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/measured_under
+    description: Reference (by id) to the specific ExposureCondition this output record
+      was measured under. Links each set of response values to the concentration/treatment
+      it corresponds to, so a dose-response series keeps each response paired with
+      its exposure level. The referenced condition should be listed in the assay's
+      has_exposure_condition.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:measured_under
+    owner: AssayOutputMeasurement
+    domain_of:
+    - AssayOutputMeasurement
+    range: ExposureCondition
+    inlined: false
   cell_type:
     name: cell_type
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/cell_type
@@ -2216,9 +2378,10 @@ slots:
     description: The numeric value of the quantity.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slot_uri: assay_base:value
-    owner: QuantityValue
+    owner: Variability
     domain_of:
     - QuantityValue
+    - Variability
     range: string
   unit:
     name: unit
@@ -2229,10 +2392,79 @@ slots:
     owner: QuantityRange
     domain_of:
     - QuantityValue
+    - Variability
     - QuantityRange
     range: Unit
     inlined: true
     inlined_as_list: false
+  central_tendency:
+    name: central_tendency
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/central_tendency
+    description: 'What kind of central value the reported number is: a mean, median,
+      geometric mean, or a single measurement. Important for combining results across
+      studies.'
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:central_tendency
+    owner: QuantityValue
+    domain_of:
+    - QuantityValue
+    range: CentralTendencyEnum
+  variability:
+    name: variability
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/variability
+    description: The reported variability around the value (SD, SEM, confidence interval,
+      or range), kept separate from the central value itself.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:variability
+    owner: QuantityValue
+    domain_of:
+    - QuantityValue
+    range: Variability
+    inlined: true
+    inlined_as_list: true
+  sample_size:
+    name: sample_size
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/sample_size
+    description: Number of subjects, samples, or replicates behind this value.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:sample_size
+    owner: QuantityValue
+    domain_of:
+    - QuantityValue
+    range: integer
+  variability_type:
+    name: variability_type
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/variability_type
+    description: The kind of variability reported (standard deviation, standard error,
+      95% confidence interval, range, interquartile range).
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:variability_type
+    owner: Variability
+    domain_of:
+    - Variability
+    range: VariabilityTypeEnum
+  lower_bound:
+    name: lower_bound
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/lower_bound
+    description: Lower bound when variability is reported as an interval (confidence
+      interval, range, IQR).
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:lower_bound
+    owner: Variability
+    domain_of:
+    - Variability
+    range: string
+  upper_bound:
+    name: upper_bound
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/upper_bound
+    description: Upper bound when variability is reported as an interval (confidence
+      interval, range, IQR).
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:upper_bound
+    owner: Variability
+    domain_of:
+    - Variability
+    range: string
   min_value:
     name: min_value
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/min_value
@@ -2255,6 +2487,121 @@ slots:
     range: QuantityValue
     inlined: true
     inlined_as_list: true
+  derived_from_assay:
+    name: derived_from_assay
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/derived_from_assay
+    description: Reference (by id) to the assay whose output records this comparison
+      is derived from.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:derived_from_assay
+    owner: ResponseComparison
+    domain_of:
+    - ResponseComparison
+    range: Assay
+    inlined: false
+  compared_measurement:
+    name: compared_measurement
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/compared_measurement
+    description: The name of the measurement slot being compared (e.g., "total_lung_capacity",
+      "beat_frequency_hz"), matching the slot name in the referenced output records.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:compared_measurement
+    owner: ResponseComparison
+    domain_of:
+    - ResponseComparison
+    range: string
+  control_output:
+    name: control_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/control_output
+    description: Reference (by id) to the AssayOutputMeasurement record for the control
+      or baseline group.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:control_output
+    owner: ResponseComparison
+    domain_of:
+    - ResponseComparison
+    range: AssayOutputMeasurement
+    inlined: false
+  treated_output:
+    name: treated_output
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/treated_output
+    description: Reference (by id) to the AssayOutputMeasurement record for the treated
+      group.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:treated_output
+    owner: ResponseComparison
+    domain_of:
+    - ResponseComparison
+    range: AssayOutputMeasurement
+    inlined: false
+  change_type:
+    name: change_type
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/change_type
+    description: 'How the change is expressed: an absolute difference, a percent change,
+      a fold change, or a ratio. Papers report changes in different forms; this makes
+      the form explicit so values can be compared or converted downstream.'
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:change_type
+    owner: ResponseComparison
+    domain_of:
+    - ResponseComparison
+    range: ChangeTypeEnum
+  change_direction:
+    name: change_direction
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/change_direction
+    description: Direction of the change in the treated group relative to control.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:change_direction
+    owner: ResponseComparison
+    domain_of:
+    - ResponseComparison
+    range: ChangeDirectionEnum
+  change_value:
+    name: change_value
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/change_value
+    description: The size of the change, with its unit and (when reported) its uncertainty.
+      For a percent change the unit is percent; for an absolute difference it is the
+      measurement's unit; fold changes and ratios are dimensionless.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:change_value
+    owner: ResponseComparison
+    domain_of:
+    - ResponseComparison
+    range: QuantityValue
+    inlined: true
+    inlined_as_list: true
+  p_value:
+    name: p_value
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/p_value
+    description: Reported p-value for the comparison, when available.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:p_value
+    owner: ResponseComparison
+    domain_of:
+    - ResponseComparison
+    range: float
+  statistical_test:
+    name: statistical_test
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/statistical_test
+    description: Statistical test used for the comparison (e.g., t-test, ANOVA), when
+      reported.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:statistical_test
+    owner: ResponseComparison
+    domain_of:
+    - ResponseComparison
+    range: string
+  derivation:
+    name: derivation
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/derivation
+    description: Whether this change was reported directly in the paper or computed
+      afterwards from the extracted control and treated values.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:derivation
+    owner: ResponseComparison
+    domain_of:
+    - ResponseComparison
+    range: DerivationEnum
   beat_frequency_hz:
     name: beat_frequency_hz
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_microschemas/beat_frequency_hz
@@ -3741,7 +4088,11 @@ slots:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
     description: "The measurement results produced by this assay \u2014 the specified\
       \ output of a planned process (OBI). Contains the domain-specific measurement\
-      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued:\
+      \ one output record per experimental condition or group, so a control group\
+      \ and each treatment concentration in a dose-response series each get their\
+      \ own record (marked with experimental_group and linked to the exposure via\
+      \ measured_under)."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - OBI:0000299
@@ -3755,14 +4106,19 @@ slots:
     is_usage_slot: true
     usage_slot_name: has_specified_output
     range: CiliaryFunctionOutput
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
   ASLAssay_has_specified_output:
     name: ASLAssay_has_specified_output
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
     description: "The measurement results produced by this assay \u2014 the specified\
       \ output of a planned process (OBI). Contains the domain-specific measurement\
-      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued:\
+      \ one output record per experimental condition or group, so a control group\
+      \ and each treatment concentration in a dose-response series each get their\
+      \ own record (marked with experimental_group and linked to the exposure via\
+      \ measured_under)."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - OBI:0000299
@@ -3776,14 +4132,19 @@ slots:
     is_usage_slot: true
     usage_slot_name: has_specified_output
     range: ASLOutput
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
   MucociliaryClearanceAssay_has_specified_output:
     name: MucociliaryClearanceAssay_has_specified_output
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
     description: "The measurement results produced by this assay \u2014 the specified\
       \ output of a planned process (OBI). Contains the domain-specific measurement\
-      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued:\
+      \ one output record per experimental condition or group, so a control group\
+      \ and each treatment concentration in a dose-response series each get their\
+      \ own record (marked with experimental_group and linked to the exposure via\
+      \ measured_under)."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - OBI:0000299
@@ -3797,14 +4158,19 @@ slots:
     is_usage_slot: true
     usage_slot_name: has_specified_output
     range: MucociliaryClearanceOutput
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
   OxidativeStressAssay_has_specified_output:
     name: OxidativeStressAssay_has_specified_output
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
     description: "The measurement results produced by this assay \u2014 the specified\
       \ output of a planned process (OBI). Contains the domain-specific measurement\
-      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued:\
+      \ one output record per experimental condition or group, so a control group\
+      \ and each treatment concentration in a dose-response series each get their\
+      \ own record (marked with experimental_group and linked to the exposure via\
+      \ measured_under)."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - OBI:0000299
@@ -3818,14 +4184,19 @@ slots:
     is_usage_slot: true
     usage_slot_name: has_specified_output
     range: OxidativeStressOutput
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
   CFTRFunctionAssay_has_specified_output:
     name: CFTRFunctionAssay_has_specified_output
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
     description: "The measurement results produced by this assay \u2014 the specified\
       \ output of a planned process (OBI). Contains the domain-specific measurement\
-      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued:\
+      \ one output record per experimental condition or group, so a control group\
+      \ and each treatment concentration in a dose-response series each get their\
+      \ own record (marked with experimental_group and linked to the exposure via\
+      \ measured_under)."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - OBI:0000299
@@ -3839,14 +4210,19 @@ slots:
     is_usage_slot: true
     usage_slot_name: has_specified_output
     range: CFTRFunctionOutput
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
   EGFRSignalingAssay_has_specified_output:
     name: EGFRSignalingAssay_has_specified_output
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
     description: "The measurement results produced by this assay \u2014 the specified\
       \ output of a planned process (OBI). Contains the domain-specific measurement\
-      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued:\
+      \ one output record per experimental condition or group, so a control group\
+      \ and each treatment concentration in a dose-response series each get their\
+      \ own record (marked with experimental_group and linked to the exposure via\
+      \ measured_under)."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - OBI:0000299
@@ -3860,14 +4236,19 @@ slots:
     is_usage_slot: true
     usage_slot_name: has_specified_output
     range: EGFRSignalingOutput
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
   GobletCellAssay_has_specified_output:
     name: GobletCellAssay_has_specified_output
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
     description: "The measurement results produced by this assay \u2014 the specified\
       \ output of a planned process (OBI). Contains the domain-specific measurement\
-      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued:\
+      \ one output record per experimental condition or group, so a control group\
+      \ and each treatment concentration in a dose-response series each get their\
+      \ own record (marked with experimental_group and linked to the exposure via\
+      \ measured_under)."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - OBI:0000299
@@ -3881,8 +4262,9 @@ slots:
     is_usage_slot: true
     usage_slot_name: has_specified_output
     range: GobletCellOutput
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
   BALFSputumAssay_study_subject:
     name: BALFSputumAssay_study_subject
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/study_subject
@@ -3907,7 +4289,11 @@ slots:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
     description: "The measurement results produced by this assay \u2014 the specified\
       \ output of a planned process (OBI). Contains the domain-specific measurement\
-      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued:\
+      \ one output record per experimental condition or group, so a control group\
+      \ and each treatment concentration in a dose-response series each get their\
+      \ own record (marked with experimental_group and linked to the exposure via\
+      \ measured_under)."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - OBI:0000299
@@ -3921,8 +4307,9 @@ slots:
     is_usage_slot: true
     usage_slot_name: has_specified_output
     range: BALFSputumOutput
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
   LungFunctionAssay_study_subject:
     name: LungFunctionAssay_study_subject
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/study_subject
@@ -3947,7 +4334,11 @@ slots:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
     description: "The measurement results produced by this assay \u2014 the specified\
       \ output of a planned process (OBI). Contains the domain-specific measurement\
-      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued:\
+      \ one output record per experimental condition or group, so a control group\
+      \ and each treatment concentration in a dose-response series each get their\
+      \ own record (marked with experimental_group and linked to the exposure via\
+      \ measured_under)."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - OBI:0000299
@@ -3961,14 +4352,19 @@ slots:
     is_usage_slot: true
     usage_slot_name: has_specified_output
     range: LungFunctionOutput
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
   FoxJExpressionAssay_has_specified_output:
     name: FoxJExpressionAssay_has_specified_output
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
     description: "The measurement results produced by this assay \u2014 the specified\
       \ output of a planned process (OBI). Contains the domain-specific measurement\
-      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued:\
+      \ one output record per experimental condition or group, so a control group\
+      \ and each treatment concentration in a dose-response series each get their\
+      \ own record (marked with experimental_group and linked to the exposure via\
+      \ measured_under)."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - OBI:0000299
@@ -3982,14 +4378,19 @@ slots:
     is_usage_slot: true
     usage_slot_name: has_specified_output
     range: FoxJExpressionOutput
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
   GeneExpressionAssay_has_specified_output:
     name: GeneExpressionAssay_has_specified_output
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/has_specified_output
     description: "The measurement results produced by this assay \u2014 the specified\
       \ output of a planned process (OBI). Contains the domain-specific measurement\
-      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+      \ values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued:\
+      \ one output record per experimental condition or group, so a control group\
+      \ and each treatment concentration in a dose-response series each get their\
+      \ own record (marked with experimental_group and linked to the exposure via\
+      \ measured_under)."
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - OBI:0000299
@@ -4003,8 +4404,9 @@ slots:
     is_usage_slot: true
     usage_slot_name: has_specified_output
     range: GeneExpressionOutput
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
 classes:
   Container:
     name: Container
@@ -4018,7 +4420,9 @@ classes:
     from_schema: https://w3id.org/EHS-Data-Standards/soma
     slots:
     - key_events
+    - key_event_relationships
     - adverse_outcome_pathways
+    - response_comparisons
     - ciliary_function_assays
     - asl_assays
     - mcc_assays
@@ -4181,7 +4585,12 @@ classes:
       of a planned process. Each domain-specific assay class has a corresponding AssayOutputMeasurement
       subclass containing the named measurement slots for that assay type. This class
       represents the "output" in the Input/Process/Output model: what was measured
-      and what values were obtained.'
+      and what values were obtained.
+
+      One AssayOutputMeasurement record represents the results for ONE experimental
+      condition or group. When a study reports a control group and one or more treated
+      groups (or a dose-response series), each group gets its own output record, marked
+      with experimental_group and linked to the specific exposure condition via measured_under.'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - IAO:0000109
@@ -4191,6 +4600,8 @@ classes:
     - id
     - name
     - description
+    - experimental_group
+    - measured_under
     class_uri: assay_base:AssayOutputMeasurement
   StudySubject:
     name: StudySubject
@@ -4417,12 +4828,36 @@ classes:
     name: QuantityValue
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/QuantityValue
     description: A quantity with a numeric value and unit of measurement. Used for
-      all measurement values in assays.
+      all measurement values in assays. Optionally records what kind of central value
+      this is (mean, median, single measurement), the reported variability around
+      it (SD, SEM, confidence interval, range), and the number of subjects or replicates
+      behind it. Keeping variability separate from the central value lets downstream
+      analyses use each independently.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     slots:
     - value
     - unit
+    - central_tendency
+    - variability
+    - sample_size
     class_uri: assay_base:QuantityValue
+  Variability:
+    name: Variability
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/Variability
+    description: The reported spread or uncertainty around a measured value, kept
+      separate from the value itself because papers report it in different forms.
+      Use variability_type to say what was reported (standard deviation, standard
+      error, confidence interval, range) and either a single magnitude (value) or
+      bounds (lower_bound/upper_bound), with a unit when it differs from the measurement's
+      unit.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slots:
+    - variability_type
+    - value
+    - lower_bound
+    - upper_bound
+    - unit
+    class_uri: assay_base:Variability
   Unit:
     name: Unit
     id_prefixes:
@@ -4533,6 +4968,34 @@ classes:
     - exposure_duration
     - timing_post_exposure
     class_uri: assay_base:ExposureCondition
+  ResponseComparison:
+    name: ResponseComparison
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/ResponseComparison
+    description: 'An analysis-layer record describing the change in a measured response
+      between a control/baseline group and a treated group. Lives alongside the extracted
+      assay data rather than inside it: papers report changes in many forms (absolute
+      difference, percent change, fold change, ratio), and downstream models need
+      a single change value with an uncertainty measure. References the control and
+      treated output records by id, names the measurement being compared, and states
+      the kind, direction, and size of the change. Use derivation to record whether
+      the change was reported in the paper or computed afterwards.'
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    is_a: NamedThing
+    slots:
+    - id
+    - name
+    - description
+    - derived_from_assay
+    - compared_measurement
+    - control_output
+    - treated_output
+    - change_type
+    - change_direction
+    - change_value
+    - p_value
+    - statistical_test
+    - derivation
+    class_uri: assay_base:ResponseComparison
   CellularSystem:
     name: CellularSystem
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/CellularSystem
@@ -4706,6 +5169,8 @@ classes:
     - id
     - name
     - description
+    - experimental_group
+    - measured_under
     - beat_frequency_hz
     - active_area_percentage
     - cilia_length
@@ -4749,6 +5214,8 @@ classes:
     - id
     - name
     - description
+    - experimental_group
+    - measured_under
     - asl_height_um
     - periciliary_layer_depth
     - mucus_layer_thickness
@@ -4790,6 +5257,8 @@ classes:
     - id
     - name
     - description
+    - experimental_group
+    - measured_under
     - transport_rate
     - transport_directionality
     - mucus_layer_thickness
@@ -4833,6 +5302,8 @@ classes:
     - id
     - name
     - description
+    - experimental_group
+    - measured_under
     - reactive_oxygen_species
     - lipid_peroxidation
     - malondialdehyde_level
@@ -4889,6 +5360,8 @@ classes:
     - id
     - name
     - description
+    - experimental_group
+    - measured_under
     - cftr_chloride_secretion
     - cftr_forskolin_response
     - inhibitor_sensitive_current
@@ -4938,6 +5411,8 @@ classes:
     - id
     - name
     - description
+    - experimental_group
+    - measured_under
     - egfr_phosphorylation_y1068
     - egfr_phosphorylation_y1173
     - total_egfr_protein
@@ -4985,6 +5460,8 @@ classes:
     - id
     - name
     - description
+    - experimental_group
+    - measured_under
     - goblet_cell_count
     - goblet_cell_percentage
     - muc5ac_mrna_expression
@@ -5042,6 +5519,8 @@ classes:
     - id
     - name
     - description
+    - experimental_group
+    - measured_under
     - neutrophil_percentage
     - eosinophil_percentage
     - macrophage_percentage
@@ -5106,6 +5585,8 @@ classes:
     - id
     - name
     - description
+    - experimental_group
+    - measured_under
     - fev1
     - fvc
     - fev1_fvc_ratio
@@ -5162,6 +5643,8 @@ classes:
     - id
     - name
     - description
+    - experimental_group
+    - measured_under
     - foxj1_mrna_expression
     - foxj1_protein_expression
     - foxj1_positive_cell_percentage
@@ -5207,13 +5690,15 @@ classes:
     - id
     - name
     - description
+    - experimental_group
+    - measured_under
     - mrna_level
     - protein_level
     - percentage_positive_cells
     class_uri: assay_microschemas:GeneExpressionOutput
 metamodel_version: 1.7.0
 source_file: soma.yaml
-source_file_date: '2026-06-02T20:56:05'
-source_file_size: 6899
-generation_date: '2026-06-02T20:57:02'
+source_file_date: '2026-09-28T21:51:31'
+source_file_size: 7630
+generation_date: '2026-09-28T21:52:35'
 

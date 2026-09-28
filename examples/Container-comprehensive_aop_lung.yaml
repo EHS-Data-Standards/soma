@@ -18,6 +18,14 @@
 #   - Exposure: PM2.5 (10 ug/cm2) vs. clean air control
 #   - Timepoints: 4h (early), 24h (intermediate), 7d (late)
 #
+# How the results are recorded:
+#   Every output record names the experimental group it belongs to and the
+#   exposure condition it was measured under, so a value is never separated
+#   from the condition that produced it. Control and exposed groups are
+#   written as separate assay records here because each was run and reported
+#   separately; the change between them lives in response_comparisons at the
+#   end of this file, never inside the assay data.
+#
 # =============================================================================
 
 # =============================================================================
@@ -69,13 +77,25 @@ oxidative_stress_assays:
     name: "ROS level - Control 4h"
     description: "Intracellular ROS in control HBE cells at 4 hours"
     has_specified_output:
-      id: "OX:001-output"
-      name: "OX:001 measurement results"
-      reactive_oxygen_species:
-        value: "1.0"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "OX:001-output-control"
+        name: "Clean air control ROS measurement"
+        experimental_group: control
+        measured_under: "EXPOSURE:aop-clean-air-4h"
+        reactive_oxygen_species:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 6
+    has_exposure_condition:
+      - id: "EXPOSURE:aop-clean-air-4h"
+        name: "Clean air control, 4 hours"
+        exposure_duration:
+          value: "4"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     ros_probe_type: "DCFDA"
     assay_date: "2024-01-15"
     informs_on_key_event:
@@ -108,13 +128,17 @@ oxidative_stress_assays:
     name: "ROS level - PM2.5 4h"
     description: "Intracellular ROS in PM2.5-exposed HBE cells at 4 hours"
     has_specified_output:
-      id: "OX:002-output"
-      name: "OX:002 measurement results"
-      reactive_oxygen_species:
-        value: "2.8"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "OX:002-output-pm25"
+        name: "PM2.5 4h ROS measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:pm25-4h"
+        reactive_oxygen_species:
+          value: "2.8"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 6
     ros_probe_type: "DCFDA"
     assay_date: "2024-01-15"
     informs_on_key_event:
@@ -160,13 +184,17 @@ oxidative_stress_assays:
     name: "MDA level - PM2.5 24h"
     description: "Malondialdehyde (lipid peroxidation marker) after PM2.5 exposure"
     has_specified_output:
-      id: "OX:003-output"
-      name: "OX:003 measurement results"
-      malondialdehyde_level:
-        value: "1.9"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "OX:003-output-pm25"
+        name: "PM2.5 24h MDA measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:pm25-24h"
+        malondialdehyde_level:
+          value: "1.9"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 6
     assay_date: "2024-01-16"
     has_exposure_condition:
       - id: "EXPOSURE:pm25-24h"
@@ -220,13 +248,25 @@ egfr_signaling_assays:
     name: "pEGFR Y1068 - Control 4h"
     description: "EGFR phosphorylation at Y1068 in control cells at 4 hours"
     has_specified_output:
-      id: "EGFR:001-output"
-      name: "EGFR:001 measurement results"
-      egfr_phosphorylation_y1068:
-        value: "1.0"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "EGFR:001-output-control"
+        name: "Clean air control pEGFR measurement"
+        experimental_group: control
+        measured_under: "EXPOSURE:aop-clean-air-4h"
+        egfr_phosphorylation_y1068:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 6
+    has_exposure_condition:
+      - id: "EXPOSURE:aop-clean-air-4h"
+        name: "Clean air control, 4 hours"
+        exposure_duration:
+          value: "4"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     normalization_reference: "beta-actin"
     phosphorylation_site: "Y1068"
     assay_date: "2024-01-15"
@@ -260,13 +300,33 @@ egfr_signaling_assays:
     name: "pEGFR Y1068 - PM2.5 4h"
     description: "EGFR phosphorylation at Y1068 after PM2.5 exposure at 4 hours"
     has_specified_output:
-      id: "EGFR:002-output"
-      name: "EGFR:002 measurement results"
-      egfr_phosphorylation_y1068:
-        value: "3.5"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "EGFR:002-output-pm25"
+        name: "PM2.5 4h pEGFR measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:pm25-4h"
+        egfr_phosphorylation_y1068:
+          value: "3.5"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 6
+    has_exposure_condition:
+      - id: "EXPOSURE:pm25-4h"
+        name: "PM2.5 10 ug/cm2 for 4 hours"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "4"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     normalization_reference: "beta-actin"
     phosphorylation_site: "Y1068"
     assay_date: "2024-01-15"
@@ -299,13 +359,33 @@ egfr_signaling_assays:
     name: "Total EGFR - PM2.5 4h"
     description: "Total EGFR protein expression (loading control)"
     has_specified_output:
-      id: "EGFR:003-output"
-      name: "EGFR:003 measurement results"
-      total_egfr_protein:
-        value: "1.05"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "EGFR:003-output-pm25"
+        name: "PM2.5 4h total EGFR measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:pm25-4h"
+        total_egfr_protein:
+          value: "1.05"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 6
+    has_exposure_condition:
+      - id: "EXPOSURE:pm25-4h"
+        name: "PM2.5 10 ug/cm2 for 4 hours"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "4"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     assay_date: "2024-01-15"
     study_subject:
       subject_type: CellularSystem
@@ -333,13 +413,25 @@ goblet_cell_assays:
     name: "MUC5AC mRNA - Control 24h"
     description: "MUC5AC mRNA expression in control cells at 24 hours"
     has_specified_output:
-      id: "GCM:001-output"
-      name: "GCM:001 measurement results"
-      muc5ac_mrna_expression:
-        value: "1.0"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "GCM:001-output-control"
+        name: "Clean air control MUC5AC mRNA measurement"
+        experimental_group: control
+        measured_under: "EXPOSURE:aop-clean-air-24h"
+        muc5ac_mrna_expression:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 6
+    has_exposure_condition:
+      - id: "EXPOSURE:aop-clean-air-24h"
+        name: "Clean air control, 24 hours"
+        exposure_duration:
+          value: "24"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     assay_date: "2024-01-16"
     informs_on_key_event:
       id: "KE:ke2-goblet-hyperplasia"
@@ -368,13 +460,33 @@ goblet_cell_assays:
     name: "MUC5AC mRNA - PM2.5 24h"
     description: "MUC5AC mRNA expression after PM2.5 exposure at 24 hours"
     has_specified_output:
-      id: "GCM:002-output"
-      name: "GCM:002 measurement results"
-      muc5ac_mrna_expression:
-        value: "4.2"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "GCM:002-output-pm25"
+        name: "PM2.5 24h MUC5AC mRNA measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:pm25-24h"
+        muc5ac_mrna_expression:
+          value: "4.2"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+          central_tendency: mean
+          sample_size: 6
+    has_exposure_condition:
+      - id: "EXPOSURE:pm25-24h"
+        name: "PM2.5 10 ug/cm2 for 24 hours"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "24"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     assay_date: "2024-01-16"
     informs_on_key_event:
       id: "KE:ke2-goblet-hyperplasia"
@@ -402,13 +514,33 @@ goblet_cell_assays:
     name: "Goblet cell percentage - PM2.5 7d"
     description: "Percentage of goblet cells after 7-day PM2.5 exposure"
     has_specified_output:
-      id: "GCM:003-output"
-      name: "GCM:003 measurement results"
-      goblet_cell_percentage:
-        value: "32"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
+      - id: "GCM:003-output-pm25"
+        name: "PM2.5 7d goblet cell percentage measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:pm25-7d"
+        goblet_cell_percentage:
+          value: "32"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 6
+    has_exposure_condition:
+      - id: "EXPOSURE:pm25-7d"
+        name: "PM2.5 10 ug/cm2 daily for 7 days"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "7"
+          unit:
+            id: "UO:0000033"
+            name: "day"
     assay_date: "2024-01-22"
     study_subject:
       subject_type: CellularSystem
@@ -431,13 +563,33 @@ goblet_cell_assays:
     name: "Mucus viscosity - PM2.5 7d"
     description: "Mucus viscosity after 7-day PM2.5 exposure showing hypersecretion phenotype"
     has_specified_output:
-      id: "GCM:004-output"
-      name: "GCM:004 measurement results"
-      mucus_viscosity:
-        value: "185"
-        unit:
-          id: "UO:0000019"
-          name: "centipoise"
+      - id: "GCM:004-output-pm25"
+        name: "PM2.5 7d mucus viscosity measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:pm25-7d"
+        mucus_viscosity:
+          value: "185"
+          unit:
+            id: "UO:0000019"
+            name: "centipoise"
+          central_tendency: mean
+          sample_size: 6
+    has_exposure_condition:
+      - id: "EXPOSURE:pm25-7d"
+        name: "PM2.5 10 ug/cm2 daily for 7 days"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "7"
+          unit:
+            id: "UO:0000033"
+            name: "day"
     assay_date: "2024-01-22"
     study_subject:
       subject_type: CellularSystem
@@ -465,13 +617,20 @@ ciliary_function_assays:
     name: "CBF - Control baseline"
     description: "Ciliary beat frequency in control HBE cells at baseline"
     has_specified_output:
-      id: "CILIARY:001-output"
-      name: "CILIARY:001 measurement results"
-      beat_frequency_hz:
-        value: "12.5"
-        unit:
-          id: "UO:0000106"
-          name: "hertz"
+      - id: "CILIARY:001-output-control"
+        name: "Clean air control CBF measurement"
+        experimental_group: control
+        measured_under: "EXPOSURE:aop-clean-air-baseline"
+        beat_frequency_hz:
+          value: "12.5"
+          unit:
+            id: "UO:0000106"
+            name: "hertz"
+          central_tendency: mean
+          sample_size: 6
+    has_exposure_condition:
+      - id: "EXPOSURE:aop-clean-air-baseline"
+        name: "Clean air control, baseline"
     assay_date: "2024-01-15"
     informs_on_key_event:
       id: "KE:ke3-impaired-ciliary"
@@ -560,13 +719,20 @@ ciliary_function_assays:
     name: "CBF - PM2.5 + ozone 24h"
     description: "Ciliary beat frequency after PM2.5 and ozone co-exposure at 24 hours"
     has_specified_output:
-      id: "CILIARY:002-output"
-      name: "CILIARY:002 measurement results"
-      beat_frequency_hz:
-        value: "9.8"
-        unit:
-          id: "UO:0000106"
-          name: "hertz"
+      # Co-exposure: the assay lists both agents as exposure conditions, but
+      # measured_under is single-valued, so it names the primary agent. The
+      # full co-exposure is what has_exposure_condition below describes.
+      - id: "CILIARY:002-output-pm25-ozone"
+        name: "PM2.5 + ozone co-exposure CBF measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:pm25-24h"
+        beat_frequency_hz:
+          value: "9.8"
+          unit:
+            id: "UO:0000106"
+            name: "hertz"
+          central_tendency: mean
+          sample_size: 6
     assay_date: "2024-01-16"
     has_exposure_condition:
       - id: "EXPOSURE:pm25-24h"
@@ -630,13 +796,33 @@ ciliary_function_assays:
     name: "CBF - PM2.5 7d"
     description: "Ciliary beat frequency after 7-day PM2.5 exposure"
     has_specified_output:
-      id: "CILIARY:003-output"
-      name: "CILIARY:003 measurement results"
-      beat_frequency_hz:
-        value: "7.2"
-        unit:
-          id: "UO:0000106"
-          name: "hertz"
+      - id: "CILIARY:003-output-pm25"
+        name: "PM2.5 7d CBF measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:pm25-7d"
+        beat_frequency_hz:
+          value: "7.2"
+          unit:
+            id: "UO:0000106"
+            name: "hertz"
+          central_tendency: mean
+          sample_size: 6
+    has_exposure_condition:
+      - id: "EXPOSURE:pm25-7d"
+        name: "PM2.5 10 ug/cm2 daily for 7 days"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "7"
+          unit:
+            id: "UO:0000033"
+            name: "day"
     assay_date: "2024-01-22"
     informs_on_key_event:
       id: "KE:ke3-impaired-ciliary"
@@ -669,13 +855,33 @@ ciliary_function_assays:
     name: "Ciliated cell percentage - PM2.5 7d"
     description: "Percentage of ciliated cells after 7-day PM2.5 exposure"
     has_specified_output:
-      id: "CILIARY:004-output"
-      name: "CILIARY:004 measurement results"
-      percentage_ciliated_cells:
-        value: "45"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
+      - id: "CILIARY:004-output-pm25"
+        name: "PM2.5 7d ciliated cell percentage measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:pm25-7d"
+        percentage_ciliated_cells:
+          value: "45"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 6
+    has_exposure_condition:
+      - id: "EXPOSURE:pm25-7d"
+        name: "PM2.5 10 ug/cm2 daily for 7 days"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "7"
+          unit:
+            id: "UO:0000033"
+            name: "day"
     assay_date: "2024-01-22"
     study_subject:
       subject_type: CellularSystem
@@ -708,14 +914,21 @@ mcc_assays:
     name: "MCT rate - Control baseline"
     description: "Mucociliary transport rate in control HBE cells at baseline"
     has_specified_output:
-      id: "MCC:001-output"
-      name: "MCC:001 measurement results"
-      transport_rate:
-        value: "52"
-        unit:
-          id: "UO:0000103"
-          name: "micrometer per second"
-      transport_directionality: normal
+      - id: "MCC:001-output-control"
+        name: "Clean air control transport rate measurement"
+        experimental_group: control
+        measured_under: "EXPOSURE:aop-clean-air-baseline"
+        transport_rate:
+          value: "52"
+          unit:
+            id: "UO:0000103"
+            name: "micrometer per second"
+          central_tendency: mean
+          sample_size: 6
+        transport_directionality: normal
+    has_exposure_condition:
+      - id: "EXPOSURE:aop-clean-air-baseline"
+        name: "Clean air control, baseline"
     assay_date: "2024-01-15"
     informs_on_key_event:
       id: "KE:ke3-impaired-mcc"
@@ -749,14 +962,34 @@ mcc_assays:
     name: "MCT rate - PM2.5 24h"
     description: "Mucociliary transport rate after PM2.5 exposure at 24 hours"
     has_specified_output:
-      id: "MCC:002-output"
-      name: "MCC:002 measurement results"
-      transport_rate:
-        value: "38"
-        unit:
-          id: "UO:0000103"
-          name: "micrometer per second"
-      transport_directionality: normal
+      - id: "MCC:002-output-pm25"
+        name: "PM2.5 24h transport rate measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:pm25-24h"
+        transport_rate:
+          value: "38"
+          unit:
+            id: "UO:0000103"
+            name: "micrometer per second"
+          central_tendency: mean
+          sample_size: 6
+        transport_directionality: normal
+    has_exposure_condition:
+      - id: "EXPOSURE:pm25-24h"
+        name: "PM2.5 10 ug/cm2 for 24 hours"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "24"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     assay_date: "2024-01-16"
     informs_on_key_event:
       id: "KE:ke3-impaired-mcc"
@@ -785,14 +1018,34 @@ mcc_assays:
     name: "MCT rate - PM2.5 7d"
     description: "Mucociliary transport rate after 7-day PM2.5 exposure"
     has_specified_output:
-      id: "MCC:003-output"
-      name: "MCC:003 measurement results"
-      transport_rate:
-        value: "18"
-        unit:
-          id: "UO:0000103"
-          name: "micrometer per second"
-      transport_directionality: variable
+      - id: "MCC:003-output-pm25"
+        name: "PM2.5 7d transport rate measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:pm25-7d"
+        transport_rate:
+          value: "18"
+          unit:
+            id: "UO:0000103"
+            name: "micrometer per second"
+          central_tendency: mean
+          sample_size: 6
+        transport_directionality: variable
+    has_exposure_condition:
+      - id: "EXPOSURE:pm25-7d"
+        name: "PM2.5 10 ug/cm2 daily for 7 days"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "7"
+          unit:
+            id: "UO:0000033"
+            name: "day"
     assay_date: "2024-01-22"
     informs_on_key_event:
       id: "KE:ke3-impaired-mcc"
@@ -820,13 +1073,33 @@ mcc_assays:
     name: "Active transport percentage - PM2.5 7d"
     description: "Percentage of surface with active mucociliary transport after 7-day PM2.5 exposure"
     has_specified_output:
-      id: "MCC:004-output"
-      name: "MCC:004 measurement results"
-      percentage_active_transport:
-        value: "35"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
+      - id: "MCC:004-output-pm25"
+        name: "PM2.5 7d active transport percentage measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:pm25-7d"
+        percentage_active_transport:
+          value: "35"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+          central_tendency: mean
+          sample_size: 6
+    has_exposure_condition:
+      - id: "EXPOSURE:pm25-7d"
+        name: "PM2.5 10 ug/cm2 daily for 7 days"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "10"
+          unit:
+            id: "UO:0000274"
+            name: "microgram per square centimeter"
+        exposure_duration:
+          value: "7"
+          unit:
+            id: "UO:0000033"
+            name: "day"
     assay_date: "2024-01-22"
     study_subject:
       subject_type: CellularSystem
@@ -854,13 +1127,28 @@ lung_function_assays:
     name: "FEV1 - Subject 1 baseline"
     description: "FEV1 in subject from high PM2.5 exposure area at baseline"
     has_specified_output:
-      id: "LF:001-output"
-      name: "LF:001 measurement results"
-      fev1:
-        value: "78"
-        unit:
-          id: "UO:0000187"
-          name: "percent predicted"
+      - id: "LF:001-output-baseline"
+        name: "Enrollment spirometry"
+        experimental_group: baseline
+        measured_under: "EXPOSURE:aop-ambient-pm25-baseline"
+        fev1:
+          value: "78"
+          unit:
+            id: "UO:0000187"
+            name: "percent predicted"
+          central_tendency: single_value
+          sample_size: 1
+    has_exposure_condition:
+      - id: "EXPOSURE:aop-ambient-pm25-baseline"
+        name: "Residential ambient PM2.5, 15 years at enrollment"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_duration:
+          value: "15"
+          unit:
+            id: "UO:0000036"
+            name: "year"
     reference_dataset: "GLI-2012"
     assay_date: "2024-02-01"
     informs_on_key_event:
@@ -901,13 +1189,28 @@ lung_function_assays:
     name: "FEV1 - Subject 1 1-year follow-up"
     description: "FEV1 decline after 1 year continued PM2.5 exposure"
     has_specified_output:
-      id: "LF:002-output"
-      name: "LF:002 measurement results"
-      fev1:
-        value: "74"
-        unit:
-          id: "UO:0000187"
-          name: "percent predicted"
+      - id: "LF:002-output-followup"
+        name: "One-year follow-up spirometry"
+        experimental_group: treated
+        measured_under: "EXPOSURE:aop-ambient-pm25-followup"
+        fev1:
+          value: "74"
+          unit:
+            id: "UO:0000187"
+            name: "percent predicted"
+          central_tendency: single_value
+          sample_size: 1
+    has_exposure_condition:
+      - id: "EXPOSURE:aop-ambient-pm25-followup"
+        name: "Residential ambient PM2.5, 16 years at 1-year follow-up"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_duration:
+          value: "16"
+          unit:
+            id: "UO:0000036"
+            name: "year"
     reference_dataset: "GLI-2012"
     assay_date: "2025-02-01"
     study_subject:
@@ -935,13 +1238,28 @@ lung_function_assays:
     name: "FEV1/FVC ratio - Subject 1"
     description: "FEV1/FVC ratio indicating obstructive pattern"
     has_specified_output:
-      id: "LF:003-output"
-      name: "LF:003 measurement results"
-      fev1_fvc_ratio:
-        value: "0.68"
-        unit:
-          id: "UO:0000196"
-          name: "ratio"
+      - id: "LF:003-output-followup"
+        name: "One-year follow-up FEV1/FVC ratio"
+        experimental_group: treated
+        measured_under: "EXPOSURE:aop-ambient-pm25-followup"
+        fev1_fvc_ratio:
+          value: "0.68"
+          unit:
+            id: "UO:0000196"
+            name: "ratio"
+          central_tendency: single_value
+          sample_size: 1
+    has_exposure_condition:
+      - id: "EXPOSURE:aop-ambient-pm25-followup"
+        name: "Residential ambient PM2.5, 16 years at 1-year follow-up"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_duration:
+          value: "16"
+          unit:
+            id: "UO:0000036"
+            name: "year"
     assay_date: "2025-02-01"
     study_subject:
       subject_type: InVivoSubject
@@ -967,13 +1285,28 @@ lung_function_assays:
     name: "FEV1 decline rate - Subject 1"
     description: "Rate of FEV1 decline over 1 year (accelerated compared to normal aging)"
     has_specified_output:
-      id: "LF:004-output"
-      name: "LF:004 measurement results"
-      decline_rate:
-        value: "65"
-        unit:
-          id: "UO:0000098"
-          name: "milliliter per year"
+      - id: "LF:004-output-followup"
+        name: "One-year FEV1 decline rate"
+        experimental_group: treated
+        measured_under: "EXPOSURE:aop-ambient-pm25-followup"
+        decline_rate:
+          value: "65"
+          unit:
+            id: "UO:0000098"
+            name: "milliliter per year"
+          central_tendency: single_value
+          sample_size: 1
+    has_exposure_condition:
+      - id: "EXPOSURE:aop-ambient-pm25-followup"
+        name: "Residential ambient PM2.5, 16 years at 1-year follow-up"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_duration:
+          value: "16"
+          unit:
+            id: "UO:0000036"
+            name: "year"
     assay_date: "2025-02-01"
     study_subject:
       subject_type: InVivoSubject
@@ -994,3 +1327,206 @@ lung_function_assays:
         id: "PROTOCOL:006"
         name: "Pre- and post-bronchodilator spirometry"
         spirometry_standard: "ATS/ERS 2019"
+
+# =============================================================================
+# RESPONSE COMPARISONS (Analysis Layer)
+# =============================================================================
+#
+# Every step of this pathway compares a clean-air control against a PM2.5
+# exposure. The control and exposed groups are written as separate assay
+# records here because each was run and reported separately, so each
+# comparison references one output record from each assay - the change itself
+# is never stored inside the assay data.
+
+response_comparisons:
+  # MIE: oxidative stress
+  - id: "COMP:aop-ros-4h"
+    name: "Change in ROS, PM2.5 vs clean air (4h)"
+    description: "Cross-assay comparison between the control assay OX:001 and the exposed assay OX:002."
+    derived_from_assay: "OX:002"
+    compared_measurement: "reactive_oxygen_species"
+    control_output: "OX:001-output-control"
+    treated_output: "OX:002-output-pm25"
+    change_type: fold_change
+    change_direction: increased
+    change_value:
+      value: "2.8"
+      unit:
+        id: "STATO:0000169"
+        name: "fold change"
+    p_value: 0.001
+    statistical_test: "two-sample t-test"
+    derivation: reported_in_paper
+
+  # KE1: EGFR activation
+  - id: "COMP:aop-pegfr-4h"
+    name: "Change in EGFR Y1068 phosphorylation, PM2.5 vs clean air (4h)"
+    description: "Cross-assay comparison between the control assay EGFR:001 and the exposed assay EGFR:002."
+    derived_from_assay: "EGFR:002"
+    compared_measurement: "egfr_phosphorylation_y1068"
+    control_output: "EGFR:001-output-control"
+    treated_output: "EGFR:002-output-pm25"
+    change_type: fold_change
+    change_direction: increased
+    change_value:
+      value: "3.5"
+      unit:
+        id: "STATO:0000169"
+        name: "fold change"
+    p_value: 0.002
+    statistical_test: "two-sample t-test"
+    derivation: reported_in_paper
+
+  # KE2: goblet cell hyperplasia
+  - id: "COMP:aop-muc5ac-24h"
+    name: "Change in MUC5AC mRNA, PM2.5 vs clean air (24h)"
+    description: "Cross-assay comparison between the control assay GCM:001 and the exposed assay GCM:002."
+    derived_from_assay: "GCM:002"
+    compared_measurement: "muc5ac_mrna_expression"
+    control_output: "GCM:001-output-control"
+    treated_output: "GCM:002-output-pm25"
+    change_type: fold_change
+    change_direction: increased
+    change_value:
+      value: "4.2"
+      unit:
+        id: "STATO:0000169"
+        name: "fold change"
+    p_value: 0.001
+    statistical_test: "two-sample t-test"
+    derivation: reported_in_paper
+
+  # KE3 (part 1): ciliary function
+  - id: "COMP:aop-cbf-7d"
+    name: "Change in ciliary beat frequency, PM2.5 7d vs clean air baseline"
+    description: "Cross-assay comparison between the control assay CILIARY:001 and the exposed assay CILIARY:003."
+    derived_from_assay: "CILIARY:003"
+    compared_measurement: "beat_frequency_hz"
+    control_output: "CILIARY:001-output-control"
+    treated_output: "CILIARY:003-output-pm25"
+    change_type: absolute_difference
+    change_direction: decreased
+    change_value:
+      value: "-5.3"
+      unit:
+        id: "UO:0000106"
+        name: "hertz"
+    p_value: 0.001
+    statistical_test: "two-sample t-test"
+    derivation: computed
+
+  # KE3 (part 2): mucociliary clearance
+  - id: "COMP:aop-mct-7d"
+    name: "Change in mucociliary transport rate, PM2.5 7d vs clean air baseline"
+    description: "Cross-assay comparison between the control assay MCC:001 and the exposed assay MCC:003."
+    derived_from_assay: "MCC:003"
+    compared_measurement: "transport_rate"
+    control_output: "MCC:001-output-control"
+    treated_output: "MCC:003-output-pm25"
+    change_type: percent_change
+    change_direction: decreased
+    change_value:
+      value: "-65.4"
+      unit:
+        id: "UO:0000187"
+        name: "percent"
+    p_value: 0.001
+    statistical_test: "two-sample t-test"
+    derivation: computed
+
+  # AO: lung function decline
+  - id: "COMP:aop-fev1-1yr"
+    name: "Change in FEV1 over 1 year of continued ambient PM2.5 exposure"
+    description: "Within-subject comparison: LF:001 is the enrollment measurement and LF:002 the 1-year follow-up for the same subject."
+    derived_from_assay: "LF:002"
+    compared_measurement: "fev1"
+    control_output: "LF:001-output-baseline"
+    treated_output: "LF:002-output-followup"
+    change_type: absolute_difference
+    change_direction: decreased
+    change_value:
+      value: "-4"
+      unit:
+        id: "UO:0000187"
+        name: "percent predicted"
+    derivation: computed
+
+# =============================================================================
+# KEY EVENT RELATIONSHIPS - the topology of the pathway described above
+# =============================================================================
+
+key_event_relationships:
+  - id: "KER:aop-oxidative-stress-to-egfr"
+    name: "Increased oxidative stress leads to EGFR activation"
+    upstream_event:
+      id: "KE:mie-oxidative-stress"
+      name: "Increased oxidative stress"
+      biological_action: increased
+      level_of_biological_organization: molecular
+    downstream_event:
+      id: "KE:ke1-egfr-activation"
+      name: "EGFR activation"
+      biological_action: activated
+      level_of_biological_organization: molecular
+    relationship_type: "directly leads to"
+    evidence_support: strong
+
+  - id: "KER:aop-egfr-to-goblet"
+    name: "EGFR activation leads to goblet cell hyperplasia"
+    upstream_event:
+      id: "KE:ke1-egfr-activation"
+      name: "EGFR activation"
+      biological_action: activated
+      level_of_biological_organization: molecular
+    downstream_event:
+      id: "KE:ke2-goblet-hyperplasia"
+      name: "Goblet cell hyperplasia"
+      biological_action: increased
+      level_of_biological_organization: cellular
+    relationship_type: "directly leads to"
+    evidence_support: strong
+
+  - id: "KER:aop-goblet-to-ciliary"
+    name: "Goblet cell hyperplasia leads to decreased ciliary function"
+    upstream_event:
+      id: "KE:ke2-goblet-hyperplasia"
+      name: "Goblet cell hyperplasia"
+      biological_action: increased
+      level_of_biological_organization: cellular
+    downstream_event:
+      id: "KE:ke3-impaired-ciliary"
+      name: "Decreased ciliary function"
+      biological_action: decreased
+      level_of_biological_organization: cellular
+    relationship_type: "indirectly leads to"
+    evidence_support: moderate
+
+  - id: "KER:aop-ciliary-to-mcc"
+    name: "Decreased ciliary function leads to impaired mucociliary clearance"
+    upstream_event:
+      id: "KE:ke3-impaired-ciliary"
+      name: "Decreased ciliary function"
+      biological_action: decreased
+      level_of_biological_organization: cellular
+    downstream_event:
+      id: "KE:ke3-impaired-mcc"
+      name: "Impaired mucociliary clearance"
+      biological_action: impaired
+      level_of_biological_organization: tissue
+    relationship_type: "directly leads to"
+    evidence_support: strong
+
+  - id: "KER:aop-mcc-to-lung-function"
+    name: "Impaired mucociliary clearance leads to decreased lung function"
+    upstream_event:
+      id: "KE:ke3-impaired-mcc"
+      name: "Impaired mucociliary clearance"
+      biological_action: impaired
+      level_of_biological_organization: tissue
+    downstream_event:
+      id: "KE:ao-decreased-lung-function"
+      name: "Decreased lung function"
+      biological_action: decreased
+      level_of_biological_organization: organ
+    relationship_type: "directly leads to"
+    evidence_support: moderate

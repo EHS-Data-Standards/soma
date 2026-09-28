@@ -56,15 +56,14 @@
                     ]
                 },
                 "has_specified_output": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/ASLOutput"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
+                    "items": {
+                        "$ref": "#/$defs/ASLOutput"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for the entity.",
@@ -151,12 +150,23 @@
                         "null"
                     ]
                 },
+                "experimental_group": {
+                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "type": "string"
                 },
                 "ion_composition": {
                     "description": "Ionic composition (Cl-, Na+, K+). TIER 3 - not critical for comparison but relevant for mechanism.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "measured_under": {
+                    "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
                     "type": [
                         "string",
                         "null"
@@ -431,15 +441,14 @@
                     ]
                 },
                 "has_specified_output": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/BALFSputumOutput"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
+                    "items": {
+                        "$ref": "#/$defs/BALFSputumOutput"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for the entity.",
@@ -558,6 +567,10 @@
                     ],
                     "description": "Eosinophil percentage in BALF/sputum."
                 },
+                "experimental_group": {
+                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "type": "string"
@@ -616,6 +629,13 @@
                         }
                     ],
                     "description": "Macrophage percentage in BALF/sputum."
+                },
+                "measured_under": {
+                    "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "A human-readable name for the entity.",
@@ -758,15 +778,14 @@
                     ]
                 },
                 "has_specified_output": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/CFTRFunctionOutput"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
+                    "items": {
+                        "$ref": "#/$defs/CFTRFunctionOutput"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for the entity.",
@@ -878,6 +897,10 @@
                         "null"
                     ]
                 },
+                "experimental_group": {
+                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "type": "string"
@@ -892,6 +915,13 @@
                         }
                     ],
                     "description": "Inhibitor-sensitive current measurement."
+                },
+                "measured_under": {
+                    "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "A human-readable name for the entity.",
@@ -1398,6 +1428,38 @@
             "title": "CellularSystem",
             "type": "object"
         },
+        "CentralTendencyEnum": {
+            "description": "What kind of central value a reported number represents.",
+            "enum": [
+                "mean",
+                "median",
+                "geometric_mean",
+                "single_value"
+            ],
+            "title": "CentralTendencyEnum",
+            "type": "string"
+        },
+        "ChangeDirectionEnum": {
+            "description": "Direction of a change in the treated group relative to control.",
+            "enum": [
+                "increased",
+                "decreased",
+                "no_change"
+            ],
+            "title": "ChangeDirectionEnum",
+            "type": "string"
+        },
+        "ChangeTypeEnum": {
+            "description": "Forms in which a change relative to control can be expressed.",
+            "enum": [
+                "absolute_difference",
+                "percent_change",
+                "fold_change",
+                "ratio"
+            ],
+            "title": "ChangeTypeEnum",
+            "type": "string"
+        },
         "ChemicalEntityReference": {
             "additionalProperties": false,
             "description": "A reference to a chemical entity from CHEBI or an exposure concept from ECTO.",
@@ -1491,15 +1553,14 @@
                     ]
                 },
                 "has_specified_output": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/CiliaryFunctionOutput"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
+                    "items": {
+                        "$ref": "#/$defs/CiliaryFunctionOutput"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for the entity.",
@@ -1632,9 +1693,20 @@
                         "null"
                     ]
                 },
+                "experimental_group": {
+                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "type": "string"
+                },
+                "measured_under": {
+                    "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "A human-readable name for the entity.",
@@ -1767,6 +1839,16 @@
                         "null"
                     ]
                 },
+                "key_event_relationships": {
+                    "description": "The key event relationships connecting events in this AOP.",
+                    "items": {
+                        "$ref": "#/$defs/KeyEventRelationship"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "key_events": {
                     "description": "The key events in this AOP (intermediate events between MIE and AO).",
                     "items": {
@@ -1832,10 +1914,29 @@
                         "array",
                         "null"
                     ]
+                },
+                "response_comparisons": {
+                    "description": "Collection of analysis-layer records comparing treated responses to control/baseline responses. Kept separate from the extracted assay data: each comparison references the control and treated output records and states the kind, direction, and size of the change with its uncertainty.",
+                    "items": {
+                        "$ref": "#/$defs/ResponseComparison"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 }
             },
             "title": "Container",
             "type": "object"
+        },
+        "DerivationEnum": {
+            "description": "Provenance of an analysis-layer value.",
+            "enum": [
+                "reported_in_paper",
+                "computed"
+            ],
+            "title": "DerivationEnum",
+            "type": "string"
         },
         "DirectionalityEnum": {
             "description": "Directionality of mucociliary transport.",
@@ -1904,15 +2005,14 @@
                     ]
                 },
                 "has_specified_output": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/EGFRSignalingOutput"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
+                    "items": {
+                        "$ref": "#/$defs/EGFRSignalingOutput"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for the entity.",
@@ -2064,9 +2164,20 @@
                     ],
                     "description": "ERK phosphorylation level. TIER 2."
                 },
+                "experimental_group": {
+                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "type": "string"
+                },
+                "measured_under": {
+                    "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "A human-readable name for the entity.",
@@ -2112,6 +2223,19 @@
                 "not_specified"
             ],
             "title": "EvidenceSupportEnum",
+            "type": "string"
+        },
+        "ExperimentalGroupEnum": {
+            "description": "The role of an experimental group in a study design, used to mark each per-condition output record.",
+            "enum": [
+                "control",
+                "vehicle_control",
+                "baseline",
+                "treated",
+                "recovery",
+                "sham"
+            ],
+            "title": "ExperimentalGroupEnum",
             "type": "string"
         },
         "ExposureCondition": {
@@ -2236,15 +2360,14 @@
                     ]
                 },
                 "has_specified_output": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/FoxJExpressionOutput"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
+                    "items": {
+                        "$ref": "#/$defs/FoxJExpressionOutput"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for the entity.",
@@ -2309,6 +2432,10 @@
                         "null"
                     ]
                 },
+                "experimental_group": {
+                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
+                },
                 "foxj1_mrna_expression": {
                     "anyOf": [
                         {
@@ -2356,6 +2483,13 @@
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "type": "string"
+                },
+                "measured_under": {
+                    "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "A human-readable name for the entity.",
@@ -2434,15 +2568,14 @@
                     ]
                 },
                 "has_specified_output": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/GeneExpressionOutput"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
+                    "items": {
+                        "$ref": "#/$defs/GeneExpressionOutput"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for the entity.",
@@ -2521,9 +2654,20 @@
                         "null"
                     ]
                 },
+                "experimental_group": {
+                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "type": "string"
+                },
+                "measured_under": {
+                    "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "mrna_level": {
                     "anyOf": [
@@ -2628,15 +2772,14 @@
                     ]
                 },
                 "has_specified_output": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/GobletCellOutput"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
+                    "items": {
+                        "$ref": "#/$defs/GobletCellOutput"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for the entity.",
@@ -2701,6 +2844,10 @@
                         "null"
                     ]
                 },
+                "experimental_group": {
+                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
+                },
                 "goblet_cell_count": {
                     "anyOf": [
                         {
@@ -2737,6 +2884,13 @@
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "type": "string"
+                },
+                "measured_under": {
+                    "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "muc5ac_mrna_expression": {
                     "anyOf": [
@@ -3408,15 +3562,14 @@
                     ]
                 },
                 "has_specified_output": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/LungFunctionOutput"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
+                    "items": {
+                        "$ref": "#/$defs/LungFunctionOutput"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "hemoglobin_level": {
                     "anyOf": [
@@ -3527,6 +3680,10 @@
                     ],
                     "description": "Diffusing capacity for carbon monoxide. TIER 2 - measure of fibrosis, needs hemoglobin level."
                 },
+                "experimental_group": {
+                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
+                },
                 "fef25_75": {
                     "anyOf": [
                         {
@@ -3629,6 +3786,13 @@
                         }
                     ],
                     "description": "Lung resistance. TIER 3 - most often reported for animals."
+                },
+                "measured_under": {
+                    "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "A human-readable name for the entity.",
@@ -4119,15 +4283,14 @@
                     ]
                 },
                 "has_specified_output": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/MucociliaryClearanceOutput"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
+                    "items": {
+                        "$ref": "#/$defs/MucociliaryClearanceOutput"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for the entity.",
@@ -4199,9 +4362,20 @@
                         "null"
                     ]
                 },
+                "experimental_group": {
+                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "type": "string"
+                },
+                "measured_under": {
+                    "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "mucus_layer_thickness": {
                     "anyOf": [
@@ -4381,15 +4555,14 @@
                     ]
                 },
                 "has_specified_output": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/OxidativeStressOutput"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay)."
+                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
+                    "items": {
+                        "$ref": "#/$defs/OxidativeStressOutput"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for the entity.",
@@ -4523,6 +4696,10 @@
                     ],
                     "description": "8-OHdG level (DNA oxidation marker). TIER 1."
                 },
+                "experimental_group": {
+                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
+                },
                 "four_hydroxynonenal_level": {
                     "anyOf": [
                         {
@@ -4581,6 +4758,13 @@
                         }
                     ],
                     "description": "MDA level - lipid peroxidation marker."
+                },
+                "measured_under": {
+                    "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "A human-readable name for the entity.",
@@ -4941,8 +5125,19 @@
         },
         "QuantityValue": {
             "additionalProperties": false,
-            "description": "A quantity with a numeric value and unit of measurement. Used for all measurement values in assays.",
+            "description": "A quantity with a numeric value and unit of measurement. Used for all measurement values in assays. Optionally records what kind of central value this is (mean, median, single measurement), the reported variability around it (SD, SEM, confidence interval, range), and the number of subjects or replicates behind it. Keeping variability separate from the central value lets downstream analyses use each independently.",
             "properties": {
+                "central_tendency": {
+                    "$ref": "#/$defs/CentralTendencyEnum",
+                    "description": "What kind of central value the reported number is: a mean, median, geometric mean, or a single measurement. Important for combining results across studies."
+                },
+                "sample_size": {
+                    "description": "Number of subjects, samples, or replicates behind this value.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
                 "unit": {
                     "anyOf": [
                         {
@@ -4960,9 +5155,114 @@
                         "string",
                         "null"
                     ]
+                },
+                "variability": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Variability"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The reported variability around the value (SD, SEM, confidence interval, or range), kept separate from the central value itself."
                 }
             },
             "title": "QuantityValue",
+            "type": "object"
+        },
+        "ResponseComparison": {
+            "additionalProperties": false,
+            "description": "An analysis-layer record describing the change in a measured response between a control/baseline group and a treated group. Lives alongside the extracted assay data rather than inside it: papers report changes in many forms (absolute difference, percent change, fold change, ratio), and downstream models need a single change value with an uncertainty measure. References the control and treated output records by id, names the measurement being compared, and states the kind, direction, and size of the change. Use derivation to record whether the change was reported in the paper or computed afterwards.",
+            "properties": {
+                "change_direction": {
+                    "$ref": "#/$defs/ChangeDirectionEnum",
+                    "description": "Direction of the change in the treated group relative to control."
+                },
+                "change_type": {
+                    "$ref": "#/$defs/ChangeTypeEnum",
+                    "description": "How the change is expressed: an absolute difference, a percent change, a fold change, or a ratio. Papers report changes in different forms; this makes the form explicit so values can be compared or converted downstream."
+                },
+                "change_value": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/QuantityValue"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The size of the change, with its unit and (when reported) its uncertainty. For a percent change the unit is percent; for an absolute difference it is the measurement's unit; fold changes and ratios are dimensionless."
+                },
+                "compared_measurement": {
+                    "description": "The name of the measurement slot being compared (e.g., \"total_lung_capacity\", \"beat_frequency_hz\"), matching the slot name in the referenced output records.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "control_output": {
+                    "description": "Reference (by id) to the AssayOutputMeasurement record for the control or baseline group.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "derivation": {
+                    "$ref": "#/$defs/DerivationEnum",
+                    "description": "Whether this change was reported directly in the paper or computed afterwards from the extracted control and treated values."
+                },
+                "derived_from_assay": {
+                    "description": "Reference (by id) to the assay whose output records this comparison is derived from.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for the entity.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "p_value": {
+                    "description": "Reported p-value for the comparison, when available.",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "statistical_test": {
+                    "description": "Statistical test used for the comparison (e.g., t-test, ANOVA), when reported.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "treated_output": {
+                    "description": "Reference (by id) to the AssayOutputMeasurement record for the treated group.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "ResponseComparison",
             "type": "object"
         },
         "SampleTypeEnum": {
@@ -5450,6 +5750,63 @@
             ],
             "title": "Unit",
             "type": "object"
+        },
+        "Variability": {
+            "additionalProperties": false,
+            "description": "The reported spread or uncertainty around a measured value, kept separate from the value itself because papers report it in different forms. Use variability_type to say what was reported (standard deviation, standard error, confidence interval, range) and either a single magnitude (value) or bounds (lower_bound/upper_bound), with a unit when it differs from the measurement's unit.",
+            "properties": {
+                "lower_bound": {
+                    "description": "Lower bound when variability is reported as an interval (confidence interval, range, IQR).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "unit": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Unit"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The unit of measurement."
+                },
+                "upper_bound": {
+                    "description": "Upper bound when variability is reported as an interval (confidence interval, range, IQR).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "value": {
+                    "description": "The numeric value of the quantity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "variability_type": {
+                    "$ref": "#/$defs/VariabilityTypeEnum",
+                    "description": "The kind of variability reported (standard deviation, standard error, 95% confidence interval, range, interquartile range)."
+                }
+            },
+            "title": "Variability",
+            "type": "object"
+        },
+        "VariabilityTypeEnum": {
+            "description": "Kinds of variability or uncertainty reported around a value.",
+            "enum": [
+                "standard_deviation",
+                "standard_error",
+                "confidence_interval_95",
+                "confidence_interval_other",
+                "range",
+                "interquartile_range"
+            ],
+            "title": "VariabilityTypeEnum",
+            "type": "string"
         }
     },
     "$id": "https://w3id.org/EHS-Data-Standards/soma",
@@ -5548,6 +5905,16 @@
                 "null"
             ]
         },
+        "key_event_relationships": {
+            "description": "The key event relationships connecting events in this AOP.",
+            "items": {
+                "$ref": "#/$defs/KeyEventRelationship"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
         "key_events": {
             "description": "The key events in this AOP (intermediate events between MIE and AO).",
             "items": {
@@ -5608,6 +5975,16 @@
                         "$ref": "#/$defs/MolecularAssayProtocol"
                     }
                 ]
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "response_comparisons": {
+            "description": "Collection of analysis-layer records comparing treated responses to control/baseline responses. Kept separate from the extracted assay data: each comparison references the control and treated output records and states the kind, direction, and size of the change with its uncertainty.",
+            "items": {
+                "$ref": "#/$defs/ResponseComparison"
             },
             "type": [
                 "array",

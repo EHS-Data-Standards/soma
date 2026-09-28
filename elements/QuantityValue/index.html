@@ -390,11 +390,24 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-quantityvalue">Class: QuantityValue</h1>
-<p><em>A quantity with a numeric value and unit of measurement. Used for all measurement values in assays.</em></p>
+<p><em>A quantity with a numeric value and unit of measurement. Used for all measurement values in assays. Optionally records what kind of central value this is (mean, median, single measurement), the reported variability around it (SD, SEM, confidence interval, range), and the number of subjects or replicates behind it. Keeping variability separate from the central value lets downstream analyses use each independently.</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/QuantityValue">soma:QuantityValue</a></p>
 <pre class="mermaid"><code> classDiagram
     class QuantityValue
     click QuantityValue href "../QuantityValue/"
+      QuantityValue : central_tendency
+
+
+
+
+
+        QuantityValue --&gt; "0..1" CentralTendencyEnum : central_tendency
+        click CentralTendencyEnum href "../CentralTendencyEnum/"
+
+
+
+      QuantityValue : sample_size
+
       QuantityValue : unit
 
 
@@ -407,6 +420,17 @@
 
 
       QuantityValue : value
+
+      QuantityValue : variability
+
+
+
+
+
+        QuantityValue --&gt; "0..1" Variability : variability
+        click Variability href "../Variability/"
+
+
 
 
 </code></pre>
@@ -432,6 +456,24 @@
 <td><a href="../unit/">unit</a></td>
 <td>0..1 <br/> <a href="../Unit/">Unit</a></td>
 <td>The unit of measurement</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../central_tendency/">central_tendency</a></td>
+<td>0..1 <br/> <a href="../CentralTendencyEnum/">CentralTendencyEnum</a></td>
+<td>What kind of central value the reported number is: a mean, median, geometric ...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../variability/">variability</a></td>
+<td>0..1 <br/> <a href="../Variability/">Variability</a></td>
+<td>The reported variability around the value (SD, SEM, confidence interval, or r...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../sample_size/">sample_size</a></td>
+<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>Number of subjects, samples, or replicates behind this value</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -510,6 +552,12 @@
 <tr>
 <td><a href="../ExposureCondition/">ExposureCondition</a></td>
 <td><a href="../timing_post_exposure/">timing_post_exposure</a></td>
+<td>range</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
+<tr>
+<td><a href="../ResponseComparison/">ResponseComparison</a></td>
+<td><a href="../change_value/">change_value</a></td>
 <td>range</td>
 <td><a href="./">QuantityValue</a></td>
 </tr>
@@ -1139,18 +1187,29 @@
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A quantity with a numeric value and unit of measurement. Used for all</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">measurement values in assays.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">measurement values in assays. Optionally records what kind of central value this</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">is (mean, median, single measurement), the reported variability around it (SD, SEM,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">confidence interval, range), and the number of subjects or replicates behind it.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Keeping variability separate from the central value lets downstream analyses use</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">each independently.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">central_tendency</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variability</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_size</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A quantity with a numeric value and unit of measurement. Used for all</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">measurement values in assays.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">measurement values in assays. Optionally records what kind of central value this</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">is (mean, median, single measurement), the reported variability around it (SD, SEM,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">confidence interval, range), and the number of subjects or replicates behind it.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Keeping variability separate from the central value lets downstream analyses use</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">each independently.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">value</span><span class="p">:</span>
@@ -1162,6 +1221,7 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variability</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit</span>
@@ -1172,9 +1232,44 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variability</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityRange</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">central_tendency</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">central_tendency</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'What</span><span class="nv"> </span><span class="s">kind</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">central</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reported</span><span class="nv"> </span><span class="s">number</span><span class="nv"> </span><span class="s">is:</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">mean,</span><span class="nv"> </span><span class="s">median,</span>
+<span class="w">      </span><span class="s">geometric</span><span class="nv"> </span><span class="s">mean,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">measurement.</span><span class="nv"> </span><span class="s">Important</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">combining</span><span class="nv"> </span><span class="s">results</span><span class="nv"> </span><span class="s">across</span>
+<span class="w">      </span><span class="s">studies.'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">central_tendency</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CentralTendencyEnum</span>
+<span class="w">  </span><span class="nt">variability</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variability</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The reported variability around the value (SD, SEM, confidence interval,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">or range), kept separate from the central value itself.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variability</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variability</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">sample_size</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_size</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of subjects, samples, or replicates behind this value.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_size</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
 </code></pre></div>
 </details>
 </article>
