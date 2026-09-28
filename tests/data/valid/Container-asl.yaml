@@ -3,29 +3,29 @@ asl_assays:
   - id: "ASL:001"
     name: "Airway surface liquid height"
     has_specified_output:
-      id: "ASL:001-output"
-      name: "ASL:001 measurement results"
-      asl_height_um:
-        value: "7.2"
-        unit:
-          id: "UO:0000017"
-          name: "micrometer"
-      periciliary_layer_depth:
-        value: "5.1"
-        unit:
-          id: "UO:0000017"
-          name: "micrometer"
-      mucus_layer_thickness:
-        value: "35"
-        unit:
-          id: "UO:0000017"
-          name: "micrometer"
-      ion_composition: "Cl- 125 mM, Na+ 140 mM, K+ 15 mM"
-      asl_ph:
-        value: "7.1"
-        unit:
-          id: "UO:0000196"
-          name: "pH"
+      - id: "ASL:001-output"
+        name: "ASL:001 measurement results"
+        asl_height_um:
+          value: "7.2"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
+        periciliary_layer_depth:
+          value: "5.1"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
+        mucus_layer_thickness:
+          value: "35"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
+        ion_composition: "Cl- 125 mM, Na+ 140 mM, K+ 15 mM"
+        asl_ph:
+          value: "7.1"
+          unit:
+            id: "UO:0000196"
+            name: "pH"
     assay_date: "2024-02-10"
     informs_on_key_event:
       id: "KE:ke-decreased-asl"

@@ -81,6 +81,15 @@ classes:
       measurement slots for that assay type. This class represents the "output" in the Input/Process/Output
       model: what was measured and what values were obtained.
 
+      One AssayOutputMeasurement record represents the results for ONE
+      experimental condition or group. When a study reports a control group
+      and one or more treated groups (or a dose-response series), each group
+      gets its own output record, marked with experimental_group and linked
+      to the specific exposure condition via measured_under.
+    slots:
+      - experimental_group
+      - measured_under
+
   # ---------------------------------------------------------------------------
   # Study Subject Hierarchy
   # ---------------------------------------------------------------------------
@@ -221,9 +230,33 @@ classes:
   QuantityValue:
     description: >-
       A quantity with a numeric value and unit of measurement.
-      Used for all measurement values in assays.
+      Used for all measurement values in assays. Optionally records
+      what kind of central value this is (mean, median, single
+      measurement), the reported variability around it (SD, SEM,
+      confidence interval, range), and the number of subjects or
+      replicates behind it. Keeping variability separate from the
+      central value lets downstream analyses use each independently.
     slots:
       - value
+      - unit
+      - central_tendency
+      - variability
+      - sample_size
+
+  Variability:
+    description: >-
+      The reported spread or uncertainty around a measured value, kept
+      separate from the value itself because papers report it in
+      different forms. Use variability_type to say what was reported
+      (standard deviation, standard error, confidence interval, range)
+      and either a single magnitude (value) or bounds
+      (lower_bound/upper_bound), with a unit when it differs from the
+      measurement's unit.
+    slots:
+      - variability_type
+      - value
+      - lower_bound
+      - upper_bound
       - unit
 
   Unit:
@@ -306,6 +339,34 @@ classes:
       - exposure_concentration
       - exposure_duration
       - timing_post_exposure
+
+  # ---------------------------------------------------------------------------
+  # Response Comparison (Analysis Layer)
+  # ---------------------------------------------------------------------------
+
+  ResponseComparison:
+    is_a: NamedThing
+    description: >-
+      An analysis-layer record describing the change in a measured response
+      between a control/baseline group and a treated group. Lives alongside
+      the extracted assay data rather than inside it: papers report changes
+      in many forms (absolute difference, percent change, fold change,
+      ratio), and downstream models need a single change value with an
+      uncertainty measure. References the control and treated output
+      records by id, names the measurement being compared, and states the
+      kind, direction, and size of the change. Use derivation to record
+      whether the change was reported in the paper or computed afterwards.
+    slots:
+      - derived_from_assay
+      - compared_measurement
+      - control_output
+      - treated_output
+      - change_type
+      - change_direction
+      - change_value
+      - p_value
+      - statistical_test
+      - derivation
 
   # ---------------------------------------------------------------------------
   # Cell Culture Model System Classes
@@ -440,10 +501,34 @@ slots:
       The measurement results produced by this assay — the specified output
       of a planned process (OBI). Contains the domain-specific measurement
       values (e.g., beat frequency, cilia length for CiliaryFunctionAssay).
+      Multivalued: one output record per experimental condition or group,
+      so a control group and each treatment concentration in a
+      dose-response series each get their own record (marked with
+      experimental_group and linked to the exposure via measured_under).
     range: AssayOutputMeasurement
     exact_mappings:
       - OBI:0000299
-    inlined: true
+    multivalued: true
+    inlined_as_list: true
+
+  experimental_group:
+    description: >-
+      The role of this output record's group in the experimental design:
+      control, vehicle control, baseline, treated, recovery, or sham.
+      Lets extraction distinguish the control/baseline response from the
+      treated response so a change relative to control can be assembled
+      downstream.
+    range: ExperimentalGroupEnum
+
+  measured_under:
+    description: >-
+      Reference (by id) to the specific ExposureCondition this output
+      record was measured under. Links each set of response values to the
+      concentration/treatment it corresponds to, so a dose-response series
+      keeps each response paired with its exposure level. The referenced
+      condition should be listed in the assay's has_exposure_condition.
+    range: ExposureCondition
+    inlined: false
 
   # ---------------------------------------------------------------------------
   # Context Slots
@@ -975,6 +1060,43 @@ slots:
     range: Unit
     inlined: true
 
+  central_tendency:
+    description: >-
+      What kind of central value the reported number is: a mean, median,
+      geometric mean, or a single measurement. Important for combining
+      results across studies.
+    range: CentralTendencyEnum
+
+  variability:
+    description: >-
+      The reported variability around the value (SD, SEM, confidence
+      interval, or range), kept separate from the central value itself.
+    range: Variability
+    inlined: true
+
+  sample_size:
+    description: >-
+      Number of subjects, samples, or replicates behind this value.
+    range: integer
+
+  variability_type:
+    description: >-
+      The kind of variability reported (standard deviation, standard
+      error, 95% confidence interval, range, interquartile range).
+    range: VariabilityTypeEnum
+
+  lower_bound:
+    description: >-
+      Lower bound when variability is reported as an interval
+      (confidence interval, range, IQR).
+    range: string
+
+  upper_bound:
+    description: >-
+      Upper bound when variability is reported as an interval
+      (confidence interval, range, IQR).
+    range: string
+
   min_value:
     range: QuantityValue
     inlined: true
@@ -982,6 +1104,77 @@ slots:
   max_value:
     range: QuantityValue
     inlined: true
+
+  # ---------------------------------------------------------------------------
+  # Response Comparison Slots (Analysis Layer)
+  # ---------------------------------------------------------------------------
+
+  derived_from_assay:
+    description: >-
+      Reference (by id) to the assay whose output records this comparison
+      is derived from.
+    range: Assay
+    inlined: false
+
+  compared_measurement:
+    description: >-
+      The name of the measurement slot being compared (e.g.,
+      "total_lung_capacity", "beat_frequency_hz"), matching the slot name
+      in the referenced output records.
+    range: string
+
+  control_output:
+    description: >-
+      Reference (by id) to the AssayOutputMeasurement record for the
+      control or baseline group.
+    range: AssayOutputMeasurement
+    inlined: false
+
+  treated_output:
+    description: >-
+      Reference (by id) to the AssayOutputMeasurement record for the
+      treated group.
+    range: AssayOutputMeasurement
+    inlined: false
+
+  change_type:
+    description: >-
+      How the change is expressed: an absolute difference, a percent
+      change, a fold change, or a ratio. Papers report changes in
+      different forms; this makes the form explicit so values can be
+      compared or converted downstream.
+    range: ChangeTypeEnum
+
+  change_direction:
+    description: >-
+      Direction of the change in the treated group relative to control.
+    range: ChangeDirectionEnum
+
+  change_value:
+    description: >-
+      The size of the change, with its unit and (when reported) its
+      uncertainty. For a percent change the unit is percent; for an
+      absolute difference it is the measurement's unit; fold changes and
+      ratios are dimensionless.
+    range: QuantityValue
+    inlined: true
+
+  p_value:
+    description: >-
+      Reported p-value for the comparison, when available.
+    range: float
+
+  statistical_test:
+    description: >-
+      Statistical test used for the comparison (e.g., t-test, ANOVA),
+      when reported.
+    range: string
+
+  derivation:
+    description: >-
+      Whether this change was reported directly in the paper or computed
+      afterwards from the extracted control and treated values.
+    range: DerivationEnum
 
 # =============================================================================
 # ENUMS
@@ -1087,6 +1280,87 @@ enums:
   # ---------------------------------------------------------------------------
   # Assay Context Capability Enum
   # ---------------------------------------------------------------------------
+
+  ExperimentalGroupEnum:
+    description: >-
+      The role of an experimental group in a study design, used to mark
+      each per-condition output record.
+    permissible_values:
+      control:
+        description: Untreated or unexposed control group
+      vehicle_control:
+        description: Control group receiving the vehicle/carrier only
+      baseline:
+        description: Pre-exposure or pre-treatment measurement of the same subjects
+      treated:
+        description: Group receiving the exposure or treatment
+      recovery:
+        description: Post-exposure recovery period measurement
+      sham:
+        description: Sham-treated control group
+
+  CentralTendencyEnum:
+    description: >-
+      What kind of central value a reported number represents.
+    permissible_values:
+      mean:
+        description: Arithmetic mean
+      median:
+        description: Median
+      geometric_mean:
+        description: Geometric mean
+      single_value:
+        description: A single measurement, not an aggregate
+
+  VariabilityTypeEnum:
+    description: >-
+      Kinds of variability or uncertainty reported around a value.
+    permissible_values:
+      standard_deviation:
+        description: Standard deviation (SD)
+      standard_error:
+        description: Standard error of the mean (SEM)
+      confidence_interval_95:
+        description: 95% confidence interval
+      confidence_interval_other:
+        description: Confidence interval at a level other than 95%
+      range:
+        description: Minimum-maximum range of observed values
+      interquartile_range:
+        description: Interquartile range (IQR)
+
+  ChangeTypeEnum:
+    description: >-
+      Forms in which a change relative to control can be expressed.
+    permissible_values:
+      absolute_difference:
+        description: Treated minus control, in the measurement's own unit
+      percent_change:
+        description: Change as a percentage of the control value
+      fold_change:
+        description: Treated divided by control, expressed as fold
+      ratio:
+        description: Ratio of treated to control
+
+  ChangeDirectionEnum:
+    description: >-
+      Direction of a change in the treated group relative to control.
+    permissible_values:
+      increased:
+        description: Treated value is higher than control
+      decreased:
+        description: Treated value is lower than control
+      no_change:
+        description: No meaningful difference from control
+
+  DerivationEnum:
+    description: >-
+      Provenance of an analysis-layer value.
+    permissible_values:
+      reported_in_paper:
+        description: The value was stated directly in the publication
+      computed:
+        description: The value was calculated from extracted values
 
   AssayContextCapabilityEnum:
     description: >-

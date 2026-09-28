@@ -1,0 +1,113 @@
+# Test file demonstrating per-condition output records and the
+# analysis-layer ResponseComparison (delta) class.
+#
+# Scenario (from group discussion): diesel exhaust particle inhalation,
+# total lung capacity of 19.0 mL in the control group vs 15.9 mL in the
+# treated group. Each experimental condition gets its own output record
+# (experimental_group + measured_under), each value carries its
+# variability and sample size, and the change relative to control lives
+# in a separate response_comparisons record - not in the assay itself.
+lung_function_assays:
+  - id: "LF:100"
+    name: "Total lung capacity after diesel exhaust particle inhalation"
+    informs_on_key_event:
+      id: "KE:ao-decreased-lung-function"
+      name: "Decreased lung function"
+      biological_action: decreased
+      level_of_biological_organization: organ
+    study_subject:
+      subject_type: InVivoSubject
+      id: "SUBJECT:rat-cohort-01"
+      name: "Sprague-Dawley rats"
+      model_species:
+        id: "NCBITaxon:10116"
+        name: "Rattus norvegicus"
+    has_exposure_condition:
+      - id: "COND:filtered-air"
+        name: "Filtered air (control)"
+        exposure_duration:
+          value: "4"
+          unit:
+            id: "UO:0000034"
+            name: "week"
+      - id: "COND:dep-300"
+        name: "Diesel exhaust particles, 300 ug/m3"
+        exposure_concentration:
+          value: "300"
+          unit:
+            id: "UCUM:ug/m3"
+            name: "microgram per cubic meter"
+        exposure_duration:
+          value: "4"
+          unit:
+            id: "UO:0000034"
+            name: "week"
+    has_specified_output:
+      - id: "LF:100-output-control"
+        name: "Control group (filtered air) lung function results"
+        experimental_group: control
+        measured_under: "COND:filtered-air"
+        total_lung_capacity:
+          value: "19.0"
+          unit:
+            id: "UO:0000098"
+            name: "milliliter"
+          central_tendency: mean
+          sample_size: 8
+          variability:
+            variability_type: standard_deviation
+            value: "1.2"
+            unit:
+              id: "UO:0000098"
+              name: "milliliter"
+      - id: "LF:100-output-dep"
+        name: "Treated group (DEP 300 ug/m3) lung function results"
+        experimental_group: treated
+        measured_under: "COND:dep-300"
+        total_lung_capacity:
+          value: "15.9"
+          unit:
+            id: "UO:0000098"
+            name: "milliliter"
+          central_tendency: mean
+          sample_size: 8
+          variability:
+            variability_type: standard_deviation
+            value: "1.4"
+            unit:
+              id: "UO:0000098"
+              name: "milliliter"
+
+# Analysis layer: the change relative to control, referencing the two
+# output records above rather than duplicating them.
+response_comparisons:
+  - id: "COMP:LF100-tlc"
+    name: "Change in total lung capacity, DEP vs filtered air"
+    derived_from_assay: "LF:100"
+    compared_measurement: "total_lung_capacity"
+    control_output: "LF:100-output-control"
+    treated_output: "LF:100-output-dep"
+    change_type: absolute_difference
+    change_direction: decreased
+    change_value:
+      value: "-3.1"
+      unit:
+        id: "UO:0000098"
+        name: "milliliter"
+    p_value: 0.01
+    statistical_test: "two-sample t-test"
+    derivation: computed
+
+# Container-level key event relationship: lets extracted data ship with
+# the KE network topology so assays can be placed in the AOP network.
+key_event_relationships:
+  - id: "KER:mcc-to-lung-function"
+    name: "Impaired mucociliary clearance leads to decreased lung function"
+    upstream_event:
+      id: "KE:impaired-mcc"
+      name: "Impaired mucociliary clearance"
+    downstream_event:
+      id: "KE:ao-decreased-lung-function-2"
+      name: "Decreased lung function"
+    relationship_type: "directly leads to"
+    evidence_support: moderate

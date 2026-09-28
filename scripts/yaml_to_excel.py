@@ -660,10 +660,15 @@ def yaml_to_excel(input_path, output_path, template_path=None):
         )
 
         # Build output rows from has_specified_output
+        # (multivalued: one output record per experimental condition/group)
         output_rows = []
         for a in assays:
-            out = a.get("has_specified_output")
-            if out and isinstance(out, dict):
+            outs = a.get("has_specified_output")
+            if isinstance(outs, dict):
+                outs = [outs]
+            for out in outs or []:
+                if not isinstance(out, dict):
+                    continue
                 # Add source_assay reference
                 out_with_ref = dict(out)
                 if "source_assay" not in out_with_ref:

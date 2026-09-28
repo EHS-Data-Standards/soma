@@ -1,5 +1,5 @@
 # Auto generated from soma.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-03-11T10:45:43
+# Generation date: 2026-09-28T11:54:34
 # Schema: soma
 #
 # id: https://w3id.org/EHS-Data-Standards/soma
@@ -57,7 +57,7 @@ from rdflib import (
     URIRef
 )
 
-from linkml_runtime.linkml_model.types import Date, Integer, String, Uriorcurie
+from linkml_runtime.linkml_model.types import Date, Float, Integer, String, Uriorcurie
 from linkml_runtime.utils.metamodelcore import URIorCURIE, XSDDate
 
 metamodel_version = "1.7.0"
@@ -77,6 +77,7 @@ NCBITAXON = CurieNamespace('NCBITaxon', 'http://purl.obolibrary.org/obo/NCBITaxo
 OBI = CurieNamespace('OBI', 'http://purl.obolibrary.org/obo/OBI_')
 PATO = CurieNamespace('PATO', 'http://purl.obolibrary.org/obo/PATO_')
 QUDT = CurieNamespace('QUDT', 'http://qudt.org/vocab/unit/')
+STATO = CurieNamespace('STATO', 'http://purl.obolibrary.org/obo/STATO_')
 UBERON = CurieNamespace('UBERON', 'http://purl.obolibrary.org/obo/UBERON_')
 UCUM = CurieNamespace('UCUM', 'http://unitsofmeasure.org/')
 UO = CurieNamespace('UO', 'http://purl.obolibrary.org/obo/UO_')
@@ -187,6 +188,10 @@ class AnatomicalEntityReferenceId(NamedEntityId):
 
 
 class ExposureConditionId(NamedEntityId):
+    pass
+
+
+class ResponseComparisonId(NamedThingId):
     pass
 
 
@@ -314,7 +319,9 @@ class Container(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = SOMA.Container
 
     key_events: Optional[Union[dict[Union[str, KeyEventId], Union[dict, "KeyEvent"]], list[Union[dict, "KeyEvent"]]]] = empty_dict()
+    key_event_relationships: Optional[Union[dict[Union[str, KeyEventRelationshipId], Union[dict, "KeyEventRelationship"]], list[Union[dict, "KeyEventRelationship"]]]] = empty_dict()
     adverse_outcome_pathways: Optional[Union[dict[Union[str, AdverseOutcomePathwayId], Union[dict, "AdverseOutcomePathway"]], list[Union[dict, "AdverseOutcomePathway"]]]] = empty_dict()
+    response_comparisons: Optional[Union[dict[Union[str, ResponseComparisonId], Union[dict, "ResponseComparison"]], list[Union[dict, "ResponseComparison"]]]] = empty_dict()
     ciliary_function_assays: Optional[Union[dict[Union[str, CiliaryFunctionAssayId], Union[dict, "CiliaryFunctionAssay"]], list[Union[dict, "CiliaryFunctionAssay"]]]] = empty_dict()
     asl_assays: Optional[Union[dict[Union[str, ASLAssayId], Union[dict, "ASLAssay"]], list[Union[dict, "ASLAssay"]]]] = empty_dict()
     mcc_assays: Optional[Union[dict[Union[str, MucociliaryClearanceAssayId], Union[dict, "MucociliaryClearanceAssay"]], list[Union[dict, "MucociliaryClearanceAssay"]]]] = empty_dict()
@@ -331,7 +338,11 @@ class Container(YAMLRoot):
     def __post_init__(self, *_: str, **kwargs: Any):
         self._normalize_inlined_as_list(slot_name="key_events", slot_type=KeyEvent, key_name="id", keyed=True)
 
+        self._normalize_inlined_as_list(slot_name="key_event_relationships", slot_type=KeyEventRelationship, key_name="id", keyed=True)
+
         self._normalize_inlined_as_list(slot_name="adverse_outcome_pathways", slot_type=AdverseOutcomePathway, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="response_comparisons", slot_type=ResponseComparison, key_name="id", keyed=True)
 
         self._normalize_inlined_as_list(slot_name="ciliary_function_assays", slot_type=CiliaryFunctionAssay, key_name="id", keyed=True)
 
@@ -394,10 +405,10 @@ class NamedThing(YAMLRoot):
 @dataclass(repr=False)
 class KeyEvent(NamedThing):
     """
-    A measurable change in biological state that is a step in an Adverse Outcome Pathway. Key Events represent the
-    biological perturbations that assays measure to provide evidence for AOP-based mechanistic understanding. Key
-    events can be Molecular Initiating Events (MIEs), intermediate Key Events, or Adverse Outcomes at the
-    organism/population level.
+    A measurable change in biological state that is a step in an Adverse Outcome Pathway. Key Events reflect the
+    measurable and essential biological perturbations that provide evidence for progression leading to a specific
+    adverse outcome. Key events can be Molecular Initiating Events (MIEs), intermediate Key Events, or Adverse
+    Outcomes at the organism/population level.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -498,8 +509,9 @@ class KeyEventRelationship(NamedThing):
 @dataclass(repr=False)
 class AdverseOutcome(NamedThing):
     """
-    An adverse health outcome at the organism or population level that represents the apical endpoint of an Adverse
-    Outcome Pathway. This is the final, clinically or ecologically relevant effect.
+    A specialized type of key event that represents the apical endpoint of an Adverse Outcome Pathway. The outcome may
+    be defined at the individual or population level, and is relevant biomedical, clinical, regulator, or ecologically
+    applications.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -631,7 +643,7 @@ class Assay(NamedThing):
     study_subject: Optional[Union[dict, "StudySubject"]] = None
     has_exposure_condition: Optional[Union[dict[Union[str, ExposureConditionId], Union[dict, "ExposureCondition"]], list[Union[dict, "ExposureCondition"]]]] = empty_dict()
     follows_protocols: Optional[Union[dict[Union[str, ProtocolId], Union[dict, "Protocol"]], list[Union[dict, "Protocol"]]]] = empty_dict()
-    has_specified_output: Optional[Union[dict, "AssayOutputMeasurement"]] = None
+    has_specified_output: Optional[Union[dict[Union[str, AssayOutputMeasurementId], Union[dict, "AssayOutputMeasurement"]], list[Union[dict, "AssayOutputMeasurement"]]]] = empty_dict()
     assay_date: Optional[Union[str, XSDDate]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
@@ -645,8 +657,7 @@ class Assay(NamedThing):
 
         self._normalize_inlined_as_list(slot_name="follows_protocols", slot_type=Protocol, key_name="id", keyed=True)
 
-        if self.has_specified_output is not None and not isinstance(self.has_specified_output, AssayOutputMeasurement):
-            self.has_specified_output = AssayOutputMeasurement(**as_dict(self.has_specified_output))
+        self._normalize_inlined_as_list(slot_name="has_specified_output", slot_type=AssayOutputMeasurement, key_name="id", keyed=True)
 
         if self.assay_date is not None and not isinstance(self.assay_date, XSDDate):
             self.assay_date = XSDDate(self.assay_date)
@@ -661,6 +672,9 @@ class AssayOutputMeasurement(NamedThing):
     assay class has a corresponding AssayOutputMeasurement subclass containing the named measurement slots for that
     assay type. This class represents the "output" in the Input/Process/Output model: what was measured and what
     values were obtained.
+    One AssayOutputMeasurement record represents the results for ONE experimental condition or group. When a study
+    reports a control group and one or more treated groups (or a dose-response series), each group gets its own output
+    record, marked with experimental_group and linked to the specific exposure condition via measured_under.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -670,6 +684,18 @@ class AssayOutputMeasurement(NamedThing):
     class_model_uri: ClassVar[URIRef] = SOMA.AssayOutputMeasurement
 
     id: Union[str, AssayOutputMeasurementId] = None
+    experimental_group: Optional[Union[str, "ExperimentalGroupEnum"]] = None
+    measured_under: Optional[Union[str, ExposureConditionId]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self.experimental_group is not None and not isinstance(self.experimental_group, ExperimentalGroupEnum):
+            self.experimental_group = ExperimentalGroupEnum(self.experimental_group)
+
+        if self.measured_under is not None and not isinstance(self.measured_under, ExposureConditionId):
+            self.measured_under = ExposureConditionId(self.measured_under)
+
+        super().__post_init__(**kwargs)
+
 
 @dataclass(repr=False)
 class StudySubject(NamedThing):
@@ -1146,7 +1172,10 @@ class MolecularAssayProtocol(Protocol):
 @dataclass(repr=False)
 class QuantityValue(YAMLRoot):
     """
-    A quantity with a numeric value and unit of measurement. Used for all measurement values in assays.
+    A quantity with a numeric value and unit of measurement. Used for all measurement values in assays. Optionally
+    records what kind of central value this is (mean, median, single measurement), the reported variability around it
+    (SD, SEM, confidence interval, range), and the number of subjects or replicates behind it. Keeping variability
+    separate from the central value lets downstream analyses use each independently.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -1157,10 +1186,62 @@ class QuantityValue(YAMLRoot):
 
     value: Optional[str] = None
     unit: Optional[Union[dict, "Unit"]] = None
+    central_tendency: Optional[Union[str, "CentralTendencyEnum"]] = None
+    variability: Optional[Union[dict, "Variability"]] = None
+    sample_size: Optional[int] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self.value is not None and not isinstance(self.value, str):
             self.value = str(self.value)
+
+        if self.unit is not None and not isinstance(self.unit, Unit):
+            self.unit = Unit(**as_dict(self.unit))
+
+        if self.central_tendency is not None and not isinstance(self.central_tendency, CentralTendencyEnum):
+            self.central_tendency = CentralTendencyEnum(self.central_tendency)
+
+        if self.variability is not None and not isinstance(self.variability, Variability):
+            self.variability = Variability(**as_dict(self.variability))
+
+        if self.sample_size is not None and not isinstance(self.sample_size, int):
+            self.sample_size = int(self.sample_size)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Variability(YAMLRoot):
+    """
+    The reported spread or uncertainty around a measured value, kept separate from the value itself because papers
+    report it in different forms. Use variability_type to say what was reported (standard deviation, standard error,
+    confidence interval, range) and either a single magnitude (value) or bounds (lower_bound/upper_bound), with a unit
+    when it differs from the measurement's unit.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ASSAY_BASE["Variability"]
+    class_class_curie: ClassVar[str] = "assay_base:Variability"
+    class_name: ClassVar[str] = "Variability"
+    class_model_uri: ClassVar[URIRef] = SOMA.Variability
+
+    variability_type: Optional[Union[str, "VariabilityTypeEnum"]] = None
+    value: Optional[str] = None
+    lower_bound: Optional[str] = None
+    upper_bound: Optional[str] = None
+    unit: Optional[Union[dict, "Unit"]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self.variability_type is not None and not isinstance(self.variability_type, VariabilityTypeEnum):
+            self.variability_type = VariabilityTypeEnum(self.variability_type)
+
+        if self.value is not None and not isinstance(self.value, str):
+            self.value = str(self.value)
+
+        if self.lower_bound is not None and not isinstance(self.lower_bound, str):
+            self.lower_bound = str(self.lower_bound)
+
+        if self.upper_bound is not None and not isinstance(self.upper_bound, str):
+            self.upper_bound = str(self.upper_bound)
 
         if self.unit is not None and not isinstance(self.unit, Unit):
             self.unit = Unit(**as_dict(self.unit))
@@ -1171,7 +1252,7 @@ class QuantityValue(YAMLRoot):
 @dataclass(repr=False)
 class Unit(YAMLRoot):
     """
-    A unit of measurement from a standard ontology (UO, UCUM, QUDT).
+    A unit of measurement from a standard ontology (UO, UCUM, QUDT, STATO).
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -1351,6 +1432,74 @@ class ExposureCondition(NamedEntity):
 
         if self.timing_post_exposure is not None and not isinstance(self.timing_post_exposure, QuantityValue):
             self.timing_post_exposure = QuantityValue(**as_dict(self.timing_post_exposure))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ResponseComparison(NamedThing):
+    """
+    An analysis-layer record describing the change in a measured response between a control/baseline group and a
+    treated group. Lives alongside the extracted assay data rather than inside it: papers report changes in many forms
+    (absolute difference, percent change, fold change, ratio), and downstream models need a single change value with
+    an uncertainty measure. References the control and treated output records by id, names the measurement being
+    compared, and states the kind, direction, and size of the change. Use derivation to record whether the change was
+    reported in the paper or computed afterwards.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ASSAY_BASE["ResponseComparison"]
+    class_class_curie: ClassVar[str] = "assay_base:ResponseComparison"
+    class_name: ClassVar[str] = "ResponseComparison"
+    class_model_uri: ClassVar[URIRef] = SOMA.ResponseComparison
+
+    id: Union[str, ResponseComparisonId] = None
+    derived_from_assay: Optional[Union[str, AssayId]] = None
+    compared_measurement: Optional[str] = None
+    control_output: Optional[Union[str, AssayOutputMeasurementId]] = None
+    treated_output: Optional[Union[str, AssayOutputMeasurementId]] = None
+    change_type: Optional[Union[str, "ChangeTypeEnum"]] = None
+    change_direction: Optional[Union[str, "ChangeDirectionEnum"]] = None
+    change_value: Optional[Union[dict, QuantityValue]] = None
+    p_value: Optional[float] = None
+    statistical_test: Optional[str] = None
+    derivation: Optional[Union[str, "DerivationEnum"]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, ResponseComparisonId):
+            self.id = ResponseComparisonId(self.id)
+
+        if self.derived_from_assay is not None and not isinstance(self.derived_from_assay, AssayId):
+            self.derived_from_assay = AssayId(self.derived_from_assay)
+
+        if self.compared_measurement is not None and not isinstance(self.compared_measurement, str):
+            self.compared_measurement = str(self.compared_measurement)
+
+        if self.control_output is not None and not isinstance(self.control_output, AssayOutputMeasurementId):
+            self.control_output = AssayOutputMeasurementId(self.control_output)
+
+        if self.treated_output is not None and not isinstance(self.treated_output, AssayOutputMeasurementId):
+            self.treated_output = AssayOutputMeasurementId(self.treated_output)
+
+        if self.change_type is not None and not isinstance(self.change_type, ChangeTypeEnum):
+            self.change_type = ChangeTypeEnum(self.change_type)
+
+        if self.change_direction is not None and not isinstance(self.change_direction, ChangeDirectionEnum):
+            self.change_direction = ChangeDirectionEnum(self.change_direction)
+
+        if self.change_value is not None and not isinstance(self.change_value, QuantityValue):
+            self.change_value = QuantityValue(**as_dict(self.change_value))
+
+        if self.p_value is not None and not isinstance(self.p_value, float):
+            self.p_value = float(self.p_value)
+
+        if self.statistical_test is not None and not isinstance(self.statistical_test, str):
+            self.statistical_test = str(self.statistical_test)
+
+        if self.derivation is not None and not isinstance(self.derivation, DerivationEnum):
+            self.derivation = DerivationEnum(self.derivation)
 
         super().__post_init__(**kwargs)
 
@@ -1709,7 +1858,7 @@ class CiliaryFunctionAssay(Assay):
     analysis_software: Optional[str] = None
     airway_region: Optional[str] = None
     study_subject: Optional[Union[dict, StudySubject]] = None
-    has_specified_output: Optional[Union[dict, "CiliaryFunctionOutput"]] = None
+    has_specified_output: Optional[Union[dict[Union[str, CiliaryFunctionOutputId], Union[dict, "CiliaryFunctionOutput"]], list[Union[dict, "CiliaryFunctionOutput"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -1726,8 +1875,7 @@ class CiliaryFunctionAssay(Assay):
         if self.study_subject is not None and not isinstance(self.study_subject, StudySubject):
             self.study_subject = StudySubject(**as_dict(self.study_subject))
 
-        if self.has_specified_output is not None and not isinstance(self.has_specified_output, CiliaryFunctionOutput):
-            self.has_specified_output = CiliaryFunctionOutput(**as_dict(self.has_specified_output))
+        self._normalize_inlined_as_list(slot_name="has_specified_output", slot_type=CiliaryFunctionOutput, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -1803,7 +1951,7 @@ class ASLAssay(Assay):
     class_model_uri: ClassVar[URIRef] = SOMA.ASLAssay
 
     id: Union[str, ASLAssayId] = None
-    has_specified_output: Optional[Union[dict, "ASLOutput"]] = None
+    has_specified_output: Optional[Union[dict[Union[str, ASLOutputId], Union[dict, "ASLOutput"]], list[Union[dict, "ASLOutput"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -1811,8 +1959,7 @@ class ASLAssay(Assay):
         if not isinstance(self.id, ASLAssayId):
             self.id = ASLAssayId(self.id)
 
-        if self.has_specified_output is not None and not isinstance(self.has_specified_output, ASLOutput):
-            self.has_specified_output = ASLOutput(**as_dict(self.has_specified_output))
+        self._normalize_inlined_as_list(slot_name="has_specified_output", slot_type=ASLOutput, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -1876,7 +2023,7 @@ class MucociliaryClearanceAssay(Assay):
 
     id: Union[str, MucociliaryClearanceAssayId] = None
     mucus_composition: Optional[str] = None
-    has_specified_output: Optional[Union[dict, "MucociliaryClearanceOutput"]] = None
+    has_specified_output: Optional[Union[dict[Union[str, MucociliaryClearanceOutputId], Union[dict, "MucociliaryClearanceOutput"]], list[Union[dict, "MucociliaryClearanceOutput"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -1887,8 +2034,7 @@ class MucociliaryClearanceAssay(Assay):
         if self.mucus_composition is not None and not isinstance(self.mucus_composition, str):
             self.mucus_composition = str(self.mucus_composition)
 
-        if self.has_specified_output is not None and not isinstance(self.has_specified_output, MucociliaryClearanceOutput):
-            self.has_specified_output = MucociliaryClearanceOutput(**as_dict(self.has_specified_output))
+        self._normalize_inlined_as_list(slot_name="has_specified_output", slot_type=MucociliaryClearanceOutput, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -1953,7 +2099,7 @@ class OxidativeStressAssay(Assay):
 
     id: Union[str, OxidativeStressAssayId] = None
     ros_probe_type: Optional[str] = None
-    has_specified_output: Optional[Union[dict, "OxidativeStressOutput"]] = None
+    has_specified_output: Optional[Union[dict[Union[str, OxidativeStressOutputId], Union[dict, "OxidativeStressOutput"]], list[Union[dict, "OxidativeStressOutput"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -1964,8 +2110,7 @@ class OxidativeStressAssay(Assay):
         if self.ros_probe_type is not None and not isinstance(self.ros_probe_type, str):
             self.ros_probe_type = str(self.ros_probe_type)
 
-        if self.has_specified_output is not None and not isinstance(self.has_specified_output, OxidativeStressOutput):
-            self.has_specified_output = OxidativeStressOutput(**as_dict(self.has_specified_output))
+        self._normalize_inlined_as_list(slot_name="has_specified_output", slot_type=OxidativeStressOutput, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -2083,7 +2228,7 @@ class CFTRFunctionAssay(Assay):
     id: Union[str, CFTRFunctionAssayId] = None
     stimulation_agent: Optional[str] = None
     inhibitor_used: Optional[str] = None
-    has_specified_output: Optional[Union[dict, "CFTRFunctionOutput"]] = None
+    has_specified_output: Optional[Union[dict[Union[str, CFTRFunctionOutputId], Union[dict, "CFTRFunctionOutput"]], list[Union[dict, "CFTRFunctionOutput"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -2097,8 +2242,7 @@ class CFTRFunctionAssay(Assay):
         if self.inhibitor_used is not None and not isinstance(self.inhibitor_used, str):
             self.inhibitor_used = str(self.inhibitor_used)
 
-        if self.has_specified_output is not None and not isinstance(self.has_specified_output, CFTRFunctionOutput):
-            self.has_specified_output = CFTRFunctionOutput(**as_dict(self.has_specified_output))
+        self._normalize_inlined_as_list(slot_name="has_specified_output", slot_type=CFTRFunctionOutput, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -2171,7 +2315,7 @@ class EGFRSignalingAssay(Assay):
     id: Union[str, EGFRSignalingAssayId] = None
     normalization_reference: Optional[str] = None
     phosphorylation_site: Optional[str] = None
-    has_specified_output: Optional[Union[dict, "EGFRSignalingOutput"]] = None
+    has_specified_output: Optional[Union[dict[Union[str, EGFRSignalingOutputId], Union[dict, "EGFRSignalingOutput"]], list[Union[dict, "EGFRSignalingOutput"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -2185,8 +2329,7 @@ class EGFRSignalingAssay(Assay):
         if self.phosphorylation_site is not None and not isinstance(self.phosphorylation_site, str):
             self.phosphorylation_site = str(self.phosphorylation_site)
 
-        if self.has_specified_output is not None and not isinstance(self.has_specified_output, EGFRSignalingOutput):
-            self.has_specified_output = EGFRSignalingOutput(**as_dict(self.has_specified_output))
+        self._normalize_inlined_as_list(slot_name="has_specified_output", slot_type=EGFRSignalingOutput, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -2269,7 +2412,7 @@ class GobletCellAssay(Assay):
     class_model_uri: ClassVar[URIRef] = SOMA.GobletCellAssay
 
     id: Union[str, GobletCellAssayId] = None
-    has_specified_output: Optional[Union[dict, "GobletCellOutput"]] = None
+    has_specified_output: Optional[Union[dict[Union[str, GobletCellOutputId], Union[dict, "GobletCellOutput"]], list[Union[dict, "GobletCellOutput"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -2277,8 +2420,7 @@ class GobletCellAssay(Assay):
         if not isinstance(self.id, GobletCellAssayId):
             self.id = GobletCellAssayId(self.id)
 
-        if self.has_specified_output is not None and not isinstance(self.has_specified_output, GobletCellOutput):
-            self.has_specified_output = GobletCellOutput(**as_dict(self.has_specified_output))
+        self._normalize_inlined_as_list(slot_name="has_specified_output", slot_type=GobletCellOutput, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -2372,7 +2514,7 @@ class BALFSputumAssay(Assay):
     id: Union[str, BALFSputumAssayId] = None
     target_cell_type: Optional[Union[dict, CellTypeReference]] = None
     study_subject: Optional[Union[dict, InVivoSubject]] = None
-    has_specified_output: Optional[Union[dict, "BALFSputumOutput"]] = None
+    has_specified_output: Optional[Union[dict[Union[str, BALFSputumOutputId], Union[dict, "BALFSputumOutput"]], list[Union[dict, "BALFSputumOutput"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -2386,8 +2528,7 @@ class BALFSputumAssay(Assay):
         if self.study_subject is not None and not isinstance(self.study_subject, InVivoSubject):
             self.study_subject = InVivoSubject(**as_dict(self.study_subject))
 
-        if self.has_specified_output is not None and not isinstance(self.has_specified_output, BALFSputumOutput):
-            self.has_specified_output = BALFSputumOutput(**as_dict(self.has_specified_output))
+        self._normalize_inlined_as_list(slot_name="has_specified_output", slot_type=BALFSputumOutput, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -2495,7 +2636,7 @@ class LungFunctionAssay(Assay):
     hemoglobin_level: Optional[Union[dict, QuantityValue]] = None
     recent_respiratory_illness: Optional[str] = None
     study_subject: Optional[Union[dict, InVivoSubject]] = None
-    has_specified_output: Optional[Union[dict, "LungFunctionOutput"]] = None
+    has_specified_output: Optional[Union[dict[Union[str, LungFunctionOutputId], Union[dict, "LungFunctionOutput"]], list[Union[dict, "LungFunctionOutput"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -2515,8 +2656,7 @@ class LungFunctionAssay(Assay):
         if self.study_subject is not None and not isinstance(self.study_subject, InVivoSubject):
             self.study_subject = InVivoSubject(**as_dict(self.study_subject))
 
-        if self.has_specified_output is not None and not isinstance(self.has_specified_output, LungFunctionOutput):
-            self.has_specified_output = LungFunctionOutput(**as_dict(self.has_specified_output))
+        self._normalize_inlined_as_list(slot_name="has_specified_output", slot_type=LungFunctionOutput, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -2620,7 +2760,7 @@ class FoxJExpressionAssay(Assay):
     class_model_uri: ClassVar[URIRef] = SOMA.FoxJExpressionAssay
 
     id: Union[str, FoxJExpressionAssayId] = None
-    has_specified_output: Optional[Union[dict, "FoxJExpressionOutput"]] = None
+    has_specified_output: Optional[Union[dict[Union[str, FoxJExpressionOutputId], Union[dict, "FoxJExpressionOutput"]], list[Union[dict, "FoxJExpressionOutput"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -2628,8 +2768,7 @@ class FoxJExpressionAssay(Assay):
         if not isinstance(self.id, FoxJExpressionAssayId):
             self.id = FoxJExpressionAssayId(self.id)
 
-        if self.has_specified_output is not None and not isinstance(self.has_specified_output, FoxJExpressionOutput):
-            self.has_specified_output = FoxJExpressionOutput(**as_dict(self.has_specified_output))
+        self._normalize_inlined_as_list(slot_name="has_specified_output", slot_type=FoxJExpressionOutput, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -2691,7 +2830,7 @@ class GeneExpressionAssay(Assay):
     target_gene: Optional[Union[str, URIorCURIE]] = None
     gene_expression_method: Optional[str] = None
     normalization_reference: Optional[str] = None
-    has_specified_output: Optional[Union[dict, "GeneExpressionOutput"]] = None
+    has_specified_output: Optional[Union[dict[Union[str, GeneExpressionOutputId], Union[dict, "GeneExpressionOutput"]], list[Union[dict, "GeneExpressionOutput"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -2708,8 +2847,7 @@ class GeneExpressionAssay(Assay):
         if self.normalization_reference is not None and not isinstance(self.normalization_reference, str):
             self.normalization_reference = str(self.normalization_reference)
 
-        if self.has_specified_output is not None and not isinstance(self.has_specified_output, GeneExpressionOutput):
-            self.has_specified_output = GeneExpressionOutput(**as_dict(self.has_specified_output))
+        self._normalize_inlined_as_list(slot_name="has_specified_output", slot_type=GeneExpressionOutput, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -3022,6 +3160,141 @@ class SupplementTypeEnum(EnumDefinitionImpl):
         description="Categories of cell culture medium supplements.",
     )
 
+class ExperimentalGroupEnum(EnumDefinitionImpl):
+    """
+    The role of an experimental group in a study design, used to mark each per-condition output record.
+    """
+    control = PermissibleValue(
+        text="control",
+        description="Untreated or unexposed control group")
+    vehicle_control = PermissibleValue(
+        text="vehicle_control",
+        description="Control group receiving the vehicle/carrier only")
+    baseline = PermissibleValue(
+        text="baseline",
+        description="Pre-exposure or pre-treatment measurement of the same subjects")
+    treated = PermissibleValue(
+        text="treated",
+        description="Group receiving the exposure or treatment")
+    recovery = PermissibleValue(
+        text="recovery",
+        description="Post-exposure recovery period measurement")
+    sham = PermissibleValue(
+        text="sham",
+        description="Sham-treated control group")
+
+    _defn = EnumDefinition(
+        name="ExperimentalGroupEnum",
+        description="The role of an experimental group in a study design, used to mark each per-condition output record.",
+    )
+
+class CentralTendencyEnum(EnumDefinitionImpl):
+    """
+    What kind of central value a reported number represents.
+    """
+    mean = PermissibleValue(
+        text="mean",
+        description="Arithmetic mean")
+    median = PermissibleValue(
+        text="median",
+        description="Median")
+    geometric_mean = PermissibleValue(
+        text="geometric_mean",
+        description="Geometric mean")
+    single_value = PermissibleValue(
+        text="single_value",
+        description="A single measurement, not an aggregate")
+
+    _defn = EnumDefinition(
+        name="CentralTendencyEnum",
+        description="What kind of central value a reported number represents.",
+    )
+
+class VariabilityTypeEnum(EnumDefinitionImpl):
+    """
+    Kinds of variability or uncertainty reported around a value.
+    """
+    standard_deviation = PermissibleValue(
+        text="standard_deviation",
+        description="Standard deviation (SD)")
+    standard_error = PermissibleValue(
+        text="standard_error",
+        description="Standard error of the mean (SEM)")
+    confidence_interval_95 = PermissibleValue(
+        text="confidence_interval_95",
+        description="95% confidence interval")
+    confidence_interval_other = PermissibleValue(
+        text="confidence_interval_other",
+        description="Confidence interval at a level other than 95%")
+    range = PermissibleValue(
+        text="range",
+        description="Minimum-maximum range of observed values")
+    interquartile_range = PermissibleValue(
+        text="interquartile_range",
+        description="Interquartile range (IQR)")
+
+    _defn = EnumDefinition(
+        name="VariabilityTypeEnum",
+        description="Kinds of variability or uncertainty reported around a value.",
+    )
+
+class ChangeTypeEnum(EnumDefinitionImpl):
+    """
+    Forms in which a change relative to control can be expressed.
+    """
+    absolute_difference = PermissibleValue(
+        text="absolute_difference",
+        description="Treated minus control, in the measurement's own unit")
+    percent_change = PermissibleValue(
+        text="percent_change",
+        description="Change as a percentage of the control value")
+    fold_change = PermissibleValue(
+        text="fold_change",
+        description="Treated divided by control, expressed as fold")
+    ratio = PermissibleValue(
+        text="ratio",
+        description="Ratio of treated to control")
+
+    _defn = EnumDefinition(
+        name="ChangeTypeEnum",
+        description="Forms in which a change relative to control can be expressed.",
+    )
+
+class ChangeDirectionEnum(EnumDefinitionImpl):
+    """
+    Direction of a change in the treated group relative to control.
+    """
+    increased = PermissibleValue(
+        text="increased",
+        description="Treated value is higher than control")
+    decreased = PermissibleValue(
+        text="decreased",
+        description="Treated value is lower than control")
+    no_change = PermissibleValue(
+        text="no_change",
+        description="No meaningful difference from control")
+
+    _defn = EnumDefinition(
+        name="ChangeDirectionEnum",
+        description="Direction of a change in the treated group relative to control.",
+    )
+
+class DerivationEnum(EnumDefinitionImpl):
+    """
+    Provenance of an analysis-layer value.
+    """
+    reported_in_paper = PermissibleValue(
+        text="reported_in_paper",
+        description="The value was stated directly in the publication")
+    computed = PermissibleValue(
+        text="computed",
+        description="The value was calculated from extracted values")
+
+    _defn = EnumDefinition(
+        name="DerivationEnum",
+        description="Provenance of an analysis-layer value.",
+    )
+
 class AssayContextCapabilityEnum(EnumDefinitionImpl):
     """
     Indicates what experimental contexts an assay class supports. Used to constrain valid study_subject types and
@@ -3095,6 +3368,9 @@ class slots:
 
 slots.adverse_outcome_pathways = Slot(uri=SOMA.adverse_outcome_pathways, name="adverse_outcome_pathways", curie=SOMA.curie('adverse_outcome_pathways'),
                    model_uri=SOMA.adverse_outcome_pathways, domain=None, range=Optional[Union[dict[Union[str, AdverseOutcomePathwayId], Union[dict, AdverseOutcomePathway]], list[Union[dict, AdverseOutcomePathway]]]])
+
+slots.response_comparisons = Slot(uri=SOMA.response_comparisons, name="response_comparisons", curie=SOMA.curie('response_comparisons'),
+                   model_uri=SOMA.response_comparisons, domain=None, range=Optional[Union[dict[Union[str, ResponseComparisonId], Union[dict, ResponseComparison]], list[Union[dict, ResponseComparison]]]])
 
 slots.ciliary_function_assays = Slot(uri=SOMA.ciliary_function_assays, name="ciliary_function_assays", curie=SOMA.curie('ciliary_function_assays'),
                    model_uri=SOMA.ciliary_function_assays, domain=None, range=Optional[Union[dict[Union[str, CiliaryFunctionAssayId], Union[dict, CiliaryFunctionAssay]], list[Union[dict, CiliaryFunctionAssay]]]])
@@ -3211,7 +3487,13 @@ slots.informs_on_key_event = Slot(uri=ASSAY_BASE.informs_on_key_event, name="inf
                    model_uri=SOMA.informs_on_key_event, domain=None, range=Optional[Union[dict, KeyEvent]])
 
 slots.has_specified_output = Slot(uri=ASSAY_BASE.has_specified_output, name="has_specified_output", curie=ASSAY_BASE.curie('has_specified_output'),
-                   model_uri=SOMA.has_specified_output, domain=None, range=Optional[Union[dict, AssayOutputMeasurement]])
+                   model_uri=SOMA.has_specified_output, domain=None, range=Optional[Union[dict[Union[str, AssayOutputMeasurementId], Union[dict, AssayOutputMeasurement]], list[Union[dict, AssayOutputMeasurement]]]])
+
+slots.experimental_group = Slot(uri=ASSAY_BASE.experimental_group, name="experimental_group", curie=ASSAY_BASE.curie('experimental_group'),
+                   model_uri=SOMA.experimental_group, domain=None, range=Optional[Union[str, "ExperimentalGroupEnum"]])
+
+slots.measured_under = Slot(uri=ASSAY_BASE.measured_under, name="measured_under", curie=ASSAY_BASE.curie('measured_under'),
+                   model_uri=SOMA.measured_under, domain=None, range=Optional[Union[str, ExposureConditionId]])
 
 slots.cell_type = Slot(uri=EFO['0000324'], name="cell_type", curie=EFO.curie('0000324'),
                    model_uri=SOMA.cell_type, domain=None, range=Optional[Union[dict, CellTypeReference]])
@@ -3516,11 +3798,59 @@ slots.value = Slot(uri=ASSAY_BASE.value, name="value", curie=ASSAY_BASE.curie('v
 slots.unit = Slot(uri=ASSAY_BASE.unit, name="unit", curie=ASSAY_BASE.curie('unit'),
                    model_uri=SOMA.unit, domain=None, range=Optional[Union[dict, Unit]])
 
+slots.central_tendency = Slot(uri=ASSAY_BASE.central_tendency, name="central_tendency", curie=ASSAY_BASE.curie('central_tendency'),
+                   model_uri=SOMA.central_tendency, domain=None, range=Optional[Union[str, "CentralTendencyEnum"]])
+
+slots.variability = Slot(uri=ASSAY_BASE.variability, name="variability", curie=ASSAY_BASE.curie('variability'),
+                   model_uri=SOMA.variability, domain=None, range=Optional[Union[dict, Variability]])
+
+slots.sample_size = Slot(uri=ASSAY_BASE.sample_size, name="sample_size", curie=ASSAY_BASE.curie('sample_size'),
+                   model_uri=SOMA.sample_size, domain=None, range=Optional[int])
+
+slots.variability_type = Slot(uri=ASSAY_BASE.variability_type, name="variability_type", curie=ASSAY_BASE.curie('variability_type'),
+                   model_uri=SOMA.variability_type, domain=None, range=Optional[Union[str, "VariabilityTypeEnum"]])
+
+slots.lower_bound = Slot(uri=ASSAY_BASE.lower_bound, name="lower_bound", curie=ASSAY_BASE.curie('lower_bound'),
+                   model_uri=SOMA.lower_bound, domain=None, range=Optional[str])
+
+slots.upper_bound = Slot(uri=ASSAY_BASE.upper_bound, name="upper_bound", curie=ASSAY_BASE.curie('upper_bound'),
+                   model_uri=SOMA.upper_bound, domain=None, range=Optional[str])
+
 slots.min_value = Slot(uri=ASSAY_BASE.min_value, name="min_value", curie=ASSAY_BASE.curie('min_value'),
                    model_uri=SOMA.min_value, domain=None, range=Optional[Union[dict, QuantityValue]])
 
 slots.max_value = Slot(uri=ASSAY_BASE.max_value, name="max_value", curie=ASSAY_BASE.curie('max_value'),
                    model_uri=SOMA.max_value, domain=None, range=Optional[Union[dict, QuantityValue]])
+
+slots.derived_from_assay = Slot(uri=ASSAY_BASE.derived_from_assay, name="derived_from_assay", curie=ASSAY_BASE.curie('derived_from_assay'),
+                   model_uri=SOMA.derived_from_assay, domain=None, range=Optional[Union[str, AssayId]])
+
+slots.compared_measurement = Slot(uri=ASSAY_BASE.compared_measurement, name="compared_measurement", curie=ASSAY_BASE.curie('compared_measurement'),
+                   model_uri=SOMA.compared_measurement, domain=None, range=Optional[str])
+
+slots.control_output = Slot(uri=ASSAY_BASE.control_output, name="control_output", curie=ASSAY_BASE.curie('control_output'),
+                   model_uri=SOMA.control_output, domain=None, range=Optional[Union[str, AssayOutputMeasurementId]])
+
+slots.treated_output = Slot(uri=ASSAY_BASE.treated_output, name="treated_output", curie=ASSAY_BASE.curie('treated_output'),
+                   model_uri=SOMA.treated_output, domain=None, range=Optional[Union[str, AssayOutputMeasurementId]])
+
+slots.change_type = Slot(uri=ASSAY_BASE.change_type, name="change_type", curie=ASSAY_BASE.curie('change_type'),
+                   model_uri=SOMA.change_type, domain=None, range=Optional[Union[str, "ChangeTypeEnum"]])
+
+slots.change_direction = Slot(uri=ASSAY_BASE.change_direction, name="change_direction", curie=ASSAY_BASE.curie('change_direction'),
+                   model_uri=SOMA.change_direction, domain=None, range=Optional[Union[str, "ChangeDirectionEnum"]])
+
+slots.change_value = Slot(uri=ASSAY_BASE.change_value, name="change_value", curie=ASSAY_BASE.curie('change_value'),
+                   model_uri=SOMA.change_value, domain=None, range=Optional[Union[dict, QuantityValue]])
+
+slots.p_value = Slot(uri=ASSAY_BASE.p_value, name="p_value", curie=ASSAY_BASE.curie('p_value'),
+                   model_uri=SOMA.p_value, domain=None, range=Optional[float])
+
+slots.statistical_test = Slot(uri=ASSAY_BASE.statistical_test, name="statistical_test", curie=ASSAY_BASE.curie('statistical_test'),
+                   model_uri=SOMA.statistical_test, domain=None, range=Optional[str])
+
+slots.derivation = Slot(uri=ASSAY_BASE.derivation, name="derivation", curie=ASSAY_BASE.curie('derivation'),
+                   model_uri=SOMA.derivation, domain=None, range=Optional[Union[str, "DerivationEnum"]])
 
 slots.beat_frequency_hz = Slot(uri=ASSAY_MICROSCHEMAS.beat_frequency_hz, name="beat_frequency_hz", curie=ASSAY_MICROSCHEMAS.curie('beat_frequency_hz'),
                    model_uri=SOMA.beat_frequency_hz, domain=None, range=Optional[Union[dict, QuantityValue]])
@@ -3869,7 +4199,7 @@ slots.gene_expression_method = Slot(uri=ASSAY_MICROSCHEMAS.gene_expression_metho
 
 slots.Unit_id = Slot(uri=AOP_FRAMEWORK.id, name="Unit_id", curie=AOP_FRAMEWORK.curie('id'),
                    model_uri=SOMA.Unit_id, domain=Unit, range=Union[str, UnitId],
-                   pattern=re.compile(r'^(UO:\d{7}|UCUM:\S+|QUDT:\S+)$'))
+                   pattern=re.compile(r'^(UO:\d{7}|UCUM:\S+|QUDT:\S+|STATO:\d{7})$'))
 
 slots.CellTypeReference_id = Slot(uri=AOP_FRAMEWORK.id, name="CellTypeReference_id", curie=AOP_FRAMEWORK.curie('id'),
                    model_uri=SOMA.CellTypeReference_id, domain=CellTypeReference, range=Union[str, CellTypeReferenceId],
@@ -3895,40 +4225,40 @@ slots.CiliaryFunctionAssay_study_subject = Slot(uri=ASSAY_BASE.study_subject, na
                    model_uri=SOMA.CiliaryFunctionAssay_study_subject, domain=CiliaryFunctionAssay, range=Optional[Union[dict, StudySubject]])
 
 slots.CiliaryFunctionAssay_has_specified_output = Slot(uri=ASSAY_BASE.has_specified_output, name="CiliaryFunctionAssay_has_specified_output", curie=ASSAY_BASE.curie('has_specified_output'),
-                   model_uri=SOMA.CiliaryFunctionAssay_has_specified_output, domain=CiliaryFunctionAssay, range=Optional[Union[dict, "CiliaryFunctionOutput"]])
+                   model_uri=SOMA.CiliaryFunctionAssay_has_specified_output, domain=CiliaryFunctionAssay, range=Optional[Union[dict[Union[str, CiliaryFunctionOutputId], Union[dict, "CiliaryFunctionOutput"]], list[Union[dict, "CiliaryFunctionOutput"]]]])
 
 slots.ASLAssay_has_specified_output = Slot(uri=ASSAY_BASE.has_specified_output, name="ASLAssay_has_specified_output", curie=ASSAY_BASE.curie('has_specified_output'),
-                   model_uri=SOMA.ASLAssay_has_specified_output, domain=ASLAssay, range=Optional[Union[dict, "ASLOutput"]])
+                   model_uri=SOMA.ASLAssay_has_specified_output, domain=ASLAssay, range=Optional[Union[dict[Union[str, ASLOutputId], Union[dict, "ASLOutput"]], list[Union[dict, "ASLOutput"]]]])
 
 slots.MucociliaryClearanceAssay_has_specified_output = Slot(uri=ASSAY_BASE.has_specified_output, name="MucociliaryClearanceAssay_has_specified_output", curie=ASSAY_BASE.curie('has_specified_output'),
-                   model_uri=SOMA.MucociliaryClearanceAssay_has_specified_output, domain=MucociliaryClearanceAssay, range=Optional[Union[dict, "MucociliaryClearanceOutput"]])
+                   model_uri=SOMA.MucociliaryClearanceAssay_has_specified_output, domain=MucociliaryClearanceAssay, range=Optional[Union[dict[Union[str, MucociliaryClearanceOutputId], Union[dict, "MucociliaryClearanceOutput"]], list[Union[dict, "MucociliaryClearanceOutput"]]]])
 
 slots.OxidativeStressAssay_has_specified_output = Slot(uri=ASSAY_BASE.has_specified_output, name="OxidativeStressAssay_has_specified_output", curie=ASSAY_BASE.curie('has_specified_output'),
-                   model_uri=SOMA.OxidativeStressAssay_has_specified_output, domain=OxidativeStressAssay, range=Optional[Union[dict, "OxidativeStressOutput"]])
+                   model_uri=SOMA.OxidativeStressAssay_has_specified_output, domain=OxidativeStressAssay, range=Optional[Union[dict[Union[str, OxidativeStressOutputId], Union[dict, "OxidativeStressOutput"]], list[Union[dict, "OxidativeStressOutput"]]]])
 
 slots.CFTRFunctionAssay_has_specified_output = Slot(uri=ASSAY_BASE.has_specified_output, name="CFTRFunctionAssay_has_specified_output", curie=ASSAY_BASE.curie('has_specified_output'),
-                   model_uri=SOMA.CFTRFunctionAssay_has_specified_output, domain=CFTRFunctionAssay, range=Optional[Union[dict, "CFTRFunctionOutput"]])
+                   model_uri=SOMA.CFTRFunctionAssay_has_specified_output, domain=CFTRFunctionAssay, range=Optional[Union[dict[Union[str, CFTRFunctionOutputId], Union[dict, "CFTRFunctionOutput"]], list[Union[dict, "CFTRFunctionOutput"]]]])
 
 slots.EGFRSignalingAssay_has_specified_output = Slot(uri=ASSAY_BASE.has_specified_output, name="EGFRSignalingAssay_has_specified_output", curie=ASSAY_BASE.curie('has_specified_output'),
-                   model_uri=SOMA.EGFRSignalingAssay_has_specified_output, domain=EGFRSignalingAssay, range=Optional[Union[dict, "EGFRSignalingOutput"]])
+                   model_uri=SOMA.EGFRSignalingAssay_has_specified_output, domain=EGFRSignalingAssay, range=Optional[Union[dict[Union[str, EGFRSignalingOutputId], Union[dict, "EGFRSignalingOutput"]], list[Union[dict, "EGFRSignalingOutput"]]]])
 
 slots.GobletCellAssay_has_specified_output = Slot(uri=ASSAY_BASE.has_specified_output, name="GobletCellAssay_has_specified_output", curie=ASSAY_BASE.curie('has_specified_output'),
-                   model_uri=SOMA.GobletCellAssay_has_specified_output, domain=GobletCellAssay, range=Optional[Union[dict, "GobletCellOutput"]])
+                   model_uri=SOMA.GobletCellAssay_has_specified_output, domain=GobletCellAssay, range=Optional[Union[dict[Union[str, GobletCellOutputId], Union[dict, "GobletCellOutput"]], list[Union[dict, "GobletCellOutput"]]]])
 
 slots.BALFSputumAssay_study_subject = Slot(uri=ASSAY_BASE.study_subject, name="BALFSputumAssay_study_subject", curie=ASSAY_BASE.curie('study_subject'),
                    model_uri=SOMA.BALFSputumAssay_study_subject, domain=BALFSputumAssay, range=Optional[Union[dict, InVivoSubject]])
 
 slots.BALFSputumAssay_has_specified_output = Slot(uri=ASSAY_BASE.has_specified_output, name="BALFSputumAssay_has_specified_output", curie=ASSAY_BASE.curie('has_specified_output'),
-                   model_uri=SOMA.BALFSputumAssay_has_specified_output, domain=BALFSputumAssay, range=Optional[Union[dict, "BALFSputumOutput"]])
+                   model_uri=SOMA.BALFSputumAssay_has_specified_output, domain=BALFSputumAssay, range=Optional[Union[dict[Union[str, BALFSputumOutputId], Union[dict, "BALFSputumOutput"]], list[Union[dict, "BALFSputumOutput"]]]])
 
 slots.LungFunctionAssay_study_subject = Slot(uri=ASSAY_BASE.study_subject, name="LungFunctionAssay_study_subject", curie=ASSAY_BASE.curie('study_subject'),
                    model_uri=SOMA.LungFunctionAssay_study_subject, domain=LungFunctionAssay, range=Optional[Union[dict, InVivoSubject]])
 
 slots.LungFunctionAssay_has_specified_output = Slot(uri=ASSAY_BASE.has_specified_output, name="LungFunctionAssay_has_specified_output", curie=ASSAY_BASE.curie('has_specified_output'),
-                   model_uri=SOMA.LungFunctionAssay_has_specified_output, domain=LungFunctionAssay, range=Optional[Union[dict, "LungFunctionOutput"]])
+                   model_uri=SOMA.LungFunctionAssay_has_specified_output, domain=LungFunctionAssay, range=Optional[Union[dict[Union[str, LungFunctionOutputId], Union[dict, "LungFunctionOutput"]], list[Union[dict, "LungFunctionOutput"]]]])
 
 slots.FoxJExpressionAssay_has_specified_output = Slot(uri=ASSAY_BASE.has_specified_output, name="FoxJExpressionAssay_has_specified_output", curie=ASSAY_BASE.curie('has_specified_output'),
-                   model_uri=SOMA.FoxJExpressionAssay_has_specified_output, domain=FoxJExpressionAssay, range=Optional[Union[dict, "FoxJExpressionOutput"]])
+                   model_uri=SOMA.FoxJExpressionAssay_has_specified_output, domain=FoxJExpressionAssay, range=Optional[Union[dict[Union[str, FoxJExpressionOutputId], Union[dict, "FoxJExpressionOutput"]], list[Union[dict, "FoxJExpressionOutput"]]]])
 
 slots.GeneExpressionAssay_has_specified_output = Slot(uri=ASSAY_BASE.has_specified_output, name="GeneExpressionAssay_has_specified_output", curie=ASSAY_BASE.curie('has_specified_output'),
-                   model_uri=SOMA.GeneExpressionAssay_has_specified_output, domain=GeneExpressionAssay, range=Optional[Union[dict, "GeneExpressionOutput"]])
+                   model_uri=SOMA.GeneExpressionAssay_has_specified_output, domain=GeneExpressionAssay, range=Optional[Union[dict[Union[str, GeneExpressionOutputId], Union[dict, "GeneExpressionOutput"]], list[Union[dict, "GeneExpressionOutput"]]]])

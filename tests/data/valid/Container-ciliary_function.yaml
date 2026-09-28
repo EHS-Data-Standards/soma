@@ -5,39 +5,39 @@ ciliary_function_assays:
   - id: "CILIARY:001"
     name: "CBF measurement after ozone exposure (in vitro)"
     has_specified_output:
-      id: "CILIARY:001-output"
-      name: "CILIARY:001 measurement results"
-      beat_frequency_hz:
-        value: "8.5"
-        unit:
-          id: "UO:0000106"
-          name: "hertz"
-      active_area_percentage:
-        value: "72"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
-      percentage_ciliated_cells:
-        value: "65"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
-      cilia_length:
-        value: "7.2"
-        unit:
-          id: "UO:0000017"
-          name: "micrometer"
-      cilia_per_cell:
-        value: "150"
-        unit:
-          id: "UO:0000189"
-          name: "count"
-      ciliary_motion_patterns: coordinated
-      ciliary_beat_amplitude:
-        value: "4.5"
-        unit:
-          id: "UO:0000017"
-          name: "micrometer"
+      - id: "CILIARY:001-output"
+        name: "CILIARY:001 measurement results"
+        beat_frequency_hz:
+          value: "8.5"
+          unit:
+            id: "UO:0000106"
+            name: "hertz"
+        active_area_percentage:
+          value: "72"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+        percentage_ciliated_cells:
+          value: "65"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
+        cilia_length:
+          value: "7.2"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
+        cilia_per_cell:
+          value: "150"
+          unit:
+            id: "UO:0000189"
+            name: "count"
+        ciliary_motion_patterns: coordinated
+        ciliary_beat_amplitude:
+          value: "4.5"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
     assay_date: "2024-01-15"
     informs_on_key_event:
       id: "KE:ke3-impaired-ciliary"
@@ -144,18 +144,18 @@ ciliary_function_assays:
   - id: "CILIARY:002"
     name: "In vivo OCT-based ciliary function assessment"
     has_specified_output:
-      id: "CILIARY:002-output"
-      name: "CILIARY:002 measurement results"
-      beat_frequency_hz:
-        value: "11.2"
-        unit:
-          id: "UO:0000106"
-          name: "hertz"
-      active_area_percentage:
-        value: "85"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
+      - id: "CILIARY:002-output"
+        name: "CILIARY:002 measurement results"
+        beat_frequency_hz:
+          value: "11.2"
+          unit:
+            id: "UO:0000106"
+            name: "hertz"
+        active_area_percentage:
+          value: "85"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
     assay_date: "2024-03-10"
     informs_on_key_event:
       id: "KE:ke3-impaired-ciliary"

@@ -6,23 +6,23 @@ gene_expression_assays:
     name: "IL-8 gene expression after exposure"
     target_gene: "PR:000006689"
     has_specified_output:
-      id: "GE:001-output"
-      name: "GE:001 measurement results"
-      mrna_level:
-        value: "3.5"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
-      protein_level:
-        value: "2.1"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
-      percentage_positive_cells:
-        value: "45"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
+      - id: "GE:001-output"
+        name: "GE:001 measurement results"
+        mrna_level:
+          value: "3.5"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+        protein_level:
+          value: "2.1"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+        percentage_positive_cells:
+          value: "45"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
     gene_expression_method: "qRT-PCR"
     normalization_reference: "GAPDH"
     assay_date: "2024-10-01"
