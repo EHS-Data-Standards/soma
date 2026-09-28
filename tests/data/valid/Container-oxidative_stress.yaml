@@ -21,12 +21,12 @@ oxidative_stress_assays:
       - id: "EXPOSURE:pm25-24h"
         name: "PM2.5 10 ug/cm2 for 24 hours"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "24"

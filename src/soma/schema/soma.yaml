@@ -14,6 +14,7 @@ id: https://w3id.org/EHS-Data-Standards/soma
 
 imports:
   - linkml:types
+  - evidence
   - aop_framework
   - assay_base
   - assay_microschemas
@@ -42,6 +43,10 @@ prefixes:
   QUDT: http://qudt.org/vocab/unit/
   NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
   owg: https://w3id.org/EHS-Data-Standards/soma/
+  evidence: https://w3id.org/EHS-Data-Standards/evidence/
+  dcterms: http://purl.org/dc/terms/
+  PMID: http://www.ncbi.nlm.nih.gov/pubmed/
+  DOI: https://doi.org/
 
 default_prefix: soma
 default_range: string
@@ -62,6 +67,9 @@ classes:
       for its specific measurements, with an explicit connection to the
       Key Event it informs via the informs_on_key_event slot.
     slots:
+      # Source publication (which paper this file was extracted from)
+      - source_publication
+
       # AOP Framework Collections
       - key_events
       - key_event_relationships

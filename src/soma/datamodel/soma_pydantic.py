@@ -89,6 +89,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'soma',
                     'assay base schema, and domain-specific assay microschemas.',
      'id': 'https://w3id.org/EHS-Data-Standards/soma',
      'imports': ['linkml:types',
+                 'evidence',
                  'aop_framework',
                  'assay_base',
                  'assay_microschemas'],
@@ -98,6 +99,8 @@ linkml_meta = LinkMLMeta({'default_prefix': 'soma',
                             'prefix_reference': 'http://purl.obolibrary.org/obo/CHEBI_'},
                   'CL': {'prefix_prefix': 'CL',
                          'prefix_reference': 'http://purl.obolibrary.org/obo/CL_'},
+                  'DOI': {'prefix_prefix': 'DOI',
+                          'prefix_reference': 'https://doi.org/'},
                   'ECTO': {'prefix_prefix': 'ECTO',
                            'prefix_reference': 'http://purl.obolibrary.org/obo/ECTO_'},
                   'ENVO': {'prefix_prefix': 'ENVO',
@@ -112,6 +115,8 @@ linkml_meta = LinkMLMeta({'default_prefix': 'soma',
                           'prefix_reference': 'http://purl.obolibrary.org/obo/OBI_'},
                   'PATO': {'prefix_prefix': 'PATO',
                            'prefix_reference': 'http://purl.obolibrary.org/obo/PATO_'},
+                  'PMID': {'prefix_prefix': 'PMID',
+                           'prefix_reference': 'http://www.ncbi.nlm.nih.gov/pubmed/'},
                   'QUDT': {'prefix_prefix': 'QUDT',
                            'prefix_reference': 'http://qudt.org/vocab/unit/'},
                   'UBERON': {'prefix_prefix': 'UBERON',
@@ -128,6 +133,10 @@ linkml_meta = LinkMLMeta({'default_prefix': 'soma',
                                          'prefix_reference': 'https://w3id.org/EHS-Data-Standards/assay_microschemas/'},
                   'biolink': {'prefix_prefix': 'biolink',
                               'prefix_reference': 'https://w3id.org/biolink/'},
+                  'dcterms': {'prefix_prefix': 'dcterms',
+                              'prefix_reference': 'http://purl.org/dc/terms/'},
+                  'evidence': {'prefix_prefix': 'evidence',
+                               'prefix_reference': 'https://w3id.org/EHS-Data-Standards/evidence/'},
                   'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
                   'owg': {'prefix_prefix': 'owg',
@@ -139,6 +148,50 @@ linkml_meta = LinkMLMeta({'default_prefix': 'soma',
      'see_also': ['https://EHS-Data-Standards.github.io/soma'],
      'source_file': 'src/soma/schema/soma.yaml',
      'title': 'SOMA Schema'} )
+
+class EvidenceItemSupportEnum(str, Enum):
+    """
+    Which way the cited evidence points relative to the claim. Direction only — it says nothing about how strong the evidence is.
+    """
+    Supports = "SUPPORT"
+    """
+    The quoted evidence supports the claim
+    """
+    Refutes = "REFUTE"
+    """
+    The quoted evidence contradicts the claim
+    """
+    No_evidence = "NO_EVIDENCE"
+    """
+    The cited publication turned out not to contain evidence relevant to the claim
+    """
+
+
+class EvidenceSourceEnum(str, Enum):
+    """
+    The kind of study the cited publication reports.
+    """
+    Human_clinical = "HUMAN_CLINICAL"
+    """
+    Human observations: patients, cohorts, case reports, clinical trials, epidemiology
+    """
+    Model_organism = "MODEL_ORGANISM"
+    """
+    In vivo animal evidence: mouse, rat, other non-human animal models
+    """
+    In_vitro_SOLIDUS_ex_vivo = "IN_VITRO"
+    """
+    Cell culture, air-liquid interface cultures, organoids, tissue slices, biochemical assays
+    """
+    Computational = "COMPUTATIONAL"
+    """
+    In silico or modeling studies, even when they use clinical data as input
+    """
+    Other = "OTHER"
+    """
+    Evidence not fitting the categories above
+    """
+
 
 class BiologicalActionEnum(str, Enum):
     """
@@ -260,6 +313,41 @@ class OutcomeLevelEnum(str, Enum):
     """
     Adverse outcome at the population level
     """
+
+
+class CellTypeTerm(str):
+    """
+    A cell type term from the Cell Ontology (CL), under "cell".
+    """
+    pass
+
+
+class AnatomicalEntityTerm(str):
+    """
+    An anatomical term from UBERON, under "anatomical entity".
+    """
+    pass
+
+
+class ChemicalEntityTerm(str):
+    """
+    A chemical entity from CHEBI or an exposure concept from ECTO. No branch constraint because two ontologies are allowed — the validator still checks the term exists and the label matches.
+    """
+    pass
+
+
+class SpeciesTerm(str):
+    """
+    A species from the NCBI Taxonomy. No branch constraint — the validator checks the term exists and the label matches.
+    """
+    pass
+
+
+class UnitTerm(str):
+    """
+    A unit of measurement from UO (UCUM/QUDT/STATO ids are also allowed by the Unit class but are not label-checked). No branch constraint.
+    """
+    pass
 
 
 class SampleTypeEnum(str, Enum):
@@ -625,6 +713,63 @@ class DirectionalityEnum(str, Enum):
 
 
 
+class EvidenceItem(ConfiguredBaseModel):
+    """
+    One piece of evidence for a claim: which publication it comes from, an exact quote from that publication, whether the quote supports or refutes the claim, and what kind of study produced it.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/evidence'})
+
+    reference: Optional[str] = Field(default=None, description="""The cited publication's PubMed ID, e.g. \"PMID:12345678\".""", json_schema_extra = { "linkml_meta": {'domain_of': ['EvidenceItem', 'PublicationReference'],
+         'implements': ['linkml:authoritative_reference']} })
+    reference_title: Optional[str] = Field(default=None, description="""The title of the cited publication, copied from the cached reference record (references_cache/), never typed from memory.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EvidenceItem', 'PublicationReference'],
+         'implements': ['dcterms:title'],
+         'recommended': True} })
+    supports: Optional[EvidenceItemSupportEnum] = Field(default=None, description="""Which way the quoted evidence points: does it support the claim, contradict it, or turn out not to bear on it at all.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EvidenceItem']} })
+    evidence_source: Optional[EvidenceSourceEnum] = Field(default=None, description="""What kind of study the cited publication reports — classify the paper, not the person doing the extraction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EvidenceItem']} })
+    snippet: Optional[str] = Field(default=None, description="""An exact quote from the cited publication that supports or refutes the claim. Checked automatically: the text must appear word-for-word in the cached copy of the publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EvidenceItem'], 'implements': ['linkml:excerpt']} })
+    explanation: Optional[str] = Field(default=None, description="""One or two sentences on how the quoted passage supports the specific claim it is attached to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EvidenceItem']} })
+
+    @field_validator('reference')
+    def pattern_reference(cls, v):
+        pattern=re.compile(r"^PMID:\d+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid reference format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid reference format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class PublicationReference(ConfiguredBaseModel):
+    """
+    The publication a data file was extracted from. Every Container names its source paper here, so each kb/ file is traceable to one publication.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/evidence'})
+
+    reference: Optional[str] = Field(default=None, description="""The cited publication's PubMed ID, e.g. \"PMID:12345678\".""", json_schema_extra = { "linkml_meta": {'domain_of': ['EvidenceItem', 'PublicationReference'],
+         'implements': ['linkml:authoritative_reference']} })
+    reference_title: Optional[str] = Field(default=None, description="""The title of the cited publication, copied from the cached reference record (references_cache/), never typed from memory.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EvidenceItem', 'PublicationReference'],
+         'implements': ['dcterms:title'],
+         'recommended': True} })
+    doi: Optional[str] = Field(default=None, description="""The publication's DOI, e.g. \"10.1164/rccm.202001-0086OC\" (without a \"DOI:\" prefix).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PublicationReference']} })
+
+    @field_validator('reference')
+    def pattern_reference(cls, v):
+        pattern=re.compile(r"^PMID:\d+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid reference format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid reference format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
 class NamedThing(ConfiguredBaseModel):
     """
     A generic entity with an identifier and name. Base class for all named entities in the schema.
@@ -652,6 +797,11 @@ class KeyEvent(NamedThing):
     aopwiki_id: Optional[str] = Field(default=None, description="""The AOP-Wiki identifier for this entity (e.g., \"AOP:411\" for an AOP, \"KE:1234\" for a key event).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcome', 'AdverseOutcomePathway']} })
     upstream_key_events: Optional[list[KeyEvent]] = Field(default=[], description="""Key events that lead to this key event (upstream in the pathway).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     downstream_key_events: Optional[list[KeyEvent]] = Field(default=[], description="""Key events that follow this key event (downstream in the pathway).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -707,6 +857,11 @@ class KeyEventRelationship(NamedThing):
     relationship_type: Optional[str] = Field(default=None, description="""The type of causal relationship (directly leads to, indirectly leads to).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEventRelationship']} })
     evidence_support: Optional[EvidenceSupportEnum] = Field(default=None, description="""Level of evidence supporting this key event relationship.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEventRelationship']} })
     quantitative_understanding: Optional[QuantitativeUnderstandingEnum] = Field(default=None, description="""Level of quantitative understanding of the relationship.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEventRelationship']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -786,6 +941,11 @@ class MolecularInitiatingEvent(KeyEvent):
     aopwiki_id: Optional[str] = Field(default=None, description="""The AOP-Wiki identifier for this entity (e.g., \"AOP:411\" for an AOP, \"KE:1234\" for a key event).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcome', 'AdverseOutcomePathway']} })
     upstream_key_events: Optional[list[KeyEvent]] = Field(default=[], description="""Key events that lead to this key event (upstream in the pathway).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     downstream_key_events: Optional[list[KeyEvent]] = Field(default=[], description="""Key events that follow this key event (downstream in the pathway).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -844,6 +1004,11 @@ class Assay(NamedThing):
     follows_protocols: Optional[list[Union[Protocol,ImagingProtocol,StainingProtocol,SpirometryProtocol,MolecularAssayProtocol]]] = Field(default=[], description="""The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_specified_output: Optional[list[AssayOutputMeasurement]] = Field(default=[], description="""The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay'], 'exact_mappings': ['OBI:0000299']} })
     assay_date: Optional[date] = Field(default=None, description="""Date when the assay was performed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -858,6 +1023,11 @@ class AssayOutputMeasurement(NamedThing):
          'exact_mappings': ['IAO:0000109'],
          'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
 
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
@@ -872,7 +1042,10 @@ class StudySubject(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
 
     subject_type: Literal["StudySubject"] = Field(default="StudySubject", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
+    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'SpeciesTerm'}],
+         'domain_of': ['StudySubject', 'CellLine']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -885,7 +1058,10 @@ class ModelSystem(StudySubject):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
 
     subject_type: Literal["ModelSystem"] = Field(default="ModelSystem", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
+    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'SpeciesTerm'}],
+         'domain_of': ['StudySubject', 'CellLine']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -907,7 +1083,10 @@ class InVivoSubject(StudySubject):
     sample_collection_method: Optional[str] = Field(default=None, description="""Method used for sample collection in vivo (e.g., bronchoscopy, induced sputum, spirometry).""", json_schema_extra = { "linkml_meta": {'domain_of': ['InVivoSubject']} })
     clinical_context: Optional[str] = Field(default=None, description="""Clinical context for in vivo measurements (e.g., routine screening, post-exposure assessment, disease monitoring, baseline spirometry).""", json_schema_extra = { "linkml_meta": {'domain_of': ['InVivoSubject']} })
     subject_type: Literal["InVivoSubject"] = Field(default="InVivoSubject", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
+    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'SpeciesTerm'}],
+         'domain_of': ['StudySubject', 'CellLine']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -924,7 +1103,10 @@ class PopulationSubject(StudySubject):
     age_range: Optional[QuantityRange] = Field(default=None, description="""Age range of the study population.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PopulationSubject']} })
     subjects: Optional[list[InVivoSubject]] = Field(default=[], description="""Individual subjects in the population or cohort. Optional — use when individual-level data is available alongside aggregate cohort metadata.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PopulationSubject']} })
     subject_type: Literal["PopulationSubject"] = Field(default="PopulationSubject", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
+    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'SpeciesTerm'}],
+         'domain_of': ['StudySubject', 'CellLine']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1075,7 +1257,10 @@ class QuantityValue(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
 
     value: Optional[str] = Field(default=None, description="""The numeric value of the quantity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue', 'Variability']} })
-    unit: Optional[Unit] = Field(default=None, description="""The unit of measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue', 'Variability', 'QuantityRange']} })
+    unit: Optional[Unit] = Field(default=None, description="""The unit of measurement.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'UnitTerm'}],
+         'domain_of': ['QuantityValue', 'Variability', 'QuantityRange']} })
     central_tendency: Optional[CentralTendencyEnum] = Field(default=None, description="""What kind of central value the reported number is: a mean, median, geometric mean, or a single measurement. Important for combining results across studies.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
     variability: Optional[Variability] = Field(default=None, description="""The reported variability around the value (SD, SEM, confidence interval, or range), kept separate from the central value itself.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
     sample_size: Optional[int] = Field(default=None, description="""Number of subjects, samples, or replicates behind this value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
@@ -1091,7 +1276,10 @@ class Variability(ConfiguredBaseModel):
     value: Optional[str] = Field(default=None, description="""The numeric value of the quantity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue', 'Variability']} })
     lower_bound: Optional[str] = Field(default=None, description="""Lower bound when variability is reported as an interval (confidence interval, range, IQR).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Variability']} })
     upper_bound: Optional[str] = Field(default=None, description="""Upper bound when variability is reported as an interval (confidence interval, range, IQR).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Variability']} })
-    unit: Optional[Unit] = Field(default=None, description="""The unit of measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue', 'Variability', 'QuantityRange']} })
+    unit: Optional[Unit] = Field(default=None, description="""The unit of measurement.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'UnitTerm'}],
+         'domain_of': ['QuantityValue', 'Variability', 'QuantityRange']} })
 
 
 class Unit(ConfiguredBaseModel):
@@ -1182,18 +1370,19 @@ class SpeciesReference(NamedEntity):
 
 class ChemicalEntityReference(NamedEntity):
     """
-    A reference to a chemical entity from CHEBI or an exposure concept from ECTO.
+    A reference to a chemical entity from CHEBI, an exposure concept from ECTO, or an environmental material from ENVO (e.g. particulate matter, which is an ENVO concept, not a CHEBI chemical).
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base',
-         'id_prefixes': ['CHEBI', 'ECTO'],
-         'slot_usage': {'id': {'name': 'id', 'pattern': '^(CHEBI:\\d+|ECTO:\\d{7})$'}}})
+         'id_prefixes': ['CHEBI', 'ECTO', 'ENVO'],
+         'slot_usage': {'id': {'name': 'id',
+                               'pattern': '^(CHEBI:\\d+|ECTO:\\d{7}|ENVO:\\d{8})$'}}})
 
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
 
     @field_validator('id')
     def pattern_id(cls, v):
-        pattern=re.compile(r"^(CHEBI:\d+|ECTO:\d{7})$")
+        pattern=re.compile(r"^(CHEBI:\d+|ECTO:\d{7}|ENVO:\d{8})$")
         if isinstance(v, list):
             for element in v:
                 if isinstance(element, str) and not pattern.match(element):
@@ -1236,7 +1425,10 @@ class ExposureCondition(NamedEntity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
 
-    exposure_agent: Optional[ChemicalEntityReference] = Field(default=None, description="""The chemical, biological, or environmental agent used for exposure or treatment. Reference to a CHEBI or ECTO ontology term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureCondition']} })
+    exposure_agent: Optional[ChemicalEntityReference] = Field(default=None, description="""The chemical, biological, or environmental agent used for exposure or treatment. Reference to a CHEBI or ECTO ontology term.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'ChemicalEntityTerm'}],
+         'domain_of': ['ExposureCondition']} })
     exposure_concentration: Optional[QuantityValue] = Field(default=None, description="""Concentration of the exposure agent applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureCondition']} })
     exposure_duration: Optional[QuantityValue] = Field(default=None, description="""Duration of exposure or treatment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureCondition']} })
     timing_post_exposure: Optional[QuantityValue] = Field(default=None, description="""Time after exposure when the measurement was taken. Used to capture the temporal relationship between exposure and assay readout.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureCondition']} })
@@ -1272,9 +1464,19 @@ class CellularSystem(ModelSystem):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
 
     cell_line: Optional[CellLine] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
-    primary_cell: Optional[CellTypeReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
-    cell_type: Optional[CellTypeReference] = Field(default=None, description="""The cell type being studied. Reference to a Cell Ontology (CL) term. Used on CellularSystem and CellLine to describe the cell identity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellLine'], 'slot_uri': 'EFO:0000324'} })
-    anatomical_origin: Optional[AnatomicalEntityReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
+    primary_cell: Optional[CellTypeReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'CellTypeTerm'}],
+         'domain_of': ['CellularSystem']} })
+    cell_type: Optional[CellTypeReference] = Field(default=None, description="""The cell type being studied. Reference to a Cell Ontology (CL) term. Used on CellularSystem and CellLine to describe the cell identity.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'CellTypeTerm'}],
+         'domain_of': ['CellularSystem', 'CellLine'],
+         'slot_uri': 'EFO:0000324'} })
+    anatomical_origin: Optional[AnatomicalEntityReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'AnatomicalEntityTerm'}],
+         'domain_of': ['CellularSystem']} })
     cell_culture_growth_mode: Optional[CellCultureGrowthModeEnum] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellCultureConditions']} })
     substrate_type: Optional[SubstrateTypeEnum] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellCultureConditions']} })
     confluence_level: Optional[QuantityValue] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
@@ -1291,7 +1493,10 @@ class CellularSystem(ModelSystem):
     donor_info: Optional[str] = Field(default=None, description="""Information about cell donor (e.g., healthy non-smoker, CF patient, age, anatomical region).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
     replicates_per_donor: Optional[int] = Field(default=None, description="""Number of biological replicates per donor.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellCultureConditions']} })
     subject_type: Literal["CellularSystem"] = Field(default="CellularSystem", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
+    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'SpeciesTerm'}],
+         'domain_of': ['StudySubject', 'CellLine']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1305,8 +1510,15 @@ class CellLine(NamedEntity):
          'id_prefixes': ['CLO'],
          'slot_usage': {'id': {'name': 'id', 'pattern': '^CLO:\\d{7}$'}}})
 
-    cell_type: Optional[CellTypeReference] = Field(default=None, description="""The cell type being studied. Reference to a Cell Ontology (CL) term. Used on CellularSystem and CellLine to describe the cell identity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellLine'], 'slot_uri': 'EFO:0000324'} })
-    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StudySubject', 'CellLine']} })
+    cell_type: Optional[CellTypeReference] = Field(default=None, description="""The cell type being studied. Reference to a Cell Ontology (CL) term. Used on CellularSystem and CellLine to describe the cell identity.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'CellTypeTerm'}],
+         'domain_of': ['CellularSystem', 'CellLine'],
+         'slot_uri': 'EFO:0000324'} })
+    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'SpeciesTerm'}],
+         'domain_of': ['StudySubject', 'CellLine']} })
     tissue_origin: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine']} })
     disease_state: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['InVivoSubject', 'CellLine']} })
     supplier: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine']} })
@@ -1389,7 +1601,10 @@ class QuantityRange(ConfiguredBaseModel):
 
     min_value: Optional[QuantityValue] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityRange']} })
     max_value: Optional[QuantityValue] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityRange']} })
-    unit: Optional[Unit] = Field(default=None, description="""The unit of measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue', 'Variability', 'QuantityRange']} })
+    unit: Optional[Unit] = Field(default=None, description="""The unit of measurement.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'UnitTerm'}],
+         'domain_of': ['QuantityValue', 'Variability', 'QuantityRange']} })
 
 
 class CiliaryFunctionAssay(Assay):
@@ -1419,6 +1634,11 @@ class CiliaryFunctionAssay(Assay):
     follows_protocols: Optional[list[Union[Protocol,ImagingProtocol,StainingProtocol,SpirometryProtocol,MolecularAssayProtocol]]] = Field(default=[], description="""The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_specified_output: Optional[list[CiliaryFunctionOutput]] = Field(default=[], description="""The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay'], 'exact_mappings': ['OBI:0000299']} })
     assay_date: Optional[date] = Field(default=None, description="""Date when the assay was performed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1438,6 +1658,11 @@ class CiliaryFunctionOutput(AssayOutputMeasurement):
     cell_type_ratios: Optional[list[str]] = Field(default=[], json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CiliaryFunctionOutput']} })
     ciliary_motion_patterns: Optional[CiliaryMotionPatternEnum] = Field(default=None, description="""Patterns of ciliary motion (coordinated, dyskinetic, immotile). TIER 2 - supporting information.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CiliaryFunctionOutput']} })
     ciliary_beat_amplitude: Optional[QuantityValue] = Field(default=None, description="""Amplitude of ciliary beat. TIER 2.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CiliaryFunctionOutput']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
@@ -1459,6 +1684,11 @@ class ASLAssay(Assay):
     follows_protocols: Optional[list[Union[Protocol,ImagingProtocol,StainingProtocol,SpirometryProtocol,MolecularAssayProtocol]]] = Field(default=[], description="""The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_specified_output: Optional[list[ASLOutput]] = Field(default=[], description="""The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay'], 'exact_mappings': ['OBI:0000299']} })
     assay_date: Optional[date] = Field(default=None, description="""Date when the assay was performed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1475,6 +1705,11 @@ class ASLOutput(AssayOutputMeasurement):
     mucus_layer_thickness: Optional[QuantityValue] = Field(default=None, description="""Thickness of the mucus gel layer in micrometers. TIER 2.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ASLOutput', 'MucociliaryClearanceOutput']} })
     ion_composition: Optional[str] = Field(default=None, description="""Ionic composition (Cl-, Na+, K+). TIER 3 - not critical for comparison but relevant for mechanism.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ASLOutput']} })
     asl_ph: Optional[QuantityValue] = Field(default=None, description="""pH of airway surface liquid. TIER 3.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ASLOutput']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
@@ -1497,6 +1732,11 @@ class MucociliaryClearanceAssay(Assay):
     follows_protocols: Optional[list[Union[Protocol,ImagingProtocol,StainingProtocol,SpirometryProtocol,MolecularAssayProtocol]]] = Field(default=[], description="""The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_specified_output: Optional[list[MucociliaryClearanceOutput]] = Field(default=[], description="""The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay'], 'exact_mappings': ['OBI:0000299']} })
     assay_date: Optional[date] = Field(default=None, description="""Date when the assay was performed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1513,6 +1753,11 @@ class MucociliaryClearanceOutput(AssayOutputMeasurement):
     mucus_layer_thickness: Optional[QuantityValue] = Field(default=None, description="""Thickness of the mucus gel layer in micrometers. TIER 2.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ASLOutput', 'MucociliaryClearanceOutput']} })
     percentage_active_transport: Optional[QuantityValue] = Field(default=None, description="""Percentage of area showing active transport. TIER 2.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MucociliaryClearanceOutput']} })
     particle_clearance_time: Optional[QuantityValue] = Field(default=None, description="""Time for particle clearance. TIER 2.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MucociliaryClearanceOutput']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
@@ -1535,6 +1780,11 @@ class OxidativeStressAssay(Assay):
     follows_protocols: Optional[list[Union[Protocol,ImagingProtocol,StainingProtocol,SpirometryProtocol,MolecularAssayProtocol]]] = Field(default=[], description="""The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_specified_output: Optional[list[OxidativeStressOutput]] = Field(default=[], description="""The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay'], 'exact_mappings': ['OBI:0000299']} })
     assay_date: Optional[date] = Field(default=None, description="""Date when the assay was performed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1564,6 +1814,11 @@ class OxidativeStressOutput(AssayOutputMeasurement):
     glutathione_peroxidase_activity: Optional[QuantityValue] = Field(default=None, description="""GPx activity. TIER 1.""", json_schema_extra = { "linkml_meta": {'domain_of': ['OxidativeStressOutput']} })
     total_antioxidant_capacity: Optional[QuantityValue] = Field(default=None, description="""Total antioxidant capacity. TIER 1.""", json_schema_extra = { "linkml_meta": {'domain_of': ['OxidativeStressOutput']} })
     nrf2_activation: Optional[QuantityValue] = Field(default=None, description="""Nrf2 activation level. TIER 1.""", json_schema_extra = { "linkml_meta": {'domain_of': ['OxidativeStressOutput']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
@@ -1587,6 +1842,11 @@ class CFTRFunctionAssay(Assay):
     follows_protocols: Optional[list[Union[Protocol,ImagingProtocol,StainingProtocol,SpirometryProtocol,MolecularAssayProtocol]]] = Field(default=[], description="""The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_specified_output: Optional[list[CFTRFunctionOutput]] = Field(default=[], description="""The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay'], 'exact_mappings': ['OBI:0000299']} })
     assay_date: Optional[date] = Field(default=None, description="""Date when the assay was performed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1604,6 +1864,11 @@ class CFTRFunctionOutput(AssayOutputMeasurement):
     cftr_specific_current: Optional[QuantityValue] = Field(default=None, description="""CFTR-specific chloride secretory current.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CFTRFunctionOutput']} })
     sweat_chloride_concentration: Optional[QuantityValue] = Field(default=None, description="""Sweat chloride concentration in mEq/L (CF diagnostic).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CFTRFunctionOutput']} })
     nasal_potential_difference: Optional[QuantityValue] = Field(default=None, description="""Nasal potential difference in mV.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CFTRFunctionOutput']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
@@ -1629,6 +1894,11 @@ class EGFRSignalingAssay(Assay):
     follows_protocols: Optional[list[Union[Protocol,ImagingProtocol,StainingProtocol,SpirometryProtocol,MolecularAssayProtocol]]] = Field(default=[], description="""The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_specified_output: Optional[list[EGFRSignalingOutput]] = Field(default=[], description="""The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay'], 'exact_mappings': ['OBI:0000299']} })
     assay_date: Optional[date] = Field(default=None, description="""Date when the assay was performed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1649,6 +1919,11 @@ class EGFRSignalingOutput(AssayOutputMeasurement):
     pathway_biomarkers: Optional[list[str]] = Field(default=[], description="""Pathway-specific biomarker signatures. TIER 2 - relationship to outcome needs further investigation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EGFRSignalingOutput']} })
     egfr_ligand_expression: Optional[QuantityValue] = Field(default=None, description="""Expression of EGFR ligands (EGF, TGF-alpha, amphiregulin).""", json_schema_extra = { "linkml_meta": {'domain_of': ['EGFRSignalingOutput']} })
     egfr_membrane_localization: Optional[QuantityValue] = Field(default=None, description="""EGFR membrane localization percentage.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EGFRSignalingOutput']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
@@ -1671,6 +1946,11 @@ class GobletCellAssay(Assay):
     follows_protocols: Optional[list[Union[Protocol,ImagingProtocol,StainingProtocol,SpirometryProtocol,MolecularAssayProtocol]]] = Field(default=[], description="""The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_specified_output: Optional[list[GobletCellOutput]] = Field(default=[], description="""The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay'], 'exact_mappings': ['OBI:0000299']} })
     assay_date: Optional[date] = Field(default=None, description="""Date when the assay was performed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1694,6 +1974,11 @@ class GobletCellOutput(AssayOutputMeasurement):
     percent_solids: Optional[QuantityValue] = Field(default=None, description="""Percent solids in apical secretion (overall secretion). TIER 1.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GobletCellOutput']} })
     goblet_to_ciliated_ratio: Optional[QuantityValue] = Field(default=None, description="""Ratio of goblet cells to ciliated cells. TIER 2 - related to transdifferentiation but not critical for outcome.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GobletCellOutput']} })
     mucus_viscosity: Optional[QuantityValue] = Field(default=None, description="""Mucus viscosity in centipoise. TIER 2.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GobletCellOutput']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
@@ -1714,13 +1999,21 @@ class BALFSputumAssay(Assay):
                         'study_subject': {'name': 'study_subject',
                                           'range': 'InVivoSubject'}}})
 
-    target_cell_type: Optional[CellTypeReference] = Field(default=None, description="""The specific cell type that is the primary focus of this assay's analysis, when the assay examines multiple cell populations in a sample (e.g., neutrophils in a BALF differential).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BALFSputumAssay']} })
+    target_cell_type: Optional[CellTypeReference] = Field(default=None, description="""The specific cell type that is the primary focus of this assay's analysis, when the assay examines multiple cell populations in a sample (e.g., neutrophils in a BALF differential).""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'obligation_level': 'REQUIRED',
+                       'range': 'CellTypeTerm'}],
+         'domain_of': ['BALFSputumAssay']} })
     informs_on_key_event: Optional[KeyEvent] = Field(default=None, description="""The Key Event that this assay provides evidence for. This establishes the mechanistic connection between the assay measurements and the Adverse Outcome Pathway framework. Multiple assays can inform on the same key event, providing converging evidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     study_subject: Optional[InVivoSubject] = Field(default=None, description="""The subject of the study — what the assay is performed on. Can be a ModelSystem (e.g., CellularSystem), an InVivoSubject, or a PopulationSubject. The type of subject determines which context slots are available.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_exposure_condition: Optional[list[ExposureCondition]] = Field(default=[], description="""The exposure condition(s) applied to the study subject. Captures the agent, concentration, duration, and timing of exposure/treatment. Multivalued to support co-exposures or dose-response series.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     follows_protocols: Optional[list[Union[Protocol,ImagingProtocol,StainingProtocol,SpirometryProtocol,MolecularAssayProtocol]]] = Field(default=[], description="""The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_specified_output: Optional[list[BALFSputumOutput]] = Field(default=[], description="""The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay'], 'exact_mappings': ['OBI:0000299']} })
     assay_date: Optional[date] = Field(default=None, description="""Date when the assay was performed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1746,6 +2039,11 @@ class BALFSputumOutput(AssayOutputMeasurement):
     beta_diversity: Optional[QuantityValue] = Field(default=None, description="""Beta diversity (microbiome).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BALFSputumOutput']} })
     bacterial_load: Optional[QuantityValue] = Field(default=None, description="""Bacterial load (16S copies or CFU).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BALFSputumOutput']} })
     cell_free_dna: Optional[QuantityValue] = Field(default=None, description="""Cell-free DNA concentration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BALFSputumOutput']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
@@ -1778,6 +2076,11 @@ class LungFunctionAssay(Assay):
     follows_protocols: Optional[list[Union[Protocol,ImagingProtocol,StainingProtocol,SpirometryProtocol,MolecularAssayProtocol]]] = Field(default=[], description="""The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_specified_output: Optional[list[LungFunctionOutput]] = Field(default=[], description="""The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay'], 'exact_mappings': ['OBI:0000299']} })
     assay_date: Optional[date] = Field(default=None, description="""Date when the assay was performed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1804,6 +2107,11 @@ class LungFunctionOutput(AssayOutputMeasurement):
     lung_compliance: Optional[QuantityValue] = Field(default=None, description="""Lung compliance. TIER 3 - most often reported for animals, difficult to relate to human exposure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LungFunctionOutput']} })
     lung_elastance: Optional[QuantityValue] = Field(default=None, description="""Lung elastance. TIER 3 - most often reported for animals.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LungFunctionOutput']} })
     lung_resistance: Optional[QuantityValue] = Field(default=None, description="""Lung resistance. TIER 3 - most often reported for animals.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LungFunctionOutput']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
@@ -1828,6 +2136,11 @@ class FoxJExpressionAssay(Assay):
     follows_protocols: Optional[list[Union[Protocol,ImagingProtocol,StainingProtocol,SpirometryProtocol,MolecularAssayProtocol]]] = Field(default=[], description="""The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_specified_output: Optional[list[FoxJExpressionOutput]] = Field(default=[], description="""The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay'], 'exact_mappings': ['OBI:0000299']} })
     assay_date: Optional[date] = Field(default=None, description="""Date when the assay was performed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1843,6 +2156,11 @@ class FoxJExpressionOutput(AssayOutputMeasurement):
     foxj1_protein_expression: Optional[QuantityValue] = Field(default=None, description="""FoxJ1 protein expression level.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FoxJExpressionOutput']} })
     foxj1_positive_cell_percentage: Optional[QuantityValue] = Field(default=None, description="""Percentage of FoxJ1-positive cells.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FoxJExpressionOutput']} })
     foxj1_nuclear_localization: Optional[QuantityValue] = Field(default=None, description="""FoxJ1 nuclear localization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FoxJExpressionOutput']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
@@ -1869,6 +2187,11 @@ class GeneExpressionAssay(Assay):
     follows_protocols: Optional[list[Union[Protocol,ImagingProtocol,StainingProtocol,SpirometryProtocol,MolecularAssayProtocol]]] = Field(default=[], description="""The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
     has_specified_output: Optional[list[GeneExpressionOutput]] = Field(default=[], description="""The measurement results produced by this assay — the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay'], 'exact_mappings': ['OBI:0000299']} })
     assay_date: Optional[date] = Field(default=None, description="""Date when the assay was performed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assay']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1883,6 +2206,11 @@ class GeneExpressionOutput(AssayOutputMeasurement):
     mrna_level: Optional[QuantityValue] = Field(default=None, description="""mRNA expression level.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionOutput']} })
     protein_level: Optional[QuantityValue] = Field(default=None, description="""Protein expression level.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionOutput']} })
     percentage_positive_cells: Optional[QuantityValue] = Field(default=None, description="""Percentage of positive cells (IHC, flow cytometry).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeneExpressionOutput']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=[], description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
@@ -1897,6 +2225,7 @@ class Container(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/soma', 'tree_root': True})
 
+    source_publication: Optional[PublicationReference] = Field(default=None, description="""The publication this data was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
     key_events: Optional[list[KeyEvent]] = Field(default=[], description="""The key events in this AOP (intermediate events between MIE and AO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcomePathway', 'Container']} })
     key_event_relationships: Optional[list[KeyEventRelationship]] = Field(default=[], description="""The key event relationships connecting events in this AOP.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcomePathway', 'Container']} })
     adverse_outcome_pathways: Optional[list[AdverseOutcomePathway]] = Field(default=[], description="""Collection of Adverse Outcome Pathways. AOPs describe sequences of causally linked events from molecular initiating events to adverse outcomes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
@@ -1917,6 +2246,8 @@ class Container(ConfiguredBaseModel):
 
 # Model rebuild
 # see https://pydantic-docs.helpmanual.io/usage/models/#rebuilding-a-model
+EvidenceItem.model_rebuild()
+PublicationReference.model_rebuild()
 NamedThing.model_rebuild()
 KeyEvent.model_rebuild()
 KeyEventRelationship.model_rebuild()

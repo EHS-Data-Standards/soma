@@ -482,7 +482,7 @@ oxidative_stress_assays:
         exposure_concentration:
           value: "10"
           unit:
-            id: "UO:0000274"
+            id: "UO:0010071"
             name: "microgram per square centimeter"
         exposure_duration:
           value: "24"
@@ -536,22 +536,22 @@ cftr_assays:
       cftr_chloride_secretion:
         value: "15.2"
         unit:
-          id: "UO:0000274"
+          id: "UCUM:uA/cm2"
           name: "microampere per square centimeter"
       cftr_forskolin_response:
         value: "12.8"
         unit:
-          id: "UO:0000274"
+          id: "UCUM:uA/cm2"
           name: "microampere per square centimeter"
       inhibitor_sensitive_current:
         value: "14.5"
         unit:
-          id: "UO:0000274"
+          id: "UCUM:uA/cm2"
           name: "microampere per square centimeter"
       cftr_specific_current:
         value: "13.9"
         unit:
-          id: "UO:0000274"
+          id: "UCUM:uA/cm2"
           name: "microampere per square centimeter"
       sweat_chloride_concentration:
         value: "25"

@@ -29,6 +29,15 @@
 # =============================================================================
 
 # =============================================================================
+# SOURCE PUBLICATION
+# =============================================================================
+
+source_publication:
+  reference: "PMID:39113893"
+  reference_title: "PM(2.5) Exposure Inhibits Transepithelial Anion Short-circuit Current by Downregulating P2Y2 Receptor/CFTR Pathway."
+  doi: "10.7150/ijms.96777"
+
+# =============================================================================
 # PROTOCOLS
 # =============================================================================
 
@@ -107,6 +116,13 @@ cftr_assays:
     name: "CFTR Isc - Calu-3 control vs PM2.5, 24h"
     description: "ATP-induced transepithelial short-circuit current in Calu-3 cells at 24h. Control: baseline Isc stable, ATP (10 uM, side A) induced rapid Isc peak. PM2.5 group showed significantly slower Isc increase than control (p<0.05); average rate (dIsc/dT) decreased significantly."
     stimulation_agent: "ATP 10 uM"
+    evidence:
+      - reference: "PMID:39113893"
+        reference_title: "PM(2.5) Exposure Inhibits Transepithelial Anion Short-circuit Current by Downregulating P2Y2 Receptor/CFTR Pathway."
+        supports: SUPPORT
+        evidence_source: IN_VITRO
+        snippet: "In transwell model, the adenosine triphosphate (ATP)-induced transepithelial anion short-circuit current (Isc) and airway surface liquid (ASL) significantly decreased after PM2.5 exposure."
+        explanation: "The abstract states the study's central in vitro finding: PM2.5 exposure reduced the ATP-induced short-circuit current, which is the decreased CFTR-mediated secretion the PM2.5-condition output of this assay records."
     has_exposure_condition:
       - id: "EXPOSURE:liu-vehicle-24h"
         name: "Control - serum-free DMEM/F12 vehicle, 24 hours"
@@ -118,12 +134,12 @@ cftr_assays:
       - id: "EXPOSURE:liu-pm25-100ug-24h"
         name: "PM2.5 100 ug/mL for 24 hours"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "100"
           unit:
-            id: "UO:0000064"
+            id: "UO:0000274"
             name: "microgram per milliliter"
         exposure_duration:
           value: "24"
@@ -269,12 +285,12 @@ cftr_assays:
       - id: "EXPOSURE:liu-mouse-pm25-nasal"
         name: "PM2.5 100 ug/mL nasal instillation (days 21-27)"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "100"
           unit:
-            id: "UO:0000064"
+            id: "UO:0000274"
             name: "microgram per milliliter"
         exposure_duration:
           value: "7"
@@ -333,12 +349,12 @@ gene_expression_assays:
       - id: "EXPOSURE:liu-pm25-100ug-24h"
         name: "PM2.5 100 ug/mL for 24 hours"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "100"
           unit:
-            id: "UO:0000064"
+            id: "UO:0000274"
             name: "microgram per milliliter"
         exposure_duration:
           value: "24"
@@ -395,12 +411,12 @@ gene_expression_assays:
       - id: "EXPOSURE:liu-pm25-100ug-48h"
         name: "PM2.5 100 ug/mL for 48 hours"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "100"
           unit:
-            id: "UO:0000064"
+            id: "UO:0000274"
             name: "microgram per milliliter"
         exposure_duration:
           value: "48"
@@ -457,12 +473,12 @@ gene_expression_assays:
       - id: "EXPOSURE:liu-pm25-100ug-24h"
         name: "PM2.5 100 ug/mL for 24 hours"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "100"
           unit:
-            id: "UO:0000064"
+            id: "UO:0000274"
             name: "microgram per milliliter"
         exposure_duration:
           value: "24"
@@ -519,12 +535,12 @@ gene_expression_assays:
       - id: "EXPOSURE:liu-pm25-100ug-24h"
         name: "PM2.5 100 ug/mL for 24 hours"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "100"
           unit:
-            id: "UO:0000064"
+            id: "UO:0000274"
             name: "microgram per milliliter"
         exposure_duration:
           value: "24"
@@ -581,12 +597,12 @@ gene_expression_assays:
       - id: "EXPOSURE:liu-mouse-ova-pm25"
         name: "OVA sensitization + PM2.5 nasal instillation"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "100"
           unit:
-            id: "UO:0000064"
+            id: "UO:0000274"
             name: "microgram per milliliter"
         exposure_duration:
           value: "7"
@@ -649,12 +665,12 @@ goblet_cell_assays:
       - id: "EXPOSURE:liu-mouse-ova-pm25"
         name: "OVA sensitization + PM2.5 nasal instillation"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "100"
           unit:
-            id: "UO:0000064"
+            id: "UO:0000274"
             name: "microgram per milliliter"
         exposure_duration:
           value: "7"
@@ -769,12 +785,12 @@ balf_sputum_assays:
       - id: "EXPOSURE:liu-mouse-ova-pm25"
         name: "OVA sensitization + PM2.5 nasal instillation"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "100"
           unit:
-            id: "UO:0000064"
+            id: "UO:0000274"
             name: "microgram per milliliter"
         exposure_duration:
           value: "7"
@@ -833,12 +849,12 @@ lung_function_assays:
       - id: "EXPOSURE:liu-mouse-ova-pm25"
         name: "OVA sensitization + PM2.5 nasal instillation"
         exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
         exposure_concentration:
           value: "100"
           unit:
-            id: "UO:0000064"
+            id: "UO:0000274"
             name: "microgram per milliliter"
         exposure_duration:
           value: "7"
@@ -891,7 +907,7 @@ lung_function_assays:
       - id: "EXPOSURE:liu-mouse-suramin"
         name: "OVA sensitization + Suramin 50 mg/kg nasal instillation"
         exposure_agent:
-          id: "CHEBI:45653"
+          id: "CHEBI:45906"
           name: "suramin"
         exposure_concentration:
           value: "50"

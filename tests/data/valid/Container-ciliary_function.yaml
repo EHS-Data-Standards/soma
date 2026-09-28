@@ -200,16 +200,16 @@ ciliary_function_assays:
             concentration:
               value: "0.48"
               unit:
-                id: "UO:0000064"
-                name: "micrograms per milliliter"
+                id: "UO:0000274"
+                name: "microgram per milliliter"
           - id: "soma:supp-002"
             name: "Heparin"
             supplement_type: growth_factor
             concentration:
               value: "4"
               unit:
-                id: "UO:0000064"
-                name: "micrograms per milliliter"
+                id: "UO:0000274"
+                name: "microgram per milliliter"
     follows_protocols:
       - protocol_type: ImagingProtocol
         id: "PROTOCOL:cbf-001"

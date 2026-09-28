@@ -1,0 +1,103 @@
+name: publication_stub
+description: >-
+  Schema for the paper queue. Each file in stubs/ is one PublicationStub:
+  a paper that is in the corpus but has not been extracted yet. Deleting a
+  stub is how a paper leaves the queue — either its extraction merged, or
+  someone decided it does not belong (recorded in the `decision` field of
+  the PR that deletes it). The number of files in stubs/ is always the
+  amount of work left.
+title: SOMA Publication Stub Schema
+id: https://w3id.org/EHS-Data-Standards/publication_stub
+
+imports:
+  - linkml:types
+
+prefixes:
+  publication_stub: https://w3id.org/EHS-Data-Standards/publication_stub/
+  linkml: https://w3id.org/linkml/
+
+default_prefix: publication_stub
+default_range: string
+
+classes:
+
+  PublicationStub:
+    tree_root: true
+    description: One paper waiting in the extraction queue.
+    attributes:
+      pmid:
+        description: PubMed ID as a CURIE, e.g. "PMID:12345678"
+        required: true
+        pattern: "^PMID:\\d+$"
+      doi:
+        description: The paper's DOI (no "DOI:" prefix)
+      title:
+        description: The paper's title (filled in from PubMed)
+      journal:
+        description: Journal name
+      year:
+        description: Publication year
+        range: integer
+      source:
+        description: How this paper entered the queue
+        range: StubSourceEnum
+        required: true
+      found_by:
+        description: >-
+          For keyword-search papers, the IDs of the searches that found it
+          (e.g. L1_PMMCC). A paper found by several searches is probably
+          more central than one found by one.
+        multivalued: true
+      open_access:
+        description: >-
+          Whether full text is freely available (has a PubMed Central
+          record), so the whole paper can be fetched into the public
+          reference cache and every quote can be checked in CI.
+        range: boolean
+      pdf_filename:
+        description: >-
+          Filename of a locally held PDF for this paper, if one exists
+          (the local PDFs folder is not committed).
+      status:
+        description: Queue status. OPEN means available to claim.
+        range: StubStatusEnum
+        ifabsent: "OPEN"
+      decision:
+        description: >-
+          What should happen to this paper. UNDECIDED papers need screening;
+          EXTRACT papers are ready to claim; the other values mean the paper
+          leaves the queue (recorded in the PR that deletes the stub).
+        range: StubDecisionEnum
+        ifabsent: "UNDECIDED"
+      added_date:
+        description: The date this stub was created (YYYY-MM-DD)
+        range: date
+      notes:
+        description: Free-text notes from screening
+
+enums:
+
+  StubSourceEnum:
+    permissible_values:
+      corpus_csv:
+        description: Listed in the repo's corpus.csv
+      keyword_search:
+        description: Found by the committed PubMed keyword searches
+
+  StubStatusEnum:
+    permissible_values:
+      OPEN:
+        description: Available to claim
+
+  StubDecisionEnum:
+    permissible_values:
+      UNDECIDED:
+        description: Not yet screened
+      EXTRACT:
+        description: Screened in — ready to extract
+      NOT_RELEVANT:
+        description: Screened out — does not fit the corpus
+      DUPLICATE:
+        description: Same paper as another stub or an extracted entry
+      SUPERSEDED:
+        description: Replaced by a newer or better source
