@@ -20,12 +20,17 @@ EXAMPLE_YAMLS = [
                 "GobletCellAssay", "GobletCellOutput",
                 "BALFSputumAssay", "BALFSputumOutput",
                 "LungFunctionAssay", "LungFunctionOutput",
+                "Responses", "ResponseComparison", "KeyEventRelationship",
             ],
             "min_assay_rows": {
-                "CFTRFunctionAssay": 4,
+                # Calu-3 control/PM2.5 Isc pair merged into one assay with
+                # one output record per condition
+                "CFTRFunctionAssay": 3,
+                "CFTRFunctionOutput": 4,
                 "GeneExpressionAssay": 5,
                 "GobletCellAssay": 2,
                 "LungFunctionAssay": 2,
+                "ResponseComparison": 2,
             },
         },
     ),
@@ -43,6 +48,23 @@ EXAMPLE_YAMLS = [
                 "GeneExpressionAssay": 6,
                 "GobletCellAssay": 4,
                 "FoxJExpressionAssay": 2,
+            },
+        },
+    ),
+    (
+        "Container-response_comparison.yaml",
+        {
+            "required_tabs": [
+                "ExposureCondition", "KeyEvent", "InVivoSubject",
+                "LungFunctionAssay", "LungFunctionOutput",
+                "Responses", "ResponseComparison", "KeyEventRelationship",
+            ],
+            "min_assay_rows": {
+                # one output record per experimental condition
+                "LungFunctionOutput": 2,
+                # long format: one row per condition x measurement
+                "Responses": 2,
+                "ResponseComparison": 1,
             },
         },
     ),

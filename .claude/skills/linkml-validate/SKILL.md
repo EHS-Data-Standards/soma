@@ -62,7 +62,9 @@ This runs all valid YAML files through the Container loader automatically (they 
 ## Common Errors
 
 - **Missing required field**: Check that `id` is present on all entities
-- **Invalid enum value**: Check allowed values in the schema (e.g., `biological_action`, `subject_type`)
+- **`has_specified_output` not a list**: it is multivalued - wrap the output
+  record(s) in a YAML list (`- id: ...`), one record per experimental condition
+- **Invalid enum value**: Check allowed values in the schema (e.g., `biological_action`, `subject_type`, `experimental_group`, `variability_type`, `change_type`)
 - **Type mismatch**: Ensure numeric values are quoted strings in YAML (e.g., `value: "0.55"` not `value: 0.55`)
 - **Unknown slot**: Verify slot name matches the schema exactly (check `assay_microschemas.yaml`)
 

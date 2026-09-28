@@ -64,7 +64,11 @@ classes:
     slots:
       # AOP Framework Collections
       - key_events
+      - key_event_relationships
       - adverse_outcome_pathways
+
+      # Analysis Layer Collections
+      - response_comparisons
 
       # Domain-specific Assay Collections (renamed from *_measurements)
       - ciliary_function_assays
@@ -100,6 +104,21 @@ slots:
       Collection of Adverse Outcome Pathways. AOPs describe sequences
       of causally linked events from molecular initiating events to
       adverse outcomes.
+
+  # ---------------------------------------------------------------------------
+  # Analysis Layer Collection Slots
+  # ---------------------------------------------------------------------------
+
+  response_comparisons:
+    range: ResponseComparison
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Collection of analysis-layer records comparing treated responses
+      to control/baseline responses. Kept separate from the extracted
+      assay data: each comparison references the control and treated
+      output records and states the kind, direction, and size of the
+      change with its uncertainty.
 
   # ---------------------------------------------------------------------------
   # Assay Collection Slots (renamed from measurement collections)

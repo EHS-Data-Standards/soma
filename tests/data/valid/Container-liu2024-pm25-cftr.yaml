@@ -101,19 +101,54 @@ protocols:
 # =============================================================================
 
 cftr_assays:
-  # Control - ATP-induced Isc
-  - id: "CFTR:liu-control-24h"
-    name: "CFTR Isc - Control + ATP 24h"
-    description: "ATP-induced transepithelial short-circuit current in control Calu-3 cells at 24h. Baseline Isc stable. ATP (10 uM, side A) induced rapid Isc peak."
+  # Calu-3 Isc: one assay, one output record per experimental condition
+  # (control and PM2.5-exposed), each linked to its condition via measured_under
+  - id: "CFTR:liu-isc-calu3-24h"
+    name: "CFTR Isc - Calu-3 control vs PM2.5, 24h"
+    description: "ATP-induced transepithelial short-circuit current in Calu-3 cells at 24h. Control: baseline Isc stable, ATP (10 uM, side A) induced rapid Isc peak. PM2.5 group showed significantly slower Isc increase than control (p<0.05); average rate (dIsc/dT) decreased significantly."
     stimulation_agent: "ATP 10 uM"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-vehicle-24h"
+        name: "Control - serum-free DMEM/F12 vehicle, 24 hours"
+        exposure_duration:
+          value: "24"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+      - id: "EXPOSURE:liu-pm25-100ug-24h"
+        name: "PM2.5 100 ug/mL for 24 hours"
+        exposure_agent:
+          id: "CHEBI:74481"
+          name: "PM2.5"
+        exposure_concentration:
+          value: "100"
+          unit:
+            id: "UO:0000064"
+            name: "microgram per milliliter"
+        exposure_duration:
+          value: "24"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     has_specified_output:
-      id: "CFTR:liu-control-24h-output"
-      name: "Control Isc measurement"
-      cftr_chloride_secretion:
-        value: "1.0"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "CFTR:liu-isc-calu3-24h-output-control"
+        name: "Control Isc measurement"
+        experimental_group: control
+        measured_under: "EXPOSURE:liu-vehicle-24h"
+        cftr_chloride_secretion:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
+      - id: "CFTR:liu-isc-calu3-24h-output-pm25"
+        name: "PM2.5 Isc measurement"
+        experimental_group: treated
+        measured_under: "EXPOSURE:liu-pm25-100ug-24h"
+        cftr_chloride_secretion:
+          value: "0.6"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
     assay_date: "2024-01-01"
     informs_on_key_event:
       id: "KE:ke-decreased-cftr"
@@ -168,74 +203,27 @@ cftr_assays:
       - id: "PROTOCOL:liu-ussing-001"
         name: "Ussing chamber short-circuit current protocol"
 
-  # PM2.5 exposed - ATP-induced Isc significantly decreased
-  - id: "CFTR:liu-pm25-24h"
-    name: "CFTR Isc - PM2.5 + ATP 24h"
-    description: "ATP-induced Isc after 24h PM2.5 exposure (100 ug/mL). PM2.5 group showed significantly slower Isc increase than control (p<0.05). Average rate (dIsc/dT) decreased significantly."
-    stimulation_agent: "ATP 10 uM"
-    has_specified_output:
-      id: "CFTR:liu-pm25-24h-output"
-      name: "PM2.5 Isc measurement"
-      cftr_chloride_secretion:
-        value: "0.6"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
-    assay_date: "2024-01-01"
-    has_exposure_condition:
-      - id: "EXPOSURE:liu-pm25-100ug-24h"
-        name: "PM2.5 100 ug/mL for 24 hours"
-        exposure_agent:
-          id: "CHEBI:74481"
-          name: "PM2.5"
-        exposure_concentration:
-          value: "100"
-          unit:
-            id: "UO:0000064"
-            name: "microgram per milliliter"
-        exposure_duration:
-          value: "24"
-          unit:
-            id: "UO:0000032"
-            name: "hour"
-    informs_on_key_event:
-      id: "KE:ke-decreased-cftr"
-      name: "Decreased CFTR function"
-      biological_action: decreased
-      level_of_biological_organization: molecular
-    study_subject:
-      subject_type: CellularSystem
-      id: "soma:liu-calu3-001"
-      name: "Calu-3 submerged monolayer on transwell"
-      cell_type:
-        id: "CL:0000066"
-        name: "epithelial cell"
-      model_species:
-        id: "NCBITaxon:9606"
-        name: "Homo sapiens"
-      cell_line:
-        id: "CLO:0003679"
-        name: "Calu-3"
-      cell_culture_growth_mode: adherent
-      days_at_differentiation: 21
-      substrate_type: transwell_insert
-    follows_protocols:
-      - id: "PROTOCOL:liu-ussing-001"
-        name: "Ussing chamber short-circuit current protocol"
-
   # Mouse trachea Isc - Control
+  # (control and PM2.5 groups are DIFFERENT animals, so they stay separate
+  # assay records; the comparison lives in response_comparisons below and
+  # references one output record from each assay)
   - id: "CFTR:liu-mouse-control"
     name: "CFTR Isc - Mouse trachea control"
     description: "ATP-induced Isc in control mouse tracheal tissue (8mm x 8mm). ATP 100 uM applied to luminal side."
     stimulation_agent: "ATP 100 uM"
+    has_exposure_condition:
+      - id: "EXPOSURE:liu-mouse-saline"
+        name: "Saline nasal instillation (control group)"
     has_specified_output:
-      id: "CFTR:liu-mouse-control-output"
-      name: "Mouse trachea control Isc"
-      cftr_chloride_secretion:
-        value: "1.0"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "CFTR:liu-mouse-control-output"
+        name: "Mouse trachea control Isc"
+        experimental_group: control
+        measured_under: "EXPOSURE:liu-mouse-saline"
+        cftr_chloride_secretion:
+          value: "1.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
     assay_date: "2024-01-01"
     informs_on_key_event:
       id: "KE:ke-decreased-cftr"
@@ -267,13 +255,15 @@ cftr_assays:
     description: "ATP-induced Isc in PM2.5-exposed mouse trachea. dIsc significantly lower vs control (p<0.05). Average rate (dIsc/dT) decreased vs control (p<0.05)."
     stimulation_agent: "ATP 100 uM"
     has_specified_output:
-      id: "CFTR:liu-mouse-pm25-output"
-      name: "Mouse trachea PM2.5 Isc"
-      cftr_chloride_secretion:
-        value: "0.55"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "CFTR:liu-mouse-pm25-output"
+        name: "Mouse trachea PM2.5 Isc"
+        experimental_group: treated
+        measured_under: "EXPOSURE:liu-mouse-pm25-nasal"
+        cftr_chloride_secretion:
+          value: "0.55"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-mouse-pm25-nasal"
@@ -329,13 +319,15 @@ gene_expression_assays:
     gene_expression_method: "qRT-PCR"
     normalization_reference: "GAPDH"
     has_specified_output:
-      id: "GE:liu-p2y2r-pm25-24h-output"
-      name: "P2Y2R mRNA 24h PM2.5"
-      mrna_level:
-        value: "0.55"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "GE:liu-p2y2r-pm25-24h-output"
+        name: "P2Y2R mRNA 24h PM2.5"
+        experimental_group: treated
+        measured_under: "EXPOSURE:liu-pm25-100ug-24h"
+        mrna_level:
+          value: "0.55"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-pm25-100ug-24h"
@@ -389,13 +381,15 @@ gene_expression_assays:
     gene_expression_method: "qRT-PCR"
     normalization_reference: "GAPDH"
     has_specified_output:
-      id: "GE:liu-p2y2r-pm25-48h-output"
-      name: "P2Y2R mRNA 48h PM2.5"
-      mrna_level:
-        value: "0.40"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "GE:liu-p2y2r-pm25-48h-output"
+        name: "P2Y2R mRNA 48h PM2.5"
+        experimental_group: treated
+        measured_under: "EXPOSURE:liu-pm25-100ug-48h"
+        mrna_level:
+          value: "0.40"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-pm25-100ug-48h"
@@ -449,13 +443,15 @@ gene_expression_assays:
     gene_expression_method: "Western blot"
     normalization_reference: "GAPDH"
     has_specified_output:
-      id: "GE:liu-cftr-protein-pm25-24h-output"
-      name: "CFTR protein 24h PM2.5"
-      protein_level:
-        value: "0.50"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "GE:liu-cftr-protein-pm25-24h-output"
+        name: "CFTR protein 24h PM2.5"
+        experimental_group: treated
+        measured_under: "EXPOSURE:liu-pm25-100ug-24h"
+        protein_level:
+          value: "0.50"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-pm25-100ug-24h"
@@ -509,13 +505,15 @@ gene_expression_assays:
     gene_expression_method: "Western blot"
     normalization_reference: "GAPDH"
     has_specified_output:
-      id: "GE:liu-p2y2r-protein-pm25-24h-output"
-      name: "P2Y2R protein 24h PM2.5"
-      protein_level:
-        value: "0.45"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "GE:liu-p2y2r-protein-pm25-24h-output"
+        name: "P2Y2R protein 24h PM2.5"
+        experimental_group: treated
+        measured_under: "EXPOSURE:liu-pm25-100ug-24h"
+        protein_level:
+          value: "0.45"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-pm25-100ug-24h"
@@ -569,13 +567,15 @@ gene_expression_assays:
     gene_expression_method: "immunohistochemistry"
     normalization_reference: "tissue area"
     has_specified_output:
-      id: "GE:liu-p2y2r-ihc-ova-pm25-output"
-      name: "P2Y2R lung tissue IHC"
-      percentage_positive_cells:
-        value: "15"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
+      - id: "GE:liu-p2y2r-ihc-ova-pm25-output"
+        name: "P2Y2R lung tissue IHC"
+        experimental_group: treated
+        measured_under: "EXPOSURE:liu-mouse-ova-pm25"
+        percentage_positive_cells:
+          value: "15"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-mouse-ova-pm25"
@@ -635,13 +635,15 @@ goblet_cell_assays:
     name: "Goblet cell hyperplasia - OVA+PM2.5 (PAS)"
     description: "PAS staining in mouse lung. OVA+PM2.5 group showed evidently higher goblet cell percentage than OVA alone (p<0.001). Goblet cells primarily near trachea and bronchus."
     has_specified_output:
-      id: "GCM:liu-pas-ova-pm25-output"
-      name: "PAS goblet cell quantification"
-      goblet_cell_percentage:
-        value: "45"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
+      - id: "GCM:liu-pas-ova-pm25-output"
+        name: "PAS goblet cell quantification"
+        experimental_group: treated
+        measured_under: "EXPOSURE:liu-mouse-ova-pm25"
+        goblet_cell_percentage:
+          value: "45"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-mouse-ova-pm25"
@@ -691,13 +693,15 @@ goblet_cell_assays:
     name: "Goblet cell rescue - OVA+ATP (PAS)"
     description: "PAS staining in OVA+ATP mouse lung. Goblet cell percentage lower than OVA alone (p<0.001). ATP treatment partially rescues goblet cell hyperplasia."
     has_specified_output:
-      id: "GCM:liu-pas-ova-atp-output"
-      name: "PAS goblet cell OVA+ATP"
-      goblet_cell_percentage:
-        value: "18"
-        unit:
-          id: "UO:0000187"
-          name: "percent"
+      - id: "GCM:liu-pas-ova-atp-output"
+        name: "PAS goblet cell OVA+ATP"
+        experimental_group: treated
+        measured_under: "EXPOSURE:liu-mouse-ova-atp"
+        goblet_cell_percentage:
+          value: "18"
+          unit:
+            id: "UO:0000187"
+            name: "percent"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-mouse-ova-atp"
@@ -751,13 +755,15 @@ balf_sputum_assays:
     name: "BALF Th2 cytokines - OVA+PM2.5"
     description: "BALF collected from right lung (left bronchus ligated, lavaged with 0.5mL saline x2). IL-4, IL-5, IL-13 all significantly increased in OVA+PM2.5 vs OVA alone (p<0.05). ELISA (Absin, Shanghai)."
     has_specified_output:
-      id: "BALF:liu-ova-pm25-output"
-      name: "BALF cytokine measurements OVA+PM2.5"
-      il6_concentration:
-        value: "1.8"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "BALF:liu-ova-pm25-output"
+        name: "BALF cytokine measurements OVA+PM2.5"
+        experimental_group: treated
+        measured_under: "EXPOSURE:liu-mouse-ova-pm25"
+        il6_concentration:
+          value: "1.8"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-mouse-ova-pm25"
@@ -813,13 +819,15 @@ lung_function_assays:
     name: "Airway resistance (sRaw) - OVA+PM2.5"
     description: "Whole-body plethysmography with methacholine challenge. OVA+PM2.5 sRaw further increased vs OVA at all methacholine concentrations. sRaw significantly elevated vs control, confirming asthma model and PM2.5 exacerbation."
     has_specified_output:
-      id: "LF:liu-ova-pm25-output"
-      name: "sRaw measurement OVA+PM2.5"
-      lung_resistance:
-        value: "2.5"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "LF:liu-ova-pm25-output"
+        name: "sRaw measurement OVA+PM2.5"
+        experimental_group: treated
+        measured_under: "EXPOSURE:liu-mouse-ova-pm25"
+        lung_resistance:
+          value: "2.5"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-mouse-ova-pm25"
@@ -869,13 +877,15 @@ lung_function_assays:
     name: "Airway resistance (sRaw) - OVA+Suramin"
     description: "OVA+Suramin group sRaw at 20 mg/mL methacholine significantly higher than OVA alone (p<0.05). P2Y2R antagonism worsens airway hyperresponsiveness."
     has_specified_output:
-      id: "LF:liu-ova-suramin-output"
-      name: "sRaw measurement OVA+Suramin"
-      lung_resistance:
-        value: "3.0"
-        unit:
-          id: "STATO:0000169"
-          name: "fold change"
+      - id: "LF:liu-ova-suramin-output"
+        name: "sRaw measurement OVA+Suramin"
+        experimental_group: treated
+        measured_under: "EXPOSURE:liu-mouse-suramin"
+        lung_resistance:
+          value: "3.0"
+          unit:
+            id: "STATO:0000169"
+            name: "fold change"
     assay_date: "2024-01-01"
     has_exposure_condition:
       - id: "EXPOSURE:liu-mouse-suramin"
@@ -918,3 +928,62 @@ lung_function_assays:
         id: "PROTOCOL:liu-lungfx-001"
         name: "Whole-body plethysmography with methacholine"
         spirometry_standard: "BUXCO whole-body plethysmography"
+
+# =============================================================================
+# RESPONSE COMPARISONS - Analysis layer: changes vs. control stated in the
+# paper, referencing the control and treated output records by id
+# =============================================================================
+
+response_comparisons:
+  - id: "COMP:liu-isc-calu3-24h"
+    name: "ATP-induced Isc, PM2.5 vs control (Calu-3, 24h)"
+    description: "Paper reports significance threshold (p<0.05), not an exact p-value. Values are fold change relative to control."
+    derived_from_assay: "CFTR:liu-isc-calu3-24h"
+    compared_measurement: "cftr_chloride_secretion"
+    control_output: "CFTR:liu-isc-calu3-24h-output-control"
+    treated_output: "CFTR:liu-isc-calu3-24h-output-pm25"
+    change_type: fold_change
+    change_direction: decreased
+    change_value:
+      value: "0.6"
+      unit:
+        id: "STATO:0000169"
+        name: "fold change"
+    derivation: reported_in_paper
+
+  - id: "COMP:liu-isc-mouse-trachea"
+    name: "ATP-induced Isc, PM2.5 vs control (mouse trachea)"
+    description: "Cross-assay comparison: control and PM2.5 groups are separate assay records because they are different animals. Paper reports p<0.05."
+    derived_from_assay: "CFTR:liu-mouse-pm25"
+    compared_measurement: "cftr_chloride_secretion"
+    control_output: "CFTR:liu-mouse-control-output"
+    treated_output: "CFTR:liu-mouse-pm25-output"
+    change_type: fold_change
+    change_direction: decreased
+    change_value:
+      value: "0.55"
+      unit:
+        id: "STATO:0000169"
+        name: "fold change"
+    derivation: reported_in_paper
+
+# =============================================================================
+# KEY EVENT RELATIONSHIPS - AOP network topology stated by the paper
+# =============================================================================
+
+key_event_relationships:
+  - id: "KER:liu-p2y2r-to-cftr"
+    name: "Decreased P2Y2R expression leads to decreased CFTR function"
+    description: "Central mechanism of Liu 2024: PM2.5 downregulates the P2Y2R/CFTR pathway, inhibiting transepithelial anion short-circuit current."
+    upstream_event:
+      id: "KE:ke-decreased-p2y2r"
+      name: "Decreased P2Y2R expression"
+      biological_action: decreased
+      level_of_biological_organization: molecular
+    downstream_event:
+      id: "KE:ke-decreased-cftr"
+      name: "Decreased CFTR function"
+      biological_action: decreased
+      level_of_biological_organization: molecular
+    relationship_type: "directly leads to"
+    evidence_support: moderate

@@ -1,31 +1,112 @@
 # Test file for ASLAssay
+# Demonstrates per-condition outputs: one AssayOutputMeasurement record for
+# the air control and one for the ozone-exposed cultures, each linked to its
+# exposure condition via measured_under.
 asl_assays:
   - id: "ASL:001"
-    name: "Airway surface liquid height"
+    name: "Airway surface liquid height after ozone exposure"
+    has_exposure_condition:
+      - id: "EXPOSURE:asl-air-4h"
+        name: "Filtered air 4 hours (control)"
+        exposure_duration:
+          value: "4"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+      - id: "EXPOSURE:asl-ozone-200ppb-4h"
+        name: "Ozone 200 ppb for 4 hours"
+        exposure_agent:
+          id: "CHEBI:25812"
+          name: "ozone"
+        exposure_concentration:
+          value: "200"
+          unit:
+            id: "UO:0000169"
+            name: "parts per billion"
+        exposure_duration:
+          value: "4"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
     has_specified_output:
-      id: "ASL:001-output"
-      name: "ASL:001 measurement results"
-      asl_height_um:
-        value: "7.2"
-        unit:
-          id: "UO:0000017"
-          name: "micrometer"
-      periciliary_layer_depth:
-        value: "5.1"
-        unit:
-          id: "UO:0000017"
-          name: "micrometer"
-      mucus_layer_thickness:
-        value: "35"
-        unit:
-          id: "UO:0000017"
-          name: "micrometer"
-      ion_composition: "Cl- 125 mM, Na+ 140 mM, K+ 15 mM"
-      asl_ph:
-        value: "7.1"
-        unit:
-          id: "UO:0000196"
-          name: "pH"
+      - id: "ASL:001-output-control"
+        name: "Air control ASL measurements"
+        experimental_group: control
+        measured_under: "EXPOSURE:asl-air-4h"
+        asl_height_um:
+          value: "7.2"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
+          central_tendency: mean
+          sample_size: 6
+          variability:
+            variability_type: standard_deviation
+            value: "0.6"
+            unit:
+              id: "UO:0000017"
+              name: "micrometer"
+        periciliary_layer_depth:
+          value: "5.1"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
+          central_tendency: mean
+          sample_size: 6
+        mucus_layer_thickness:
+          value: "35"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
+          central_tendency: mean
+          sample_size: 6
+        ion_composition: "Cl- 125 mM, Na+ 140 mM, K+ 15 mM"
+        asl_ph:
+          value: "7.1"
+          unit:
+            id: "UO:0000196"
+            name: "pH"
+          central_tendency: mean
+          sample_size: 6
+      - id: "ASL:001-output-ozone"
+        name: "Ozone-exposed ASL measurements"
+        experimental_group: treated
+        measured_under: "EXPOSURE:asl-ozone-200ppb-4h"
+        asl_height_um:
+          value: "4.8"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
+          central_tendency: mean
+          sample_size: 6
+          variability:
+            variability_type: standard_deviation
+            value: "0.7"
+            unit:
+              id: "UO:0000017"
+              name: "micrometer"
+        periciliary_layer_depth:
+          value: "3.4"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
+          central_tendency: mean
+          sample_size: 6
+        mucus_layer_thickness:
+          value: "48"
+          unit:
+            id: "UO:0000017"
+            name: "micrometer"
+          central_tendency: mean
+          sample_size: 6
+        ion_composition: "Cl- 118 mM, Na+ 145 mM, K+ 17 mM"
+        asl_ph:
+          value: "6.8"
+          unit:
+            id: "UO:0000196"
+            name: "pH"
+          central_tendency: mean
+          sample_size: 6
     assay_date: "2024-02-10"
     informs_on_key_event:
       id: "KE:ke-decreased-asl"
@@ -57,3 +138,23 @@ asl_assays:
           unit:
             id: "UO:0000027"
             name: "degree Celsius"
+
+# Analysis layer: the change relative to control, referencing the two output
+# records above rather than duplicating their values.
+response_comparisons:
+  - id: "COMP:ASL001-height"
+    name: "Change in ASL height, ozone vs filtered air"
+    derived_from_assay: "ASL:001"
+    compared_measurement: "asl_height_um"
+    control_output: "ASL:001-output-control"
+    treated_output: "ASL:001-output-ozone"
+    change_type: absolute_difference
+    change_direction: decreased
+    change_value:
+      value: "-2.4"
+      unit:
+        id: "UO:0000017"
+        name: "micrometer"
+    p_value: 0.002
+    statistical_test: "two-sample t-test"
+    derivation: computed
