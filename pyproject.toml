@@ -31,6 +31,11 @@ dev = [
 # See https://hatch.pypa.io/latest/config/build/#file-selection for how to
 # explicitly include files other than default into the build distributions.
 
+[tool.hatch.build.targets.sdist]
+# Without this, hatchling packs the whole repo (200+ MB of example PDFs)
+# and the upload exceeds PyPI's 100 MB file limit.
+only-include = ["src"]
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/soma"]
 
