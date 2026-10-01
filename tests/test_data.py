@@ -37,3 +37,12 @@ def test_invalid_data_files(filepath):
     tgt_class = soma.datamodel.soma.Container
     with pytest.raises(Exception):
         yaml_loader.load(filepath, target_class=tgt_class)
+
+
+def test_in_vivo_subject_cohort_reference():
+    """Test that an InVivoSubject can reference its cohort by ID."""
+    subject = yaml_loader.loads(
+        "id: SUBJECT:lung\nmember_of_cohort: COHORT:study",
+        target_class=soma.datamodel.soma.InVivoSubject,
+    )
+    assert subject.member_of_cohort == "COHORT:study"
