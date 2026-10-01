@@ -1857,6 +1857,20 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
+  member_of_cohort:
+    name: member_of_cohort
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/member_of_cohort
+    description: 'The cohort this subject record belongs to. Use when one study cohort
+      is sampled in multiple ways: give each sampling context its own InVivoSubject
+      with its specimen slots, and point them all to one PopulationSubject holding
+      cohort_size and shared characteristics.'
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:member_of_cohort
+    owner: InVivoSubject
+    domain_of:
+    - InVivoSubject
+    range: PopulationSubject
+    inlined: false
   protocol_version:
     name: protocol_version
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/protocol_version
@@ -4958,6 +4972,7 @@ classes:
     - collection_date
     - sample_collection_method
     - clinical_context
+    - member_of_cohort
     class_uri: assay_base:InVivoSubject
   PopulationSubject:
     name: PopulationSubject
@@ -6024,7 +6039,7 @@ classes:
     class_uri: assay_microschemas:GeneExpressionOutput
 metamodel_version: 1.7.0
 source_file: soma.yaml
-source_file_date: '2026-09-28T23:02:44'
+source_file_date: '2026-10-01T21:18:22'
 source_file_size: 7904
-generation_date: '2026-09-28T23:03:57'
+generation_date: '2026-10-01T21:19:35'
 

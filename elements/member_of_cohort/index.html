@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://EHS-Data-Standards.github.io/soma/elements/aopwiki_id/">
+        <link rel="canonical" href="https://EHS-Data-Standards.github.io/soma/elements/member_of_cohort/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: aopwiki_id - soma</title>
+        <title>Slot: member_of_cohort - soma</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-aopwiki_id" class="md-skip">
+        <a href="#slot-member_of_cohort" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: aopwiki_id
+              Slot: member_of_cohort
             
           </span>
         </div>
@@ -674,10 +674,10 @@
   
 
 
-<h1 id="slot-aopwiki_id">Slot: aopwiki_id</h1>
-<p><em>The AOP-Wiki identifier for this entity (e.g., "AOP:411" for an AOP, "KE:1234" for a key event).</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/aopwiki_id">soma:aopwiki_id</a>
-Alias: aopwiki_id</p>
+<h1 id="slot-member_of_cohort">Slot: member_of_cohort</h1>
+<p><em>The cohort this subject record belongs to. Use when one study cohort is sampled in multiple ways: give each sampling context its own InVivoSubject with its specimen slots, and point them all to one PopulationSubject holding cohort_size and shared characteristics.</em></p>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/member_of_cohort">soma:member_of_cohort</a>
+Alias: member_of_cohort</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -691,30 +691,15 @@ Alias: aopwiki_id</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../AdverseOutcome/">AdverseOutcome</a></td>
-<td>A specialized type of key event that represents the apical endpoint of an Adv...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../KeyEvent/">KeyEvent</a></td>
-<td>A measurable change in biological state that is a step in an Adverse Outcome ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../MolecularInitiatingEvent/">MolecularInitiatingEvent</a></td>
-<td>The initial molecular-level perturbation that starts an Adverse Outcome Pathw...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../AdverseOutcomePathway/">AdverseOutcomePathway</a></td>
-<td>A sequence of causally linked events at different levels of biological organi...</td>
+<td><a href="../InVivoSubject/">InVivoSubject</a></td>
+<td>A living human or animal subject from whom measurements are taken</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>Range: <a href="../PopulationSubject/">PopulationSubject</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -732,27 +717,28 @@ Alias: aopwiki_id</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>soma:aopwiki_id</td>
+<td>soma:member_of_cohort</td>
 </tr>
 <tr>
 <td>native</td>
-<td>soma:aopwiki_id</td>
+<td>soma:member_of_cohort</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aopwiki_id</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The AOP-Wiki identifier for this entity (e.g., &quot;AOP:411&quot; for an AOP,</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">&quot;KE:1234&quot; for a key event).</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member_of_cohort</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">cohort</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">subject</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">belongs</span><span class="nv"> </span><span class="s">to.</span><span class="nv"> </span><span class="s">Use</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">study</span><span class="nv"> </span><span class="s">cohort</span>
+<span class="w">  </span><span class="s">is</span><span class="nv"> </span><span class="s">sampled</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">multiple</span><span class="nv"> </span><span class="s">ways:</span><span class="nv"> </span><span class="s">give</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">sampling</span><span class="nv"> </span><span class="s">context</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">own</span><span class="nv"> </span><span class="s">InVivoSubject</span><span class="nv"> </span><span class="s">with</span>
+<span class="w">  </span><span class="s">its</span><span class="nv"> </span><span class="s">specimen</span><span class="nv"> </span><span class="s">slots,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">point</span><span class="nv"> </span><span class="s">them</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">PopulationSubject</span><span class="nv"> </span><span class="s">holding</span><span class="nv"> </span><span class="s">cohort_size</span>
+<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">shared</span><span class="nv"> </span><span class="s">characteristics.&#39;</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aopwiki_id</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member_of_cohort</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KeyEvent</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AdverseOutcome</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AdverseOutcomePathway</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoSubject</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PopulationSubject</span>
+<span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
 </details>
 

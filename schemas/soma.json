@@ -2103,6 +2103,16 @@
       "inlined": true,
       "inlined_as_list": true
     },
+    "member_of_cohort": {
+      "name": "member_of_cohort",
+      "description": "The cohort this subject record belongs to. Use when one study cohort is sampled in multiple ways: give each sampling context its own InVivoSubject with its specimen slots, and point them all to one PopulationSubject holding cohort_size and shared characteristics.",
+      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+      "domain_of": [
+        "InVivoSubject"
+      ],
+      "range": "PopulationSubject",
+      "inlined": false
+    },
     "protocol_version": {
       "name": "protocol_version",
       "description": "Version of the protocol.",
@@ -7329,7 +7339,8 @@
         "collection_site",
         "collection_date",
         "sample_collection_method",
-        "clinical_context"
+        "clinical_context",
+        "member_of_cohort"
       ],
       "attributes": {
         "age": {
@@ -7431,6 +7442,18 @@
             "InVivoSubject"
           ],
           "range": "string"
+        },
+        "member_of_cohort": {
+          "name": "member_of_cohort",
+          "description": "The cohort this subject record belongs to. Use when one study cohort is sampled in multiple ways: give each sampling context its own InVivoSubject with its specimen slots, and point them all to one PopulationSubject holding cohort_size and shared characteristics.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "alias": "member_of_cohort",
+          "owner": "InVivoSubject",
+          "domain_of": [
+            "InVivoSubject"
+          ],
+          "range": "PopulationSubject",
+          "inlined": false
         },
         "subject_type": {
           "name": "subject_type",

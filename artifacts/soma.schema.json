@@ -3538,6 +3538,13 @@
                     "description": "A unique identifier for the entity.",
                     "type": "string"
                 },
+                "member_of_cohort": {
+                    "description": "The cohort this subject record belongs to. Use when one study cohort is sampled in multiple ways: give each sampling context its own InVivoSubject with its specimen slots, and point them all to one PopulationSubject holding cohort_size and shared characteristics.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "model_species": {
                     "anyOf": [
                         {

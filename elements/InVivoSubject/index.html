@@ -430,6 +430,17 @@
 
       InVivoSubject : id
 
+      InVivoSubject : member_of_cohort
+
+
+
+
+
+        InVivoSubject --&gt; "0..1" PopulationSubject : member_of_cohort
+        click PopulationSubject href "../PopulationSubject/"
+
+
+
       InVivoSubject : model_species
 
 
@@ -540,6 +551,12 @@
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../member_of_cohort/">member_of_cohort</a></td>
+<td>0..1 <br/> <a href="../PopulationSubject/">PopulationSubject</a></td>
+<td>The cohort this subject record belongs to</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../subject_type/">subject_type</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The specific type of study subject</td>
@@ -646,6 +663,7 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">collection_date</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_collection_method</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clinical_context</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member_of_cohort</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
@@ -751,6 +769,20 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoSubject</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">member_of_cohort</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member_of_cohort</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">cohort</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">subject</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">belongs</span><span class="nv"> </span><span class="s">to.</span><span class="nv"> </span><span class="s">Use</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">study</span><span class="nv"> </span><span class="s">cohort</span>
+<span class="w">      </span><span class="s">is</span><span class="nv"> </span><span class="s">sampled</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">multiple</span><span class="nv"> </span><span class="s">ways:</span><span class="nv"> </span><span class="s">give</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">sampling</span><span class="nv"> </span><span class="s">context</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">own</span><span class="nv"> </span><span class="s">InVivoSubject</span>
+<span class="w">      </span><span class="s">with</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">specimen</span><span class="nv"> </span><span class="s">slots,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">point</span><span class="nv"> </span><span class="s">them</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">PopulationSubject</span><span class="nv"> </span><span class="s">holding</span>
+<span class="w">      </span><span class="s">cohort_size</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">shared</span><span class="nv"> </span><span class="s">characteristics.'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member_of_cohort</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoSubject</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InVivoSubject</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PopulationSubject</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">  </span><span class="nt">subject_type</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subject_type</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The specific type of study subject. Used to designate which concrete</span>
