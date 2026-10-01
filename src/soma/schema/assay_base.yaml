@@ -129,6 +129,7 @@ classes:
       - collection_date
       - sample_collection_method
       - clinical_context
+      - member_of_cohort
 
   PopulationSubject:
     is_a: StudySubject
@@ -741,6 +742,15 @@ slots:
     range: InVivoSubject
     multivalued: true
     inlined_as_list: true
+
+  member_of_cohort:
+    description: >-
+      The cohort this subject record belongs to. Use when one study cohort is
+      sampled in multiple ways: give each sampling context its own InVivoSubject
+      with its specimen slots, and point them all to one PopulationSubject
+      holding cohort_size and shared characteristics.
+    range: PopulationSubject
+    inlined: false
 
   # ---------------------------------------------------------------------------
   # Protocol Detail Slots (Tier 2/3)

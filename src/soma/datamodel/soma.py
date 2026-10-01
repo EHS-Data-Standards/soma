@@ -902,6 +902,7 @@ class InVivoSubject(StudySubject):
     collection_date: Optional[Union[str, XSDDate]] = None
     sample_collection_method: Optional[str] = None
     clinical_context: Optional[str] = None
+    member_of_cohort: Optional[Union[str, PopulationSubjectId]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -935,6 +936,9 @@ class InVivoSubject(StudySubject):
 
         if self.clinical_context is not None and not isinstance(self.clinical_context, str):
             self.clinical_context = str(self.clinical_context)
+
+        if self.member_of_cohort is not None and not isinstance(self.member_of_cohort, PopulationSubjectId):
+            self.member_of_cohort = PopulationSubjectId(self.member_of_cohort)
 
         super().__post_init__(**kwargs)
         self.subject_type = str(self.class_name)
@@ -3807,6 +3811,9 @@ slots.age_range = Slot(uri=ASSAY_BASE.age_range, name="age_range", curie=ASSAY_B
 
 slots.subjects = Slot(uri=ASSAY_BASE.subjects, name="subjects", curie=ASSAY_BASE.curie('subjects'),
                    model_uri=SOMA.subjects, domain=None, range=Optional[Union[dict[Union[str, InVivoSubjectId], Union[dict, InVivoSubject]], list[Union[dict, InVivoSubject]]]])
+
+slots.member_of_cohort = Slot(uri=ASSAY_BASE.member_of_cohort, name="member_of_cohort", curie=ASSAY_BASE.curie('member_of_cohort'),
+                   model_uri=SOMA.member_of_cohort, domain=None, range=Optional[Union[str, PopulationSubjectId]])
 
 slots.protocol_version = Slot(uri=ASSAY_BASE.protocol_version, name="protocol_version", curie=ASSAY_BASE.curie('protocol_version'),
                    model_uri=SOMA.protocol_version, domain=None, range=Optional[str])
