@@ -50,6 +50,13 @@ classes:
       One piece of evidence for a claim: which publication it comes from,
       an exact quote from that publication, whether the quote supports or
       refutes the claim, and what kind of study produced it.
+
+      It also records where in the paper the supporting data sits:
+      article_section says which section the quote was taken from (a dose
+      quoted from Methods storage boilerplate is much weaker provenance
+      than one quoted from Results), and figure_reference names the figure
+      or table that reports the underlying data, so a reviewer can find
+      values the extraction could not read out of a chart or image.
     slots:
       - reference
       - reference_title
@@ -57,6 +64,8 @@ classes:
       - evidence_source
       - snippet
       - explanation
+      - article_section
+      - figure_reference
 
   PublicationReference:
     description: >-
@@ -123,6 +132,24 @@ slots:
       claim it is attached to.
     range: string
 
+  article_section:
+    description: >-
+      The section of the publication the quoted passage comes from
+      (abstract, methods, results, a figure caption, a table, ...).
+      Recording the section makes provenance reviewable: a dose or
+      response value quoted from Results carries more weight than one
+      quoted from a Methods sentence about how a compound was stored.
+    range: ArticleSectionEnum
+
+  figure_reference:
+    description: >-
+      The figure or table in the publication that reports the data behind
+      this claim, written the way the paper labels it, e.g. "Figure 10",
+      "Figure 3B", "Table 2". Use this whenever the quantitative result
+      lives in a figure or chart — even when no exact value could be read
+      from it — so a reviewer knows exactly where to look.
+    range: string
+
   doi:
     description: >-
       The publication's DOI, e.g. "10.1164/rccm.202001-0086OC" (without a
@@ -166,6 +193,46 @@ enums:
         description: >-
           The cited publication turned out not to contain evidence relevant
           to the claim
+
+  ArticleSectionEnum:
+    description: >-
+      The section of a publication a piece of extracted data came from.
+      Matches the standard structure of a research article; use
+      figure_caption or table when the quote is the caption/legend text
+      itself rather than narrative prose.
+    permissible_values:
+      abstract:
+        title: Abstract
+        description: The paper's abstract
+      introduction:
+        title: Introduction
+        description: Introduction or background section
+      methods:
+        title: Methods
+        description: >-
+          Materials and methods. Doses and conditions quoted from here
+          describe how the experiment was set up (or how reagents were
+          stored), not necessarily what was tested — prefer Results-cited
+          values when both exist.
+      results:
+        title: Results
+        description: Results section, including combined results-and-discussion sections
+      discussion:
+        title: Discussion
+        description: Discussion or conclusions section
+      figure_caption:
+        title: Figure caption
+        description: >-
+          The caption/legend text of a figure. Pair with figure_reference
+          to name which figure.
+      table:
+        title: Table
+        description: >-
+          A table or its caption. Pair with figure_reference to name
+          which table.
+      supplementary:
+        title: Supplementary material
+        description: Supplementary text, figures, or tables
 
   EvidenceSourceEnum:
     description: The kind of study the cited publication reports.

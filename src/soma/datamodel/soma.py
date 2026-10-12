@@ -1,5 +1,5 @@
 # Auto generated from soma.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-09-28T15:40:05
+# Generation date: 2026-10-09T16:25:22
 # Schema: soma
 #
 # id: https://w3id.org/EHS-Data-Standards/soma
@@ -57,8 +57,8 @@ from rdflib import (
     URIRef
 )
 
-from linkml_runtime.linkml_model.types import Date, Float, Integer, String, Uriorcurie
-from linkml_runtime.utils.metamodelcore import URIorCURIE, XSDDate
+from linkml_runtime.linkml_model.types import Boolean, Date, Float, Integer, String, Uriorcurie
+from linkml_runtime.utils.metamodelcore import Bool, URIorCURIE, XSDDate
 
 metamodel_version = "1.7.0"
 version = None
@@ -392,6 +392,10 @@ class EvidenceItem(YAMLRoot):
     """
     One piece of evidence for a claim: which publication it comes from, an exact quote from that publication, whether
     the quote supports or refutes the claim, and what kind of study produced it.
+    It also records where in the paper the supporting data sits: article_section says which section the quote was
+    taken from (a dose quoted from Methods storage boilerplate is much weaker provenance than one quoted from
+    Results), and figure_reference names the figure or table that reports the underlying data, so a reviewer can find
+    values the extraction could not read out of a chart or image.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -406,6 +410,8 @@ class EvidenceItem(YAMLRoot):
     evidence_source: Optional[Union[str, "EvidenceSourceEnum"]] = None
     snippet: Optional[str] = None
     explanation: Optional[str] = None
+    article_section: Optional[Union[str, "ArticleSectionEnum"]] = None
+    figure_reference: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self.reference is not None and not isinstance(self.reference, str):
@@ -425,6 +431,12 @@ class EvidenceItem(YAMLRoot):
 
         if self.explanation is not None and not isinstance(self.explanation, str):
             self.explanation = str(self.explanation)
+
+        if self.article_section is not None and not isinstance(self.article_section, ArticleSectionEnum):
+            self.article_section = ArticleSectionEnum(self.article_section)
+
+        if self.figure_reference is not None and not isinstance(self.figure_reference, str):
+            self.figure_reference = str(self.figure_reference)
 
         super().__post_init__(**kwargs)
 
@@ -778,6 +790,10 @@ class AssayOutputMeasurement(NamedThing):
     One AssayOutputMeasurement record represents the results for ONE experimental condition or group. When a study
     reports a control group and one or more treated groups (or a dose-response series), each group gets its own output
     record, marked with experimental_group and linked to the specific exposure condition via measured_under.
+    When a paper reports a result only as a chart or image (a bar graph, a stained section) and no exact number
+    appears in the text, still create the output record: set data_in_figure_only, leave the numeric measurement slots
+    empty, and attach an evidence item whose figure_reference names the figure, so the endpoint and its location are
+    captured even though the value is not.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -790,6 +806,7 @@ class AssayOutputMeasurement(NamedThing):
     evidence: Optional[Union[Union[dict, EvidenceItem], list[Union[dict, EvidenceItem]]]] = empty_list()
     experimental_group: Optional[Union[str, "ExperimentalGroupEnum"]] = None
     measured_under: Optional[Union[str, ExposureConditionId]] = None
+    data_in_figure_only: Optional[Union[bool, Bool]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if not isinstance(self.evidence, list):
@@ -801,6 +818,9 @@ class AssayOutputMeasurement(NamedThing):
 
         if self.measured_under is not None and not isinstance(self.measured_under, ExposureConditionId):
             self.measured_under = ExposureConditionId(self.measured_under)
+
+        if self.data_in_figure_only is not None and not isinstance(self.data_in_figure_only, Bool):
+            self.data_in_figure_only = Bool(self.data_in_figure_only)
 
         super().__post_init__(**kwargs)
 
@@ -3025,6 +3045,49 @@ class EvidenceItemSupportEnum(EnumDefinitionImpl):
         description="""Which way the cited evidence points relative to the claim. Direction only — it says nothing about how strong the evidence is.""",
     )
 
+class ArticleSectionEnum(EnumDefinitionImpl):
+    """
+    The section of a publication a piece of extracted data came from. Matches the standard structure of a research
+    article; use figure_caption or table when the quote is the caption/legend text itself rather than narrative prose.
+    """
+    abstract = PermissibleValue(
+        text="abstract",
+        title="Abstract",
+        description="The paper's abstract")
+    introduction = PermissibleValue(
+        text="introduction",
+        title="Introduction",
+        description="Introduction or background section")
+    methods = PermissibleValue(
+        text="methods",
+        title="Methods",
+        description="""Materials and methods. Doses and conditions quoted from here describe how the experiment was set up (or how reagents were stored), not necessarily what was tested — prefer Results-cited values when both exist.""")
+    results = PermissibleValue(
+        text="results",
+        title="Results",
+        description="Results section, including combined results-and-discussion sections")
+    discussion = PermissibleValue(
+        text="discussion",
+        title="Discussion",
+        description="Discussion or conclusions section")
+    figure_caption = PermissibleValue(
+        text="figure_caption",
+        title="Figure caption",
+        description="The caption/legend text of a figure. Pair with figure_reference to name which figure.")
+    table = PermissibleValue(
+        text="table",
+        title="Table",
+        description="A table or its caption. Pair with figure_reference to name which table.")
+    supplementary = PermissibleValue(
+        text="supplementary",
+        title="Supplementary material",
+        description="Supplementary text, figures, or tables")
+
+    _defn = EnumDefinition(
+        name="ArticleSectionEnum",
+        description="""The section of a publication a piece of extracted data came from. Matches the standard structure of a research article; use figure_caption or table when the quote is the caption/legend text itself rather than narrative prose.""",
+    )
+
 class EvidenceSourceEnum(EnumDefinitionImpl):
     """
     The kind of study the cited publication reports.
@@ -3641,6 +3704,12 @@ slots.snippet = Slot(uri=EVIDENCE.snippet, name="snippet", curie=EVIDENCE.curie(
 slots.explanation = Slot(uri=EVIDENCE.explanation, name="explanation", curie=EVIDENCE.curie('explanation'),
                    model_uri=SOMA.explanation, domain=None, range=Optional[str])
 
+slots.article_section = Slot(uri=EVIDENCE.article_section, name="article_section", curie=EVIDENCE.curie('article_section'),
+                   model_uri=SOMA.article_section, domain=None, range=Optional[Union[str, "ArticleSectionEnum"]])
+
+slots.figure_reference = Slot(uri=EVIDENCE.figure_reference, name="figure_reference", curie=EVIDENCE.curie('figure_reference'),
+                   model_uri=SOMA.figure_reference, domain=None, range=Optional[str])
+
 slots.doi = Slot(uri=EVIDENCE.doi, name="doi", curie=EVIDENCE.curie('doi'),
                    model_uri=SOMA.doi, domain=None, range=Optional[str])
 
@@ -3736,6 +3805,9 @@ slots.experimental_group = Slot(uri=ASSAY_BASE.experimental_group, name="experim
 
 slots.measured_under = Slot(uri=ASSAY_BASE.measured_under, name="measured_under", curie=ASSAY_BASE.curie('measured_under'),
                    model_uri=SOMA.measured_under, domain=None, range=Optional[Union[str, ExposureConditionId]])
+
+slots.data_in_figure_only = Slot(uri=ASSAY_BASE.data_in_figure_only, name="data_in_figure_only", curie=ASSAY_BASE.curie('data_in_figure_only'),
+                   model_uri=SOMA.data_in_figure_only, domain=None, range=Optional[Union[bool, Bool]])
 
 slots.cell_type = Slot(uri=EFO['0000324'], name="cell_type", curie=EFO.curie('0000324'),
                    model_uri=SOMA.cell_type, domain=None, range=Optional[Union[dict, CellTypeReference]])

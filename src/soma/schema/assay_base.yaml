@@ -87,10 +87,18 @@ classes:
       and one or more treated groups (or a dose-response series), each group
       gets its own output record, marked with experimental_group and linked
       to the specific exposure condition via measured_under.
+
+      When a paper reports a result only as a chart or image (a bar graph,
+      a stained section) and no exact number appears in the text, still
+      create the output record: set data_in_figure_only, leave the numeric
+      measurement slots empty, and attach an evidence item whose
+      figure_reference names the figure, so the endpoint and its location
+      are captured even though the value is not.
     slots:
       - evidence
       - experimental_group
       - measured_under
+      - data_in_figure_only
 
   # ---------------------------------------------------------------------------
   # Study Subject Hierarchy
@@ -534,6 +542,17 @@ slots:
       condition should be listed in the assay's has_exposure_condition.
     range: ExposureCondition
     inlined: false
+
+  data_in_figure_only:
+    description: >-
+      True when the quantitative values for this output record are
+      reported only in a figure or chart and could not be read from the
+      text. The record then documents that the endpoint was measured and
+      where its data lives (via an evidence item's figure_reference and
+      article_section), without numeric values. This keeps figure-only
+      results visible to reviewers in the workbook instead of silently
+      dropping them.
+    range: boolean
 
   # ---------------------------------------------------------------------------
   # Context Slots
