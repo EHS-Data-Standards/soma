@@ -123,6 +123,7 @@ cftr_assays:
         evidence_source: IN_VITRO
         snippet: "In transwell model, the adenosine triphosphate (ATP)-induced transepithelial anion short-circuit current (Isc) and airway surface liquid (ASL) significantly decreased after PM2.5 exposure."
         explanation: "The abstract states the study's central in vitro finding: PM2.5 exposure reduced the ATP-induced short-circuit current, which is the decreased CFTR-mediated secretion the PM2.5-condition output of this assay records."
+        article_section: abstract
     has_exposure_condition:
       - id: "EXPOSURE:liu-vehicle-24h"
         name: "Control - serum-free DMEM/F12 vehicle, 24 hours"

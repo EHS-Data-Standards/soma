@@ -191,6 +191,25 @@ goblet_cell_assays:
             name: "ratio"
           central_tendency: mean
           sample_size: 4
+      # Figure-only output: the paper shows PAS-positive goblet cell
+      # staining for the IL-13 recovery group only as images and a bar
+      # chart, with no numbers in the text. The record still captures
+      # that the endpoint was measured and where the data lives.
+      - id: "GCM:001-output-il13-recovery"
+        name: "IL-13 recovery goblet cell staining (data in Figure 4 only)"
+        experimental_group: recovery
+        measured_under: "EXPOSURE:gcm-il13-14d"
+        data_in_figure_only: true
+        evidence:
+          - supports: SUPPORT
+            evidence_source: IN_VITRO
+            article_section: figure_caption
+            figure_reference: "Figure 4"
+            explanation: >-
+              Figure 4 shows PAS-positive goblet cell staining and a bar
+              chart of goblet cell percentage for the recovery group; no
+              exact values appear in the text, so the numeric slots are
+              left empty and this record points reviewers to the figure.
     assay_date: "2024-06-15"
     informs_on_key_event:
       id: "KE:ke2-goblet-hyperplasia"

@@ -167,6 +167,44 @@ class EvidenceItemSupportEnum(str, Enum):
     """
 
 
+class ArticleSectionEnum(str, Enum):
+    """
+    The section of a publication a piece of extracted data came from. Matches the standard structure of a research article; use figure_caption or table when the quote is the caption/legend text itself rather than narrative prose.
+    """
+    Abstract = "abstract"
+    """
+    The paper's abstract
+    """
+    Introduction = "introduction"
+    """
+    Introduction or background section
+    """
+    Methods = "methods"
+    """
+    Materials and methods. Doses and conditions quoted from here describe how the experiment was set up (or how reagents were stored), not necessarily what was tested — prefer Results-cited values when both exist.
+    """
+    Results = "results"
+    """
+    Results section, including combined results-and-discussion sections
+    """
+    Discussion = "discussion"
+    """
+    Discussion or conclusions section
+    """
+    Figure_caption = "figure_caption"
+    """
+    The caption/legend text of a figure. Pair with figure_reference to name which figure.
+    """
+    Table = "table"
+    """
+    A table or its caption. Pair with figure_reference to name which table.
+    """
+    Supplementary_material = "supplementary"
+    """
+    Supplementary text, figures, or tables
+    """
+
+
 class EvidenceSourceEnum(str, Enum):
     """
     The kind of study the cited publication reports.
@@ -716,6 +754,7 @@ class DirectionalityEnum(str, Enum):
 class EvidenceItem(ConfiguredBaseModel):
     """
     One piece of evidence for a claim: which publication it comes from, an exact quote from that publication, whether the quote supports or refutes the claim, and what kind of study produced it.
+    It also records where in the paper the supporting data sits: article_section says which section the quote was taken from (a dose quoted from Methods storage boilerplate is much weaker provenance than one quoted from Results), and figure_reference names the figure or table that reports the underlying data, so a reviewer can find values the extraction could not read out of a chart or image.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/evidence'})
 
@@ -728,6 +767,8 @@ class EvidenceItem(ConfiguredBaseModel):
     evidence_source: Optional[EvidenceSourceEnum] = Field(default=None, description="""What kind of study the cited publication reports — classify the paper, not the person doing the extraction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EvidenceItem']} })
     snippet: Optional[str] = Field(default=None, description="""An exact quote from the cited publication that supports or refutes the claim. Checked automatically: the text must appear word-for-word in the cached copy of the publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EvidenceItem'], 'implements': ['linkml:excerpt']} })
     explanation: Optional[str] = Field(default=None, description="""One or two sentences on how the quoted passage supports the specific claim it is attached to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EvidenceItem']} })
+    article_section: Optional[ArticleSectionEnum] = Field(default=None, description="""The section of the publication the quoted passage comes from (abstract, methods, results, a figure caption, a table, ...). Recording the section makes provenance reviewable: a dose or response value quoted from Results carries more weight than one quoted from a Methods sentence about how a compound was stored.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EvidenceItem']} })
+    figure_reference: Optional[str] = Field(default=None, description="""The figure or table in the publication that reports the data behind this claim, written the way the paper labels it, e.g. \"Figure 10\", \"Figure 3B\", \"Table 2\". Use this whenever the quantitative result lives in a figure or chart — even when no exact value could be read from it — so a reviewer knows exactly where to look.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EvidenceItem']} })
 
     @field_validator('reference')
     def pattern_reference(cls, v):
@@ -1018,6 +1059,7 @@ class AssayOutputMeasurement(NamedThing):
     """
     The measurement results produced by an assay. The specified output of a planned process. Each domain-specific assay class has a corresponding AssayOutputMeasurement subclass containing the named measurement slots for that assay type. This class represents the \"output\" in the Input/Process/Output model: what was measured and what values were obtained.
     One AssayOutputMeasurement record represents the results for ONE experimental condition or group. When a study reports a control group and one or more treated groups (or a dose-response series), each group gets its own output record, marked with experimental_group and linked to the specific exposure condition via measured_under.
+    When a paper reports a result only as a chart or image (a bar graph, a stained section) and no exact number appears in the text, still create the output record: set data_in_figure_only, leave the numeric measurement slots empty, and attach an evidence item whose figure_reference names the figure, so the endpoint and its location are captured even though the value is not.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'exact_mappings': ['IAO:0000109'],
@@ -1030,6 +1072,7 @@ class AssayOutputMeasurement(NamedThing):
          'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
+    data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1666,6 +1709,7 @@ class CiliaryFunctionOutput(AssayOutputMeasurement):
          'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
+    data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1713,6 +1757,7 @@ class ASLOutput(AssayOutputMeasurement):
          'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
+    data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1761,6 +1806,7 @@ class MucociliaryClearanceOutput(AssayOutputMeasurement):
          'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
+    data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1822,6 +1868,7 @@ class OxidativeStressOutput(AssayOutputMeasurement):
          'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
+    data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1872,6 +1919,7 @@ class CFTRFunctionOutput(AssayOutputMeasurement):
          'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
+    data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1927,6 +1975,7 @@ class EGFRSignalingOutput(AssayOutputMeasurement):
          'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
+    data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -1982,6 +2031,7 @@ class GobletCellOutput(AssayOutputMeasurement):
          'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
+    data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -2047,6 +2097,7 @@ class BALFSputumOutput(AssayOutputMeasurement):
          'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
+    data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -2115,6 +2166,7 @@ class LungFunctionOutput(AssayOutputMeasurement):
          'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
+    data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -2164,6 +2216,7 @@ class FoxJExpressionOutput(AssayOutputMeasurement):
          'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
+    data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
@@ -2214,6 +2267,7 @@ class GeneExpressionOutput(AssayOutputMeasurement):
          'recommended': True} })
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
+    data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
