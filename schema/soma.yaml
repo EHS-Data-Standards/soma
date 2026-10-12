@@ -392,6 +392,52 @@ enums:
         description: The cited publication turned out not to contain evidence relevant
           to the claim
         title: No evidence
+  ArticleSectionEnum:
+    name: ArticleSectionEnum
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/ArticleSectionEnum
+    description: The section of a publication a piece of extracted data came from.
+      Matches the standard structure of a research article; use figure_caption or
+      table when the quote is the caption/legend text itself rather than narrative
+      prose.
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    permissible_values:
+      abstract:
+        text: abstract
+        description: The paper's abstract
+        title: Abstract
+      introduction:
+        text: introduction
+        description: Introduction or background section
+        title: Introduction
+      methods:
+        text: methods
+        description: "Materials and methods. Doses and conditions quoted from here\
+          \ describe how the experiment was set up (or how reagents were stored),\
+          \ not necessarily what was tested \u2014 prefer Results-cited values when\
+          \ both exist."
+        title: Methods
+      results:
+        text: results
+        description: Results section, including combined results-and-discussion sections
+        title: Results
+      discussion:
+        text: discussion
+        description: Discussion or conclusions section
+        title: Discussion
+      figure_caption:
+        text: figure_caption
+        description: The caption/legend text of a figure. Pair with figure_reference
+          to name which figure.
+        title: Figure caption
+      table:
+        text: table
+        description: A table or its caption. Pair with figure_reference to name which
+          table.
+        title: Table
+      supplementary:
+        text: supplementary
+        description: Supplementary text, figures, or tables
+        title: Supplementary material
   EvidenceSourceEnum:
     name: EvidenceSourceEnum
     definition_uri: https://w3id.org/EHS-Data-Standards/evidence/EvidenceSourceEnum
@@ -1145,6 +1191,34 @@ slots:
     domain_of:
     - EvidenceItem
     range: string
+  article_section:
+    name: article_section
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/article_section
+    description: 'The section of the publication the quoted passage comes from (abstract,
+      methods, results, a figure caption, a table, ...). Recording the section makes
+      provenance reviewable: a dose or response value quoted from Results carries
+      more weight than one quoted from a Methods sentence about how a compound was
+      stored.'
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    slot_uri: evidence:article_section
+    owner: EvidenceItem
+    domain_of:
+    - EvidenceItem
+    range: ArticleSectionEnum
+  figure_reference:
+    name: figure_reference
+    definition_uri: https://w3id.org/EHS-Data-Standards/evidence/figure_reference
+    description: "The figure or table in the publication that reports the data behind\
+      \ this claim, written the way the paper labels it, e.g. \"Figure 10\", \"Figure\
+      \ 3B\", \"Table 2\". Use this whenever the quantitative result lives in a figure\
+      \ or chart \u2014 even when no exact value could be read from it \u2014 so a\
+      \ reviewer knows exactly where to look."
+    from_schema: https://w3id.org/EHS-Data-Standards/evidence
+    slot_uri: evidence:figure_reference
+    owner: EvidenceItem
+    domain_of:
+    - EvidenceItem
+    range: string
   doi:
     name: doi
     definition_uri: https://w3id.org/EHS-Data-Standards/evidence/doi
@@ -1536,6 +1610,21 @@ slots:
     - AssayOutputMeasurement
     range: ExposureCondition
     inlined: false
+  data_in_figure_only:
+    name: data_in_figure_only
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/data_in_figure_only
+    description: True when the quantitative values for this output record are reported
+      only in a figure or chart and could not be read from the text. The record then
+      documents that the endpoint was measured and where its data lives (via an evidence
+      item's figure_reference and article_section), without numeric values. This keeps
+      figure-only results visible to reviewers in the workbook instead of silently
+      dropping them.
+    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
+    slot_uri: assay_base:data_in_figure_only
+    owner: AssayOutputMeasurement
+    domain_of:
+    - AssayOutputMeasurement
+    range: boolean
   cell_type:
     name: cell_type
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/cell_type
@@ -4727,7 +4816,13 @@ classes:
     definition_uri: https://w3id.org/EHS-Data-Standards/evidence/EvidenceItem
     description: 'One piece of evidence for a claim: which publication it comes from,
       an exact quote from that publication, whether the quote supports or refutes
-      the claim, and what kind of study produced it.'
+      the claim, and what kind of study produced it.
+
+      It also records where in the paper the supporting data sits: article_section
+      says which section the quote was taken from (a dose quoted from Methods storage
+      boilerplate is much weaker provenance than one quoted from Results), and figure_reference
+      names the figure or table that reports the underlying data, so a reviewer can
+      find values the extraction could not read out of a chart or image.'
     from_schema: https://w3id.org/EHS-Data-Standards/evidence
     slots:
     - reference
@@ -4736,6 +4831,8 @@ classes:
     - evidence_source
     - snippet
     - explanation
+    - article_section
+    - figure_reference
     class_uri: evidence:EvidenceItem
   PublicationReference:
     name: PublicationReference
@@ -4905,7 +5002,13 @@ classes:
       One AssayOutputMeasurement record represents the results for ONE experimental
       condition or group. When a study reports a control group and one or more treated
       groups (or a dose-response series), each group gets its own output record, marked
-      with experimental_group and linked to the specific exposure condition via measured_under.'
+      with experimental_group and linked to the specific exposure condition via measured_under.
+
+      When a paper reports a result only as a chart or image (a bar graph, a stained
+      section) and no exact number appears in the text, still create the output record:
+      set data_in_figure_only, leave the numeric measurement slots empty, and attach
+      an evidence item whose figure_reference names the figure, so the endpoint and
+      its location are captured even though the value is not.'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - IAO:0000109
@@ -4918,6 +5021,7 @@ classes:
     - evidence
     - experimental_group
     - measured_under
+    - data_in_figure_only
     class_uri: assay_base:AssayOutputMeasurement
   StudySubject:
     name: StudySubject
@@ -5492,6 +5596,7 @@ classes:
     - evidence
     - experimental_group
     - measured_under
+    - data_in_figure_only
     - beat_frequency_hz
     - active_area_percentage
     - cilia_length
@@ -5539,6 +5644,7 @@ classes:
     - evidence
     - experimental_group
     - measured_under
+    - data_in_figure_only
     - asl_height_um
     - periciliary_layer_depth
     - mucus_layer_thickness
@@ -5584,6 +5690,7 @@ classes:
     - evidence
     - experimental_group
     - measured_under
+    - data_in_figure_only
     - transport_rate
     - transport_directionality
     - mucus_layer_thickness
@@ -5631,6 +5738,7 @@ classes:
     - evidence
     - experimental_group
     - measured_under
+    - data_in_figure_only
     - reactive_oxygen_species
     - lipid_peroxidation
     - malondialdehyde_level
@@ -5691,6 +5799,7 @@ classes:
     - evidence
     - experimental_group
     - measured_under
+    - data_in_figure_only
     - cftr_chloride_secretion
     - cftr_forskolin_response
     - inhibitor_sensitive_current
@@ -5744,6 +5853,7 @@ classes:
     - evidence
     - experimental_group
     - measured_under
+    - data_in_figure_only
     - egfr_phosphorylation_y1068
     - egfr_phosphorylation_y1173
     - total_egfr_protein
@@ -5795,6 +5905,7 @@ classes:
     - evidence
     - experimental_group
     - measured_under
+    - data_in_figure_only
     - goblet_cell_count
     - goblet_cell_percentage
     - muc5ac_mrna_expression
@@ -5856,6 +5967,7 @@ classes:
     - evidence
     - experimental_group
     - measured_under
+    - data_in_figure_only
     - neutrophil_percentage
     - eosinophil_percentage
     - macrophage_percentage
@@ -5924,6 +6036,7 @@ classes:
     - evidence
     - experimental_group
     - measured_under
+    - data_in_figure_only
     - fev1
     - fvc
     - fev1_fvc_ratio
@@ -5984,6 +6097,7 @@ classes:
     - evidence
     - experimental_group
     - measured_under
+    - data_in_figure_only
     - foxj1_mrna_expression
     - foxj1_protein_expression
     - foxj1_positive_cell_percentage
@@ -6033,13 +6147,14 @@ classes:
     - evidence
     - experimental_group
     - measured_under
+    - data_in_figure_only
     - mrna_level
     - protein_level
     - percentage_positive_cells
     class_uri: assay_microschemas:GeneExpressionOutput
 metamodel_version: 1.7.0
 source_file: soma.yaml
-source_file_date: '2026-10-01T21:18:22'
+source_file_date: '2026-10-12T21:03:29'
 source_file_size: 7904
-generation_date: '2026-10-01T21:19:35'
+generation_date: '2026-10-12T21:04:46'
 

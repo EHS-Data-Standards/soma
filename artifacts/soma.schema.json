@@ -153,6 +153,13 @@
                     ],
                     "description": "pH of airway surface liquid. TIER 3."
                 },
+                "data_in_figure_only": {
+                    "description": "True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
                 "description": {
                     "description": "A detailed description of the entity.",
                     "type": [
@@ -400,6 +407,21 @@
             "title": "AnatomicalEntityTerm",
             "type": "string"
         },
+        "ArticleSectionEnum": {
+            "description": "The section of a publication a piece of extracted data came from. Matches the standard structure of a research article; use figure_caption or table when the quote is the caption/legend text itself rather than narrative prose.",
+            "enum": [
+                "abstract",
+                "introduction",
+                "methods",
+                "results",
+                "discussion",
+                "figure_caption",
+                "table",
+                "supplementary"
+            ],
+            "title": "ArticleSectionEnum",
+            "type": "string"
+        },
         "AssayContextCapabilityEnum": {
             "description": "Indicates what experimental contexts an assay class supports. Used to constrain valid study_subject types and enable context-appropriate slots.",
             "enum": [
@@ -583,6 +605,13 @@
                         }
                     ],
                     "description": "Cell-free DNA concentration."
+                },
+                "data_in_figure_only": {
+                    "description": "True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
                 },
                 "description": {
                     "description": "A detailed description of the entity.",
@@ -944,6 +973,13 @@
                         }
                     ],
                     "description": "CFTR-specific chloride secretory current."
+                },
+                "data_in_figure_only": {
+                    "description": "True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
                 },
                 "description": {
                     "description": "A detailed description of the entity.",
@@ -1771,6 +1807,13 @@
                     "$ref": "#/$defs/CiliaryMotionPatternEnum",
                     "description": "Patterns of ciliary motion (coordinated, dyskinetic, immotile). TIER 2 - supporting information."
                 },
+                "data_in_figure_only": {
+                    "description": "True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
                 "description": {
                     "description": "A detailed description of the entity.",
                     "type": [
@@ -2211,6 +2254,13 @@
                     ],
                     "description": "AKT phosphorylation level. TIER 2."
                 },
+                "data_in_figure_only": {
+                    "description": "True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
                 "description": {
                     "description": "A detailed description of the entity.",
                     "type": [
@@ -2342,14 +2392,25 @@
         },
         "EvidenceItem": {
             "additionalProperties": false,
-            "description": "One piece of evidence for a claim: which publication it comes from, an exact quote from that publication, whether the quote supports or refutes the claim, and what kind of study produced it.",
+            "description": "One piece of evidence for a claim: which publication it comes from, an exact quote from that publication, whether the quote supports or refutes the claim, and what kind of study produced it.\nIt also records where in the paper the supporting data sits: article_section says which section the quote was taken from (a dose quoted from Methods storage boilerplate is much weaker provenance than one quoted from Results), and figure_reference names the figure or table that reports the underlying data, so a reviewer can find values the extraction could not read out of a chart or image.",
             "properties": {
+                "article_section": {
+                    "$ref": "#/$defs/ArticleSectionEnum",
+                    "description": "The section of the publication the quoted passage comes from (abstract, methods, results, a figure caption, a table, ...). Recording the section makes provenance reviewable: a dose or response value quoted from Results carries more weight than one quoted from a Methods sentence about how a compound was stored."
+                },
                 "evidence_source": {
                     "$ref": "#/$defs/EvidenceSourceEnum",
                     "description": "What kind of study the cited publication reports \u2014 classify the paper, not the person doing the extraction."
                 },
                 "explanation": {
                     "description": "One or two sentences on how the quoted passage supports the specific claim it is attached to.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "figure_reference": {
+                    "description": "The figure or table in the publication that reports the data behind this claim, written the way the paper labels it, e.g. \"Figure 10\", \"Figure 3B\", \"Table 2\". Use this whenever the quantitative result lives in a figure or chart \u2014 even when no exact value could be read from it \u2014 so a reviewer knows exactly where to look.",
                     "type": [
                         "string",
                         "null"
@@ -2628,6 +2689,13 @@
             "additionalProperties": false,
             "description": "Measurement results from a FoxJ1 expression assay. Contains the measured values for FoxJ1 mRNA, protein, and cellular localization.",
             "properties": {
+                "data_in_figure_only": {
+                    "description": "True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
                 "description": {
                     "description": "A detailed description of the entity.",
                     "type": [
@@ -2870,6 +2938,13 @@
             "additionalProperties": false,
             "description": "Measurement results from a gene expression assay. Contains the measured values for mRNA level, protein level, and positive cell percentage.",
             "properties": {
+                "data_in_figure_only": {
+                    "description": "True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
                 "description": {
                     "description": "A detailed description of the entity.",
                     "type": [
@@ -3080,6 +3155,13 @@
             "additionalProperties": false,
             "description": "Measurement results from a goblet cell assay. Contains the measured values for goblet cell counts, mucin expression, and mucus properties.",
             "properties": {
+                "data_in_figure_only": {
+                    "description": "True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
                 "description": {
                     "description": "A detailed description of the entity.",
                     "type": [
@@ -3941,6 +4023,13 @@
                     ],
                     "description": "Response to bronchodilator (% change in FEV1). TIER 2 - informs reversibility."
                 },
+                "data_in_figure_only": {
+                    "description": "True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
                 "decline_rate": {
                     "anyOf": [
                         {
@@ -4675,6 +4764,13 @@
             "additionalProperties": false,
             "description": "Measurement results from a mucociliary clearance assay. Contains the measured values for transport rate, directionality, and clearance metrics.",
             "properties": {
+                "data_in_figure_only": {
+                    "description": "True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
                 "description": {
                     "description": "A detailed description of the entity.",
                     "type": [
@@ -4995,6 +5091,13 @@
                         }
                     ],
                     "description": "Catalase activity. TIER 1."
+                },
+                "data_in_figure_only": {
+                    "description": "True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
                 },
                 "description": {
                     "description": "A detailed description of the entity.",

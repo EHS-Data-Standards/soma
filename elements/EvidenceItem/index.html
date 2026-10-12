@@ -391,10 +391,22 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-evidenceitem">Class: EvidenceItem</h1>
 <p><em>One piece of evidence for a claim: which publication it comes from, an exact quote from that publication, whether the quote supports or refutes the claim, and what kind of study produced it.</em></p>
+<p><em>It also records where in the paper the supporting data sits: article_section says which section the quote was taken from (a dose quoted from Methods storage boilerplate is much weaker provenance than one quoted from Results), and figure_reference names the figure or table that reports the underlying data, so a reviewer can find values the extraction could not read out of a chart or image.</em></p>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/EvidenceItem">soma:EvidenceItem</a></p>
 <pre class="mermaid"><code> classDiagram
     class EvidenceItem
     click EvidenceItem href "../EvidenceItem/"
+      EvidenceItem : article_section
+
+
+
+
+
+        EvidenceItem --&gt; "0..1" ArticleSectionEnum : article_section
+        click ArticleSectionEnum href "../ArticleSectionEnum/"
+
+
+
       EvidenceItem : evidence_source
 
 
@@ -407,6 +419,8 @@
 
 
       EvidenceItem : explanation
+
+      EvidenceItem : figure_reference
 
       EvidenceItem : reference
 
@@ -473,6 +487,18 @@
 <td><a href="../explanation/">explanation</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>One or two sentences on how the quoted passage supports the specific claim it...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../article_section/">article_section</a></td>
+<td>0..1 <br/> <a href="../ArticleSectionEnum/">ArticleSectionEnum</a></td>
+<td>The section of the publication the quoted passage comes from (abstract, metho...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../figure_reference/">figure_reference</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The figure or table in the publication that reports the data behind this clai...</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -683,7 +709,13 @@
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvidenceItem</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'One</span><span class="nv"> </span><span class="s">piece</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">evidence</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">claim:</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">publication</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">comes</span><span class="nv"> </span><span class="s">from,</span>
 <span class="w">  </span><span class="s">an</span><span class="nv"> </span><span class="s">exact</span><span class="nv"> </span><span class="s">quote</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">publication,</span><span class="nv"> </span><span class="s">whether</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">quote</span><span class="nv"> </span><span class="s">supports</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">refutes</span><span class="nv"> </span><span class="s">the</span>
-<span class="w">  </span><span class="s">claim,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">what</span><span class="nv"> </span><span class="s">kind</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">study</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">it.'</span>
+<span class="w">  </span><span class="s">claim,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">what</span><span class="nv"> </span><span class="s">kind</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">study</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">it.</span>
+
+<span class="w">  </span><span class="s">It</span><span class="nv"> </span><span class="s">also</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">where</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">paper</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">supporting</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">sits:</span><span class="nv"> </span><span class="s">article_section</span><span class="nv"> </span><span class="s">says</span>
+<span class="w">  </span><span class="s">which</span><span class="nv"> </span><span class="s">section</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">quote</span><span class="nv"> </span><span class="s">was</span><span class="nv"> </span><span class="s">taken</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">(a</span><span class="nv"> </span><span class="s">dose</span><span class="nv"> </span><span class="s">quoted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Methods</span><span class="nv"> </span><span class="s">storage</span><span class="nv"> </span><span class="s">boilerplate</span>
+<span class="w">  </span><span class="s">is</span><span class="nv"> </span><span class="s">much</span><span class="nv"> </span><span class="s">weaker</span><span class="nv"> </span><span class="s">provenance</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">quoted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Results),</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">figure_reference</span><span class="nv"> </span><span class="s">names</span>
+<span class="w">  </span><span class="s">the</span><span class="nv"> </span><span class="s">figure</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">table</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">reports</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">underlying</span><span class="nv"> </span><span class="s">data,</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">reviewer</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">find</span><span class="nv"> </span><span class="s">values</span>
+<span class="w">  </span><span class="s">the</span><span class="nv"> </span><span class="s">extraction</span><span class="nv"> </span><span class="s">could</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">read</span><span class="nv"> </span><span class="s">out</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">chart</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">image.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reference</span>
@@ -692,6 +724,8 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence_source</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snippet</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">article_section</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">figure_reference</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
@@ -699,7 +733,13 @@
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvidenceItem</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'One</span><span class="nv"> </span><span class="s">piece</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">evidence</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">claim:</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">publication</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">comes</span><span class="nv"> </span><span class="s">from,</span>
 <span class="w">  </span><span class="s">an</span><span class="nv"> </span><span class="s">exact</span><span class="nv"> </span><span class="s">quote</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">publication,</span><span class="nv"> </span><span class="s">whether</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">quote</span><span class="nv"> </span><span class="s">supports</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">refutes</span><span class="nv"> </span><span class="s">the</span>
-<span class="w">  </span><span class="s">claim,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">what</span><span class="nv"> </span><span class="s">kind</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">study</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">it.'</span>
+<span class="w">  </span><span class="s">claim,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">what</span><span class="nv"> </span><span class="s">kind</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">study</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">it.</span>
+
+<span class="w">  </span><span class="s">It</span><span class="nv"> </span><span class="s">also</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">where</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">paper</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">supporting</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">sits:</span><span class="nv"> </span><span class="s">article_section</span><span class="nv"> </span><span class="s">says</span>
+<span class="w">  </span><span class="s">which</span><span class="nv"> </span><span class="s">section</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">quote</span><span class="nv"> </span><span class="s">was</span><span class="nv"> </span><span class="s">taken</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">(a</span><span class="nv"> </span><span class="s">dose</span><span class="nv"> </span><span class="s">quoted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Methods</span><span class="nv"> </span><span class="s">storage</span><span class="nv"> </span><span class="s">boilerplate</span>
+<span class="w">  </span><span class="s">is</span><span class="nv"> </span><span class="s">much</span><span class="nv"> </span><span class="s">weaker</span><span class="nv"> </span><span class="s">provenance</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">quoted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Results),</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">figure_reference</span><span class="nv"> </span><span class="s">names</span>
+<span class="w">  </span><span class="s">the</span><span class="nv"> </span><span class="s">figure</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">table</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">reports</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">underlying</span><span class="nv"> </span><span class="s">data,</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">reviewer</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">find</span><span class="nv"> </span><span class="s">values</span>
+<span class="w">  </span><span class="s">the</span><span class="nv"> </span><span class="s">extraction</span><span class="nv"> </span><span class="s">could</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">read</span><span class="nv"> </span><span class="s">out</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">chart</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">image.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">reference</span><span class="p">:</span>
@@ -774,6 +814,34 @@
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvidenceItem</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvidenceItem</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">article_section</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">article_section</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">section</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">publication</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">quoted</span><span class="nv"> </span><span class="s">passage</span><span class="nv"> </span><span class="s">comes</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">(abstract,</span>
+<span class="w">      </span><span class="s">methods,</span><span class="nv"> </span><span class="s">results,</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">figure</span><span class="nv"> </span><span class="s">caption,</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">table,</span><span class="nv"> </span><span class="s">...).</span><span class="nv"> </span><span class="s">Recording</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">section</span><span class="nv"> </span><span class="s">makes</span>
+<span class="w">      </span><span class="s">provenance</span><span class="nv"> </span><span class="s">reviewable:</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">dose</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">response</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">quoted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">carries</span>
+<span class="w">      </span><span class="s">more</span><span class="nv"> </span><span class="s">weight</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">quoted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Methods</span><span class="nv"> </span><span class="s">sentence</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">how</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">compound</span><span class="nv"> </span><span class="s">was</span>
+<span class="w">      </span><span class="s">stored.'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">article_section</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvidenceItem</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvidenceItem</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ArticleSectionEnum</span>
+<span class="w">  </span><span class="nt">figure_reference</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">figure_reference</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The figure or table in the publication that reports the data behind</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">this claim, written the way the paper labels it, e.g. "Figure 10", "Figure 3B",</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">"Table 2". Use this whenever the quantitative result lives in a figure or chart</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">— even when no exact value could be read from it — so a reviewer knows exactly</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">where to look.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">figure_reference</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvidenceItem</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvidenceItem</span>
