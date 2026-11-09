@@ -17,6 +17,8 @@ prefixes:
   CL: http://purl.obolibrary.org/obo/CL_
   UBERON: http://purl.obolibrary.org/obo/UBERON_
   AOPWIKI: https://aopwiki.org/aops/
+  MONDO: http://purl.obolibrary.org/obo/MONDO_
+  HP: http://purl.obolibrary.org/obo/HP_
   schema: http://schema.org/
 
 default_prefix: aop_framework
@@ -81,15 +83,19 @@ classes:
       - evidence
 
   AdverseOutcome:
-    is_a: NamedThing
+    is_a: KeyEvent
     description: >-
-      A specialized type of key event that represents the apical endpoint of an Adverse Outcome Pathway.
-      The outcome may be defined at the individual or population level, and is relevant biomedical, clinical, regulator, or ecologically applications.
+      A specialized type of Key Event that represents the apical endpoint of
+      an Adverse Outcome Pathway. The outcome may be defined at the individual
+      or population level, and is relevant to biomedical, clinical, regulatory,
+      or ecological applications. Because an adverse outcome is itself a Key
+      Event, it inherits upstream_key_events: starting from an outcome, the
+      upstream Key Events can be walked to find every assay that informs them
+      (via each assay's informs_on_key_event), answering "what data is
+      relevant to this outcome?" without requiring a curated AOP record.
     slots:
       - outcome_level
-      - biological_process
-      - occurs_in_anatomy
-      - aopwiki_id
+      - outcome_term
 
   AdverseOutcomePathway:
     is_a: NamedThing
@@ -240,6 +246,28 @@ slots:
     description: >-
       The level at which the adverse outcome manifests (individual, population).
     range: OutcomeLevelEnum
+
+  outcome_term:
+    description: >-
+      The disease or phenotype this adverse outcome corresponds to, as a
+      MONDO disease term or an HPO phenotype term. Grounding the outcome to
+      an ontology term makes it findable by name across containers: a query
+      can start from the outcome term, walk upstream_key_events, and collect
+      the assays whose informs_on_key_event matches any Key Event in the
+      chain.
+    range: uriorcurie
+    pattern: "^(MONDO:\\d{7}|HP:\\d{7})$"
+
+  adverse_outcomes:
+    description: >-
+      Adverse outcomes described in this container. Listing outcomes at the
+      container level makes them a first-class entry point: each outcome
+      names its upstream Key Events, and assays reference those Key Events
+      via informs_on_key_event, closing the Outcome - Key Event - Assay
+      traversal in both directions.
+    range: AdverseOutcome
+    multivalued: true
+    inlined_as_list: true
 
   # ---------------------------------------------------------------------------
   # AOP Slots

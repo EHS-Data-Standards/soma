@@ -1,0 +1,89 @@
+# Worked example: the Outcome <-> Key Event <-> Assay traversal.
+#
+# This file demonstrates how SOMA answers the question "I am looking for
+# data on this outcome - what assays might be relevant?":
+#
+#   1. Find the outcome by its ontology term (outcome_term, here the HPO
+#      phenotype HP:0032342 "Reduced forced expiratory volume in one second").
+#   2. Walk the outcome's upstream_key_events (inherited from KeyEvent,
+#      since an AdverseOutcome is a specialized Key Event).
+#   3. Collect every assay whose informs_on_key_event matches the outcome
+#      itself or any Key Event in the upstream chain.
+#
+# Here that traversal yields: the outcome "Decreased lung function" is
+# informed directly by a spirometry assay (LF:oc-001), and through its
+# upstream Key Event "Impaired mucociliary clearance" by an in vitro
+# transport assay (MCC:oc-001). No curated AdverseOutcomePathway record
+# is required to make the connection.
+
+adverse_outcomes:
+  - id: "AO:decreased-lung-function"
+    name: "Decreased lung function"
+    outcome_term: HP:0032342
+    outcome_level: individual
+    biological_action: decreased
+    level_of_biological_organization: organism
+    occurs_in_anatomy: UBERON:0002048
+    aopwiki_id: "KE:1250"
+    upstream_key_events:
+      - id: "KE:oc-impaired-mcc"
+        name: "Impaired mucociliary clearance"
+
+key_events:
+  - id: "KE:oc-impaired-mcc"
+    name: "Impaired mucociliary clearance"
+    biological_process: GO:0120197
+    biological_action: impaired
+    level_of_biological_organization: tissue
+    occurs_in_anatomy: UBERON:0001005
+    occurs_in_cell_type: CL:0000064
+
+mcc_assays:
+  - id: "MCC:oc-001"
+    name: "In vitro mucociliary transport after PM2.5 exposure"
+    informs_on_key_event:
+      id: "KE:oc-impaired-mcc"
+      name: "Impaired mucociliary clearance"
+    has_exposure_condition:
+      - id: "EXPOSURE:oc-pm25-24h"
+        name: "PM2.5 50 ug/mL for 24 hours"
+        exposure_agent:
+          id: "ENVO:01000415"
+          name: "fine respirable suspended particulate matter"
+        exposure_duration:
+          value: "24"
+          unit:
+            id: "UO:0000032"
+            name: "hour"
+    has_specified_output:
+      - id: "MCC:oc-001-output"
+        name: "Transport rate after PM2.5"
+        experimental_group: treated
+        measured_under: "EXPOSURE:oc-pm25-24h"
+        transport_rate:
+          value: "19.4"
+          unit:
+            id: "UO:0000103"
+            name: "micrometer per second"
+          central_tendency: mean
+          sample_size: 6
+
+lung_function_assays:
+  - id: "LF:oc-001"
+    name: "Spirometry in PM2.5-exposed cohort"
+    informs_on_key_event:
+      # The assay informs the adverse outcome directly: an AdverseOutcome
+      # is a KeyEvent, so it is a valid target of informs_on_key_event.
+      id: "AO:decreased-lung-function"
+      name: "Decreased lung function"
+    has_specified_output:
+      - id: "LF:oc-001-output"
+        name: "Post-exposure spirometry results"
+        experimental_group: treated
+        fev1:
+          value: "78.2"
+          unit:
+            id: "UO:0000187"
+            name: "percent predicted"
+          central_tendency: mean
+          sample_size: 42

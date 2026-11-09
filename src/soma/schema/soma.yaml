@@ -73,6 +73,7 @@ classes:
       # AOP Framework Collections
       - key_events
       - key_event_relationships
+      - adverse_outcomes
       - adverse_outcome_pathways
 
       # Analysis Layer Collections
