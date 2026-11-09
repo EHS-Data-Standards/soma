@@ -1,5 +1,4 @@
 # Auto generated from soma.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-11-09T09:52:19
 # Schema: soma
 #
 # id: https://w3id.org/EHS-Data-Standards/soma
@@ -60,7 +59,7 @@ from rdflib import (
 from linkml_runtime.linkml_model.types import Boolean, Date, Float, Integer, String, Uriorcurie
 from linkml_runtime.utils.metamodelcore import Bool, URIorCURIE, XSDDate
 
-metamodel_version = "1.7.0"
+metamodel_version = "1.12.0"
 version = None
 
 # Namespaces
