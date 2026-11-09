@@ -102,8 +102,8 @@ types:
     description: A character string
     notes:
     - In RDF serializations, a slot with range of string is treated as a literal or
-      type xsd:string.   If you are authoring schemas in LinkML YAML, the type is
-      referenced with the lower case "string".
+      type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced
+      with the lower case "string".
     from_schema: https://w3id.org/linkml/types
     imported_from: linkml:types
     exact_mappings:
@@ -1307,10 +1307,9 @@ slots:
       a GO biological process term.
     from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
     slot_uri: aop_framework:biological_process
-    owner: AdverseOutcome
+    owner: KeyEvent
     domain_of:
     - KeyEvent
-    - AdverseOutcome
     range: uriorcurie
     pattern: ^GO:\d{7}$
   biological_object:
@@ -1362,10 +1361,9 @@ slots:
       a UBERON anatomy term.
     from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
     slot_uri: aop_framework:occurs_in_anatomy
-    owner: AdverseOutcome
+    owner: KeyEvent
     domain_of:
     - KeyEvent
-    - AdverseOutcome
     range: uriorcurie
     pattern: ^UBERON:\d{7}$
   aopwiki_id:
@@ -1378,7 +1376,6 @@ slots:
     owner: AdverseOutcomePathway
     domain_of:
     - KeyEvent
-    - AdverseOutcome
     - AdverseOutcomePathway
     range: string
   upstream_key_events:
@@ -1472,6 +1469,37 @@ slots:
     domain_of:
     - AdverseOutcome
     range: OutcomeLevelEnum
+  outcome_term:
+    name: outcome_term
+    definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/outcome_term
+    description: 'The disease or phenotype this adverse outcome corresponds to, as
+      a MONDO disease term or an HPO phenotype term. Grounding the outcome to an ontology
+      term makes it findable by name across containers: a query can start from the
+      outcome term, walk upstream_key_events, and collect the assays whose informs_on_key_event
+      matches any Key Event in the chain.'
+    from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
+    slot_uri: aop_framework:outcome_term
+    owner: AdverseOutcome
+    domain_of:
+    - AdverseOutcome
+    range: uriorcurie
+    pattern: ^(MONDO:\d{7}|HP:\d{7})$
+  adverse_outcomes:
+    name: adverse_outcomes
+    definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/adverse_outcomes
+    description: 'Adverse outcomes described in this container. Listing outcomes at
+      the container level makes them a first-class entry point: each outcome names
+      its upstream Key Events, and assays reference those Key Events via informs_on_key_event,
+      closing the Outcome - Key Event - Assay traversal in both directions.'
+    from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
+    slot_uri: aop_framework:adverse_outcomes
+    owner: Container
+    domain_of:
+    - Container
+    range: AdverseOutcome
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   molecular_initiating_event:
     name: molecular_initiating_event
     definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/molecular_initiating_event
@@ -1641,9 +1669,7 @@ slots:
     range: CellTypeReference
     bindings:
     - range: CellTypeTerm
-      obligation_level:
-        text: REQUIRED
-        description: The metadata element is required to be present in the model
+      obligation_level: REQUIRED
       binds_value_of: id
     inlined: true
     inlined_as_list: false
@@ -1661,19 +1687,21 @@ slots:
     range: CellTypeReference
     bindings:
     - range: CellTypeTerm
-      obligation_level:
-        text: REQUIRED
-        description: The metadata element is required to be present in the model
+      obligation_level: REQUIRED
       binds_value_of: id
     inlined: true
     inlined_as_list: false
-  model_species:
-    name: model_species
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/model_species
-    description: The species of origin for the cells or organism being studied. Reference
-      to NCBITaxon term.
+  species:
+    name: species
+    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/species
+    description: 'The species of origin for the cells, organism, or population being
+      studied. Reference to NCBITaxon term. Applies to any study subject: a human
+      cohort records Homo sapiens here just as a cell line records its species of
+      origin.'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slot_uri: assay_base:model_species
+    aliases:
+    - model_species
+    slot_uri: assay_base:species
     owner: CellLine
     domain_of:
     - StudySubject
@@ -1681,9 +1709,7 @@ slots:
     range: SpeciesReference
     bindings:
     - range: SpeciesTerm
-      obligation_level:
-        text: REQUIRED
-        description: The metadata element is required to be present in the model
+      obligation_level: REQUIRED
       binds_value_of: id
     inlined: true
     inlined_as_list: false
@@ -2352,9 +2378,7 @@ slots:
     range: ChemicalEntityReference
     bindings:
     - range: ChemicalEntityTerm
-      obligation_level:
-        text: REQUIRED
-        description: The metadata element is required to be present in the model
+      obligation_level: REQUIRED
       binds_value_of: id
     inlined: true
     inlined_as_list: false
@@ -2417,9 +2441,7 @@ slots:
     range: CellTypeReference
     bindings:
     - range: CellTypeTerm
-      obligation_level:
-        text: REQUIRED
-        description: The metadata element is required to be present in the model
+      obligation_level: REQUIRED
       binds_value_of: id
     inlined: true
     inlined_as_list: false
@@ -2434,9 +2456,7 @@ slots:
     range: AnatomicalEntityReference
     bindings:
     - range: AnatomicalEntityTerm
-      obligation_level:
-        text: REQUIRED
-        description: The metadata element is required to be present in the model
+      obligation_level: REQUIRED
       binds_value_of: id
     inlined: true
     inlined_as_list: false
@@ -2764,9 +2784,7 @@ slots:
     range: Unit
     bindings:
     - range: UnitTerm
-      obligation_level:
-        text: REQUIRED
-        description: The metadata element is required to be present in the model
+      obligation_level: REQUIRED
       binds_value_of: id
     inlined: true
     inlined_as_list: false
@@ -4795,6 +4813,7 @@ classes:
     - source_publication
     - key_events
     - key_event_relationships
+    - adverse_outcomes
     - adverse_outcome_pathways
     - response_comparisons
     - ciliary_function_assays
@@ -4865,7 +4884,7 @@ classes:
       adverse outcome. Key events can be Molecular Initiating Events (MIEs), intermediate
       Key Events, or Adverse Outcomes at the organism/population level.
     from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
-    mappings:
+    exact_mappings:
     - ECTO:1000000
     is_a: NamedThing
     slots:
@@ -4905,20 +4924,32 @@ classes:
   AdverseOutcome:
     name: AdverseOutcome
     definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/AdverseOutcome
-    description: A specialized type of key event that represents the apical endpoint
+    description: 'A specialized type of Key Event that represents the apical endpoint
       of an Adverse Outcome Pathway. The outcome may be defined at the individual
-      or population level, and is relevant biomedical, clinical, regulator, or ecologically
-      applications.
+      or population level, and is relevant to biomedical, clinical, regulatory, or
+      ecological applications. Because an adverse outcome is itself a Key Event, it
+      inherits upstream_key_events: starting from an outcome, the upstream Key Events
+      can be walked to find every assay that informs them (via each assay''s informs_on_key_event),
+      answering "what data is relevant to this outcome?" without requiring a curated
+      AOP record.'
     from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
-    is_a: NamedThing
+    is_a: KeyEvent
     slots:
     - id
     - name
     - description
-    - outcome_level
     - biological_process
+    - biological_object
+    - biological_action
+    - level_of_biological_organization
+    - occurs_in_cell_type
     - occurs_in_anatomy
     - aopwiki_id
+    - upstream_key_events
+    - downstream_key_events
+    - evidence
+    - outcome_level
+    - outcome_term
     class_uri: aop_framework:AdverseOutcome
   AdverseOutcomePathway:
     name: AdverseOutcomePathway
@@ -4974,7 +5005,7 @@ classes:
       for the specific measurements it can produce. Assays inform on key events and
       contain the measurement data as named slots.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    mappings:
+    exact_mappings:
     - OBI:0000070
     is_a: NamedThing
     abstract: true
@@ -5037,7 +5068,7 @@ classes:
     - name
     - description
     - subject_type
-    - model_species
+    - species
     class_uri: assay_base:StudySubject
   ModelSystem:
     name: ModelSystem
@@ -5051,7 +5082,7 @@ classes:
     - name
     - description
     - subject_type
-    - model_species
+    - species
     class_uri: assay_base:ModelSystem
   InVivoSubject:
     name: InVivoSubject
@@ -5066,7 +5097,7 @@ classes:
     - name
     - description
     - subject_type
-    - model_species
+    - species
     - age
     - sex
     - subject_characteristics
@@ -5091,7 +5122,7 @@ classes:
     - name
     - description
     - subject_type
-    - model_species
+    - species
     - cohort_size
     - inclusion_criteria
     - age_range
@@ -5107,7 +5138,7 @@ classes:
       workflows (e.g., sample preparation, wash steps, or post-processing protocols
       that are shared across assays).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    mappings:
+    exact_mappings:
     - OBI:0000272
     is_a: NamedThing
     slots:
@@ -5431,7 +5462,7 @@ classes:
     - name
     - description
     - subject_type
-    - model_species
+    - species
     - cell_line
     - primary_cell
     - cell_type
@@ -5463,7 +5494,7 @@ classes:
     slots:
     - name
     - cell_type
-    - model_species
+    - species
     - tissue_origin
     - disease_state
     - supplier
@@ -6152,9 +6183,8 @@ classes:
     - protein_level
     - percentage_positive_cells
     class_uri: assay_microschemas:GeneExpressionOutput
-metamodel_version: 1.7.0
+metamodel_version: 1.12.0
 source_file: soma.yaml
-source_file_date: '2026-10-12T21:03:29'
-source_file_size: 7904
-generation_date: '2026-10-12T21:04:46'
+source_file_date: '2026-11-09T19:02:09'
+source_file_size: 7929
 

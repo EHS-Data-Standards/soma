@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -546,6 +546,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#from-an-outcome-to-relevant-assays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From an Outcome to Relevant Assays
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -930,6 +941,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#from-an-outcome-to-relevant-assays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From an Outcome to Relevant Assays
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1166,7 +1188,7 @@ any class in the StudySubject hierarchy:</p>
 <tr>
 <td>StudySubject</td>
 <td>Base class</td>
-<td><code>model_species</code></td>
+<td><code>species</code></td>
 </tr>
 <tr>
 <td>ModelSystem</td>
@@ -1252,12 +1274,27 @@ Any Protocol subclass is valid in both slots.</p>
 <td>AOP key events that assays inform on</td>
 </tr>
 <tr>
+<td>AdverseOutcome</td>
+<td><code>adverse_outcomes</code></td>
+<td>Outcomes, grounded to MONDO/HPO terms</td>
+</tr>
+<tr>
 <td>AdverseOutcomePathway</td>
 <td><code>adverse_outcome_pathways</code></td>
 <td>Complete AOP definitions</td>
 </tr>
 </tbody>
 </table>
+<h3 id="from-an-outcome-to-relevant-assays">From an Outcome to Relevant Assays</h3>
+<p>An <code>AdverseOutcome</code> is a specialized <code>KeyEvent</code>, so it inherits
+<code>upstream_key_events</code>, and its <code>outcome_term</code> slot grounds it to a MONDO
+disease or HPO phenotype term. This closes the Outcome ↔ Key Event ↔ Assay
+traversal: to answer <em>"I am looking for data on this outcome — what assays
+might be relevant?"</em>, find the outcome by its ontology term, walk its
+<code>upstream_key_events</code>, and collect every assay whose <code>informs_on_key_event</code>
+matches the outcome itself or any Key Event in the chain. No curated
+<code>AdverseOutcomePathway</code> record is required. See
+<code>Container-outcome_connection.yaml</code> in the examples for a worked traversal.</p>
 <h2 id="key-features">Key Features</h2>
 <p>The schema integrates with major biomedical ontologies:</p>
 <table>
@@ -1309,64 +1346,64 @@ Any Protocol subclass is valid in both slots.</p>
 <p>All data uses the <code>Container</code> class as the root element. Here's a quick example:</p>
 <h3 id="ciliary-function-assay-in-vitro">Ciliary Function Assay (In Vitro)</h3>
 <div class="highlight"><pre><span></span><code><span class="nt">ciliary_function_assays</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CILIARY:001&quot;</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CBF</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">ozone</span><span class="nv"> </span><span class="s">exposure&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"CILIARY:001"</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"CBF</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">ozone</span><span class="nv"> </span><span class="s">exposure"</span>
 <span class="w">    </span><span class="nt">beat_frequency_hz</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8.5&quot;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"8.5"</span>
 <span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000106&quot;</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"UO:0000106"</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"hertz"</span>
 <span class="w">    </span><span class="nt">active_area_percentage</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;72&quot;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"72"</span>
 <span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent&quot;</span>
-<span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-15&quot;</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"UO:0000187"</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"percent"</span>
+<span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">"2024-01-15"</span>
 <span class="w">    </span><span class="nt">cell_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CL:0002328&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell&quot;</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"CL:0002328"</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"bronchial</span><span class="nv"> </span><span class="s">epithelial</span><span class="nv"> </span><span class="s">cell"</span>
 <span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;soma:culture-001&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture&quot;</span>
-<span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"soma:culture-001"</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Primary</span><span class="nv"> </span><span class="s">HBE</span><span class="nv"> </span><span class="s">ALI</span><span class="nv"> </span><span class="s">culture"</span>
+<span class="w">      </span><span class="nt">species</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"NCBITaxon:9606"</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Homo</span><span class="nv"> </span><span class="s">sapiens"</span>
 <span class="w">    </span><span class="nt">imaging_protocol</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:cbf-001&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">CBF&quot;</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"PROTOCOL:cbf-001"</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"High-speed</span><span class="nv"> </span><span class="s">video</span><span class="nv"> </span><span class="s">microscopy</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">CBF"</span>
 <span class="w">      </span><span class="nt">imaging_frame_rate</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;200&quot;</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"200"</span>
 <span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000105&quot;</span>
-<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hertz&quot;</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"UO:0000105"</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"hertz"</span>
 </code></pre></div>
 <h3 id="lung-function-assay-in-vivo">Lung Function Assay (In Vivo)</h3>
 <div class="highlight"><pre><span></span><code><span class="nt">lung_function_assays</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;LF:001&quot;</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;FEV1</span><span class="nv"> </span><span class="s">measurement&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"LF:001"</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"FEV1</span><span class="nv"> </span><span class="s">measurement"</span>
 <span class="w">    </span><span class="nt">fev1</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;82.5&quot;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"82.5"</span>
 <span class="w">      </span><span class="nt">unit</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000187&quot;</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;percent</span><span class="nv"> </span><span class="s">predicted&quot;</span>
-<span class="w">    </span><span class="nt">reference_dataset</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GLI-2012&quot;</span>
-<span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-08-10&quot;</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"UO:0000187"</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"percent</span><span class="nv"> </span><span class="s">predicted"</span>
+<span class="w">    </span><span class="nt">reference_dataset</span><span class="p">:</span><span class="w"> </span><span class="s">"GLI-2012"</span>
+<span class="w">    </span><span class="nt">assay_date</span><span class="p">:</span><span class="w"> </span><span class="s">"2024-08-10"</span>
 <span class="w">    </span><span class="nt">study_subject</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SUBJECT:002&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Subject</span><span class="nv"> </span><span class="s">B&quot;</span>
-<span class="w">      </span><span class="nt">model_species</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NCBITaxon:9606&quot;</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Homo</span><span class="nv"> </span><span class="s">sapiens&quot;</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"SUBJECT:002"</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Subject</span><span class="nv"> </span><span class="s">B"</span>
+<span class="w">      </span><span class="nt">species</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"NCBITaxon:9606"</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Homo</span><span class="nv"> </span><span class="s">sapiens"</span>
 <span class="w">      </span><span class="nt">age</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;52&quot;</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"52"</span>
 <span class="w">        </span><span class="nt">unit</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;UO:0000036&quot;</span>
-<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;year&quot;</span>
-<span class="w">      </span><span class="nt">sex</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;male&quot;</span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"UO:0000036"</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"year"</span>
+<span class="w">      </span><span class="nt">sex</span><span class="p">:</span><span class="w"> </span><span class="s">"male"</span>
 <span class="w">    </span><span class="nt">spirometry_protocol</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PROTOCOL:spiro-001&quot;</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pre-</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">post-bronchodilator</span><span class="nv"> </span><span class="s">spirometry&quot;</span>
-<span class="w">      </span><span class="nt">spirometry_standard</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ATS/ERS</span><span class="nv"> </span><span class="s">2019&quot;</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"PROTOCOL:spiro-001"</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Pre-</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">post-bronchodilator</span><span class="nv"> </span><span class="s">spirometry"</span>
+<span class="w">      </span><span class="nt">spirometry_standard</span><span class="p">:</span><span class="w"> </span><span class="s">"ATS/ERS</span><span class="nv"> </span><span class="s">2019"</span>
 </code></pre></div>
 <p><strong>See the <a href="examples/">Examples</a> page for comprehensive examples covering all assay types,
 protocols, and study configurations.</strong></p>
@@ -1436,10 +1473,10 @@ protocols, and study configurations.</strong></p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.tabs.link", "navigation.tabs", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.tabs.link", "navigation.tabs", "navigation.top"], "search": "assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

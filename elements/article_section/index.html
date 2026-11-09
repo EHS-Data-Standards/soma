@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -25,10 +25,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -602,6 +602,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -676,10 +693,9 @@
 
 <h1 id="slot-article_section">Slot: article_section</h1>
 <p><em>The section of the publication the quoted passage comes from (abstract, methods, results, a figure caption, a table, ...). Recording the section makes provenance reviewable: a dose or response value quoted from Results carries more weight than one quoted from a Methods sentence about how a compound was stored.</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/article_section">soma:article_section</a>
-Alias: article_section</p>
+<div>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/article_section">soma:article_section</a></p>
 <!-- no inheritance hierarchy -->
-
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -698,9 +714,25 @@ Alias: article_section</p>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>Range: <a href="../ArticleSectionEnum/">ArticleSectionEnum</a></li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../ArticleSectionEnum/">ArticleSectionEnum</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../EvidenceItem/">EvidenceItem</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -728,24 +760,27 @@ Alias: article_section</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">article_section</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">section</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">publication</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">quoted</span><span class="nv"> </span><span class="s">passage</span><span class="nv"> </span><span class="s">comes</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">(abstract,</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">section</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">publication</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">quoted</span><span class="nv"> </span><span class="s">passage</span><span class="nv"> </span><span class="s">comes</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">(abstract,</span>
 <span class="w">  </span><span class="s">methods,</span><span class="nv"> </span><span class="s">results,</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">figure</span><span class="nv"> </span><span class="s">caption,</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">table,</span><span class="nv"> </span><span class="s">...).</span><span class="nv"> </span><span class="s">Recording</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">section</span><span class="nv"> </span><span class="s">makes</span><span class="nv"> </span><span class="s">provenance</span>
 <span class="w">  </span><span class="s">reviewable:</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">dose</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">response</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">quoted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">more</span><span class="nv"> </span><span class="s">weight</span><span class="nv"> </span><span class="s">than</span>
-<span class="w">  </span><span class="s">one</span><span class="nv"> </span><span class="s">quoted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Methods</span><span class="nv"> </span><span class="s">sentence</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">how</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">compound</span><span class="nv"> </span><span class="s">was</span><span class="nv"> </span><span class="s">stored.&#39;</span>
+<span class="w">  </span><span class="s">one</span><span class="nv"> </span><span class="s">quoted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Methods</span><span class="nv"> </span><span class="s">sentence</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">how</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">compound</span><span class="nv"> </span><span class="s">was</span><span class="nv"> </span><span class="s">stored.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">article_section</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvidenceItem</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ArticleSectionEnum</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -797,10 +832,10 @@ Alias: article_section</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "navigation.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "navigation.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

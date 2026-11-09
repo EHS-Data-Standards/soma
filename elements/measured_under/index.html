@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -25,10 +25,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -602,6 +602,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -676,10 +693,9 @@
 
 <h1 id="slot-measured_under">Slot: measured_under</h1>
 <p><em>Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/measured_under">soma:measured_under</a>
-Alias: measured_under</p>
+<div>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/measured_under">soma:measured_under</a></p>
 <!-- no inheritance hierarchy -->
-
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -691,23 +707,23 @@ Alias: measured_under</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="../AssayOutputMeasurement/">AssayOutputMeasurement</a></td>
+<td>The measurement results produced by an assay</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CiliaryFunctionOutput/">CiliaryFunctionOutput</a></td>
+<td>Measurement results from a ciliary function assay</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../ASLOutput/">ASLOutput</a></td>
 <td>Measurement results from an airway surface liquid assay</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../BALFSputumOutput/">BALFSputumOutput</a></td>
-<td>Measurement results from a BALF/sputum assay</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../GobletCellOutput/">GobletCellOutput</a></td>
-<td>Measurement results from a goblet cell assay</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../FoxJExpressionOutput/">FoxJExpressionOutput</a></td>
-<td>Measurement results from a FoxJ1 expression assay</td>
+<td><a href="../MucociliaryClearanceOutput/">MucociliaryClearanceOutput</a></td>
+<td>Measurement results from a mucociliary clearance assay</td>
 <td>no</td>
 </tr>
 <tr>
@@ -726,8 +742,13 @@ Alias: measured_under</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../GeneExpressionOutput/">GeneExpressionOutput</a></td>
-<td>Measurement results from a gene expression assay</td>
+<td><a href="../GobletCellOutput/">GobletCellOutput</a></td>
+<td>Measurement results from a goblet cell assay</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../BALFSputumOutput/">BALFSputumOutput</a></td>
+<td>Measurement results from a BALF/sputum assay</td>
 <td>no</td>
 </tr>
 <tr>
@@ -736,26 +757,37 @@ Alias: measured_under</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../MucociliaryClearanceOutput/">MucociliaryClearanceOutput</a></td>
-<td>Measurement results from a mucociliary clearance assay</td>
+<td><a href="../FoxJExpressionOutput/">FoxJExpressionOutput</a></td>
+<td>Measurement results from a FoxJ1 expression assay</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../AssayOutputMeasurement/">AssayOutputMeasurement</a></td>
-<td>The measurement results produced by an assay</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CiliaryFunctionOutput/">CiliaryFunctionOutput</a></td>
-<td>Measurement results from a ciliary function assay</td>
+<td><a href="../GeneExpressionOutput/">GeneExpressionOutput</a></td>
+<td>Measurement results from a gene expression assay</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>Range: <a href="../ExposureCondition/">ExposureCondition</a></li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../ExposureCondition/">ExposureCondition</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../AssayOutputMeasurement/">AssayOutputMeasurement</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -786,22 +818,25 @@ Alias: measured_under</p>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reference (by id) to the specific ExposureCondition this output record</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">was measured under. Links each set of response values to the concentration/treatment</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">it corresponds to, so a dose-response series keeps each response paired with its</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">exposure level. The referenced condition should be listed in the assay&#39;s has_exposure_condition.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">exposure level. The referenced condition should be listed in the assay's has_exposure_condition.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">measured_under</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AssayOutputMeasurement</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExposureCondition</span>
 <span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -853,10 +888,10 @@ Alias: measured_under</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "navigation.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "navigation.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

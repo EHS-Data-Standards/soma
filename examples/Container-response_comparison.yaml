@@ -19,7 +19,7 @@ lung_function_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:rat-cohort-01"
       name: "Sprague-Dawley rats"
-      model_species:
+      species:
         id: "NCBITaxon:10116"
         name: "Rattus norvegicus"
     has_exposure_condition:

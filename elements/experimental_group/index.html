@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -25,10 +25,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -602,6 +602,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -676,10 +693,9 @@
 
 <h1 id="slot-experimental_group">Slot: experimental_group</h1>
 <p><em>The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/experimental_group">soma:experimental_group</a>
-Alias: experimental_group</p>
+<div>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/experimental_group">soma:experimental_group</a></p>
 <!-- no inheritance hierarchy -->
-
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -691,23 +707,23 @@ Alias: experimental_group</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="../AssayOutputMeasurement/">AssayOutputMeasurement</a></td>
+<td>The measurement results produced by an assay</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CiliaryFunctionOutput/">CiliaryFunctionOutput</a></td>
+<td>Measurement results from a ciliary function assay</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../ASLOutput/">ASLOutput</a></td>
 <td>Measurement results from an airway surface liquid assay</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../BALFSputumOutput/">BALFSputumOutput</a></td>
-<td>Measurement results from a BALF/sputum assay</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../GobletCellOutput/">GobletCellOutput</a></td>
-<td>Measurement results from a goblet cell assay</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../FoxJExpressionOutput/">FoxJExpressionOutput</a></td>
-<td>Measurement results from a FoxJ1 expression assay</td>
+<td><a href="../MucociliaryClearanceOutput/">MucociliaryClearanceOutput</a></td>
+<td>Measurement results from a mucociliary clearance assay</td>
 <td>no</td>
 </tr>
 <tr>
@@ -726,8 +742,13 @@ Alias: experimental_group</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../GeneExpressionOutput/">GeneExpressionOutput</a></td>
-<td>Measurement results from a gene expression assay</td>
+<td><a href="../GobletCellOutput/">GobletCellOutput</a></td>
+<td>Measurement results from a goblet cell assay</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../BALFSputumOutput/">BALFSputumOutput</a></td>
+<td>Measurement results from a BALF/sputum assay</td>
 <td>no</td>
 </tr>
 <tr>
@@ -736,26 +757,37 @@ Alias: experimental_group</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../MucociliaryClearanceOutput/">MucociliaryClearanceOutput</a></td>
-<td>Measurement results from a mucociliary clearance assay</td>
+<td><a href="../FoxJExpressionOutput/">FoxJExpressionOutput</a></td>
+<td>Measurement results from a FoxJ1 expression assay</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../AssayOutputMeasurement/">AssayOutputMeasurement</a></td>
-<td>The measurement results produced by an assay</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CiliaryFunctionOutput/">CiliaryFunctionOutput</a></td>
-<td>Measurement results from a ciliary function assay</td>
+<td><a href="../GeneExpressionOutput/">GeneExpressionOutput</a></td>
+<td>Measurement results from a gene expression assay</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>Range: <a href="../ExperimentalGroupEnum/">ExperimentalGroupEnum</a></li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../ExperimentalGroupEnum/">ExperimentalGroupEnum</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../AssayOutputMeasurement/">AssayOutputMeasurement</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -783,24 +815,27 @@ Alias: experimental_group</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">experimental_group</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">role</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">record</span><span class="se">&#39;&#39;</span><span class="s">s</span><span class="nv"> </span><span class="s">group</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">experimental</span><span class="nv"> </span><span class="s">design:</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">role</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">record</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">group</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">experimental</span><span class="nv"> </span><span class="s">design:</span>
 <span class="w">  </span><span class="s">control,</span><span class="nv"> </span><span class="s">vehicle</span><span class="nv"> </span><span class="s">control,</span><span class="nv"> </span><span class="s">baseline,</span><span class="nv"> </span><span class="s">treated,</span><span class="nv"> </span><span class="s">recovery,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">sham.</span><span class="nv"> </span><span class="s">Lets</span><span class="nv"> </span><span class="s">extraction</span>
 <span class="w">  </span><span class="s">distinguish</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">control/baseline</span><span class="nv"> </span><span class="s">response</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">treated</span><span class="nv"> </span><span class="s">response</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">change</span>
-<span class="w">  </span><span class="s">relative</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">control</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">assembled</span><span class="nv"> </span><span class="s">downstream.&#39;</span>
+<span class="w">  </span><span class="s">relative</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">control</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">assembled</span><span class="nv"> </span><span class="s">downstream.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">experimental_group</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AssayOutputMeasurement</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExperimentalGroupEnum</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -852,10 +887,10 @@ Alias: experimental_group</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "navigation.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "navigation.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

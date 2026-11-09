@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -25,10 +25,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -602,6 +602,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -676,10 +693,9 @@
 
 <h1 id="slot-response_comparisons">Slot: response_comparisons</h1>
 <p><em>Collection of analysis-layer records comparing treated responses to control/baseline responses. Kept separate from the extracted assay data: each comparison references the control and treated output records and states the kind, direction, and size of the change with its uncertainty.</em></p>
-<p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/response_comparisons">soma:response_comparisons</a>
-Alias: response_comparisons</p>
+<div>
+<p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/response_comparisons">soma:response_comparisons</a></p>
 <!-- no inheritance hierarchy -->
-
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -698,14 +714,43 @@ Alias: response_comparisons</p>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../ResponseComparison/">ResponseComparison</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../ResponseComparison/">ResponseComparison</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../Container/">Container</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -733,13 +778,12 @@ Alias: response_comparisons</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">response_comparisons</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">analysis-layer</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">comparing</span><span class="nv"> </span><span class="s">treated</span><span class="nv"> </span><span class="s">responses</span><span class="nv"> </span><span class="s">to</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Collection</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">analysis-layer</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">comparing</span><span class="nv"> </span><span class="s">treated</span><span class="nv"> </span><span class="s">responses</span><span class="nv"> </span><span class="s">to</span>
 <span class="w">  </span><span class="s">control/baseline</span><span class="nv"> </span><span class="s">responses.</span><span class="nv"> </span><span class="s">Kept</span><span class="nv"> </span><span class="s">separate</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">extracted</span><span class="nv"> </span><span class="s">assay</span><span class="nv"> </span><span class="s">data:</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">comparison</span>
 <span class="w">  </span><span class="s">references</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">control</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">treated</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">states</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">kind,</span><span class="nv"> </span><span class="s">direction,</span>
-<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">size</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">change</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">uncertainty.&#39;</span>
+<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">size</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">change</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">uncertainty.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">response_comparisons</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ResponseComparison</span>
@@ -748,12 +792,16 @@ Alias: response_comparisons</p>
 <span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -805,10 +853,10 @@ Alias: response_comparisons</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "navigation.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "navigation.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

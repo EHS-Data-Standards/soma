@@ -178,7 +178,14 @@
                     ]
                 },
                 "experimental_group": {
-                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ExperimentalGroupEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
                 },
                 "id": {
@@ -237,10 +244,28 @@
         },
         "AdverseOutcome": {
             "additionalProperties": false,
-            "description": "A specialized type of key event that represents the apical endpoint of an Adverse Outcome Pathway. The outcome may be defined at the individual or population level, and is relevant biomedical, clinical, regulator, or ecologically applications.",
+            "description": "A specialized type of Key Event that represents the apical endpoint of an Adverse Outcome Pathway. The outcome may be defined at the individual or population level, and is relevant to biomedical, clinical, regulatory, or ecological applications. Because an adverse outcome is itself a Key Event, it inherits upstream_key_events: starting from an outcome, the upstream Key Events can be walked to find every assay that informs them (via each assay's informs_on_key_event), answering \"what data is relevant to this outcome?\" without requiring a curated AOP record.",
             "properties": {
                 "aopwiki_id": {
                     "description": "The AOP-Wiki identifier for this entity (e.g., \"AOP:411\" for an AOP, \"KE:1234\" for a key event).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "biological_action": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BiologicalActionEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The type of change (increased, decreased, altered, impaired)."
+                },
+                "biological_object": {
+                    "description": "The biological entity affected (protein, cell, tissue, organ).",
                     "type": [
                         "string",
                         "null"
@@ -261,9 +286,40 @@
                         "null"
                     ]
                 },
+                "downstream_key_events": {
+                    "description": "Key events that follow this key event (downstream in the pathway).",
+                    "items": {
+                        "$ref": "#/$defs/KeyEvent"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "type": "string"
+                },
+                "level_of_biological_organization": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BiologicalOrganizationLevelEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The level of biological organization at which this key event occurs."
                 },
                 "name": {
                     "description": "A human-readable name for the entity.",
@@ -280,9 +336,42 @@
                         "null"
                     ]
                 },
+                "occurs_in_cell_type": {
+                    "description": "The cell type in which this key event occurs. Should reference a Cell Ontology (CL) term.",
+                    "pattern": "^CL:\\d{7}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "outcome_level": {
-                    "$ref": "#/$defs/OutcomeLevelEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/OutcomeLevelEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The level at which the adverse outcome manifests (individual, population)."
+                },
+                "outcome_term": {
+                    "description": "The disease or phenotype this adverse outcome corresponds to, as a MONDO disease term or an HPO phenotype term. Grounding the outcome to an ontology term makes it findable by name across containers: a query can start from the outcome term, walk upstream_key_events, and collect the assays whose informs_on_key_event matches any Key Event in the chain.",
+                    "pattern": "^(MONDO:\\d{7}|HP:\\d{7})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "upstream_key_events": {
+                    "description": "Key events that lead to this key event (upstream in the pathway).",
+                    "items": {
+                        "$ref": "#/$defs/KeyEvent"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 }
             },
             "required": [
@@ -422,6 +511,133 @@
             "title": "ArticleSectionEnum",
             "type": "string"
         },
+        "Assay": {
+            "additionalProperties": false,
+            "description": "A planned process with the objective to produce information about biological state relevant to a Key Event in an Adverse Outcome Pathway. Assays are organized by the functional domain they assess (e.g., ciliary function, oxidative stress), and each domain-specific assay class contains named slots for the specific measurements it can produce. Assays inform on key events and contain the measurement data as named slots.",
+            "properties": {
+                "assay_date": {
+                    "description": "Date when the assay was performed.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "follows_protocols": {
+                    "description": "The Protocol(s) that this assay follows. Any Protocol or Protocol subclass (ImagingProtocol, StainingProtocol, SpirometryProtocol, MolecularAssayProtocol) is valid. Use this for general protocol references; assay subclasses also have typed protocol slots for domain-specific protocols.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Protocol"
+                            },
+                            {
+                                "$ref": "#/$defs/ImagingProtocol"
+                            },
+                            {
+                                "$ref": "#/$defs/StainingProtocol"
+                            },
+                            {
+                                "$ref": "#/$defs/SpirometryProtocol"
+                            },
+                            {
+                                "$ref": "#/$defs/MolecularAssayProtocol"
+                            }
+                        ]
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_exposure_condition": {
+                    "description": "The exposure condition(s) applied to the study subject. Captures the agent, concentration, duration, and timing of exposure/treatment. Multivalued to support co-exposures or dose-response series.",
+                    "items": {
+                        "$ref": "#/$defs/ExposureCondition"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_specified_output": {
+                    "description": "The measurement results produced by this assay \u2014 the specified output of a planned process (OBI). Contains the domain-specific measurement values (e.g., beat frequency, cilia length for CiliaryFunctionAssay). Multivalued: one output record per experimental condition or group, so a control group and each treatment concentration in a dose-response series each get their own record (marked with experimental_group and linked to the exposure via measured_under).",
+                    "items": {
+                        "$ref": "#/$defs/AssayOutputMeasurement"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for the entity.",
+                    "type": "string"
+                },
+                "informs_on_key_event": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/KeyEvent"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The Key Event that this assay provides evidence for. This establishes the mechanistic connection between the assay measurements and the Adverse Outcome Pathway framework. Multiple assays can inform on the same key event, providing converging evidence."
+                },
+                "name": {
+                    "description": "A human-readable name for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "study_subject": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/StudySubject"
+                        },
+                        {
+                            "$ref": "#/$defs/ModelSystem"
+                        },
+                        {
+                            "$ref": "#/$defs/InVivoSubject"
+                        },
+                        {
+                            "$ref": "#/$defs/PopulationSubject"
+                        },
+                        {
+                            "$ref": "#/$defs/CellularSystem"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The subject of the study \u2014 what the assay is performed on. Can be a ModelSystem (e.g., CellularSystem), an InVivoSubject, or a PopulationSubject. The type of subject determines which context slots are available."
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Assay",
+            "type": "object"
+        },
         "AssayContextCapabilityEnum": {
             "description": "Indicates what experimental contexts an assay class supports. Used to constrain valid study_subject types and enable context-appropriate slots.",
             "enum": [
@@ -431,6 +647,70 @@
             ],
             "title": "AssayContextCapabilityEnum",
             "type": "string"
+        },
+        "AssayOutputMeasurement": {
+            "additionalProperties": false,
+            "description": "The measurement results produced by an assay. The specified output of a planned process. Each domain-specific assay class has a corresponding AssayOutputMeasurement subclass containing the named measurement slots for that assay type. This class represents the \"output\" in the Input/Process/Output model: what was measured and what values were obtained.\nOne AssayOutputMeasurement record represents the results for ONE experimental condition or group. When a study reports a control group and one or more treated groups (or a dose-response series), each group gets its own output record, marked with experimental_group and linked to the specific exposure condition via measured_under.\nWhen a paper reports a result only as a chart or image (a bar graph, a stained section) and no exact number appears in the text, still create the output record: set data_in_figure_only, leave the numeric measurement slots empty, and attach an evidence item whose figure_reference names the figure, so the endpoint and its location are captured even though the value is not.",
+            "properties": {
+                "data_in_figure_only": {
+                    "description": "True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.",
+                    "items": {
+                        "$ref": "#/$defs/EvidenceItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "experimental_group": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ExperimentalGroupEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
+                },
+                "id": {
+                    "description": "A unique identifier for the entity.",
+                    "type": "string"
+                },
+                "measured_under": {
+                    "description": "Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "A human-readable name for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "AssayOutputMeasurement",
+            "type": "object"
         },
         "BALFSputumAssay": {
             "additionalProperties": false,
@@ -642,7 +922,14 @@
                     ]
                 },
                 "experimental_group": {
-                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ExperimentalGroupEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
                 },
                 "id": {
@@ -999,7 +1286,14 @@
                     ]
                 },
                 "experimental_group": {
-                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ExperimentalGroupEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
                 },
                 "id": {
@@ -1065,7 +1359,14 @@
             "description": "Detailed cell culture parameters including medium, environment, and timing.",
             "properties": {
                 "cell_culture_growth_mode": {
-                    "$ref": "#/$defs/CellCultureGrowthModeEnum"
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/CellCultureGrowthModeEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
                 },
                 "culture_media": {
                     "anyOf": [
@@ -1114,7 +1415,14 @@
                     ]
                 },
                 "substrate_type": {
-                    "$ref": "#/$defs/SubstrateTypeEnum"
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/SubstrateTypeEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
                 }
             },
             "required": [
@@ -1262,17 +1570,6 @@
                     "pattern": "^CLO:\\d{7}$",
                     "type": "string"
                 },
-                "model_species": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/SpeciesReference"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The species of origin for the cells or organism being studied. Reference to NCBITaxon term."
-                },
                 "mycoplasma_status": {
                     "type": [
                         "string",
@@ -1285,6 +1582,17 @@
                         "string",
                         "null"
                     ]
+                },
+                "species": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/SpeciesReference"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The species of origin for the cells, organism, or population being studied. Reference to NCBITaxon term. Applies to any study subject: a human cohort records Homo sapiens here just as a cell line records its species of origin."
                 },
                 "supplier": {
                     "type": [
@@ -1348,7 +1656,14 @@
                     ]
                 },
                 "cell_culture_growth_mode": {
-                    "$ref": "#/$defs/CellCultureGrowthModeEnum"
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/CellCultureGrowthModeEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
                 },
                 "cell_line": {
                     "anyOf": [
@@ -1447,17 +1762,6 @@
                         "null"
                     ]
                 },
-                "model_species": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/SpeciesReference"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The species of origin for the cells or organism being studied. Reference to NCBITaxon term."
-                },
                 "name": {
                     "description": "A human-readable name for the entity.",
                     "type": [
@@ -1514,6 +1818,17 @@
                         }
                     ]
                 },
+                "species": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/SpeciesReference"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The species of origin for the cells, organism, or population being studied. Reference to NCBITaxon term. Applies to any study subject: a human cohort records Homo sapiens here just as a cell line records its species of origin."
+                },
                 "subject_type": {
                     "description": "The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.",
                     "enum": [
@@ -1525,7 +1840,14 @@
                     ]
                 },
                 "substrate_type": {
-                    "$ref": "#/$defs/SubstrateTypeEnum"
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/SubstrateTypeEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
                 }
             },
             "required": [
@@ -1804,7 +2126,14 @@
                     "description": "Amplitude of ciliary beat. TIER 2."
                 },
                 "ciliary_motion_patterns": {
-                    "$ref": "#/$defs/CiliaryMotionPatternEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/CiliaryMotionPatternEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Patterns of ciliary motion (coordinated, dyskinetic, immotile). TIER 2 - supporting information."
                 },
                 "data_in_figure_only": {
@@ -1832,7 +2161,14 @@
                     ]
                 },
                 "experimental_group": {
-                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ExperimentalGroupEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
                 },
                 "id": {
@@ -1891,6 +2227,16 @@
                     "description": "Collection of Adverse Outcome Pathways. AOPs describe sequences of causally linked events from molecular initiating events to adverse outcomes.",
                     "items": {
                         "$ref": "#/$defs/AdverseOutcomePathway"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "adverse_outcomes": {
+                    "description": "Adverse outcomes described in this container. Listing outcomes at the container level makes them a first-class entry point: each outcome names its upstream Key Events, and assays reference those Key Events via informs_on_key_event, closing the Outcome - Key Event - Assay traversal in both directions.",
+                    "items": {
+                        "$ref": "#/$defs/AdverseOutcome"
                     },
                     "type": [
                         "array",
@@ -2341,7 +2687,14 @@
                     ]
                 },
                 "experimental_group": {
-                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ExperimentalGroupEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
                 },
                 "id": {
@@ -2395,11 +2748,25 @@
             "description": "One piece of evidence for a claim: which publication it comes from, an exact quote from that publication, whether the quote supports or refutes the claim, and what kind of study produced it.\nIt also records where in the paper the supporting data sits: article_section says which section the quote was taken from (a dose quoted from Methods storage boilerplate is much weaker provenance than one quoted from Results), and figure_reference names the figure or table that reports the underlying data, so a reviewer can find values the extraction could not read out of a chart or image.",
             "properties": {
                 "article_section": {
-                    "$ref": "#/$defs/ArticleSectionEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ArticleSectionEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The section of the publication the quoted passage comes from (abstract, methods, results, a figure caption, a table, ...). Recording the section makes provenance reviewable: a dose or response value quoted from Results carries more weight than one quoted from a Methods sentence about how a compound was stored."
                 },
                 "evidence_source": {
-                    "$ref": "#/$defs/EvidenceSourceEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/EvidenceSourceEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "What kind of study the cited publication reports \u2014 classify the paper, not the person doing the extraction."
                 },
                 "explanation": {
@@ -2439,7 +2806,14 @@
                     ]
                 },
                 "supports": {
-                    "$ref": "#/$defs/EvidenceItemSupportEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/EvidenceItemSupportEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Which way the quoted evidence points: does it support the claim, contradict it, or turn out not to bear on it at all."
                 }
             },
@@ -2714,7 +3088,14 @@
                     ]
                 },
                 "experimental_group": {
-                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ExperimentalGroupEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
                 },
                 "foxj1_mrna_expression": {
@@ -2963,7 +3344,14 @@
                     ]
                 },
                 "experimental_group": {
-                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ExperimentalGroupEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
                 },
                 "id": {
@@ -3180,7 +3568,14 @@
                     ]
                 },
                 "experimental_group": {
-                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ExperimentalGroupEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
                 },
                 "goblet_cell_count": {
@@ -3627,17 +4022,6 @@
                         "null"
                     ]
                 },
-                "model_species": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/SpeciesReference"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The species of origin for the cells or organism being studied. Reference to NCBITaxon term."
-                },
                 "name": {
                     "description": "A human-readable name for the entity.",
                     "type": [
@@ -3653,7 +4037,14 @@
                     ]
                 },
                 "sample_type": {
-                    "$ref": "#/$defs/SampleTypeEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/SampleTypeEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Type of biological sample (e.g., sputum, BALF, blood)."
                 },
                 "sex": {
@@ -3662,6 +4053,17 @@
                         "string",
                         "null"
                     ]
+                },
+                "species": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/SpeciesReference"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The species of origin for the cells, organism, or population being studied. Reference to NCBITaxon term. Applies to any study subject: a human cohort records Homo sapiens here just as a cell line records its species of origin."
                 },
                 "subject_characteristics": {
                     "description": "Relevant subject characteristics (disease state, medications, etc.). TIER 1 for LungFunctionAssay per user feedback.",
@@ -3699,7 +4101,14 @@
                     ]
                 },
                 "biological_action": {
-                    "$ref": "#/$defs/BiologicalActionEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BiologicalActionEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The type of change (increased, decreased, altered, impaired)."
                 },
                 "biological_object": {
@@ -3749,7 +4158,14 @@
                     "type": "string"
                 },
                 "level_of_biological_organization": {
-                    "$ref": "#/$defs/BiologicalOrganizationLevelEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BiologicalOrganizationLevelEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The level of biological organization at which this key event occurs."
                 },
                 "name": {
@@ -3825,7 +4241,14 @@
                     ]
                 },
                 "evidence_support": {
-                    "$ref": "#/$defs/EvidenceSupportEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/EvidenceSupportEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Level of evidence supporting this key event relationship."
                 },
                 "id": {
@@ -3840,7 +4263,14 @@
                     ]
                 },
                 "quantitative_understanding": {
-                    "$ref": "#/$defs/QuantitativeUnderstandingEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/QuantitativeUnderstandingEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Level of quantitative understanding of the relationship."
                 },
                 "relationship_type": {
@@ -4070,7 +4500,14 @@
                     ]
                 },
                 "experimental_group": {
-                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ExperimentalGroupEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
                 },
                 "fef25_75": {
@@ -4268,7 +4705,14 @@
                     ]
                 },
                 "supplement_type": {
-                    "$ref": "#/$defs/SupplementTypeEnum"
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/SupplementTypeEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
                 }
             },
             "required": [
@@ -4292,7 +4736,14 @@
                     "description": "A unique identifier for the entity.",
                     "type": "string"
                 },
-                "model_species": {
+                "name": {
+                    "description": "A human-readable name for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "species": {
                     "anyOf": [
                         {
                             "$ref": "#/$defs/SpeciesReference"
@@ -4301,14 +4752,7 @@
                             "type": "null"
                         }
                     ],
-                    "description": "The species of origin for the cells or organism being studied. Reference to NCBITaxon term."
-                },
-                "name": {
-                    "description": "A human-readable name for the entity.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "description": "The species of origin for the cells, organism, or population being studied. Reference to NCBITaxon term. Applies to any study subject: a human cohort records Homo sapiens here just as a cell line records its species of origin."
                 },
                 "subject_type": {
                     "description": "The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.",
@@ -4526,7 +4970,14 @@
                     ]
                 },
                 "biological_action": {
-                    "$ref": "#/$defs/BiologicalActionEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BiologicalActionEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The type of change (increased, decreased, altered, impaired)."
                 },
                 "biological_object": {
@@ -4576,7 +5027,14 @@
                     "type": "string"
                 },
                 "level_of_biological_organization": {
-                    "$ref": "#/$defs/BiologicalOrganizationLevelEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BiologicalOrganizationLevelEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The level of biological organization at which this key event occurs."
                 },
                 "name": {
@@ -4789,7 +5247,14 @@
                     ]
                 },
                 "experimental_group": {
-                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ExperimentalGroupEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
                 },
                 "id": {
@@ -4844,7 +5309,14 @@
                     "description": "Percentage of area showing active transport. TIER 2."
                 },
                 "transport_directionality": {
-                    "$ref": "#/$defs/DirectionalityEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/DirectionalityEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Directionality of mucociliary transport. TIER 1."
                 },
                 "transport_rate": {
@@ -5150,7 +5622,14 @@
                     ]
                 },
                 "experimental_group": {
-                    "$ref": "#/$defs/ExperimentalGroupEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ExperimentalGroupEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream."
                 },
                 "four_hydroxynonenal_level": {
@@ -5349,7 +5828,14 @@
                         "null"
                     ]
                 },
-                "model_species": {
+                "name": {
+                    "description": "A human-readable name for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "species": {
                     "anyOf": [
                         {
                             "$ref": "#/$defs/SpeciesReference"
@@ -5358,14 +5844,7 @@
                             "type": "null"
                         }
                     ],
-                    "description": "The species of origin for the cells or organism being studied. Reference to NCBITaxon term."
-                },
-                "name": {
-                    "description": "A human-readable name for the entity.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "description": "The species of origin for the cells, organism, or population being studied. Reference to NCBITaxon term. Applies to any study subject: a human cohort records Homo sapiens here just as a cell line records its species of origin."
                 },
                 "subject_type": {
                     "description": "The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.",
@@ -5611,7 +6090,14 @@
             "description": "A quantity with a numeric value and unit of measurement. Used for all measurement values in assays. Optionally records what kind of central value this is (mean, median, single measurement), the reported variability around it (SD, SEM, confidence interval, range), and the number of subjects or replicates behind it. Keeping variability separate from the central value lets downstream analyses use each independently.",
             "properties": {
                 "central_tendency": {
-                    "$ref": "#/$defs/CentralTendencyEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/CentralTendencyEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "What kind of central value the reported number is: a mean, median, geometric mean, or a single measurement. Important for combining results across studies."
                 },
                 "sample_size": {
@@ -5659,11 +6145,25 @@
             "description": "An analysis-layer record describing the change in a measured response between a control/baseline group and a treated group. Lives alongside the extracted assay data rather than inside it: papers report changes in many forms (absolute difference, percent change, fold change, ratio), and downstream models need a single change value with an uncertainty measure. References the control and treated output records by id, names the measurement being compared, and states the kind, direction, and size of the change. Use derivation to record whether the change was reported in the paper or computed afterwards.",
             "properties": {
                 "change_direction": {
-                    "$ref": "#/$defs/ChangeDirectionEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ChangeDirectionEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Direction of the change in the treated group relative to control."
                 },
                 "change_type": {
-                    "$ref": "#/$defs/ChangeTypeEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ChangeTypeEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "How the change is expressed: an absolute difference, a percent change, a fold change, or a ratio. Papers report changes in different forms; this makes the form explicit so values can be compared or converted downstream."
                 },
                 "change_value": {
@@ -5692,7 +6192,14 @@
                     ]
                 },
                 "derivation": {
-                    "$ref": "#/$defs/DerivationEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/DerivationEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Whether this change was reported directly in the paper or computed afterwards from the extracted control and treated values."
                 },
                 "derived_from_assay": {
@@ -6148,7 +6655,14 @@
                     "description": "A unique identifier for the entity.",
                     "type": "string"
                 },
-                "model_species": {
+                "name": {
+                    "description": "A human-readable name for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "species": {
                     "anyOf": [
                         {
                             "$ref": "#/$defs/SpeciesReference"
@@ -6157,14 +6671,7 @@
                             "type": "null"
                         }
                     ],
-                    "description": "The species of origin for the cells or organism being studied. Reference to NCBITaxon term."
-                },
-                "name": {
-                    "description": "A human-readable name for the entity.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "description": "The species of origin for the cells, organism, or population being studied. Reference to NCBITaxon term. Applies to any study subject: a human cohort records Homo sapiens here just as a cell line records its species of origin."
                 },
                 "subject_type": {
                     "description": "The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.",
@@ -6281,7 +6788,14 @@
                     ]
                 },
                 "variability_type": {
-                    "$ref": "#/$defs/VariabilityTypeEnum",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/VariabilityTypeEnum"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The kind of variability reported (standard deviation, standard error, 95% confidence interval, range, interquartile range)."
                 }
             },
@@ -6304,14 +6818,24 @@
     },
     "$id": "https://w3id.org/EHS-Data-Standards/soma",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
-    "additionalProperties": true,
+    "additionalProperties": false,
     "description": "Root container for outcomes research data. Organized around ASSAYS that inform on Key Events in Adverse Outcome Pathways (AOPs).\nThe schema is assay-centric: each assay class contains named slots for its specific measurements, with an explicit connection to the Key Event it informs via the informs_on_key_event slot.",
-    "metamodel_version": "1.7.0",
+    "metamodel_version": "1.12.0",
     "properties": {
         "adverse_outcome_pathways": {
             "description": "Collection of Adverse Outcome Pathways. AOPs describe sequences of causally linked events from molecular initiating events to adverse outcomes.",
             "items": {
                 "$ref": "#/$defs/AdverseOutcomePathway"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "adverse_outcomes": {
+            "description": "Adverse outcomes described in this container. Listing outcomes at the container level makes them a first-class entry point: each outcome names its upstream Key Events, and assays reference those Key Events via informs_on_key_event, closing the Outcome - Key Event - Assay traversal in both directions.",
+            "items": {
+                "$ref": "#/$defs/AdverseOutcome"
             },
             "type": [
                 "array",

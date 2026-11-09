@@ -161,7 +161,7 @@ ciliary_function_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       primary_cell:
@@ -264,7 +264,7 @@ ciliary_function_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:003"
       name: "Subject C"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       age:

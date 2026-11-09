@@ -147,7 +147,7 @@ cftr_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:

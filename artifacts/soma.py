@@ -1,5 +1,4 @@
 # Auto generated from soma.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-10-12T21:03:58
 # Schema: soma
 #
 # id: https://w3id.org/EHS-Data-Standards/soma
@@ -60,7 +59,7 @@ from rdflib import (
 from linkml_runtime.linkml_model.types import Boolean, Date, Float, Integer, String, Uriorcurie
 from linkml_runtime.utils.metamodelcore import Bool, URIorCURIE, XSDDate
 
-metamodel_version = "1.7.0"
+metamodel_version = "1.12.0"
 version = None
 
 # Namespaces
@@ -119,7 +118,7 @@ class KeyEventRelationshipId(NamedThingId):
     pass
 
 
-class AdverseOutcomeId(NamedThingId):
+class AdverseOutcomeId(KeyEventId):
     pass
 
 
@@ -333,6 +332,7 @@ class Container(YAMLRoot):
     source_publication: Optional[Union[dict, "PublicationReference"]] = None
     key_events: Optional[Union[dict[Union[str, KeyEventId], Union[dict, "KeyEvent"]], list[Union[dict, "KeyEvent"]]]] = empty_dict()
     key_event_relationships: Optional[Union[dict[Union[str, KeyEventRelationshipId], Union[dict, "KeyEventRelationship"]], list[Union[dict, "KeyEventRelationship"]]]] = empty_dict()
+    adverse_outcomes: Optional[Union[dict[Union[str, AdverseOutcomeId], Union[dict, "AdverseOutcome"]], list[Union[dict, "AdverseOutcome"]]]] = empty_dict()
     adverse_outcome_pathways: Optional[Union[dict[Union[str, AdverseOutcomePathwayId], Union[dict, "AdverseOutcomePathway"]], list[Union[dict, "AdverseOutcomePathway"]]]] = empty_dict()
     response_comparisons: Optional[Union[dict[Union[str, ResponseComparisonId], Union[dict, "ResponseComparison"]], list[Union[dict, "ResponseComparison"]]]] = empty_dict()
     ciliary_function_assays: Optional[Union[dict[Union[str, CiliaryFunctionAssayId], Union[dict, "CiliaryFunctionAssay"]], list[Union[dict, "CiliaryFunctionAssay"]]]] = empty_dict()
@@ -355,6 +355,8 @@ class Container(YAMLRoot):
         self._normalize_inlined_as_list(slot_name="key_events", slot_type=KeyEvent, key_name="id", keyed=True)
 
         self._normalize_inlined_as_list(slot_name="key_event_relationships", slot_type=KeyEventRelationship, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="adverse_outcomes", slot_type=AdverseOutcome, key_name="id", keyed=True)
 
         self._normalize_inlined_as_list(slot_name="adverse_outcome_pathways", slot_type=AdverseOutcomePathway, key_name="id", keyed=True)
 
@@ -617,11 +619,14 @@ class KeyEventRelationship(NamedThing):
 
 
 @dataclass(repr=False)
-class AdverseOutcome(NamedThing):
+class AdverseOutcome(KeyEvent):
     """
-    A specialized type of key event that represents the apical endpoint of an Adverse Outcome Pathway. The outcome may
-    be defined at the individual or population level, and is relevant biomedical, clinical, regulator, or ecologically
-    applications.
+    A specialized type of Key Event that represents the apical endpoint of an Adverse Outcome Pathway. The outcome may
+    be defined at the individual or population level, and is relevant to biomedical, clinical, regulatory, or
+    ecological applications. Because an adverse outcome is itself a Key Event, it inherits upstream_key_events:
+    starting from an outcome, the upstream Key Events can be walked to find every assay that informs them (via each
+    assay's informs_on_key_event), answering "what data is relevant to this outcome?" without requiring a curated AOP
+    record.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -632,9 +637,7 @@ class AdverseOutcome(NamedThing):
 
     id: Union[str, AdverseOutcomeId] = None
     outcome_level: Optional[Union[str, "OutcomeLevelEnum"]] = None
-    biological_process: Optional[Union[str, URIorCURIE]] = None
-    occurs_in_anatomy: Optional[Union[str, URIorCURIE]] = None
-    aopwiki_id: Optional[str] = None
+    outcome_term: Optional[Union[str, URIorCURIE]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -645,14 +648,8 @@ class AdverseOutcome(NamedThing):
         if self.outcome_level is not None and not isinstance(self.outcome_level, OutcomeLevelEnum):
             self.outcome_level = OutcomeLevelEnum(self.outcome_level)
 
-        if self.biological_process is not None and not isinstance(self.biological_process, URIorCURIE):
-            self.biological_process = URIorCURIE(self.biological_process)
-
-        if self.occurs_in_anatomy is not None and not isinstance(self.occurs_in_anatomy, URIorCURIE):
-            self.occurs_in_anatomy = URIorCURIE(self.occurs_in_anatomy)
-
-        if self.aopwiki_id is not None and not isinstance(self.aopwiki_id, str):
-            self.aopwiki_id = str(self.aopwiki_id)
+        if self.outcome_term is not None and not isinstance(self.outcome_term, URIorCURIE):
+            self.outcome_term = URIorCURIE(self.outcome_term)
 
         super().__post_init__(**kwargs)
 
@@ -841,7 +838,7 @@ class StudySubject(NamedThing):
 
     id: Union[str, StudySubjectId] = None
     subject_type: Optional[str] = None
-    model_species: Optional[Union[dict, "SpeciesReference"]] = None
+    species: Optional[Union[dict, "SpeciesReference"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -851,8 +848,8 @@ class StudySubject(NamedThing):
 
         self.subject_type = str(self.class_name)
 
-        if self.model_species is not None and not isinstance(self.model_species, SpeciesReference):
-            self.model_species = SpeciesReference(**as_dict(self.model_species))
+        if self.species is not None and not isinstance(self.species, SpeciesReference):
+            self.species = SpeciesReference(**as_dict(self.species))
 
         super().__post_init__(**kwargs)
 
@@ -1752,7 +1749,7 @@ class CellLine(NamedEntity):
 
     id: Union[str, CellLineId] = None
     cell_type: Optional[Union[dict, CellTypeReference]] = None
-    model_species: Optional[Union[dict, SpeciesReference]] = None
+    species: Optional[Union[dict, SpeciesReference]] = None
     tissue_origin: Optional[str] = None
     disease_state: Optional[str] = None
     supplier: Optional[str] = None
@@ -1769,8 +1766,8 @@ class CellLine(NamedEntity):
         if self.cell_type is not None and not isinstance(self.cell_type, CellTypeReference):
             self.cell_type = CellTypeReference(**as_dict(self.cell_type))
 
-        if self.model_species is not None and not isinstance(self.model_species, SpeciesReference):
-            self.model_species = SpeciesReference(**as_dict(self.model_species))
+        if self.species is not None and not isinstance(self.species, SpeciesReference):
+            self.species = SpeciesReference(**as_dict(self.species))
 
         if self.tissue_origin is not None and not isinstance(self.tissue_origin, str):
             self.tissue_origin = str(self.tissue_origin)
@@ -3776,6 +3773,13 @@ slots.quantitative_understanding = Slot(uri=AOP_FRAMEWORK.quantitative_understan
 slots.outcome_level = Slot(uri=AOP_FRAMEWORK.outcome_level, name="outcome_level", curie=AOP_FRAMEWORK.curie('outcome_level'),
                    model_uri=SOMA.outcome_level, domain=None, range=Optional[Union[str, "OutcomeLevelEnum"]])
 
+slots.outcome_term = Slot(uri=AOP_FRAMEWORK.outcome_term, name="outcome_term", curie=AOP_FRAMEWORK.curie('outcome_term'),
+                   model_uri=SOMA.outcome_term, domain=None, range=Optional[Union[str, URIorCURIE]],
+                   pattern=re.compile(r'^(MONDO:\d{7}|HP:\d{7})$'))
+
+slots.adverse_outcomes = Slot(uri=AOP_FRAMEWORK.adverse_outcomes, name="adverse_outcomes", curie=AOP_FRAMEWORK.curie('adverse_outcomes'),
+                   model_uri=SOMA.adverse_outcomes, domain=None, range=Optional[Union[dict[Union[str, AdverseOutcomeId], Union[dict, AdverseOutcome]], list[Union[dict, AdverseOutcome]]]])
+
 slots.molecular_initiating_event = Slot(uri=AOP_FRAMEWORK.molecular_initiating_event, name="molecular_initiating_event", curie=AOP_FRAMEWORK.curie('molecular_initiating_event'),
                    model_uri=SOMA.molecular_initiating_event, domain=None, range=Optional[Union[dict, MolecularInitiatingEvent]])
 
@@ -3815,8 +3819,8 @@ slots.cell_type = Slot(uri=EFO['0000324'], name="cell_type", curie=EFO.curie('00
 slots.target_cell_type = Slot(uri=ASSAY_BASE.target_cell_type, name="target_cell_type", curie=ASSAY_BASE.curie('target_cell_type'),
                    model_uri=SOMA.target_cell_type, domain=None, range=Optional[Union[dict, CellTypeReference]])
 
-slots.model_species = Slot(uri=ASSAY_BASE.model_species, name="model_species", curie=ASSAY_BASE.curie('model_species'),
-                   model_uri=SOMA.model_species, domain=None, range=Optional[Union[dict, SpeciesReference]])
+slots.species = Slot(uri=ASSAY_BASE.species, name="species", curie=ASSAY_BASE.curie('species'),
+                   model_uri=SOMA.species, domain=None, range=Optional[Union[dict, SpeciesReference]])
 
 slots.subject_type = Slot(uri=ASSAY_BASE.subject_type, name="subject_type", curie=ASSAY_BASE.curie('subject_type'),
                    model_uri=SOMA.subject_type, domain=None, range=Optional[str])
