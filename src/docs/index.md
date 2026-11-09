@@ -138,7 +138,20 @@ Any Protocol subclass is valid in both slots.
 |--------|----------------|-------------|
 | Protocol | `protocols` | Detailed experimental procedures |
 | KeyEvent | `key_events` | AOP key events that assays inform on |
+| AdverseOutcome | `adverse_outcomes` | Outcomes, grounded to MONDO/HPO terms |
 | AdverseOutcomePathway | `adverse_outcome_pathways` | Complete AOP definitions |
+
+### From an Outcome to Relevant Assays
+
+An `AdverseOutcome` is a specialized `KeyEvent`, so it inherits
+`upstream_key_events`, and its `outcome_term` slot grounds it to a MONDO
+disease or HPO phenotype term. This closes the Outcome ↔ Key Event ↔ Assay
+traversal: to answer *"I am looking for data on this outcome — what assays
+might be relevant?"*, find the outcome by its ontology term, walk its
+`upstream_key_events`, and collect every assay whose `informs_on_key_event`
+matches the outcome itself or any Key Event in the chain. No curated
+`AdverseOutcomePathway` record is required. See
+`Container-outcome_connection.yaml` in the examples for a worked traversal.
 
 ## Key Features
 

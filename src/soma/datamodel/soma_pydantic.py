@@ -817,13 +817,13 @@ class KeyEvent(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'ECTO:1000000',
          'from_schema': 'https://w3id.org/EHS-Data-Standards/aop_framework'})
 
-    biological_process: Optional[str] = Field(default=None, description="""The biological process affected by this key event. Should reference a GO biological process term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcome']} })
+    biological_process: Optional[str] = Field(default=None, description="""The biological process affected by this key event. Should reference a GO biological process term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     biological_object: Optional[str] = Field(default=None, description="""The biological entity affected (protein, cell, tissue, organ).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     biological_action: Optional[BiologicalActionEnum] = Field(default=None, description="""The type of change (increased, decreased, altered, impaired).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     level_of_biological_organization: Optional[BiologicalOrganizationLevelEnum] = Field(default=None, description="""The level of biological organization at which this key event occurs.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     occurs_in_cell_type: Optional[str] = Field(default=None, description="""The cell type in which this key event occurs. Should reference a Cell Ontology (CL) term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
-    occurs_in_anatomy: Optional[str] = Field(default=None, description="""The anatomical location where this key event occurs. Should reference a UBERON anatomy term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcome']} })
-    aopwiki_id: Optional[str] = Field(default=None, description="""The AOP-Wiki identifier for this entity (e.g., \"AOP:411\" for an AOP, \"KE:1234\" for a key event).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcome', 'AdverseOutcomePathway']} })
+    occurs_in_anatomy: Optional[str] = Field(default=None, description="""The anatomical location where this key event occurs. Should reference a UBERON anatomy term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
+    aopwiki_id: Optional[str] = Field(default=None, description="""The AOP-Wiki identifier for this entity (e.g., \"AOP:411\" for an AOP, \"KE:1234\" for a key event).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcomePathway']} })
     upstream_key_events: Optional[list[KeyEvent]] = Field(default=None, description="""Key events that lead to this key event (upstream in the pathway).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     downstream_key_events: Optional[list[KeyEvent]] = Field(default=None, description="""Key events that follow this key event (downstream in the pathway).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     evidence: Optional[list[EvidenceItem]] = Field(default=None, description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
@@ -896,19 +896,44 @@ class KeyEventRelationship(NamedThing):
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
-class AdverseOutcome(NamedThing):
+class AdverseOutcome(KeyEvent):
     """
-    A specialized type of key event that represents the apical endpoint of an Adverse Outcome Pathway. The outcome may be defined at the individual or population level, and is relevant biomedical, clinical, regulator, or ecologically applications.
+    A specialized type of Key Event that represents the apical endpoint of an Adverse Outcome Pathway. The outcome may be defined at the individual or population level, and is relevant to biomedical, clinical, regulatory, or ecological applications. Because an adverse outcome is itself a Key Event, it inherits upstream_key_events: starting from an outcome, the upstream Key Events can be walked to find every assay that informs them (via each assay's informs_on_key_event), answering \"what data is relevant to this outcome?\" without requiring a curated AOP record.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/aop_framework'})
 
     outcome_level: Optional[OutcomeLevelEnum] = Field(default=None, description="""The level at which the adverse outcome manifests (individual, population).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcome']} })
-    biological_process: Optional[str] = Field(default=None, description="""The biological process affected by this key event. Should reference a GO biological process term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcome']} })
-    occurs_in_anatomy: Optional[str] = Field(default=None, description="""The anatomical location where this key event occurs. Should reference a UBERON anatomy term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcome']} })
-    aopwiki_id: Optional[str] = Field(default=None, description="""The AOP-Wiki identifier for this entity (e.g., \"AOP:411\" for an AOP, \"KE:1234\" for a key event).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcome', 'AdverseOutcomePathway']} })
+    outcome_term: Optional[str] = Field(default=None, description="""The disease or phenotype this adverse outcome corresponds to, as a MONDO disease term or an HPO phenotype term. Grounding the outcome to an ontology term makes it findable by name across containers: a query can start from the outcome term, walk upstream_key_events, and collect the assays whose informs_on_key_event matches any Key Event in the chain.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcome']} })
+    biological_process: Optional[str] = Field(default=None, description="""The biological process affected by this key event. Should reference a GO biological process term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
+    biological_object: Optional[str] = Field(default=None, description="""The biological entity affected (protein, cell, tissue, organ).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
+    biological_action: Optional[BiologicalActionEnum] = Field(default=None, description="""The type of change (increased, decreased, altered, impaired).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
+    level_of_biological_organization: Optional[BiologicalOrganizationLevelEnum] = Field(default=None, description="""The level of biological organization at which this key event occurs.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
+    occurs_in_cell_type: Optional[str] = Field(default=None, description="""The cell type in which this key event occurs. Should reference a Cell Ontology (CL) term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
+    occurs_in_anatomy: Optional[str] = Field(default=None, description="""The anatomical location where this key event occurs. Should reference a UBERON anatomy term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
+    aopwiki_id: Optional[str] = Field(default=None, description="""The AOP-Wiki identifier for this entity (e.g., \"AOP:411\" for an AOP, \"KE:1234\" for a key event).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcomePathway']} })
+    upstream_key_events: Optional[list[KeyEvent]] = Field(default=None, description="""Key events that lead to this key event (upstream in the pathway).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
+    downstream_key_events: Optional[list[KeyEvent]] = Field(default=None, description="""Key events that follow this key event (downstream in the pathway).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
+    evidence: Optional[list[EvidenceItem]] = Field(default=None, description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
+                       'KeyEventRelationship',
+                       'Assay',
+                       'AssayOutputMeasurement'],
+         'recommended': True} })
     id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
+
+    @field_validator('outcome_term')
+    def pattern_outcome_term(cls, v):
+        pattern=re.compile(r"^(MONDO:\d{7}|HP:\d{7})$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid outcome_term format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid outcome_term format: {v}"
+            raise ValueError(err_msg)
+        return v
 
     @field_validator('biological_process')
     def pattern_biological_process(cls, v):
@@ -920,6 +945,19 @@ class AdverseOutcome(NamedThing):
                     raise ValueError(err_msg)
         elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid biological_process format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+    @field_validator('occurs_in_cell_type')
+    def pattern_occurs_in_cell_type(cls, v):
+        pattern=re.compile(r"^CL:\d{7}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid occurs_in_cell_type format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid occurs_in_cell_type format: {v}"
             raise ValueError(err_msg)
         return v
 
@@ -943,7 +981,7 @@ class AdverseOutcomePathway(NamedThing):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/aop_framework'})
 
-    aopwiki_id: Optional[str] = Field(default=None, description="""The AOP-Wiki identifier for this entity (e.g., \"AOP:411\" for an AOP, \"KE:1234\" for a key event).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcome', 'AdverseOutcomePathway']} })
+    aopwiki_id: Optional[str] = Field(default=None, description="""The AOP-Wiki identifier for this entity (e.g., \"AOP:411\" for an AOP, \"KE:1234\" for a key event).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcomePathway']} })
     molecular_initiating_event: Optional[MolecularInitiatingEvent] = Field(default=None, description="""The molecular initiating event that starts this AOP.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcomePathway']} })
     key_events: Optional[list[KeyEvent]] = Field(default=None, description="""The key events in this AOP (intermediate events between MIE and AO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcomePathway', 'Container']} })
     key_event_relationships: Optional[list[KeyEventRelationship]] = Field(default=None, description="""The key event relationships connecting events in this AOP.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcomePathway', 'Container']} })
@@ -961,13 +999,13 @@ class MolecularInitiatingEvent(KeyEvent):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/aop_framework'})
 
     target_molecule: Optional[str] = Field(default=None, description="""The molecular target of the stressor in the MIE (e.g., receptor, enzyme).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularInitiatingEvent']} })
-    biological_process: Optional[str] = Field(default=None, description="""The biological process affected by this key event. Should reference a GO biological process term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcome']} })
+    biological_process: Optional[str] = Field(default=None, description="""The biological process affected by this key event. Should reference a GO biological process term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     biological_object: Optional[str] = Field(default=None, description="""The biological entity affected (protein, cell, tissue, organ).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     biological_action: Optional[BiologicalActionEnum] = Field(default=None, description="""The type of change (increased, decreased, altered, impaired).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     level_of_biological_organization: Optional[BiologicalOrganizationLevelEnum] = Field(default=None, description="""The level of biological organization at which this key event occurs.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     occurs_in_cell_type: Optional[str] = Field(default=None, description="""The cell type in which this key event occurs. Should reference a Cell Ontology (CL) term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
-    occurs_in_anatomy: Optional[str] = Field(default=None, description="""The anatomical location where this key event occurs. Should reference a UBERON anatomy term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcome']} })
-    aopwiki_id: Optional[str] = Field(default=None, description="""The AOP-Wiki identifier for this entity (e.g., \"AOP:411\" for an AOP, \"KE:1234\" for a key event).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcome', 'AdverseOutcomePathway']} })
+    occurs_in_anatomy: Optional[str] = Field(default=None, description="""The anatomical location where this key event occurs. Should reference a UBERON anatomy term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
+    aopwiki_id: Optional[str] = Field(default=None, description="""The AOP-Wiki identifier for this entity (e.g., \"AOP:411\" for an AOP, \"KE:1234\" for a key event).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent', 'AdverseOutcomePathway']} })
     upstream_key_events: Optional[list[KeyEvent]] = Field(default=None, description="""Key events that lead to this key event (upstream in the pathway).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     downstream_key_events: Optional[list[KeyEvent]] = Field(default=None, description="""Key events that follow this key event (downstream in the pathway).""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent']} })
     evidence: Optional[list[EvidenceItem]] = Field(default=None, description="""Evidence items backing this object's claims. Each one carries an exact quote from a cited publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['KeyEvent',
@@ -2277,6 +2315,7 @@ class Container(ConfiguredBaseModel):
     source_publication: Optional[PublicationReference] = Field(default=None, description="""The publication this data was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
     key_events: Optional[list[KeyEvent]] = Field(default=None, description="""The key events in this AOP (intermediate events between MIE and AO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcomePathway', 'Container']} })
     key_event_relationships: Optional[list[KeyEventRelationship]] = Field(default=None, description="""The key event relationships connecting events in this AOP.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcomePathway', 'Container']} })
+    adverse_outcomes: Optional[list[AdverseOutcome]] = Field(default=None, description="""Adverse outcomes described in this container. Listing outcomes at the container level makes them a first-class entry point: each outcome names its upstream Key Events, and assays reference those Key Events via informs_on_key_event, closing the Outcome - Key Event - Assay traversal in both directions.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
     adverse_outcome_pathways: Optional[list[AdverseOutcomePathway]] = Field(default=None, description="""Collection of Adverse Outcome Pathways. AOPs describe sequences of causally linked events from molecular initiating events to adverse outcomes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
     response_comparisons: Optional[list[ResponseComparison]] = Field(default=None, description="""Collection of analysis-layer records comparing treated responses to control/baseline responses. Kept separate from the extracted assay data: each comparison references the control and treated output records and states the kind, direction, and size of the change with its uncertainty.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
     ciliary_function_assays: Optional[list[CiliaryFunctionAssay]] = Field(default=None, description="""Collection of ciliary function assays. Informs on Key Event: \"Decreased ciliary function\". Contains named slots for beat frequency, active area, cilia length, etc.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Container']} })
