@@ -110,7 +110,7 @@ any class in the StudySubject hierarchy:
 
 | Class | Use Case | Key Slots |
 |-------|----------|-----------|
-| StudySubject | Base class | `model_species` |
+| StudySubject | Base class | `species` |
 | ModelSystem | Laboratory model systems | (inherits from StudySubject) |
 | CellularSystem | Cell-based experiments | `cell_type`, `cell_line`, `culture_conditions`, `days_at_differentiation`, `substrate_type`, `passage_number` |
 | InVivoSubject | Human/animal samples | `age`, `sex`, `sample_type`, `collection_site`, `subject_characteristics` |
@@ -189,7 +189,7 @@ ciliary_function_assays:
     study_subject:
       id: "soma:culture-001"
       name: "Primary HBE ALI culture"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     imaging_protocol:
@@ -218,7 +218,7 @@ lung_function_assays:
     study_subject:
       id: "SUBJECT:002"
       name: "Subject B"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       age:

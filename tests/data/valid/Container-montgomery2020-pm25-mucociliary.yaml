@@ -124,7 +124,7 @@ gene_expression_assays:
       anatomical_origin:
         id: "UBERON:0001707"
         name: "nasal cavity"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       primary_cell:
@@ -187,7 +187,7 @@ gene_expression_assays:
       cell_type:
         id: "CL:0002603"
         name: "nasal epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -242,7 +242,7 @@ gene_expression_assays:
       cell_type:
         id: "CL:0002603"
         name: "nasal epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -305,7 +305,7 @@ gene_expression_assays:
       anatomical_origin:
         id: "UBERON:0001707"
         name: "nasal cavity"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       cell_culture_growth_mode: air_liquid_interface
@@ -369,7 +369,7 @@ gene_expression_assays:
       cell_type:
         id: "CL:0002603"
         name: "nasal epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -424,7 +424,7 @@ gene_expression_assays:
       cell_type:
         id: "CL:0002603"
         name: "nasal epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -479,7 +479,7 @@ gene_expression_assays:
       cell_type:
         id: "CL:0002603"
         name: "nasal epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -549,7 +549,7 @@ goblet_cell_assays:
       anatomical_origin:
         id: "UBERON:0001707"
         name: "nasal cavity"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       cell_culture_growth_mode: air_liquid_interface
@@ -621,7 +621,7 @@ goblet_cell_assays:
       cell_type:
         id: "CL:0002603"
         name: "nasal epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -680,7 +680,7 @@ goblet_cell_assays:
       cell_type:
         id: "CL:0002603"
         name: "nasal epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -737,7 +737,7 @@ goblet_cell_assays:
       cell_type:
         id: "CL:0002603"
         name: "nasal epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -802,7 +802,7 @@ foxj_assays:
       anatomical_origin:
         id: "UBERON:0001707"
         name: "nasal cavity"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       primary_cell:
@@ -870,7 +870,7 @@ foxj_assays:
       cell_type:
         id: "CL:0002603"
         name: "nasal epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       cell_culture_growth_mode: air_liquid_interface

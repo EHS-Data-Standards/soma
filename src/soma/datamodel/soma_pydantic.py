@@ -1085,7 +1085,8 @@ class StudySubject(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
 
     subject_type: Literal["StudySubject"] = Field(default="StudySubject", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+    species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells, organism, or population being studied. Reference to NCBITaxon term. Applies to any study subject: a human cohort records Homo sapiens here just as a cell line records its species of origin.""", json_schema_extra = { "linkml_meta": {'aliases': ['model_species'],
+         'bindings': [{'binds_value_of': 'id',
                        'obligation_level': 'REQUIRED',
                        'range': 'SpeciesTerm'}],
          'domain_of': ['StudySubject', 'CellLine']} })
@@ -1101,7 +1102,8 @@ class ModelSystem(StudySubject):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
 
     subject_type: Literal["ModelSystem"] = Field(default="ModelSystem", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+    species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells, organism, or population being studied. Reference to NCBITaxon term. Applies to any study subject: a human cohort records Homo sapiens here just as a cell line records its species of origin.""", json_schema_extra = { "linkml_meta": {'aliases': ['model_species'],
+         'bindings': [{'binds_value_of': 'id',
                        'obligation_level': 'REQUIRED',
                        'range': 'SpeciesTerm'}],
          'domain_of': ['StudySubject', 'CellLine']} })
@@ -1127,7 +1129,8 @@ class InVivoSubject(StudySubject):
     clinical_context: Optional[str] = Field(default=None, description="""Clinical context for in vivo measurements (e.g., routine screening, post-exposure assessment, disease monitoring, baseline spirometry).""", json_schema_extra = { "linkml_meta": {'domain_of': ['InVivoSubject']} })
     member_of_cohort: Optional[str] = Field(default=None, description="""The cohort this subject record belongs to. Use when one study cohort is sampled in multiple ways: give each sampling context its own InVivoSubject with its specimen slots, and point them all to one PopulationSubject holding cohort_size and shared characteristics.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InVivoSubject']} })
     subject_type: Literal["InVivoSubject"] = Field(default="InVivoSubject", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+    species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells, organism, or population being studied. Reference to NCBITaxon term. Applies to any study subject: a human cohort records Homo sapiens here just as a cell line records its species of origin.""", json_schema_extra = { "linkml_meta": {'aliases': ['model_species'],
+         'bindings': [{'binds_value_of': 'id',
                        'obligation_level': 'REQUIRED',
                        'range': 'SpeciesTerm'}],
          'domain_of': ['StudySubject', 'CellLine']} })
@@ -1147,7 +1150,8 @@ class PopulationSubject(StudySubject):
     age_range: Optional[QuantityRange] = Field(default=None, description="""Age range of the study population.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PopulationSubject']} })
     subjects: Optional[list[InVivoSubject]] = Field(default=[], description="""Individual subjects in the population or cohort. Optional — use when individual-level data is available alongside aggregate cohort metadata.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PopulationSubject']} })
     subject_type: Literal["PopulationSubject"] = Field(default="PopulationSubject", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+    species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells, organism, or population being studied. Reference to NCBITaxon term. Applies to any study subject: a human cohort records Homo sapiens here just as a cell line records its species of origin.""", json_schema_extra = { "linkml_meta": {'aliases': ['model_species'],
+         'bindings': [{'binds_value_of': 'id',
                        'obligation_level': 'REQUIRED',
                        'range': 'SpeciesTerm'}],
          'domain_of': ['StudySubject', 'CellLine']} })
@@ -1537,7 +1541,8 @@ class CellularSystem(ModelSystem):
     donor_info: Optional[str] = Field(default=None, description="""Information about cell donor (e.g., healthy non-smoker, CF patient, age, anatomical region).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem']} })
     replicates_per_donor: Optional[int] = Field(default=None, description="""Number of biological replicates per donor.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellCultureConditions']} })
     subject_type: Literal["CellularSystem"] = Field(default="CellularSystem", description="""The specific type of study subject. Used to designate which concrete class (e.g., CellularSystem, InVivoSubject) is instantiated for polymorphic study_subject slots.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['StudySubject']} })
-    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+    species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells, organism, or population being studied. Reference to NCBITaxon term. Applies to any study subject: a human cohort records Homo sapiens here just as a cell line records its species of origin.""", json_schema_extra = { "linkml_meta": {'aliases': ['model_species'],
+         'bindings': [{'binds_value_of': 'id',
                        'obligation_level': 'REQUIRED',
                        'range': 'SpeciesTerm'}],
          'domain_of': ['StudySubject', 'CellLine']} })
@@ -1559,7 +1564,8 @@ class CellLine(NamedEntity):
                        'range': 'CellTypeTerm'}],
          'domain_of': ['CellularSystem', 'CellLine'],
          'slot_uri': 'EFO:0000324'} })
-    model_species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells or organism being studied. Reference to NCBITaxon term.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+    species: Optional[SpeciesReference] = Field(default=None, description="""The species of origin for the cells, organism, or population being studied. Reference to NCBITaxon term. Applies to any study subject: a human cohort records Homo sapiens here just as a cell line records its species of origin.""", json_schema_extra = { "linkml_meta": {'aliases': ['model_species'],
+         'bindings': [{'binds_value_of': 'id',
                        'obligation_level': 'REQUIRED',
                        'range': 'SpeciesTerm'}],
          'domain_of': ['StudySubject', 'CellLine']} })

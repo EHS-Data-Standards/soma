@@ -121,7 +121,7 @@ lung_function_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:002"
       name: "Subject B"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       age:

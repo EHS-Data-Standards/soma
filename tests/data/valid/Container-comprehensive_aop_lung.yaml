@@ -113,7 +113,7 @@ oxidative_stress_assays:
       anatomical_origin:
         id: "UBERON:0002031"
         name: "bronchus"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -169,7 +169,7 @@ oxidative_stress_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -229,7 +229,7 @@ oxidative_stress_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -282,7 +282,7 @@ egfr_signaling_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -342,7 +342,7 @@ egfr_signaling_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -394,7 +394,7 @@ egfr_signaling_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -445,7 +445,7 @@ goblet_cell_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -500,7 +500,7 @@ goblet_cell_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -549,7 +549,7 @@ goblet_cell_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -598,7 +598,7 @@ goblet_cell_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -644,7 +644,7 @@ ciliary_function_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       primary_cell:
@@ -777,7 +777,7 @@ ciliary_function_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       substrate_type: transwell_insert
@@ -836,7 +836,7 @@ ciliary_function_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       substrate_type: transwell_insert
@@ -890,7 +890,7 @@ ciliary_function_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       substrate_type: transwell_insert
@@ -942,7 +942,7 @@ mcc_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -1003,7 +1003,7 @@ mcc_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -1059,7 +1059,7 @@ mcc_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -1108,7 +1108,7 @@ mcc_assays:
       cell_type:
         id: "CL:0002328"
         name: "bronchial epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
     follows_protocols:
@@ -1160,7 +1160,7 @@ lung_function_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:aop-001"
       name: "Subject 1"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       age:
@@ -1217,7 +1217,7 @@ lung_function_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:aop-001"
       name: "Subject 1"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       age:
@@ -1265,7 +1265,7 @@ lung_function_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:aop-001"
       name: "Subject 1"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       age:
@@ -1312,7 +1312,7 @@ lung_function_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:aop-001"
       name: "Subject 1"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       age:
