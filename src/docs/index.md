@@ -126,7 +126,10 @@ of origin.
 Classes named `*Reference` are **not** study subjects or experimental
 entities — they are small value holders (an ontology identifier plus its
 label) used as the range of descriptive slots. They all inherit from
-`NamedEntity`, the base class for anything with an identifier and a name.
+`NamedEntity`. The schema has two parallel root classes: `NamedThing`
+(id, name, description) for first-class records such as assays, study
+subjects, protocols, and key events, and `NamedEntity` (id, name) for
+the descriptive value objects that live inside those records' slots.
 Not every NamedEntity is an ontology-term pointer — some subclasses, like
 `ExposureCondition` and `CellLine`, are things the schema itself defines,
 optionally mapped to ontology terms — but the `*Reference` classes are
