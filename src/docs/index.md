@@ -106,7 +106,8 @@ inherit from a common `Assay` base class. Each assay class has **named measureme
 ### Study Subject Hierarchy
 
 Each assay records its biological system via the `study_subject` slot, which accepts
-any class in the StudySubject hierarchy:
+any class in the StudySubject hierarchy. The hierarchy has exactly three
+subclasses — one for each kind of thing a study can be performed on:
 
 | Class | Use Case | Key Slots |
 |-------|----------|-----------|
@@ -115,6 +116,34 @@ any class in the StudySubject hierarchy:
 | CellularSystem | Cell-based experiments | `cell_type`, `cell_line`, `culture_conditions`, `days_at_differentiation`, `substrate_type`, `passage_number` |
 | InVivoSubject | Human/animal samples | `age`, `sex`, `sample_type`, `collection_site`, `subject_characteristics` |
 | PopulationSubject | Epidemiological cohorts | `cohort_name`, `sample_size`, `demographics` |
+
+Every study subject records its species in the `species` slot — a human
+cohort records *Homo sapiens* there just as a cell line records its species
+of origin.
+
+### Ontology Term References
+
+Classes named `*Reference` are **not** study subjects or experimental
+entities — they are small value holders (an ontology identifier plus its
+label) used as the range of descriptive slots. They all inherit from
+`NamedEntity`. The schema has two parallel root classes: `NamedThing`
+(id, name, description) for first-class records such as assays, study
+subjects, protocols, and key events, and `NamedEntity` (id, name) for
+the descriptive value objects that live inside those records' slots.
+Not every NamedEntity is an ontology-term pointer — some subclasses, like
+`ExposureCondition` and `CellLine`, are things the schema itself defines,
+optionally mapped to ontology terms — but the `*Reference` classes are
+pure term pointers:
+
+| Reference Class | Ontology | Used By (for example) |
+|-----------------|----------|-----------------------|
+| SpeciesReference | NCBI Taxonomy | `species` on StudySubject, CellLine |
+| CellTypeReference | Cell Ontology (CL) | `cell_type`, `target_cell_type` |
+| AnatomicalEntityReference | UBERON | `anatomical_origin` |
+| ChemicalEntityReference | ChEBI / ECTO / ENVO | `exposure_agent` |
+
+For example, `SpeciesReference` is how a study subject's `species` slot
+points at an NCBI Taxonomy term; it is not a fourth kind of study subject.
 
 ### Protocol Hierarchy
 
