@@ -14,7 +14,7 @@ cell_lines:
     cell_culture_type:
       id: CL:0000066
       name: epithelial cell
-    model_species:
+    species:
       id: NCBITaxon:9606
       name: Homo sapiens
     tissue_origin:
@@ -34,7 +34,7 @@ cell_lines:
     cell_culture_type:
       id: CL:0002328
       name: bronchial epithelial cell
-    model_species:
+    species:
       id: NCBITaxon:9606
       name: Homo sapiens
     tissue_origin:
@@ -175,7 +175,7 @@ three_d_cell_cultures:
     anatomical_origin:
       id: UBERON:0002048
       name: lung
-    model_species:
+    species:
       id: NCBITaxon:9606
       name: Homo sapiens
     environmental_measurements:
@@ -223,7 +223,7 @@ three_d_cell_cultures:
     anatomical_origin:
       id: UBERON:0002048
       name: lung
-    model_species:
+    species:
       id: NCBITaxon:9606
       name: Homo sapiens
 
@@ -239,7 +239,7 @@ three_d_cell_cultures:
     anatomical_origin:
       id: UBERON:0002031
       name: bronchus
-    model_species:
+    species:
       id: NCBITaxon:9606
       name: Homo sapiens
     culture_conditions:
@@ -292,7 +292,7 @@ three_d_cell_cultures:
     anatomical_origin:
       id: UBERON:0002048
       name: lung
-    model_species:
+    species:
       id: NCBITaxon:9606
       name: Homo sapiens
     membrane_properties:
@@ -357,7 +357,7 @@ co_cultures:
     anatomical_origin:
       id: UBERON:0002048
       name: lung
-    model_species:
+    species:
       id: NCBITaxon:9606
       name: Homo sapiens
     substrate_type: transwell_insert

@@ -19,7 +19,7 @@ authoritative ontology terms with correct IDs and labels.
 ## When to Use
 
   - Adding `cell_type` / `target_cell_type` to assays or study subjects (uses CL - Cell Ontology)
-  - Adding `model_species` to study subjects (uses NCBITaxon - NCBI Taxonomy)
+  - Adding `species` to study subjects (uses NCBITaxon - NCBI Taxonomy)
   - Adding `exposure_agent` to exposure conditions (uses CHEBI - Chemical Entities of Biological Interest, or ECTO for environmental exposures)
   - Adding `anatomical_origin` / anatomical location slots (uses UBERON - Uber-anatomy Ontology)
   - Adding `unit` to measurement values, durations, or concentrations (uses UO - Units of Measurement)

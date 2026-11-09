@@ -113,7 +113,7 @@ classes:
       determines which slots are available, replacing the old mixin pattern.
     slots:
       - subject_type
-      - model_species
+      - species
 
   ModelSystem:
     is_a: StudySubject
@@ -424,7 +424,7 @@ classes:
       A cell line - a genetically stable cultured cell population.
     slots:
       - cell_type
-      - model_species
+      - species
       - tissue_origin
       - disease_state
       - supplier
@@ -582,10 +582,14 @@ slots:
         range: CellTypeTerm
         obligation_level: REQUIRED
 
-  model_species:
+  species:
     description: >-
-      The species of origin for the cells or organism being studied.
-      Reference to NCBITaxon term.
+      The species of origin for the cells, organism, or population being
+      studied. Reference to NCBITaxon term. Applies to any study subject:
+      a human cohort records Homo sapiens here just as a cell line records
+      its species of origin.
+    aliases:
+      - model_species
     range: SpeciesReference
     inlined: true
     bindings:

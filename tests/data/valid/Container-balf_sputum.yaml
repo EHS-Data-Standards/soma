@@ -185,7 +185,7 @@ balf_sputum_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:001"
       name: "Subject A"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       age:

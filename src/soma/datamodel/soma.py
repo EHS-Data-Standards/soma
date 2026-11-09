@@ -1,5 +1,4 @@
 # Auto generated from soma.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-10-09T16:25:22
 # Schema: soma
 #
 # id: https://w3id.org/EHS-Data-Standards/soma
@@ -60,7 +59,7 @@ from rdflib import (
 from linkml_runtime.linkml_model.types import Boolean, Date, Float, Integer, String, Uriorcurie
 from linkml_runtime.utils.metamodelcore import Bool, URIorCURIE, XSDDate
 
-metamodel_version = "1.7.0"
+metamodel_version = "1.12.0"
 version = None
 
 # Namespaces
@@ -841,7 +840,7 @@ class StudySubject(NamedThing):
 
     id: Union[str, StudySubjectId] = None
     subject_type: Optional[str] = None
-    model_species: Optional[Union[dict, "SpeciesReference"]] = None
+    species: Optional[Union[dict, "SpeciesReference"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -851,8 +850,8 @@ class StudySubject(NamedThing):
 
         self.subject_type = str(self.class_name)
 
-        if self.model_species is not None and not isinstance(self.model_species, SpeciesReference):
-            self.model_species = SpeciesReference(**as_dict(self.model_species))
+        if self.species is not None and not isinstance(self.species, SpeciesReference):
+            self.species = SpeciesReference(**as_dict(self.species))
 
         super().__post_init__(**kwargs)
 
@@ -1752,7 +1751,7 @@ class CellLine(NamedEntity):
 
     id: Union[str, CellLineId] = None
     cell_type: Optional[Union[dict, CellTypeReference]] = None
-    model_species: Optional[Union[dict, SpeciesReference]] = None
+    species: Optional[Union[dict, SpeciesReference]] = None
     tissue_origin: Optional[str] = None
     disease_state: Optional[str] = None
     supplier: Optional[str] = None
@@ -1769,8 +1768,8 @@ class CellLine(NamedEntity):
         if self.cell_type is not None and not isinstance(self.cell_type, CellTypeReference):
             self.cell_type = CellTypeReference(**as_dict(self.cell_type))
 
-        if self.model_species is not None and not isinstance(self.model_species, SpeciesReference):
-            self.model_species = SpeciesReference(**as_dict(self.model_species))
+        if self.species is not None and not isinstance(self.species, SpeciesReference):
+            self.species = SpeciesReference(**as_dict(self.species))
 
         if self.tissue_origin is not None and not isinstance(self.tissue_origin, str):
             self.tissue_origin = str(self.tissue_origin)
@@ -3815,8 +3814,8 @@ slots.cell_type = Slot(uri=EFO['0000324'], name="cell_type", curie=EFO.curie('00
 slots.target_cell_type = Slot(uri=ASSAY_BASE.target_cell_type, name="target_cell_type", curie=ASSAY_BASE.curie('target_cell_type'),
                    model_uri=SOMA.target_cell_type, domain=None, range=Optional[Union[dict, CellTypeReference]])
 
-slots.model_species = Slot(uri=ASSAY_BASE.model_species, name="model_species", curie=ASSAY_BASE.curie('model_species'),
-                   model_uri=SOMA.model_species, domain=None, range=Optional[Union[dict, SpeciesReference]])
+slots.species = Slot(uri=ASSAY_BASE.species, name="species", curie=ASSAY_BASE.curie('species'),
+                   model_uri=SOMA.species, domain=None, range=Optional[Union[dict, SpeciesReference]])
 
 slots.subject_type = Slot(uri=ASSAY_BASE.subject_type, name="subject_type", curie=ASSAY_BASE.curie('subject_type'),
                    model_uri=SOMA.subject_type, domain=None, range=Optional[str])

@@ -179,7 +179,7 @@ cftr_assays:
       cell_type:
         id: "CL:0000066"
         name: "epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       cell_line:
@@ -251,7 +251,7 @@ cftr_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:liu-mouse-control"
       name: "Control Balb/c mouse"
-      model_species:
+      species:
         id: "NCBITaxon:10090"
         name: "Mus musculus"
       age:
@@ -307,7 +307,7 @@ cftr_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:liu-mouse-ova-pm25"
       name: "OVA+PM2.5 Balb/c mouse"
-      model_species:
+      species:
         id: "NCBITaxon:10090"
         name: "Mus musculus"
       age:
@@ -374,7 +374,7 @@ gene_expression_assays:
       cell_type:
         id: "CL:0000066"
         name: "epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       cell_line:
@@ -436,7 +436,7 @@ gene_expression_assays:
       cell_type:
         id: "CL:0000066"
         name: "epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       cell_line:
@@ -498,7 +498,7 @@ gene_expression_assays:
       cell_type:
         id: "CL:0000066"
         name: "epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       cell_line:
@@ -560,7 +560,7 @@ gene_expression_assays:
       cell_type:
         id: "CL:0000066"
         name: "epithelial cell"
-      model_species:
+      species:
         id: "NCBITaxon:9606"
         name: "Homo sapiens"
       cell_line:
@@ -619,7 +619,7 @@ gene_expression_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:liu-mouse-ova-pm25"
       name: "OVA+PM2.5 Balb/c mouse"
-      model_species:
+      species:
         id: "NCBITaxon:10090"
         name: "Mus musculus"
       age:
@@ -687,7 +687,7 @@ goblet_cell_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:liu-mouse-ova-pm25"
       name: "OVA+PM2.5 Balb/c mouse"
-      model_species:
+      species:
         id: "NCBITaxon:10090"
         name: "Mus musculus"
       age:
@@ -745,7 +745,7 @@ goblet_cell_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:liu-mouse-ova-atp"
       name: "OVA+ATP Balb/c mouse"
-      model_species:
+      species:
         id: "NCBITaxon:10090"
         name: "Mus musculus"
       age:
@@ -807,7 +807,7 @@ balf_sputum_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:liu-mouse-ova-pm25"
       name: "OVA+PM2.5 Balb/c mouse"
-      model_species:
+      species:
         id: "NCBITaxon:10090"
         name: "Mus musculus"
       age:
@@ -871,7 +871,7 @@ lung_function_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:liu-mouse-ova-pm25"
       name: "OVA+PM2.5 Balb/c mouse"
-      model_species:
+      species:
         id: "NCBITaxon:10090"
         name: "Mus musculus"
       age:
@@ -929,7 +929,7 @@ lung_function_assays:
       subject_type: InVivoSubject
       id: "SUBJECT:liu-mouse-ova-suramin"
       name: "OVA+Suramin Balb/c mouse"
-      model_species:
+      species:
         id: "NCBITaxon:10090"
         name: "Mus musculus"
       age:
