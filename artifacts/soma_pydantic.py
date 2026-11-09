@@ -1384,7 +1384,7 @@ class Unit(ConfiguredBaseModel):
 
 class NamedEntity(ConfiguredBaseModel):
     """
-    A reference to an entity with an identifier and name. Used for cell_type, tissue_context, participant references, etc.
+    A thing with an identifier and a name. Some subclasses are defined by the schema itself (e.g., ExposureCondition, CellLine); others — the *Reference classes such as SpeciesReference, CellTypeReference, AnatomicalEntityReference, and ChemicalEntityReference — are pointers to terms in an external ontology, used as the range of descriptive slots like species, cell_type, and exposure_agent. NamedEntity subclasses are not things a study is performed on; they describe those things, and are unrelated to the StudySubject hierarchy.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
 
@@ -1419,7 +1419,7 @@ class CellTypeReference(NamedEntity):
 
 class SpeciesReference(NamedEntity):
     """
-    A reference to a species from the NCBI Taxonomy.
+    A reference to a species from the NCBI Taxonomy. This is a term holder, not a kind of study subject: it is the value of the species slot on a StudySubject or CellLine (e.g., a human cohort carries species = NCBITaxon:9606 Homo sapiens), the same way CellTypeReference holds a Cell Ontology term for cell_type.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base',
          'id_prefixes': ['NCBITaxon'],

@@ -5339,7 +5339,7 @@
         },
         "NamedEntity": {
             "additionalProperties": false,
-            "description": "A reference to an entity with an identifier and name. Used for cell_type, tissue_context, participant references, etc.",
+            "description": "A thing with an identifier and a name. Some subclasses are defined by the schema itself (e.g., ExposureCondition, CellLine); others \u2014 the *Reference classes such as SpeciesReference, CellTypeReference, AnatomicalEntityReference, and ChemicalEntityReference \u2014 are pointers to terms in an external ontology, used as the range of descriptive slots like species, cell_type, and exposure_agent. NamedEntity subclasses are not things a study is performed on; they describe those things, and are unrelated to the StudySubject hierarchy.",
             "properties": {
                 "id": {
                     "description": "A unique identifier for the entity.",
@@ -6273,7 +6273,7 @@
         },
         "SpeciesReference": {
             "additionalProperties": false,
-            "description": "A reference to a species from the NCBI Taxonomy.",
+            "description": "A reference to a species from the NCBI Taxonomy. This is a term holder, not a kind of study subject: it is the value of the species slot on a StudySubject or CellLine (e.g., a human cohort carries species = NCBITaxon:9606 Homo sapiens), the same way CellTypeReference holds a Cell Ontology term for cell_type.",
             "properties": {
                 "id": {
                     "description": "A unique identifier for the entity.",

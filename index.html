@@ -525,6 +525,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ontology-term-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ontology Term References
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#protocol-hierarchy" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -920,6 +931,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ontology-term-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ontology Term References
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#protocol-hierarchy" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1175,7 +1197,8 @@ inherit from a common <code>Assay</code> base class. Each assay class has <stron
 </table>
 <h3 id="study-subject-hierarchy">Study Subject Hierarchy</h3>
 <p>Each assay records its biological system via the <code>study_subject</code> slot, which accepts
-any class in the StudySubject hierarchy:</p>
+any class in the StudySubject hierarchy. The hierarchy has exactly three
+subclasses — one for each kind of thing a study can be performed on:</p>
 <table>
 <thead>
 <tr>
@@ -1212,6 +1235,54 @@ any class in the StudySubject hierarchy:</p>
 </tr>
 </tbody>
 </table>
+<p>Every study subject records its species in the <code>species</code> slot — a human
+cohort records <em>Homo sapiens</em> there just as a cell line records its species
+of origin.</p>
+<h3 id="ontology-term-references">Ontology Term References</h3>
+<p>Classes named <code>*Reference</code> are <strong>not</strong> study subjects or experimental
+entities — they are small value holders (an ontology identifier plus its
+label) used as the range of descriptive slots. They all inherit from
+<code>NamedEntity</code>. The schema has two parallel root classes: <code>NamedThing</code>
+(id, name, description) for first-class records such as assays, study
+subjects, protocols, and key events, and <code>NamedEntity</code> (id, name) for
+the descriptive value objects that live inside those records' slots.
+Not every NamedEntity is an ontology-term pointer — some subclasses, like
+<code>ExposureCondition</code> and <code>CellLine</code>, are things the schema itself defines,
+optionally mapped to ontology terms — but the <code>*Reference</code> classes are
+pure term pointers:</p>
+<table>
+<thead>
+<tr>
+<th>Reference Class</th>
+<th>Ontology</th>
+<th>Used By (for example)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SpeciesReference</td>
+<td>NCBI Taxonomy</td>
+<td><code>species</code> on StudySubject, CellLine</td>
+</tr>
+<tr>
+<td>CellTypeReference</td>
+<td>Cell Ontology (CL)</td>
+<td><code>cell_type</code>, <code>target_cell_type</code></td>
+</tr>
+<tr>
+<td>AnatomicalEntityReference</td>
+<td>UBERON</td>
+<td><code>anatomical_origin</code></td>
+</tr>
+<tr>
+<td>ChemicalEntityReference</td>
+<td>ChEBI / ECTO / ENVO</td>
+<td><code>exposure_agent</code></td>
+</tr>
+</tbody>
+</table>
+<p>For example, <code>SpeciesReference</code> is how a study subject's <code>species</code> slot
+points at an NCBI Taxonomy term; it is not a fourth kind of study subject.</p>
 <h3 id="protocol-hierarchy">Protocol Hierarchy</h3>
 <p>Assays reference typed protocols for domain-specific procedural details:</p>
 <table>
