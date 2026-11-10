@@ -801,12 +801,12 @@ class PublicationReference(ConfiguredBaseModel):
 
 class NamedThing(ConfiguredBaseModel):
     """
-    A generic entity with an identifier and name. Base class for all named entities in the schema.
+    A generic entity with an identifier, name, and optional description. The single root class for everything named in the schema: first-class records (assays, study subjects, protocols, key events) as well as descriptive value objects such as exposure conditions, cell lines, and the *Reference classes that point to external ontology terms.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/aop_framework'})
 
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -831,8 +831,8 @@ class KeyEvent(NamedThing):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
     @field_validator('biological_process')
@@ -891,8 +891,8 @@ class KeyEventRelationship(NamedThing):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -918,8 +918,8 @@ class AdverseOutcome(KeyEvent):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
     @field_validator('outcome_term')
@@ -987,8 +987,8 @@ class AdverseOutcomePathway(NamedThing):
     key_event_relationships: Optional[list[KeyEventRelationship]] = Field(default=None, description="""The key event relationships connecting events in this AOP.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcomePathway', 'Container']} })
     adverse_outcome: Optional[AdverseOutcome] = Field(default=None, description="""The adverse outcome that is the apical endpoint of this AOP.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcomePathway']} })
     stressors: Optional[list[str]] = Field(default=None, description="""Chemical or physical stressors that can trigger this AOP.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdverseOutcomePathway']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1013,8 +1013,8 @@ class MolecularInitiatingEvent(KeyEvent):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
     @field_validator('biological_process')
@@ -1076,8 +1076,8 @@ class Assay(NamedThing):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1099,8 +1099,8 @@ class AssayOutputMeasurement(NamedThing):
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1116,8 +1116,8 @@ class StudySubject(NamedThing):
                        'obligation_level': 'REQUIRED',
                        'range': 'SpeciesTerm'}],
          'domain_of': ['StudySubject', 'CellLine']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1133,8 +1133,8 @@ class ModelSystem(StudySubject):
                        'obligation_level': 'REQUIRED',
                        'range': 'SpeciesTerm'}],
          'domain_of': ['StudySubject', 'CellLine']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1160,8 +1160,8 @@ class InVivoSubject(StudySubject):
                        'obligation_level': 'REQUIRED',
                        'range': 'SpeciesTerm'}],
          'domain_of': ['StudySubject', 'CellLine']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1181,8 +1181,8 @@ class PopulationSubject(StudySubject):
                        'obligation_level': 'REQUIRED',
                        'range': 'SpeciesTerm'}],
          'domain_of': ['StudySubject', 'CellLine']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1204,8 +1204,8 @@ class Protocol(NamedThing):
     publication_reference: Optional[str] = Field(default=None, description="""Reference to protocol publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
     last_updated: Optional[date] = Field(default=None, description="""Date protocol was last updated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
     validation_status: Optional[str] = Field(default=None, description="""Validation status of the protocol.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1236,8 +1236,8 @@ class ImagingProtocol(Protocol):
     publication_reference: Optional[str] = Field(default=None, description="""Reference to protocol publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
     last_updated: Optional[date] = Field(default=None, description="""Date protocol was last updated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
     validation_status: Optional[str] = Field(default=None, description="""Validation status of the protocol.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1264,8 +1264,8 @@ class StainingProtocol(Protocol):
     publication_reference: Optional[str] = Field(default=None, description="""Reference to protocol publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
     last_updated: Optional[date] = Field(default=None, description="""Date protocol was last updated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
     validation_status: Optional[str] = Field(default=None, description="""Validation status of the protocol.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1290,8 +1290,8 @@ class SpirometryProtocol(Protocol):
     publication_reference: Optional[str] = Field(default=None, description="""Reference to protocol publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
     last_updated: Optional[date] = Field(default=None, description="""Date protocol was last updated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
     validation_status: Optional[str] = Field(default=None, description="""Validation status of the protocol.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1319,8 +1319,8 @@ class MolecularAssayProtocol(Protocol):
     publication_reference: Optional[str] = Field(default=None, description="""Reference to protocol publication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
     last_updated: Optional[date] = Field(default=None, description="""Date protocol was last updated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
     validation_status: Optional[str] = Field(default=None, description="""Validation status of the protocol.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Protocol']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1365,8 +1365,8 @@ class Unit(ConfiguredBaseModel):
          'slot_usage': {'id': {'name': 'id',
                                'pattern': '^(UO:\\d{7}|UCUM:\\S+|QUDT:\\S+|STATO:\\d{7})$'}}})
 
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
 
     @field_validator('id')
     def pattern_id(cls, v):
@@ -1382,17 +1382,7 @@ class Unit(ConfiguredBaseModel):
         return v
 
 
-class NamedEntity(ConfiguredBaseModel):
-    """
-    A thing with an identifier and a name. Some subclasses are defined by the schema itself (e.g., ExposureCondition, CellLine); others — the *Reference classes such as SpeciesReference, CellTypeReference, AnatomicalEntityReference, and ChemicalEntityReference — are pointers to terms in an external ontology, used as the range of descriptive slots like species, cell_type, and exposure_agent. NamedEntity subclasses are not things a study is performed on; they describe those things, and are unrelated to the StudySubject hierarchy.
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/EHS-Data-Standards/assay_base'})
-
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
-
-
-class CellTypeReference(NamedEntity):
+class CellTypeReference(NamedThing):
     """
     A reference to a cell type from the Cell Ontology (CL).
     """
@@ -1400,8 +1390,9 @@ class CellTypeReference(NamedEntity):
          'id_prefixes': ['CL'],
          'slot_usage': {'id': {'name': 'id', 'pattern': '^CL:\\d{7}$'}}})
 
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
     @field_validator('id')
     def pattern_id(cls, v):
@@ -1417,7 +1408,7 @@ class CellTypeReference(NamedEntity):
         return v
 
 
-class SpeciesReference(NamedEntity):
+class SpeciesReference(NamedThing):
     """
     A reference to a species from the NCBI Taxonomy. This is a term holder, not a kind of study subject: it is the value of the species slot on a StudySubject or CellLine (e.g., a human cohort carries species = NCBITaxon:9606 Homo sapiens), the same way CellTypeReference holds a Cell Ontology term for cell_type.
     """
@@ -1425,8 +1416,9 @@ class SpeciesReference(NamedEntity):
          'id_prefixes': ['NCBITaxon'],
          'slot_usage': {'id': {'name': 'id', 'pattern': '^NCBITaxon:\\d+$'}}})
 
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
     @field_validator('id')
     def pattern_id(cls, v):
@@ -1442,7 +1434,7 @@ class SpeciesReference(NamedEntity):
         return v
 
 
-class ChemicalEntityReference(NamedEntity):
+class ChemicalEntityReference(NamedThing):
     """
     A reference to a chemical entity from CHEBI, an exposure concept from ECTO, or an environmental material from ENVO (e.g. particulate matter, which is an ENVO concept, not a CHEBI chemical).
     """
@@ -1451,8 +1443,9 @@ class ChemicalEntityReference(NamedEntity):
          'slot_usage': {'id': {'name': 'id',
                                'pattern': '^(CHEBI:\\d+|ECTO:\\d{7}|ENVO:\\d{8})$'}}})
 
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
     @field_validator('id')
     def pattern_id(cls, v):
@@ -1468,7 +1461,7 @@ class ChemicalEntityReference(NamedEntity):
         return v
 
 
-class AnatomicalEntityReference(NamedEntity):
+class AnatomicalEntityReference(NamedThing):
     """
     A reference to an anatomical entity from UBERON.
     """
@@ -1476,8 +1469,9 @@ class AnatomicalEntityReference(NamedEntity):
          'id_prefixes': ['UBERON'],
          'slot_usage': {'id': {'name': 'id', 'pattern': '^UBERON:\\d{7}$'}}})
 
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
     @field_validator('id')
     def pattern_id(cls, v):
@@ -1493,7 +1487,7 @@ class AnatomicalEntityReference(NamedEntity):
         return v
 
 
-class ExposureCondition(NamedEntity):
+class ExposureCondition(NamedThing):
     """
     A structured description of an exposure or treatment applied to a biological system. Captures what agent was applied, at what concentration, for how long, and when the measurement was taken relative to exposure.
     """
@@ -1506,8 +1500,9 @@ class ExposureCondition(NamedEntity):
     exposure_concentration: Optional[QuantityValue] = Field(default=None, description="""Concentration of the exposure agent applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureCondition']} })
     exposure_duration: Optional[QuantityValue] = Field(default=None, description="""Duration of exposure or treatment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureCondition']} })
     timing_post_exposure: Optional[QuantityValue] = Field(default=None, description="""Time after exposure when the measurement was taken. Used to capture the temporal relationship between exposure and assay readout.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExposureCondition']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
 class ResponseComparison(NamedThing):
@@ -1526,8 +1521,8 @@ class ResponseComparison(NamedThing):
     p_value: Optional[float] = Field(default=None, description="""Reported p-value for the comparison, when available.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ResponseComparison']} })
     statistical_test: Optional[str] = Field(default=None, description="""Statistical test used for the comparison (e.g., t-test, ANOVA), when reported.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ResponseComparison']} })
     derivation: Optional[DerivationEnum] = Field(default=None, description="""Whether this change was reported directly in the paper or computed afterwards from the extracted control and treated values.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ResponseComparison']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1572,12 +1567,12 @@ class CellularSystem(ModelSystem):
                        'obligation_level': 'REQUIRED',
                        'range': 'SpeciesTerm'}],
          'domain_of': ['StudySubject', 'CellLine']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
-class CellLine(NamedEntity):
+class CellLine(NamedThing):
     """
     A cell line - a genetically stable cultured cell population.
     """
@@ -1601,8 +1596,9 @@ class CellLine(NamedEntity):
     catalog_number: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'CellCultureMedium', 'MediumSupplement']} })
     authentication_method: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine']} })
     mycoplasma_status: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
     @field_validator('id')
     def pattern_id(cls, v):
@@ -1618,7 +1614,7 @@ class CellLine(NamedEntity):
         return v
 
 
-class CellCultureConditions(NamedEntity):
+class CellCultureConditions(NamedThing):
     """
     Detailed cell culture parameters including medium, environment, and timing.
     """
@@ -1632,11 +1628,12 @@ class CellCultureConditions(NamedEntity):
     cell_culture_growth_mode: Optional[CellCultureGrowthModeEnum] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellCultureConditions']} })
     donor_count: Optional[int] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureConditions']} })
     replicates_per_donor: Optional[int] = Field(default=None, description="""Number of biological replicates per donor.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CellularSystem', 'CellCultureConditions']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
-class CellCultureMedium(NamedEntity):
+class CellCultureMedium(NamedThing):
     """
     Detailed formulation of cell culture medium including base medium and supplements.
     """
@@ -1651,11 +1648,12 @@ class CellCultureMedium(NamedEntity):
     catalog_number: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'CellCultureMedium', 'MediumSupplement']} })
     lot_number: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureMedium']} })
     preparation_date: Optional[date] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureMedium']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
-class MediumSupplement(NamedEntity):
+class MediumSupplement(NamedThing):
     """
     Supplement or additive to cell culture medium.
     """
@@ -1665,8 +1663,9 @@ class MediumSupplement(NamedEntity):
     concentration: Optional[QuantityValue] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['MediumSupplement']} })
     manufacturer: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellCultureMedium', 'MediumSupplement']} })
     catalog_number: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CellLine', 'CellCultureMedium', 'MediumSupplement']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
 class QuantityRange(ConfiguredBaseModel):
@@ -1715,8 +1714,8 @@ class CiliaryFunctionAssay(Assay):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1742,8 +1741,8 @@ class CiliaryFunctionOutput(AssayOutputMeasurement):
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1766,8 +1765,8 @@ class ASLAssay(Assay):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1790,8 +1789,8 @@ class ASLOutput(AssayOutputMeasurement):
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1815,8 +1814,8 @@ class MucociliaryClearanceAssay(Assay):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1839,8 +1838,8 @@ class MucociliaryClearanceOutput(AssayOutputMeasurement):
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1864,8 +1863,8 @@ class OxidativeStressAssay(Assay):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1901,8 +1900,8 @@ class OxidativeStressOutput(AssayOutputMeasurement):
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1927,8 +1926,8 @@ class CFTRFunctionAssay(Assay):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1952,8 +1951,8 @@ class CFTRFunctionOutput(AssayOutputMeasurement):
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -1980,8 +1979,8 @@ class EGFRSignalingAssay(Assay):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -2008,8 +2007,8 @@ class EGFRSignalingOutput(AssayOutputMeasurement):
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -2033,8 +2032,8 @@ class GobletCellAssay(Assay):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -2064,8 +2063,8 @@ class GobletCellOutput(AssayOutputMeasurement):
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -2097,8 +2096,8 @@ class BALFSputumAssay(Assay):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -2130,8 +2129,8 @@ class BALFSputumOutput(AssayOutputMeasurement):
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -2165,8 +2164,8 @@ class LungFunctionAssay(Assay):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -2199,8 +2198,8 @@ class LungFunctionOutput(AssayOutputMeasurement):
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -2226,8 +2225,8 @@ class FoxJExpressionAssay(Assay):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -2249,8 +2248,8 @@ class FoxJExpressionOutput(AssayOutputMeasurement):
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -2278,8 +2277,8 @@ class GeneExpressionAssay(Assay):
                        'Assay',
                        'AssayOutputMeasurement'],
          'recommended': True} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -2300,8 +2299,8 @@ class GeneExpressionOutput(AssayOutputMeasurement):
     experimental_group: Optional[ExperimentalGroupEnum] = Field(default=None, description="""The role of this output record's group in the experimental design: control, vehicle control, baseline, treated, recovery, or sham. Lets extraction distinguish the control/baseline response from the treated response so a change relative to control can be assembled downstream.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     measured_under: Optional[str] = Field(default=None, description="""Reference (by id) to the specific ExposureCondition this output record was measured under. Links each set of response values to the concentration/treatment it corresponds to, so a dose-response series keeps each response paired with its exposure level. The referenced condition should be listed in the assay's has_exposure_condition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
     data_in_figure_only: Optional[bool] = Field(default=None, description="""True when the quantitative values for this output record are reported only in a figure or chart and could not be read from the text. The record then documents that the endpoint was measured and where its data lives (via an evidence item's figure_reference and article_section), without numeric values. This keeps figure-only results visible to reviewers in the workbook instead of silently dropping them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AssayOutputMeasurement']} })
-    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity']} })
-    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit', 'NamedEntity'], 'slot_uri': 'schema:name'} })
+    id: str = Field(default=..., description="""A unique identifier for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit']} })
+    name: Optional[str] = Field(default=None, description="""A human-readable name for the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing', 'Unit'], 'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""A detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:description'} })
 
 
@@ -2356,7 +2355,6 @@ MolecularAssayProtocol.model_rebuild()
 QuantityValue.model_rebuild()
 Variability.model_rebuild()
 Unit.model_rebuild()
-NamedEntity.model_rebuild()
 CellTypeReference.model_rebuild()
 SpeciesReference.model_rebuild()
 ChemicalEntityReference.model_rebuild()

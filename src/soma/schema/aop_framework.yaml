@@ -36,8 +36,12 @@ classes:
 
   NamedThing:
     description: >-
-      A generic entity with an identifier and name. Base class for all
-      named entities in the schema.
+      A generic entity with an identifier, name, and optional
+      description. The single root class for everything named in the
+      schema: first-class records (assays, study subjects, protocols,
+      key events) as well as descriptive value objects such as exposure
+      conditions, cell lines, and the *Reference classes that point to
+      external ontology terms.
     slots:
       - id
       - name

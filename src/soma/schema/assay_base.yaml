@@ -285,23 +285,19 @@ classes:
       id:
         pattern: "^(UO:\\d{7}|UCUM:\\S+|QUDT:\\S+|STATO:\\d{7})$"
 
-  NamedEntity:
-    description: >-
-      A thing with an identifier and a name. Some subclasses are defined
-      by the schema itself (e.g., ExposureCondition, CellLine); others —
-      the *Reference classes such as SpeciesReference, CellTypeReference,
-      AnatomicalEntityReference, and ChemicalEntityReference — are
-      pointers to terms in an external ontology, used as the range of
-      descriptive slots like species, cell_type, and exposure_agent.
-      NamedEntity subclasses are not things a study is performed on;
-      they describe those things, and are unrelated to the StudySubject
-      hierarchy.
-    slots:
-      - id
-      - name
+  # ---------------------------------------------------------------------------
+  # Ontology Term References
+  #
+  # The *Reference classes below are NamedThings used as value holders:
+  # pointers to terms in an external ontology (an identifier plus its
+  # label), used as the range of descriptive slots like species,
+  # cell_type, and exposure_agent. They are not things a study is
+  # performed on and are unrelated to the StudySubject hierarchy.
+  # (The former NamedEntity root class was merged into NamedThing.)
+  # ---------------------------------------------------------------------------
 
   CellTypeReference:
-    is_a: NamedEntity
+    is_a: NamedThing
     description: >-
       A reference to a cell type from the Cell Ontology (CL).
     id_prefixes:
@@ -311,7 +307,7 @@ classes:
         pattern: "^CL:\\d{7}$"
 
   SpeciesReference:
-    is_a: NamedEntity
+    is_a: NamedThing
     description: >-
       A reference to a species from the NCBI Taxonomy. This is a term
       holder, not a kind of study subject: it is the value of the
@@ -325,7 +321,7 @@ classes:
         pattern: "^NCBITaxon:\\d+$"
 
   ChemicalEntityReference:
-    is_a: NamedEntity
+    is_a: NamedThing
     description: >-
       A reference to a chemical entity from CHEBI, an exposure concept from
       ECTO, or an environmental material from ENVO (e.g. particulate matter,
@@ -339,7 +335,7 @@ classes:
         pattern: "^(CHEBI:\\d+|ECTO:\\d{7}|ENVO:\\d{8})$"
 
   AnatomicalEntityReference:
-    is_a: NamedEntity
+    is_a: NamedThing
     description: >-
       A reference to an anatomical entity from UBERON.
     id_prefixes:
@@ -353,7 +349,7 @@ classes:
   # ---------------------------------------------------------------------------
 
   ExposureCondition:
-    is_a: NamedEntity
+    is_a: NamedThing
     description: >-
       A structured description of an exposure or treatment applied to a
       biological system. Captures what agent was applied, at what concentration,
@@ -430,7 +426,7 @@ classes:
   # ---------------------------------------------------------------------------
 
   CellLine:
-    is_a: NamedEntity
+    is_a: NamedThing
     description: >-
       A cell line - a genetically stable cultured cell population.
     slots:
@@ -449,7 +445,7 @@ classes:
         pattern: "^CLO:\\d{7}$"
 
   CellCultureConditions:
-    is_a: NamedEntity
+    is_a: NamedThing
     exact_mappings:
       - CLO:0037334
     description: >-
@@ -464,7 +460,7 @@ classes:
       - replicates_per_donor
 
   CellCultureMedium:
-    is_a: NamedEntity
+    is_a: NamedThing
     description: >-
       Detailed formulation of cell culture medium including base medium
       and supplements.
@@ -480,7 +476,7 @@ classes:
       - preparation_date
 
   MediumSupplement:
-    is_a: NamedEntity
+    is_a: NamedThing
     description: >-
       Supplement or additive to cell culture medium.
     slots:

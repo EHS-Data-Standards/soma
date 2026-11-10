@@ -178,27 +178,23 @@ class UnitId(URIorCURIE):
     pass
 
 
-class NamedEntityId(URIorCURIE):
+class CellTypeReferenceId(NamedThingId):
     pass
 
 
-class CellTypeReferenceId(NamedEntityId):
+class SpeciesReferenceId(NamedThingId):
     pass
 
 
-class SpeciesReferenceId(NamedEntityId):
+class ChemicalEntityReferenceId(NamedThingId):
     pass
 
 
-class ChemicalEntityReferenceId(NamedEntityId):
+class AnatomicalEntityReferenceId(NamedThingId):
     pass
 
 
-class AnatomicalEntityReferenceId(NamedEntityId):
-    pass
-
-
-class ExposureConditionId(NamedEntityId):
+class ExposureConditionId(NamedThingId):
     pass
 
 
@@ -210,19 +206,19 @@ class CellularSystemId(ModelSystemId):
     pass
 
 
-class CellLineId(NamedEntityId):
+class CellLineId(NamedThingId):
     pass
 
 
-class CellCultureConditionsId(NamedEntityId):
+class CellCultureConditionsId(NamedThingId):
     pass
 
 
-class CellCultureMediumId(NamedEntityId):
+class CellCultureMediumId(NamedThingId):
     pass
 
 
-class MediumSupplementId(NamedEntityId):
+class MediumSupplementId(NamedThingId):
     pass
 
 
@@ -476,7 +472,9 @@ class PublicationReference(YAMLRoot):
 @dataclass(repr=False)
 class NamedThing(YAMLRoot):
     """
-    A generic entity with an identifier and name. Base class for all named entities in the schema.
+    A generic entity with an identifier, name, and optional description. The single root class for everything named in
+    the schema: first-class records (assays, study subjects, protocols, key events) as well as descriptive value
+    objects such as exposure conditions, cell lines, and the *Reference classes that point to external ontology terms.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -1406,38 +1404,7 @@ class Unit(YAMLRoot):
 
 
 @dataclass(repr=False)
-class NamedEntity(YAMLRoot):
-    """
-    A thing with an identifier and a name. Some subclasses are defined by the schema itself (e.g., ExposureCondition,
-    CellLine); others — the *Reference classes such as SpeciesReference, CellTypeReference, AnatomicalEntityReference,
-    and ChemicalEntityReference — are pointers to terms in an external ontology, used as the range of descriptive
-    slots like species, cell_type, and exposure_agent. NamedEntity subclasses are not things a study is performed on;
-    they describe those things, and are unrelated to the StudySubject hierarchy.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = ASSAY_BASE["NamedEntity"]
-    class_class_curie: ClassVar[str] = "assay_base:NamedEntity"
-    class_name: ClassVar[str] = "NamedEntity"
-    class_model_uri: ClassVar[URIRef] = SOMA.NamedEntity
-
-    id: Union[str, NamedEntityId] = None
-    name: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, NamedEntityId):
-            self.id = NamedEntityId(self.id)
-
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class CellTypeReference(NamedEntity):
+class CellTypeReference(NamedThing):
     """
     A reference to a cell type from the Cell Ontology (CL).
     """
@@ -1460,7 +1427,7 @@ class CellTypeReference(NamedEntity):
 
 
 @dataclass(repr=False)
-class SpeciesReference(NamedEntity):
+class SpeciesReference(NamedThing):
     """
     A reference to a species from the NCBI Taxonomy. This is a term holder, not a kind of study subject: it is the
     value of the species slot on a StudySubject or CellLine (e.g., a human cohort carries species = NCBITaxon:9606
@@ -1485,7 +1452,7 @@ class SpeciesReference(NamedEntity):
 
 
 @dataclass(repr=False)
-class ChemicalEntityReference(NamedEntity):
+class ChemicalEntityReference(NamedThing):
     """
     A reference to a chemical entity from CHEBI, an exposure concept from ECTO, or an environmental material from ENVO
     (e.g. particulate matter, which is an ENVO concept, not a CHEBI chemical).
@@ -1509,7 +1476,7 @@ class ChemicalEntityReference(NamedEntity):
 
 
 @dataclass(repr=False)
-class AnatomicalEntityReference(NamedEntity):
+class AnatomicalEntityReference(NamedThing):
     """
     A reference to an anatomical entity from UBERON.
     """
@@ -1532,7 +1499,7 @@ class AnatomicalEntityReference(NamedEntity):
 
 
 @dataclass(repr=False)
-class ExposureCondition(NamedEntity):
+class ExposureCondition(NamedThing):
     """
     A structured description of an exposure or treatment applied to a biological system. Captures what agent was
     applied, at what concentration, for how long, and when the measurement was taken relative to exposure.
@@ -1741,7 +1708,7 @@ class CellularSystem(ModelSystem):
 
 
 @dataclass(repr=False)
-class CellLine(NamedEntity):
+class CellLine(NamedThing):
     """
     A cell line - a genetically stable cultured cell population.
     """
@@ -1796,7 +1763,7 @@ class CellLine(NamedEntity):
 
 
 @dataclass(repr=False)
-class CellCultureConditions(NamedEntity):
+class CellCultureConditions(NamedThing):
     """
     Detailed cell culture parameters including medium, environment, and timing.
     """
@@ -1847,7 +1814,7 @@ class CellCultureConditions(NamedEntity):
 
 
 @dataclass(repr=False)
-class CellCultureMedium(NamedEntity):
+class CellCultureMedium(NamedThing):
     """
     Detailed formulation of cell culture medium including base medium and supplements.
     """
@@ -1905,7 +1872,7 @@ class CellCultureMedium(NamedEntity):
 
 
 @dataclass(repr=False)
-class MediumSupplement(NamedEntity):
+class MediumSupplement(NamedThing):
     """
     Supplement or additive to cell culture medium.
     """
