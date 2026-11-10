@@ -1350,8 +1350,7 @@
       "identifier": true,
       "domain_of": [
         "NamedThing",
-        "Unit",
-        "NamedEntity"
+        "Unit"
       ],
       "range": "uriorcurie",
       "required": true
@@ -1363,8 +1362,7 @@
       "slot_uri": "schema:name",
       "domain_of": [
         "NamedThing",
-        "Unit",
-        "NamedEntity"
+        "Unit"
       ],
       "range": "string"
     },
@@ -4365,7 +4363,7 @@
     },
     "NamedThing": {
       "name": "NamedThing",
-      "description": "A generic entity with an identifier and name. Base class for all named entities in the schema.",
+      "description": "A generic entity with an identifier, name, and optional description. The single root class for everything named in the schema: first-class records (assays, study subjects, protocols, key events) as well as descriptive value objects such as exposure conditions, cell lines, and the *Reference classes that point to external ontology terms.",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
       "slots": [
         "id",
@@ -4381,8 +4379,7 @@
           "owner": "NamedThing",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -4395,8 +4392,7 @@
           "owner": "NamedThing",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -4556,8 +4552,7 @@
           "owner": "KeyEvent",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -4570,8 +4565,7 @@
           "owner": "KeyEvent",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -4680,8 +4674,7 @@
           "owner": "KeyEventRelationship",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -4694,8 +4687,7 @@
           "owner": "KeyEventRelationship",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -4868,8 +4860,7 @@
           "owner": "AdverseOutcome",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -4882,8 +4873,7 @@
           "owner": "AdverseOutcome",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -4994,8 +4984,7 @@
           "owner": "AdverseOutcomePathway",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -5008,8 +4997,7 @@
           "owner": "AdverseOutcomePathway",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -5170,8 +5158,7 @@
           "owner": "MolecularInitiatingEvent",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -5184,8 +5171,7 @@
           "owner": "MolecularInitiatingEvent",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -5317,8 +5303,7 @@
           "owner": "Assay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -5331,8 +5316,7 @@
           "owner": "Assay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -5422,8 +5406,7 @@
           "owner": "AssayOutputMeasurement",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -5436,8 +5419,7 @@
           "owner": "AssayOutputMeasurement",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -5505,8 +5487,7 @@
           "owner": "StudySubject",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -5519,8 +5500,7 @@
           "owner": "StudySubject",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -5584,8 +5564,7 @@
           "owner": "ModelSystem",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -5598,8 +5577,7 @@
           "owner": "ModelSystem",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -5777,8 +5755,7 @@
           "owner": "InVivoSubject",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -5791,8 +5768,7 @@
           "owner": "InVivoSubject",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -5906,8 +5882,7 @@
           "owner": "PopulationSubject",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -5920,8 +5895,7 @@
           "owner": "PopulationSubject",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -6080,8 +6054,7 @@
           "owner": "Protocol",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -6094,8 +6067,7 @@
           "owner": "Protocol",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -6360,8 +6332,7 @@
           "owner": "ImagingProtocol",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -6374,8 +6345,7 @@
           "owner": "ImagingProtocol",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -6593,8 +6563,7 @@
           "owner": "StainingProtocol",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -6607,8 +6576,7 @@
           "owner": "StainingProtocol",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -6801,8 +6769,7 @@
           "owner": "SpirometryProtocol",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -6815,8 +6782,7 @@
           "owner": "SpirometryProtocol",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -7046,8 +7012,7 @@
           "owner": "MolecularAssayProtocol",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -7060,8 +7025,7 @@
           "owner": "MolecularAssayProtocol",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -7258,8 +7222,7 @@
           "owner": "Unit",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true,
@@ -7273,46 +7236,7 @@
           "owner": "Unit",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
-          ],
-          "range": "string"
-        }
-      }
-    },
-    "NamedEntity": {
-      "name": "NamedEntity",
-      "description": "A thing with an identifier and a name. Some subclasses are defined by the schema itself (e.g., ExposureCondition, CellLine); others — the *Reference classes such as SpeciesReference, CellTypeReference, AnatomicalEntityReference, and ChemicalEntityReference — are pointers to terms in an external ontology, used as the range of descriptive slots like species, cell_type, and exposure_agent. NamedEntity subclasses are not things a study is performed on; they describe those things, and are unrelated to the StudySubject hierarchy.",
-      "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
-      "slots": [
-        "id",
-        "name"
-      ],
-      "attributes": {
-        "id": {
-          "name": "id",
-          "description": "A unique identifier for the entity.",
-          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
-          "identifier": true,
-          "owner": "NamedEntity",
-          "domain_of": [
-            "NamedThing",
-            "Unit",
-            "NamedEntity"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "name": {
-          "name": "name",
-          "description": "A human-readable name for the entity.",
-          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
-          "slot_uri": "schema:name",
-          "owner": "NamedEntity",
-          "domain_of": [
-            "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         }
@@ -7325,7 +7249,7 @@
       ],
       "description": "A reference to a cell type from the Cell Ontology (CL).",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
-      "is_a": "NamedEntity",
+      "is_a": "NamedThing",
       "slot_usage": {
         "id": {
           "name": "id",
@@ -7341,8 +7265,7 @@
           "owner": "CellTypeReference",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true,
@@ -7356,8 +7279,18 @@
           "owner": "CellTypeReference",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
+          ],
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "A detailed description of the entity.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "slot_uri": "schema:description",
+          "owner": "CellTypeReference",
+          "domain_of": [
+            "NamedThing"
           ],
           "range": "string"
         }
@@ -7370,7 +7303,7 @@
       ],
       "description": "A reference to a species from the NCBI Taxonomy. This is a term holder, not a kind of study subject: it is the value of the species slot on a StudySubject or CellLine (e.g., a human cohort carries species = NCBITaxon:9606 Homo sapiens), the same way CellTypeReference holds a Cell Ontology term for cell_type.",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
-      "is_a": "NamedEntity",
+      "is_a": "NamedThing",
       "slot_usage": {
         "id": {
           "name": "id",
@@ -7386,8 +7319,7 @@
           "owner": "SpeciesReference",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true,
@@ -7401,8 +7333,18 @@
           "owner": "SpeciesReference",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
+          ],
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "A detailed description of the entity.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "slot_uri": "schema:description",
+          "owner": "SpeciesReference",
+          "domain_of": [
+            "NamedThing"
           ],
           "range": "string"
         }
@@ -7417,7 +7359,7 @@
       ],
       "description": "A reference to a chemical entity from CHEBI, an exposure concept from ECTO, or an environmental material from ENVO (e.g. particulate matter, which is an ENVO concept, not a CHEBI chemical).",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
-      "is_a": "NamedEntity",
+      "is_a": "NamedThing",
       "slot_usage": {
         "id": {
           "name": "id",
@@ -7433,8 +7375,7 @@
           "owner": "ChemicalEntityReference",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true,
@@ -7448,8 +7389,18 @@
           "owner": "ChemicalEntityReference",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
+          ],
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "A detailed description of the entity.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "slot_uri": "schema:description",
+          "owner": "ChemicalEntityReference",
+          "domain_of": [
+            "NamedThing"
           ],
           "range": "string"
         }
@@ -7462,7 +7413,7 @@
       ],
       "description": "A reference to an anatomical entity from UBERON.",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
-      "is_a": "NamedEntity",
+      "is_a": "NamedThing",
       "slot_usage": {
         "id": {
           "name": "id",
@@ -7478,8 +7429,7 @@
           "owner": "AnatomicalEntityReference",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true,
@@ -7493,8 +7443,18 @@
           "owner": "AnatomicalEntityReference",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
+          ],
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "A detailed description of the entity.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "slot_uri": "schema:description",
+          "owner": "AnatomicalEntityReference",
+          "domain_of": [
+            "NamedThing"
           ],
           "range": "string"
         }
@@ -7504,7 +7464,7 @@
       "name": "ExposureCondition",
       "description": "A structured description of an exposure or treatment applied to a biological system. Captures what agent was applied, at what concentration, for how long, and when the measurement was taken relative to exposure.",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
-      "is_a": "NamedEntity",
+      "is_a": "NamedThing",
       "slots": [
         "exposure_agent",
         "exposure_concentration",
@@ -7571,8 +7531,7 @@
           "owner": "ExposureCondition",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -7585,8 +7544,18 @@
           "owner": "ExposureCondition",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
+          ],
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "A detailed description of the entity.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "slot_uri": "schema:description",
+          "owner": "ExposureCondition",
+          "domain_of": [
+            "NamedThing"
           ],
           "range": "string"
         }
@@ -7722,8 +7691,7 @@
           "owner": "ResponseComparison",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -7736,8 +7704,7 @@
           "owner": "ResponseComparison",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -8036,8 +8003,7 @@
           "owner": "CellularSystem",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -8050,8 +8016,7 @@
           "owner": "CellularSystem",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -8075,7 +8040,7 @@
       ],
       "description": "A cell line - a genetically stable cultured cell population.",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
-      "is_a": "NamedEntity",
+      "is_a": "NamedThing",
       "slots": [
         "cell_type",
         "species",
@@ -8200,8 +8165,7 @@
           "owner": "CellLine",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true,
@@ -8215,8 +8179,18 @@
           "owner": "CellLine",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
+          ],
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "A detailed description of the entity.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "slot_uri": "schema:description",
+          "owner": "CellLine",
+          "domain_of": [
+            "NamedThing"
           ],
           "range": "string"
         }
@@ -8229,7 +8203,7 @@
       "exact_mappings": [
         "CLO:0037334"
       ],
-      "is_a": "NamedEntity",
+      "is_a": "NamedThing",
       "slots": [
         "culture_media",
         "days_at_air_liquid_interface",
@@ -8318,8 +8292,7 @@
           "owner": "CellCultureConditions",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -8332,8 +8305,18 @@
           "owner": "CellCultureConditions",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
+          ],
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "A detailed description of the entity.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "slot_uri": "schema:description",
+          "owner": "CellCultureConditions",
+          "domain_of": [
+            "NamedThing"
           ],
           "range": "string"
         }
@@ -8343,7 +8326,7 @@
       "name": "CellCultureMedium",
       "description": "Detailed formulation of cell culture medium including base medium and supplements.",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
-      "is_a": "NamedEntity",
+      "is_a": "NamedThing",
       "slots": [
         "base_medium",
         "serum_type",
@@ -8453,8 +8436,7 @@
           "owner": "CellCultureMedium",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -8467,8 +8449,18 @@
           "owner": "CellCultureMedium",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
+          ],
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "A detailed description of the entity.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "slot_uri": "schema:description",
+          "owner": "CellCultureMedium",
+          "domain_of": [
+            "NamedThing"
           ],
           "range": "string"
         }
@@ -8478,7 +8470,7 @@
       "name": "MediumSupplement",
       "description": "Supplement or additive to cell culture medium.",
       "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
-      "is_a": "NamedEntity",
+      "is_a": "NamedThing",
       "slots": [
         "supplement_type",
         "concentration",
@@ -8534,8 +8526,7 @@
           "owner": "MediumSupplement",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -8548,8 +8539,18 @@
           "owner": "MediumSupplement",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
+          ],
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "A detailed description of the entity.",
+          "from_schema": "https://w3id.org/EHS-Data-Standards/soma",
+          "slot_uri": "schema:description",
+          "owner": "MediumSupplement",
+          "domain_of": [
+            "NamedThing"
           ],
           "range": "string"
         }
@@ -8753,8 +8754,7 @@
           "owner": "CiliaryFunctionAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -8767,8 +8767,7 @@
           "owner": "CiliaryFunctionAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -8944,8 +8943,7 @@
           "owner": "CiliaryFunctionOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -8958,8 +8956,7 @@
           "owner": "CiliaryFunctionOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -9087,8 +9084,7 @@
           "owner": "ASLAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -9101,8 +9097,7 @@
           "owner": "ASLAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -9243,8 +9238,7 @@
           "owner": "ASLOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -9257,8 +9251,7 @@
           "owner": "ASLOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -9399,8 +9392,7 @@
           "owner": "MucociliaryClearanceAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -9413,8 +9405,7 @@
           "owner": "MucociliaryClearanceAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -9555,8 +9546,7 @@
           "owner": "MucociliaryClearanceOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -9569,8 +9559,7 @@
           "owner": "MucociliaryClearanceOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -9711,8 +9700,7 @@
           "owner": "OxidativeStressAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -9725,8 +9713,7 @@
           "owner": "OxidativeStressAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -10022,8 +10009,7 @@
           "owner": "OxidativeStressOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -10036,8 +10022,7 @@
           "owner": "OxidativeStressOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -10189,8 +10174,7 @@
           "owner": "CFTRFunctionAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -10203,8 +10187,7 @@
           "owner": "CFTRFunctionAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -10357,8 +10340,7 @@
           "owner": "CFTRFunctionOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -10371,8 +10353,7 @@
           "owner": "CFTRFunctionOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -10525,8 +10506,7 @@
           "owner": "EGFRSignalingAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -10539,8 +10519,7 @@
           "owner": "EGFRSignalingAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -10728,8 +10707,7 @@
           "owner": "EGFRSignalingOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -10742,8 +10720,7 @@
           "owner": "EGFRSignalingOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -10871,8 +10848,7 @@
           "owner": "GobletCellAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -10885,8 +10861,7 @@
           "owner": "GobletCellAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -11111,8 +11086,7 @@
           "owner": "GobletCellOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -11125,8 +11099,7 @@
           "owner": "GobletCellOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -11285,8 +11258,7 @@
           "owner": "BALFSputumAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -11299,8 +11271,7 @@
           "owner": "BALFSputumAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -11549,8 +11520,7 @@
           "owner": "BALFSputumOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -11563,8 +11533,7 @@
           "owner": "BALFSputumOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -11738,8 +11707,7 @@
           "owner": "LungFunctionAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -11752,8 +11720,7 @@
           "owner": "LungFunctionAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -12014,8 +11981,7 @@
           "owner": "LungFunctionOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -12028,8 +11994,7 @@
           "owner": "LungFunctionOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -12163,8 +12128,7 @@
           "owner": "FoxJExpressionAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -12177,8 +12141,7 @@
           "owner": "FoxJExpressionAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -12307,8 +12270,7 @@
           "owner": "FoxJExpressionOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -12321,8 +12283,7 @@
           "owner": "FoxJExpressionOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -12492,8 +12453,7 @@
           "owner": "GeneExpressionAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -12506,8 +12466,7 @@
           "owner": "GeneExpressionAssay",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },
@@ -12624,8 +12583,7 @@
           "owner": "GeneExpressionOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "uriorcurie",
           "required": true
@@ -12638,8 +12596,7 @@
           "owner": "GeneExpressionOutput",
           "domain_of": [
             "NamedThing",
-            "Unit",
-            "NamedEntity"
+            "Unit"
           ],
           "range": "string"
         },

@@ -472,6 +472,13 @@
             "additionalProperties": false,
             "description": "A reference to an anatomical entity from UBERON.",
             "properties": {
+                "description": {
+                    "description": "A detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "pattern": "^UBERON:\\d{7}$",
@@ -1384,6 +1391,13 @@
                         "null"
                     ]
                 },
+                "description": {
+                    "description": "A detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "donor_count": {
                     "type": [
                         "integer",
@@ -1455,6 +1469,13 @@
                     ]
                 },
                 "catalog_number": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A detailed description of the entity.",
                     "type": [
                         "string",
                         "null"
@@ -1559,6 +1580,13 @@
                     ],
                     "description": "The cell type being studied. Reference to a Cell Ontology (CL) term. Used on CellularSystem and CellLine to describe the cell identity."
                 },
+                "description": {
+                    "description": "A detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "disease_state": {
                     "type": [
                         "string",
@@ -1617,6 +1645,13 @@
             "additionalProperties": false,
             "description": "A reference to a cell type from the Cell Ontology (CL).",
             "properties": {
+                "description": {
+                    "description": "A detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "pattern": "^CL:\\d{7}$",
@@ -1892,6 +1927,13 @@
             "additionalProperties": false,
             "description": "A reference to a chemical entity from CHEBI, an exposure concept from ECTO, or an environmental material from ENVO (e.g. particulate matter, which is an ENVO concept, not a CHEBI chemical).",
             "properties": {
+                "description": {
+                    "description": "A detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "pattern": "^(CHEBI:\\d+|ECTO:\\d{7}|ENVO:\\d{8})$",
@@ -2870,6 +2912,13 @@
             "additionalProperties": false,
             "description": "A structured description of an exposure or treatment applied to a biological system. Captures what agent was applied, at what concentration, for how long, and when the measurement was taken relative to exposure.",
             "properties": {
+                "description": {
+                    "description": "A detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "exposure_agent": {
                     "anyOf": [
                         {
@@ -4687,6 +4736,13 @@
                         }
                     ]
                 },
+                "description": {
+                    "description": "A detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "type": "string"
@@ -5337,31 +5393,9 @@
             "title": "MucociliaryClearanceOutput",
             "type": "object"
         },
-        "NamedEntity": {
-            "additionalProperties": false,
-            "description": "A thing with an identifier and a name. Some subclasses are defined by the schema itself (e.g., ExposureCondition, CellLine); others \u2014 the *Reference classes such as SpeciesReference, CellTypeReference, AnatomicalEntityReference, and ChemicalEntityReference \u2014 are pointers to terms in an external ontology, used as the range of descriptive slots like species, cell_type, and exposure_agent. NamedEntity subclasses are not things a study is performed on; they describe those things, and are unrelated to the StudySubject hierarchy.",
-            "properties": {
-                "id": {
-                    "description": "A unique identifier for the entity.",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A human-readable name for the entity.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "title": "NamedEntity",
-            "type": "object"
-        },
         "NamedThing": {
             "additionalProperties": false,
-            "description": "A generic entity with an identifier and name. Base class for all named entities in the schema.",
+            "description": "A generic entity with an identifier, name, and optional description. The single root class for everything named in the schema: first-class records (assays, study subjects, protocols, key events) as well as descriptive value objects such as exposure conditions, cell lines, and the *Reference classes that point to external ontology terms.",
             "properties": {
                 "description": {
                     "description": "A detailed description of the entity.",
@@ -6275,6 +6309,13 @@
             "additionalProperties": false,
             "description": "A reference to a species from the NCBI Taxonomy. This is a term holder, not a kind of study subject: it is the value of the species slot on a StudySubject or CellLine (e.g., a human cohort carries species = NCBITaxon:9606 Homo sapiens), the same way CellTypeReference holds a Cell Ontology term for cell_type.",
             "properties": {
+                "description": {
+                    "description": "A detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "id": {
                     "description": "A unique identifier for the entity.",
                     "pattern": "^NCBITaxon:\\d+$",

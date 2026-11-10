@@ -390,7 +390,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-namedthing">Class: NamedThing</h1>
-<p><em>A generic entity with an identifier and name. Base class for all named entities in the schema.</em></p>
+<p><em>A generic entity with an identifier, name, and optional description. The single root class for everything named in the schema: first-class records (assays, study subjects, protocols, key events) as well as descriptive value objects such as exposure conditions, cell lines, and the *Reference classes that point to external ontology terms.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/EHS-Data-Standards/soma/NamedThing">soma:NamedThing</a></p>
 <pre class="mermaid"><code> classDiagram
@@ -410,8 +410,26 @@
         click StudySubject href "../StudySubject/"
       NamedThing &lt;|-- Protocol
         click Protocol href "../Protocol/"
+      NamedThing &lt;|-- CellTypeReference
+        click CellTypeReference href "../CellTypeReference/"
+      NamedThing &lt;|-- SpeciesReference
+        click SpeciesReference href "../SpeciesReference/"
+      NamedThing &lt;|-- ChemicalEntityReference
+        click ChemicalEntityReference href "../ChemicalEntityReference/"
+      NamedThing &lt;|-- AnatomicalEntityReference
+        click AnatomicalEntityReference href "../AnatomicalEntityReference/"
+      NamedThing &lt;|-- ExposureCondition
+        click ExposureCondition href "../ExposureCondition/"
       NamedThing &lt;|-- ResponseComparison
         click ResponseComparison href "../ResponseComparison/"
+      NamedThing &lt;|-- CellLine
+        click CellLine href "../CellLine/"
+      NamedThing &lt;|-- CellCultureConditions
+        click CellCultureConditions href "../CellCultureConditions/"
+      NamedThing &lt;|-- CellCultureMedium
+        click CellCultureMedium href "../CellCultureMedium/"
+      NamedThing &lt;|-- MediumSupplement
+        click MediumSupplement href "../MediumSupplement/"
 
       NamedThing : description
 
@@ -431,7 +449,16 @@
 <li><a href="../AssayOutputMeasurement/">AssayOutputMeasurement</a></li>
 <li><a href="../StudySubject/">StudySubject</a></li>
 <li><a href="../Protocol/">Protocol</a></li>
+<li><a href="../CellTypeReference/">CellTypeReference</a></li>
+<li><a href="../SpeciesReference/">SpeciesReference</a></li>
+<li><a href="../ChemicalEntityReference/">ChemicalEntityReference</a></li>
+<li><a href="../AnatomicalEntityReference/">AnatomicalEntityReference</a></li>
+<li><a href="../ExposureCondition/">ExposureCondition</a></li>
 <li><a href="../ResponseComparison/">ResponseComparison</a></li>
+<li><a href="../CellLine/">CellLine</a></li>
+<li><a href="../CellCultureConditions/">CellCultureConditions</a></li>
+<li><a href="../CellCultureMedium/">CellCultureMedium</a></li>
+<li><a href="../MediumSupplement/">MediumSupplement</a></li>
 </ul>
 </li>
 </ul>
@@ -495,8 +522,11 @@
 <h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A generic entity with an identifier and name. Base class for all named</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">entities in the schema.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">generic</span><span class="nv"> </span><span class="s">entity</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">identifier,</span><span class="nv"> </span><span class="s">name,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">optional</span><span class="nv"> </span><span class="s">description.</span>
+<span class="w">  </span><span class="s">The</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">root</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">everything</span><span class="nv"> </span><span class="s">named</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">schema:</span><span class="nv"> </span><span class="s">first-class</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">(assays,</span>
+<span class="w">  </span><span class="s">study</span><span class="nv"> </span><span class="s">subjects,</span><span class="nv"> </span><span class="s">protocols,</span><span class="nv"> </span><span class="s">key</span><span class="nv"> </span><span class="s">events)</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">well</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">descriptive</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">objects</span><span class="nv"> </span><span class="s">such</span>
+<span class="w">  </span><span class="s">as</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">conditions,</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">lines,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">*Reference</span><span class="nv"> </span><span class="s">classes</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">point</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">external</span>
+<span class="w">  </span><span class="s">ontology</span><span class="nv"> </span><span class="s">terms.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
@@ -507,8 +537,11 @@
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A generic entity with an identifier and name. Base class for all named</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">entities in the schema.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">generic</span><span class="nv"> </span><span class="s">entity</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">identifier,</span><span class="nv"> </span><span class="s">name,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">optional</span><span class="nv"> </span><span class="s">description.</span>
+<span class="w">  </span><span class="s">The</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">root</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">everything</span><span class="nv"> </span><span class="s">named</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">schema:</span><span class="nv"> </span><span class="s">first-class</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">(assays,</span>
+<span class="w">  </span><span class="s">study</span><span class="nv"> </span><span class="s">subjects,</span><span class="nv"> </span><span class="s">protocols,</span><span class="nv"> </span><span class="s">key</span><span class="nv"> </span><span class="s">events)</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">well</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">descriptive</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">objects</span><span class="nv"> </span><span class="s">such</span>
+<span class="w">  </span><span class="s">as</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">conditions,</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">lines,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">*Reference</span><span class="nv"> </span><span class="s">classes</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">point</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">external</span>
+<span class="w">  </span><span class="s">ontology</span><span class="nv"> </span><span class="s">terms.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/EHS-Data-Standards/soma</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
@@ -521,7 +554,6 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span>
@@ -534,7 +566,6 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>

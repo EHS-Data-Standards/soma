@@ -1267,11 +1267,10 @@ slots:
     from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
     slot_uri: aop_framework:id
     identifier: true
-    owner: NamedEntity
+    owner: Unit
     domain_of:
     - NamedThing
     - Unit
-    - NamedEntity
     range: uriorcurie
     required: true
   name:
@@ -1282,11 +1281,10 @@ slots:
     mappings:
     - schema:name
     slot_uri: schema:name
-    owner: NamedEntity
+    owner: Unit
     domain_of:
     - NamedThing
     - Unit
-    - NamedEntity
     range: string
   description:
     name: description
@@ -4867,8 +4865,11 @@ classes:
   NamedThing:
     name: NamedThing
     definition_uri: https://w3id.org/EHS-Data-Standards/aop_framework/NamedThing
-    description: A generic entity with an identifier and name. Base class for all
-      named entities in the schema.
+    description: 'A generic entity with an identifier, name, and optional description.
+      The single root class for everything named in the schema: first-class records
+      (assays, study subjects, protocols, key events) as well as descriptive value
+      objects such as exposure conditions, cell lines, and the *Reference classes
+      that point to external ontology terms.'
     from_schema: https://w3id.org/EHS-Data-Standards/aop_framework
     slots:
     - id
@@ -5328,21 +5329,6 @@ classes:
         name: id
         pattern: ^(UO:\d{7}|UCUM:\S+|QUDT:\S+|STATO:\d{7})$
     class_uri: assay_base:Unit
-  NamedEntity:
-    name: NamedEntity
-    definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/NamedEntity
-    description: "A thing with an identifier and a name. Some subclasses are defined\
-      \ by the schema itself (e.g., ExposureCondition, CellLine); others \u2014 the\
-      \ *Reference classes such as SpeciesReference, CellTypeReference, AnatomicalEntityReference,\
-      \ and ChemicalEntityReference \u2014 are pointers to terms in an external ontology,\
-      \ used as the range of descriptive slots like species, cell_type, and exposure_agent.\
-      \ NamedEntity subclasses are not things a study is performed on; they describe\
-      \ those things, and are unrelated to the StudySubject hierarchy."
-    from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    slots:
-    - id
-    - name
-    class_uri: assay_base:NamedEntity
   CellTypeReference:
     name: CellTypeReference
     id_prefixes:
@@ -5350,9 +5336,10 @@ classes:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/CellTypeReference
     description: A reference to a cell type from the Cell Ontology (CL).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    is_a: NamedEntity
+    is_a: NamedThing
     slots:
     - name
+    - description
     - CellTypeReference_id
     slot_usage:
       id:
@@ -5370,9 +5357,10 @@ classes:
       Homo sapiens), the same way CellTypeReference holds a Cell Ontology term for
       cell_type.'
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    is_a: NamedEntity
+    is_a: NamedThing
     slots:
     - name
+    - description
     - SpeciesReference_id
     slot_usage:
       id:
@@ -5390,9 +5378,10 @@ classes:
       from ECTO, or an environmental material from ENVO (e.g. particulate matter,
       which is an ENVO concept, not a CHEBI chemical).
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    is_a: NamedEntity
+    is_a: NamedThing
     slots:
     - name
+    - description
     - ChemicalEntityReference_id
     slot_usage:
       id:
@@ -5406,9 +5395,10 @@ classes:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/AnatomicalEntityReference
     description: A reference to an anatomical entity from UBERON.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    is_a: NamedEntity
+    is_a: NamedThing
     slots:
     - name
+    - description
     - AnatomicalEntityReference_id
     slot_usage:
       id:
@@ -5422,10 +5412,11 @@ classes:
       biological system. Captures what agent was applied, at what concentration, for
       how long, and when the measurement was taken relative to exposure.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    is_a: NamedEntity
+    is_a: NamedThing
     slots:
     - id
     - name
+    - description
     - exposure_agent
     - exposure_concentration
     - exposure_duration
@@ -5499,9 +5490,10 @@ classes:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/CellLine
     description: A cell line - a genetically stable cultured cell population.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    is_a: NamedEntity
+    is_a: NamedThing
     slots:
     - name
+    - description
     - cell_type
     - species
     - tissue_origin
@@ -5524,10 +5516,11 @@ classes:
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
     exact_mappings:
     - CLO:0037334
-    is_a: NamedEntity
+    is_a: NamedThing
     slots:
     - id
     - name
+    - description
     - culture_media
     - days_at_air_liquid_interface
     - passage_number
@@ -5542,10 +5535,11 @@ classes:
     description: Detailed formulation of cell culture medium including base medium
       and supplements.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    is_a: NamedEntity
+    is_a: NamedThing
     slots:
     - id
     - name
+    - description
     - base_medium
     - serum_type
     - serum_concentration
@@ -5561,10 +5555,11 @@ classes:
     definition_uri: https://w3id.org/EHS-Data-Standards/assay_base/MediumSupplement
     description: Supplement or additive to cell culture medium.
     from_schema: https://w3id.org/EHS-Data-Standards/assay_base
-    is_a: NamedEntity
+    is_a: NamedThing
     slots:
     - id
     - name
+    - description
     - supplement_type
     - concentration
     - manufacturer
@@ -6194,6 +6189,6 @@ classes:
     class_uri: assay_microschemas:GeneExpressionOutput
 metamodel_version: 1.12.0
 source_file: soma.yaml
-source_file_date: '2026-11-09T19:17:46'
+source_file_date: '2026-11-10T00:59:19'
 source_file_size: 7929
 
